@@ -95,11 +95,53 @@ function ResumePage() {
         </div>
       </section>
 
-      <section className="mt-14 grid md:grid-cols-2 gap-8">
+      <section className="mt-14 grid md:grid-cols-2 gap-10">
+        <div>
+          <h2 className="font-display text-2xl text-ink mb-4">Education</h2>
+          <ul className="space-y-4">
+            {profile.education.map((e) => (
+              <li key={`${e.school}-${e.degree}`}>
+                <div className="font-display text-base text-ink">{e.degree}</div>
+                <div className="text-sm text-ink-soft">{e.school}</div>
+                <div className="text-[11px] uppercase tracking-[0.12em] text-ink-soft mt-1">
+                  {e.period}
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
         <div>
           <h2 className="font-display text-2xl text-ink mb-4">Certifications</h2>
           <ul className="space-y-2 text-ink-soft">
             {profile.certifications.map((c) => <li key={c}>· {c}</li>)}
+          </ul>
+          <h2 className="font-display text-2xl text-ink mb-4 mt-10">Honors</h2>
+          <ul className="space-y-3">
+            {profile.honors.map((h) => (
+              <li key={h.title}>
+                <div className="font-display text-base text-ink">{h.title}</div>
+                <div className="text-[11px] uppercase tracking-[0.12em] text-ink-soft mt-1">
+                  {h.issuer} · {h.year}
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <section className="mt-14 grid md:grid-cols-2 gap-10">
+        <div>
+          <h2 className="font-display text-2xl text-ink mb-4">Volunteering</h2>
+          <ul className="space-y-4">
+            {profile.volunteering.map((v) => (
+              <li key={`${v.org}-${v.role}`}>
+                <div className="font-display text-base text-ink">{v.role}</div>
+                <div className="text-sm text-ink-soft">{v.org}</div>
+                <div className="text-[11px] uppercase tracking-[0.12em] text-ink-soft mt-1">
+                  {v.period}
+                </div>
+              </li>
+            ))}
           </ul>
         </div>
         <div>
