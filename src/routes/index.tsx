@@ -186,6 +186,38 @@ function HomePage() {
           </div>
         </div>
       </section>
+      {/* Recommendations */}
+      <section className="border-t border-rule">
+        <div className="mx-auto max-w-6xl px-6 py-20">
+          <div className="text-xs uppercase tracking-[0.14em] text-ink-soft">Recommendations</div>
+          <h2 className="font-display text-3xl md:text-4xl text-ink mt-2 max-w-3xl">
+            What people who've worked with me say.
+          </h2>
+          <div className="mt-10 grid md:grid-cols-2 gap-6">
+            {quotes.map((r) => (
+              <figure
+                key={r.name}
+                className="border border-rule bg-surface p-8 rounded-lg flex flex-col"
+              >
+                <blockquote className="font-display text-lg text-ink leading-snug flex-1">
+                  &ldquo;{r.quote}&rdquo;
+                </blockquote>
+                <figcaption className="mt-6 pt-6 border-t border-rule">
+                  <div className="text-sm font-medium text-ink">{r.name}</div>
+                  <div className="text-xs text-ink-soft mt-1">
+                    {r.title} · {r.company}
+                  </div>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+          <div className="mt-8">
+            <Link to="/about" className="text-sm text-ink-soft hover:text-ink">
+              More on the about page →
+            </Link>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
