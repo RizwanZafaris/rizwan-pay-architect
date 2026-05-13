@@ -40,7 +40,7 @@ export const Route = createFileRoute("/product-work/$slug")({
 });
 
 function CaseStudyPage() {
-  const { study: s } = Route.useLoaderData();
+  const { study: s } = Route.useLoaderData() as { study: CaseStudy };
   const others = caseStudies.filter((c) => c.slug !== s.slug).slice(0, 3);
   return (
     <article>
