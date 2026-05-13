@@ -1,0 +1,24 @@
+# Rizwan Zafar — Payments Product Executive
+
+> Personal site of Rizwan Zafar, a payments product executive based in Dubai building regulated payment infrastructure across emerging markets — $1B+ GTV, 25M+ monthly transactions.
+
+Rizwan is Chief Product Officer at Simpaisa and writes about payment infrastructure, cross-border payments, settlement, KYC/KYB, fraud and risk, and emerging-markets fintech product strategy.
+
+## Pages
+
+- [Home](/): Overview, positioning, selected work and metrics.
+- [About](/about): Background from engineering to payments leadership, plus recommendations.
+- [Product Work](/product-work): Case studies in regulated payments infrastructure at $1B+ GTV scale.
+- [Blog](/blog): Notes on payments, product and emerging markets.
+- [Resume](/resume): Executive resume — payments product, infrastructure and risk.
+- [Contact](/contact): Get in touch about senior payments roles or advisory work.
+
+## Case studies
+
+- [Simpaisa Payment Infrastructure](/product-work/simpaisa-payment-infrastructure): Multi-rail platform powering $1B+ GTV.
+- [Merchant Onboarding + KYC/KYB](/product-work/merchant-onboarding-kyc): Activation from weeks to hours.
+- [Fraud, Risk and AML/CFT](/product-work/fraud-risk-aml-cft): Layered controls built into the payments stack.
+- [Settlement + Reconciliation](/product-work/settlement-reconciliation): Multi-rail settlement engine at 99.95% accuracy.
+- [Cross-Border Corridors + FX](/product-work/cross-border-corridors-fx): Pay-in/payout across MENA and South Asia.
+- [Tapmad Wallet/Billing Migration](/product-work/tapmad-wallet-billing-migration): Payment cost from 50% to 1%.
+- [Daraz Payment Operations](/product-work/daraz-payment-operations): COD-to-digital conversion across markets.

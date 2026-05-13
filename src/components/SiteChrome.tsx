@@ -40,10 +40,12 @@ export function SiteHeader() {
           <a
             href={profile.resumeHref}
             download
+            aria-label="Download resume (PDF)"
             className="inline-flex items-center gap-1.5 rounded-full bg-ink text-background px-4 py-2 text-[12px] font-medium hover:bg-brand transition-colors"
           >
-            <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg>
+            <svg aria-hidden="true" className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg>
             <span className="hidden sm:inline">Resume</span>
+            <span className="sr-only sm:hidden">Download resume</span>
           </a>
         </div>
       </div>

@@ -8,8 +8,8 @@ export const Route = createFileRoute("/about")({
       { title: "About — Rizwan Zafar | Payments Product Executive" },
       {
         name: "description",
-        content:
-          "From power infrastructure in Pakistan to project leadership in the DRC and Dubai, to Chief Product Officer at Simpaisa: building regulated payment infrastructure across emerging markets.",
+          content:
+          "Engineer-turned-CPO building regulated payment infrastructure across emerging markets — $1B+ GTV, PCI DSS and ISO 27001 from scratch.",
       },
       { property: "og:title", content: "About Rizwan Zafar" },
       {

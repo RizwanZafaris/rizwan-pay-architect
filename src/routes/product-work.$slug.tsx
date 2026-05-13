@@ -12,7 +12,7 @@ export const Route = createFileRoute("/product-work/$slug")({
     if (!s) return { meta: [{ title: "Case Study" }] };
     return {
       meta: [
-        { title: `${s.title} — Case Study | Rizwan Zafar` },
+        { title: `${s.title} | Rizwan Zafar` },
         { name: "description", content: s.tagline },
         { name: "keywords", content: s.keywords.join(", ") },
         { property: "og:title", content: s.title },
@@ -21,6 +21,21 @@ export const Route = createFileRoute("/product-work/$slug")({
         { property: "og:url", content: `/product-work/${params.slug}` },
       ],
       links: [{ rel: "canonical", href: `/product-work/${params.slug}` }],
+      scripts: [
+        {
+          type: "application/ld+json",
+          children: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Article",
+            headline: s.title,
+            description: s.tagline,
+            keywords: s.keywords.join(", "),
+            articleSection: s.category,
+            author: { "@type": "Person", name: "Rizwan Zafar" },
+            mainEntityOfPage: `/product-work/${params.slug}`,
+          }),
+        },
+      ],
     };
   },
   notFoundComponent: () => (

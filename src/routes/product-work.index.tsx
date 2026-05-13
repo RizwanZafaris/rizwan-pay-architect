@@ -4,7 +4,7 @@ import { caseStudies } from "@/data/caseStudies";
 export const Route = createFileRoute("/product-work/")({
   head: () => ({
     meta: [
-      { title: "Product Work — Payment Infrastructure Case Studies | Rizwan Zafar" },
+      { title: "Product Work — Payments Case Studies | Rizwan Zafar" },
       {
         name: "description",
         content:
@@ -19,6 +19,26 @@ export const Route = createFileRoute("/product-work/")({
       { property: "og:url", content: "/product-work" },
     ],
     links: [{ rel: "canonical", href: "/product-work" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "CollectionPage",
+          name: "Product Work — Payments Case Studies",
+          url: "/product-work",
+          mainEntity: {
+            "@type": "ItemList",
+            itemListElement: caseStudies.map((c, i) => ({
+              "@type": "ListItem",
+              position: i + 1,
+              url: `/product-work/${c.slug}`,
+              name: c.title,
+            })),
+          },
+        }),
+      },
+    ],
   }),
   component: ProductWorkIndex,
 });
