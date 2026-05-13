@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProductWorkIndexRouteImport } from './routes/product-work.index'
+import { Route as BlogIndexRouteImport } from './routes/blog.index'
 import { Route as ProductWorkSlugRouteImport } from './routes/product-work.$slug'
 
 const AboutRoute = AboutRouteImport.update({
@@ -29,6 +30,11 @@ const ProductWorkIndexRoute = ProductWorkIndexRouteImport.update({
   path: '/product-work/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BlogIndexRoute = BlogIndexRouteImport.update({
+  id: '/blog/',
+  path: '/blog/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProductWorkSlugRoute = ProductWorkSlugRouteImport.update({
   id: '/product-work/$slug',
   path: '/product-work/$slug',
@@ -39,12 +45,14 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/product-work/$slug': typeof ProductWorkSlugRoute
+  '/blog/': typeof BlogIndexRoute
   '/product-work/': typeof ProductWorkIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/product-work/$slug': typeof ProductWorkSlugRoute
+  '/blog': typeof BlogIndexRoute
   '/product-work': typeof ProductWorkIndexRoute
 }
 export interface FileRoutesById {
@@ -52,20 +60,33 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/product-work/$slug': typeof ProductWorkSlugRoute
+  '/blog/': typeof BlogIndexRoute
   '/product-work/': typeof ProductWorkIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/product-work/$slug' | '/product-work/'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/product-work/$slug'
+    | '/blog/'
+    | '/product-work/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/product-work/$slug' | '/product-work'
-  id: '__root__' | '/' | '/about' | '/product-work/$slug' | '/product-work/'
+  to: '/' | '/about' | '/product-work/$slug' | '/blog' | '/product-work'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/product-work/$slug'
+    | '/blog/'
+    | '/product-work/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   ProductWorkSlugRoute: typeof ProductWorkSlugRoute
+  BlogIndexRoute: typeof BlogIndexRoute
   ProductWorkIndexRoute: typeof ProductWorkIndexRoute
 }
 
@@ -92,6 +113,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProductWorkIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blog/': {
+      id: '/blog/'
+      path: '/blog'
+      fullPath: '/blog/'
+      preLoaderRoute: typeof BlogIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/product-work/$slug': {
       id: '/product-work/$slug'
       path: '/product-work/$slug'
@@ -106,8 +134,19 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   ProductWorkSlugRoute: ProductWorkSlugRoute,
+  BlogIndexRoute: BlogIndexRoute,
   ProductWorkIndexRoute: ProductWorkIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
