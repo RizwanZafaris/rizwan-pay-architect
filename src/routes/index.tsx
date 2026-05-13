@@ -30,53 +30,79 @@ function HomePage() {
   const featured = caseStudies.slice(0, 3);
   const latest = posts.slice(0, 3);
   const quotes = recommendations.slice(0, 2);
+  const partnersLoop = [...profile.partners, ...profile.partners];
   return (
     <div>
       {/* Hero */}
-      <section className="border-b border-rule">
-        <div className="mx-auto max-w-6xl px-6 pt-20 pb-16 md:pt-28 md:pb-20">
-          <div className="text-xs uppercase tracking-[0.18em] text-ink-soft mb-6">
-            Dubai · Payments Product · Available for senior roles
+      <section className="relative overflow-hidden border-b border-rule">
+        <div className="absolute inset-0 bg-grid opacity-[0.55] [mask-image:radial-gradient(ellipse_at_top,black_30%,transparent_75%)]" aria-hidden />
+        <div className="absolute -top-40 -right-32 h-[520px] w-[520px] rounded-full blur-[120px] opacity-60"
+             style={{ background: "radial-gradient(circle, color-mix(in oklab, var(--accent-emerald) 22%, transparent), transparent 70%)" }} aria-hidden />
+        <div className="absolute -bottom-40 -left-32 h-[480px] w-[480px] rounded-full blur-[120px] opacity-50"
+             style={{ background: "radial-gradient(circle, color-mix(in oklab, var(--brand) 28%, transparent), transparent 70%)" }} aria-hidden />
+        <div className="absolute inset-0 bg-noise opacity-[0.05] mix-blend-multiply" aria-hidden />
+
+        <div className="relative mx-auto max-w-6xl px-6 pt-20 pb-20 md:pt-28 md:pb-24">
+          <div className="inline-flex items-center gap-2.5 rounded-full border border-ink/10 bg-background/70 backdrop-blur px-3 py-1.5 shadow-sm">
+            <span className="relative inline-flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full rounded-full bg-[var(--accent-emerald)] opacity-60 animate-ping"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-[var(--accent-emerald)]"></span>
+            </span>
+            <span className="text-[10px] font-mono-tech uppercase tracking-[0.22em] text-ink">
+              Available for senior roles
+            </span>
+            <span className="h-3 w-px bg-ink/15" />
+            <span className="text-[10px] font-mono-tech uppercase tracking-[0.22em] text-ink-soft">
+              Dubai · Global
+            </span>
           </div>
-          <h1 className="font-display text-4xl md:text-6xl lg:text-7xl text-ink leading-[1.05] max-w-4xl">
-            I build payment infrastructure for complex markets.
+
+          <h1 className="mt-7 font-instrument text-5xl md:text-7xl lg:text-[88px] text-ink leading-[0.98] max-w-5xl">
+            I build payment infrastructure{" "}
+            <span className="italic text-ink-soft">for complex markets.</span>
           </h1>
-          <p className="mt-6 max-w-2xl text-lg text-ink-soft leading-relaxed">
+
+          <p className="mt-7 max-w-2xl text-lg md:text-xl text-ink-soft leading-relaxed">
             Chief Product Officer at Simpaisa. 8+ years building regulated payment
             infrastructure across emerging markets — pay-in, payout, cross-border, FX,
-            settlement, KYC, fraud and AML/CFT. $1B+ GTV, 25M+ monthly transactions, 5
-            countries.
+            settlement, KYC, fraud and AML/CFT.{" "}
+            <span className="text-ink font-medium">$1B+ GTV · 25M+ monthly transactions · 5 countries.</span>
           </p>
-          <div className="mt-8 flex flex-wrap gap-3">
+
+          <div className="mt-10 flex flex-wrap items-center gap-3">
             <a
               href={profile.resumeHref}
               download
-              className="inline-flex items-center rounded-md bg-ink text-background px-5 py-2.5 text-sm font-medium hover:bg-brand transition-colors"
+              className="group inline-flex items-center gap-2 rounded-full bg-ink text-background px-6 py-3.5 text-sm font-medium hover:-translate-y-0.5 transition-transform shadow-[0_10px_30px_-10px_rgba(15,23,42,0.4)]"
             >
               Download Resume
+              <svg className="w-4 h-4 transition-transform group-hover:translate-y-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg>
             </a>
             <Link
               to="/product-work"
-              className="inline-flex items-center rounded-md border border-ink/20 px-5 py-2.5 text-sm font-medium text-ink hover:bg-ink hover:text-background transition-colors"
+              className="inline-flex items-center gap-2 rounded-full border border-ink/15 bg-background/60 backdrop-blur px-6 py-3.5 text-sm font-medium text-ink hover:bg-ink/5 transition-colors"
             >
               View Product Work
             </Link>
             <Link
               to="/blog"
-              className="inline-flex items-center px-5 py-2.5 text-sm font-medium text-ink-soft hover:text-ink underline underline-offset-4"
+              className="group inline-flex items-center gap-1.5 px-3 py-3.5 text-sm font-medium text-ink-soft hover:text-ink transition-colors"
             >
-              Read Blog →
+              Read Blog
+              <span className="transition-transform group-hover:translate-x-1">→</span>
             </Link>
           </div>
         </div>
 
-        {/* Metrics strip */}
-        <div className="border-t border-rule bg-surface-2">
-          <div className="mx-auto max-w-6xl px-6 py-6 grid grid-cols-2 md:grid-cols-5 gap-6">
-            {profile.metrics.map((m) => (
-              <div key={m.label}>
-                <div className="font-display text-2xl text-ink">{m.value}</div>
-                <div className="text-xs uppercase tracking-[0.12em] text-ink-soft mt-1">
+        <div className="relative border-t border-rule bg-background/60 backdrop-blur-sm">
+          <div className="mx-auto max-w-6xl px-6 py-8 grid grid-cols-2 md:grid-cols-5 gap-x-6 gap-y-6">
+            {profile.metrics.map((m, i) => (
+              <div key={m.label} className="relative">
+                {i > 0 && <span className="hidden md:block absolute -left-3 top-1 bottom-1 w-px bg-rule" />}
+                <div className="font-mono-tech text-2xl md:text-[28px] font-medium tracking-tight text-ink">
+                  {m.value}
+                </div>
+                <div className="text-[10px] uppercase tracking-[0.18em] text-ink-soft mt-1.5 font-mono-tech">
                   {m.label}
                 </div>
               </div>
@@ -85,25 +111,37 @@ function HomePage() {
         </div>
       </section>
 
+      {/* Trusted partners marquee */}
+      {profile.partners?.length ? (
+        <section className="border-b border-rule bg-surface-2/50 overflow-hidden">
+          <div className="mx-auto max-w-6xl px-6 py-6 flex items-center gap-8">
+            <div className="shrink-0 text-[10px] uppercase tracking-[0.22em] text-ink-soft font-mono-tech">
+              Partner ecosystem
+            </div>
+            <div className="relative flex-1 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
+              <div className="flex gap-10 marquee-track w-max">
+                {partnersLoop.map((p, i) => (
+                  <span key={`${p}-${i}`} className="text-sm font-medium text-ink-soft whitespace-nowrap">
+                    {p}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+      ) : null}
+
       {/* Positioning */}
-      <section className="mx-auto max-w-6xl px-6 py-20 grid md:grid-cols-3 gap-10">
-        <div>
-          <div className="text-xs uppercase tracking-[0.14em] text-ink-soft">Positioning</div>
+      <section className="mx-auto max-w-6xl px-6 py-24 md:py-28 grid md:grid-cols-12 gap-10">
+        <div className="md:col-span-3">
+          <div className="text-[10px] uppercase tracking-[0.24em] text-[var(--accent-emerald)] font-mono-tech font-semibold">
+            ◆ Positioning
+          </div>
         </div>
-        <div className="md:col-span-2">
-          <p className="font-display text-2xl md:text-3xl text-ink leading-snug">
+        <div className="md:col-span-9">
+          <p className="font-instrument text-3xl md:text-5xl text-ink leading-[1.15]">
             {profile.positioning}
           </p>
-          <div className="mt-8 flex flex-wrap gap-2">
-            {profile.partners.map((p) => (
-              <span
-                key={p}
-                className="text-xs px-2.5 py-1 border border-rule rounded-full text-ink-soft bg-surface"
-              >
-                {p}
-              </span>
-            ))}
-          </div>
         </div>
       </section>
 
