@@ -19,6 +19,26 @@ export const Route = createFileRoute("/product-work/")({
       { property: "og:url", content: "/product-work" },
     ],
     links: [{ rel: "canonical", href: "/product-work" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "CollectionPage",
+          name: "Product Work — Payments Case Studies",
+          url: "/product-work",
+          mainEntity: {
+            "@type": "ItemList",
+            itemListElement: caseStudies.map((c, i) => ({
+              "@type": "ListItem",
+              position: i + 1,
+              url: `/product-work/${c.slug}`,
+              name: c.title,
+            })),
+          },
+        }),
+      },
+    ],
   }),
   component: ProductWorkIndex,
 });
