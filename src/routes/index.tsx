@@ -29,6 +29,7 @@ export const Route = createFileRoute("/")({
 function HomePage() {
   const featured = caseStudies.slice(0, 3);
   const latest = posts.slice(0, 3);
+  const quotes = recommendations.slice(0, 2);
   return (
     <div>
       {/* Hero */}
