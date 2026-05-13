@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { profile } from "@/data/profile";
 import { caseStudies } from "@/data/caseStudies";
 import { posts } from "@/data/posts";
+import { recommendations } from "@/data/recommendations";
 
 export const Route = createFileRoute("/")({
   head: () => ({
