@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProductWorkIndexRouteImport } from './routes/product-work.index'
+import { Route as ProductWorkSlugRouteImport } from './routes/product-work.$slug'
 
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
@@ -28,34 +29,43 @@ const ProductWorkIndexRoute = ProductWorkIndexRouteImport.update({
   path: '/product-work/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProductWorkSlugRoute = ProductWorkSlugRouteImport.update({
+  id: '/product-work/$slug',
+  path: '/product-work/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/product-work/$slug': typeof ProductWorkSlugRoute
   '/product-work/': typeof ProductWorkIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/product-work/$slug': typeof ProductWorkSlugRoute
   '/product-work': typeof ProductWorkIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/product-work/$slug': typeof ProductWorkSlugRoute
   '/product-work/': typeof ProductWorkIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/product-work/'
+  fullPaths: '/' | '/about' | '/product-work/$slug' | '/product-work/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/product-work'
-  id: '__root__' | '/' | '/about' | '/product-work/'
+  to: '/' | '/about' | '/product-work/$slug' | '/product-work'
+  id: '__root__' | '/' | '/about' | '/product-work/$slug' | '/product-work/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  ProductWorkSlugRoute: typeof ProductWorkSlugRoute
   ProductWorkIndexRoute: typeof ProductWorkIndexRoute
 }
 
@@ -82,12 +92,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProductWorkIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/product-work/$slug': {
+      id: '/product-work/$slug'
+      path: '/product-work/$slug'
+      fullPath: '/product-work/$slug'
+      preLoaderRoute: typeof ProductWorkSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  ProductWorkSlugRoute: ProductWorkSlugRoute,
   ProductWorkIndexRoute: ProductWorkIndexRoute,
 }
 export const routeTree = rootRouteImport
