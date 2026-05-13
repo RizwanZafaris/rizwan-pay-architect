@@ -74,6 +74,8 @@ export function SiteFooter() {
           <ul className="space-y-2">
             <li><a href={`mailto:${profile.email}`} className="hover:text-ink text-ink-soft">{profile.email}</a></li>
             <li><a href={profile.linkedin} target="_blank" rel="noreferrer" className="hover:text-ink text-ink-soft">LinkedIn</a></li>
+            <li><a href={profile.twitter} target="_blank" rel="noreferrer" className="hover:text-ink text-ink-soft">Twitter / X</a></li>
+            <li><a href={profile.personalSite} target="_blank" rel="noreferrer" className="hover:text-ink text-ink-soft">rizwan-zafar.com</a></li>
             <li><Link to="/contact" className="hover:text-ink text-ink-soft">Contact form</Link></li>
           </ul>
         </div>
