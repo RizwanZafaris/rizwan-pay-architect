@@ -23,10 +23,12 @@ export const caseStudies: CaseStudy[] = [
       { label: "Annual GTV", value: "$1B+" },
       { label: "Monthly transactions", value: "25M+" },
       { label: "Settlement SLA", value: "99.95%" },
-      { label: "Markets", value: "5" },
+      { label: "Fraud loss", value: "<0.1% GTV" },
+      { label: "Downtime reduction", value: "−90%" },
+      { label: "Enterprise wallet adoption", value: "30%" },
     ],
     problem:
-      "Merchants and platforms operating in Pakistan, Bangladesh, Nepal, Iraq and Egypt needed a single regulated rail to accept, payout, settle and reconcile across cards, wallets, IBFT, DCB and cross-border corridors — without stitching together fragile point integrations.",
+      "Merchants and platforms operating in Pakistan, Bangladesh, Nepal, Iraq and Egypt needed a single regulated rail to accept, payout, settle and reconcile across cards (MPGS/MDES), wallets, IBFT, DCB and cross-border corridors — without stitching together fragile point integrations. In 2024, regulatory tightening and a CTO departure forced the platform to operate under heightened scrutiny without losing pace.",
     built: [
       "Unified pay-in API across cards, wallets, DCB, IBFT and bank transfers",
       "Payout and disbursement engine with corridor-aware routing",
