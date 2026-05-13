@@ -26,7 +26,7 @@ function ResumePage() {
         <div>
           <div className="text-xs uppercase tracking-[0.18em] text-ink-soft">Resume</div>
           <h1 className="font-display text-4xl md:text-5xl text-ink mt-3 leading-tight">
-            {profile.name}
+            {profile.name} — Payments Product Executive Resume
           </h1>
           <p className="mt-2 text-ink-soft">{profile.role} · {profile.location}</p>
         </div>

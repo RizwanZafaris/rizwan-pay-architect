@@ -4,7 +4,7 @@ import { caseStudies } from "@/data/caseStudies";
 export const Route = createFileRoute("/product-work/")({
   head: () => ({
     meta: [
-      { title: "Product Work — Payment Infrastructure Case Studies | Rizwan Zafar" },
+      { title: "Product Work — Payments Case Studies | Rizwan Zafar" },
       {
         name: "description",
         content:
