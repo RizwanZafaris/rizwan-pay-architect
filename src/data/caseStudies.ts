@@ -23,10 +23,12 @@ export const caseStudies: CaseStudy[] = [
       { label: "Annual GTV", value: "$1B+" },
       { label: "Monthly transactions", value: "25M+" },
       { label: "Settlement SLA", value: "99.95%" },
-      { label: "Markets", value: "5" },
+      { label: "Fraud loss", value: "<0.1% GTV" },
+      { label: "Downtime reduction", value: "−90%" },
+      { label: "Enterprise wallet adoption", value: "30%" },
     ],
     problem:
-      "Merchants and platforms operating in Pakistan, Bangladesh, Nepal, Iraq and Egypt needed a single regulated rail to accept, payout, settle and reconcile across cards, wallets, IBFT, DCB and cross-border corridors — without stitching together fragile point integrations.",
+      "Merchants and platforms operating in Pakistan, Bangladesh, Nepal, Iraq and Egypt needed a single regulated rail to accept, payout, settle and reconcile across cards (MPGS/MDES), wallets, IBFT, DCB and cross-border corridors — without stitching together fragile point integrations. In 2024, regulatory tightening and a CTO departure forced the platform to operate under heightened scrutiny without losing pace.",
     built: [
       "Unified pay-in API across cards, wallets, DCB, IBFT and bank transfers",
       "Payout and disbursement engine with corridor-aware routing",
@@ -36,12 +38,13 @@ export const caseStudies: CaseStudy[] = [
       "Merchant console: onboarding, KYC/KYB, dashboards and dispute workflows",
     ],
     role:
-      "Chief Product Officer. Owned product strategy, roadmap, partner integrations, regulatory posture and the org structure to ship and operate the platform end-to-end.",
+      "Chief Product Officer (acting CTO during the 2024 regulatory tightening). Owned product strategy, roadmap, partner integrations, regulatory posture, security architecture and the org structure to ship and operate the platform end-to-end with a 25+ person team.",
     impact: [
-      "Scaled to $1B+ annual GTV and 25M+ monthly transactions",
-      "Onboarded enterprise platforms including TikTok, Uber, Temu, PUBG and MoneyGram",
+      "Scaled to $1B+ annual GTV and 25M+ monthly transactions across 5 countries",
+      "Onboarded enterprise platforms including TikTok, Uber, InDrive, Temu, PUBG and MoneyGram",
+      "Held fraud loss below 0.1% of GTV; cut platform downtime by 90%",
       "Achieved PCI DSS and ISO 27001 certifications from scratch",
-      "Reduced settlement cycle and improved reconciliation accuracy to 99.95%",
+      "Drove 30% enterprise wallet adoption and 99.95% settlement SLA",
     ],
     keywords: [
       "payment infrastructure",

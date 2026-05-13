@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { profile } from "@/data/profile";
 import { caseStudies } from "@/data/caseStudies";
 import { posts } from "@/data/posts";
+import { recommendations } from "@/data/recommendations";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -28,6 +29,7 @@ export const Route = createFileRoute("/")({
 function HomePage() {
   const featured = caseStudies.slice(0, 3);
   const latest = posts.slice(0, 3);
+  const quotes = recommendations.slice(0, 2);
   return (
     <div>
       {/* Hero */}
@@ -40,9 +42,10 @@ function HomePage() {
             I build payment infrastructure for complex markets.
           </h1>
           <p className="mt-6 max-w-2xl text-lg text-ink-soft leading-relaxed">
-            Payments product executive with $1B+ GTV experience across cross-border rails,
-            merchant onboarding, settlement, fraud and risk, wallets, and regulated fintech
-            platforms.
+            Chief Product Officer at Simpaisa. 8+ years building regulated payment
+            infrastructure across emerging markets — pay-in, payout, cross-border, FX,
+            settlement, KYC, fraud and AML/CFT. $1B+ GTV, 25M+ monthly transactions, 5
+            countries.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <a
@@ -180,6 +183,38 @@ function HomePage() {
                 <p className="text-sm text-ink-soft mt-3 leading-relaxed">{p.description}</p>
               </Link>
             ))}
+          </div>
+        </div>
+      </section>
+      {/* Recommendations */}
+      <section className="border-t border-rule">
+        <div className="mx-auto max-w-6xl px-6 py-20">
+          <div className="text-xs uppercase tracking-[0.14em] text-ink-soft">Recommendations</div>
+          <h2 className="font-display text-3xl md:text-4xl text-ink mt-2 max-w-3xl">
+            What people who've worked with me say.
+          </h2>
+          <div className="mt-10 grid md:grid-cols-2 gap-6">
+            {quotes.map((r) => (
+              <figure
+                key={r.name}
+                className="border border-rule bg-surface p-8 rounded-lg flex flex-col"
+              >
+                <blockquote className="font-display text-lg text-ink leading-snug flex-1">
+                  &ldquo;{r.quote}&rdquo;
+                </blockquote>
+                <figcaption className="mt-6 pt-6 border-t border-rule">
+                  <div className="text-sm font-medium text-ink">{r.name}</div>
+                  <div className="text-xs text-ink-soft mt-1">
+                    {r.title} · {r.company}
+                  </div>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+          <div className="mt-8">
+            <Link to="/about" className="text-sm text-ink-soft hover:text-ink">
+              More on the about page →
+            </Link>
           </div>
         </div>
       </section>

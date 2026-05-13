@@ -59,6 +59,30 @@ function ContactPage() {
             </div>
             <span className="text-ink-soft group-hover:text-ink">→</span>
           </a>
+          <a
+            href={profile.personalSite}
+            target="_blank"
+            rel="noreferrer"
+            className="flex items-center justify-between border border-rule rounded-lg px-5 py-4 hover:border-ink transition-colors group"
+          >
+            <div>
+              <div className="text-xs uppercase tracking-[0.14em] text-ink-soft">Personal site</div>
+              <div className="font-display text-lg text-ink">rizwan-zafar.com</div>
+            </div>
+            <span className="text-ink-soft group-hover:text-ink">→</span>
+          </a>
+          <a
+            href={profile.twitter}
+            target="_blank"
+            rel="noreferrer"
+            className="flex items-center justify-between border border-rule rounded-lg px-5 py-4 hover:border-ink transition-colors group"
+          >
+            <div>
+              <div className="text-xs uppercase tracking-[0.14em] text-ink-soft">Twitter / X</div>
+              <div className="font-display text-lg text-ink">@rizwan_zafar</div>
+            </div>
+            <span className="text-ink-soft group-hover:text-ink">→</span>
+          </a>
           <div className="border border-rule rounded-lg px-5 py-4">
             <div className="text-xs uppercase tracking-[0.14em] text-ink-soft">Location</div>
             <div className="font-display text-lg text-ink">{profile.location}</div>
