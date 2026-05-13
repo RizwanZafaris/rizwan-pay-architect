@@ -42,9 +42,10 @@ function HomePage() {
             I build payment infrastructure for complex markets.
           </h1>
           <p className="mt-6 max-w-2xl text-lg text-ink-soft leading-relaxed">
-            Payments product executive with $1B+ GTV experience across cross-border rails,
-            merchant onboarding, settlement, fraud and risk, wallets, and regulated fintech
-            platforms.
+            Chief Product Officer at Simpaisa. 8+ years building regulated payment
+            infrastructure across emerging markets — pay-in, payout, cross-border, FX,
+            settlement, KYC, fraud and AML/CFT. $1B+ GTV, 25M+ monthly transactions, 5
+            countries.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <a
