@@ -1,5 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { getHub, postsForHub, caseStudiesForHub, type HubSlug } from "@/data/hubs";
+import { getHub, postsForHub, caseStudiesForHub, type Hub, type HubSlug } from "@/data/hubs";
+import type { Post } from "@/data/posts";
+import type { CaseStudy } from "@/data/caseStudies";
 import { absUrl, SITE_URL } from "@/lib/seo";
 
 export const Route = createFileRoute("/topics/$hub")({
@@ -77,7 +79,11 @@ export const Route = createFileRoute("/topics/$hub")({
 });
 
 function HubPage() {
-  const { hub, essays, studies } = Route.useLoaderData();
+  const { hub, essays, studies } = Route.useLoaderData() as {
+    hub: Hub;
+    essays: Post[];
+    studies: CaseStudy[];
+  };
 
   return (
     <div className="mx-auto max-w-6xl px-6 py-20">
