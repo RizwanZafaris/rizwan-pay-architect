@@ -107,10 +107,10 @@ function HomePage() {
             </h1>
 
             <p className="mt-7 max-w-2xl text-base md:text-lg text-ink-soft leading-relaxed">
-              Payments product executive with <span className="text-ink font-medium">$1B+ GTV</span>{" "}
-              experience across acceptance, cross-border rails, merchant onboarding,
-              settlement, fraud and risk, KYC/KYB, AML/CFT, wallets, and regulated fintech
-              platforms.
+              Payments product executive building regulated payment systems across{" "}
+              <span className="text-ink">acceptance, APIs, cross-border corridors, FX,
+              settlement, reconciliation, KYC/KYB, AML/CFT, fraud and risk, wallets,</span>{" "}
+              and payment performance.
             </p>
 
             <div className="mt-8 flex flex-wrap items-center gap-3">
