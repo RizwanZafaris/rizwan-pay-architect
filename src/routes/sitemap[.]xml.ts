@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import type {} from "@tanstack/react-start";
 import { caseStudies } from "@/data/caseStudies";
 import { posts } from "@/data/posts";
-import { hubs, audiences } from "@/data/hubs";
+import { audiences } from "@/data/hubs";
 import { products } from "@/data/products";
 
 const TODAY_ISO = "2026-05-17";
