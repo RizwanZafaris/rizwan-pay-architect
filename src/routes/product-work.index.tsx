@@ -191,25 +191,33 @@ function ProductWorkIndex() {
 type Option = string | { value: string; label: string };
 
 function FilterSelect({
+  id,
   label,
   value,
   onChange,
   options,
 }: {
+  id: string;
   label: string;
   value: string;
   onChange: (v: string) => void;
   options: Option[];
 }) {
   return (
-    <label className="block">
-      <span className="text-[10px] uppercase tracking-[0.22em] text-ink-soft font-mono-tech">
+    <div className="block">
+      <label
+        htmlFor={id}
+        className="text-[10px] uppercase tracking-[0.22em] text-ink-soft font-mono-tech"
+      >
         {label}
-      </span>
+      </label>
       <select
+        id={id}
+        name={id}
+        aria-label={label}
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="mt-2 w-full rounded-lg border border-rule bg-surface px-3 py-2.5 text-sm text-ink focus:border-ink/40 focus:outline-none"
+        className="mt-2 w-full rounded-lg border border-rule bg-surface px-3 py-2.5 text-sm text-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-ink/40 focus:border-ink/60"
       >
         <option value="">All</option>
         {options.map((o) => {
@@ -222,6 +230,6 @@ function FilterSelect({
           );
         })}
       </select>
-    </label>
+    </div>
   );
 }
