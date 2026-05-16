@@ -110,19 +110,19 @@ function ProductWorkIndex() {
         <FilterSelect
           label="Market"
           value={market}
-          onChange={(v) => navigate({ search: (p) => ({ ...p, market: v }) })}
+          onChange={(v) => navigate({ search: (p: typeof Route.types.fullSearchSchema) => ({ ...p, market: v }) })}
           options={markets}
         />
         <FilterSelect
           label="Relevant company"
           value={company}
-          onChange={(v) => navigate({ search: (p) => ({ ...p, company: v }) })}
+          onChange={(v) => navigate({ search: (p: typeof Route.types.fullSearchSchema) => ({ ...p, company: v }) })}
           options={companies}
         />
         <FilterSelect
           label="Compliance theme"
           value={theme}
-          onChange={(v) => navigate({ search: (p) => ({ ...p, theme: v }) })}
+          onChange={(v) => navigate({ search: (p: typeof Route.types.fullSearchSchema) => ({ ...p, theme: v }) })}
           options={themes.map((t) => ({ value: t.id, label: t.label }))}
         />
       </div>
