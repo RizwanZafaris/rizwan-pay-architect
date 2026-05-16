@@ -3,6 +3,7 @@ import { profile } from "@/data/profile";
 import { caseStudies } from "@/data/caseStudies";
 import { posts } from "@/data/posts";
 import { absUrl, SITE_URL } from "@/lib/seo";
+import { DiagramFigure, RailsMapDiagram } from "@/components/diagrams/Diagrams";
 
 const profilePageJsonLd = {
   "@context": "https://schema.org",
@@ -224,7 +225,31 @@ function HomePage() {
         </div>
       </section>
 
-      {/* ============ EXECUTIVE THESIS ============ */}
+      {/* ============ ARCHITECTURE DIAGRAM ============ */}
+      <section className="border-b border-rule">
+        <div className="mx-auto max-w-6xl px-6 py-20 md:py-24">
+          <div className="max-w-2xl mb-8">
+            <div className="text-[10px] uppercase tracking-[0.24em] text-[var(--accent-emerald)] font-mono-tech font-semibold">
+              ◆ How the platform is shaped
+            </div>
+            <h2 className="font-instrument text-4xl md:text-5xl text-ink mt-3 leading-tight">
+              One contract. <span className="italic text-ink-soft">Many rails.</span>
+            </h2>
+            <p className="mt-4 text-ink-soft leading-relaxed">
+              Cards, wallets, DCB, IBFT and cross-border corridors converge behind a single
+              pay-in/payout API. Routing, risk, ledger and settlement run as shared services —
+              not per-integration code.
+            </p>
+          </div>
+          <DiagramFigure
+            title="Multi-rail payments platform — Simpaisa reference architecture."
+            caption="Same contract across rails. Corridor-aware routing. Canonical ledger. Settlement and reconciliation as platform concerns. This is the shape of $1B+ GTV when the back office disappears into product."
+          >
+            <RailsMapDiagram />
+          </DiagramFigure>
+        </div>
+      </section>
+
       <section className="relative mx-auto max-w-6xl px-6 py-24 md:py-28">
         <div className="grid md:grid-cols-12 gap-10">
           <div className="md:col-span-3">

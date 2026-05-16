@@ -1,6 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { caseStudies, getCaseStudy, type CaseStudy } from "@/data/caseStudies";
 import { absUrl, SITE_URL } from "@/lib/seo";
+import { DiagramFigure, caseStudyDiagrams } from "@/components/diagrams/Diagrams";
 
 export const Route = createFileRoute("/product-work/$slug")({
   loader: ({ params }) => {
@@ -84,6 +85,7 @@ function Section({ id, label, title, children }: { id: string; label: string; ti
 function CaseStudyPage() {
   const { study: s } = Route.useLoaderData() as { study: CaseStudy };
   const others = caseStudies.filter((c) => c.slug !== s.slug).slice(0, 3);
+  const diagram = caseStudyDiagrams[s.slug];
 
   return (
     <article>
@@ -117,6 +119,12 @@ function CaseStudyPage() {
         <Section id="summary" label="Executive summary" title="What this is, in one paragraph.">
           <p>{s.executiveSummary}</p>
         </Section>
+
+        {diagram ? (
+          <DiagramFigure title={diagram.title} caption={diagram.caption}>
+            <diagram.component />
+          </DiagramFigure>
+        ) : null}
 
         <Section id="problem" label="Problem" title="The job to be done.">
           <p>{s.problem}</p>
