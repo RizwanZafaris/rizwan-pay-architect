@@ -28,7 +28,7 @@ export const posts: Post[] = [
   {
     "slug": "swift-compliance-checklist-for-banks-and-fintechs",
     "title": "A SWIFT Compliance Checklist for Banks and Fintechs",
-    "date": "2026-07-17",
+    "date": "2026-05-17",
     "category": "Cross-Border Payments",
     "readingTime": "7 min read",
     "description": "A practitioner checklist for SWIFT-related compliance — sanctions, AML/CFT, CSP, ISO 20022 readiness, gpi adoption, and audit trail.",
@@ -45,7 +45,7 @@ export const posts: Post[] = [
   {
     "slug": "swift-for-emerging-markets-banking",
     "title": "The Role of SWIFT in Emerging-Markets Banking",
-    "date": "2026-07-14",
+    "date": "2026-05-14",
     "category": "Cross-Border Payments",
     "readingTime": "8 min read",
     "description": "How emerging-market banks actually use SWIFT — access, cost, correspondent dependence — and where fintech intermediation is reshaping the picture.",
@@ -61,7 +61,7 @@ export const posts: Post[] = [
   {
     "slug": "swift-messaging-formats-mt-vs-mx",
     "title": "SWIFT Messaging Formats: MT vs MX (and Why It Matters Now)",
-    "date": "2026-07-10",
+    "date": "2026-05-10",
     "category": "Cross-Border Payments",
     "readingTime": "7 min read",
     "description": "MT is the legacy SWIFT format. MX is the ISO 20022 successor. What changes, what stays, and what product teams must understand.",
@@ -77,7 +77,7 @@ export const posts: Post[] = [
   {
     "slug": "swift-and-cryptocurrency-the-honest-take",
     "title": "SWIFT and Cryptocurrency: The Honest Take",
-    "date": "2026-07-07",
+    "date": "2026-05-07",
     "category": "Cross-Border Payments",
     "readingTime": "8 min read",
     "description": "Will crypto and stablecoins replace SWIFT? The honest, operator-grade answer — what works, what does not, and where the two will coexist.",
@@ -94,7 +94,7 @@ export const posts: Post[] = [
   {
     "slug": "tracking-a-swift-payment-step-by-step",
     "title": "How to Track a SWIFT Payment Step by Step",
-    "date": "2026-07-03",
+    "date": "2026-05-03",
     "category": "Cross-Border Payments",
     "readingTime": "6 min read",
     "description": "A practical guide to tracking a SWIFT payment using the UETR and gpi Tracker — what to ask your bank and how to read the status.",
@@ -109,7 +109,7 @@ export const posts: Post[] = [
   {
     "slug": "swift-in-2026-trends-to-watch",
     "title": "SWIFT in 2026: ISO 20022, Instant Rails, and the Pressure on Correspondent Banking",
-    "date": "2026-06-30",
+    "date": "2026-04-30",
     "category": "Cross-Border Payments",
     "readingTime": "8 min read",
     "description": "Where SWIFT and cross-border payments are heading in 2026 — ISO 20022 done, instant rails everywhere, correspondent banking under pressure, and the G20 roadmap deadline.",
@@ -126,7 +126,7 @@ export const posts: Post[] = [
   {
     "slug": "swift-payment-delays-what-actually-causes-them",
     "title": "SWIFT Payment Delays: What Actually Causes Them",
-    "date": "2026-06-26",
+    "date": "2026-04-26",
     "category": "Cross-Border Payments",
     "readingTime": "7 min read",
     "description": "The real reasons SWIFT payments are delayed — compliance review, correspondent chain length, cut-offs, holidays, weak data — and how to mitigate each.",
@@ -142,7 +142,7 @@ export const posts: Post[] = [
   {
     "slug": "swift-fees-fx-and-the-true-cost-of-cross-border",
     "title": "SWIFT Fees, FX, and the True Cost of a Cross-Border Payment",
-    "date": "2026-06-23",
+    "date": "2026-04-23",
     "category": "Cross-Border Payments",
     "readingTime": "8 min read",
     "description": "Where the real cost of a cross-border SWIFT payment hides — fees, FX margin, charge bearer, and the product decisions that compress it.",
@@ -158,7 +158,7 @@ export const posts: Post[] = [
   {
     "slug": "correspondent-banking-and-emerging-market-corridors",
     "title": "Correspondent Banking and the Reality of Emerging-Market Corridors",
-    "date": "2026-06-19",
+    "date": "2026-04-19",
     "category": "Cross-Border Payments",
     "readingTime": "9 min read",
     "description": "How correspondent banking actually works in emerging-market corridors — de-risking, nostro/vostro, FX, and the product opportunities created by friction.",
@@ -175,7 +175,7 @@ export const posts: Post[] = [
   {
     "slug": "swift-vs-card-rails-vs-local-wallets",
     "title": "SWIFT vs Card Rails vs Local Wallets: When to Use What",
-    "date": "2026-06-16",
+    "date": "2026-04-16",
     "category": "Cross-Border Payments",
     "readingTime": "9 min read",
     "description": "A practitioner comparison of SWIFT, card rails, and local wallets — cost, speed, geography, risk — and when to use each.",
@@ -192,7 +192,7 @@ export const posts: Post[] = [
   {
     "slug": "swift-aml-cft-sanctions-screening",
     "title": "SWIFT, AML/CFT, and Sanctions Screening in Practice",
-    "date": "2026-06-12",
+    "date": "2026-04-12",
     "category": "Cross-Border Payments",
     "readingTime": "9 min read",
     "description": "How AML/CFT and sanctions screening actually work on SWIFT-instructed cross-border payments — and the product decisions that decide false-positive rates.",
@@ -209,7 +209,7 @@ export const posts: Post[] = [
   {
     "slug": "swift-gpi-tracking-and-the-end-of-payment-uncertainty",
     "title": "SWIFT gpi, Tracking, and the End of Payment Uncertainty",
-    "date": "2026-06-09",
+    "date": "2026-04-09",
     "category": "Cross-Border Payments",
     "readingTime": "8 min read",
     "description": "SWIFT gpi added end-to-end tracking, fee transparency, and same-day credit to cross-border payments. What it actually changed for product teams.",
@@ -225,7 +225,7 @@ export const posts: Post[] = [
   {
     "slug": "iso-20022-migration-what-product-teams-must-know",
     "title": "ISO 20022 Migration: What Payment Product Teams Must Know",
-    "date": "2026-06-05",
+    "date": "2026-04-05",
     "category": "Cross-Border Payments",
     "readingTime": "10 min read",
     "description": "ISO 20022 is the biggest change in payments messaging in a generation. What product teams must know to ship ahead of the deadlines.",
@@ -242,7 +242,7 @@ export const posts: Post[] = [
   {
     "slug": "swift-vs-wire-transfer",
     "title": "SWIFT Payment vs Wire Transfer: Key Differences",
-    "date": "2026-06-03",
+    "date": "2026-04-03",
     "category": "Cross-Border Payments",
     "readingTime": "7 min read",
     "description": "SWIFT vs wire transfer explained — what each term actually means, where they overlap, and which one your product is really using.",
@@ -259,7 +259,7 @@ export const posts: Post[] = [
   {
     "slug": "swift-payment-explained",
     "title": "How SWIFT Payment Works: A Complete Overview",
-    "date": "2026-06-02",
+    "date": "2026-04-02",
     "category": "Cross-Border Payments",
     "readingTime": "9 min read",
     "description": "A practitioner overview of how SWIFT payments work — messaging, correspondent banking, settlement, gpi, and where ISO 20022 fits in.",
@@ -277,7 +277,7 @@ export const posts: Post[] = [
   {
     "slug": "sanctions-screening-without-killing-throughput",
     "title": "Sanctions Screening Without Killing Throughput",
-    "date": "2026-06-01",
+    "date": "2026-04-01",
     "category": "Fraud & Risk",
     "readingTime": "8 min read",
     "description": "How to design sanctions screening that catches what it must catch without flooding ops with false positives or breaking real-time transaction performance.",
@@ -293,7 +293,7 @@ export const posts: Post[] = [
   {
     "slug": "aml-cft-rules-vs-models",
     "title": "AML/CFT: Rules vs Models, and Why You Need Both",
-    "date": "2026-05-31",
+    "date": "2026-03-31",
     "category": "Fraud & Risk",
     "readingTime": "9 min read",
     "description": "Where rules belong, where models belong, and how to design an AML/CFT detection stack that is both defensible to regulators and effective at catching real bad actors.",
@@ -310,7 +310,7 @@ export const posts: Post[] = [
   {
     "slug": "emerging-markets-pressure-test-payments",
     "title": "How Emerging Markets Pressure-Test Payment Product Strategy.",
-    "date": "2026-05-31",
+    "date": "2026-03-31",
     "category": "Emerging Markets",
     "readingTime": "10 min read",
     "description": "What payment product teams from Visa, Mastercard, Stripe, and Adyen learn the hard way when they ship into Pakistan, Bangladesh, Egypt, and Iraq.",
@@ -329,7 +329,7 @@ export const posts: Post[] = [
   {
     "slug": "pci-dss-iso-27001-program-leadership",
     "title": "PCI DSS and ISO 27001 as Product Programs",
-    "date": "2026-05-30",
+    "date": "2026-03-30",
     "category": "Fraud & Risk",
     "readingTime": "10 min read",
     "description": "What it takes to lead PCI DSS and ISO 27001 programs from scratch at a payments platform — scoping, evidence, controls, and the trap of treating compliance as paperwork.",
@@ -346,7 +346,7 @@ export const posts: Post[] = [
   {
     "slug": "chargebacks-product-problem",
     "title": "Chargebacks Are a Product Problem",
-    "date": "2026-05-29",
+    "date": "2026-03-29",
     "category": "Fraud & Risk",
     "readingTime": "8 min read",
     "description": "How to treat chargebacks as a product surface — root-cause categorisation, prevention, representment, and the feedback loop that actually reduces the rate.",
@@ -362,7 +362,7 @@ export const posts: Post[] = [
   {
     "slug": "payment-cost-50-to-1",
     "title": "Payment Cost Is a Product Variable: From 50% to 1%.",
-    "date": "2026-05-29",
+    "date": "2026-03-29",
     "category": "Product Strategy",
     "readingTime": "11 min read",
     "description": "How a subscription business cut payment cost from ~50% of revenue to ~1% by treating cost as a product variable — rail mix, dunning, smart retries.",
@@ -382,7 +382,7 @@ export const posts: Post[] = [
   {
     "slug": "layered-fraud-controls-payments-stack",
     "title": "Layered Fraud Controls in the Payments Stack",
-    "date": "2026-05-28",
+    "date": "2026-03-28",
     "category": "Fraud & Risk",
     "readingTime": "9 min read",
     "description": "How to design layered fraud controls across device, identity, transaction, behavioural and network layers — without crushing conversion or throughput.",
@@ -398,7 +398,7 @@ export const posts: Post[] = [
   {
     "slug": "kyc-conversion-designed-together",
     "title": "KYC and Conversion Designed Together",
-    "date": "2026-05-27",
+    "date": "2026-03-27",
     "category": "Merchant Onboarding",
     "readingTime": "8 min read",
     "description": "Why KYC and conversion are the same product surface — how to design identity verification flows that compliance accepts and merchants actually finish.",
@@ -414,7 +414,7 @@ export const posts: Post[] = [
   {
     "slug": "local-payment-methods-developer-experience",
     "title": "Why Local Payment Methods Are Developer Experience Problems.",
-    "date": "2026-05-27",
+    "date": "2026-03-27",
     "category": "Payment Infrastructure",
     "readingTime": "10 min read",
     "description": "Acceptance in emerging markets is decided at the SDK and webhook layer. Why local payment methods are developer-experience problems first.",
@@ -432,7 +432,7 @@ export const posts: Post[] = [
   {
     "slug": "cross-border-corridors-are-operating-systems",
     "title": "Cross-Border Corridors Are Operating Systems, Not Routes.",
-    "date": "2026-05-26",
+    "date": "2026-03-26",
     "category": "Cross-Border Payments",
     "readingTime": "11 min read",
     "description": "A corridor is not a partner integration. It is a product with its own success rate, FX behavior, compliance overlay, and unit economics. A practitioner view from MENA and South Asia.",
@@ -453,7 +453,7 @@ export const posts: Post[] = [
   {
     "slug": "financial-controls-are-product-requirements",
     "title": "Financial Controls Are Product Requirements.",
-    "date": "2026-05-26",
+    "date": "2026-03-26",
     "category": "Settlement & Reconciliation",
     "readingTime": "9 min read",
     "description": "Why financial controls — segregation of duties, audit trails, maker-checker, reversals — are product requirements, not compliance afterthoughts.",
@@ -471,7 +471,7 @@ export const posts: Post[] = [
   {
     "slug": "onboarding-conversion-vs-default-rate-tradeoff",
     "title": "Onboarding Conversion vs. Default Rate: The Real Tradeoff",
-    "date": "2026-05-26",
+    "date": "2026-03-26",
     "category": "Merchant Onboarding",
     "readingTime": "8 min read",
     "description": "How to manage the real tradeoff between onboarding conversion and downstream default, fraud, and chargeback rates without picking a side.",
@@ -487,7 +487,7 @@ export const posts: Post[] = [
   {
     "slug": "risk-tiering-merchants-product-decision",
     "title": "Risk Tiering Merchants Is a Product Decision",
-    "date": "2026-05-25",
+    "date": "2026-03-25",
     "category": "Merchant Onboarding",
     "readingTime": "8 min read",
     "description": "Why merchant risk tiering belongs to product, not just risk — how tiers shape onboarding, limits, settlement, fees, and the entire merchant lifecycle.",
@@ -502,7 +502,7 @@ export const posts: Post[] = [
   {
     "slug": "kyb-automation-without-blowing-up-risk",
     "title": "KYB Automation Without Blowing Up Risk",
-    "date": "2026-05-24",
+    "date": "2026-03-24",
     "category": "Merchant Onboarding",
     "readingTime": "9 min read",
     "description": "How to automate KYB onboarding for merchants without inflating fraud, sanctions, or default rates — tiering, data sources, and the review queue that scales.",
@@ -518,7 +518,7 @@ export const posts: Post[] = [
   {
     "slug": "ledger-design-for-multi-rail-payments",
     "title": "Ledger Design for Multi-Rail Payments",
-    "date": "2026-05-23",
+    "date": "2026-03-23",
     "category": "Settlement & Reconciliation",
     "readingTime": "11 min read",
     "description": "How to design a double-entry payment ledger that holds across cards, wallets, IBFT, DCB and cross-border rails at $1B+ GTV — entities, postings, and invariants.",
@@ -534,7 +534,7 @@ export const posts: Post[] = [
   {
     "slug": "regulatory-ux-name-on-payment-screen",
     "title": "Regulatory UX: Why the Name on a Payment Screen Can Block a Launch.",
-    "date": "2026-05-23",
+    "date": "2026-03-23",
     "category": "Fraud & Risk",
     "readingTime": "9 min read",
     "description": "An operator essay on regulatory UX — why the words, names, and disclosures on a payment screen can be the difference between a launch and a six-month delay.",
@@ -551,7 +551,7 @@ export const posts: Post[] = [
   {
     "slug": "exception-management-reconciliation",
     "title": "Exception Management in Reconciliation",
-    "date": "2026-05-22",
+    "date": "2026-03-22",
     "category": "Settlement & Reconciliation",
     "readingTime": "9 min read",
     "description": "How to design exception management for payment reconciliation so finance ops scales sublinearly with GTV — taxonomy, routing, SLAs, and product feedback loops.",
@@ -567,7 +567,7 @@ export const posts: Post[] = [
   {
     "slug": "merchant-onboarding-growth-risk-compliance",
     "title": "Merchant Onboarding Is Where Growth, Risk, and Compliance Collide.",
-    "date": "2026-05-22",
+    "date": "2026-03-22",
     "category": "Merchant Onboarding",
     "readingTime": "10 min read",
     "description": "Why merchant onboarding is a single product surface where growth, risk, and compliance must be designed together — not by three separate teams.",
@@ -585,7 +585,7 @@ export const posts: Post[] = [
   {
     "slug": "hosted-checkout-vs-direct-card-processing",
     "title": "Hosted Checkout Is Easy. Direct Card Processing Is Where Product Maturity Shows.",
-    "date": "2026-05-21",
+    "date": "2026-03-21",
     "category": "Payment Infrastructure",
     "readingTime": "12 min read",
     "description": "Hosted checkout ships fast. Direct card processing ships maturity. A practitioner walk-through of MPGS, MDES, tokenization, 3DS, and PCI scope decisions.",
@@ -606,7 +606,7 @@ export const posts: Post[] = [
   {
     "slug": "settlement-windows-and-merchant-trust",
     "title": "Settlement Windows and Merchant Trust",
-    "date": "2026-05-21",
+    "date": "2026-03-21",
     "category": "Settlement & Reconciliation",
     "readingTime": "8 min read",
     "description": "Settlement timing is the most underrated product surface in payments. How T+0, T+1 and T+n settlement windows shape merchant trust, cashflow, and churn.",
@@ -622,7 +622,7 @@ export const posts: Post[] = [
   {
     "slug": "payment-infrastructure-state-trust-failure",
     "title": "Payment Infrastructure Is Not Just APIs. It Is State, Trust, and Failure Handling.",
-    "date": "2026-05-20",
+    "date": "2026-03-20",
     "category": "Payment Infrastructure",
     "readingTime": "10 min read",
     "description": "An operator view of payment infrastructure at $1B+ GTV — why state, trust, and failure handling, not APIs, are the real product surface.",
@@ -639,7 +639,7 @@ export const posts: Post[] = [
   {
     "slug": "three-way-reconciliation-at-scale",
     "title": "Three-Way Reconciliation at Scale",
-    "date": "2026-05-20",
+    "date": "2026-03-20",
     "category": "Settlement & Reconciliation",
     "readingTime": "10 min read",
     "description": "How to design three-way reconciliation across PSP, internal ledger and bank statement at $1B+ GTV — match keys, tolerances, exception taxonomy, and SLAs.",
@@ -656,7 +656,7 @@ export const posts: Post[] = [
   {
     "slug": "reconciliation-is-product-infrastructure",
     "title": "Reconciliation Is Not Back Office. It Is Product Infrastructure.",
-    "date": "2026-05-19",
+    "date": "2026-03-19",
     "category": "Settlement & Reconciliation",
     "readingTime": "11 min read",
     "description": "After running reconciliation at $1B+ GTV across multiple rails, here is why reconciliation is a product problem first — and what the architecture should look like.",
