@@ -478,13 +478,13 @@ function HomePage() {
             Open to senior payments roles globally — Visa, Mastercard, Stripe, Wise,
             Adyen, Thunes, DLocal and regional fintechs.
           </p>
-          <div className="mt-9 mx-auto max-w-md rounded-full border border-rule bg-card p-1.5 pl-5 flex items-center gap-3 shadow-[0_15px_40px_-20px_color-mix(in_oklab,var(--brand)_60%,transparent)]">
-            <span className="text-sm text-ink-soft font-mono-tech truncate">
+          <div className="mt-9 mx-auto max-w-md rounded-2xl sm:rounded-full border border-rule bg-card p-2 sm:p-1.5 sm:pl-5 flex flex-col sm:flex-row sm:items-center gap-3 shadow-[0_15px_40px_-20px_color-mix(in_oklab,var(--brand)_60%,transparent)]">
+            <span className="text-sm text-ink-soft font-mono-tech truncate min-w-0 px-2 sm:px-0">
               {profile.email}
             </span>
             <a
               href={`mailto:${profile.email}`}
-              className="ml-auto inline-flex items-center gap-1.5 rounded-full px-5 py-2.5 text-sm font-medium text-[var(--brand-foreground)] bg-[var(--brand)] hover:opacity-90 transition whitespace-nowrap"
+              className="sm:ml-auto inline-flex items-center justify-center gap-1.5 rounded-full px-5 py-2.5 text-sm font-medium text-[var(--brand-foreground)] bg-[var(--brand)] hover:opacity-90 transition whitespace-nowrap"
             >
               Reach me <span aria-hidden>→</span>
             </a>
