@@ -100,6 +100,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:site_name", content: `${profile.name} — Payments Product Executive` },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:title", content: "Rizwan Zafar — Payments Product Executive | Dubai" },
+      { name: "twitter:title", content: "Rizwan Zafar — Payments Product Executive | Dubai" },
+      { name: "description", content: "A premium personal profile and fintech blog for a payments product executive, showcasing expertise in regulated payment infrastructure." },
+      { property: "og:description", content: "A premium personal profile and fintech blog for a payments product executive, showcasing expertise in regulated payment infrastructure." },
+      { name: "twitter:description", content: "A premium personal profile and fintech blog for a payments product executive, showcasing expertise in regulated payment infrastructure." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/0319cd36-4c36-4074-94a5-31b4297f2150/id-preview-521d11ba--954ce4ea-9c96-4e5d-af14-ac4854ceaa16.lovable.app-1778708219949.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/0319cd36-4c36-4074-94a5-31b4297f2150/id-preview-521d11ba--954ce4ea-9c96-4e5d-af14-ac4854ceaa16.lovable.app-1778708219949.png" },
     ],
     links: [{ rel: "stylesheet", href: appCss }],
     scripts: [
