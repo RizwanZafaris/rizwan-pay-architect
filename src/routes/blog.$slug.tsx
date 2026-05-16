@@ -74,29 +74,27 @@ function slugify(s: string) {
   return s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
 }
 
-function parseBlocks(md: string) {
-  return md.trim().split(/\n\n+/);
-}
+marked.use({
+  renderer: {
+    heading({ tokens, depth }) {
+      const text = this.parser.parseInline(tokens);
+      const id = slugify(tokens.map((t: any) => t.raw ?? "").join(""));
+      return `<h${depth} id="${id}">${text}</h${depth}>\n`;
+    },
+  },
+});
 
 function renderContent(md: string) {
-  return parseBlocks(md).map((block, i) => {
-    if (block.startsWith("## ")) {
-      const text = block.replace(/^##\s+/, "");
-      return <h2 key={i} id={slugify(text)}>{text}</h2>;
-    }
-    if (block.startsWith("- ")) {
-      const items = block.split("\n").map((l) => l.replace(/^-\s+/, ""));
-      return <ul key={i}>{items.map((it, j) => <li key={j}>{it}</li>)}</ul>;
-    }
-    return <p key={i}>{block}</p>;
-  });
+  const html = marked.parse(md, { async: false }) as string;
+  return <div dangerouslySetInnerHTML={{ __html: html }} />;
 }
 
 function extractTOC(md: string) {
-  return parseBlocks(md)
-    .filter((b) => b.startsWith("## "))
-    .map((b) => {
-      const text = b.replace(/^##\s+/, "");
+  return md
+    .split("\n")
+    .filter((l) => /^##\s+/.test(l))
+    .map((l) => {
+      const text = l.replace(/^##\s+/, "").trim();
       return { id: slugify(text), text };
     });
 }
