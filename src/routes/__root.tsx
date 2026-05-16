@@ -105,7 +105,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         name: "description",
         content:
-          "Rizwan Zafar is a payments product executive in Dubai building regulated payment infrastructure across emerging markets — $1B+ GTV, 25M+ monthly transactions.",
+          "Rizwan Zafar — payments product executive in Dubai building regulated payment infrastructure across emerging markets.",
       },
       { name: "author", content: profile.name },
       { property: "og:site_name", content: `${profile.name} — Payments Product Executive` },
@@ -113,9 +113,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:card", content: "summary_large_image" },
       { property: "og:title", content: "Rizwan Zafar — Payments Product Executive | Dubai" },
       { name: "twitter:title", content: "Rizwan Zafar — Payments Product Executive | Dubai" },
-      { name: "description", content: "A premium personal profile and fintech blog for a payments product executive, showcasing expertise in regulated payment infrastructure." },
-      { property: "og:description", content: "A premium personal profile and fintech blog for a payments product executive, showcasing expertise in regulated payment infrastructure." },
-      { name: "twitter:description", content: "A premium personal profile and fintech blog for a payments product executive, showcasing expertise in regulated payment infrastructure." },
+      { property: "og:description", content: "Premium personal profile and fintech blog for a payments product executive in regulated payment infrastructure." },
+      { name: "twitter:description", content: "Premium personal profile and fintech blog for a payments product executive in regulated payment infrastructure." },
       { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/0319cd36-4c36-4074-94a5-31b4297f2150/id-preview-521d11ba--954ce4ea-9c96-4e5d-af14-ac4854ceaa16.lovable.app-1778708219949.png" },
       { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/0319cd36-4c36-4074-94a5-31b4297f2150/id-preview-521d11ba--954ce4ea-9c96-4e5d-af14-ac4854ceaa16.lovable.app-1778708219949.png" },
     ],
@@ -123,7 +122,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     scripts: [
       { type: "application/ld+json", children: JSON.stringify(personJsonLd) },
       { type: "application/ld+json", children: JSON.stringify(websiteJsonLd) },
-      { type: "application/ld+json", children: JSON.stringify(profilePageJsonLd) },
     ],
   }),
   shellComponent: RootShell,
