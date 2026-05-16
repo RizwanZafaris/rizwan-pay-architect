@@ -89,8 +89,9 @@ function BlogIndex() {
   const { q, hub, reader, company } = Route.useSearch();
   const navigate = useNavigate({ from: "/blog" });
 
-  const setParam = (key: "q" | "hub" | "reader" | "company", value: string) =>
-    navigate({ search: (prev) => ({ ...prev, [key]: value }) });
+  type SearchState = { q: string; hub: string; reader: string; company: string };
+  const setParam = (key: keyof SearchState, value: string) =>
+    navigate({ search: (prev: SearchState) => ({ ...prev, [key]: value }) });
 
   const ql = q.trim().toLowerCase();
   const filtered = posts.filter((p) => {
