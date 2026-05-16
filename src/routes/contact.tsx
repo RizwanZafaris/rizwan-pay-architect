@@ -25,6 +25,7 @@ type Errors = Partial<Record<"name" | "email" | "message", string>>;
 
 function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
+  const [copied, setCopied] = useState(false);
   const [errors, setErrors] = useState<Errors>({});
   const [values, setValues] = useState({ name: "", email: "", company: "", message: "" });
 
@@ -35,6 +36,16 @@ function ContactPage() {
     if (!v.message.trim() || v.message.trim().length < 10)
       e.message = "Please write at least a short message (10+ characters).";
     return e;
+  }
+
+  async function copyEmail() {
+    try {
+      await navigator.clipboard.writeText(profile.email);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      /* noop */
+    }
   }
 
   function onSubmit(e: React.FormEvent<HTMLFormElement>) {
