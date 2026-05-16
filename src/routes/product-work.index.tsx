@@ -110,19 +110,19 @@ function ProductWorkIndex() {
         <FilterSelect
           label="Market"
           value={market}
-          onChange={(v) => navigate({ search: (p: z.infer<typeof searchSchema>) => ({ ...p, market: v }) })}
+          onChange={(v) => navigate({ search: (p: Record<string, unknown>) => ({ ...p, market: v }) })}
           options={markets}
         />
         <FilterSelect
           label="Relevant company"
           value={company}
-          onChange={(v) => navigate({ search: (p: z.infer<typeof searchSchema>) => ({ ...p, company: v }) })}
+          onChange={(v) => navigate({ search: (p: Record<string, unknown>) => ({ ...p, company: v }) })}
           options={companies}
         />
         <FilterSelect
           label="Compliance theme"
           value={theme}
-          onChange={(v) => navigate({ search: (p: z.infer<typeof searchSchema>) => ({ ...p, theme: v }) })}
+          onChange={(v) => navigate({ search: (p: Record<string, unknown>) => ({ ...p, theme: v }) })}
           options={themes.map((t) => ({ value: t.id, label: t.label }))}
         />
       </div>
