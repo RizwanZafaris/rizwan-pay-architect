@@ -4,7 +4,9 @@ import { caseStudies } from "@/data/caseStudies";
 import { posts, categories } from "@/data/posts";
 import { products } from "@/data/products";
 import { absUrl, SITE_URL } from "@/lib/seo";
-import portrait from "@/assets/rizwan-zafar-cutout.png";
+import portraitPng from "@/assets/rizwan-zafar-cutout.png";
+import portraitWebp from "@/assets/rizwan-zafar-cutout.webp";
+import portraitWebpSmall from "@/assets/rizwan-zafar-cutout-460.webp";
 
 const profilePageJsonLd = {
   "@context": "https://schema.org",
