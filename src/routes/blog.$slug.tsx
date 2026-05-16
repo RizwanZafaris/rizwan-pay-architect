@@ -103,6 +103,7 @@ function extractTOC(md: string) {
 function BlogPostPage() {
   const { post: p, related } = Route.useLoaderData() as { post: Post; related: Post[] };
   const toc = extractTOC(p.content);
+  const diagram = postDiagrams[p.slug];
 
   return (
     <article>
