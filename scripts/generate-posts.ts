@@ -65,14 +65,20 @@ type Post = {
   content: string;
 };
 
+const categoryAlias: Record<string, string> = {
+  "Fraud, Risk & Compliance": "Fraud & Risk",
+  "SWIFT & Cross-Border Payments": "Cross-Border Payments",
+};
+
 const posts: Post[] = files.map((f) => {
   const raw = readFileSync(join(BLOG_DIR, f), "utf-8");
   const { data, body } = parseFrontmatter(raw);
+  const rawCat = data.category || "Product Strategy";
   return {
     slug: data.slug || f.replace(/\.md$/, ""),
     title: data.title || "Untitled",
     date: data.publishDate || data.date || "2026-01-01",
-    category: data.category || "Product Strategy",
+    category: categoryAlias[rawCat] || rawCat,
     readingTime: data.readingTime || "8 min read",
     description: data.metaDescription || data.excerpt || "",
     thesis: data.excerpt || undefined,
