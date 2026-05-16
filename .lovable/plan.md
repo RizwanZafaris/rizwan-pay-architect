@@ -1,93 +1,63 @@
-## What I pulled from the LinkedIn export
+## Goal
 
-Real, usable signal we should ground the site in:
+Apply the "High-impact changes for Lovable" list from `blog.md` (items 1–10) and the "UX Changes For Case Study Pages" list from `case_studies.md` to the live site — using the existing posts/case studies already in the repo (no mass content generation).
 
-- **Headline**: "Product & Program Leader | Payments Infrastructure, Cross-Border Systems & Delivery | $1B+ GTV | Emerging Markets"
-- **Real summary**: 8+ years payments/fintech, current CPO at Simpaisa, 25+ person team, dual CPO+acting CTO during 2024 regulatory crisis, PCI DSS + ISO 27001 from scratch.
-- **Real metrics** (more precise than current draft): $1B+ GTV, 25M+ monthly txns, 99.95% settlement SLA, fraud loss <0.1% of GTV, 90% downtime reduction, 30% enterprise wallet adoption, 0→5M subs at Tapmad, $10M+ ARR, ARPU +70%, payment cost 50%→1%, $12M+ portfolio at Wing Logic (delays −40%), $8M+ at CIMKO DRC, $15M / 400+ projects at DS Engineering (efficiency +70%).
-- **Full career arc (8 roles)**: PIA intern → PESCO Sr. Planning Engineer → DS Engineering PMO → CIMKO DRC Asst Manager → Wing Logic PMO Dubai → Tapmad Sr. PM → Daraz (Alibaba) Project Manager → Simpaisa CPO.
-- **Education**: MIT Sloan — Mastering Design Thinking (2022); MSc + BSc Karachi University (Physics).
-- **Certs**: PMP (PMI), plus LinkedIn Learning items.
-- **Honor**: Youngest Project Manager of the Year 2015.
-- **Volunteering**: PMI Karachi Chapter — Director of Governance (2021–22), VP Volunteering (2022–23).
-- **Recommendations**: 6 visible recs we can quote (Jan Kosela, Alfred Nilius, Hassam Mehmood, Naseem Hassan, Ateeb Ahsan, Shariq Ehsan).
-- **Contact / social**: rizwanzaffar.pk@gmail.com, personal site www.rizwan-zafar.com, Twitter @rizwan_zafar, LinkedIn /in/rizwanzafar (assumed handle), Dubai UAE.
-- **Markets corrected**: Pakistan, Bangladesh, Nepal, Iraq, Egypt (Simpaisa) + Sri Lanka, Myanmar (Daraz era) + UAE/KSA (Tapmad expansion). Senior CPO scope = 5 countries.
-- **Partner ecosystem confirmed**: DLocal, Thunes, Boku, Coda; enabled TikTok, Temu, Uber, InDrive, MoneyGram, PUBG. Add InDrive (was missing).
+## Scope (in)
 
-## Plan
+1. **Topic hubs** — 8 hub routes for: Payment Infrastructure, Cross-Border Payments, SWIFT & ISO 20022, Settlement & Reconciliation, Merchant Onboarding, Fraud & AML, Payment APIs, Emerging Markets. Each hub is a collection page listing related essays + case studies, with its own SEO metadata, H1, intro, and CollectionPage JSON-LD.
+2. **Blog search + filters** — add keyword search, topic filter (hubs), reader-type filter, and company-relevance filter on `/blog`. URL-driven via `validateSearch` + `zodValidator` so filters are shareable.
+3. **Tag posts with metadata** — extend `Post` type with `hub`, `reader[]`, `relevantFor[]` (small backwards-compatible additions inferred from existing `category`/`tags`). Same for case studies.
+4. **Case-study page upgrades** — fixed structure (Context · Problem · Constraints · Decisions · System · Metrics · Controls · Lessons · Relevance), before/after metric cards, risk-control matrix block, launch-timeline block, and a "Discuss roles" CTA + resume download under every case study. Reuse `@/components/diagrams/Diagrams.tsx` where possible.
+5. **Case-study index filters** — rail, market, product area, company relevance.
+6. **Recruiter paths** — 3 routes:
+   - `/for/visa-mastercard` — network rails, acceptance, tokenization, settlement
+   - `/for/stripe-adyen-wise-thunes` — orchestration, cross-border, local methods
+   - `/for/banks-fintechs` — SWIFT, ISO 20022, AML/CFT, PCI DSS
+   Each speaks the reader's language, links to relevant essays + case studies, and ends with resume CTA.
+7. **Schema upgrades** — add Author schema (Person, sameAs LinkedIn/Twitter) on root; Article schema with author + publisher on every blog post; BreadcrumbList on blog post, case study, and hub pages; FAQPage schema on posts that have a FAQ block; CollectionPage on each hub.
+8. **Certification language audit** — replace any "PCI DSS / ISO 27001 certified" wording with "Led PCI DSS and ISO 27001 certification programs" across `profile.ts`, About, Resume, Home.
+9. **Contact form** — keep mailto behavior, but add a clearly visible "Direct email" primary path and a graceful inline success/failure path (no spinner stuck states). Note: full Resend/Cloud backend is out of scope for this pass — flagged below.
+10. **Header nav** — add "Topics" dropdown linking to the 8 hubs; add "For recruiters" link.
 
-Keep the existing design system, route structure, and SEO/JSON-LD scaffolding. Replace placeholder copy with real data and add three small surfaces.
+## Scope (out — flagged for follow-up)
 
-### 1. `src/data/profile.ts` — replace with real data
-- Real headline + summary (lightly edited for the executive tone).
-- Add `personalSite`, `twitter`, update `email`, `linkedin`.
-- Add InDrive to partners.
-- Replace 4-role experience array with the **full 8-role timeline** (PIA → Simpaisa), with real bullets and metrics from the export.
-- Add `education` (MIT Sloan, Karachi University ×2).
-- Add `honors` (Youngest PM of the Year 2015).
-- Add `volunteering` (PMI Karachi — Director / VP).
-- Refine metrics strip with the more credible numbers (add "fraud <0.1% GTV").
+- Mass-generating the 500 blog briefs + 500 case-study briefs as published posts. (Per `blog.md` rule: "do not publish 500 posts at once".) Briefs stay in `content/*.md` as a backlog.
+- Custom domain setup (`rizwanzafar.com`) — user action.
+- Real contact-form backend (Lovable Cloud + Resend) — separate task; mailto fallback stays.
+- Sanitized dashboard screenshots / regulator artifacts — need real assets from user.
 
-### 2. `src/data/recommendations.ts` (new)
-Six structured rec entries with name, title/company, quote, date. Used on About page (and a 2-card teaser on Home).
+## Technical Notes
 
-### 3. `src/data/caseStudies.ts` — tighten with real numbers
-- Simpaisa: add 99.95% SLA, fraud <0.1% GTV, 90% downtime reduction, 30% enterprise wallet adoption, dual CPO+CTO during regulatory tightening (2024), MPGS/MDES card acquiring detail.
-- Tapmad: confirm 0→5M, $10M+ ARR, ARPU +70%, MENA expansion (UAE/KSA).
-- Daraz: 5 markets (PK, BD, LK, NP, MM), COVID-driven volume surge context.
-- Add a short "Wing Logic PMO" lighter case study OR keep it only on Resume — recommend Resume-only since it's not payments.
-
-### 4. Pages
-
-**Home (`/`)**
-- Update headline to keep current punch but add subtler line: "Payments product executive · Dubai".
-- Replace current subheadline with a tightened version of the real LinkedIn summary.
-- Metrics strip: GTV, monthly txns, settlement SLA, fraud loss, payment cost reduction.
-- Add **2-quote testimonial strip** above the footer (pulled from recs).
-
-**About (`/about`)**
-- Rewrite the narrative using the real arc: PIA intern → power infrastructure (PESCO) → engineering portfolios (DS) → DRC (CIMKO) → Dubai PMO (Wing Logic) → product leap at Tapmad → Alibaba/Daraz scale → CPO at Simpaisa.
-- Pull the "execution matters more than plans", "DRC taught me to plan when nothing is reliable", and "dual CPO+CTO during regulatory crisis" beats verbatim — they're the differentiating texture.
-- Add **Recommendations** section (4–6 quote cards).
-- Add small Education + Honors strip (MIT Sloan + PMP + Youngest PM 2015).
-
-**Resume (`/resume`)**
-- Replace 4-role timeline with **all 8 roles**, period + location + bullets.
-- Add **Education** block (MIT Sloan; Karachi University MSc + BSc).
-- Add **Honors** (Youngest PM 2015).
-- Add **Volunteering** (PMI Karachi Director → VP).
-- Keep certifications (PMP + PCI DSS Program Lead + ISO 27001 Program Lead).
-- Keep download button; PDF stays as the existing placeholder until a real one is provided.
-
-**Contact (`/contact`)**
-- Real email, real LinkedIn, add personal site link, add Twitter.
-
-**Footer / Header**
-- Footer: add personal site + Twitter alongside email/LinkedIn.
-- No structural change to nav.
-
-### 5. SEO / JSON-LD
-- Update `Person` JSON-LD in `__root.tsx`: real `name`, real `sameAs` (LinkedIn, personal site, Twitter), `alumniOf` (MIT Sloan, Karachi University), `award` (Youngest PM of the Year 2015).
-- Keep all per-route titles/descriptions — light edits where copy changed.
-
-### 6. Things I will NOT do (unless you say otherwise)
-- Won't change the design language, palette, or fonts.
-- Won't add a real PDF resume — keep placeholder until you upload one.
-- Won't add new routes (e.g. `/recommendations`); recs live inline on About + Home.
-- Won't pull in your full LinkedIn skill list (95+ items) — keep the curated grouped skills already on Resume; add only the new genuinely-payments ones (e.g. Direct Carrier Billing, IBFT, Merchant Acquiring) if missing.
-
-### Files touched
-```
-src/data/profile.ts            (rewrite)
-src/data/caseStudies.ts        (edit Simpaisa, Tapmad, Daraz)
-src/data/recommendations.ts    (new)
-src/routes/__root.tsx          (JSON-LD + footer socials)
-src/routes/index.tsx           (subheadline + metrics + testimonial strip)
-src/routes/about.tsx           (full rewrite of body + recs section)
-src/routes/resume.tsx          (8 roles + education + honors + volunteering)
-src/routes/contact.tsx         (real contact links)
-src/components/SiteChrome.tsx  (footer socials)
+```text
+src/routes/
+  topics.tsx                       # hub index
+  topics.$hub.tsx                  # individual hub page (validateSearch hub slug)
+  for.visa-mastercard.tsx
+  for.stripe-adyen-wise-thunes.tsx
+  for.banks-fintechs.tsx
+src/data/
+  hubs.ts                          # 8 hubs + mapping from category/tag -> hub
+  posts.ts                         # extend Post type with hub, reader, relevantFor
+  caseStudies.ts                   # add fixed-structure sections
+src/components/
+  ArticleSchema.tsx                # Article + BreadcrumbList + optional FAQ
+  CaseStudyArtifacts.tsx           # before/after, risk matrix, timeline blocks
 ```
 
-No new dependencies. Scope is data + copy + a couple of small UI blocks — should land cleanly.
+- Blog search uses `validateSearch` with `zodValidator` + `fallback` (q, hub, reader, relevantFor). Reads via `Route.useSearch()`, writes via `useNavigate({ search: prev => ... })`. No `useState` for filter state.
+- Hubs derived from existing `categories` + a tag→hub map so we don't have to retag every post by hand.
+- Recruiter pages are static React with curated lists from `posts`/`caseStudies` filtered by `relevantFor`.
+- All new pages get per-route `head()` with title/description/og:title/og:description and canonical.
+- Sitemap (`sitemap[.]xml.ts`) extended to include hubs + recruiter pages.
+
+## Acceptance
+
+- 8 hub pages render with curated essay + case-study lists and CollectionPage JSON-LD.
+- `/blog?q=swift&hub=cross-border-payments` filters server-renderable + shareable.
+- Every case-study page shows the fixed 9-section structure with at least one before/after metric card and a CTA strip.
+- 3 recruiter pages live with language tailored per audience.
+- Article/Breadcrumb/Author schema visible in page source on a sample blog post.
+- Certification wording corrected everywhere.
+- Sitemap includes all new routes; nothing 404s.
+
+If this looks right I'll implement it in one pass — flag anything you want dropped or expanded first.
