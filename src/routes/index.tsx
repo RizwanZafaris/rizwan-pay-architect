@@ -3,6 +3,7 @@ import { profile } from "@/data/profile";
 import { caseStudies } from "@/data/caseStudies";
 import { posts } from "@/data/posts";
 import { absUrl, SITE_URL } from "@/lib/seo";
+import { DiagramFigure, RailsMapDiagram } from "@/components/diagrams/Diagrams";
 
 const profilePageJsonLd = {
   "@context": "https://schema.org",
