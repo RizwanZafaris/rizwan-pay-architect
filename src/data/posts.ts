@@ -5,6 +5,8 @@ export type Post = {
   category: string;
   readingTime: string;
   description: string;
+  thesis?: string; // one-line argument used in cards
+  featured?: boolean;
   tags: string[];
   content: string; // simple markdown-ish (rendered as paragraphs/headings)
 };
