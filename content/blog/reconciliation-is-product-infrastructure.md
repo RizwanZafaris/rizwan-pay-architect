@@ -12,7 +12,7 @@ tags: ["reconciliation", "settlement", "ledger", "finance", "payment infrastruct
 targetAudience: ["Payments PMs", "Fintech CFOs", "Platform leaders", "Risk leaders"]
 targetKeywords: ["payment reconciliation", "three-way reconciliation", "payment ledger design", "settlement reconciliation architecture", "multi-rail reconciliation"]
 relatedCaseStudies:
-  - "/product-work/reconciliation-ledger-controls"
+  - "/product-work/settlement-reconciliation"
   - "/product-work/settlement-reconciliation"
   - "/product-work/simpaisa-payment-infrastructure"
 relatedArticles:
@@ -163,7 +163,7 @@ If you own a payments platform and you are not sure where to start:
 
 ## Suggested internal links
 
-- Case study: [Reconciliation Ledger Controls](/product-work/reconciliation-ledger-controls)
+- Case study: [Reconciliation Ledger Controls](/product-work/settlement-reconciliation)
 - Case study: [Settlement + Reconciliation](/product-work/settlement-reconciliation)
 - Essay: [Three-Way Reconciliation at Scale](/blog/three-way-reconciliation-at-scale)
 - Essay: [Financial Controls Are Product Requirements](/blog/financial-controls-are-product-requirements)

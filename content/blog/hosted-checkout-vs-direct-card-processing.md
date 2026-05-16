@@ -12,7 +12,7 @@ tags: ["card processing", "hosted checkout", "MPGS", "MDES", "tokenization", "3D
 targetAudience: ["Fintech PMs", "Payments platform leaders", "Acquirer product teams"]
 targetKeywords: ["hosted checkout vs direct card processing", "MPGS hosted checkout", "direct card processing PCI scope", "card tokenization product", "3DS2 product design"]
 relatedCaseStudies:
-  - "/product-work/hosted-checkout-vs-direct-card-processing"
+  - "/blog/hosted-checkout-vs-direct-card-processing"
   - "/product-work/simpaisa-payment-infrastructure"
   - "/product-work/fraud-risk-aml-cft"
 relatedArticles:
@@ -147,7 +147,7 @@ The same maturity arc applied at Daraz in handling card disputes — owning the 
 
 ## Suggested internal links
 
-- Case study: [Hosted Checkout vs Direct Card Processing](/product-work/hosted-checkout-vs-direct-card-processing)
+- Case study: [Hosted Checkout vs Direct Card Processing](/blog/hosted-checkout-vs-direct-card-processing)
 - Case study: [Simpaisa Payment Infrastructure](/product-work/simpaisa-payment-infrastructure)
 - Essay: [Payment Infrastructure Is State, Trust, and Failure Handling](/blog/payment-infrastructure-state-trust-failure)
 - Essay: [Standing Up PCI DSS and ISO 27001 Programs From Scratch](/blog/pci-dss-iso-27001-program-leadership)

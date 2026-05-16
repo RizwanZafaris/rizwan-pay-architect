@@ -12,7 +12,7 @@ tags: ["reconciliation", "operations", "exception management", "controls"]
 targetAudience: ["Payments PMs", "Finance ops leaders"]
 targetKeywords: ["reconciliation exception management", "payment break management", "reconciliation operations"]
 relatedCaseStudies:
-  - "/product-work/reconciliation-ledger-controls"
+  - "/product-work/settlement-reconciliation"
 relatedArticles:
   - "/blog/three-way-reconciliation-at-scale"
   - "/blog/reconciliation-is-product-infrastructure"

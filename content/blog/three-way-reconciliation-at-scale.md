@@ -12,7 +12,7 @@ tags: ["reconciliation", "settlement", "ledger", "controls", "payment infrastruc
 targetAudience: ["Payments PMs", "Finance leaders", "Platform engineers"]
 targetKeywords: ["three-way reconciliation", "payment reconciliation architecture", "settlement reconciliation", "PSP reconciliation"]
 relatedCaseStudies:
-  - "/product-work/reconciliation-ledger-controls"
+  - "/product-work/settlement-reconciliation"
   - "/product-work/settlement-reconciliation"
 relatedArticles:
   - "/blog/reconciliation-is-product-infrastructure"
@@ -109,4 +109,4 @@ The signal that reconciliation is healthy is not "all green dashboards". It is "
 
 ---
 
-Related: [Reconciliation Is Product Infrastructure](/blog/reconciliation-is-product-infrastructure) · [Exception Management](/blog/exception-management-reconciliation) · [Case study: Reconciliation & Ledger Controls](/product-work/reconciliation-ledger-controls)
+Related: [Reconciliation Is Product Infrastructure](/blog/reconciliation-is-product-infrastructure) · [Exception Management](/blog/exception-management-reconciliation) · [Case study: Reconciliation & Ledger Controls](/product-work/settlement-reconciliation)
