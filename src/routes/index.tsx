@@ -143,11 +143,36 @@ function HomePage() {
                 Dubai · UAE
               </div>
 
-              {/* Floating decorative glyphs — Genz-style scattered accents */}
-              <span aria-hidden className="absolute top-[18%] right-[6%] z-20 text-[var(--brand)] text-5xl font-light leading-none select-none">+</span>
-              <span aria-hidden className="absolute top-[42%] left-[4%] z-20 text-[var(--brand)] text-4xl font-light leading-none select-none">+</span>
-              <span aria-hidden className="absolute top-[55%] right-[2%] z-20 h-3 w-3 rounded-full bg-[var(--brand)]/60" />
-              <span aria-hidden className="absolute bottom-[14%] left-1/2 -translate-x-1/2 z-20 h-3.5 w-3.5 rounded-full bg-[var(--brand)]" />
+              {/* Floating decorative glyphs — fixed % positions tied to the portrait container, consistent across breakpoints */}
+              {([
+                { type: "plus", top: "8%",  left: "88%", size: "text-5xl", color: "text-[var(--brand)]" },
+                { type: "plus", top: "30%", left: "92%", size: "text-3xl", color: "text-[var(--brand)]/70" },
+                { type: "plus", top: "48%", left: "4%",  size: "text-4xl", color: "text-[var(--brand)]" },
+                { type: "plus", top: "72%", left: "8%",  size: "text-2xl", color: "text-[var(--brand)]/60" },
+                { type: "dot",  top: "22%", left: "6%",  size: "h-2 w-2",     color: "bg-[var(--brand)]/70" },
+                { type: "dot",  top: "58%", left: "94%", size: "h-3 w-3",     color: "bg-[var(--brand)]" },
+                { type: "dot",  top: "88%", left: "50%", size: "h-3.5 w-3.5", color: "bg-[var(--brand)]" },
+                { type: "dot",  top: "82%", left: "84%", size: "h-2 w-2",     color: "bg-[var(--brand)]/50" },
+              ] as const).map((g, i) =>
+                g.type === "plus" ? (
+                  <span
+                    key={i}
+                    aria-hidden
+                    className={`absolute z-20 font-light leading-none select-none -translate-x-1/2 -translate-y-1/2 ${g.size} ${g.color}`}
+                    style={{ top: g.top, left: g.left }}
+                  >
+                    +
+                  </span>
+                ) : (
+                  <span
+                    key={i}
+                    aria-hidden
+                    className={`absolute z-20 rounded-full -translate-x-1/2 -translate-y-1/2 ${g.size} ${g.color}`}
+                    style={{ top: g.top, left: g.left }}
+                  />
+                )
+              )}
+
             </div>
           </div>
         </div>
