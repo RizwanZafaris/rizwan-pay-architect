@@ -9,7 +9,7 @@ export const Route = createFileRoute("/resume")({
       {
         name: "description",
         content:
-          "Resume of Rizwan Zafar — Payments Product Executive. 14+ years across product, payments and program delivery; 8+ years building regulated payments infrastructure. $1B+ GTV, 25M+ monthly transactions.",
+          "Resume of Rizwan Zafar — Payments Product Executive. 14+ years in product and delivery; 8+ building regulated payments infrastructure at $1B+ GTV.",
       },
       { property: "og:title", content: "Resume — Rizwan Zafar" },
       { property: "og:description", content: "Executive resume — payments product, infrastructure, risk and cross-border." },

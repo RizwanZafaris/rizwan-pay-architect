@@ -11,7 +11,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Payments product executive with $1B+ GTV experience: payment infrastructure, cross-border rails, settlement, merchant onboarding, KYC/KYB, AML/CFT, fraud and acceptance across MENA and South Asia.",
+          "Payments product executive: $1B+ GTV, cross-border rails, settlement, KYC/KYB, AML and fraud across MENA and South Asia.",
       },
       { property: "og:title", content: "Rizwan Zafar — Payments Product Executive | Dubai" },
       {
