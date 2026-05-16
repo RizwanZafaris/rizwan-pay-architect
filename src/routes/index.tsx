@@ -46,11 +46,23 @@ function HomePage() {
   const editorsPicked = posts.slice(0, 6);
   const featuredCases = caseStudies.slice(0, 3);
 
-  // Hot topics = category cards with post counts
-  const hotTopics = categories.map((cat) => ({
-    name: cat,
-    count: posts.filter((p) => p.category === cat).length,
-  }));
+  // Hot topics map directly to blog filter URLs (?hub=...)
+  const CATEGORY_TO_HUB: Record<string, string> = {
+    "Cross-Border Payments": "cross-border-payments",
+    "Fraud & Risk": "fraud-aml",
+    "Merchant Onboarding": "merchant-onboarding",
+    "Payment Infrastructure": "payment-infrastructure",
+    "Settlement & Reconciliation": "settlement-reconciliation",
+    "Emerging Markets": "emerging-markets",
+    "Product Strategy": "",
+  };
+  const hotTopics = categories
+    .filter((c) => CATEGORY_TO_HUB[c])
+    .map((cat) => ({
+      name: cat,
+      hub: CATEGORY_TO_HUB[cat],
+      count: posts.filter((p) => p.category === cat).length,
+    }));
 
   return (
     <div>
