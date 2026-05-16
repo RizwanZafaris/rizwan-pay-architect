@@ -97,15 +97,24 @@ function ContactPage() {
         </div>
       </div>
 
-      <div className="bg-surface border border-rule rounded-lg p-8">
+      <div className="bg-surface border border-rule rounded-lg p-6 md:p-8 min-w-0">
         <h2 className="font-display text-xl text-ink">Send a message</h2>
+        <p className="mt-2 text-xs text-ink-soft">
+          This form opens your email app with your message pre-filled. Nothing is sent from this site.
+        </p>
         {submitted ? (
           <div className="mt-6 space-y-3" role="status" aria-live="polite">
-            <div className="text-ink">Your email client should have opened with your message.</div>
-            <p className="text-sm text-ink-soft">
-              If nothing happened, write directly to{" "}
-              <a className="text-ink underline" href={`mailto:${profile.email}`}>{profile.email}</a>.
-            </p>
+            <div className="text-ink font-medium">If your email app did not open, copy the address below.</div>
+            <div className="flex flex-wrap items-center gap-2 rounded-md border border-rule bg-background px-3 py-2">
+              <span className="text-sm text-ink font-mono-tech break-all min-w-0">{profile.email}</span>
+              <button
+                type="button"
+                onClick={copyEmail}
+                className="ml-auto text-xs uppercase tracking-[0.14em] rounded-md border border-ink/20 px-3 py-1.5 hover:border-ink/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-ink/40"
+              >
+                {copied ? "Copied" : "Copy email"}
+              </button>
+            </div>
             <button
               type="button"
               onClick={() => { setSubmitted(false); setValues({ name: "", email: "", company: "", message: "" }); }}
@@ -158,11 +167,20 @@ function ContactPage() {
               />
               {errors.message && <p id="message-err" className="mt-1 text-xs text-red-600">{errors.message}</p>}
             </div>
-            <button type="submit" className="inline-flex items-center rounded-md bg-ink text-background px-5 py-2.5 text-sm font-medium hover:bg-brand focus:outline-none focus:ring-2 focus:ring-ink/40 transition-colors">
-              Send message
-            </button>
+            <div className="flex flex-wrap gap-3 pt-1">
+              <button type="submit" className="inline-flex items-center rounded-md bg-ink text-background px-5 py-2.5 text-sm font-medium hover:bg-brand focus:outline-none focus:ring-2 focus:ring-ink/40 transition-colors">
+                Open email app
+              </button>
+              <button
+                type="button"
+                onClick={copyEmail}
+                className="inline-flex items-center rounded-md border border-ink/20 px-5 py-2.5 text-sm font-medium text-ink hover:border-ink/50 focus:outline-none focus:ring-2 focus:ring-ink/30 transition-colors"
+              >
+                {copied ? "Email copied" : "Copy email"}
+              </button>
+            </div>
             <p className="text-xs text-ink-soft pt-1">
-              Prefer email? <a className="text-ink underline" href={`mailto:${profile.email}`}>{profile.email}</a>
+              This opens your email app with the message pre-filled — it does not send from this site.
             </p>
           </form>
         )}
