@@ -64,8 +64,7 @@ export function SiteHeader() {
     return () => {
       document.body.style.overflow = "";
       document.removeEventListener("keydown", onKey);
-      mainNodes.forEach((n) => n.removeAttribute("inert"));
-      void siblings;
+      inertTargets.forEach((n) => n.removeAttribute("inert"));
     };
   }, [open]);
 
