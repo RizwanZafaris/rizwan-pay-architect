@@ -66,17 +66,17 @@ function HomePage() {
           style={{ background: "radial-gradient(circle, color-mix(in oklab, var(--brand) 22%, transparent), transparent 70%)" }}
         />
 
-        <div className="relative mx-auto max-w-7xl px-6 pt-16 md:pt-24 pb-24 grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          {/* LEFT — Editorial intro + headline */}
-          <div className="lg:col-span-7 order-2 lg:order-1 relative z-10">
-            <div className="inline-flex items-center gap-4 mb-8">
+        <div className="relative mx-auto max-w-7xl px-5 sm:px-6 pt-10 md:pt-20 pb-12 md:pb-20 grid lg:grid-cols-12 gap-8 lg:gap-16 items-center">
+          {/* LEFT — Editorial intro + headline (TEXT FIRST on mobile) */}
+          <div className="lg:col-span-7 order-1 relative z-10 min-w-0">
+            <div className="inline-flex items-center gap-4 mb-6 md:mb-8">
               <span className="h-px w-12 bg-[var(--brand)]" />
               <span className="text-[10px] uppercase tracking-[0.32em] text-[var(--brand)] font-mono-tech font-semibold">
                 Introduction
               </span>
             </div>
 
-            <h1 className="font-instrument tracking-tight leading-[0.85] text-[72px] md:text-[120px] lg:text-[148px] text-ink">
+            <h1 className="font-instrument tracking-tight leading-[0.88] text-[56px] sm:text-[72px] md:text-[120px] lg:text-[148px] text-ink">
               I'm{" "}
               <span
                 className="bg-clip-text text-transparent"
@@ -89,7 +89,7 @@ function HomePage() {
               </span>
             </h1>
 
-            <p className="mt-10 max-w-2xl text-xl md:text-2xl text-ink-soft leading-snug font-light">
+            <p className="mt-6 md:mt-10 max-w-2xl text-lg md:text-2xl text-ink-soft leading-snug font-light">
               Payments product executive in Dubai. I build regulated payment infrastructure across{" "}
               <span className="text-ink font-medium italic">acceptance</span>,{" "}
               <span className="text-ink font-medium">cross-border corridors</span>,{" "}
@@ -97,23 +97,24 @@ function HomePage() {
               KYC/KYB, AML and fraud.
             </p>
 
-            <div className="mt-10 flex flex-col sm:flex-row items-start sm:items-center gap-4">
-              <div className="w-full sm:w-auto flex items-center bg-card border border-rule rounded-full pl-6 pr-2 py-2 shadow-[0_8px_24px_-16px_color-mix(in_oklab,var(--ink)_40%,transparent)]">
-                <span className="text-sm text-ink-soft font-mono-tech mr-4 whitespace-nowrap">
-                  {profile.email}
-                </span>
-                <a
-                  href={profile.resumeHref}
-                  download
-                  className="group inline-flex items-center gap-2 rounded-full px-7 py-3 text-[11px] uppercase tracking-[0.18em] font-semibold text-[var(--brand-foreground)] bg-ink hover:bg-[var(--brand)] transition-colors whitespace-nowrap"
-                >
-                  Resume
-                  <span className="transition-transform group-hover:translate-x-1" aria-hidden>→</span>
-                </a>
-              </div>
+            <div className="mt-8 md:mt-10 flex flex-col sm:flex-row sm:items-center gap-3">
+              <a
+                href={profile.resumeHref}
+                download
+                className="group inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-[11px] uppercase tracking-[0.18em] font-semibold text-[var(--brand-foreground)] bg-ink hover:bg-[var(--brand)] transition-colors"
+              >
+                Download resume
+                <span className="transition-transform group-hover:translate-x-1" aria-hidden>→</span>
+              </a>
+              <a
+                href={`mailto:${profile.email}`}
+                className="inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-[11px] uppercase tracking-[0.18em] font-semibold text-ink border border-ink/20 hover:border-ink/50 transition-colors"
+              >
+                Email me
+              </a>
             </div>
 
-            <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-ink-soft">
+            <div className="mt-6 md:mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-ink-soft">
               <Link to="/product-work" className="hover:text-ink inline-flex items-center gap-1.5 group">
                 Product work <span className="transition-transform group-hover:translate-x-1">→</span>
               </Link>
@@ -126,34 +127,31 @@ function HomePage() {
             </div>
           </div>
 
-          {/* RIGHT — Clean cutout portrait floating on background (Genz-style) */}
-          <div className="lg:col-span-5 order-1 lg:order-2 relative">
-            <div className="relative mx-auto max-w-[520px] aspect-[4/5]">
-              {/* Portrait cutout — no disc, no backdrop, just the subject */}
+          {/* RIGHT — Portrait (below text on mobile, smaller on mobile) */}
+          <div className="lg:col-span-5 order-2 relative min-w-0">
+            <div className="relative mx-auto w-full max-w-[320px] sm:max-w-[420px] lg:max-w-[520px] aspect-[4/5]">
               <img
                 src={portrait}
                 alt="Portrait of Rizwan Zafar, Chief Product Officer, Payments"
                 width={920}
                 height={1150}
                 loading="eager"
+                decoding="async"
+                {...({ fetchpriority: "high" } as any)}
                 className="relative z-10 h-full w-full object-contain object-bottom"
               />
 
-              {/* Location tag */}
-              <div className="absolute top-6 right-2 md:right-6 z-20 bg-card/95 backdrop-blur-sm border border-rule px-3 py-1 text-[10px] tracking-[0.22em] font-bold uppercase text-ink font-mono-tech shadow-sm">
+              <div className="absolute top-3 right-2 md:right-6 z-20 bg-card/95 backdrop-blur-sm border border-rule px-3 py-1 text-[10px] tracking-[0.22em] font-bold uppercase text-ink font-mono-tech shadow-sm">
                 Dubai · UAE
               </div>
 
-              {/* Floating decorative glyphs — fixed % positions tied to the portrait container, consistent across breakpoints */}
               {([
-                { type: "plus", top: "8%",  left: "88%", size: "text-5xl", color: "text-[var(--brand)]" },
-                { type: "plus", top: "30%", left: "92%", size: "text-3xl", color: "text-[var(--brand)]/70" },
-                { type: "plus", top: "48%", left: "4%",  size: "text-4xl", color: "text-[var(--brand)]" },
-                { type: "plus", top: "72%", left: "8%",  size: "text-2xl", color: "text-[var(--brand)]/60" },
+                { type: "plus", top: "8%",  left: "88%", size: "text-4xl md:text-5xl", color: "text-[var(--brand)]" },
+                { type: "plus", top: "30%", left: "92%", size: "text-2xl md:text-3xl", color: "text-[var(--brand)]/70" },
+                { type: "plus", top: "48%", left: "4%",  size: "text-3xl md:text-4xl", color: "text-[var(--brand)]" },
                 { type: "dot",  top: "22%", left: "6%",  size: "h-2 w-2",     color: "bg-[var(--brand)]/70" },
                 { type: "dot",  top: "58%", left: "94%", size: "h-3 w-3",     color: "bg-[var(--brand)]" },
-                { type: "dot",  top: "88%", left: "50%", size: "h-3.5 w-3.5", color: "bg-[var(--brand)]" },
-                { type: "dot",  top: "82%", left: "84%", size: "h-2 w-2",     color: "bg-[var(--brand)]/50" },
+                { type: "dot",  top: "88%", left: "50%", size: "h-3 w-3 md:h-3.5 md:w-3.5", color: "bg-[var(--brand)]" },
               ] as const).map((g, i) =>
                 g.type === "plus" ? (
                   <span
@@ -173,7 +171,6 @@ function HomePage() {
                   />
                 )
               )}
-
             </div>
           </div>
         </div>
@@ -197,14 +194,14 @@ function HomePage() {
                 <Link
                   key={t.name}
                   to="/blog"
-                  className="group relative overflow-hidden rounded-2xl aspect-[4/5] p-4 flex flex-col justify-end text-background border border-rule"
+                  className="group relative overflow-hidden rounded-2xl aspect-square sm:aspect-[5/4] lg:aspect-[4/5] p-3 sm:p-4 flex flex-col justify-end text-background border border-rule"
                   style={{
                     background: `linear-gradient(160deg, color-mix(in oklab, var(--brand) ${22 + (i % 4) * 10}%, transparent), color-mix(in oklab, var(--ink) ${70 - (i % 3) * 10}%, transparent))`,
                   }}
                 >
                   <div className="absolute inset-0 bg-noise opacity-30 mix-blend-overlay" aria-hidden />
                   <div className="relative">
-                    <div className="font-instrument text-lg leading-tight">{t.name}</div>
+                    <div className="font-instrument text-base sm:text-lg leading-tight">{t.name}</div>
                     <div className="text-[10px] font-mono-tech uppercase tracking-[0.18em] mt-1 opacity-80">
                       {t.count} {t.count === 1 ? "article" : "articles"}
                     </div>
