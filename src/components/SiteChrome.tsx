@@ -2,10 +2,10 @@ import { Link } from "@tanstack/react-router";
 import { profile } from "@/data/profile";
 
 const nav = [
-  { to: "/about", label: "About" },
-  { to: "/product-work", label: "Product Work" },
-  { to: "/blog", label: "Blog" },
+  { to: "/product-work", label: "Work" },
+  { to: "/blog", label: "Essays" },
   { to: "/resume", label: "Resume" },
+  { to: "/about", label: "About" },
   { to: "/contact", label: "Contact" },
 ] as const;
 
