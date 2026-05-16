@@ -63,8 +63,8 @@ export function SiteFooter() {
             <div className="font-display text-lg text-ink">{profile.name}</div>
           </div>
           <p className="mt-3 text-ink-soft leading-relaxed max-w-md">
-            Payments product executive based in Dubai. Building regulated payment
-            infrastructure across emerging markets — $1B+ GTV, 25M+ monthly transactions.
+            Rizwan Zafar — Payments Product Executive. Building regulated payment
+            infrastructure across MENA and South Asia.
           </p>
           <div className="mt-5 inline-flex items-center gap-2 text-xs text-ink-soft">
             <span className="relative inline-flex h-2 w-2">
@@ -88,8 +88,8 @@ export function SiteFooter() {
           <ul className="space-y-2">
             <li><a href={`mailto:${profile.email}`} className="hover:text-ink text-ink-soft">{profile.email}</a></li>
             <li><a href={profile.linkedin} target="_blank" rel="noreferrer" className="hover:text-ink text-ink-soft">LinkedIn</a></li>
-            <li><a href={profile.twitter} target="_blank" rel="noreferrer" className="hover:text-ink text-ink-soft">Twitter / X</a></li>
             <li><Link to="/contact" className="hover:text-ink text-ink-soft">Contact form</Link></li>
+            <li><a href={profile.resumeHref} download className="hover:text-ink text-ink-soft">Download Resume</a></li>
           </ul>
         </div>
       </div>
