@@ -3,20 +3,41 @@ export const profile = {
   role: "Chief Product Officer · Payments",
   location: "Dubai, UAE",
   email: "rizwanzaffar.pk@gmail.com",
-  linkedin: "https://www.linkedin.com/in/rizwanzafar",
+  linkedin: "https://www.linkedin.com/in/rizwanzaffar",
   twitter: "https://twitter.com/rizwan_zafar",
-  personalSite: "https://www.rizwan-zafar.com",
+  personalSite: "https://rizwan-pay-architect.lovable.app",
   resumeHref: "/Rizwan_Zafar_Resume.pdf",
   headline:
-    "Product & Program Leader · Payments Infrastructure, Cross-Border Systems & Delivery · $1B+ GTV · Emerging Markets",
+    "Payments product executive — payment infrastructure, cross-border rails, settlement, KYC/KYB, AML/CFT, fraud and merchant acceptance.",
   positioning:
-    "Product, payments and program leader with 8+ years building regulated payment infrastructure across emerging markets — pay-in, payout, cross-border, FX, settlement and reconciliation, alongside merchant onboarding, KYC, fraud, AML/CFT and treasury tooling. Currently CPO at Simpaisa: $1B+ GTV, 25M+ monthly transactions, five countries, 25+ person team. Led PCI DSS and ISO 27001 from scratch and held a dual CPO + acting CTO role through a regulatory tightening.",
+    "I build regulated payment infrastructure where product, network partnerships, risk, compliance, and operations collide. My work turns fragmented local rails into reliable products: merchant onboarding, payment acceptance, cross-border corridors, settlement, reconciliation, fraud controls, and market expansion.",
+  bio:
+    "Payments product executive with $1B+ GTV experience across acceptance, cross-border rails, merchant onboarding, settlement, fraud/risk, KYC/KYB, AML/CFT, wallets, and regulated fintech platforms. 14+ years across product, payments, and complex program delivery — including 8+ years building regulated payment infrastructure across emerging markets. Currently CPO at Simpaisa: 25M+ monthly transactions, five countries, 25+ person team. Led PCI DSS and ISO 27001 from scratch and held a dual CPO + acting CTO role through a regulatory tightening.",
   metrics: [
     { label: "Annual GTV", value: "$1B+" },
     { label: "Monthly transactions", value: "25M+" },
+    { label: "Markets", value: "5" },
     { label: "Settlement SLA", value: "99.95%" },
-    { label: "Fraud loss", value: "<0.1% GTV" },
-    { label: "Payment cost reduction", value: "50% → 1%" },
+    { label: "Downtime reduction", value: "−90%" },
+    { label: "Payment cost", value: "50% → 1%" },
+  ],
+  targetRoles: [
+    "Director / Head / VP Product, Payments",
+    "Product Lead, Payment Infrastructure",
+    "Cross-Border Payments Product Lead",
+    "Payment Network / Acceptance Product Lead",
+    "Fintech Infrastructure Product Leader",
+  ],
+  relevantFor: [
+    "Visa",
+    "Mastercard",
+    "Stripe",
+    "Wise",
+    "Adyen",
+    "Thunes",
+    "DLocal",
+    "Checkout.com",
+    "Rapyd",
   ],
   partners: [
     "TikTok",
@@ -79,7 +100,6 @@ export const profile = {
       bullets: [
         "First Dubai role. Built a PMO from nothing for a $12M+ project portfolio. Created dashboards and KPIs that executives actually used.",
         "Project delays dropped 40%. Managed 50+ people across multiple workstreams.",
-        "Learned how to make governance useful instead of bureaucratic — short stint, then took the leap into product at Tapmad.",
       ],
     },
     {
@@ -89,7 +109,7 @@ export const profile = {
       location: "Democratic Republic of the Congo",
       bullets: [
         "$8M+ in IT infrastructure and ERP projects. Reduced project delays by 12% and cut procurement costs by 15%.",
-        "First international role: limited infrastructure, unpredictable logistics, frequent power cuts. Learned to plan when nothing is reliable — a mindset that carried into payments.",
+        "First international role: limited infrastructure, unpredictable logistics. Learned to plan when nothing is reliable — a mindset that carried into payments.",
       ],
     },
     {
@@ -100,7 +120,6 @@ export const profile = {
       bullets: [
         "400+ engineering projects across utilities and power infrastructure — $15M portfolio.",
         "Built reporting systems that improved delivery efficiency by 70%.",
-        "Three and a half years of project discipline; learned that execution matters more than plans.",
       ],
     },
     {
@@ -110,16 +129,6 @@ export const profile = {
       location: "Karachi, Pakistan",
       bullets: [
         "Five substations. Field operations. Built monitoring systems that reduced downtime by 6%.",
-        "Time in control rooms watching real-time data — learned what reliability actually means when people depend on it.",
-      ],
-    },
-    {
-      company: "Pakistan International Airlines",
-      role: "Internee",
-      period: "Jan 2009 — Mar 2009",
-      location: "Karachi, Pakistan",
-      bullets: [
-        "ERP and automation projects. First exposure to systems that fix slow, manual processes — pointed me toward the intersection of systems and operations.",
       ],
     },
   ],
@@ -159,29 +168,18 @@ export const profile = {
     },
     {
       group: "Markets",
-      items: [
-        "UAE",
-        "Pakistan",
-        "Bangladesh",
-        "Nepal",
-        "Iraq",
-        "Egypt",
-        "Sri Lanka",
-        "Myanmar",
-        "MENA",
-        "South Asia",
-      ],
+      items: ["UAE", "Pakistan", "Bangladesh", "Nepal", "Iraq", "Egypt", "MENA", "South Asia"],
     },
   ],
   certifications: [
     "Project Management Professional (PMP) — PMI",
-    "PCI DSS Program Lead",
-    "ISO 27001 Program Lead",
+    "PCI DSS — Program Lead (Simpaisa)",
+    "ISO/IEC 27001 — Program Lead (Simpaisa)",
   ],
   education: [
     {
       school: "MIT Sloan School of Management",
-      degree: "Mastering Design Thinking",
+      degree: "Mastering Design Thinking (Executive Program)",
       period: "Aug 2022 — Dec 2022",
     },
     {
