@@ -125,45 +125,17 @@ function HomePage() {
             </div>
           </div>
 
-          {/* RIGHT — Cutout portrait floating over brand disc */}
+          {/* RIGHT — Clean cutout portrait floating on background (Genz-style) */}
           <div className="lg:col-span-5 order-1 lg:order-2 relative">
-            <div className="relative group mx-auto max-w-[460px] aspect-[4/5]">
-              {/* Soft brand disc backdrop */}
-              <div
-                aria-hidden
-                className="absolute inset-x-4 top-6 bottom-10 rounded-full blur-2xl opacity-70"
-                style={{
-                  background:
-                    "radial-gradient(circle at 50% 40%, color-mix(in oklab, var(--brand) 38%, transparent), color-mix(in oklab, var(--brand) 10%, transparent) 55%, transparent 75%)",
-                }}
-              />
-              {/* Solid disc behind subject */}
-              <div
-                aria-hidden
-                className="absolute left-1/2 top-[8%] -translate-x-1/2 w-[78%] aspect-square rounded-full"
-                style={{
-                  background:
-                    "radial-gradient(circle at 50% 45%, color-mix(in oklab, var(--brand) 22%, var(--background)) 0%, color-mix(in oklab, var(--brand) 8%, var(--background)) 60%, transparent 78%)",
-                }}
-              />
-
-              {/* Giant monogram backdrop */}
-              <span
-                aria-hidden
-                className="pointer-events-none select-none absolute inset-x-0 top-[18%] text-center font-instrument font-bold leading-none text-[180px] md:text-[240px] -z-10"
-                style={{ color: "color-mix(in oklab, var(--ink) 5%, transparent)" }}
-              >
-                RZ
-              </span>
-
-              {/* Portrait cutout */}
+            <div className="relative mx-auto max-w-[520px] aspect-[4/5]">
+              {/* Portrait cutout — no disc, no backdrop, just the subject */}
               <img
                 src={portrait}
                 alt="Portrait of Rizwan Zafar, Chief Product Officer, Payments"
                 width={920}
                 height={1150}
                 loading="eager"
-                className="relative z-10 h-full w-full object-contain object-bottom drop-shadow-[0_30px_40px_color-mix(in_oklab,var(--ink)_25%,transparent)] transition-transform duration-700 group-hover:-translate-y-1"
+                className="relative z-10 h-full w-full object-contain object-bottom"
               />
 
               {/* Location tag */}
@@ -171,17 +143,11 @@ function HomePage() {
                 Dubai · UAE
               </div>
 
-              {/* Floating decorative glyphs */}
-              <span aria-hidden className="absolute top-8 left-4 z-20 text-[var(--brand)] text-3xl font-instrument animate-pulse">+</span>
-              <span aria-hidden className="absolute top-24 right-6 z-20 text-[var(--brand)]/70 text-4xl font-instrument">✦</span>
-              <span aria-hidden className="absolute bottom-32 -left-2 z-20 h-2.5 w-2.5 rounded-full bg-[var(--brand)]" />
-
-              {/* Subtle rotating geometric accent */}
-              <div aria-hidden className="absolute -top-6 -right-6 opacity-25 z-0">
-                <svg className="w-24 h-24 text-[var(--brand)] animate-[spin_25s_linear_infinite]" viewBox="0 0 100 100">
-                  <path d="M50 0 L100 50 L50 100 L0 50 Z" fill="currentColor" />
-                </svg>
-              </div>
+              {/* Floating decorative glyphs — Genz-style scattered accents */}
+              <span aria-hidden className="absolute top-[18%] right-[6%] z-20 text-[var(--brand)] text-5xl font-light leading-none select-none">+</span>
+              <span aria-hidden className="absolute top-[42%] left-[4%] z-20 text-[var(--brand)] text-4xl font-light leading-none select-none">+</span>
+              <span aria-hidden className="absolute top-[55%] right-[2%] z-20 h-3 w-3 rounded-full bg-[var(--brand)]/60" />
+              <span aria-hidden className="absolute bottom-[14%] left-1/2 -translate-x-1/2 z-20 h-3.5 w-3.5 rounded-full bg-[var(--brand)]" />
             </div>
           </div>
         </div>
