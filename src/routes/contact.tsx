@@ -2,6 +2,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { profile } from "@/data/profile";
 
+import { absUrl } from "@/lib/seo";
+
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
@@ -12,13 +14,10 @@ export const Route = createFileRoute("/contact")({
           "Open to senior product and payment infrastructure roles in UAE, KSA, Singapore, MENA, Europe and global fintech companies. Get in touch.",
       },
       { property: "og:title", content: "Contact Rizwan Zafar" },
-      {
-        property: "og:description",
-        content: "Open to senior payments product roles. Based in Dubai.",
-      },
-      { property: "og:url", content: "/contact" },
+      { property: "og:description", content: "Open to senior payments product roles. Based in Dubai." },
+      { property: "og:url", content: absUrl("/contact") },
     ],
-    links: [{ rel: "canonical", href: "/contact" }],
+    links: [{ rel: "canonical", href: absUrl("/contact") }],
   }),
   component: ContactPage,
 });

@@ -11,6 +11,7 @@ import {
 import appCss from "../styles.css?url";
 import { SiteHeader, SiteFooter } from "@/components/SiteChrome";
 import { profile } from "@/data/profile";
+import { SITE_URL } from "@/lib/seo";
 
 function NotFoundComponent() {
   return (
@@ -55,11 +56,11 @@ const personJsonLd = {
   "@type": "Person",
   name: profile.name,
   jobTitle: "Chief Product Officer — Payments",
-  description: profile.positioning,
+  description: profile.bio,
   email: `mailto:${profile.email}`,
-  url: profile.personalSite,
+  url: SITE_URL,
   address: { "@type": "PostalAddress", addressLocality: "Dubai", addressCountry: "AE" },
-  sameAs: [profile.linkedin, profile.twitter, profile.personalSite],
+  sameAs: [profile.linkedin, profile.twitter],
   alumniOf: [
     { "@type": "EducationalOrganization", name: "MIT Sloan School of Management" },
     { "@type": "EducationalOrganization", name: "University of Karachi" },
@@ -68,12 +69,14 @@ const personJsonLd = {
   knowsAbout: [
     "Payment infrastructure",
     "Cross-border payments",
+    "Payment acceptance",
     "Settlement and reconciliation",
     "Merchant onboarding",
     "KYC KYB automation",
     "AML CFT",
     "Payment fraud and risk",
     "Wallets and DCB",
+    "Regulated fintech platforms",
     "MENA fintech",
   ],
 };
@@ -82,7 +85,15 @@ const websiteJsonLd = {
   "@context": "https://schema.org",
   "@type": "WebSite",
   name: `${profile.name} — Payments Product Executive`,
-  url: "/",
+  url: SITE_URL,
+  author: { "@type": "Person", name: profile.name },
+};
+
+const profilePageJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ProfilePage",
+  url: SITE_URL,
+  mainEntity: { "@type": "Person", name: profile.name, url: SITE_URL },
 };
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
@@ -112,6 +123,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     scripts: [
       { type: "application/ld+json", children: JSON.stringify(personJsonLd) },
       { type: "application/ld+json", children: JSON.stringify(websiteJsonLd) },
+      { type: "application/ld+json", children: JSON.stringify(profilePageJsonLd) },
     ],
   }),
   shellComponent: RootShell,

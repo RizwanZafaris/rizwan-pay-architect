@@ -3,7 +3,7 @@ import type {} from "@tanstack/react-start";
 import { caseStudies } from "@/data/caseStudies";
 import { posts } from "@/data/posts";
 
-const BASE_URL = "";
+const BASE_URL = "https://rizwan-pay-architect.lovable.app";
 
 export const Route = createFileRoute("/sitemap.xml")({
   server: {
