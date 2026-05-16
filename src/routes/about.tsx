@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { profile } from "@/data/profile";
 import { legacyRecommendations, paymentsRecommendations } from "@/data/recommendations";
 import { absUrl } from "@/lib/seo";
+import portrait from "@/assets/rizwan-zafar.jpg";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -29,6 +30,19 @@ function AboutPage() {
   return (
     <div>
       <section className="mx-auto max-w-3xl px-6 pt-20 pb-12">
+        <div className="flex items-center gap-5 mb-8">
+          <img
+            src={portrait}
+            alt="Portrait of Rizwan Zafar"
+            width={96}
+            height={96}
+            className="h-24 w-24 rounded-full object-cover ring-1 ring-ink/10 shadow-sm"
+          />
+          <div>
+            <div className="font-instrument text-xl text-ink leading-tight">{profile.name}</div>
+            <div className="text-sm text-ink-soft mt-1">{profile.role} · Dubai</div>
+          </div>
+        </div>
         <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--accent-emerald)] font-mono-tech">
           ◆ About
         </div>
