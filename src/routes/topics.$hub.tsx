@@ -16,37 +16,21 @@ export const Route = createFileRoute("/topics/$hub")({
   },
   head: ({ loaderData, params }) => {
     const h = loaderData?.hub;
-    if (!h) return { meta: [{ title: "Topic" }] };
+    if (!h) return { meta: [{ title: "Topic" }, { name: "robots", content: "noindex" }] };
     const url = absUrl(`/topics/${params.hub}`);
+    const canonical = absUrl("/topics");
     return {
       meta: [
         { title: `${h.title} — Payments Knowledge Base | Rizwan Zafar` },
         { name: "description", content: h.description },
+        // Thin until unique content — canonicalize to /topics and noindex.
+        { name: "robots", content: "noindex, follow" },
         { property: "og:title", content: `${h.title} — Rizwan Zafar` },
         { property: "og:description", content: h.description },
         { property: "og:url", content: url },
       ],
-      links: [{ rel: "canonical", href: url }],
+      links: [{ rel: "canonical", href: canonical }],
       scripts: [
-        {
-          type: "application/ld+json",
-          children: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "CollectionPage",
-            name: `${h.title} — Payments Knowledge Base`,
-            url,
-            description: h.description,
-            mainEntity: {
-              "@type": "ItemList",
-              itemListElement: (loaderData?.essays ?? []).map((p, i) => ({
-                "@type": "ListItem",
-                position: i + 1,
-                url: absUrl(`/blog/${p.slug}`),
-                name: p.title,
-              })),
-            },
-          }),
-        },
         {
           type: "application/ld+json",
           children: JSON.stringify({

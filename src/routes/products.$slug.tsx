@@ -19,16 +19,18 @@ export const Route = createFileRoute("/products/$slug")({
       };
     const url = absUrl(`/products/${params.slug}`);
     const isComingSoon = p.status === "coming-soon";
+    // Coming-soon detail pages have no unique content yet — canonical to /products and noindex.
+    const canonical = isComingSoon ? absUrl("/products") : url;
     return {
       meta: [
         { title: `${p.name} — Rizwan Zafar` },
         { name: "description", content: p.oneLiner },
-        ...(isComingSoon ? [{ name: "robots", content: "noindex" }] : []),
+        ...(isComingSoon ? [{ name: "robots", content: "noindex, follow" }] : []),
         { property: "og:title", content: `${p.name} — Rizwan Zafar` },
         { property: "og:description", content: p.oneLiner },
         { property: "og:url", content: url },
       ],
-      links: [{ rel: "canonical", href: url }],
+      links: [{ rel: "canonical", href: canonical }],
     };
   },
   notFoundComponent: () => (
