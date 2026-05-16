@@ -3,7 +3,7 @@ import { profile } from "@/data/profile";
 import { caseStudies } from "@/data/caseStudies";
 import { posts, categories } from "@/data/posts";
 import { absUrl, SITE_URL } from "@/lib/seo";
-import portrait from "@/assets/rizwan-zafar.jpg";
+import portrait from "@/assets/rizwan-zafar-cutout.png";
 
 const profilePageJsonLd = {
   "@context": "https://schema.org",
