@@ -214,6 +214,7 @@ function HomePage() {
                 <Link
                   key={t.name}
                   to="/blog"
+                  search={{ q: "", hub: t.hub, reader: "", company: "" }}
                   className="group relative overflow-hidden rounded-2xl aspect-square sm:aspect-[5/4] lg:aspect-[4/5] p-3 sm:p-4 flex flex-col justify-end text-background border border-rule"
                   style={{
                     background: `linear-gradient(160deg, color-mix(in oklab, var(--brand) ${22 + (i % 4) * 10}%, transparent), color-mix(in oklab, var(--ink) ${70 - (i % 3) * 10}%, transparent))`,
@@ -223,7 +224,7 @@ function HomePage() {
                   <div className="relative">
                     <div className="font-instrument text-base sm:text-lg leading-tight">{t.name}</div>
                     <div className="text-[10px] font-mono-tech uppercase tracking-[0.18em] mt-1 opacity-80">
-                      {t.count} {t.count === 1 ? "article" : "articles"}
+                      {t.count} {t.count === 1 ? "article" : "articles"} · Filter →
                     </div>
                   </div>
                 </Link>
