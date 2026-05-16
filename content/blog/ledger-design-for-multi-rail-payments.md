@@ -12,7 +12,7 @@ tags: ["ledger", "double-entry", "reconciliation", "payment infrastructure"]
 targetAudience: ["Payments PMs", "Platform engineers", "Finance leaders"]
 targetKeywords: ["payment ledger design", "double-entry ledger payments", "multi-rail ledger", "fintech ledger architecture"]
 relatedCaseStudies:
-  - "/product-work/reconciliation-ledger-controls"
+  - "/product-work/settlement-reconciliation"
   - "/product-work/simpaisa-payment-infrastructure"
 relatedArticles:
   - "/blog/three-way-reconciliation-at-scale"

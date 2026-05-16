@@ -11,7 +11,7 @@ tags: ["financial controls", "audit", "SOX-like", "segregation of duties", "ledg
 targetAudience: ["Fintech CFOs", "Platform PMs", "Audit + compliance"]
 targetKeywords: ["financial controls fintech", "audit trail payment platform", "segregation of duties payments", "maker checker payments"]
 relatedCaseStudies:
-  - "/product-work/reconciliation-ledger-controls"
+  - "/product-work/settlement-reconciliation"
 relatedArticles:
   - "/blog/reconciliation-is-product-infrastructure"
   - "/blog/three-way-reconciliation-at-scale"

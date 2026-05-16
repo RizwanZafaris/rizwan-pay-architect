@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { profile } from "@/data/profile";
 import { caseStudies } from "@/data/caseStudies";
 import { posts, categories } from "@/data/posts";
+import { products } from "@/data/products";
 import { absUrl, SITE_URL } from "@/lib/seo";
 import portrait from "@/assets/rizwan-zafar-cutout.png";
 
@@ -211,6 +212,79 @@ function HomePage() {
                 </Link>
               ))}
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ============ PRODUCTS — built & building ============ */}
+      <section className="relative">
+        <div className="mx-auto max-w-6xl px-6 pt-10 pb-4">
+          <div className="flex items-end justify-between flex-wrap gap-6 mb-10">
+            <div>
+              <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
+                ◆ Products
+              </div>
+              <h2 className="font-instrument text-4xl md:text-6xl text-ink mt-3 leading-[1.02] max-w-3xl">
+                Products I have built — and products I am <span className="italic text-[var(--brand)]">building.</span>
+              </h2>
+            </div>
+            <Link to="/products" className="text-sm text-ink-soft hover:text-ink inline-flex items-center gap-1.5 group">
+              All products <span className="transition-transform group-hover:translate-x-1">→</span>
+            </Link>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-5">
+            {products.map((p) => {
+              const isInternal = p.link.startsWith("/");
+              const CardInner = (
+                <>
+                  <div className="flex items-center justify-between gap-3">
+                    <div className="font-instrument text-2xl text-ink">{p.name}</div>
+                    <span
+                      className={`text-[10px] uppercase tracking-[0.18em] font-mono-tech px-2.5 py-1 rounded-full border ${
+                        p.status === "coming-soon"
+                          ? "border-rule text-ink-soft"
+                          : "border-[var(--accent-emerald)]/30 text-[var(--accent-emerald)]"
+                      }`}
+                    >
+                      {p.statusLabel}
+                    </span>
+                  </div>
+                  <p className="mt-3 text-ink-soft leading-relaxed">{p.oneLiner}</p>
+                  {p.metrics && p.metrics.length > 0 && (
+                    <div className="mt-5 flex flex-wrap gap-x-6 gap-y-2 text-xs text-ink-soft font-mono-tech">
+                      {p.metrics.slice(0, 3).map((m) => (
+                        <span key={m.label}>
+                          <span className="text-ink font-semibold">{m.value}</span>{" "}
+                          <span className="uppercase tracking-[0.12em]">{m.label}</span>
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                  <div className="mt-5 text-sm text-ink group-hover:text-[var(--brand)] inline-flex items-center gap-1.5 transition-colors">
+                    {p.ctaLabel ?? "Learn more"}
+                    <span className="transition-transform group-hover:translate-x-1">→</span>
+                  </div>
+                </>
+              );
+              return isInternal ? (
+                <Link
+                  key={p.slug}
+                  to={p.link}
+                  className="group block bg-surface border border-rule rounded-2xl p-7 hover:border-ink/30 transition-colors"
+                >
+                  {CardInner}
+                </Link>
+              ) : (
+                <a
+                  key={p.slug}
+                  href={p.link}
+                  className="group block bg-surface border border-rule rounded-2xl p-7 hover:border-ink/30 transition-colors"
+                >
+                  {CardInner}
+                </a>
+              );
+            })}
           </div>
         </div>
       </section>
