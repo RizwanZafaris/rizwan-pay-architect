@@ -9,16 +9,25 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TopicsRouteImport } from './routes/topics'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ResumeRouteImport } from './routes/resume'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProductWorkIndexRouteImport } from './routes/product-work.index'
+import { Route as ForIndexRouteImport } from './routes/for.index'
 import { Route as BlogIndexRouteImport } from './routes/blog.index'
+import { Route as TopicsHubRouteImport } from './routes/topics.$hub'
 import { Route as ProductWorkSlugRouteImport } from './routes/product-work.$slug'
+import { Route as ForAudienceRouteImport } from './routes/for.$audience'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 
+const TopicsRoute = TopicsRouteImport.update({
+  id: '/topics',
+  path: '/topics',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
@@ -49,14 +58,29 @@ const ProductWorkIndexRoute = ProductWorkIndexRouteImport.update({
   path: '/product-work/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ForIndexRoute = ForIndexRouteImport.update({
+  id: '/for/',
+  path: '/for/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BlogIndexRoute = BlogIndexRouteImport.update({
   id: '/blog/',
   path: '/blog/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TopicsHubRoute = TopicsHubRouteImport.update({
+  id: '/$hub',
+  path: '/$hub',
+  getParentRoute: () => TopicsRoute,
+} as any)
 const ProductWorkSlugRoute = ProductWorkSlugRouteImport.update({
   id: '/product-work/$slug',
   path: '/product-work/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ForAudienceRoute = ForAudienceRouteImport.update({
+  id: '/for/$audience',
+  path: '/for/$audience',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BlogSlugRoute = BlogSlugRouteImport.update({
@@ -71,9 +95,13 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/resume': typeof ResumeRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/topics': typeof TopicsRouteWithChildren
   '/blog/$slug': typeof BlogSlugRoute
+  '/for/$audience': typeof ForAudienceRoute
   '/product-work/$slug': typeof ProductWorkSlugRoute
+  '/topics/$hub': typeof TopicsHubRoute
   '/blog/': typeof BlogIndexRoute
+  '/for/': typeof ForIndexRoute
   '/product-work/': typeof ProductWorkIndexRoute
 }
 export interface FileRoutesByTo {
@@ -82,9 +110,13 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/resume': typeof ResumeRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/topics': typeof TopicsRouteWithChildren
   '/blog/$slug': typeof BlogSlugRoute
+  '/for/$audience': typeof ForAudienceRoute
   '/product-work/$slug': typeof ProductWorkSlugRoute
+  '/topics/$hub': typeof TopicsHubRoute
   '/blog': typeof BlogIndexRoute
+  '/for': typeof ForIndexRoute
   '/product-work': typeof ProductWorkIndexRoute
 }
 export interface FileRoutesById {
@@ -94,9 +126,13 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/resume': typeof ResumeRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/topics': typeof TopicsRouteWithChildren
   '/blog/$slug': typeof BlogSlugRoute
+  '/for/$audience': typeof ForAudienceRoute
   '/product-work/$slug': typeof ProductWorkSlugRoute
+  '/topics/$hub': typeof TopicsHubRoute
   '/blog/': typeof BlogIndexRoute
+  '/for/': typeof ForIndexRoute
   '/product-work/': typeof ProductWorkIndexRoute
 }
 export interface FileRouteTypes {
@@ -107,9 +143,13 @@ export interface FileRouteTypes {
     | '/contact'
     | '/resume'
     | '/sitemap.xml'
+    | '/topics'
     | '/blog/$slug'
+    | '/for/$audience'
     | '/product-work/$slug'
+    | '/topics/$hub'
     | '/blog/'
+    | '/for/'
     | '/product-work/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -118,9 +158,13 @@ export interface FileRouteTypes {
     | '/contact'
     | '/resume'
     | '/sitemap.xml'
+    | '/topics'
     | '/blog/$slug'
+    | '/for/$audience'
     | '/product-work/$slug'
+    | '/topics/$hub'
     | '/blog'
+    | '/for'
     | '/product-work'
   id:
     | '__root__'
@@ -129,9 +173,13 @@ export interface FileRouteTypes {
     | '/contact'
     | '/resume'
     | '/sitemap.xml'
+    | '/topics'
     | '/blog/$slug'
+    | '/for/$audience'
     | '/product-work/$slug'
+    | '/topics/$hub'
     | '/blog/'
+    | '/for/'
     | '/product-work/'
   fileRoutesById: FileRoutesById
 }
@@ -141,14 +189,24 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   ResumeRoute: typeof ResumeRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  TopicsRoute: typeof TopicsRouteWithChildren
   BlogSlugRoute: typeof BlogSlugRoute
+  ForAudienceRoute: typeof ForAudienceRoute
   ProductWorkSlugRoute: typeof ProductWorkSlugRoute
   BlogIndexRoute: typeof BlogIndexRoute
+  ForIndexRoute: typeof ForIndexRoute
   ProductWorkIndexRoute: typeof ProductWorkIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/topics': {
+      id: '/topics'
+      path: '/topics'
+      fullPath: '/topics'
+      preLoaderRoute: typeof TopicsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/sitemap.xml': {
       id: '/sitemap.xml'
       path: '/sitemap.xml'
@@ -191,6 +249,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProductWorkIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/for/': {
+      id: '/for/'
+      path: '/for'
+      fullPath: '/for/'
+      preLoaderRoute: typeof ForIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/blog/': {
       id: '/blog/'
       path: '/blog'
@@ -198,11 +263,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/topics/$hub': {
+      id: '/topics/$hub'
+      path: '/$hub'
+      fullPath: '/topics/$hub'
+      preLoaderRoute: typeof TopicsHubRouteImport
+      parentRoute: typeof TopicsRoute
+    }
     '/product-work/$slug': {
       id: '/product-work/$slug'
       path: '/product-work/$slug'
       fullPath: '/product-work/$slug'
       preLoaderRoute: typeof ProductWorkSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/for/$audience': {
+      id: '/for/$audience'
+      path: '/for/$audience'
+      fullPath: '/for/$audience'
+      preLoaderRoute: typeof ForAudienceRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blog/$slug': {
@@ -215,15 +294,29 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface TopicsRouteChildren {
+  TopicsHubRoute: typeof TopicsHubRoute
+}
+
+const TopicsRouteChildren: TopicsRouteChildren = {
+  TopicsHubRoute: TopicsHubRoute,
+}
+
+const TopicsRouteWithChildren =
+  TopicsRoute._addFileChildren(TopicsRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   ContactRoute: ContactRoute,
   ResumeRoute: ResumeRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
+  TopicsRoute: TopicsRouteWithChildren,
   BlogSlugRoute: BlogSlugRoute,
+  ForAudienceRoute: ForAudienceRoute,
   ProductWorkSlugRoute: ProductWorkSlugRoute,
   BlogIndexRoute: BlogIndexRoute,
+  ForIndexRoute: ForIndexRoute,
   ProductWorkIndexRoute: ProductWorkIndexRoute,
 }
 export const routeTree = rootRouteImport

@@ -120,6 +120,28 @@ function CaseStudyPage() {
           <p>{s.executiveSummary}</p>
         </Section>
 
+        {s.beforeAfter && s.beforeAfter.length > 0 && (
+          <section className="mt-12 rounded-2xl border border-rule bg-surface p-6 md:p-8">
+            <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--accent-emerald)] font-mono-tech">
+              ◆ Before / after
+            </div>
+            <div className="mt-4 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+              {s.beforeAfter.map((b) => (
+                <div key={b.metric} className="rounded-xl border border-rule bg-background p-5">
+                  <div className="text-[10px] uppercase tracking-[0.14em] text-ink-soft font-mono-tech">
+                    {b.metric}
+                  </div>
+                  <div className="mt-3 flex items-baseline gap-2 font-mono-tech text-sm">
+                    <span className="text-ink-soft line-through">{b.before}</span>
+                    <span className="text-ink-soft">→</span>
+                    <span className="text-ink font-medium">{b.after}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
         {diagram ? (
           <DiagramFigure title={diagram.title} caption={diagram.caption}>
             <diagram.component />
@@ -176,6 +198,30 @@ function CaseStudyPage() {
                 {k}
               </span>
             ))}
+          </div>
+        </div>
+        {/* CTA strip */}
+        <div className="mt-16 rounded-3xl border border-ink/10 bg-surface p-8 md:p-10">
+          <h2 className="font-instrument text-2xl text-ink leading-tight">
+            Discussing payment infrastructure / product leadership roles?
+          </h2>
+          <p className="mt-3 text-ink-soft max-w-2xl">
+            Reference-available. Download the résumé or get in touch.
+          </p>
+          <div className="mt-5 flex flex-wrap gap-3">
+            <a
+              href="/Rizwan_Zafar_Resume.pdf"
+              download
+              className="inline-flex rounded-md bg-ink text-background px-5 py-2.5 text-sm font-medium hover:bg-brand transition-colors"
+            >
+              Download résumé (PDF)
+            </a>
+            <Link
+              to="/contact"
+              className="inline-flex rounded-md border border-ink/20 px-5 py-2.5 text-sm font-medium text-ink hover:border-ink/40"
+            >
+              Discuss a role
+            </Link>
           </div>
         </div>
       </div>

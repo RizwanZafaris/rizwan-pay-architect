@@ -4,8 +4,9 @@ import { profile } from "@/data/profile";
 const nav = [
   { to: "/product-work", label: "Work" },
   { to: "/blog", label: "Essays" },
+  { to: "/topics", label: "Topics" },
+  { to: "/for", label: "For recruiters" },
   { to: "/resume", label: "Resume" },
-  { to: "/about", label: "About" },
   { to: "/contact", label: "Contact" },
 ] as const;
 
