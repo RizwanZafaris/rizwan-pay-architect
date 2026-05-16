@@ -3,7 +3,7 @@ import { profile } from "@/data/profile";
 import { caseStudies } from "@/data/caseStudies";
 import { posts, categories } from "@/data/posts";
 import { absUrl, SITE_URL } from "@/lib/seo";
-import portrait from "@/assets/rizwan-zafar.jpg";
+import portrait from "@/assets/rizwan-zafar-cutout.png";
 
 const profilePageJsonLd = {
   "@context": "https://schema.org",
@@ -125,43 +125,60 @@ function HomePage() {
             </div>
           </div>
 
-          {/* RIGHT — Editorial portrait card */}
+          {/* RIGHT — Cutout portrait floating over brand disc */}
           <div className="lg:col-span-5 order-1 lg:order-2 relative">
-            <div className="relative group mx-auto max-w-[420px]">
-              {/* Offset block behind */}
+            <div className="relative group mx-auto max-w-[460px] aspect-[4/5]">
+              {/* Soft brand disc backdrop */}
               <div
                 aria-hidden
-                className="absolute -bottom-6 -right-6 md:-bottom-8 md:-right-8 inset-0 rounded-sm"
-                style={{ background: "color-mix(in oklab, var(--brand) 18%, transparent)" }}
+                className="absolute inset-x-4 top-6 bottom-10 rounded-full blur-2xl opacity-70"
+                style={{
+                  background:
+                    "radial-gradient(circle at 50% 40%, color-mix(in oklab, var(--brand) 38%, transparent), color-mix(in oklab, var(--brand) 10%, transparent) 55%, transparent 75%)",
+                }}
               />
-              {/* Portrait */}
-              <div className="relative aspect-[4/5] overflow-hidden rounded-sm ring-1 ring-ink/10 shadow-[0_40px_80px_-30px_color-mix(in_oklab,var(--ink)_45%,transparent)]">
-                <img
-                  src={portrait}
-                  alt="Portrait of Rizwan Zafar, Chief Product Officer, Payments"
-                  width={800}
-                  height={1000}
-                  loading="eager"
-                  className="h-full w-full object-cover transition-all duration-700 grayscale contrast-110 group-hover:grayscale-0"
-                />
-                {/* Location tag */}
-                <div className="absolute top-5 right-5 bg-card/90 backdrop-blur-sm px-3 py-1 text-[10px] tracking-[0.22em] font-bold uppercase text-ink font-mono-tech">
-                  Dubai · UAE
-                </div>
-              </div>
+              {/* Solid disc behind subject */}
+              <div
+                aria-hidden
+                className="absolute left-1/2 top-[8%] -translate-x-1/2 w-[78%] aspect-square rounded-full"
+                style={{
+                  background:
+                    "radial-gradient(circle at 50% 45%, color-mix(in oklab, var(--brand) 22%, var(--background)) 0%, color-mix(in oklab, var(--brand) 8%, var(--background)) 60%, transparent 78%)",
+                }}
+              />
 
-              {/* Monogram backdrop */}
+              {/* Giant monogram backdrop */}
               <span
                 aria-hidden
-                className="pointer-events-none select-none absolute -bottom-10 -left-10 md:-bottom-14 md:-left-14 font-instrument font-bold leading-none text-[140px] md:text-[180px] -z-10"
-                style={{ color: "color-mix(in oklab, var(--ink) 6%, transparent)" }}
+                className="pointer-events-none select-none absolute inset-x-0 top-[18%] text-center font-instrument font-bold leading-none text-[180px] md:text-[240px] -z-10"
+                style={{ color: "color-mix(in oklab, var(--ink) 5%, transparent)" }}
               >
                 RZ
               </span>
 
+              {/* Portrait cutout */}
+              <img
+                src={portrait}
+                alt="Portrait of Rizwan Zafar, Chief Product Officer, Payments"
+                width={920}
+                height={1150}
+                loading="eager"
+                className="relative z-10 h-full w-full object-contain object-bottom drop-shadow-[0_30px_40px_color-mix(in_oklab,var(--ink)_25%,transparent)] transition-transform duration-700 group-hover:-translate-y-1"
+              />
+
+              {/* Location tag */}
+              <div className="absolute top-6 right-2 md:right-6 z-20 bg-card/95 backdrop-blur-sm border border-rule px-3 py-1 text-[10px] tracking-[0.22em] font-bold uppercase text-ink font-mono-tech shadow-sm">
+                Dubai · UAE
+              </div>
+
+              {/* Floating decorative glyphs */}
+              <span aria-hidden className="absolute top-8 left-4 z-20 text-[var(--brand)] text-3xl font-instrument animate-pulse">+</span>
+              <span aria-hidden className="absolute top-24 right-6 z-20 text-[var(--brand)]/70 text-4xl font-instrument">✦</span>
+              <span aria-hidden className="absolute bottom-32 -left-2 z-20 h-2.5 w-2.5 rounded-full bg-[var(--brand)]" />
+
               {/* Subtle rotating geometric accent */}
-              <div aria-hidden className="absolute -top-8 -right-8 opacity-30">
-                <svg className="w-20 h-20 text-[var(--brand)] animate-[spin_20s_linear_infinite]" viewBox="0 0 100 100">
+              <div aria-hidden className="absolute -top-6 -right-6 opacity-25 z-0">
+                <svg className="w-24 h-24 text-[var(--brand)] animate-[spin_25s_linear_infinite]" viewBox="0 0 100 100">
                   <path d="M50 0 L100 50 L50 100 L0 50 Z" fill="currentColor" />
                 </svg>
               </div>
