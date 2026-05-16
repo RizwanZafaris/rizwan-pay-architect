@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as TopicsRouteImport } from './routes/topics'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ResumeRouteImport } from './routes/resume'
+import { Route as ProductsRouteImport } from './routes/products'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
@@ -19,6 +20,7 @@ import { Route as ProductWorkIndexRouteImport } from './routes/product-work.inde
 import { Route as ForIndexRouteImport } from './routes/for.index'
 import { Route as BlogIndexRouteImport } from './routes/blog.index'
 import { Route as TopicsHubRouteImport } from './routes/topics.$hub'
+import { Route as ProductsSlugRouteImport } from './routes/products.$slug'
 import { Route as ProductWorkSlugRouteImport } from './routes/product-work.$slug'
 import { Route as ForAudienceRouteImport } from './routes/for.$audience'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
@@ -36,6 +38,11 @@ const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
 const ResumeRoute = ResumeRouteImport.update({
   id: '/resume',
   path: '/resume',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProductsRoute = ProductsRouteImport.update({
+  id: '/products',
+  path: '/products',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -73,6 +80,11 @@ const TopicsHubRoute = TopicsHubRouteImport.update({
   path: '/$hub',
   getParentRoute: () => TopicsRoute,
 } as any)
+const ProductsSlugRoute = ProductsSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => ProductsRoute,
+} as any)
 const ProductWorkSlugRoute = ProductWorkSlugRouteImport.update({
   id: '/product-work/$slug',
   path: '/product-work/$slug',
@@ -93,12 +105,14 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
+  '/products': typeof ProductsRouteWithChildren
   '/resume': typeof ResumeRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/topics': typeof TopicsRouteWithChildren
   '/blog/$slug': typeof BlogSlugRoute
   '/for/$audience': typeof ForAudienceRoute
   '/product-work/$slug': typeof ProductWorkSlugRoute
+  '/products/$slug': typeof ProductsSlugRoute
   '/topics/$hub': typeof TopicsHubRoute
   '/blog/': typeof BlogIndexRoute
   '/for/': typeof ForIndexRoute
@@ -108,12 +122,14 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
+  '/products': typeof ProductsRouteWithChildren
   '/resume': typeof ResumeRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/topics': typeof TopicsRouteWithChildren
   '/blog/$slug': typeof BlogSlugRoute
   '/for/$audience': typeof ForAudienceRoute
   '/product-work/$slug': typeof ProductWorkSlugRoute
+  '/products/$slug': typeof ProductsSlugRoute
   '/topics/$hub': typeof TopicsHubRoute
   '/blog': typeof BlogIndexRoute
   '/for': typeof ForIndexRoute
@@ -124,12 +140,14 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
+  '/products': typeof ProductsRouteWithChildren
   '/resume': typeof ResumeRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/topics': typeof TopicsRouteWithChildren
   '/blog/$slug': typeof BlogSlugRoute
   '/for/$audience': typeof ForAudienceRoute
   '/product-work/$slug': typeof ProductWorkSlugRoute
+  '/products/$slug': typeof ProductsSlugRoute
   '/topics/$hub': typeof TopicsHubRoute
   '/blog/': typeof BlogIndexRoute
   '/for/': typeof ForIndexRoute
@@ -141,12 +159,14 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/contact'
+    | '/products'
     | '/resume'
     | '/sitemap.xml'
     | '/topics'
     | '/blog/$slug'
     | '/for/$audience'
     | '/product-work/$slug'
+    | '/products/$slug'
     | '/topics/$hub'
     | '/blog/'
     | '/for/'
@@ -156,12 +176,14 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/contact'
+    | '/products'
     | '/resume'
     | '/sitemap.xml'
     | '/topics'
     | '/blog/$slug'
     | '/for/$audience'
     | '/product-work/$slug'
+    | '/products/$slug'
     | '/topics/$hub'
     | '/blog'
     | '/for'
@@ -171,12 +193,14 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/contact'
+    | '/products'
     | '/resume'
     | '/sitemap.xml'
     | '/topics'
     | '/blog/$slug'
     | '/for/$audience'
     | '/product-work/$slug'
+    | '/products/$slug'
     | '/topics/$hub'
     | '/blog/'
     | '/for/'
@@ -187,6 +211,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   ContactRoute: typeof ContactRoute
+  ProductsRoute: typeof ProductsRouteWithChildren
   ResumeRoute: typeof ResumeRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TopicsRoute: typeof TopicsRouteWithChildren
@@ -219,6 +244,13 @@ declare module '@tanstack/react-router' {
       path: '/resume'
       fullPath: '/resume'
       preLoaderRoute: typeof ResumeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/products': {
+      id: '/products'
+      path: '/products'
+      fullPath: '/products'
+      preLoaderRoute: typeof ProductsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -270,6 +302,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TopicsHubRouteImport
       parentRoute: typeof TopicsRoute
     }
+    '/products/$slug': {
+      id: '/products/$slug'
+      path: '/$slug'
+      fullPath: '/products/$slug'
+      preLoaderRoute: typeof ProductsSlugRouteImport
+      parentRoute: typeof ProductsRoute
+    }
     '/product-work/$slug': {
       id: '/product-work/$slug'
       path: '/product-work/$slug'
@@ -294,6 +333,18 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface ProductsRouteChildren {
+  ProductsSlugRoute: typeof ProductsSlugRoute
+}
+
+const ProductsRouteChildren: ProductsRouteChildren = {
+  ProductsSlugRoute: ProductsSlugRoute,
+}
+
+const ProductsRouteWithChildren = ProductsRoute._addFileChildren(
+  ProductsRouteChildren,
+)
+
 interface TopicsRouteChildren {
   TopicsHubRoute: typeof TopicsHubRoute
 }
@@ -309,6 +360,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   ContactRoute: ContactRoute,
+  ProductsRoute: ProductsRouteWithChildren,
   ResumeRoute: ResumeRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   TopicsRoute: TopicsRouteWithChildren,
@@ -322,3 +374,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
