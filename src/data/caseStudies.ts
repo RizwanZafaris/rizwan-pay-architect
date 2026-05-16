@@ -1,21 +1,29 @@
+export type BeforeAfter = { metric: string; before: string; after: string };
+
 export type CaseStudy = {
   slug: string;
   title: string;
   tagline: string;
   category: string;
+  /** Markets the work touched — used for the index filter. */
+  markets?: string[];
+  /** Companies this case study is most relevant to — used for filters. */
+  relevantFor?: string[];
   metrics: { label: string; value: string }[];
+  beforeAfter?: BeforeAfter[];
   executiveSummary: string;
   problem: string;
   built: string[];
-  architecture?: string[]; // system / architecture notes
-  operatingModel?: string[]; // org / RACI / how it ran
+  architecture?: string[];
+  operatingModel?: string[];
   role: string;
   impact: string[];
   tradeoffs?: string[];
   lessons: string[];
-  whyItMatters: string; // recruiter-facing relevance to Visa/Mastercard/Stripe class
+  whyItMatters: string;
   keywords: string[];
 };
+
 
 export const caseStudies: CaseStudy[] = [
   {
