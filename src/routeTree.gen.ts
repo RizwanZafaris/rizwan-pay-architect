@@ -16,9 +16,11 @@ import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProductWorkIndexRouteImport } from './routes/product-work.index'
+import { Route as ForIndexRouteImport } from './routes/for.index'
 import { Route as BlogIndexRouteImport } from './routes/blog.index'
 import { Route as TopicsHubRouteImport } from './routes/topics.$hub'
 import { Route as ProductWorkSlugRouteImport } from './routes/product-work.$slug'
+import { Route as ForAudienceRouteImport } from './routes/for.$audience'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 
 const TopicsRoute = TopicsRouteImport.update({
@@ -56,6 +58,11 @@ const ProductWorkIndexRoute = ProductWorkIndexRouteImport.update({
   path: '/product-work/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ForIndexRoute = ForIndexRouteImport.update({
+  id: '/for/',
+  path: '/for/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BlogIndexRoute = BlogIndexRouteImport.update({
   id: '/blog/',
   path: '/blog/',
@@ -69,6 +76,11 @@ const TopicsHubRoute = TopicsHubRouteImport.update({
 const ProductWorkSlugRoute = ProductWorkSlugRouteImport.update({
   id: '/product-work/$slug',
   path: '/product-work/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ForAudienceRoute = ForAudienceRouteImport.update({
+  id: '/for/$audience',
+  path: '/for/$audience',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BlogSlugRoute = BlogSlugRouteImport.update({
@@ -85,9 +97,11 @@ export interface FileRoutesByFullPath {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/topics': typeof TopicsRouteWithChildren
   '/blog/$slug': typeof BlogSlugRoute
+  '/for/$audience': typeof ForAudienceRoute
   '/product-work/$slug': typeof ProductWorkSlugRoute
   '/topics/$hub': typeof TopicsHubRoute
   '/blog/': typeof BlogIndexRoute
+  '/for/': typeof ForIndexRoute
   '/product-work/': typeof ProductWorkIndexRoute
 }
 export interface FileRoutesByTo {
@@ -98,9 +112,11 @@ export interface FileRoutesByTo {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/topics': typeof TopicsRouteWithChildren
   '/blog/$slug': typeof BlogSlugRoute
+  '/for/$audience': typeof ForAudienceRoute
   '/product-work/$slug': typeof ProductWorkSlugRoute
   '/topics/$hub': typeof TopicsHubRoute
   '/blog': typeof BlogIndexRoute
+  '/for': typeof ForIndexRoute
   '/product-work': typeof ProductWorkIndexRoute
 }
 export interface FileRoutesById {
@@ -112,9 +128,11 @@ export interface FileRoutesById {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/topics': typeof TopicsRouteWithChildren
   '/blog/$slug': typeof BlogSlugRoute
+  '/for/$audience': typeof ForAudienceRoute
   '/product-work/$slug': typeof ProductWorkSlugRoute
   '/topics/$hub': typeof TopicsHubRoute
   '/blog/': typeof BlogIndexRoute
+  '/for/': typeof ForIndexRoute
   '/product-work/': typeof ProductWorkIndexRoute
 }
 export interface FileRouteTypes {
@@ -127,9 +145,11 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/topics'
     | '/blog/$slug'
+    | '/for/$audience'
     | '/product-work/$slug'
     | '/topics/$hub'
     | '/blog/'
+    | '/for/'
     | '/product-work/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -140,9 +160,11 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/topics'
     | '/blog/$slug'
+    | '/for/$audience'
     | '/product-work/$slug'
     | '/topics/$hub'
     | '/blog'
+    | '/for'
     | '/product-work'
   id:
     | '__root__'
@@ -153,9 +175,11 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/topics'
     | '/blog/$slug'
+    | '/for/$audience'
     | '/product-work/$slug'
     | '/topics/$hub'
     | '/blog/'
+    | '/for/'
     | '/product-work/'
   fileRoutesById: FileRoutesById
 }
@@ -167,8 +191,10 @@ export interface RootRouteChildren {
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TopicsRoute: typeof TopicsRouteWithChildren
   BlogSlugRoute: typeof BlogSlugRoute
+  ForAudienceRoute: typeof ForAudienceRoute
   ProductWorkSlugRoute: typeof ProductWorkSlugRoute
   BlogIndexRoute: typeof BlogIndexRoute
+  ForIndexRoute: typeof ForIndexRoute
   ProductWorkIndexRoute: typeof ProductWorkIndexRoute
 }
 
@@ -223,6 +249,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProductWorkIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/for/': {
+      id: '/for/'
+      path: '/for'
+      fullPath: '/for/'
+      preLoaderRoute: typeof ForIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/blog/': {
       id: '/blog/'
       path: '/blog'
@@ -242,6 +275,13 @@ declare module '@tanstack/react-router' {
       path: '/product-work/$slug'
       fullPath: '/product-work/$slug'
       preLoaderRoute: typeof ProductWorkSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/for/$audience': {
+      id: '/for/$audience'
+      path: '/for/$audience'
+      fullPath: '/for/$audience'
+      preLoaderRoute: typeof ForAudienceRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blog/$slug': {
@@ -273,8 +313,10 @@ const rootRouteChildren: RootRouteChildren = {
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   TopicsRoute: TopicsRouteWithChildren,
   BlogSlugRoute: BlogSlugRoute,
+  ForAudienceRoute: ForAudienceRoute,
   ProductWorkSlugRoute: ProductWorkSlugRoute,
   BlogIndexRoute: BlogIndexRoute,
+  ForIndexRoute: ForIndexRoute,
   ProductWorkIndexRoute: ProductWorkIndexRoute,
 }
 export const routeTree = rootRouteImport
