@@ -57,9 +57,9 @@ function ResumePage() {
         <p className="md:col-span-8 font-instrument text-2xl text-ink leading-snug">
           14+ years across product, payments and complex program delivery — including 8+ years
           building regulated payment infrastructure across emerging markets. Currently CPO at
-          Simpaisa: $1B+ GTV, 25M+ monthly transactions, 5 countries, 25+ person team. Led PCI
-          DSS and ISO/IEC 27001 from scratch and held a dual CPO + acting CTO role through a
-          regulatory tightening.
+          Simpaisa: $1B+ annual GTV, 25M+ monthly transactions across five countries. Led PCI DSS
+          and ISO/IEC 27001 certification programs from scratch and held a dual CPO + acting CTO
+          role through a regulatory tightening.
         </p>
       </section>
 
@@ -169,7 +169,7 @@ function ResumePage() {
             {profile.certifications.map((c) => <li key={c} className="text-sm">· {c}</li>)}
           </ul>
           <p className="mt-3 text-xs text-ink-soft">
-            PCI DSS and ISO 27001 credit reflects program lead role at Simpaisa, not personal lead-auditor certification.
+            PCI DSS and ISO/IEC 27001 reflect program leadership at Simpaisa, not personal lead-auditor certification.
           </p>
           <h2 className="font-instrument text-2xl text-ink mb-4 mt-10">Honors</h2>
           <ul className="space-y-3">

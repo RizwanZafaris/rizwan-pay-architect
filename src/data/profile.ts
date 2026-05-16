@@ -12,7 +12,7 @@ export const profile = {
   positioning:
     "I build regulated payment infrastructure where product, network partnerships, risk, compliance, and operations collide. My work turns fragmented local rails into reliable products: merchant onboarding, payment acceptance, cross-border corridors, settlement, reconciliation, fraud controls, and market expansion.",
   bio:
-    "Payments product executive with $1B+ GTV experience across acceptance, cross-border rails, merchant onboarding, settlement, fraud/risk, KYC/KYB, AML/CFT, wallets, and regulated fintech platforms. 14+ years across product, payments, and complex program delivery — including 8+ years building regulated payment infrastructure across emerging markets. Currently CPO at Simpaisa: 25M+ monthly transactions, five countries, 25+ person team. Led PCI DSS and ISO 27001 from scratch and held a dual CPO + acting CTO role through a regulatory tightening.",
+    "Payments product executive with $1B+ annual GTV experience across acceptance, cross-border rails, merchant onboarding, settlement, fraud/risk, KYC/KYB, AML/CFT, wallets, and regulated fintech platforms. 14+ years across product, payments and complex program delivery — including 8+ years building regulated payment infrastructure across emerging markets. Currently CPO at Simpaisa: $1B+ annual GTV, 25M+ monthly transactions across five countries. Led PCI DSS and ISO/IEC 27001 certification programs from scratch and held a dual CPO + acting CTO role through a regulatory tightening.",
   metrics: [
     { label: "Annual GTV", value: "$1B+" },
     { label: "Monthly transactions", value: "25M+" },
@@ -173,8 +173,8 @@ export const profile = {
   ],
   certifications: [
     "Project Management Professional (PMP) — PMI",
-    "PCI DSS — Program Lead (Simpaisa)",
-    "ISO/IEC 27001 — Program Lead (Simpaisa)",
+    "Led PCI DSS certification program from scratch (Simpaisa)",
+    "Led ISO/IEC 27001 certification program from scratch (Simpaisa)",
   ],
   education: [
     {
