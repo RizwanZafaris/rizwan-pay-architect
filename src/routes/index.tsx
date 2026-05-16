@@ -394,6 +394,62 @@ function HomePage() {
         </div>
       </section>
 
+      {/* ============ TRUST / ECOSYSTEM ============ */}
+      <section className="border-t border-rule">
+        <div className="mx-auto max-w-6xl px-6 py-24">
+          <div className="text-[10px] uppercase tracking-[0.24em] text-[var(--accent-emerald)] font-mono-tech font-semibold">
+            ◆ Ecosystem
+          </div>
+          <h2 className="font-instrument text-4xl md:text-5xl text-ink mt-3 max-w-3xl leading-tight">
+            Built across payment ecosystems used by{" "}
+            <span className="italic text-ink-soft">global merchants and partners.</span>
+          </h2>
+          <div className="mt-10 rounded-2xl border border-rule bg-surface p-8 md:p-10">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-x-6 gap-y-5 items-center">
+              {ecosystem.map((n) => (
+                <div
+                  key={n}
+                  className="font-instrument text-xl md:text-2xl text-ink/85 tracking-tight border-b border-rule/60 pb-3"
+                >
+                  {n}
+                </div>
+              ))}
+            </div>
+            <p className="mt-6 text-xs text-ink-soft font-mono-tech leading-relaxed max-w-3xl">
+              Names reflect ecosystem exposure, integrations, or partner/client contexts where applicable.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ============ ABOUT PREVIEW ============ */}
+      <section className="border-t border-rule bg-surface-2/40">
+        <div className="mx-auto max-w-6xl px-6 py-24 grid md:grid-cols-12 gap-10">
+          <div className="md:col-span-3">
+            <div className="text-[10px] uppercase tracking-[0.24em] text-[var(--accent-emerald)] font-mono-tech font-semibold">
+              ◆ About
+            </div>
+            <p className="mt-3 text-xs text-ink-soft font-mono-tech">
+              Operating discipline, then payments.
+            </p>
+          </div>
+          <div className="md:col-span-9">
+            <p className="font-instrument text-2xl md:text-3xl text-ink leading-[1.3]">
+              Before payments, I learned reliability in systems where failure had real
+              consequences. That operating discipline now shapes how I build financial
+              infrastructure: <span className="italic text-ink-soft">controlled, scalable, auditable, and resilient.</span>
+            </p>
+            <Link
+              to="/about"
+              className="group inline-flex items-center gap-2 mt-8 text-sm text-ink hover:text-[var(--brand)] transition-colors"
+            >
+              Read full story
+              <span className="transition-transform group-hover:translate-x-1">→</span>
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* ============ CTA ============ */}
       <section className="border-t border-rule">
         <div className="mx-auto max-w-6xl px-6 py-24">
@@ -402,33 +458,41 @@ function HomePage() {
                  style={{ background: "radial-gradient(circle, color-mix(in oklab, var(--accent-emerald) 60%, transparent), transparent 70%)" }} aria-hidden />
             <div className="absolute inset-0 bg-grid opacity-[0.08]" aria-hidden />
             <div className="relative grid md:grid-cols-12 gap-8 items-center">
-              <div className="md:col-span-8">
+              <div className="md:col-span-7">
                 <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--accent-emerald)] font-mono-tech">
                   ◆ Open to senior payments roles
                 </div>
                 <h2 className="font-instrument text-4xl md:text-5xl mt-3 leading-tight">
-                  Hiring for payments product, infrastructure or program leadership?{" "}
-                  <span className="italic text-background/60">Let's talk.</span>
+                  Need someone who can turn messy payment rails into{" "}
+                  <span className="italic text-background/60">reliable products?</span>
                 </h2>
                 <p className="mt-4 text-background/70 max-w-xl">
                   Visa · Mastercard · Stripe · Wise · Adyen · Thunes · DLocal · regional fintechs in MENA, South Asia, Singapore and Europe.
                 </p>
               </div>
-              <div className="md:col-span-4 flex flex-col gap-3 md:items-end">
-                <a
-                  href={`mailto:${profile.email}`}
-                  className="inline-flex items-center gap-2 rounded-full bg-background text-ink px-6 py-3.5 text-sm font-medium hover:bg-[var(--accent-emerald)] hover:text-background transition-colors"
-                >
-                  {profile.email}
-                  <span aria-hidden>→</span>
-                </a>
+              <div className="md:col-span-5 flex flex-col gap-3 md:items-end">
                 <a
                   href={profile.resumeHref}
                   download
-                  className="inline-flex items-center gap-2 rounded-full border border-background/20 px-6 py-3.5 text-sm font-medium text-background hover:bg-background/10 transition-colors"
+                  className="inline-flex items-center gap-2 rounded-full bg-background text-ink px-6 py-3.5 text-sm font-medium hover:bg-[var(--accent-emerald)] hover:text-background transition-colors"
                 >
                   Download Resume
+                  <span aria-hidden>↓</span>
                 </a>
+                <Link
+                  to="/contact"
+                  className="inline-flex items-center gap-2 rounded-full border border-background/25 px-6 py-3.5 text-sm font-medium text-background hover:bg-background/10 transition-colors"
+                >
+                  Contact Rizwan
+                  <span aria-hidden>→</span>
+                </Link>
+                <Link
+                  to="/product-work"
+                  className="inline-flex items-center gap-2 px-2 py-2 text-sm text-background/70 hover:text-background transition-colors"
+                >
+                  Read Product Work
+                  <span aria-hidden>→</span>
+                </Link>
               </div>
             </div>
           </div>
