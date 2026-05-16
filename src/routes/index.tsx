@@ -286,7 +286,7 @@ function HomePage() {
               <span className="transition-transform group-hover:translate-x-1">→</span>
             </Link>
           </div>
-          <div className="grid md:grid-cols-3 gap-5">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
             {featured.map((c, i) => (
               <Link
                 key={c.slug}
@@ -298,13 +298,22 @@ function HomePage() {
                   <span className="text-[10px] font-mono-tech uppercase tracking-[0.18em] text-[var(--accent-emerald)]">
                     {c.category}
                   </span>
-                  <span className="font-mono-tech text-xs text-ink-soft">/0{i + 1}</span>
+                  <span className="font-mono-tech text-xs text-ink-soft">/{String(i + 1).padStart(2, "0")}</span>
                 </div>
                 <h3 className="font-instrument text-2xl text-ink mt-4 leading-tight group-hover:text-[var(--brand)] transition-colors">
                   {c.title}
                 </h3>
                 <p className="text-sm text-ink-soft mt-3 leading-relaxed flex-1">{c.tagline}</p>
-                <div className="mt-6 pt-5 border-t border-rule flex items-end justify-between gap-3">
+                {c.keywords?.length ? (
+                  <div className="mt-4 flex flex-wrap gap-1.5">
+                    {c.keywords.slice(0, 3).map((k) => (
+                      <span key={k} className="text-[10px] font-mono-tech uppercase tracking-[0.14em] text-ink-soft border border-rule rounded-full px-2 py-0.5">
+                        {k}
+                      </span>
+                    ))}
+                  </div>
+                ) : null}
+                <div className="mt-5 pt-5 border-t border-rule flex items-end justify-between gap-3">
                   <div className="flex flex-wrap gap-x-5 gap-y-2">
                     {c.metrics.slice(0, 2).map((m) => (
                       <div key={m.label}>
