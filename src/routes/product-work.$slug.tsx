@@ -120,6 +120,12 @@ function CaseStudyPage() {
           <p>{s.executiveSummary}</p>
         </Section>
 
+        {diagram ? (
+          <DiagramFigure title={diagram.title} caption={diagram.caption}>
+            <diagram.component />
+          </DiagramFigure>
+        ) : null}
+
         <Section id="problem" label="Problem" title="The job to be done.">
           <p>{s.problem}</p>
         </Section>
