@@ -450,10 +450,14 @@ function HomePage() {
       </section>
 
       {/* ============ MARQUEE — ecosystem ============ */}
-      <section className="border-y border-rule bg-card overflow-hidden py-7">
-        <div className="flex gap-12 marquee-track whitespace-nowrap">
+      <section
+        className="marquee-wrap border-y border-rule bg-card overflow-hidden py-6 md:py-7 w-full max-w-full"
+        aria-label="Partner ecosystem"
+        tabIndex={0}
+      >
+        <div className="flex gap-12 marquee-track whitespace-nowrap w-max">
           {[...profile.partners, ...profile.partners].map((p, i) => (
-            <span key={`${p}-${i}`} className="font-instrument text-3xl md:text-4xl text-ink/70 tracking-tight inline-flex items-center gap-12">
+            <span key={`${p}-${i}`} className="font-instrument text-xl sm:text-2xl md:text-4xl text-ink/70 tracking-tight inline-flex items-center gap-12">
               {p}
               <span className="text-[var(--brand)]">✦</span>
             </span>
