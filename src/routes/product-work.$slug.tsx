@@ -85,6 +85,7 @@ function Section({ id, label, title, children }: { id: string; label: string; ti
 function CaseStudyPage() {
   const { study: s } = Route.useLoaderData() as { study: CaseStudy };
   const others = caseStudies.filter((c) => c.slug !== s.slug).slice(0, 3);
+  const diagram = caseStudyDiagrams[s.slug];
 
   return (
     <article>
