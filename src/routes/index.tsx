@@ -65,40 +65,54 @@ function HomePage() {
           style={{ background: "radial-gradient(circle, color-mix(in oklab, var(--brand) 22%, transparent), transparent 70%)" }}
         />
 
-        <div className="relative mx-auto max-w-6xl px-6 pt-16 md:pt-24 pb-20 grid lg:grid-cols-12 gap-10 items-center">
-          {/* LEFT — Greeting + giant headline */}
-          <div className="lg:col-span-7 order-2 lg:order-1">
-            <div className="text-[var(--brand)] font-instrument italic text-xl md:text-2xl">
-              Hello, I'm —
+        <div className="relative mx-auto max-w-7xl px-6 pt-16 md:pt-24 pb-24 grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+          {/* LEFT — Editorial intro + headline */}
+          <div className="lg:col-span-7 order-2 lg:order-1 relative z-10">
+            <div className="inline-flex items-center gap-4 mb-8">
+              <span className="h-px w-12 bg-[var(--brand)]" />
+              <span className="text-[10px] uppercase tracking-[0.32em] text-[var(--brand)] font-mono-tech font-semibold">
+                Introduction
+              </span>
             </div>
 
-            <h1 className="mt-3 font-instrument tracking-tight leading-[0.92] text-[68px] md:text-[112px] lg:text-[136px] text-ink">
-              I'm <span className="text-[var(--brand)]">Rizwan.</span>
+            <h1 className="font-instrument tracking-tight leading-[0.85] text-[72px] md:text-[120px] lg:text-[148px] text-ink">
+              I'm{" "}
+              <span
+                className="bg-clip-text text-transparent"
+                style={{
+                  backgroundImage:
+                    "linear-gradient(135deg, var(--brand), color-mix(in oklab, var(--ink) 88%, var(--brand)) 60%, var(--ink))",
+                }}
+              >
+                Rizwan.
+              </span>
             </h1>
 
-            <p className="mt-7 max-w-xl text-base md:text-lg text-ink-soft leading-relaxed">
-              Payments product executive in Dubai. I build regulated payment
-              infrastructure across <span className="text-ink">acceptance, cross-border
-              corridors, settlement, KYC/KYB, AML and fraud</span> — and write about how the
-              rails actually work.
+            <p className="mt-10 max-w-2xl text-xl md:text-2xl text-ink-soft leading-snug font-light">
+              Payments product executive in Dubai. I build regulated payment infrastructure across{" "}
+              <span className="text-ink font-medium italic">acceptance</span>,{" "}
+              <span className="text-ink font-medium">cross-border corridors</span>,{" "}
+              <span className="font-medium italic text-[var(--brand)]">settlement</span>,{" "}
+              KYC/KYB, AML and fraud.
             </p>
 
-            {/* Subscribe-style pill: resume + contact */}
-            <div className="mt-9 max-w-md rounded-full border border-rule bg-card/80 backdrop-blur p-1.5 pl-5 flex items-center gap-3 shadow-[0_10px_30px_-15px_color-mix(in_oklab,var(--brand)_50%,transparent)]">
-              <span className="text-sm text-ink-soft font-mono-tech whitespace-nowrap">
-                {profile.email}
-              </span>
-              <a
-                href={profile.resumeHref}
-                download
-                className="ml-auto inline-flex items-center gap-1.5 rounded-full px-5 py-2.5 text-sm font-medium text-[var(--brand-foreground)] bg-[var(--brand)] hover:opacity-90 transition"
-                style={{ boxShadow: "0 8px 20px -8px color-mix(in oklab, var(--brand) 60%, transparent)" }}
-              >
-                Resume <span aria-hidden>→</span>
-              </a>
+            <div className="mt-10 flex flex-col sm:flex-row items-start sm:items-center gap-4">
+              <div className="w-full sm:w-auto flex items-center bg-card border border-rule rounded-full pl-6 pr-2 py-2 shadow-[0_8px_24px_-16px_color-mix(in_oklab,var(--ink)_40%,transparent)]">
+                <span className="text-sm text-ink-soft font-mono-tech mr-4 whitespace-nowrap">
+                  {profile.email}
+                </span>
+                <a
+                  href={profile.resumeHref}
+                  download
+                  className="group inline-flex items-center gap-2 rounded-full px-7 py-3 text-[11px] uppercase tracking-[0.18em] font-semibold text-[var(--brand-foreground)] bg-ink hover:bg-[var(--brand)] transition-colors whitespace-nowrap"
+                >
+                  Resume
+                  <span className="transition-transform group-hover:translate-x-1" aria-hidden>→</span>
+                </a>
+              </div>
             </div>
 
-            <div className="mt-5 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-ink-soft">
+            <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-ink-soft">
               <Link to="/product-work" className="hover:text-ink inline-flex items-center gap-1.5 group">
                 Product work <span className="transition-transform group-hover:translate-x-1">→</span>
               </Link>
@@ -111,32 +125,46 @@ function HomePage() {
             </div>
           </div>
 
-          {/* RIGHT — Portrait with floating shapes */}
-          <div className="lg:col-span-5 order-1 lg:order-2 relative flex justify-center lg:justify-end">
-            <div className="relative w-[280px] sm:w-[340px] md:w-[400px] aspect-square">
-              {/* Soft cyan disc behind portrait */}
+          {/* RIGHT — Editorial portrait card */}
+          <div className="lg:col-span-5 order-1 lg:order-2 relative">
+            <div className="relative group mx-auto max-w-[420px]">
+              {/* Offset block behind */}
               <div
                 aria-hidden
-                className="absolute inset-2 rounded-full"
-                style={{ background: "radial-gradient(circle at 30% 30%, color-mix(in oklab, var(--brand) 30%, transparent), color-mix(in oklab, var(--brand) 8%, transparent) 60%, transparent 75%)" }}
+                className="absolute -bottom-6 -right-6 md:-bottom-8 md:-right-8 inset-0 rounded-sm"
+                style={{ background: "color-mix(in oklab, var(--brand) 18%, transparent)" }}
               />
               {/* Portrait */}
-              <img
-                src={portrait}
-                alt="Portrait of Rizwan Zafar, Chief Product Officer, Payments"
-                width={400}
-                height={400}
-                loading="eager"
-                className="relative h-full w-full rounded-full object-cover ring-1 ring-ink/10 shadow-[0_30px_60px_-25px_color-mix(in_oklab,var(--brand)_55%,transparent)]"
-              />
+              <div className="relative aspect-[4/5] overflow-hidden rounded-sm ring-1 ring-ink/10 shadow-[0_40px_80px_-30px_color-mix(in_oklab,var(--ink)_45%,transparent)]">
+                <img
+                  src={portrait}
+                  alt="Portrait of Rizwan Zafar, Chief Product Officer, Payments"
+                  width={800}
+                  height={1000}
+                  loading="eager"
+                  className="h-full w-full object-cover transition-all duration-700 grayscale contrast-110 group-hover:grayscale-0"
+                />
+                {/* Location tag */}
+                <div className="absolute top-5 right-5 bg-card/90 backdrop-blur-sm px-3 py-1 text-[10px] tracking-[0.22em] font-bold uppercase text-ink font-mono-tech">
+                  Dubai · UAE
+                </div>
+              </div>
 
-              {/* Floating decorative glyphs */}
-              <span aria-hidden className="absolute -top-2 right-6 text-[var(--brand)] text-4xl font-instrument animate-pulse">+</span>
-              <span aria-hidden className="absolute top-10 -right-4 text-[var(--brand)]/70 text-5xl font-instrument">×</span>
-              <span aria-hidden className="absolute bottom-10 -left-4 h-3 w-3 rounded-full bg-[var(--brand)]/60" />
-              <span aria-hidden className="absolute -bottom-2 right-16 h-5 w-5 rounded-full bg-[var(--brand)]/40" />
-              <span aria-hidden className="absolute top-1/2 -left-8 h-2 w-2 rounded-full bg-[var(--brand)]" />
-              <span aria-hidden className="absolute -top-6 left-12 text-[var(--brand)]/60 text-2xl">✦</span>
+              {/* Monogram backdrop */}
+              <span
+                aria-hidden
+                className="pointer-events-none select-none absolute -bottom-10 -left-10 md:-bottom-14 md:-left-14 font-instrument font-bold leading-none text-[140px] md:text-[180px] -z-10"
+                style={{ color: "color-mix(in oklab, var(--ink) 6%, transparent)" }}
+              >
+                RZ
+              </span>
+
+              {/* Subtle rotating geometric accent */}
+              <div aria-hidden className="absolute -top-8 -right-8 opacity-30">
+                <svg className="w-20 h-20 text-[var(--brand)] animate-[spin_20s_linear_infinite]" viewBox="0 0 100 100">
+                  <path d="M50 0 L100 50 L50 100 L0 50 Z" fill="currentColor" />
+                </svg>
+              </div>
             </div>
           </div>
         </div>
