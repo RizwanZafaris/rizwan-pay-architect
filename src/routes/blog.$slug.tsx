@@ -152,6 +152,11 @@ function BlogPostPage() {
         {/* Body */}
         <div className="lg:col-span-9 order-1 lg:order-2 prose-editorial">
           {renderContent(p.content)}
+          {diagram ? (
+            <DiagramFigure title={diagram.title} caption={diagram.caption}>
+              <diagram.component />
+            </DiagramFigure>
+          ) : null}
           <div className="mt-10 pt-8 border-t border-rule">
             <div className="text-[10px] uppercase tracking-[0.18em] text-ink-soft mb-3 font-mono-tech">Tags</div>
             <div className="flex flex-wrap gap-2 font-sans">
