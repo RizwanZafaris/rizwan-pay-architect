@@ -89,13 +89,6 @@ const websiteJsonLd = {
   author: { "@type": "Person", name: profile.name },
 };
 
-const profilePageJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "ProfilePage",
-  url: SITE_URL,
-  mainEntity: { "@type": "Person", name: profile.name, url: SITE_URL },
-};
-
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   head: () => ({
     meta: [
