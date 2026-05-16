@@ -1,4 +1,5 @@
-import { Link } from "@tanstack/react-router";
+import { Link, useRouterState } from "@tanstack/react-router";
+import { useEffect, useRef, useState } from "react";
 import { profile } from "@/data/profile";
 
 const nav = [
@@ -12,22 +13,70 @@ const nav = [
 ] as const;
 
 export function SiteHeader() {
+  const [open, setOpen] = useState(false);
+  const panelRef = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLButtonElement>(null);
+  const { location } = useRouterState();
+
+  // Close on route change
+  useEffect(() => {
+    setOpen(false);
+  }, [location.pathname]);
+
+  // Esc + focus trap
+  useEffect(() => {
+    if (!open) return;
+    document.body.style.overflow = "hidden";
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setOpen(false);
+        triggerRef.current?.focus();
+      }
+      if (e.key === "Tab" && panelRef.current) {
+        const focusables = panelRef.current.querySelectorAll<HTMLElement>(
+          'a, button, [tabindex]:not([tabindex="-1"])',
+        );
+        if (!focusables.length) return;
+        const first = focusables[0];
+        const last = focusables[focusables.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    };
+    document.addEventListener("keydown", onKey);
+    // Focus first link
+    requestAnimationFrame(() => {
+      panelRef.current?.querySelector<HTMLElement>("a")?.focus();
+    });
+    return () => {
+      document.body.style.overflow = "";
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [open]);
+
   return (
-    <header className="sticky top-0 z-40 px-4 pt-4">
+    <header className="sticky top-0 z-40 px-3 sm:px-4 pt-3 sm:pt-4">
       <div className="mx-auto max-w-6xl">
-        <div className="flex items-center justify-between gap-4 rounded-full border border-ink/10 bg-background/70 backdrop-blur-xl px-3 py-2 shadow-[0_1px_0_rgba(255,255,255,0.6)_inset,0_8px_30px_-12px_rgba(15,23,42,0.18)]">
-          <Link to="/" className="flex items-center gap-2.5 pl-1.5 group">
-            <span className="h-8 w-8 rounded-lg bg-ink text-background grid place-items-center font-display text-[13px] font-semibold tracking-tighter">
+        <div className="flex items-center justify-between gap-3 rounded-full border border-ink/10 bg-background/70 backdrop-blur-xl pl-3 pr-2 py-2 shadow-[0_1px_0_rgba(255,255,255,0.6)_inset,0_8px_30px_-12px_rgba(15,23,42,0.18)]">
+          <Link to="/" className="flex items-center gap-2.5 min-w-0 group" aria-label="Rizwan Zafar — Home">
+            <span className="h-8 w-8 shrink-0 rounded-lg bg-ink text-background grid place-items-center font-display text-[13px] font-semibold tracking-tighter">
               RZ
             </span>
-            <span className="hidden sm:flex flex-col leading-tight">
-              <span className="text-[13px] font-semibold tracking-tight text-ink">{profile.name}</span>
+            <span className="hidden sm:flex flex-col leading-tight min-w-0">
+              <span className="text-[13px] font-semibold tracking-tight text-ink truncate">{profile.name}</span>
               <span className="text-[9px] uppercase tracking-[0.22em] text-ink-soft font-mono-tech">
                 Payments · Product
               </span>
             </span>
           </Link>
-          <nav className="hidden md:flex items-center gap-1 text-[13px] text-ink-soft">
+
+          {/* Desktop nav — lg+ only so tablet has room for hamburger */}
+          <nav className="hidden lg:flex items-center gap-1 text-[13px] text-ink-soft" aria-label="Primary">
             {nav.map((n) => (
               <Link
                 key={n.to}
@@ -39,18 +88,76 @@ export function SiteHeader() {
               </Link>
             ))}
           </nav>
-          <a
-            href={profile.resumeHref}
-            download
-            aria-label="Download resume (PDF)"
-            className="inline-flex items-center gap-1.5 rounded-full bg-ink text-background px-4 py-2 text-[12px] font-medium hover:bg-brand transition-colors"
-          >
-            <svg aria-hidden="true" className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg>
-            <span className="hidden sm:inline">Resume</span>
-            <span className="sr-only sm:hidden">Download resume</span>
-          </a>
+
+          <div className="flex items-center gap-1.5 shrink-0">
+            <a
+              href={profile.resumeHref}
+              download
+              aria-label="Download resume (PDF)"
+              className="inline-flex items-center gap-1.5 rounded-full bg-ink text-background px-3.5 sm:px-4 py-2 text-[12px] font-medium hover:bg-brand transition-colors"
+            >
+              <svg aria-hidden="true" className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14" />
+              </svg>
+              <span className="hidden sm:inline">Resume</span>
+            </a>
+            {/* Mobile/tablet menu trigger */}
+            <button
+              ref={triggerRef}
+              type="button"
+              onClick={() => setOpen((v) => !v)}
+              aria-expanded={open}
+              aria-controls="mobile-menu"
+              aria-label={open ? "Close menu" : "Open menu"}
+              className="lg:hidden inline-flex items-center justify-center w-10 h-10 rounded-full hover:bg-ink/5 transition-colors text-ink"
+            >
+              <svg aria-hidden className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                {open ? <path d="M6 6l12 12M18 6l-12 12" /> : <path d="M4 7h16M4 12h16M4 17h16" />}
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
+
+      {/* Mobile menu overlay */}
+      {open && (
+        <>
+          <button
+            type="button"
+            aria-label="Close menu"
+            onClick={() => setOpen(false)}
+            className="fixed inset-0 z-40 bg-ink/30 backdrop-blur-sm lg:hidden"
+          />
+          <div
+            id="mobile-menu"
+            ref={panelRef}
+            role="dialog"
+            aria-modal="true"
+            aria-label="Site menu"
+            className="fixed inset-x-3 top-20 z-50 lg:hidden rounded-2xl border border-ink/10 bg-background shadow-xl p-4"
+          >
+            <nav className="flex flex-col" aria-label="Mobile primary">
+              {nav.map((n) => (
+                <Link
+                  key={n.to}
+                  to={n.to}
+                  onClick={() => setOpen(false)}
+                  className="px-3 py-3 rounded-lg text-base text-ink-soft hover:text-ink hover:bg-ink/5 transition-colors"
+                  activeProps={{ className: "text-ink font-medium bg-ink/5" }}
+                >
+                  {n.label}
+                </Link>
+              ))}
+            </nav>
+            <div className="mt-3 pt-3 border-t border-rule flex items-center justify-between text-xs text-ink-soft font-mono-tech">
+              <span>{profile.location}</span>
+              <a href={`mailto:${profile.email}`} className="text-ink underline">
+                Email
+              </a>
+            </div>
+          </div>
+        </>
+      )}
     </header>
   );
 }
@@ -79,19 +186,20 @@ export function SiteFooter() {
         <div>
           <div className="text-[10px] uppercase tracking-[0.22em] text-ink-soft font-mono-tech mb-3">Site</div>
           <ul className="space-y-2">
+            <li><Link to="/products" className="hover:text-ink text-ink-soft">Products</Link></li>
             <li><Link to="/product-work" className="hover:text-ink text-ink-soft">Product Work</Link></li>
-            <li><Link to="/blog" className="hover:text-ink text-ink-soft">Blog</Link></li>
-            <li><Link to="/resume" className="hover:text-ink text-ink-soft">Resume</Link></li>
-            <li><Link to="/about" className="hover:text-ink text-ink-soft">About</Link></li>
+            <li><Link to="/blog" className="hover:text-ink text-ink-soft">Essays</Link></li>
+            <li><Link to="/topics" className="hover:text-ink text-ink-soft">Topics</Link></li>
+            <li><Link to="/for" className="hover:text-ink text-ink-soft">For Recruiters</Link></li>
           </ul>
         </div>
         <div>
           <div className="text-[10px] uppercase tracking-[0.22em] text-ink-soft font-mono-tech mb-3">Contact</div>
           <ul className="space-y-2">
-            <li><a href={`mailto:${profile.email}`} className="hover:text-ink text-ink-soft">{profile.email}</a></li>
+            <li><Link to="/resume" className="hover:text-ink text-ink-soft">Resume</Link></li>
+            <li><Link to="/contact" className="hover:text-ink text-ink-soft">Contact</Link></li>
+            <li><a href={`mailto:${profile.email}`} className="hover:text-ink text-ink-soft break-all">{profile.email}</a></li>
             <li><a href={profile.linkedin} target="_blank" rel="noreferrer" className="hover:text-ink text-ink-soft">LinkedIn</a></li>
-            <li><Link to="/contact" className="hover:text-ink text-ink-soft">Contact form</Link></li>
-            <li><a href={profile.resumeHref} download className="hover:text-ink text-ink-soft">Download Resume</a></li>
           </ul>
         </div>
       </div>
