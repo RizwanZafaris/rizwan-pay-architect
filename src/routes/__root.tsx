@@ -7,6 +7,7 @@ import {
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
+import { useEffect } from "react";
 
 import appCss from "../styles.css?url";
 import { SiteHeader, SiteFooter } from "@/components/SiteChrome";
@@ -14,18 +15,37 @@ import { profile } from "@/data/profile";
 import { SITE_URL } from "@/lib/seo";
 
 function NotFoundComponent() {
+  useEffect(() => {
+    document.title = "Page Not Found | Rizwan Zafar";
+    let meta = document.querySelector<HTMLMetaElement>('meta[name="robots"]');
+    if (!meta) {
+      meta = document.createElement("meta");
+      meta.setAttribute("name", "robots");
+      document.head.appendChild(meta);
+    }
+    const prev = meta.getAttribute("content");
+    meta.setAttribute("content", "noindex, follow");
+    return () => {
+      if (prev) meta!.setAttribute("content", prev);
+      else meta!.remove();
+    };
+  }, []);
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
-      <div className="max-w-md text-center">
-        <h1 className="font-display text-7xl text-ink">404</h1>
-        <h2 className="mt-4 text-xl font-medium text-ink">Page not found</h2>
-        <p className="mt-2 text-sm text-ink-soft">
-          That page doesn't exist. Try the homepage or product work.
-        </p>
-        <div className="mt-6 flex justify-center gap-3">
-          <Link to="/" className="rounded-md bg-ink text-background px-4 py-2 text-sm">Home</Link>
-          <Link to="/product-work" className="rounded-md border border-ink/20 px-4 py-2 text-sm">Product Work</Link>
-        </div>
+    <div className="mx-auto max-w-2xl px-6 py-24 text-center">
+      <div className="text-[10px] uppercase tracking-[0.22em] text-ink-soft font-mono-tech">
+        Error · 404
+      </div>
+      <h1 className="font-instrument text-5xl md:text-7xl text-ink mt-3">Page not found</h1>
+      <p className="mt-4 text-ink-soft max-w-md mx-auto">
+        That page does not exist. Try one of these instead.
+      </p>
+      <div className="mt-8 flex flex-wrap justify-center gap-2">
+        <Link to="/" className="rounded-md bg-ink text-background px-4 py-2 text-sm">Home</Link>
+        <Link to="/product-work" className="rounded-md border border-ink/20 px-4 py-2 text-sm text-ink hover:border-ink/50">Product Work</Link>
+        <Link to="/blog" className="rounded-md border border-ink/20 px-4 py-2 text-sm text-ink hover:border-ink/50">Essays</Link>
+        <Link to="/resume" className="rounded-md border border-ink/20 px-4 py-2 text-sm text-ink hover:border-ink/50">Resume</Link>
+        <Link to="/contact" className="rounded-md border border-ink/20 px-4 py-2 text-sm text-ink hover:border-ink/50">Contact</Link>
       </div>
     </div>
   );

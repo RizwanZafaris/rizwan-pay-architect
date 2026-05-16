@@ -6,7 +6,6 @@ import { caseStudies, type CaseStudy } from "@/data/caseStudies";
 import { absUrl } from "@/lib/seo";
 
 const searchSchema = z.object({
-  market: fallback(z.string(), "").default(""),
   company: fallback(z.string(), "").default(""),
   theme: fallback(z.string(), "").default(""),
 });
@@ -62,13 +61,9 @@ const THEME_RULES: { id: string; label: string; match: (c: CaseStudy) => boolean
 ];
 
 function ProductWorkIndex() {
-  const { market, company, theme } = Route.useSearch();
+  const { company, theme } = Route.useSearch();
   const navigate = useNavigate({ from: "/product-work" });
 
-  const markets = useMemo(
-    () => Array.from(new Set(caseStudies.flatMap((c) => c.markets ?? []))).sort(),
-    [],
-  );
   const companies = useMemo(
     () => Array.from(new Set(caseStudies.flatMap((c) => c.relevantFor ?? []))).sort(),
     [],
@@ -80,7 +75,6 @@ function ProductWorkIndex() {
 
   const filtered = useMemo(() => {
     return caseStudies.filter((c) => {
-      if (market && !(c.markets ?? []).includes(market)) return false;
       if (company && !(c.relevantFor ?? []).includes(company)) return false;
       if (theme) {
         const rule = THEME_RULES.find((t) => t.id === theme);
@@ -88,12 +82,12 @@ function ProductWorkIndex() {
       }
       return true;
     });
-  }, [market, company, theme]);
+  }, [company, theme]);
 
-  const hasFilters = Boolean(market || company || theme);
+  const hasFilters = Boolean(company || theme);
 
   return (
-    <div className="mx-auto max-w-6xl px-6 py-20">
+    <div className="mx-auto max-w-6xl px-5 sm:px-6 py-16 sm:py-20">
       <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--accent-emerald)] font-mono-tech">
         ◆ Product work
       </div>
@@ -101,25 +95,21 @@ function ProductWorkIndex() {
         Case studies in <span className="italic text-ink-soft">regulated payments infrastructure.</span>
       </h1>
       <p className="mt-5 max-w-2xl text-lg text-ink-soft">
-        Real systems shipped at $1B+ GTV scale. Filter by market, by the companies this work is
-        most relevant to, or by compliance theme.
+        Real systems shipped at $1B+ GTV scale. Filter by the companies this work is most relevant
+        to, or by compliance theme.
       </p>
 
       {/* Filters */}
-      <div className="mt-10 grid gap-4 md:grid-cols-3">
+      <div className="mt-10 grid gap-4 sm:grid-cols-2">
         <FilterSelect
-          label="Market"
-          value={market}
-          onChange={(v) => navigate({ search: (p: Record<string, unknown>) => ({ ...p, market: v }) })}
-          options={markets}
-        />
-        <FilterSelect
+          id="pw-company"
           label="Relevant company"
           value={company}
           onChange={(v) => navigate({ search: (p: Record<string, unknown>) => ({ ...p, company: v }) })}
           options={companies}
         />
         <FilterSelect
+          id="pw-theme"
           label="Compliance theme"
           value={theme}
           onChange={(v) => navigate({ search: (p: Record<string, unknown>) => ({ ...p, theme: v }) })}
@@ -128,14 +118,14 @@ function ProductWorkIndex() {
       </div>
 
       <div className="mt-4 flex items-center justify-between text-xs font-mono-tech text-ink-soft">
-        <span>
-          {filtered.length} of {caseStudies.length} case {filtered.length === 1 ? "study" : "studies"}
+        <span aria-live="polite">
+          Showing {filtered.length} of {caseStudies.length} case {caseStudies.length === 1 ? "study" : "studies"}
         </span>
         {hasFilters && (
           <button
             type="button"
-            onClick={() => navigate({ search: { market: "", company: "", theme: "" } })}
-            className="uppercase tracking-[0.18em] text-ink hover:text-[var(--brand)]"
+            onClick={() => navigate({ search: { company: "", theme: "" } })}
+            className="uppercase tracking-[0.18em] text-ink hover:text-[var(--brand)] focus:outline-none focus-visible:ring-2 focus-visible:ring-ink/40 rounded"
           >
             Clear filters
           </button>
@@ -145,7 +135,14 @@ function ProductWorkIndex() {
       <div className="mt-8 grid gap-5">
         {filtered.length === 0 && (
           <div className="rounded-2xl border border-dashed border-rule p-10 text-center text-ink-soft">
-            No case studies match those filters. Try clearing one.
+            No case studies match those filters.{" "}
+            <button
+              type="button"
+              onClick={() => navigate({ search: { company: "", theme: "" } })}
+              className="underline text-ink hover:text-[var(--brand)]"
+            >
+              Clear filters
+            </button>
           </div>
         )}
         {filtered.map((c, i) => (
@@ -194,25 +191,33 @@ function ProductWorkIndex() {
 type Option = string | { value: string; label: string };
 
 function FilterSelect({
+  id,
   label,
   value,
   onChange,
   options,
 }: {
+  id: string;
   label: string;
   value: string;
   onChange: (v: string) => void;
   options: Option[];
 }) {
   return (
-    <label className="block">
-      <span className="text-[10px] uppercase tracking-[0.22em] text-ink-soft font-mono-tech">
+    <div className="block">
+      <label
+        htmlFor={id}
+        className="text-[10px] uppercase tracking-[0.22em] text-ink-soft font-mono-tech"
+      >
         {label}
-      </span>
+      </label>
       <select
+        id={id}
+        name={id}
+        aria-label={label}
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="mt-2 w-full rounded-lg border border-rule bg-surface px-3 py-2.5 text-sm text-ink focus:border-ink/40 focus:outline-none"
+        className="mt-2 w-full rounded-lg border border-rule bg-surface px-3 py-2.5 text-sm text-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-ink/40 focus:border-ink/60"
       >
         <option value="">All</option>
         {options.map((o) => {
@@ -225,6 +230,6 @@ function FilterSelect({
           );
         })}
       </select>
-    </label>
+    </div>
   );
 }

@@ -58,11 +58,11 @@ export const products: Product[] = [
     name: "Felo App",
     status: "coming-soon",
     statusLabel: "Coming soon",
-    oneLiner: "A new product from Rizwan's product lab.",
+    oneLiner: "Coming soon: a consumer fintech product from Rizwan's product lab.",
     description:
-      "In quiet build. Join the preview list to see it first when it ships.",
-    link: "/products/felo",
-    ctaLabel: "Join the waitlist",
+      "In quiet build. No features announced yet — request preview to be notified when there is something real to show.",
+    link: "mailto:rizwanzaffar.pk@gmail.com?subject=Preview%20access%20%C2%B7%20Felo%20App&body=Hi%20Rizwan%2C%0A%0APlease%20add%20me%20to%20the%20Felo%20App%20preview%20list.%0A%0AName%3A%20%0ACompany%3A%20%0A",
+    ctaLabel: "Request preview",
     waitlistEmail: "rizwanzaffar.pk@gmail.com",
   },
   {
@@ -70,11 +70,11 @@ export const products: Product[] = [
     name: "Job Hunt",
     status: "coming-soon",
     statusLabel: "Coming soon",
-    oneLiner: "A new product from Rizwan's product lab.",
+    oneLiner: "Coming soon: a job-search workflow product from Rizwan's product lab.",
     description:
-      "In quiet build. Join the preview list to see it first when it ships.",
-    link: "/products/job-hunt",
-    ctaLabel: "Join the waitlist",
+      "In quiet build. No features announced yet — request preview to be notified when there is something real to show.",
+    link: "mailto:rizwanzaffar.pk@gmail.com?subject=Preview%20access%20%C2%B7%20Job%20Hunt&body=Hi%20Rizwan%2C%0A%0APlease%20add%20me%20to%20the%20Job%20Hunt%20preview%20list.%0A%0AName%3A%20%0ACompany%3A%20%0A",
+    ctaLabel: "Request preview",
     waitlistEmail: "rizwanzaffar.pk@gmail.com",
   },
 ];

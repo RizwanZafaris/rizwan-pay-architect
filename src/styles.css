@@ -186,5 +186,10 @@
     from { transform: translateX(0); }
     to { transform: translateX(-50%); }
   }
-  .marquee-track { animation: rz-marquee 40s linear infinite; }
+  .marquee-track { animation: rz-marquee 40s linear infinite; will-change: transform; }
+  .marquee-wrap:hover .marquee-track,
+  .marquee-wrap:focus-within .marquee-track { animation-play-state: paused; }
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-track { animation: none; transform: none; }
+  }
 }
