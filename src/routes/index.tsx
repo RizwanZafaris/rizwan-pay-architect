@@ -198,23 +198,18 @@ function HomePage() {
         </div>
       </section>
 
-      {/* ============ PARTNER STRIP ============ */}
-      <section className="border-b border-rule bg-surface-2/50 overflow-hidden">
-        <div className="mx-auto max-w-6xl px-6 py-6 flex items-center gap-8">
-          <div className="shrink-0 text-[10px] uppercase tracking-[0.22em] text-ink-soft font-mono-tech">
-            Built rails for
+      {/* ============ ECOSYSTEM STRIP (quiet) ============ */}
+      <section className="border-b border-rule bg-surface-2/50">
+        <div className="mx-auto max-w-6xl px-6 py-5 flex flex-wrap items-center gap-x-8 gap-y-3">
+          <div className="text-[10px] uppercase tracking-[0.22em] text-ink-soft font-mono-tech">
+            Ecosystem exposure
           </div>
-          <div className="relative flex-1 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
-            <div className="flex gap-12 marquee-track w-max items-center">
-              {partnersLoop.map((p, i) => (
-                <span
-                  key={`${p}-${i}`}
-                  className="font-instrument text-lg md:text-xl text-ink/75 whitespace-nowrap tracking-tight"
-                >
-                  {p}
-                </span>
-              ))}
-            </div>
+          <div className="flex flex-wrap items-center gap-x-7 gap-y-2 text-ink/70">
+            {ecosystem.map((p) => (
+              <span key={p} className="font-instrument text-base md:text-lg tracking-tight">
+                {p}
+              </span>
+            ))}
           </div>
         </div>
       </section>
