@@ -132,17 +132,23 @@ function HomePage() {
           {/* RIGHT — Portrait (below text on mobile, smaller on mobile) */}
           <div className="lg:col-span-5 order-2 relative min-w-0">
             <div className="relative mx-auto w-full max-w-[320px] sm:max-w-[420px] lg:max-w-[520px] aspect-[4/5]">
-              <img
-                src={portrait}
-                alt="Portrait of Rizwan Zafar, Chief Product Officer, Payments"
-                width={920}
-                height={1150}
-                loading="eager"
-                decoding="async"
-                {...({ fetchpriority: "high" } as any)}
-                className="relative z-10 h-full w-full object-contain object-bottom"
-              />
-
+              <picture>
+                <source
+                  type="image/webp"
+                  srcSet={`${portraitWebpSmall} 460w, ${portraitWebp} 920w`}
+                  sizes="(max-width: 640px) 320px, (max-width: 1024px) 420px, 520px"
+                />
+                <img
+                  src={portraitPng}
+                  alt="Portrait of Rizwan Zafar, Chief Product Officer, Payments"
+                  width={920}
+                  height={1150}
+                  loading="eager"
+                  decoding="async"
+                  {...({ fetchpriority: "high" } as any)}
+                  className="relative z-10 h-full w-full object-contain object-bottom"
+                />
+              </picture>
               <div className="absolute top-3 right-2 md:right-6 z-20 bg-card/95 backdrop-blur-sm border border-rule px-3 py-1 text-[10px] tracking-[0.22em] font-bold uppercase text-ink font-mono-tech shadow-sm">
                 Dubai · UAE
               </div>
