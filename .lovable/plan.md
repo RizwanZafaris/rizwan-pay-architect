@@ -1,63 +1,112 @@
-## Goal
+# Site Upgrade Plan — Rizwan Zafar Portfolio
 
-Apply the "High-impact changes for Lovable" list from `blog.md` (items 1–10) and the "UX Changes For Case Study Pages" list from `case_studies.md` to the live site — using the existing posts/case studies already in the repo (no mass content generation).
+This is a large, multi-area scope. I'll execute it in numbered phases so we can ship value incrementally and you can pause/redirect between phases. Today is **May 17, 2026**.
 
-## Scope (in)
+---
 
-1. **Topic hubs** — 8 hub routes for: Payment Infrastructure, Cross-Border Payments, SWIFT & ISO 20022, Settlement & Reconciliation, Merchant Onboarding, Fraud & AML, Payment APIs, Emerging Markets. Each hub is a collection page listing related essays + case studies, with its own SEO metadata, H1, intro, and CollectionPage JSON-LD.
-2. **Blog search + filters** — add keyword search, topic filter (hubs), reader-type filter, and company-relevance filter on `/blog`. URL-driven via `validateSearch` + `zodValidator` so filters are shareable.
-3. **Tag posts with metadata** — extend `Post` type with `hub`, `reader[]`, `relevantFor[]` (small backwards-compatible additions inferred from existing `category`/`tags`). Same for case studies.
-4. **Case-study page upgrades** — fixed structure (Context · Problem · Constraints · Decisions · System · Metrics · Controls · Lessons · Relevance), before/after metric cards, risk-control matrix block, launch-timeline block, and a "Discuss roles" CTA + resume download under every case study. Reuse `@/components/diagrams/Diagrams.tsx` where possible.
-5. **Case-study index filters** — rail, market, product area, company relevance.
-6. **Recruiter paths** — 3 routes:
-   - `/for/visa-mastercard` — network rails, acceptance, tokenization, settlement
-   - `/for/stripe-adyen-wise-thunes` — orchestration, cross-border, local methods
-   - `/for/banks-fintechs` — SWIFT, ISO 20022, AML/CFT, PCI DSS
-   Each speaks the reader's language, links to relevant essays + case studies, and ends with resume CTA.
-7. **Schema upgrades** — add Author schema (Person, sameAs LinkedIn/Twitter) on root; Article schema with author + publisher on every blog post; BreadcrumbList on blog post, case study, and hub pages; FAQPage schema on posts that have a FAQ block; CollectionPage on each hub.
-8. **Certification language audit** — replace any "PCI DSS / ISO 27001 certified" wording with "Led PCI DSS and ISO 27001 certification programs" across `profile.ts`, About, Resume, Home.
-9. **Contact form** — keep mailto behavior, but add a clearly visible "Direct email" primary path and a graceful inline success/failure path (no spinner stuck states). Note: full Resend/Cloud backend is out of scope for this pass — flagged below.
-10. **Header nav** — add "Topics" dropdown linking to the 8 hubs; add "For recruiters" link.
+## Phase 1 — Critical fixes (ship first, ~same session)
 
-## Scope (out — flagged for follow-up)
+1. **Future-dated blog posts**
+   - Audit `content/blog/*.md` + `src/data/posts.ts` for dates > 2026-05-17.
+   - Default approach: **shift dates to a realistic backlog ending 2026-05-17**, oldest → newest, evenly spaced. Posts not yet content-complete get `status: "draft"` and are filtered out of public lists + sitemap + noindexed.
+   - Add a `status` field (`published | draft | coming-soon`) to the post type and filter in `blog.index.tsx`, topic hubs, and `sitemap.xml.ts`.
 
-- Mass-generating the 500 blog briefs + 500 case-study briefs as published posts. (Per `blog.md` rule: "do not publish 500 posts at once".) Briefs stay in `content/*.md` as a backlog.
-- Custom domain setup (`rizwanzafar.com`) — user action.
-- Real contact-form backend (Lovable Cloud + Resend) — separate task; mailto fallback stays.
-- Sanitized dashboard screenshots / regulator artifacts — need real assets from user.
+2. **Broken case-study links**
+   - `/product-work/hosted-checkout-vs-direct-card-processing` → already exists as a **blog post**. I'll redirect to `/blog/hosted-checkout-vs-direct-card-processing` and fix the source link.
+   - `/product-work/reconciliation-ledger-controls` → no matching case study. I'll either (a) point to the closest existing case study, or (b) create a new lightweight case study stub. **Default: redirect to closest existing study and remove dead reference.**
 
-## Technical Notes
+3. **Contact form backend**
+   - Use **Resend via the Lovable connector** (cleanest, no DB). Server function `submitContact` posts to Resend, sends to your inbox + auto-reply.
+   - Add zod validation, loading/success/error states, mailto fallback below.
+   - Requires you to approve connecting Resend.
 
-```text
-src/routes/
-  topics.tsx                       # hub index
-  topics.$hub.tsx                  # individual hub page (validateSearch hub slug)
-  for.visa-mastercard.tsx
-  for.stripe-adyen-wise-thunes.tsx
-  for.banks-fintechs.tsx
-src/data/
-  hubs.ts                          # 8 hubs + mapping from category/tag -> hub
-  posts.ts                         # extend Post type with hub, reader, relevantFor
-  caseStudies.ts                   # add fixed-structure sections
-src/components/
-  ArticleSchema.tsx                # Article + BreadcrumbList + optional FAQ
-  CaseStudyArtifacts.tsx           # before/after, risk matrix, timeline blocks
-```
+## Phase 2 — Products surface
 
-- Blog search uses `validateSearch` with `zodValidator` + `fallback` (q, hub, reader, relevantFor). Reads via `Route.useSearch()`, writes via `useNavigate({ search: prev => ... })`. No `useState` for filter state.
-- Hubs derived from existing `categories` + a tag→hub map so we don't have to retag every post by hand.
-- Recruiter pages are static React with curated lists from `posts`/`caseStudies` filtered by `relevantFor`.
-- All new pages get per-route `head()` with title/description/og:title/og:description and canonical.
-- Sitemap (`sitemap[.]xml.ts`) extended to include hubs + recruiter pages.
+4. **/products route + Products nav item + homepage section**
+   - New `src/data/products.ts` with Simpaisa, Tapmad, Felo, Job Hunt (exact copy/metrics from your brief, Tapmad worded as "built/scaled monetization", not founder).
+   - New `src/routes/products.tsx` (index) and `src/routes/products.$slug.tsx` for Felo + Job Hunt coming-soon detail pages with waitlist CTA (mailto for now; can wire to Resend later).
+   - Homepage section card-grid linking to each.
 
-## Acceptance
+## Phase 3 — Deepen case studies
 
-- 8 hub pages render with curated essay + case-study lists and CollectionPage JSON-LD.
-- `/blog?q=swift&hub=cross-border-payments` filters server-renderable + shareable.
-- Every case-study page shows the fixed 9-section structure with at least one before/after metric card and a CTA strip.
-- 3 recruiter pages live with language tailored per audience.
-- Article/Breadcrumb/Author schema visible in page source on a sample blog post.
-- Certification wording corrected everywhere.
-- Sitemap includes all new routes; nothing 404s.
+5. **Product-work template upgrade**
+   - Extend `CaseStudy` type with structured fields: `context`, `constraints`, `decisions`, `system`, `metricsBeforeAfter`, `risksControls`, `wouldDoDifferently`, `whyItMattersTo`.
+   - Update `product-work.$slug.tsx` to render the new template with anchor TOC.
+   - Expand existing thin studies to 1000–1500 words. **I'll do Simpaisa + Tapmad first** (highest signal) and queue the rest for a follow-up if scope balloons.
 
-If this looks right I'll implement it in one pass — flag anything you want dropped or expanded first.
+6. **Product visuals (SVG diagrams, not stock)**
+   - Build into `src/components/diagrams/` (file already exists, extend it):
+     - Payment rail map (Simpaisa)
+     - Settlement & recon flow
+     - Onboarding funnel + KYC/KYB decision tree
+     - Fraud/risk control stack
+     - Cross-border corridor operating model
+     - Tapmad billing migration before/after
+     - Product Lab roadmap
+   - All pure SVG, themed via design tokens, responsive.
+
+## Phase 4 — Editorial cleanup
+
+7. **Article page cleanup**
+   - Remove visible "Suggested internal links" / "Suggested external sources" drafting blocks.
+   - Replace with curated **Related essays / Related case studies / Further reading** sections, computed from hub membership + manual overrides per post.
+
+8. **Topic hubs** — already have `/topics/$hub`. I'll add the 8 hubs you listed (some already exist; will create missing slugs and ensure each has: H1, SEO meta, 300–600 word intro, featured articles, related case studies, key terms glossary, CTA).
+
+## Phase 5 — Blog UX
+
+9. **Search, filters, sort**
+   - URL-driven (`?q=&category=&sort=`), same pattern as case-study filters.
+   - Featured collections band at top of `/blog`.
+   - Future-dated/draft posts excluded.
+
+## Phase 6 — SEO
+
+10. **SEO pass**
+    - Tighten titles <60ch, descriptions ~120–155ch across all routes.
+    - Add **BreadcrumbList** to leaf pages, **Article** on posts, **Person + ProfilePage** on `/` and `/about`, **CollectionPage** on `/blog`, `/product-work`, `/products`, topic hubs.
+    - Sitemap: add `lastmod`, exclude drafts/coming-soon.
+    - Generate **custom OG images** (1200×630 PNG) per major page via imagegen — themed dark editorial with title + role tag.
+    - Add `noindex` meta on coming-soon pages.
+
+## Phase 7 — Resume + proof
+
+11. **Resume**
+    - Add second download: **ATS resume PDF**. I'll generate a plain-text-friendly PDF from your existing content (single column, standard fonts, no graphics). Keep the existing Executive PDF as-is.
+    - Resume page shows both with clear labels.
+
+12. **Proof / credibility modules**
+    - Reusable component placed on `/about` and `/product-work` index: "References on request", "Sanitized artifacts", "Launch checklists", "Risk/control maps", "Partner experience", "Metrics I can discuss in interview". Static, tasteful, no overclaim.
+
+---
+
+## Technical notes
+
+- **Stack**: TanStack Start, file-based routes, semantic tokens in `src/styles.css`, framer-motion already present.
+- **Backend**: Contact form via Resend connector (no DB needed). If you'd rather use Lovable Cloud + a `contact_submissions` table for record-keeping, say so and I'll switch.
+- **Data shape changes** (`Post.status`, expanded `CaseStudy`) are additive and backwards-compatible.
+- **OG images**: ~10 generations, premium tier for legible typography. Will batch.
+- **Mobile overflow** sweep: audited at end of each phase.
+
+---
+
+## Execution order I propose
+
+I'll ship in this order and stop after each phase for a quick check-in:
+
+1. Phase 1 (critical fixes) + Phase 2 (Products) — same session.
+2. Phase 3 (case study depth + diagrams) — Simpaisa & Tapmad first.
+3. Phase 4 + 5 (article cleanup, topic hubs, blog UX).
+4. Phase 6 (SEO + OG images).
+5. Phase 7 (ATS resume + proof modules).
+
+---
+
+## Questions before I start
+
+1. **Contact form backend**: OK to connect **Resend**? (Alternative: Lovable Cloud DB table, or keep mailto-only.)
+2. **`/product-work/reconciliation-ledger-controls`**: redirect to closest existing study, or create a new full case study? (Creating one well takes real source material from you.)
+3. **Tapmad metrics** — confirm any of these I should NOT publish: `0→5M paid subs`, `payment cost 50%→1%`, `ARPU +70%`, `$10M+ ARR`. I'll omit anything you flag.
+4. **Felo & Job Hunt**: any one-line positioning you want, or pure "Coming soon from Rizwan's product lab"?
+
+Reply with answers (or "go with defaults") and I'll start Phase 1 immediately.
