@@ -3,6 +3,7 @@ import { getPost, getRelated, type Post } from "@/data/posts";
 import { profile } from "@/data/profile";
 import { absUrl, SITE_URL } from "@/lib/seo";
 import { DiagramFigure, postDiagrams } from "@/components/diagrams/Diagrams";
+import { marked } from "marked";
 
 export const Route = createFileRoute("/blog/$slug")({
   loader: ({ params }) => {
