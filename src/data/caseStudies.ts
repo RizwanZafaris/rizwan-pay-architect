@@ -32,6 +32,25 @@ export const caseStudies: CaseStudy[] = [
     tagline:
       "A regulated, multi-rail payments platform powering $1B+ GTV across pay-in, payout, wallets, DCB, IBFT, FX and cross-border corridors.",
     category: "Payment Infrastructure",
+    markets: ["UAE","Pakistan","Bangladesh","Nepal","Iraq","Egypt"],
+    relevantFor: ["Visa","Mastercard","Stripe","Adyen","Thunes","DLocal"],
+    beforeAfter: [
+      {
+        "metric": "Platform downtime",
+        "before": "Frequent incidents",
+        "after": "−90%"
+      },
+      {
+        "metric": "Settlement SLA",
+        "before": "Best-effort",
+        "after": "99.95%"
+      },
+      {
+        "metric": "Enterprise wallet adoption",
+        "before": "<5%",
+        "after": "30%"
+      }
+    ],
     metrics: [
       { label: "Annual GTV", value: "$1B+" },
       { label: "Monthly transactions", value: "25M+" },
@@ -71,7 +90,7 @@ export const caseStudies: CaseStudy[] = [
       "Scaled to $1B+ annual GTV and 25M+ monthly transactions across 5 countries",
       "Onboarded enterprise platforms including TikTok, Uber, InDrive, Temu, PUBG and MoneyGram",
       "Held fraud loss below 0.1% of GTV; cut platform downtime by 90%",
-      "Achieved PCI DSS and ISO/IEC 27001 certifications from scratch",
+      "Led PCI DSS and ISO/IEC 27001 certification programs from scratch",
       "Drove 30% enterprise wallet adoption and 99.95% settlement SLA",
     ],
     tradeoffs: [
@@ -101,6 +120,20 @@ export const caseStudies: CaseStudy[] = [
     tagline:
       "An automated onboarding pipeline turning regulated merchant activation from weeks to hours.",
     category: "Merchant Onboarding",
+    markets: ["UAE","Pakistan","Bangladesh","Nepal","Iraq","Egypt"],
+    relevantFor: ["Stripe","Adyen","Wise","Visa","Mastercard"],
+    beforeAfter: [
+      {
+        "metric": "Activation time",
+        "before": "Weeks",
+        "after": "Hours (low-risk tiers)"
+      },
+      {
+        "metric": "Manual review load",
+        "before": "Baseline",
+        "after": "−70%"
+      }
+    ],
     metrics: [
       { label: "Activation", value: "Weeks → hours" },
       { label: "Manual review load", value: "−70%" },
@@ -152,6 +185,20 @@ export const caseStudies: CaseStudy[] = [
     tagline:
       "A multi-rail settlement and reconciliation engine that closed the gap between treasury, finance and product.",
     category: "Settlement & Reconciliation",
+    markets: ["UAE","Pakistan","Bangladesh","Nepal","Iraq","Egypt"],
+    relevantFor: ["Visa","Mastercard","Stripe","Adyen"],
+    beforeAfter: [
+      {
+        "metric": "Recon accuracy",
+        "before": "Manual spreadsheets",
+        "after": "99.95% automated"
+      },
+      {
+        "metric": "Manual journal entries",
+        "before": "Daily, by finance",
+        "after": "Eliminated (core flows)"
+      }
+    ],
     metrics: [
       { label: "Reconciliation accuracy", value: "99.95%" },
       { label: "Settlement cycle", value: "T+0 / T+1" },
@@ -202,6 +249,8 @@ export const caseStudies: CaseStudy[] = [
     tagline:
       "A layered fraud and AML/CFT program built natively into the payments stack.",
     category: "Fraud & Risk",
+    markets: ["UAE","Pakistan","Bangladesh","Nepal","Iraq","Egypt"],
+    relevantFor: ["Visa","Mastercard","Stripe","Adyen"],
     metrics: [
       { label: "Fraud loss", value: "<0.1% GTV" },
       { label: "False positives", value: "Materially reduced" },
@@ -247,6 +296,8 @@ export const caseStudies: CaseStudy[] = [
     tagline:
       "Cross-border pay-in and payout corridors with FX, partner routing and corridor-level economics.",
     category: "Cross-Border Payments",
+    markets: ["UAE","Pakistan","Bangladesh","Nepal","Iraq","Egypt"],
+    relevantFor: ["Wise","Thunes","DLocal","Stripe","Adyen","Visa","Mastercard"],
     metrics: [
       { label: "Corridors", value: "Multi-market" },
       { label: "Partners", value: "DLocal · Thunes · Boku · Coda · MoneyGram" },
@@ -291,6 +342,25 @@ export const caseStudies: CaseStudy[] = [
     tagline:
       "Migrated subscription billing off high-cost rails and rebuilt wallet/DCB flows — payment cost from 50% to 1%.",
     category: "Product Strategy",
+    markets: ["Pakistan","UAE","KSA"],
+    relevantFor: ["Stripe","Adyen","Visa","Mastercard"],
+    beforeAfter: [
+      {
+        "metric": "Payment cost / revenue",
+        "before": "~50%",
+        "after": "~1%"
+      },
+      {
+        "metric": "Paid subscribers",
+        "before": "~0",
+        "after": "5M+"
+      },
+      {
+        "metric": "ARPU",
+        "before": "Baseline",
+        "after": "+70%"
+      }
+    ],
     metrics: [
       { label: "Payment cost", value: "50% → 1%" },
       { label: "Paid subscribers", value: "5M+" },
@@ -332,6 +402,8 @@ export const caseStudies: CaseStudy[] = [
     tagline:
       "Built the payment operations spine and shifted a marketplace from cash-on-delivery to digital.",
     category: "Payment Operations",
+    markets: ["Pakistan","Bangladesh","Sri Lanka","Nepal","Myanmar"],
+    relevantFor: ["Stripe","Adyen","Wise"],
     metrics: [
       { label: "COD share", value: "Materially reduced" },
       { label: "Disputes", value: "Significantly down" },
