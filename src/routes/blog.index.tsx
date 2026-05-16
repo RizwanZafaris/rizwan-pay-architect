@@ -10,7 +10,7 @@ export const Route = createFileRoute("/blog/")({
       {
         name: "description",
         content:
-          "A working knowledge base on payment infrastructure, cross-border payments, settlement & reconciliation, fraud & risk, merchant onboarding and emerging-markets fintech.",
+          "Essays on payment infrastructure, cross-border payments, settlement, fraud, onboarding and emerging-markets fintech.",
       },
       { property: "og:title", content: "Payments Essays — Rizwan Zafar" },
       { property: "og:description", content: "Essays on payments infrastructure, risk and product strategy." },

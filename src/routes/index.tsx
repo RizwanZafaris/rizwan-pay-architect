@@ -2,7 +2,14 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { profile } from "@/data/profile";
 import { caseStudies } from "@/data/caseStudies";
 import { posts } from "@/data/posts";
-import { absUrl } from "@/lib/seo";
+import { absUrl, SITE_URL } from "@/lib/seo";
+
+const profilePageJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ProfilePage",
+  url: SITE_URL,
+  mainEntity: { "@type": "Person", name: profile.name, url: SITE_URL },
+};
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -11,7 +18,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Payments product executive with $1B+ GTV experience: payment infrastructure, cross-border rails, settlement, merchant onboarding, KYC/KYB, AML/CFT, fraud and acceptance across MENA and South Asia.",
+          "Payments product executive: $1B+ GTV, cross-border rails, settlement, KYC/KYB, AML and fraud across MENA and South Asia.",
       },
       { property: "og:title", content: "Rizwan Zafar — Payments Product Executive | Dubai" },
       {
@@ -23,6 +30,9 @@ export const Route = createFileRoute("/")({
       { property: "og:type", content: "profile" },
     ],
     links: [{ rel: "canonical", href: absUrl("/") }],
+    scripts: [
+      { type: "application/ld+json", children: JSON.stringify(profilePageJsonLd) },
+    ],
   }),
   component: HomePage,
 });

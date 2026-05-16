@@ -10,7 +10,7 @@ export const Route = createFileRoute("/about")({
       {
         name: "description",
         content:
-          "Engineer-turned-payments-CPO building regulated payment infrastructure across emerging markets — $1B+ GTV, PCI DSS and ISO 27001 from scratch, 14+ years across product and delivery.",
+          "Engineer-turned-payments-CPO building regulated payment infrastructure across emerging markets — $1B+ GTV, PCI DSS and ISO 27001 from scratch.",
       },
       { property: "og:title", content: "About Rizwan Zafar — Payments Product Executive" },
       {
