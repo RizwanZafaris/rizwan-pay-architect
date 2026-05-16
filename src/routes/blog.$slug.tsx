@@ -2,6 +2,7 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { getPost, getRelated, type Post } from "@/data/posts";
 import { profile } from "@/data/profile";
 import { absUrl, SITE_URL } from "@/lib/seo";
+import { DiagramFigure, postDiagrams } from "@/components/diagrams/Diagrams";
 
 export const Route = createFileRoute("/blog/$slug")({
   loader: ({ params }) => {
