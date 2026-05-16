@@ -4,6 +4,7 @@ import { caseStudies } from "@/data/caseStudies";
 import { posts } from "@/data/posts";
 import { absUrl, SITE_URL } from "@/lib/seo";
 import { DiagramFigure, RailsMapDiagram } from "@/components/diagrams/Diagrams";
+import portrait from "@/assets/rizwan-zafar.jpg";
 
 const profilePageJsonLd = {
   "@context": "https://schema.org",
@@ -155,6 +156,20 @@ function HomePage() {
           {/* RIGHT — operator snapshot panel */}
           <aside className="lg:col-span-5 relative">
             <div className="relative rounded-2xl border border-ink/10 bg-background/85 backdrop-blur-xl p-6 md:p-7 shadow-[0_20px_60px_-20px_rgba(15,23,42,0.18)]">
+              <div className="flex items-center gap-4 pb-5 mb-5 border-b border-rule">
+                <img
+                  src={portrait}
+                  alt="Portrait of Rizwan Zafar, Chief Product Officer, Payments"
+                  width={72}
+                  height={72}
+                  loading="eager"
+                  className="h-[72px] w-[72px] rounded-full object-cover ring-1 ring-ink/10 shadow-sm"
+                />
+                <div className="min-w-0">
+                  <div className="font-instrument text-lg text-ink leading-tight">{profile.name}</div>
+                  <div className="text-xs text-ink-soft mt-0.5">{profile.role}</div>
+                </div>
+              </div>
               <div className="flex items-center justify-between">
                 <div className="text-[10px] font-mono-tech uppercase tracking-[0.22em] text-ink-soft">
                   Operator snapshot
