@@ -70,10 +70,13 @@ const whereIFit = [
 ];
 
 function HomePage() {
-  const featured = caseStudies.slice(0, 3);
+  const featured = caseStudies.slice(0, 6);
   const featuredPost = posts.find((p) => p.featured) ?? posts[0];
   const latest = posts.filter((p) => p.slug !== featuredPost.slug).slice(0, 3);
-  const partnersLoop = [...profile.partners, ...profile.partners];
+  const ecosystem = [
+    "TikTok", "Uber", "Temu", "MoneyGram", "PUBG",
+    "DLocal", "Thunes", "Boku", "Coda", "Meta", "Spotify",
+  ];
 
   return (
     <div>
