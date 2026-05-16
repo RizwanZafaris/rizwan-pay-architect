@@ -1,6 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { caseStudies, getCaseStudy, type CaseStudy } from "@/data/caseStudies";
 import { absUrl, SITE_URL } from "@/lib/seo";
+import { DiagramFigure, caseStudyDiagrams } from "@/components/diagrams/Diagrams";
 
 export const Route = createFileRoute("/product-work/$slug")({
   loader: ({ params }) => {
