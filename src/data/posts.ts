@@ -75,6 +75,9 @@ KYC/KYB, sanctions and AML/CFT are not blockers to cross-border growth. Done wel
     date: "2025-02-08",
     category: "Product Strategy",
     readingTime: "8 min read",
+    featured: true,
+    thesis:
+      "Payment cost is a product variable, not a procurement one. Here's the rail-mix and dunning playbook that pulled a subscription business from 50% cost-of-revenue down to 1%.",
     description:
       "A subscription business losing half its revenue to payment cost. The product moves that brought it down to 1%.",
     tags: ["billing", "DCB", "wallets", "unit economics"],
