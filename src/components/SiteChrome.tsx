@@ -28,15 +28,11 @@ export function SiteHeader() {
     if (!open) return;
     document.body.style.overflow = "hidden";
 
-    // Inert the rest of the page so underlying links aren't tabbable
-    const siblings = Array.from(document.body.children).filter(
-      (el) => el !== panelRef.current?.parentElement?.parentElement,
+    // Inert main + footer so underlying links aren't tabbable while menu is open
+    const inertTargets = Array.from(
+      document.querySelectorAll<HTMLElement>("main, footer"),
     );
-    // simpler: inert everything that is not the menu dialog
-    const mainNodes = document.querySelectorAll<HTMLElement>(
-      "body > *:not([data-mobile-menu-root])",
-    );
-    mainNodes.forEach((n) => n.setAttribute("inert", ""));
+    inertTargets.forEach((n) => n.setAttribute("inert", ""));
 
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
