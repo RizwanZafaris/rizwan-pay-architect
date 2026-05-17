@@ -12,16 +12,18 @@ export const Route = createFileRoute("/for/$audience")({
   head: ({ loaderData, params }) => {
     const a = loaderData?.audience;
     if (!a) return { meta: [{ title: "For recruiters" }] };
-    const url = absUrl(`/for/${params.audience}`);
+    const forUrl = absUrl("/for");
     return {
       meta: [
-        { title: `${a.title} | Rizwan Zafar — Payments Product` },
+        { title: `${a.shortTitle} — For recruiters | Rizwan Zafar` },
         { name: "description", content: a.description },
+        { name: "robots", content: "noindex, follow" },
         { property: "og:title", content: a.title },
         { property: "og:description", content: a.description },
-        { property: "og:url", content: url },
+        { property: "og:url", content: forUrl },
       ],
-      links: [{ rel: "canonical", href: url }],
+      // Canonicalize subpages back to /for so we don't add public route sprawl
+      links: [{ rel: "canonical", href: forUrl }],
       scripts: [
         {
           type: "application/ld+json",
@@ -30,8 +32,8 @@ export const Route = createFileRoute("/for/$audience")({
             "@type": "BreadcrumbList",
             itemListElement: [
               { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
-              { "@type": "ListItem", position: 2, name: "For recruiters", item: absUrl("/for") },
-              { "@type": "ListItem", position: 3, name: a.title, item: url },
+              { "@type": "ListItem", position: 2, name: "For recruiters", item: forUrl },
+              { "@type": "ListItem", position: 3, name: a.title, item: `${forUrl}#${params.audience}` },
             ],
           }),
         },
