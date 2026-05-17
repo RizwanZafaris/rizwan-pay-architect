@@ -14,6 +14,12 @@ export const Route = createFileRoute("/topics")({
       { property: "og:title", content: "Topics — Payments Knowledge Base" },
       { property: "og:description", content: "Topic hubs for payments product leaders." },
       { property: "og:url", content: absUrl("/topics") },
+      { name: "twitter:title", content: "Topics — Payments Knowledge Base" },
+      {
+        name: "twitter:description",
+        content:
+          "Topic hubs: infrastructure, cross-border, SWIFT/ISO 20022, settlement, fraud, APIs, emerging markets.",
+      },
     ],
     links: [{ rel: "canonical", href: absUrl("/topics") }],
     scripts: [
@@ -73,7 +79,9 @@ function TopicsIndex() {
                 <span>{essays} essays</span>
                 <span>·</span>
                 <span>{studies} case studies</span>
-                <span className="ml-auto text-ink group-hover:text-[var(--brand)]">Filter essays →</span>
+                <span className="ml-auto text-ink group-hover:text-[var(--brand)]">
+                  Filter essays →
+                </span>
               </div>
             </Link>
           );

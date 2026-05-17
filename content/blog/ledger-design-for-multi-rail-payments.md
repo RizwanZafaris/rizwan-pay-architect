@@ -10,7 +10,13 @@ publishDate: "2026-05-23"
 readingTime: "11 min read"
 tags: ["ledger", "double-entry", "reconciliation", "payment infrastructure"]
 targetAudience: ["Payments PMs", "Platform engineers", "Finance leaders"]
-targetKeywords: ["payment ledger design", "double-entry ledger payments", "multi-rail ledger", "fintech ledger architecture"]
+targetKeywords:
+  [
+    "payment ledger design",
+    "double-entry ledger payments",
+    "multi-rail ledger",
+    "fintech ledger architecture",
+  ]
 relatedCaseStudies:
   - "/product-work/settlement-reconciliation"
   - "/product-work/simpaisa-payment-infrastructure"

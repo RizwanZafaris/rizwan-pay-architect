@@ -20,8 +20,25 @@ export const Route = createFileRoute("/about")({
           "14+ years across product, payments and program delivery. 8+ years building regulated payments infrastructure.",
       },
       { property: "og:url", content: absUrl("/about") },
+      { name: "twitter:title", content: "About Rizwan Zafar — Payments Product Executive" },
+      {
+        name: "twitter:description",
+        content:
+          "Engineer-first payments CPO. 14+ years; 8+ in regulated payments. $1B+ GTV at Simpaisa.",
+      },
     ],
     links: [{ rel: "canonical", href: absUrl("/about") }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "AboutPage",
+          url: absUrl("/about"),
+          mainEntity: { "@type": "Person", name: "Rizwan Zafar", url: absUrl("/about") },
+        }),
+      },
+    ],
   }),
   component: AboutPage,
 });
@@ -47,53 +64,63 @@ function AboutPage() {
           ◆ About
         </div>
         <h1 className="font-instrument text-4xl md:text-6xl text-ink mt-3 leading-[1.05]">
-          Engineer first.<br />Payments operator second.<br />
+          Engineer first.
+          <br />
+          Payments operator second.
+          <br />
           <span className="italic text-ink-soft">Product leader by design.</span>
         </h1>
 
+        <p className="mt-6 text-lg text-ink-soft leading-relaxed max-w-2xl">
+          Chief Product Officer in regulated payments. 14+ years in product, payments and program
+          delivery. Currently CPO at Simpaisa: $1B+ annual GTV, 25M+ monthly transactions,
+          40-engineer payments org across 12 squads, infrastructure used by TikTok, Uber, Temu,
+          InDrive, MoneyGram and PUBG. Engineer's discipline, operator's tempo, regulator's
+          vocabulary.
+        </p>
+
         <div className="prose-editorial mt-10">
           <p>
-            Before payments, I learned reliability in systems where failure had real
-            consequences — five substations, real-time data, control-room shifts. That
-            operating discipline shaped how I build payment infrastructure today.
+            Before payments, I learned reliability in systems where failure had real consequences —
+            five substations, real-time data, control-room shifts. That operating discipline shaped
+            how I build payment infrastructure today.
           </p>
           <p>
-            14+ years across product, payments and complex program delivery — including
-            8+ years building regulated payment infrastructure at scale. PMO years at DS
-            Engineering and Wing Logic taught me to make governance useful instead of
-            bureaucratic. A year in the DRC running $8M of IT infrastructure taught me
-            to plan when nothing is reliable.
+            14+ years across product, payments and complex program delivery — including 8+ years
+            building regulated payment infrastructure at scale. PMO years at DS Engineering and Wing
+            Logic taught me to make governance useful instead of bureaucratic. A year in the DRC
+            running $8M of IT infrastructure taught me to plan when nothing is reliable.
           </p>
           <p>
-            Tapmad was the leap into payments. A subscription business being eaten alive
-            by telco margins. I launched DCB across all four major telcos, then migrated
-            the rail mix to wallets — payment cost dropped from ~50% of revenue to ~1%,
-            ARPU grew 70%, and we scaled past 5M paid subscribers. That's when I learned
-            that payments product is unit-economics work first and UX work second.
+            Tapmad was the leap into payments. A subscription business being eaten alive by telco
+            margins. I launched DCB across all four major telcos, then migrated the rail mix to
+            wallets — payment cost dropped from ~50% of revenue to ~1%, ARPU grew 70%, and we scaled
+            past 5M paid subscribers. That's when I learned that payments product is unit-economics
+            work first and UX work second.
           </p>
           <p>
-            Daraz (Alibaba Group) added multi-country payment operations during a COVID
-            volume surge — settlement, disputes, fraud rule configuration, COD-to-digital
-            conversion across five markets. Useful exposure to recon and compliance at
-            Alibaba scale.
+            Daraz (Alibaba Group) added multi-country payment operations during a COVID volume surge
+            — settlement, disputes, fraud rule configuration, COD-to-digital conversion across five
+            markets. Useful exposure to recon and compliance at Alibaba scale.
           </p>
           <p>
-            Since 2020 I've been CPO at Simpaisa, building regulated payment
-            infrastructure across Pakistan, Bangladesh, Nepal, Iraq and Egypt. Card
-            acquiring (MPGS/MDES), wallets, DCB, IBFT, payouts, cross-border corridors
-            with real-time FX. Onboarding cut from weeks to hours. Fraud loss below 0.1%
-            of GTV. Downtime down 90%. Local infrastructure partner for DLocal, Thunes,
-            Boku and Coda — enabling TikTok, Temu, Uber, InDrive, MoneyGram and PUBG to
-            collect and disburse where they had no local rails. $1B+ GTV. 25M+ monthly
-            transactions. 99.95% settlement SLA. PCI DSS and ISO/IEC 27001 from scratch.
-            Dual CPO + acting CTO through 2024 regulatory tightening.
+            Since 2020 I've been CPO at Simpaisa, building regulated payment infrastructure across
+            Pakistan, Bangladesh, Nepal, Iraq and Egypt. Card acquiring (MPGS/MDES), wallets, DCB,
+            IBFT, payouts, cross-border corridors with real-time FX. Onboarding cut from weeks to
+            hours. Fraud loss below 0.1% of GTV. Payment failure rate down from ~8% to ~1.2% through
+            routing, retries and acquirer SLA management. Downtime down 90%. Local infrastructure
+            partner for DLocal, Thunes, Boku and Coda — enabling TikTok, Temu, Uber, InDrive,
+            MoneyGram and PUBG to collect and disburse where they had no local rails. $1B+ GTV. 25M+
+            monthly transactions. 99.95% settlement SLA. Built and led a 40-engineer payments org
+            across 12 cross-functional squads. Launched BNPL from 0 to 100K users in 8 months. PCI
+            DSS and ISO/IEC 27001 from scratch. Dual CPO + acting CTO through 2024 regulatory
+            tightening.
           </p>
           <h2>Where I'm headed</h2>
           <p>
-            Senior product and payment infrastructure roles at companies building
-            serious payments platforms — Visa, Mastercard, Stripe, Wise, Adyen, Thunes,
-            DLocal and similar. Based in Dubai. Open to UAE, KSA, Singapore, MENA,
-            Europe and global fintech.
+            Senior product and payment infrastructure roles at companies building serious payments
+            platforms — Visa, Mastercard, Stripe, Wise, Adyen, Thunes, DLocal and similar. Based in
+            Dubai. Open to UAE, KSA, Singapore, MENA, Europe and global fintech.
           </p>
         </div>
 
@@ -118,7 +145,9 @@ function AboutPage() {
       <section className="border-t border-rule bg-surface-2">
         <div className="mx-auto max-w-5xl px-6 py-14 grid md:grid-cols-3 gap-10">
           <div>
-            <div className="text-[10px] uppercase tracking-[0.18em] text-ink-soft font-mono-tech">Education</div>
+            <div className="text-[10px] uppercase tracking-[0.18em] text-ink-soft font-mono-tech">
+              Education
+            </div>
             <ul className="mt-4 space-y-3">
               {profile.education.map((e) => (
                 <li key={`${e.school}-${e.degree}`}>
@@ -132,15 +161,21 @@ function AboutPage() {
             </ul>
           </div>
           <div>
-            <div className="text-[10px] uppercase tracking-[0.18em] text-ink-soft font-mono-tech">Certifications</div>
+            <div className="text-[10px] uppercase tracking-[0.18em] text-ink-soft font-mono-tech">
+              Certifications
+            </div>
             <ul className="mt-4 space-y-2 text-ink">
               {profile.certifications.map((c) => (
-                <li key={c} className="text-sm">· {c}</li>
+                <li key={c} className="text-sm">
+                  · {c}
+                </li>
               ))}
             </ul>
           </div>
           <div>
-            <div className="text-[10px] uppercase tracking-[0.18em] text-ink-soft font-mono-tech">Honors</div>
+            <div className="text-[10px] uppercase tracking-[0.18em] text-ink-soft font-mono-tech">
+              Honors
+            </div>
             <ul className="mt-4 space-y-3">
               {profile.honors.map((h) => (
                 <li key={h.title}>
@@ -173,9 +208,8 @@ function AboutPage() {
                 Proof still being gathered
               </div>
               <p className="mt-3 text-ink-soft max-w-2xl">
-                Modern fintech recommendations from payments leaders, partners and
-                regulators are being collected and will appear here. For now, references
-                are available on request.
+                Modern fintech recommendations from payments leaders, partners and regulators are
+                being collected and will appear here. For now, references are available on request.
               </p>
               <a
                 href={`mailto:${profile.email}`}
@@ -193,7 +227,9 @@ function AboutPage() {
                   </blockquote>
                   <figcaption className="mt-5 pt-5 border-t border-rule text-sm">
                     <div className="text-ink font-medium">{r.name}</div>
-                    <div className="text-ink-soft text-xs mt-1">{r.title} · {r.company}</div>
+                    <div className="text-ink-soft text-xs mt-1">
+                      {r.title} · {r.company}
+                    </div>
                   </figcaption>
                 </figure>
               ))}
@@ -218,7 +254,8 @@ function AboutPage() {
                       &ldquo;{r.quote}&rdquo;
                     </blockquote>
                     <figcaption className="mt-4 pt-4 border-t border-rule text-xs text-ink-soft">
-                      <span className="text-ink">{r.name}</span> · {r.title} · {r.company} · {r.date}
+                      <span className="text-ink">{r.name}</span> · {r.title} · {r.company} ·{" "}
+                      {r.date}
                     </figcaption>
                   </figure>
                 ))}

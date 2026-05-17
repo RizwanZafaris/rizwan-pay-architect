@@ -10,7 +10,8 @@ publishDate: "2026-06-01"
 readingTime: "8 min read"
 tags: ["sanctions", "screening", "compliance", "AML"]
 targetAudience: ["Compliance leaders", "Risk leaders", "Payments PMs"]
-targetKeywords: ["sanctions screening", "real-time sanctions screening", "sanctions false positives"]
+targetKeywords:
+  ["sanctions screening", "real-time sanctions screening", "sanctions false positives"]
 relatedCaseStudies:
   - "/product-work/fraud-risk-aml-cft"
 relatedArticles:

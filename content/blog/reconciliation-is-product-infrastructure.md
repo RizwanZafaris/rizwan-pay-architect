@@ -1,5 +1,5 @@
 ---
-title: "Reconciliation Is Not Back Office. It Is Product Infrastructure."
+title: "Reconciliation Is Product Infrastructure, Not Back Office"
 slug: "reconciliation-is-product-infrastructure"
 category: "Settlement & Reconciliation"
 subcategory: "Ledger & Controls"
@@ -10,7 +10,14 @@ publishDate: "2026-05-19"
 readingTime: "11 min read"
 tags: ["reconciliation", "settlement", "ledger", "finance", "payment infrastructure", "controls"]
 targetAudience: ["Payments PMs", "Fintech CFOs", "Platform leaders", "Risk leaders"]
-targetKeywords: ["payment reconciliation", "three-way reconciliation", "payment ledger design", "settlement reconciliation architecture", "multi-rail reconciliation"]
+targetKeywords:
+  [
+    "payment reconciliation",
+    "three-way reconciliation",
+    "payment ledger design",
+    "settlement reconciliation architecture",
+    "multi-rail reconciliation",
+  ]
 relatedCaseStudies:
   - "/product-work/settlement-reconciliation"
   - "/product-work/settlement-reconciliation"
@@ -28,6 +35,7 @@ Most payment platforms treat reconciliation as the thing finance does after the 
 I have run reconciliation across multiple rails — cards, wallets, IBFT, DCB, and bank settlement — at over a billion in annual GTV and 25M+ monthly transactions. This essay is the operator view: what reconciliation actually is, why it is a product problem first, and what the architecture should look like.
 
 ## Table of contents
+
 - Why reconciliation is treated as back office
 - What reconciliation really is
 - The three-way match (and why two-way is a trap)
@@ -115,11 +123,11 @@ A 0.5% reconciliation break rate at $1B GTV is $5M in unresolved movement at any
 The rough math product leaders should hold in their head:
 
 | Break rate | At $100M GTV | At $1B GTV | At $5B GTV |
-|---|---|---|---|
-| 2.0% | $2M open | $20M open | $100M open |
-| 0.5% | $500K | $5M | $25M |
-| 0.1% | $100K | $1M | $5M |
-| 0.02% | $20K | $200K | $1M |
+| ---------- | ------------ | ---------- | ---------- |
+| 2.0%       | $2M open     | $20M open  | $100M open |
+| 0.5%       | $500K        | $5M        | $25M       |
+| 0.1%       | $100K        | $1M        | $5M        |
+| 0.02%      | $20K         | $200K      | $1M        |
 
 The goal is not zero. The goal is a known, bounded, ageing break rate with a typed taxonomy. A platform with a 0.02% break rate and a 48-hour resolution SLA is operationally healthier than a platform with a 0% reported rate that quietly absorbs breaks into manual adjustments.
 
@@ -171,8 +179,8 @@ If you own a payments platform and you are not sure where to start:
 
 ## Suggested external sources
 
-- BIS/CPMI: *Principles for Financial Market Infrastructures* — for canonical reasoning on settlement finality
-- Stripe Docs: *Reporting and reconciliation* — for one well-documented rail's data model
+- BIS/CPMI: _Principles for Financial Market Infrastructures_ — for canonical reasoning on settlement finality
+- Stripe Docs: _Reporting and reconciliation_ — for one well-documented rail's data model
 - ISO 20022 reference documentation — for messaging-format alignment as cross-border moves to MX
 
 ## FAQ
@@ -205,7 +213,11 @@ A product owner, one or two engineers, an accounting partner, and a clear charte
   "@type": "BlogPosting",
   "headline": "Reconciliation Is Not Back Office. It Is Product Infrastructure.",
   "description": "After running reconciliation at $1B+ GTV across multiple rails, here is why reconciliation is a product problem first — and what the architecture should look like.",
-  "author": {"@type": "Person", "name": "Rizwan Zafar", "url": "https://rizwan-pay-architect.lovable.app"},
+  "author": {
+    "@type": "Person",
+    "name": "Rizwan Zafar",
+    "url": "https://rizwan-pay-architect.lovable.app"
+  },
   "datePublished": "2026-05-19",
   "articleSection": "Settlement & Reconciliation",
   "keywords": "reconciliation, settlement, ledger, payment infrastructure, three-way match",
@@ -214,10 +226,12 @@ A product owner, one or two engineers, an accounting partner, and a clear charte
 ```
 
 ### Open Graph
+
 - **og:title:** Reconciliation Is Product Infrastructure, Not Back Office
 - **og:description:** Three-way match, typed exception engines, feedback loops. The reconciliation architecture that survives $1B+ GTV.
 
 ### LinkedIn teaser
+
 > Reconciliation is the part of payments that decides whether the product can scale.
 >
 > Most platforms ship a two-way match and a spreadsheet. It works until it doesn't — usually around the first audit after the first hundred million in GTV.

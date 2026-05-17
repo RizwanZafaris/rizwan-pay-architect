@@ -33,7 +33,12 @@ export const Route = createFileRoute("/for/$audience")({
             itemListElement: [
               { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
               { "@type": "ListItem", position: 2, name: "For recruiters", item: forUrl },
-              { "@type": "ListItem", position: 3, name: a.title, item: `${forUrl}#${params.audience}` },
+              {
+                "@type": "ListItem",
+                position: 3,
+                name: a.title,
+                item: `${forUrl}#${params.audience}`,
+              },
             ],
           }),
         },

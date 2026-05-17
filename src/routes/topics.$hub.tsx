@@ -111,7 +111,8 @@ function HubPage() {
 
       <section className="mt-14">
         <h2 className="font-instrument text-2xl text-ink mb-6">
-          Essays {essays.length > 0 && <span className="text-ink-soft text-base">· {essays.length}</span>}
+          Essays{" "}
+          {essays.length > 0 && <span className="text-ink-soft text-base">· {essays.length}</span>}
         </h2>
         {essays.length === 0 ? (
           <p className="text-ink-soft">More essays coming to this hub soon.</p>

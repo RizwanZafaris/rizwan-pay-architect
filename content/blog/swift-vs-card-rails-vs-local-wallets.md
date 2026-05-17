@@ -20,6 +20,7 @@ relatedArticles:
 The question is wrong if framed as "which rail is best." The right question is "which rail is best for this corridor, this amount, this customer, this use case." The product job is to make that decision systematically, not anecdotally.
 
 ## Table of contents
+
 - The three rail families
 - Decision dimensions
 - A practical decision matrix
@@ -49,15 +50,15 @@ The dimensions that determine the right rail:
 
 ## A practical decision matrix
 
-| Use case | Best rail (general) | Why |
-|---|---|---|
-| Consumer e-commerce, mature markets | Cards + wallets | Acceptance, fraud tooling |
-| Consumer e-commerce, emerging markets | Local wallets + DCB | Coverage, cost |
-| High-value B2B cross-border | SWIFT (with gpi) | Settlement finality, traceability |
-| Payroll, domestic | Local instant rails | Cost, speed |
-| Payroll, cross-border | Cross-border PSPs over SWIFT + local payout | Compliance, throughput |
-| Subscription retail | Cards + wallets + DCB | Recovery, retention |
-| Treasury sweeps | SWIFT or domestic RTGS | Bank-grade controls |
+| Use case                              | Best rail (general)                         | Why                               |
+| ------------------------------------- | ------------------------------------------- | --------------------------------- |
+| Consumer e-commerce, mature markets   | Cards + wallets                             | Acceptance, fraud tooling         |
+| Consumer e-commerce, emerging markets | Local wallets + DCB                         | Coverage, cost                    |
+| High-value B2B cross-border           | SWIFT (with gpi)                            | Settlement finality, traceability |
+| Payroll, domestic                     | Local instant rails                         | Cost, speed                       |
+| Payroll, cross-border                 | Cross-border PSPs over SWIFT + local payout | Compliance, throughput            |
+| Subscription retail                   | Cards + wallets + DCB                       | Recovery, retention               |
+| Treasury sweeps                       | SWIFT or domestic RTGS                      | Bank-grade controls               |
 
 This is a starting point, not a rule book.
 

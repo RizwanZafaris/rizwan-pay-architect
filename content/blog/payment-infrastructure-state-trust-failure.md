@@ -1,5 +1,5 @@
 ---
-title: "Payment Infrastructure Is Not Just APIs. It Is State, Trust, and Failure Handling."
+title: "Payment Infrastructure Is Not Just APIs — It Is State, Trust and Failure Handling"
 slug: "payment-infrastructure-state-trust-failure"
 category: "Payment Infrastructure"
 metaTitle: "Payment Infrastructure: State, Trust, Failure Handling | Rizwan Zafar"
@@ -7,9 +7,23 @@ metaDescription: "An operator view of payment infrastructure at $1B+ GTV — why
 excerpt: "APIs are the easy part. The hard part is what happens between the auth response and the bank statement."
 publishDate: "2026-05-20"
 readingTime: "10 min read"
-tags: ["payment infrastructure", "state machines", "idempotency", "platform engineering", "product strategy"]
+tags:
+  [
+    "payment infrastructure",
+    "state machines",
+    "idempotency",
+    "platform engineering",
+    "product strategy",
+  ]
 targetAudience: ["Senior PMs", "Platform leaders", "Payments architects"]
-targetKeywords: ["payment infrastructure", "payment state machine", "idempotent payments", "payment failure handling", "payments platform architecture"]
+targetKeywords:
+  [
+    "payment infrastructure",
+    "payment state machine",
+    "idempotent payments",
+    "payment failure handling",
+    "payments platform architecture",
+  ]
 relatedCaseStudies:
   - "/product-work/simpaisa-payment-infrastructure"
   - "/product-work/settlement-reconciliation"
@@ -26,6 +40,7 @@ Most teams pitch their payment platform by showing the API reference. That is th
 After running multi-rail infrastructure at over a billion in annual GTV — cards, wallets, IBFT, DCB, and bank settlement, across 25M+ monthly transactions — the part that decides whether the platform survives growth is not the API surface. It is three things: **state**, **trust**, and **failure handling**.
 
 ## Table of contents
+
 - The API illusion
 - State: every payment is a finite-state machine
 - Trust: who believes what, and when
@@ -135,6 +150,7 @@ Within two quarters the merchant-reported "where is my money" tickets dropped by
 ---
 
 ### LinkedIn teaser
+
 > A payment API is the receptionist. The product is the building behind it: state machines, idempotency, failure handling, trust between five parties.
 >
 > A note from running multi-rail payment infrastructure at $1B+ GTV.

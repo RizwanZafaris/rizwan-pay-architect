@@ -10,7 +10,8 @@ publishDate: "2026-05-22"
 readingTime: "9 min read"
 tags: ["reconciliation", "operations", "exception management", "controls"]
 targetAudience: ["Payments PMs", "Finance ops leaders"]
-targetKeywords: ["reconciliation exception management", "payment break management", "reconciliation operations"]
+targetKeywords:
+  ["reconciliation exception management", "payment break management", "reconciliation operations"]
 relatedCaseStudies:
   - "/product-work/settlement-reconciliation"
 relatedArticles:
@@ -25,7 +26,7 @@ Reconciliation engines find breaks. Exception management is what you do with the
 
 ## The shape of the problem
 
-At $1B+ GTV with multi-rail acceptance, 0.5–2% of transactions generate exceptions on any given day. Most are trivial — timing windows, fee variance within tolerance — and should auto-resolve. The remaining 5–15% of *those* are real money at risk.
+At $1B+ GTV with multi-rail acceptance, 0.5–2% of transactions generate exceptions on any given day. Most are trivial — timing windows, fee variance within tolerance — and should auto-resolve. The remaining 5–15% of _those_ are real money at risk.
 
 Without a structured workflow, finance ops becomes a queue that grows with GTV. With one, the queue is bounded and shrinks quarter over quarter as defects feed back into product.
 

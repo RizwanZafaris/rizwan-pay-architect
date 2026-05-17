@@ -9,7 +9,8 @@ publishDate: "2026-06-05"
 readingTime: "10 min read"
 tags: ["ISO 20022", "MX messages", "SWIFT", "structured data", "compliance"]
 targetAudience: ["Payments PMs", "Bank product leads", "Compliance teams"]
-targetKeywords: ["ISO 20022 migration", "MX messages", "SWIFT ISO 20022 deadline", "ISO 20022 for fintech"]
+targetKeywords:
+  ["ISO 20022 migration", "MX messages", "SWIFT ISO 20022 deadline", "ISO 20022 for fintech"]
 relatedArticles:
   - "/blog/swift-payment-explained"
   - "/blog/swift-messaging-formats-mt-vs-mx"
@@ -23,6 +24,7 @@ ISO 20022 is the biggest change in cross-border payments messaging in a generati
 The deadlines are concrete. The benefits are too. Most teams underprepare because they assume the bank takes care of it.
 
 ## Table of contents
+
 - What ISO 20022 actually is
 - The migration timeline
 - Why it matters beyond compliance

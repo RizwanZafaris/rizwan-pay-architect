@@ -5,9 +5,11 @@ Pillar pages are the spine. Supporting pages link up to the pillar and across to
 ---
 
 ## Pillar 1 — Payment Infrastructure
+
 **Pillar page:** `/blog/payment-infrastructure-state-trust-failure` (F3)
 
 Supporting:
+
 - `hosted-checkout-vs-direct-card-processing` (F2)
 - `local-payment-methods-developer-experience` (F8)
 - `payment-cost-50-to-1` (F9)
@@ -19,9 +21,11 @@ Case-study anchors: `/product-work/simpaisa-payment-infrastructure`, `/product-w
 ---
 
 ## Pillar 2 — SWIFT & Cross-Border Payments
+
 **Pillar page:** `/blog/swift-payment-explained` (S1)
 
 Supporting:
+
 - `iso-20022-migration-what-product-teams-must-know` (S3)
 - `swift-gpi-tracking-and-the-end-of-payment-uncertainty` (S4)
 - `swift-vs-card-rails-vs-local-wallets` (S6)
@@ -37,9 +41,11 @@ Case-study anchor: `/product-work/cross-border-corridors-fx`
 ---
 
 ## Pillar 3 — Settlement & Reconciliation
+
 **Pillar page:** `/blog/reconciliation-is-product-infrastructure` (F1)
 
 Supporting:
+
 - `three-way-reconciliation-at-scale` (SR1)
 - `exception-management-reconciliation` (SR3)
 - `ledger-design-for-multi-rail-payments` (SR4)
@@ -51,9 +57,11 @@ Case-study anchor: `/product-work/reconciliation-ledger-controls`, `/product-wor
 ---
 
 ## Pillar 4 — Merchant Onboarding & KYC/KYB
+
 **Pillar page:** `/blog/merchant-onboarding-growth-risk-compliance` (F4)
 
 Supporting:
+
 - `kyb-automation-without-blowing-up-risk` (MO1)
 - `risk-tiering-merchants-product-decision` (MO2)
 - `onboarding-conversion-vs-default-rate-tradeoff` (MO3)
@@ -65,9 +73,11 @@ Case-study anchor: `/product-work/merchant-onboarding-kyc`
 ---
 
 ## Pillar 5 — Fraud, Risk & Compliance
+
 **Pillar page:** `/blog/regulatory-ux-name-on-payment-screen` (F5)
 
 Supporting:
+
 - `layered-fraud-controls-payments-stack` (FR1)
 - `chargebacks-product-problem` (FR2)
 - `pci-dss-iso-27001-program-leadership` (FR3)
@@ -79,9 +89,11 @@ Case-study anchor: `/product-work/fraud-risk-aml-cft`
 ---
 
 ## Pillar 6 — Emerging Markets Fintech
+
 **Pillar page:** `/blog/emerging-markets-pressure-test-payments` (F10)
 
 Supporting:
+
 - `fintech-financial-inclusion-emerging-markets` (FT2)
 - `launching-a-fintech-in-a-regulated-market` (FT7)
 - `open-banking-product-opportunities-emerging-markets` (B2)
@@ -93,9 +105,11 @@ Case-study anchors: `/product-work/simpaisa-payment-infrastructure`, `/product-w
 ---
 
 ## Pillar 7 — Subscription / OTT Payments
+
 **Pillar page:** `/blog/payment-cost-50-to-1` (F9, expanded to flagship)
 
 Supporting:
+
 - `ott-monetization-emerging-markets` (OT1)
 - `dcb-vs-wallet-vs-card-ott` (OT2)
 - `ott-payment-failure-recovery` (OT3)
@@ -115,6 +129,7 @@ Case-study anchor: `/product-work/tapmad-wallet-billing-migration`
 - **Emerging Markets ↔ OTT:** F10 cites the Tapmad case study.
 
 Every published essay must contain:
+
 - 1 outbound link to its pillar page
 - 1 outbound link to another supporting essay in the same pillar
 - 1 outbound link to a case study

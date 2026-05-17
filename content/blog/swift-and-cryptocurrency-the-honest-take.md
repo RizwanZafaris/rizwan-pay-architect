@@ -8,7 +8,8 @@ excerpt: "Stablecoins solve a real cross-border problem in specific corridors. T
 publishDate: "2026-07-07"
 readingTime: "8 min read"
 tags: ["SWIFT", "cryptocurrency", "stablecoins", "cross-border", "blockchain"]
-targetKeywords: ["SWIFT vs cryptocurrency", "stablecoins replace SWIFT", "blockchain cross-border payments"]
+targetKeywords:
+  ["SWIFT vs cryptocurrency", "stablecoins replace SWIFT", "blockchain cross-border payments"]
 relatedArticles:
   - "/blog/swift-in-2026-trends-to-watch"
   - "/blog/correspondent-banking-and-emerging-market-corridors"

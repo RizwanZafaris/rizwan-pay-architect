@@ -1,5 +1,5 @@
 ---
-title: "Regulatory UX: Why the Name on a Payment Screen Can Block a Launch."
+title: "Regulatory UX: Why the Name on a Payment Screen Can Block a Launch"
 slug: "regulatory-ux-name-on-payment-screen"
 category: "Fraud, Risk & Compliance"
 metaTitle: "Regulatory UX: Names, Screens, and Launches | Rizwan Zafar"
@@ -9,7 +9,13 @@ publishDate: "2026-05-23"
 readingTime: "9 min read"
 tags: ["regulatory UX", "compliance", "fintech launches", "payment screen design", "disclosures"]
 targetAudience: ["Regulated-product PMs", "Compliance leads", "Fintech designers"]
-targetKeywords: ["regulatory UX", "payment screen compliance", "fintech disclosure design", "regulatory product design"]
+targetKeywords:
+  [
+    "regulatory UX",
+    "payment screen compliance",
+    "fintech disclosure design",
+    "regulatory product design",
+  ]
 relatedArticles:
   - "/blog/merchant-onboarding-growth-risk-compliance"
   - "/blog/financial-controls-are-product-requirements"
@@ -25,6 +31,7 @@ Both are right. That gap is the discipline this essay is about.
 I have launched payment products under State Bank of Pakistan oversight, with bank sponsors, scheme reviewers, and partner compliance teams all reading the same screens at the same time. The pattern is universal: regulators do not read your roadmap, your architecture, or your investor deck. They read your screen. Every word, every disclosure, every merchant name, every brand mark is in scope.
 
 ## Table of contents
+
 - What "regulatory UX" actually means
 - The cases that block launches
 - The merchant-name and DBA problem
@@ -124,6 +131,7 @@ The change that produced the smoothest launches at Simpaisa was simple: regulato
 ---
 
 ### LinkedIn teaser
+
 > Regulators do not read your roadmap. They read your screen.
 >
 > Every name, every descriptor, every disclosure on a payment screen is product surface — and the cheapest place to lose a launch.

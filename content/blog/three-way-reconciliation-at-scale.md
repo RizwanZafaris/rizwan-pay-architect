@@ -10,7 +10,13 @@ publishDate: "2026-05-20"
 readingTime: "10 min read"
 tags: ["reconciliation", "settlement", "ledger", "controls", "payment infrastructure"]
 targetAudience: ["Payments PMs", "Finance leaders", "Platform engineers"]
-targetKeywords: ["three-way reconciliation", "payment reconciliation architecture", "settlement reconciliation", "PSP reconciliation"]
+targetKeywords:
+  [
+    "three-way reconciliation",
+    "payment reconciliation architecture",
+    "settlement reconciliation",
+    "PSP reconciliation",
+  ]
 relatedCaseStudies:
   - "/product-work/settlement-reconciliation"
   - "/product-work/settlement-reconciliation"
@@ -86,7 +92,7 @@ Each exception type has an owner, an SLA, and a runbook. Without those, reconcil
 
 ## Feedback loop into product
 
-The point of reconciliation is not to clear breaks. It is to eliminate the *categories* of breaks. Every recurring exception type should produce a product ticket:
+The point of reconciliation is not to clear breaks. It is to eliminate the _categories_ of breaks. Every recurring exception type should produce a product ticket:
 
 - Webhook loss → idempotent webhook handler + reconciliation backfill job
 - Duplicate capture → idempotency key enforcement at the API

@@ -8,7 +8,8 @@ excerpt: "'Wire transfer' is the outcome. 'SWIFT' is one way to instruct it. The
 publishDate: "2026-06-03"
 readingTime: "7 min read"
 tags: ["SWIFT", "wire transfer", "cross-border", "Fedwire", "TARGET2"]
-targetKeywords: ["SWIFT vs wire transfer", "difference between SWIFT and wire", "international wire transfer"]
+targetKeywords:
+  ["SWIFT vs wire transfer", "difference between SWIFT and wire", "international wire transfer"]
 relatedArticles:
   - "/blog/swift-payment-explained"
   - "/blog/swift-fees-fx-and-the-true-cost-of-cross-border"
@@ -50,15 +51,15 @@ A product that calls both "wire" without distinguishing them produces customer c
 
 ## Comparison table
 
-| Dimension | SWIFT-instructed international wire | Domestic wire (Fedwire / CHAPS / TARGET2 / RTGS) |
-|---|---|---|
-| Geography | Cross-border | Within one jurisdiction |
-| Messaging | SWIFT MT / MX | Domestic format |
-| Settlement | Correspondent + RTGS | Direct RTGS |
-| Typical cost | $15–50 + FX margin | $5–25 |
-| Typical speed | Minutes to days (gpi often <30 min) | Seconds to minutes |
-| FX | Almost always involved | Usually none |
-| Tracking | gpi end-to-end where supported | Native to the rail |
+| Dimension     | SWIFT-instructed international wire | Domestic wire (Fedwire / CHAPS / TARGET2 / RTGS) |
+| ------------- | ----------------------------------- | ------------------------------------------------ |
+| Geography     | Cross-border                        | Within one jurisdiction                          |
+| Messaging     | SWIFT MT / MX                       | Domestic format                                  |
+| Settlement    | Correspondent + RTGS                | Direct RTGS                                      |
+| Typical cost  | $15–50 + FX margin                  | $5–25                                            |
+| Typical speed | Minutes to days (gpi often <30 min) | Seconds to minutes                               |
+| FX            | Almost always involved              | Usually none                                     |
+| Tracking      | gpi end-to-end where supported      | Native to the rail                               |
 
 ## Key takeaways
 

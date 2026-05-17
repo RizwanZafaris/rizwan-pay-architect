@@ -8,7 +8,8 @@ excerpt: "For emerging-market banks, SWIFT is not optional. The fragility is in 
 publishDate: "2026-07-14"
 readingTime: "8 min read"
 tags: ["SWIFT", "emerging markets", "banking", "correspondent banking"]
-targetKeywords: ["SWIFT emerging markets", "frontier market banking", "SWIFT Pakistan Bangladesh Africa"]
+targetKeywords:
+  ["SWIFT emerging markets", "frontier market banking", "SWIFT Pakistan Bangladesh Africa"]
 relatedArticles:
   - "/blog/correspondent-banking-and-emerging-market-corridors"
   - "/blog/cross-border-corridors-are-operating-systems"

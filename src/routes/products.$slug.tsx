@@ -12,10 +12,7 @@ export const Route = createFileRoute("/products/$slug")({
     const p = loaderData?.product;
     if (!p)
       return {
-        meta: [
-          { title: "Product — Rizwan Zafar" },
-          { name: "robots", content: "noindex" },
-        ],
+        meta: [{ title: "Product — Rizwan Zafar" }, { name: "robots", content: "noindex" }],
       };
     const url = absUrl(`/products/${params.slug}`);
     const isComingSoon = p.status === "coming-soon";
@@ -83,8 +80,8 @@ function ProductDetail() {
           <>
             <h2 className="font-instrument text-xl text-ink mt-8">Preview access</h2>
             <p className="mt-3 text-ink-soft leading-relaxed">
-              {product.name} is in quiet build. Tap below to join the preview list — you'll
-              get a short, no-noise note when there is something to show.
+              {product.name} is in quiet build. Tap below to join the preview list — you'll get a
+              short, no-noise note when there is something to show.
             </p>
             {mailtoHref && (
               <a

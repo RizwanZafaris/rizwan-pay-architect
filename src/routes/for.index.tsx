@@ -15,6 +15,12 @@ export const Route = createFileRoute("/for/")({
       { property: "og:title", content: "For Recruiters — Rizwan Zafar" },
       { property: "og:description", content: "Recruiter lenses, proof and resume in one page." },
       { property: "og:url", content: absUrl("/for") },
+      { name: "twitter:title", content: "For Recruiters — Rizwan Zafar" },
+      {
+        name: "twitter:description",
+        content:
+          "Lensed view for Visa/MC, Stripe/Adyen/Wise/Thunes, and banks. Target roles, proof, case studies.",
+      },
     ],
     links: [{ rel: "canonical", href: absUrl("/for") }],
     scripts: [
@@ -92,9 +98,9 @@ function ForIndex() {
         Pick your lens. Read the work in your language.
       </h1>
       <p className="mt-5 max-w-2xl text-lg text-ink-soft">
-        Three recruiter paths through the same body of work — networks, orchestrators, and
-        regulated fintechs. Each section lists target roles, proof you can verify, the most
-        relevant case studies and essays, and a way to start a conversation.
+        Three recruiter paths through the same body of work — networks, orchestrators, and regulated
+        fintechs. Each section lists target roles, proof you can verify, the most relevant case
+        studies and essays, and a way to start a conversation.
       </p>
 
       {/* Quick anchor tabs */}

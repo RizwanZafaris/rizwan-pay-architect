@@ -119,12 +119,19 @@ export const hubs: Hub[] = [
     intro:
       "Emerging markets pressure-test payment products on every dimension: rails, regulation, partner depth, FX and operations. Essays here cover what that pressure teaches.",
     categories: ["Emerging Markets", "Product Strategy"],
-    tagPatterns: ["emerging market", "mena", "south asia", "pakistan", "egypt", "bangladesh", "uae"],
+    tagPatterns: [
+      "emerging market",
+      "mena",
+      "south asia",
+      "pakistan",
+      "egypt",
+      "bangladesh",
+      "uae",
+    ],
   },
 ];
 
-export const getHub = (slug: string): Hub | undefined =>
-  hubs.find((h) => h.slug === slug);
+export const getHub = (slug: string): Hub | undefined => hubs.find((h) => h.slug === slug);
 
 function matchesHub(hub: Hub, category: string, tags: string[]): boolean {
   if (hub.categories?.includes(category)) return true;

@@ -1,5 +1,5 @@
 ---
-title: "Merchant Onboarding Is Where Growth, Risk, and Compliance Collide."
+title: "Merchant Onboarding: Where Growth, Risk and Compliance Collide"
 slug: "merchant-onboarding-growth-risk-compliance"
 category: "Merchant Onboarding"
 metaTitle: "Merchant Onboarding: Growth, Risk, Compliance | Rizwan Zafar"
@@ -9,7 +9,14 @@ publishDate: "2026-05-22"
 readingTime: "10 min read"
 tags: ["merchant onboarding", "KYB", "KYC", "risk", "compliance", "growth"]
 targetAudience: ["Fintech PMs", "Risk leaders", "Compliance officers"]
-targetKeywords: ["merchant onboarding", "KYB automation", "merchant risk tiering", "fintech onboarding product", "merchant activation"]
+targetKeywords:
+  [
+    "merchant onboarding",
+    "KYB automation",
+    "merchant risk tiering",
+    "fintech onboarding product",
+    "merchant activation",
+  ]
 relatedCaseStudies:
   - "/product-work/merchant-onboarding-kyc"
 relatedArticles:
@@ -29,6 +36,7 @@ This is the most expensive misalignment in fintech. It produces low activation, 
 I have run merchant onboarding in regulated payments at scale across South Asia and MENA. This essay is the operator argument for treating onboarding as one product surface — with one owner, one decision model, and one set of metrics that growth, risk, and compliance all sign.
 
 ## Table of contents
+
 - The three-team trap
 - What "one product surface" actually means
 - The risk-tiered onboarding model
@@ -68,12 +76,12 @@ The single most useful pattern is tiered onboarding. The merchant is admitted in
 
 A workable model:
 
-| Tier | Onboarding | Limits | Monitoring | Upgrade |
-|---|---|---|---|---|
-| T0 — Express | Self-serve, automated screening | Low monthly cap, MCC-restricted | Behavioral, anomaly-only | After 30 days of clean activity |
-| T1 — Standard | Documented KYB, automated screening | Mid cap | Velocity + content | After volume threshold + review |
-| T2 — Enhanced | Documented KYB, manual review | High cap | Continuous monitoring | Quarterly review |
-| T3 — Strategic | Full underwriting, named relationship | Negotiated | Dedicated risk analyst | Annual review |
+| Tier           | Onboarding                            | Limits                          | Monitoring               | Upgrade                         |
+| -------------- | ------------------------------------- | ------------------------------- | ------------------------ | ------------------------------- |
+| T0 — Express   | Self-serve, automated screening       | Low monthly cap, MCC-restricted | Behavioral, anomaly-only | After 30 days of clean activity |
+| T1 — Standard  | Documented KYB, automated screening   | Mid cap                         | Velocity + content       | After volume threshold + review |
+| T2 — Enhanced  | Documented KYB, manual review         | High cap                        | Continuous monitoring    | Quarterly review                |
+| T3 — Strategic | Full underwriting, named relationship | Negotiated                      | Dedicated risk analyst   | Annual review                   |
 
 This single change typically lifts activation in the long tail by 30–60% while reducing manual review load, because the high-risk-and-tiny-volume merchants no longer block the queue meant for high-value ones.
 
@@ -145,6 +153,7 @@ Within two quarters, activation in the long-tail SME segment increased materiall
 ---
 
 ### LinkedIn teaser
+
 > Onboarding is the most expensive misalignment in fintech. Three teams optimize three metrics. The merchant feels the average.
 >
 > The fix is structural — one owner, one decision model, one feedback loop. Tiered onboarding does the rest.

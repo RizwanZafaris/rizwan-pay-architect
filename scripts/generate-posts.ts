@@ -14,7 +14,10 @@ function parseFrontmatter(raw: string) {
   while (i < lines.length) {
     const line = lines[i];
     const km = line.match(/^([a-zA-Z0-9_]+):\s*(.*)$/);
-    if (!km) { i++; continue; }
+    if (!km) {
+      i++;
+      continue;
+    }
     const key = km[1];
     const rest = km[2];
     if (rest === "") {
@@ -50,7 +53,10 @@ function stripLeadingH1(md: string) {
   return md.replace(/^\s*#\s+[^\n]+\n+/, "");
 }
 
-const files = readdirSync(BLOG_DIR).filter((f) => f.endsWith(".md")).sort();
+// Filter macOS AppleDouble metadata files (._*) and other dot-files
+const files = readdirSync(BLOG_DIR)
+  .filter((f) => f.endsWith(".md") && !f.startsWith("."))
+  .sort();
 
 type Post = {
   slug: string;
@@ -99,7 +105,9 @@ const flagshipSlugs = new Set([
   "swift-payment-explained",
   "hosted-checkout-vs-direct-card-processing",
 ]);
-posts.forEach((p) => { if (flagshipSlugs.has(p.slug)) p.featured = true; });
+posts.forEach((p) => {
+  if (flagshipSlugs.has(p.slug)) p.featured = true;
+});
 
 const categories = Array.from(new Set(posts.map((p) => p.category))).sort();
 

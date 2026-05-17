@@ -1,5 +1,5 @@
 ---
-title: "How Emerging Markets Pressure-Test Payment Product Strategy."
+title: "How Emerging Markets Pressure-Test Payment Product Strategy"
 slug: "emerging-markets-pressure-test-payments"
 category: "Emerging Markets"
 metaTitle: "How Emerging Markets Pressure-Test Payment Strategy | Rizwan Zafar"
@@ -9,7 +9,13 @@ publishDate: "2026-05-31"
 readingTime: "10 min read"
 tags: ["emerging markets", "cross-border", "Pakistan", "MENA", "South Asia", "wallets", "DCB"]
 targetAudience: ["Visa/Mastercard EM teams", "Stripe/Adyen expansion PMs", "Global fintech leaders"]
-targetKeywords: ["emerging markets payments", "fintech in Pakistan", "MENA payments", "frontier market payment strategy"]
+targetKeywords:
+  [
+    "emerging markets payments",
+    "fintech in Pakistan",
+    "MENA payments",
+    "frontier market payment strategy",
+  ]
 relatedCaseStudies:
   - "/product-work/simpaisa-payment-infrastructure"
   - "/product-work/tapmad-wallet-billing-migration"
@@ -28,6 +34,7 @@ That failure is the most useful pressure test a payment product team can run. Th
 I have built and operated payment infrastructure across these markets at $1B+ GTV. This essay is the operator argument: emerging markets are not edge cases. They are the laboratory where payment product strategy gets stress-tested.
 
 ## Table of contents
+
 - The five assumptions that break
 - Cards are not the baseline
 - Settlement timing is a feature, not a default
@@ -130,6 +137,7 @@ The pattern across Simpaisa, Tapmad, and Daraz was consistent: every product dec
 ---
 
 ### LinkedIn teaser
+
 > Emerging markets are the pressure test that improves the entire product.
 >
 > Cards-first, monthly settlement, English KYC, opaque FX — none of these survive contact with Pakistan, Bangladesh, Egypt, or Iraq. Fix them there and the platform gets stronger everywhere.

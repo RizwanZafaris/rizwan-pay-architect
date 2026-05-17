@@ -30,3 +30,11 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# macOS AppleDouble metadata (auto-created on ExFAT/FAT volumes like external drives)
+._*
+
+# Env
+.env
+.env.local
+.env.*.local

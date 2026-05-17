@@ -18,6 +18,11 @@ export const Route = createFileRoute("/products")({
           "Payment infrastructure shipped at scale, plus new products in quiet build from Rizwan's product lab.",
       },
       { property: "og:url", content: absUrl("/products") },
+      { name: "twitter:title", content: "Products — Rizwan Zafar" },
+      {
+        name: "twitter:description",
+        content: "Payment infrastructure shipped at scale, plus new products in quiet build.",
+      },
     ],
     links: [{ rel: "canonical", href: absUrl("/products") }],
     scripts: [
@@ -51,8 +56,9 @@ function ProductsPage() {
         Products I have built — and products I am building.
       </h1>
       <p className="mt-5 max-w-2xl text-lg text-ink-soft">
-        Shipped payment infrastructure that has cleared $1B+ in annual volume across five
-        regulated markets, plus a small portfolio of new products in quiet build from the
+        Shipped payment infrastructure — card acquiring, wallets, cross-border corridors, settlement
+        and reconciliation, KYC/KYB, AML/CFT and fraud — that has cleared $1B+ in annual GTV across
+        five regulated markets. Plus a small portfolio of new products in quiet build from the
         product lab.
       </p>
       <ul className="mt-6 grid sm:grid-cols-2 lg:grid-cols-4 gap-3 max-w-4xl">

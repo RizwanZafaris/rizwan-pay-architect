@@ -8,7 +8,8 @@ excerpt: "The sticker fee is the smallest part of the cost. The FX margin is mos
 publishDate: "2026-06-23"
 readingTime: "8 min read"
 tags: ["SWIFT fees", "cross-border cost", "FX margin", "charge bearer"]
-targetKeywords: ["SWIFT fees", "cross-border payment cost", "FX margin", "OUR SHA BEN charge bearer"]
+targetKeywords:
+  ["SWIFT fees", "cross-border payment cost", "FX margin", "OUR SHA BEN charge bearer"]
 relatedArticles:
   - "/blog/swift-payment-explained"
   - "/blog/correspondent-banking-and-emerging-market-corridors"
@@ -19,6 +20,7 @@ relatedArticles:
 The fee a customer sees on a cross-border payment confirmation is rarely the cost of the payment. It is the visible slice of a stack that includes correspondent deductions, FX margin, and charge-bearer rules — most of which never appear on the confirmation.
 
 ## Table of contents
+
 - The cost stack
 - Charge bearer: OUR, SHA, BEN
 - FX margin is usually the biggest line

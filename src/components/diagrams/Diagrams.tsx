@@ -194,7 +194,12 @@ export function RailsMapDiagram() {
   ];
 
   return (
-    <svg viewBox={`0 0 ${W} ${H}`} width="100%" role="img" aria-label="Multi-rail payments architecture">
+    <svg
+      viewBox={`0 0 ${W} ${H}`}
+      width="100%"
+      role="img"
+      aria-label="Multi-rail payments architecture"
+    >
       <Defs />
       <ColumnLabel x={railX} y={40} text="Rails" />
       <ColumnLabel x={hubX} y={40} text="Unified platform" />
@@ -214,10 +219,39 @@ export function RailsMapDiagram() {
 
       {/* Hub stack: API → Routing → Risk → Ledger */}
       <Node x={hubX} y={80} w={hubW} h={56} label="Unified API" sub="Pay-in · Payout" emphasis />
-      <Node x={hubX} y={156} w={hubW} h={48} label="Routing engine" sub="Cost · success · health" accent />
-      <Node x={hubX} y={222} w={hubW} h={48} label="Risk service" sub="Pre-auth · post-auth · async" />
-      <Node x={hubX} y={288} w={hubW} h={48} label="Canonical ledger" sub="Double-entry · idempotent" />
-      <Node x={hubX} y={354} w={hubW} h={48} label="Settlement engine" sub="Multi-rail · corridor-aware" />
+      <Node
+        x={hubX}
+        y={156}
+        w={hubW}
+        h={48}
+        label="Routing engine"
+        sub="Cost · success · health"
+        accent
+      />
+      <Node
+        x={hubX}
+        y={222}
+        w={hubW}
+        h={48}
+        label="Risk service"
+        sub="Pre-auth · post-auth · async"
+      />
+      <Node
+        x={hubX}
+        y={288}
+        w={hubW}
+        h={48}
+        label="Canonical ledger"
+        sub="Double-entry · idempotent"
+      />
+      <Node
+        x={hubX}
+        y={354}
+        w={hubW}
+        h={48}
+        label="Settlement engine"
+        sub="Multi-rail · corridor-aware"
+      />
 
       {/* Lines: each rail → hub API */}
       {rails.map((_, i) => {
@@ -280,7 +314,12 @@ export function ReconciliationFlowDiagram() {
   ];
 
   return (
-    <svg viewBox={`0 0 ${W} ${H}`} width="100%" role="img" aria-label="Three-way reconciliation flow">
+    <svg
+      viewBox={`0 0 ${W} ${H}`}
+      width="100%"
+      role="img"
+      aria-label="Three-way reconciliation flow"
+    >
       <Defs />
       <ColumnLabel x={laneX} y={40} text="Sources" />
       <ColumnLabel x={engineX} y={40} text="Reconciliation" />
@@ -302,7 +341,13 @@ export function ReconciliationFlowDiagram() {
 
       {/* sources → engine */}
       {lanes.map((l, i) => (
-        <Arrow key={i} x1={laneX + laneW} y1={l.y + laneH / 2} x2={engineX - 4} y2={engineY + laneH / 2} />
+        <Arrow
+          key={i}
+          x1={laneX + laneW}
+          y1={l.y + laneH / 2}
+          x2={engineX - 4}
+          y2={engineY + laneH / 2}
+        />
       ))}
 
       {outs.map((o) => (
@@ -320,7 +365,13 @@ export function ReconciliationFlowDiagram() {
 
       {/* engine → outcomes */}
       {outs.map((o, i) => (
-        <Arrow key={i} x1={engineX + engineW} y1={engineY + laneH / 2} x2={outX - 4} y2={o.y + laneH / 2} />
+        <Arrow
+          key={i}
+          x1={engineX + engineW}
+          y1={engineY + laneH / 2}
+          x2={outX - 4}
+          y2={o.y + laneH / 2}
+        />
       ))}
 
       {/* feedback loop: product loop → ledger */}
@@ -370,7 +421,12 @@ export function OnboardingFlowDiagram() {
   ];
 
   return (
-    <svg viewBox={`0 0 ${W} ${H}`} width="100%" role="img" aria-label="Merchant onboarding and risk decision pipeline">
+    <svg
+      viewBox={`0 0 ${W} ${H}`}
+      width="100%"
+      role="img"
+      aria-label="Merchant onboarding and risk decision pipeline"
+    >
       <Defs />
       <ColumnLabel x={20} y={40} text="Pipeline" />
       <ColumnLabel x={decX} y={20} text="Decision" />
@@ -393,24 +449,34 @@ export function OnboardingFlowDiagram() {
       ))}
 
       {decisions.map((d) => (
-        <Node key={d.label} x={decX} y={d.y} w={decW} h={50} label={d.label} sub={d.sub} accent={d.accent} />
+        <Node
+          key={d.label}
+          x={decX}
+          y={d.y}
+          w={decW}
+          h={50}
+          label={d.label}
+          sub={d.sub}
+          accent={d.accent}
+        />
       ))}
 
       {/* Risk tiering → decisions */}
       {decisions.map((d, i) => (
-        <Arrow
-          key={i}
-          x1={steps[3].x + steps[3].w}
-          y1={y + h / 2}
-          x2={decX - 4}
-          y2={d.y + 25}
-        />
+        <Arrow key={i} x1={steps[3].x + steps[3].w} y1={y + h / 2} x2={decX - 4} y2={d.y + 25} />
       ))}
 
       {/* Activation + monitoring loop */}
       <Node x={300} y={260} w={200} h={50} label="Activation" sub="Limits · capabilities" />
       <Arrow x1={decX + decW / 2} y1={90} x2={500} y2={285} dashed />
-      <Node x={540} y={260} w={180} h={50} label="Ongoing monitoring" sub="Behavior · velocity · AML" />
+      <Node
+        x={540}
+        y={260}
+        w={180}
+        h={50}
+        label="Ongoing monitoring"
+        sub="Behavior · velocity · AML"
+      />
       <Arrow x1={500} y1={285} x2={540} y2={285} />
       <path
         d={`M 540 285 V 330 H 440 V 320`}

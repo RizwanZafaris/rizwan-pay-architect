@@ -23,6 +23,7 @@ The compliance theory is straightforward: every cross-border payment must be scr
 The operating reality is harder. The product decisions inside that compliance envelope determine whether throughput survives, false positives are bearable, and the customer experience is acceptable.
 
 ## Table of contents
+
 - The screening stack
 - Which lists, when, and why
 - The matcher problem

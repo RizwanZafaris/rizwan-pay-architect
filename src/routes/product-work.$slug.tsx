@@ -46,7 +46,12 @@ export const Route = createFileRoute("/product-work/$slug")({
             "@type": "BreadcrumbList",
             itemListElement: [
               { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
-              { "@type": "ListItem", position: 2, name: "Product Work", item: absUrl("/product-work") },
+              {
+                "@type": "ListItem",
+                position: 2,
+                name: "Product Work",
+                item: absUrl("/product-work"),
+              },
               { "@type": "ListItem", position: 3, name: s.title, item: url },
             ],
           }),
@@ -70,7 +75,17 @@ export const Route = createFileRoute("/product-work/$slug")({
   component: CaseStudyPage,
 });
 
-function Section({ id, label, title, children }: { id: string; label: string; title: string; children: React.ReactNode }) {
+function Section({
+  id,
+  label,
+  title,
+  children,
+}: {
+  id: string;
+  label: string;
+  title: string;
+  children: React.ReactNode;
+}) {
   return (
     <section id={id} className="mt-14 scroll-mt-24">
       <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--accent-emerald)] font-mono-tech">
@@ -91,7 +106,10 @@ function CaseStudyPage() {
     <article>
       <header className="border-b border-rule">
         <div className="mx-auto max-w-4xl px-6 pt-16 pb-12">
-          <Link to="/product-work" className="text-[10px] uppercase tracking-[0.18em] text-ink-soft hover:text-ink font-mono-tech">
+          <Link
+            to="/product-work"
+            className="text-[10px] uppercase tracking-[0.18em] text-ink-soft hover:text-ink font-mono-tech"
+          >
             ← Product Work
           </Link>
           <div className="mt-6 text-[10px] uppercase tracking-[0.18em] text-[var(--accent-emerald)] font-mono-tech font-medium">
@@ -107,7 +125,9 @@ function CaseStudyPage() {
             {s.metrics.map((m) => (
               <div key={m.label}>
                 <div className="font-mono-tech text-xl text-ink">{m.value}</div>
-                <div className="text-[10px] uppercase tracking-[0.14em] text-ink-soft mt-1 font-mono-tech">{m.label}</div>
+                <div className="text-[10px] uppercase tracking-[0.14em] text-ink-soft mt-1 font-mono-tech">
+                  {m.label}
+                </div>
               </div>
             ))}
           </div>
@@ -153,18 +173,30 @@ function CaseStudyPage() {
         </Section>
 
         <Section id="built" label="System built" title="What we shipped.">
-          <ul>{s.built.map((b) => <li key={b}>{b}</li>)}</ul>
+          <ul>
+            {s.built.map((b) => (
+              <li key={b}>{b}</li>
+            ))}
+          </ul>
         </Section>
 
         {s.architecture && (
           <Section id="architecture" label="Architecture" title="How it's put together.">
-            <ul>{s.architecture.map((b) => <li key={b}>{b}</li>)}</ul>
+            <ul>
+              {s.architecture.map((b) => (
+                <li key={b}>{b}</li>
+              ))}
+            </ul>
           </Section>
         )}
 
         {s.operatingModel && (
           <Section id="operating-model" label="Operating model" title="How it actually runs.">
-            <ul>{s.operatingModel.map((b) => <li key={b}>{b}</li>)}</ul>
+            <ul>
+              {s.operatingModel.map((b) => (
+                <li key={b}>{b}</li>
+              ))}
+            </ul>
           </Section>
         )}
 
@@ -173,28 +205,49 @@ function CaseStudyPage() {
         </Section>
 
         <Section id="impact" label="Impact" title="What moved.">
-          <ul>{s.impact.map((b) => <li key={b}>{b}</li>)}</ul>
+          <ul>
+            {s.impact.map((b) => (
+              <li key={b}>{b}</li>
+            ))}
+          </ul>
         </Section>
 
         {s.tradeoffs && (
           <Section id="tradeoffs" label="Trade-offs" title="What we chose against.">
-            <ul>{s.tradeoffs.map((b) => <li key={b}>{b}</li>)}</ul>
+            <ul>
+              {s.tradeoffs.map((b) => (
+                <li key={b}>{b}</li>
+              ))}
+            </ul>
           </Section>
         )}
 
         <Section id="lessons" label="Lessons" title="What I'd take into the next build.">
-          <ul>{s.lessons.map((b) => <li key={b}>{b}</li>)}</ul>
+          <ul>
+            {s.lessons.map((b) => (
+              <li key={b}>{b}</li>
+            ))}
+          </ul>
         </Section>
 
-        <Section id="why-it-matters" label="Why it matters" title="Relevance to networks, PSPs and cross-border platforms.">
+        <Section
+          id="why-it-matters"
+          label="Why it matters"
+          title="Relevance to networks, PSPs and cross-border platforms."
+        >
           <p>{s.whyItMatters}</p>
         </Section>
 
         <div className="mt-14 pt-8 border-t border-rule">
-          <div className="text-[10px] uppercase tracking-[0.18em] text-ink-soft mb-3 font-mono-tech">Keywords</div>
+          <div className="text-[10px] uppercase tracking-[0.18em] text-ink-soft mb-3 font-mono-tech">
+            Keywords
+          </div>
           <div className="flex flex-wrap gap-2">
             {s.keywords.map((k) => (
-              <span key={k} className="text-xs px-2.5 py-1 border border-rule rounded-full text-ink-soft bg-surface font-sans">
+              <span
+                key={k}
+                className="text-xs px-2.5 py-1 border border-rule rounded-full text-ink-soft bg-surface font-sans"
+              >
                 {k}
               </span>
             ))}
@@ -237,8 +290,12 @@ function CaseStudyPage() {
                 params={{ slug: c.slug }}
                 className="group block bg-surface border border-rule rounded-2xl p-6 hover:border-ink/30 transition-colors"
               >
-                <div className="text-[10px] uppercase tracking-[0.18em] text-[var(--accent-emerald)] font-mono-tech">{c.category}</div>
-                <div className="font-instrument text-lg text-ink mt-2 leading-snug group-hover:text-[var(--brand)] transition-colors">{c.title}</div>
+                <div className="text-[10px] uppercase tracking-[0.18em] text-[var(--accent-emerald)] font-mono-tech">
+                  {c.category}
+                </div>
+                <div className="font-instrument text-lg text-ink mt-2 leading-snug group-hover:text-[var(--brand)] transition-colors">
+                  {c.title}
+                </div>
                 <p className="text-sm text-ink-soft mt-2">{c.tagline}</p>
               </Link>
             ))}

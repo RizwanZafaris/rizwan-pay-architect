@@ -1,5 +1,5 @@
 ---
-title: "Hosted Checkout Is Easy. Direct Card Processing Is Where Product Maturity Shows."
+title: "Hosted Checkout vs Direct Card Processing: A Product Maturity Guide (MPGS, MDES, 3DS)"
 slug: "hosted-checkout-vs-direct-card-processing"
 category: "Payment Infrastructure"
 subcategory: "Card Acceptance"
@@ -8,9 +8,26 @@ metaDescription: "Hosted checkout ships fast. Direct card processing ships matur
 excerpt: "Why hosted checkout is the right first step and the wrong last step — and what direct card processing actually demands from a product team."
 publishDate: "2026-05-21"
 readingTime: "12 min read"
-tags: ["card processing", "hosted checkout", "MPGS", "MDES", "tokenization", "3DS", "PCI DSS", "payment infrastructure"]
+tags:
+  [
+    "card processing",
+    "hosted checkout",
+    "MPGS",
+    "MDES",
+    "tokenization",
+    "3DS",
+    "PCI DSS",
+    "payment infrastructure",
+  ]
 targetAudience: ["Fintech PMs", "Payments platform leaders", "Acquirer product teams"]
-targetKeywords: ["hosted checkout vs direct card processing", "MPGS hosted checkout", "direct card processing PCI scope", "card tokenization product", "3DS2 product design"]
+targetKeywords:
+  [
+    "hosted checkout vs direct card processing",
+    "MPGS hosted checkout",
+    "direct card processing PCI scope",
+    "card tokenization product",
+    "3DS2 product design",
+  ]
 relatedCaseStudies:
   - "/blog/hosted-checkout-vs-direct-card-processing"
   - "/product-work/simpaisa-payment-infrastructure"
@@ -28,6 +45,7 @@ Every fintech ships hosted checkout first. That is the right call. It is also th
 This is a practitioner walk-through of what hosted checkout actually gives you, what it costs you, and what direct card processing demands when you decide to graduate.
 
 ## Table of contents
+
 - The hosted checkout default
 - What hosted checkout actually outsources
 - The five reasons teams graduate to direct
@@ -88,12 +106,12 @@ The team profile shifts too. Direct card processing needs a product owner who ca
 
 The PCI DSS scoping decision is the one that determines everything else.
 
-| Approach | PCI scope | Pros | Cons |
-|---|---|---|---|
-| Hosted redirect | SAQ A | Lowest scope, fastest launch | Lowest control over UX and conversion |
-| Iframe / hosted fields | SAQ A or A-EP | Low scope, branded UX | Limited control over failure flow |
-| Direct API, no PAN storage | SAQ D-Merchant + tokenization | Full UX control, no card data at rest | Active PCI program required |
-| Direct API + card vault | SAQ D + Level 1 audit if volume | Maximum control, true PSP independence | Significant ongoing compliance investment |
+| Approach                   | PCI scope                       | Pros                                   | Cons                                      |
+| -------------------------- | ------------------------------- | -------------------------------------- | ----------------------------------------- |
+| Hosted redirect            | SAQ A                           | Lowest scope, fastest launch           | Lowest control over UX and conversion     |
+| Iframe / hosted fields     | SAQ A or A-EP                   | Low scope, branded UX                  | Limited control over failure flow         |
+| Direct API, no PAN storage | SAQ D-Merchant + tokenization   | Full UX control, no card data at rest  | Active PCI program required               |
+| Direct API + card vault    | SAQ D + Level 1 audit if volume | Maximum control, true PSP independence | Significant ongoing compliance investment |
 
 Most platforms that graduate to direct land on "Direct API, no PAN storage" — they take the PAN in transit, immediately exchange it for a network token, and never store the raw number. That is the sweet spot: meaningful product control, manageable PCI scope, and PSP independence.
 
@@ -155,11 +173,11 @@ The same maturity arc applied at Daraz in handling card disputes — owning the 
 
 ## Suggested external sources
 
-- PCI Security Standards Council: *PCI DSS v4.0* and SAQ types
-- Mastercard MDES: *Digital Enablement Service* documentation
-- Visa VTS: *Visa Token Service* developer documentation
-- EMVCo: *3DS 2.x specifications*
-- Stripe Docs: *Network tokens* — for one well-documented implementation reference
+- PCI Security Standards Council: _PCI DSS v4.0_ and SAQ types
+- Mastercard MDES: _Digital Enablement Service_ documentation
+- Visa VTS: _Visa Token Service_ developer documentation
+- EMVCo: _3DS 2.x specifications_
+- Stripe Docs: _Network tokens_ — for one well-documented implementation reference
 
 ## FAQ
 
@@ -191,7 +209,11 @@ Underestimating the 3DS step-up product. Teams ship direct, default to step-up-e
   "@type": "BlogPosting",
   "headline": "Hosted Checkout Is Easy. Direct Card Processing Is Where Product Maturity Shows.",
   "description": "A practitioner walk-through of MPGS, MDES, tokenization, 3DS2, and PCI scope when moving from hosted checkout to direct card processing.",
-  "author": {"@type": "Person", "name": "Rizwan Zafar", "url": "https://rizwan-pay-architect.lovable.app"},
+  "author": {
+    "@type": "Person",
+    "name": "Rizwan Zafar",
+    "url": "https://rizwan-pay-architect.lovable.app"
+  },
   "datePublished": "2026-05-21",
   "articleSection": "Payment Infrastructure",
   "keywords": "hosted checkout, direct card processing, MPGS, MDES, tokenization, 3DS2, PCI DSS",
@@ -200,10 +222,12 @@ Underestimating the 3DS step-up product. Teams ship direct, default to step-up-e
 ```
 
 ### Open Graph
+
 - **og:title:** Hosted Checkout vs Direct Card Processing — Where Product Maturity Shows
 - **og:description:** Why hosted is the right first step and the wrong last step. PCI scope, network tokens, 3DS2, and routing as product decisions.
 
 ### LinkedIn teaser
+
 > Every fintech ships hosted checkout first. The good ones graduate.
 >
 > Direct card processing is where the product team finally owns conversion, cost, tokenization, 3DS, and routing — and where PCI scope, network tokens, and acquirer routing become real product surfaces.

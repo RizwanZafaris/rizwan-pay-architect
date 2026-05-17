@@ -1,5 +1,5 @@
 ---
-title: "Financial Controls Are Product Requirements."
+title: "Financial Controls Are Product Requirements, Not Compliance Afterthoughts"
 slug: "financial-controls-are-product-requirements"
 category: "Settlement & Reconciliation"
 metaTitle: "Financial Controls Are Product Requirements | Rizwan Zafar"
@@ -9,7 +9,13 @@ publishDate: "2026-05-26"
 readingTime: "9 min read"
 tags: ["financial controls", "audit", "SOX-like", "segregation of duties", "ledger", "compliance"]
 targetAudience: ["Fintech CFOs", "Platform PMs", "Audit + compliance"]
-targetKeywords: ["financial controls fintech", "audit trail payment platform", "segregation of duties payments", "maker checker payments"]
+targetKeywords:
+  [
+    "financial controls fintech",
+    "audit trail payment platform",
+    "segregation of duties payments",
+    "maker checker payments",
+  ]
 relatedCaseStudies:
   - "/product-work/settlement-reconciliation"
 relatedArticles:
@@ -24,6 +30,7 @@ Every payment platform eventually meets an external auditor. The platforms that 
 I have stood up the financial-control side of a payments platform processing $1B+ GTV, reconciled across cards, wallets, IBFT, DCB, and bank rails, and walked external auditors through the system. The lesson is consistent: controls are not a compliance overlay. They are a product surface that, if missing, will eventually cost the company the license to operate.
 
 ## Table of contents
+
 - The compliance overlay trap
 - What "financial controls" actually means in software
 - Segregation of duties as a product feature
@@ -127,6 +134,7 @@ The work at Simpaisa that produced the cleanest audits was not a compliance proj
 ---
 
 ### LinkedIn teaser
+
 > If your audit trail is reconstructed from application logs, you do not have controls. You have archaeology.
 >
 > Controls are product requirements. The platforms that pass audits are the ones that shipped them on sprint one.

@@ -8,7 +8,13 @@ excerpt: "De-risking did not reduce risk. It moved the risk to the corridors tha
 publishDate: "2026-06-19"
 readingTime: "9 min read"
 tags: ["correspondent banking", "emerging markets", "cross-border", "de-risking", "nostro vostro"]
-targetKeywords: ["correspondent banking emerging markets", "de-risking", "nostro vostro accounts", "cross-border corridors"]
+targetKeywords:
+  [
+    "correspondent banking emerging markets",
+    "de-risking",
+    "nostro vostro accounts",
+    "cross-border corridors",
+  ]
 relatedArticles:
   - "/blog/cross-border-corridors-are-operating-systems"
   - "/blog/swift-for-emerging-markets-banking"
@@ -23,6 +29,7 @@ The story of the last fifteen years is **de-risking** — global banks shedding 
 This essay is the operator view of that reality and the product opportunities it creates.
 
 ## Table of contents
+
 - How correspondent banking works
 - Nostro and vostro, briefly
 - De-risking and what it actually changed

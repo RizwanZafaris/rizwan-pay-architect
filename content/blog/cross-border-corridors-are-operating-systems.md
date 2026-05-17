@@ -1,5 +1,5 @@
 ---
-title: "Cross-Border Corridors Are Operating Systems, Not Routes."
+title: "Cross-Border Corridors Are Operating Systems, Not Routes"
 slug: "cross-border-corridors-are-operating-systems"
 category: "SWIFT & Cross-Border Payments"
 subcategory: "Corridors"
@@ -8,9 +8,27 @@ metaDescription: "A corridor is not a partner integration. It is a product with 
 excerpt: "Cards-first thinking breaks at the border. Owning the corridor abstraction is owning the margin in cross-border payments."
 publishDate: "2026-05-26"
 readingTime: "11 min read"
-tags: ["cross-border payments", "corridors", "FX", "SWIFT", "ISO 20022", "MENA", "South Asia", "emerging markets"]
-targetAudience: ["Cross-border PMs", "Wise / Thunes / Stripe payouts teams", "Bank cross-border product leaders"]
-targetKeywords: ["cross-border payment corridors", "payment corridor product", "FX in cross-border payments", "emerging market corridor design", "SWIFT corridor product strategy"]
+tags:
+  [
+    "cross-border payments",
+    "corridors",
+    "FX",
+    "SWIFT",
+    "ISO 20022",
+    "MENA",
+    "South Asia",
+    "emerging markets",
+  ]
+targetAudience:
+  ["Cross-border PMs", "Wise / Thunes / Stripe payouts teams", "Bank cross-border product leaders"]
+targetKeywords:
+  [
+    "cross-border payment corridors",
+    "payment corridor product",
+    "FX in cross-border payments",
+    "emerging market corridor design",
+    "SWIFT corridor product strategy",
+  ]
 relatedCaseStudies:
   - "/product-work/cross-border-corridors-fx"
   - "/product-work/simpaisa-payment-infrastructure"
@@ -29,6 +47,7 @@ That gets the first transaction through. It does not get the hundredth-thousand 
 This essay is the framing I have used to build pay-in and payout corridors across MENA and South Asia — UAE, Pakistan, Bangladesh, Nepal, Iraq, Egypt — and what product teams at corridor companies should internalize.
 
 ## Table of contents
+
 - Why "corridor as route" fails
 - What a corridor actually contains
 - The FX product no one ships
@@ -156,10 +175,10 @@ The result was a corridor portfolio where the team could explain, per corridor, 
 
 ## Suggested external sources
 
-- BIS/CPMI: *Cross-border payments roadmap and quantitative targets*
-- FATF: *Recommendation 16* on wire transfers
-- World Bank: *Remittance prices worldwide* — for corridor-cost benchmarking
-- SWIFT: *gpi tracker* documentation — for cross-border tracking expectations
+- BIS/CPMI: _Cross-border payments roadmap and quantitative targets_
+- FATF: _Recommendation 16_ on wire transfers
+- World Bank: _Remittance prices worldwide_ — for corridor-cost benchmarking
+- SWIFT: _gpi tracker_ documentation — for cross-border tracking expectations
 - ISO 20022: messaging standard documentation
 
 ## FAQ
@@ -192,7 +211,11 @@ Single-partner dependency with no segmented observability, leading to silent suc
   "@type": "BlogPosting",
   "headline": "Cross-Border Corridors Are Operating Systems, Not Routes.",
   "description": "A corridor is a product with its own success rate, FX behavior, compliance overlay, and unit economics. A practitioner view from MENA and South Asia.",
-  "author": {"@type": "Person", "name": "Rizwan Zafar", "url": "https://rizwan-pay-architect.lovable.app"},
+  "author": {
+    "@type": "Person",
+    "name": "Rizwan Zafar",
+    "url": "https://rizwan-pay-architect.lovable.app"
+  },
   "datePublished": "2026-05-26",
   "articleSection": "SWIFT & Cross-Border Payments",
   "keywords": "cross-border payments, corridor product, FX, SWIFT, ISO 20022, emerging markets",
@@ -201,10 +224,12 @@ Single-partner dependency with no segmented observability, leading to silent suc
 ```
 
 ### Open Graph
+
 - **og:title:** Cross-Border Corridors Are Operating Systems, Not Routes
 - **og:description:** FX, compliance, success rate, P&L — what owning a corridor actually means in emerging markets.
 
 ### LinkedIn teaser
+
 > A corridor is not a partner integration. It is an operating system with its own success rate, FX behavior, compliance overlay, dispute timeline, and P&L.
 >
 > The cross-border platforms that scale are the ones that figured this out. The ones that treat cross-border as "we wired up SWIFT and added some receiver options" lose the corridor war one country at a time.

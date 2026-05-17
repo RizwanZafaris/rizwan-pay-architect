@@ -10,7 +10,13 @@ publishDate: "2026-05-21"
 readingTime: "8 min read"
 tags: ["settlement", "merchant trust", "cashflow", "payment infrastructure"]
 targetAudience: ["Payments PMs", "Merchant success leaders", "Risk leaders"]
-targetKeywords: ["settlement windows", "T+1 settlement", "merchant settlement timing", "payment settlement design"]
+targetKeywords:
+  [
+    "settlement windows",
+    "T+1 settlement",
+    "merchant settlement timing",
+    "payment settlement design",
+  ]
 relatedCaseStudies:
   - "/product-work/settlement-reconciliation"
   - "/product-work/simpaisa-payment-infrastructure"

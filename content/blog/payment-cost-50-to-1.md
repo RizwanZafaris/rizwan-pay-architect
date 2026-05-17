@@ -1,5 +1,5 @@
 ---
-title: "Payment Cost Is a Product Variable: From 50% to 1%."
+title: "Payment Cost Is a Product Variable: From 50% to 1% (Tapmad Migration Playbook)"
 slug: "payment-cost-50-to-1"
 category: "Product Strategy"
 metaTitle: "Payment Cost: From 50% to 1% | Rizwan Zafar"
@@ -9,7 +9,14 @@ publishDate: "2026-05-29"
 readingTime: "11 min read"
 tags: ["billing", "DCB", "wallets", "unit economics", "subscription", "OTT", "dunning"]
 targetAudience: ["OTT PMs", "Subscription product leaders", "Fintech revenue PMs"]
-targetKeywords: ["payment cost optimization", "subscription payment cost", "DCB billing", "wallet billing subscription", "dunning recovery"]
+targetKeywords:
+  [
+    "payment cost optimization",
+    "subscription payment cost",
+    "DCB billing",
+    "wallet billing subscription",
+    "dunning recovery",
+  ]
 relatedCaseStudies:
   - "/product-work/tapmad-wallet-billing-migration"
 relatedArticles:
@@ -25,6 +32,7 @@ A subscription business that loses 50% of revenue to payment cost is not a billi
 I led the migration at Tapmad that took payment cost from roughly 50% of revenue down to ~1%, grew subscribers past 5M, and lifted ARPU by ~70%. This essay is the operator playbook: the rail-mix decisions, the dunning rebuild, the smart-retry logic, and the commercial leverage that came out the other side. None of it required new vendors. All of it required treating payment cost as a product variable.
 
 ## Table of contents
+
 - Where 50% came from
 - The wrong framing: payment cost as procurement
 - The right framing: payment cost as architecture
@@ -141,6 +149,7 @@ The hardest part of the Tapmad work was not the engineering. It was convincing t
 ---
 
 ### LinkedIn teaser
+
 > 50% of revenue going to payment cost is not a billing problem. It is a product architecture problem.
 >
 > The Tapmad playbook: rail-mix as default, smart retries per rail, dunning that recovers, commercial leverage from the new mix. ~50% → ~1%, 5M+ subscribers, ARPU up ~70%.

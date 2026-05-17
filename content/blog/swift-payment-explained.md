@@ -24,6 +24,7 @@ SWIFT is the most misunderstood word in cross-border payments. It is not a payme
 Understanding that single distinction makes most cross-border payment problems legible.
 
 ## Table of contents
+
 - What SWIFT actually is
 - The anatomy of a SWIFT payment
 - Correspondent banking, briefly

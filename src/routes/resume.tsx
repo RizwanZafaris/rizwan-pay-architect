@@ -11,13 +11,30 @@ export const Route = createFileRoute("/resume")({
         content:
           "Resume of Rizwan Zafar — Payments Product Executive. 14+ years in product and delivery; 8+ building regulated payments infrastructure at $1B+ GTV.",
       },
+      // noindex so search engines always send recruiters to the homepage / latest version
+      // (the canonical résumé surface is the homepage + downloadable PDF).
+      { name: "robots", content: "noindex, follow" },
       { property: "og:title", content: "Resume — Rizwan Zafar" },
-      { property: "og:description", content: "Executive resume — payments product, infrastructure, risk and cross-border." },
+      {
+        property: "og:description",
+        content: "Executive resume — payments product, infrastructure, risk and cross-border.",
+      },
       { property: "og:url", content: absUrl("/resume") },
+      { name: "twitter:title", content: "Resume — Rizwan Zafar" },
+      {
+        name: "twitter:description",
+        content:
+          "Executive resume — payments product, infrastructure, risk and cross-border. $1B+ GTV, 25M+ tx/mo.",
+      },
     ],
     links: [
       { rel: "canonical", href: absUrl("/resume") },
-      { rel: "alternate", type: "application/pdf", href: profile.resumeHref, title: "Download PDF resume" },
+      {
+        rel: "alternate",
+        type: "application/pdf",
+        href: profile.resumeHref,
+        title: "Download PDF resume",
+      },
     ],
   }),
   component: ResumePage,
@@ -35,14 +52,24 @@ function ResumePage() {
           <h1 className="font-instrument text-4xl md:text-5xl text-ink leading-tight">
             {profile.name} — Payments Product Executive
           </h1>
-          <p className="mt-2 text-ink-soft">{profile.role} · {profile.location}</p>
+          <p className="mt-2 text-ink-soft">
+            {profile.role} · {profile.location}
+          </p>
         </div>
         <a
           href={profile.resumeHref}
           download
           className="inline-flex items-center gap-2 rounded-full bg-ink text-background px-5 py-2.5 text-sm font-medium hover:bg-brand transition-colors"
         >
-          <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg>
+          <svg
+            className="w-4 h-4"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+          >
+            <path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14" />
+          </svg>
           Download Resume (PDF)
         </a>
       </div>
@@ -68,7 +95,9 @@ function ResumePage() {
         {profile.metrics.map((m) => (
           <div key={m.label}>
             <div className="font-mono-tech text-xl text-ink">{m.value}</div>
-            <div className="text-[10px] uppercase tracking-[0.14em] text-ink-soft mt-1 font-mono-tech">{m.label}</div>
+            <div className="text-[10px] uppercase tracking-[0.14em] text-ink-soft mt-1 font-mono-tech">
+              {m.label}
+            </div>
           </div>
         ))}
       </section>
@@ -94,7 +123,10 @@ function ResumePage() {
           </div>
           <div className="mt-2 flex flex-wrap gap-2">
             {profile.relevantFor.map((c) => (
-              <span key={c} className="text-xs px-2.5 py-1 border border-rule rounded-full text-ink bg-surface">
+              <span
+                key={c}
+                className="text-xs px-2.5 py-1 border border-rule rounded-full text-ink bg-surface"
+              >
                 {c}
               </span>
             ))}
@@ -110,10 +142,14 @@ function ResumePage() {
             <div key={e.company} className="grid md:grid-cols-12 gap-6">
               <div className="md:col-span-3 text-sm text-ink-soft">
                 <div className="font-mono-tech">{e.period}</div>
-                <div className="text-[10px] uppercase tracking-[0.14em] mt-1 font-mono-tech">{e.location}</div>
+                <div className="text-[10px] uppercase tracking-[0.14em] mt-1 font-mono-tech">
+                  {e.location}
+                </div>
               </div>
               <div className="md:col-span-9">
-                <div className="font-instrument text-lg text-ink">{e.role} · {e.company}</div>
+                <div className="font-instrument text-lg text-ink">
+                  {e.role} · {e.company}
+                </div>
                 <ul className="mt-3 space-y-2 text-ink-soft">
                   {e.bullets.map((b) => (
                     <li key={b} className="pl-4 relative text-sm">
@@ -134,10 +170,15 @@ function ResumePage() {
         <div className="grid md:grid-cols-2 gap-8">
           {profile.skills.map((s) => (
             <div key={s.group}>
-              <div className="text-[10px] uppercase tracking-[0.16em] text-ink-soft mb-3 font-mono-tech">{s.group}</div>
+              <div className="text-[10px] uppercase tracking-[0.16em] text-ink-soft mb-3 font-mono-tech">
+                {s.group}
+              </div>
               <div className="flex flex-wrap gap-2">
                 {s.items.map((i) => (
-                  <span key={i} className="text-xs px-2.5 py-1 border border-rule rounded-full text-ink bg-surface">
+                  <span
+                    key={i}
+                    className="text-xs px-2.5 py-1 border border-rule rounded-full text-ink bg-surface"
+                  >
                     {i}
                   </span>
                 ))}
@@ -166,10 +207,15 @@ function ResumePage() {
         <div>
           <h2 className="font-instrument text-2xl text-ink mb-4">Certifications</h2>
           <ul className="space-y-2 text-ink-soft">
-            {profile.certifications.map((c) => <li key={c} className="text-sm">· {c}</li>)}
+            {profile.certifications.map((c) => (
+              <li key={c} className="text-sm">
+                · {c}
+              </li>
+            ))}
           </ul>
           <p className="mt-3 text-xs text-ink-soft">
-            PCI DSS and ISO/IEC 27001 reflect program leadership at Simpaisa, not personal lead-auditor certification.
+            PCI DSS and ISO/IEC 27001 reflect program leadership at Simpaisa, not personal
+            lead-auditor certification.
           </p>
           <h2 className="font-instrument text-2xl text-ink mb-4 mt-10">Honors</h2>
           <ul className="space-y-3">

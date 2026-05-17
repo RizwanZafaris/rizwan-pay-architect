@@ -11,15 +11,17 @@ export const profile = {
     "Payments product executive — payment infrastructure, cross-border rails, settlement, KYC/KYB, AML/CFT, fraud and merchant acceptance.",
   positioning:
     "I build regulated payment infrastructure where product, network partnerships, risk, compliance, and operations collide. My work turns fragmented local rails into reliable products: merchant onboarding, payment acceptance, cross-border corridors, settlement, reconciliation, fraud controls, and market expansion.",
-  bio:
-    "Payments product executive with $1B+ annual GTV experience across acceptance, cross-border rails, merchant onboarding, settlement, fraud/risk, KYC/KYB, AML/CFT, wallets, and regulated fintech platforms. 14+ years across product, payments and complex program delivery — including 8+ years building regulated payment infrastructure across emerging markets. Currently CPO at Simpaisa: $1B+ annual GTV, 25M+ monthly transactions across five countries. Led PCI DSS and ISO/IEC 27001 certification programs from scratch and held a dual CPO + acting CTO role through a regulatory tightening.",
+  bio: "Payments product executive with $1B+ annual GTV experience across acceptance, cross-border rails, merchant onboarding, settlement, fraud/risk, KYC/KYB, AML/CFT, wallets, BNPL and regulated fintech platforms. 14+ years across product, payments and complex program delivery — including 8+ years building regulated payment infrastructure across emerging markets. Currently CPO at Simpaisa: $1B+ annual GTV, 25M+ monthly transactions across five countries, 40-engineer payments org. Dropped payment failure rate from ~8% to ~1.2%, launched BNPL from 0 to 100K users in 8 months, and held a dual CPO + acting CTO role through a regulatory tightening. Led PCI DSS and ISO/IEC 27001 programs from scratch.",
   metrics: [
     { label: "Annual GTV", value: "$1B+" },
     { label: "Monthly transactions", value: "25M+" },
     { label: "Markets", value: "5" },
     { label: "Settlement SLA", value: "99.95%" },
     { label: "Downtime reduction", value: "−90%" },
-    { label: "Payment cost", value: "50% → 1%" },
+    { label: "Payment cost (Tapmad)", value: "50% → 1%" },
+    { label: "Payment failure rate", value: "8% → 1.2%" },
+    { label: "BNPL launch", value: "0 → 100K in 8mo" },
+    { label: "Engineers led", value: "40 across 12 squads" },
   ],
   targetRoles: [
     "Director / Head / VP Product, Payments",
@@ -60,8 +62,11 @@ export const profile = {
       bullets: [
         "Built full-stack payment infrastructure: card acquiring (MPGS/MDES), wallets, DCB, IBFT, vouchers, bill payments, payout switch, cash-over-counter and cross-border corridors with real-time FX and dynamic corridor pricing.",
         "Designed merchant onboarding with self-service flows, automated KYC/KYB, tiered risk-based approval and category-based pricing — onboarding cut from weeks to hours for standard-risk merchants.",
-        "Built fraud and risk infrastructure: transaction monitoring, velocity checks, device fingerprinting, AML/CFT controls, SAR workflows and chargeback management. Fraud loss held below 0.1% of GTV.",
-        "Led PCI DSS and ISO 27001 certification from scratch and stood up multi-jurisdiction regulatory reporting.",
+        "Built fraud and risk infrastructure: transaction monitoring, velocity checks, device fingerprinting, AML/CFT controls, SAR workflows and chargeback management. Fraud loss held below 0.1% of GTV; fraud incidents reduced ~65%.",
+        "Drove authorisation-rate optimisation across acquiring partners: payment failure rate dropped from ~8% to ~1.2% through routing logic, retry orchestration and bank SLA management.",
+        "Launched BNPL product from 0 to 100K users in 8 months — full risk model, underwriting, repayment flows and collections, shipped through iterative agile discovery.",
+        "Led PCI DSS and ISO/IEC 27001 certification from scratch and stood up multi-jurisdiction regulatory reporting.",
+        "Built and led a 40-engineer payments organisation across 12 cross-functional squads (mobile, backend, payments, risk, compliance). Managed $5M+ annual technology budget and 15+ vendor relationships.",
         "Scaled the partnership ecosystem: local infrastructure partner for DLocal, Thunes, Boku, Coda. Enabled TikTok, Temu, Uber, InDrive, MoneyGram, PUBG to collect and disburse where they had no local rails.",
         "Took on dual CPO + acting CTO during 2024 CTO departure and regulatory tightening — held platform stability, security architecture and product direction at the same time.",
         "Results: $1B+ GTV · 25M+ monthly transactions · 99.95% settlement SLA · 90% downtime reduction · 30% enterprise wallet adoption · expanded to Bangladesh, Nepal, Iraq and Egypt.",
@@ -75,6 +80,7 @@ export const profile = {
       bullets: [
         "Ran delivery governance for payment operations across five markets (Pakistan, Bangladesh, Sri Lanka, Nepal, Myanmar) during a COVID-driven volume surge: settlement cycles, dispute resolution, fraud rule configuration and COD-to-digital conversion.",
         "Coordinated multi-country reconciliation, payment compliance and vendor management at Alibaba scale; built PMO-style tracking and reporting for payment operations KPIs.",
+        "Collaborated with Alibaba product teams in Hangzhou to localise Alipay and other regional payment methods, expanding payment coverage on Daraz checkout by ~40%.",
         "Tightened fraud rules for high-risk categories and shortened dispute resolution time.",
       ],
     },
@@ -173,6 +179,11 @@ export const profile = {
   ],
   certifications: [
     "Project Management Professional (PMP) — PMI",
+    "PMI Agile Certified Practitioner (PMI-ACP) — PMI",
+    "Certified Scrum Product Owner (CSPO) — Scrum Alliance",
+    "Certified Scrum Master (CSM) — Scrum Alliance",
+    "COBIT 5 — IT Governance (ISACA)",
+    "ITIL v3 — IT Service Management (Axelos)",
     "Led PCI DSS certification program from scratch (Simpaisa)",
     "Led ISO/IEC 27001 certification program from scratch (Simpaisa)",
   ],

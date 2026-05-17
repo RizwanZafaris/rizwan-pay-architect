@@ -12,15 +12,7 @@ const READERS = [
   "Founder / operator",
 ] as const;
 
-const COMPANIES = [
-  "Visa",
-  "Mastercard",
-  "Stripe",
-  "Adyen",
-  "Wise",
-  "Thunes",
-  "DLocal",
-] as const;
+const COMPANIES = ["Visa", "Mastercard", "Stripe", "Adyen", "Wise", "Thunes", "DLocal"] as const;
 
 const searchSchema = z.object({
   q: fallback(z.string(), "").default(""),
@@ -40,8 +32,17 @@ export const Route = createFileRoute("/blog/")({
           "Searchable essays on payment infrastructure, cross-border payments, SWIFT, ISO 20022, settlement, fraud and merchant onboarding.",
       },
       { property: "og:title", content: "Payments Essays — Rizwan Zafar" },
-      { property: "og:description", content: "A searchable knowledge base for payments product leaders." },
+      {
+        property: "og:description",
+        content: "A searchable knowledge base for payments product leaders.",
+      },
       { property: "og:url", content: absUrl("/blog") },
+      { name: "twitter:title", content: "Payments Essays — Rizwan Zafar" },
+      {
+        name: "twitter:description",
+        content:
+          "Searchable essays on payment infrastructure, SWIFT, ISO 20022, settlement, fraud and onboarding.",
+      },
     ],
     links: [{ rel: "canonical", href: absUrl("/blog") }],
     scripts: [
@@ -108,9 +109,8 @@ function BlogIndex() {
     return true;
   });
 
-  const featured = !q && !hub && !reader && !company
-    ? (posts.find((p) => p.featured) ?? posts[0])
-    : null;
+  const featured =
+    !q && !hub && !reader && !company ? (posts.find((p) => p.featured) ?? posts[0]) : null;
   const list = featured ? filtered.filter((p) => p.slug !== featured.slug) : filtered;
   const activeHub = hub ? hubs.find((h) => h.slug === hub) : null;
 
@@ -158,7 +158,10 @@ function BlogIndex() {
       <div className="mt-12 rounded-2xl border border-rule bg-surface/60 p-5 md:p-6">
         <div className="grid md:grid-cols-12 gap-3">
           <div className="md:col-span-5">
-            <label className="text-[10px] uppercase tracking-[0.18em] text-ink-soft font-mono-tech" htmlFor="blog-q">
+            <label
+              className="text-[10px] uppercase tracking-[0.18em] text-ink-soft font-mono-tech"
+              htmlFor="blog-q"
+            >
               Search
             </label>
             <input
@@ -175,7 +178,10 @@ function BlogIndex() {
             label="Topic"
             value={hub}
             onChange={(v) => setParam("hub", v)}
-            options={[["", "All topics"], ...hubs.map((h): [string, string] => [h.slug, h.shortTitle])]}
+            options={[
+              ["", "All topics"],
+              ...hubs.map((h): [string, string] => [h.slug, h.shortTitle]),
+            ]}
           />
           <Select
             id="blog-reader"
@@ -221,7 +227,13 @@ function BlogIndex() {
               className="group grid md:grid-cols-12 gap-6 py-7 hover:bg-surface-2 px-2 -mx-2 rounded transition-colors"
             >
               <div className="md:col-span-3 text-xs text-ink-soft font-mono-tech">
-                <div>{new Date(p.date).toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" })}</div>
+                <div>
+                  {new Date(p.date).toLocaleDateString("en-US", {
+                    year: "numeric",
+                    month: "short",
+                    day: "numeric",
+                  })}
+                </div>
                 <div className="mt-1 uppercase tracking-[0.14em] text-[10px] text-[var(--accent-emerald)] font-medium">
                   {p.category}
                 </div>
@@ -234,12 +246,16 @@ function BlogIndex() {
                 <p className="mt-2 text-ink-soft leading-relaxed">{p.thesis ?? p.description}</p>
                 <div className="mt-3 flex flex-wrap gap-2">
                   {p.tags.slice(0, 4).map((t) => (
-                    <span key={t} className="text-[10px] px-2 py-0.5 border border-rule rounded-full text-ink-soft bg-surface font-mono-tech uppercase tracking-[0.1em]">
+                    <span
+                      key={t}
+                      className="text-[10px] px-2 py-0.5 border border-rule rounded-full text-ink-soft bg-surface font-mono-tech uppercase tracking-[0.1em]"
+                    >
                       {t}
                     </span>
                   ))}
                   <span className="ml-auto text-xs text-ink-soft group-hover:text-ink inline-flex items-center gap-1">
-                    Read essay <span className="transition-transform group-hover:translate-x-1">→</span>
+                    Read essay{" "}
+                    <span className="transition-transform group-hover:translate-x-1">→</span>
                   </span>
                 </div>
               </div>
@@ -281,7 +297,10 @@ type SelectProps = {
 function Select({ id, label, value, onChange, options }: SelectProps) {
   return (
     <div className="md:col-span-2">
-      <label className="text-[10px] uppercase tracking-[0.18em] text-ink-soft font-mono-tech" htmlFor={id}>
+      <label
+        className="text-[10px] uppercase tracking-[0.18em] text-ink-soft font-mono-tech"
+        htmlFor={id}
+      >
         {label}
       </label>
       <select

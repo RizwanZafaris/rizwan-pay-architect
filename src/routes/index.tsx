@@ -22,21 +22,25 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Payments product executive: $1B+ GTV, cross-border rails, settlement, KYC/KYB, AML and fraud across MENA and South Asia.",
+          "Payments product executive: $1B+ GTV, 25M+ monthly transactions across 5 regulated markets. Cross-border rails, settlement, KYC/KYB, AML and fraud. Built infrastructure used by TikTok, Uber, Temu, MoneyGram and InDrive.",
       },
       { property: "og:title", content: "Rizwan Zafar — Payments Product Executive | Dubai" },
       {
         property: "og:description",
         content:
-          "Payments infrastructure for complex markets. $1B+ GTV. 25M+ monthly transactions. 5 markets.",
+          "Payments infrastructure for complex markets. $1B+ GTV. 25M+ monthly transactions. 5 markets. Used by TikTok, Uber, Temu.",
       },
       { property: "og:url", content: absUrl("/") },
       { property: "og:type", content: "profile" },
+      { name: "twitter:title", content: "Rizwan Zafar — Payments Product Executive | Dubai" },
+      {
+        name: "twitter:description",
+        content:
+          "Payments infrastructure for complex markets. $1B+ GTV. 25M+ monthly transactions. 5 markets.",
+      },
     ],
     links: [{ rel: "canonical", href: absUrl("/") }],
-    scripts: [
-      { type: "application/ld+json", children: JSON.stringify(profilePageJsonLd) },
-    ],
+    scripts: [{ type: "application/ld+json", children: JSON.stringify(profilePageJsonLd) }],
   }),
   component: HomePage,
 });
@@ -72,12 +76,18 @@ function HomePage() {
         <div
           aria-hidden
           className="pointer-events-none absolute -top-40 -left-40 h-[640px] w-[640px] rounded-full opacity-60 blur-[140px]"
-          style={{ background: "radial-gradient(circle, color-mix(in oklab, var(--brand) 28%, transparent), transparent 70%)" }}
+          style={{
+            background:
+              "radial-gradient(circle, color-mix(in oklab, var(--brand) 28%, transparent), transparent 70%)",
+          }}
         />
         <div
           aria-hidden
           className="pointer-events-none absolute top-1/3 right-[-180px] h-[520px] w-[520px] rounded-full opacity-40 blur-[120px]"
-          style={{ background: "radial-gradient(circle, color-mix(in oklab, var(--brand) 22%, transparent), transparent 70%)" }}
+          style={{
+            background:
+              "radial-gradient(circle, color-mix(in oklab, var(--brand) 22%, transparent), transparent 70%)",
+          }}
         />
 
         <div className="relative mx-auto max-w-7xl px-5 sm:px-6 pt-10 md:pt-20 pb-12 md:pb-20 grid lg:grid-cols-12 gap-8 lg:gap-16 items-center">
@@ -105,10 +115,17 @@ function HomePage() {
 
             <p className="mt-6 md:mt-10 max-w-2xl text-lg md:text-2xl text-ink-soft leading-snug font-light">
               Payments product executive in Dubai. I build regulated payment infrastructure across{" "}
-              <span className="text-ink font-medium italic">acceptance</span>,{" "}
+              <span className="text-ink font-medium italic">card acquiring</span>,{" "}
               <span className="text-ink font-medium">cross-border corridors</span>,{" "}
-              <span className="font-medium italic text-[var(--brand)]">settlement</span>,{" "}
-              KYC/KYB, AML and fraud.
+              <span className="font-medium italic text-[var(--brand)]">
+                settlement &amp; reconciliation
+              </span>
+              , KYC/KYB, AML/CFT and fraud — at $1B+ GTV across 5 regulated markets.
+            </p>
+            <p className="mt-4 text-sm text-ink-soft font-mono-tech uppercase tracking-[0.18em]">
+              Infrastructure used in production by <span className="text-ink">TikTok</span> ·{" "}
+              <span className="text-ink">Uber</span> · <span className="text-ink">Temu</span> ·{" "}
+              <span className="text-ink">MoneyGram</span>
             </p>
 
             <div className="mt-8 md:mt-10 flex flex-col sm:flex-row sm:items-center gap-3">
@@ -118,7 +135,9 @@ function HomePage() {
                 className="group inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-[11px] uppercase tracking-[0.18em] font-semibold text-[var(--brand-foreground)] bg-ink hover:bg-[var(--brand)] transition-colors"
               >
                 Download resume
-                <span className="transition-transform group-hover:translate-x-1" aria-hidden>→</span>
+                <span className="transition-transform group-hover:translate-x-1" aria-hidden>
+                  →
+                </span>
               </a>
               <a
                 href={`mailto:${profile.email}`}
@@ -129,11 +148,16 @@ function HomePage() {
             </div>
 
             <div className="mt-6 md:mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-ink-soft">
-              <Link to="/product-work" className="hover:text-ink inline-flex items-center gap-1.5 group">
-                Product work <span className="transition-transform group-hover:translate-x-1">→</span>
+              <Link
+                to="/product-work"
+                className="hover:text-ink inline-flex items-center gap-1.5 group"
+              >
+                Product work{" "}
+                <span className="transition-transform group-hover:translate-x-1">→</span>
               </Link>
               <Link to="/blog" className="hover:text-ink inline-flex items-center gap-1.5 group">
-                Payments essays <span className="transition-transform group-hover:translate-x-1">→</span>
+                Payments essays{" "}
+                <span className="transition-transform group-hover:translate-x-1">→</span>
               </Link>
               <Link to="/contact" className="hover:text-ink inline-flex items-center gap-1.5 group">
                 Contact <span className="transition-transform group-hover:translate-x-1">→</span>
@@ -165,14 +189,52 @@ function HomePage() {
                 Dubai · UAE
               </div>
 
-              {([
-                { type: "plus", top: "8%",  left: "88%", size: "text-4xl md:text-5xl", color: "text-[var(--brand)]" },
-                { type: "plus", top: "30%", left: "92%", size: "text-2xl md:text-3xl", color: "text-[var(--brand)]/70" },
-                { type: "plus", top: "48%", left: "4%",  size: "text-3xl md:text-4xl", color: "text-[var(--brand)]" },
-                { type: "dot",  top: "22%", left: "6%",  size: "h-2 w-2",     color: "bg-[var(--brand)]/70" },
-                { type: "dot",  top: "58%", left: "94%", size: "h-3 w-3",     color: "bg-[var(--brand)]" },
-                { type: "dot",  top: "88%", left: "50%", size: "h-3 w-3 md:h-3.5 md:w-3.5", color: "bg-[var(--brand)]" },
-              ] as const).map((g, i) =>
+              {(
+                [
+                  {
+                    type: "plus",
+                    top: "8%",
+                    left: "88%",
+                    size: "text-4xl md:text-5xl",
+                    color: "text-[var(--brand)]",
+                  },
+                  {
+                    type: "plus",
+                    top: "30%",
+                    left: "92%",
+                    size: "text-2xl md:text-3xl",
+                    color: "text-[var(--brand)]/70",
+                  },
+                  {
+                    type: "plus",
+                    top: "48%",
+                    left: "4%",
+                    size: "text-3xl md:text-4xl",
+                    color: "text-[var(--brand)]",
+                  },
+                  {
+                    type: "dot",
+                    top: "22%",
+                    left: "6%",
+                    size: "h-2 w-2",
+                    color: "bg-[var(--brand)]/70",
+                  },
+                  {
+                    type: "dot",
+                    top: "58%",
+                    left: "94%",
+                    size: "h-3 w-3",
+                    color: "bg-[var(--brand)]",
+                  },
+                  {
+                    type: "dot",
+                    top: "88%",
+                    left: "50%",
+                    size: "h-3 w-3 md:h-3.5 md:w-3.5",
+                    color: "bg-[var(--brand)]",
+                  },
+                ] as const
+              ).map((g, i) =>
                 g.type === "plus" ? (
                   <span
                     key={i}
@@ -189,7 +251,7 @@ function HomePage() {
                     className={`absolute z-20 rounded-full -translate-x-1/2 -translate-y-1/2 ${g.size} ${g.color}`}
                     style={{ top: g.top, left: g.left }}
                   />
-                )
+                ),
               )}
             </div>
           </div>
@@ -220,9 +282,14 @@ function HomePage() {
                     background: `linear-gradient(160deg, color-mix(in oklab, var(--brand) ${22 + (i % 4) * 10}%, transparent), color-mix(in oklab, var(--ink) ${70 - (i % 3) * 10}%, transparent))`,
                   }}
                 >
-                  <div className="absolute inset-0 bg-noise opacity-30 mix-blend-overlay" aria-hidden />
+                  <div
+                    className="absolute inset-0 bg-noise opacity-30 mix-blend-overlay"
+                    aria-hidden
+                  />
                   <div className="relative">
-                    <div className="font-instrument text-base sm:text-lg leading-tight">{t.name}</div>
+                    <div className="font-instrument text-base sm:text-lg leading-tight">
+                      {t.name}
+                    </div>
                     <div className="text-[10px] font-mono-tech uppercase tracking-[0.18em] mt-1 opacity-80">
                       {t.count} {t.count === 1 ? "article" : "articles"} · Filter →
                     </div>
@@ -243,10 +310,14 @@ function HomePage() {
                 ◆ Products
               </div>
               <h2 className="font-instrument text-4xl md:text-6xl text-ink mt-3 leading-[1.02] max-w-3xl">
-                Products I have built — and products I am <span className="italic text-[var(--brand)]">building.</span>
+                Products I have built — and products I am{" "}
+                <span className="italic text-[var(--brand)]">building.</span>
               </h2>
             </div>
-            <Link to="/products" className="text-sm text-ink-soft hover:text-ink inline-flex items-center gap-1.5 group">
+            <Link
+              to="/products"
+              className="text-sm text-ink-soft hover:text-ink inline-flex items-center gap-1.5 group"
+            >
               All products <span className="transition-transform group-hover:translate-x-1">→</span>
             </Link>
           </div>
@@ -319,8 +390,12 @@ function HomePage() {
                 The essays I'd read <span className="italic text-[var(--brand)]">first.</span>
               </h2>
             </div>
-            <Link to="/blog" className="text-sm text-ink-soft hover:text-ink inline-flex items-center gap-1.5 group">
-              See all essays <span className="transition-transform group-hover:translate-x-1">→</span>
+            <Link
+              to="/blog"
+              className="text-sm text-ink-soft hover:text-ink inline-flex items-center gap-1.5 group"
+            >
+              See all essays{" "}
+              <span className="transition-transform group-hover:translate-x-1">→</span>
             </Link>
           </div>
 
@@ -334,10 +409,14 @@ function HomePage() {
               <div
                 className="aspect-[16/10] rounded-3xl border border-rule mb-5 relative overflow-hidden"
                 style={{
-                  background: "linear-gradient(135deg, color-mix(in oklab, var(--brand) 35%, transparent), color-mix(in oklab, var(--ink) 80%, transparent))",
+                  background:
+                    "linear-gradient(135deg, color-mix(in oklab, var(--brand) 35%, transparent), color-mix(in oklab, var(--ink) 80%, transparent))",
                 }}
               >
-                <div className="absolute inset-0 bg-noise opacity-25 mix-blend-overlay" aria-hidden />
+                <div
+                  className="absolute inset-0 bg-noise opacity-25 mix-blend-overlay"
+                  aria-hidden
+                />
                 <div className="absolute top-5 left-5 text-[10px] font-mono-tech uppercase tracking-[0.22em] text-background bg-ink/40 backdrop-blur rounded-full px-3 py-1">
                   Featured · {featuredPost.category}
                 </div>
@@ -386,16 +465,18 @@ function HomePage() {
             <div
               className="rounded-3xl p-8 text-background relative overflow-hidden"
               style={{
-                background: "linear-gradient(135deg, color-mix(in oklab, var(--brand) 80%, var(--ink)), color-mix(in oklab, var(--ink) 90%, var(--brand)))",
+                background:
+                  "linear-gradient(135deg, color-mix(in oklab, var(--brand) 80%, var(--ink)), color-mix(in oklab, var(--ink) 90%, var(--brand)))",
               }}
             >
               <div className="text-[10px] font-mono-tech uppercase tracking-[0.22em] opacity-80">
                 ◆ About me
               </div>
               <div className="font-instrument text-3xl mt-3 leading-tight">
-                14+ years.<br />
-                $1B+ GTV.<br />
-                5 markets.
+                14+ years.
+                <br />
+                $1B+ GTV.
+                <br />5 markets.
               </div>
               <Link to="/about" className="mt-6 inline-flex items-center gap-1.5 text-sm group">
                 My story <span className="transition-transform group-hover:translate-x-1">→</span>
@@ -404,9 +485,11 @@ function HomePage() {
           </div>
           <div className="md:col-span-8">
             <p className="font-instrument text-2xl md:text-[34px] text-ink leading-[1.25]">
-              Before payments, I learned reliability in systems where failure had real
-              consequences. That operating discipline now shapes how I build financial
-              infrastructure: <span className="italic text-[var(--brand)]">controlled, scalable, auditable, and resilient.</span>
+              Before payments, I learned reliability in systems where failure had real consequences.
+              That operating discipline now shapes how I build financial infrastructure:{" "}
+              <span className="italic text-[var(--brand)]">
+                controlled, scalable, auditable, and resilient.
+              </span>
             </p>
             <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4">
               {profile.metrics.slice(0, 4).map((m) => (
@@ -434,8 +517,12 @@ function HomePage() {
                 Infrastructure shipped <span className="italic text-[var(--brand)]">at scale.</span>
               </h2>
             </div>
-            <Link to="/product-work" className="text-sm text-ink-soft hover:text-ink inline-flex items-center gap-1.5 group">
-              All case studies <span className="transition-transform group-hover:translate-x-1">→</span>
+            <Link
+              to="/product-work"
+              className="text-sm text-ink-soft hover:text-ink inline-flex items-center gap-1.5 group"
+            >
+              All case studies{" "}
+              <span className="transition-transform group-hover:translate-x-1">→</span>
             </Link>
           </div>
           <div className="grid md:grid-cols-3 gap-5">
@@ -452,7 +539,10 @@ function HomePage() {
                     background: `linear-gradient(${120 + i * 40}deg, color-mix(in oklab, var(--brand) ${30 + i * 10}%, transparent), color-mix(in oklab, var(--ink) ${60 + i * 5}%, transparent))`,
                   }}
                 >
-                  <div className="absolute inset-0 bg-noise opacity-30 mix-blend-overlay" aria-hidden />
+                  <div
+                    className="absolute inset-0 bg-noise opacity-30 mix-blend-overlay"
+                    aria-hidden
+                  />
                   <div className="absolute top-3 right-3 font-mono-tech text-[10px] tracking-[0.18em] text-background bg-ink/30 backdrop-blur rounded-full px-2 py-0.5">
                     /0{i + 1}
                   </div>
@@ -478,7 +568,10 @@ function HomePage() {
       >
         <div className="flex gap-12 marquee-track whitespace-nowrap w-max">
           {[...profile.partners, ...profile.partners].map((p, i) => (
-            <span key={`${p}-${i}`} className="font-instrument text-xl sm:text-2xl md:text-4xl text-ink/70 tracking-tight inline-flex items-center gap-12">
+            <span
+              key={`${p}-${i}`}
+              className="font-instrument text-xl sm:text-2xl md:text-4xl text-ink/70 tracking-tight inline-flex items-center gap-12"
+            >
               {p}
               <span className="text-[var(--brand)]">✦</span>
             </span>
@@ -490,14 +583,15 @@ function HomePage() {
       <section>
         <div className="mx-auto max-w-4xl px-6 py-24 text-center">
           <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
-            ◆ Stay in the loop
+            ◆ Get in touch
           </div>
           <h2 className="font-instrument text-4xl md:text-6xl text-ink mt-3 leading-[1.05]">
             Hire me or just <span className="italic text-[var(--brand)]">say hello.</span>
           </h2>
           <p className="text-ink-soft mt-5 max-w-xl mx-auto">
-            Open to senior payments roles globally — Visa, Mastercard, Stripe, Wise,
-            Adyen, Thunes, DLocal and regional fintechs.
+            Open to senior payments product roles globally — Visa, Mastercard, Stripe, Wise, Adyen,
+            Thunes, DLocal, Checkout.com, Rapyd and regional fintechs. Replies within 24 hours,
+            Sun–Thu (GST).
           </p>
           <div className="mt-9 mx-auto max-w-md rounded-2xl sm:rounded-full border border-rule bg-card p-2 sm:p-1.5 sm:pl-5 flex flex-col sm:flex-row sm:items-center gap-3 shadow-[0_15px_40px_-20px_color-mix(in_oklab,var(--brand)_60%,transparent)]">
             <span className="text-sm text-ink-soft font-mono-tech truncate min-w-0 px-2 sm:px-0">

@@ -10,7 +10,13 @@ publishDate: "2026-05-24"
 readingTime: "9 min read"
 tags: ["KYB", "merchant onboarding", "compliance", "automation"]
 targetAudience: ["Onboarding PMs", "Compliance leaders", "Risk leaders"]
-targetKeywords: ["KYB automation", "automated merchant onboarding", "KYB workflow", "merchant verification automation"]
+targetKeywords:
+  [
+    "KYB automation",
+    "automated merchant onboarding",
+    "KYB workflow",
+    "merchant verification automation",
+  ]
 relatedCaseStudies:
   - "/product-work/merchant-onboarding-kyc"
 relatedArticles:

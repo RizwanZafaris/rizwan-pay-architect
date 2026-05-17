@@ -22,6 +22,7 @@ For decades, cross-border payments were sent into a tunnel. The originator's ban
 **SWIFT gpi** (global payments innovation) closed most of that gap.
 
 ## Table of contents
+
 - What gpi changes
 - The unique end-to-end transaction reference (UETR)
 - Same-day credit, fee transparency, and traceability

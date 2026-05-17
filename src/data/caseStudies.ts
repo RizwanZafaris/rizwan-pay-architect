@@ -24,32 +24,31 @@ export type CaseStudy = {
   keywords: string[];
 };
 
-
 export const caseStudies: CaseStudy[] = [
   {
     slug: "simpaisa-payment-infrastructure",
     title: "Simpaisa Payment Infrastructure Platform",
     tagline:
-      "A regulated, multi-rail payments platform powering $1B+ GTV across pay-in, payout, wallets, DCB, IBFT, FX and cross-border corridors.",
+      "A regulated, multi-rail payments platform processing $1B+ annual GTV and 25M+ monthly transactions across pay-in, payout, wallets (DCB/IBFT), card acquiring (MPGS/MDES), settlement, FX and cross-border corridors — PCI DSS and ISO/IEC 27001 certified.",
     category: "Payment Infrastructure",
-    markets: ["UAE","Pakistan","Bangladesh","Nepal","Iraq","Egypt"],
-    relevantFor: ["Visa","Mastercard","Stripe","Adyen","Thunes","DLocal"],
+    markets: ["UAE", "Pakistan", "Bangladesh", "Nepal", "Iraq", "Egypt"],
+    relevantFor: ["Visa", "Mastercard", "Stripe", "Adyen", "Thunes", "DLocal"],
     beforeAfter: [
       {
-        "metric": "Platform downtime",
-        "before": "Frequent incidents",
-        "after": "−90%"
+        metric: "Platform downtime",
+        before: "Frequent incidents",
+        after: "−90%",
       },
       {
-        "metric": "Settlement SLA",
-        "before": "Best-effort",
-        "after": "99.95%"
+        metric: "Settlement SLA",
+        before: "Best-effort",
+        after: "99.95%",
       },
       {
-        "metric": "Enterprise wallet adoption",
-        "before": "<5%",
-        "after": "30%"
-      }
+        metric: "Enterprise wallet adoption",
+        before: "<5%",
+        after: "30%",
+      },
     ],
     metrics: [
       { label: "Annual GTV", value: "$1B+" },
@@ -84,8 +83,7 @@ export const caseStudies: CaseStudy[] = [
       "Joint risk + product council owning the risk taxonomy and false-positive budget",
       "Regulator-facing reporting pipeline owned by product, not finance",
     ],
-    role:
-      "Chief Product Officer (acting CTO during the 2024 regulatory tightening). Owned product strategy, roadmap, partner integrations, regulatory posture, security architecture and the org structure to ship and operate the platform end-to-end.",
+    role: "Chief Product Officer (acting CTO during the 2024 regulatory tightening). Owned product strategy, roadmap, partner integrations, regulatory posture, security architecture and the org structure to ship and operate the platform end-to-end.",
     impact: [
       "Scaled to $1B+ annual GTV and 25M+ monthly transactions across 5 countries",
       "Onboarded enterprise platforms including TikTok, Uber, InDrive, Temu, PUBG and MoneyGram",
@@ -118,21 +116,21 @@ export const caseStudies: CaseStudy[] = [
     slug: "merchant-onboarding-kyc",
     title: "Merchant Onboarding + KYC/KYB Automation",
     tagline:
-      "An automated onboarding pipeline turning regulated merchant activation from weeks to hours.",
+      "Automated merchant onboarding pipeline — KYC/KYB, UBO discovery, sanctions and PEP screening, risk-tiered decisioning with full audit trail. Activation cut from weeks to hours; manual review load down 70%.",
     category: "Merchant Onboarding",
-    markets: ["UAE","Pakistan","Bangladesh","Nepal","Iraq","Egypt"],
-    relevantFor: ["Stripe","Adyen","Wise","Visa","Mastercard"],
+    markets: ["UAE", "Pakistan", "Bangladesh", "Nepal", "Iraq", "Egypt"],
+    relevantFor: ["Stripe", "Adyen", "Wise", "Visa", "Mastercard"],
     beforeAfter: [
       {
-        "metric": "Activation time",
-        "before": "Weeks",
-        "after": "Hours (low-risk tiers)"
+        metric: "Activation time",
+        before: "Weeks",
+        after: "Hours (low-risk tiers)",
       },
       {
-        "metric": "Manual review load",
-        "before": "Baseline",
-        "after": "−70%"
-      }
+        metric: "Manual review load",
+        before: "Baseline",
+        after: "−70%",
+      },
     ],
     metrics: [
       { label: "Activation", value: "Weeks → hours" },
@@ -160,8 +158,7 @@ export const caseStudies: CaseStudy[] = [
       "Risk and product share one queue and one SLA",
       "Weekly false-positive review feeding back into rules and capture quality",
     ],
-    role:
-      "Product owner end-to-end: defined the risk taxonomy, integrated screening vendors, designed merchant-facing UX and ops tooling.",
+    role: "Product owner end-to-end: defined the risk taxonomy, integrated screening vendors, designed merchant-facing UX and ops tooling.",
     impact: [
       "Reduced merchant activation from weeks to hours for low-risk tiers",
       "Cut manual review workload by ~70% with no increase in default rate",
@@ -181,23 +178,23 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "settlement-reconciliation",
-    title: "Settlement + Reconciliation Engine",
+    title: "Settlement + Reconciliation Engine: 99.95% Accuracy at $1B+ GTV",
     tagline:
-      "A multi-rail settlement and reconciliation engine that closed the gap between treasury, finance and product.",
+      "A multi-rail settlement and reconciliation engine — canonical double-entry ledger, three-way auto-reconciliation, exception management and corridor-aware payout windows. Closed the gap between treasury, finance and product at $1B+ GTV.",
     category: "Settlement & Reconciliation",
-    markets: ["UAE","Pakistan","Bangladesh","Nepal","Iraq","Egypt"],
-    relevantFor: ["Visa","Mastercard","Stripe","Adyen"],
+    markets: ["UAE", "Pakistan", "Bangladesh", "Nepal", "Iraq", "Egypt"],
+    relevantFor: ["Visa", "Mastercard", "Stripe", "Adyen"],
     beforeAfter: [
       {
-        "metric": "Recon accuracy",
-        "before": "Manual spreadsheets",
-        "after": "99.95% automated"
+        metric: "Recon accuracy",
+        before: "Manual spreadsheets",
+        after: "99.95% automated",
       },
       {
-        "metric": "Manual journal entries",
-        "before": "Daily, by finance",
-        "after": "Eliminated (core flows)"
-      }
+        metric: "Manual journal entries",
+        before: "Daily, by finance",
+        after: "Eliminated (core flows)",
+      },
     ],
     metrics: [
       { label: "Reconciliation accuracy", value: "99.95%" },
@@ -224,8 +221,7 @@ export const caseStudies: CaseStudy[] = [
       "Finance signs off on the ledger model and exception taxonomy",
       "Every exception type has a product owner and a recovery SLA",
     ],
-    role:
-      "Product owner working alongside finance, treasury and engineering. Defined the ledger model, exception taxonomy and settlement SLAs.",
+    role: "Product owner working alongside finance, treasury and engineering. Defined the ledger model, exception taxonomy and settlement SLAs.",
     impact: [
       "99.95% reconciliation accuracy at $1B+ GTV scale",
       "Eliminated manual journal entries for core flows",
@@ -245,15 +241,15 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "fraud-risk-aml-cft",
-    title: "Fraud, Risk and AML/CFT Controls",
+    title: "Fraud, Risk and AML/CFT Controls: Layered Decisioning at $1B+ GTV",
     tagline:
-      "A layered fraud and AML/CFT program built natively into the payments stack.",
+      "Layered fraud, AML/CFT and sanctions decisioning built natively into the payments stack — vendor signals, device intelligence, internal velocity rules, SAR-ready audit trails. Fraud loss held <0.1% of GTV; fraud incidents down ~65%.",
     category: "Fraud & Risk",
-    markets: ["UAE","Pakistan","Bangladesh","Nepal","Iraq","Egypt"],
-    relevantFor: ["Visa","Mastercard","Stripe","Adyen"],
+    markets: ["UAE", "Pakistan", "Bangladesh", "Nepal", "Iraq", "Egypt"],
+    relevantFor: ["Visa", "Mastercard", "Stripe", "Adyen"],
     metrics: [
       { label: "Fraud loss", value: "<0.1% GTV" },
-      { label: "False positives", value: "Materially reduced" },
+      { label: "Fraud incidents", value: "−65%" },
       { label: "Certifications", value: "PCI DSS · ISO 27001" },
     ],
     executiveSummary:
@@ -271,8 +267,7 @@ export const caseStudies: CaseStudy[] = [
       "Decisions are explainable end-to-end (rule + signal + outcome)",
       "Analyst feedback writes back to features — every closed case improves the model",
     ],
-    role:
-      "Defined the risk product strategy, selected vendors, built the internal rules platform and partnered with compliance and operations.",
+    role: "Defined the risk product strategy, selected vendors, built the internal rules platform and partnered with compliance and operations.",
     impact: [
       "Maintained fraud loss rates below industry benchmarks at $1B+ GTV",
       "Cleared regulator and partner audits including PCI DSS and ISO 27001",
@@ -296,8 +291,8 @@ export const caseStudies: CaseStudy[] = [
     tagline:
       "Cross-border pay-in and payout corridors with FX, partner routing and corridor-level economics.",
     category: "Cross-Border Payments",
-    markets: ["UAE","Pakistan","Bangladesh","Nepal","Iraq","Egypt"],
-    relevantFor: ["Wise","Thunes","DLocal","Stripe","Adyen","Visa","Mastercard"],
+    markets: ["UAE", "Pakistan", "Bangladesh", "Nepal", "Iraq", "Egypt"],
+    relevantFor: ["Wise", "Thunes", "DLocal", "Stripe", "Adyen", "Visa", "Mastercard"],
     metrics: [
       { label: "Corridors", value: "Multi-market" },
       { label: "Partners", value: "DLocal · Thunes · Boku · Coda · MoneyGram" },
@@ -318,11 +313,10 @@ export const caseStudies: CaseStudy[] = [
       "Quote/lock FX flow with hedge accounting awareness",
       "Per-corridor compliance pack (limits, KYC tier, reporting) versioned alongside the corridor",
     ],
-    role:
-      "Owned partner strategy, commercial negotiations and the product surface that exposed corridors to merchants.",
+    role: "Owned partner strategy, commercial negotiations and the product surface that exposed corridors to merchants.",
     impact: [
       "Live corridors covering UAE, Pakistan, Bangladesh, Nepal, Iraq and Egypt",
-      "Materially improved success rates via routing and retries",
+      "Lifted corridor success rates via cost+success-rate routing and per-rail retry curves",
       "Made cross-border economics transparent to merchants",
     ],
     tradeoffs: [
@@ -342,24 +336,24 @@ export const caseStudies: CaseStudy[] = [
     tagline:
       "Migrated subscription billing off high-cost rails and rebuilt wallet/DCB flows — payment cost from 50% to 1%.",
     category: "Product Strategy",
-    markets: ["Pakistan","UAE","KSA"],
-    relevantFor: ["Stripe","Adyen","Visa","Mastercard"],
+    markets: ["Pakistan", "UAE", "KSA"],
+    relevantFor: ["Stripe", "Adyen", "Visa", "Mastercard"],
     beforeAfter: [
       {
-        "metric": "Payment cost / revenue",
-        "before": "~50%",
-        "after": "~1%"
+        metric: "Payment cost / revenue",
+        before: "~50%",
+        after: "~1%",
       },
       {
-        "metric": "Paid subscribers",
-        "before": "~0",
-        "after": "5M+"
+        metric: "Paid subscribers",
+        before: "~0",
+        after: "5M+",
       },
       {
-        "metric": "ARPU",
-        "before": "Baseline",
-        "after": "+70%"
-      }
+        metric: "ARPU",
+        before: "Baseline",
+        after: "+70%",
+      },
     ],
     metrics: [
       { label: "Payment cost", value: "50% → 1%" },
@@ -381,8 +375,7 @@ export const caseStudies: CaseStudy[] = [
       "Rail preference engine per subscriber state and prior failure history",
       "Per-rail retry curves instead of a single global retry policy",
     ],
-    role:
-      "Drove the payments product strategy, vendor renegotiation and the cross-functional migration with growth, finance and engineering.",
+    role: "Drove the payments product strategy, vendor renegotiation and the cross-functional migration with growth, finance and engineering.",
     impact: [
       "Reduced payment cost from ~50% to ~1% of revenue",
       "Scaled to 5M+ paid subscribers",
@@ -398,15 +391,15 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "daraz-payment-operations",
-    title: "Daraz Payment Operations + COD-to-Digital Conversion",
+    title: "Daraz (Alibaba Group) Payment Operations + COD-to-Digital Conversion",
     tagline:
-      "Built the payment operations spine and shifted a marketplace from cash-on-delivery to digital.",
+      "Built the multi-country payment operations spine for South Asia's largest marketplace — settlement, dispute resolution, fraud rule configuration, Alipay localisation, and the COD-to-digital conversion program across 5 markets.",
     category: "Payment Operations",
-    markets: ["Pakistan","Bangladesh","Sri Lanka","Nepal","Myanmar"],
-    relevantFor: ["Stripe","Adyen","Wise"],
+    markets: ["Pakistan", "Bangladesh", "Sri Lanka", "Nepal", "Myanmar"],
+    relevantFor: ["Stripe", "Adyen", "Wise"],
     metrics: [
-      { label: "COD share", value: "Materially reduced" },
-      { label: "Disputes", value: "Significantly down" },
+      { label: "COD share", value: "Reduced (program-led)" },
+      { label: "Dispute resolution", value: "Faster cycle time" },
       { label: "Markets", value: "5 (PK · BD · LK · NP · MM)" },
     ],
     executiveSummary:
@@ -419,10 +412,9 @@ export const caseStudies: CaseStudy[] = [
       "Incentive design to migrate buyers from COD to digital wallets and cards",
       "Operational dashboards across pay-in, refund and settlement",
     ],
-    role:
-      "Led payment operations and the COD-to-digital conversion program across multiple markets.",
+    role: "Led payment operations and the COD-to-digital conversion program across multiple markets.",
     impact: [
-      "Reduced COD share and improved working capital",
+      "Reduced COD share and improved working capital through incentive design and trust-building",
       "Cut settlement disputes and fraud loss",
       "Made payments a measured, owned surface inside the marketplace",
     ],
@@ -432,7 +424,12 @@ export const caseStudies: CaseStudy[] = [
     ],
     whyItMatters:
       "Marketplace and platform payments orgs at Stripe, Adyen for Platforms and Wise Business operate exactly this surface.",
-    keywords: ["payment operations", "COD to digital", "marketplace payments", "South Asia fintech"],
+    keywords: [
+      "payment operations",
+      "COD to digital",
+      "marketplace payments",
+      "South Asia fintech",
+    ],
   },
 ];
 

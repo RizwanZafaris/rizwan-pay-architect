@@ -5,6 +5,32 @@ import { absUrl, SITE_URL } from "@/lib/seo";
 import { DiagramFigure, postDiagrams } from "@/components/diagrams/Diagrams";
 import { marked } from "marked";
 
+// Pull Q&A pairs out of a "## FAQ" section so we can emit FAQPage JSON-LD.
+// Question lines are "**…?**" inside the section; the answer is everything until the next "**…?**".
+function extractFAQs(md: string): { question: string; answer: string }[] {
+  // Find the FAQ heading.
+  const headingMatch = md.match(/^##\s+(?:FAQ|Frequently Asked Questions)\s*$/im);
+  if (!headingMatch || headingMatch.index === undefined) return [];
+
+  // Slice from after the FAQ heading to either the next H2 (end of section) or end of document.
+  const afterHeading = md.slice(headingMatch.index + headingMatch[0].length);
+  const nextSectionMatch = afterHeading.match(/^##\s/m);
+  const body = nextSectionMatch?.index
+    ? afterHeading.slice(0, nextSectionMatch.index)
+    : afterHeading;
+  if (!body.trim()) return [];
+
+  // Split on "**…?**" question lines. Skip the first chunk (everything before the first Q).
+  const parts = body.split(/^\s*\*\*(.+?\?)\*\*\s*/m);
+  const out: { question: string; answer: string }[] = [];
+  for (let i = 1; i < parts.length; i += 2) {
+    const question = parts[i].trim();
+    const answer = (parts[i + 1] ?? "").replace(/\s+/g, " ").trim();
+    if (question && answer) out.push({ question, answer });
+  }
+  return out;
+}
+
 export const Route = createFileRoute("/blog/$slug")({
   loader: ({ params }) => {
     const post = getPost(params.slug);
@@ -15,16 +41,20 @@ export const Route = createFileRoute("/blog/$slug")({
     const p = loaderData?.post;
     if (!p) return { meta: [{ title: "Essay" }] };
     const url = absUrl(`/blog/${params.slug}`);
+    const wordCount = p.content.trim().split(/\s+/).length;
     const jsonLd = {
       "@context": "https://schema.org",
       "@type": "BlogPosting",
       headline: p.title,
       description: p.description,
       datePublished: p.date,
+      dateModified: p.date,
       author: { "@type": "Person", name: profile.name, url: SITE_URL },
       publisher: { "@type": "Person", name: profile.name, url: SITE_URL },
       keywords: p.tags.join(", "),
       articleSection: p.category,
+      wordCount,
+      inLanguage: "en",
       mainEntityOfPage: url,
       url,
     };
@@ -37,6 +67,28 @@ export const Route = createFileRoute("/blog/$slug")({
         { "@type": "ListItem", position: 3, name: p.title, item: url },
       ],
     };
+
+    const faqs = extractFAQs(p.content);
+    const faqJsonLd =
+      faqs.length > 0
+        ? {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: faqs.map((f) => ({
+              "@type": "Question",
+              name: f.question,
+              acceptedAnswer: { "@type": "Answer", text: f.answer },
+            })),
+          }
+        : null;
+
+    const scripts: Array<{ type: string; children: string }> = [
+      { type: "application/ld+json", children: JSON.stringify(jsonLd) },
+      { type: "application/ld+json", children: JSON.stringify(crumbs) },
+    ];
+    if (faqJsonLd)
+      scripts.push({ type: "application/ld+json", children: JSON.stringify(faqJsonLd) });
+
     return {
       meta: [
         { title: `${p.title} | Rizwan Zafar` },
@@ -48,18 +100,20 @@ export const Route = createFileRoute("/blog/$slug")({
         { property: "og:url", content: url },
         { property: "article:published_time", content: p.date },
         { property: "article:section", content: p.category },
+        { property: "article:author", content: profile.name },
+        { name: "twitter:title", content: p.title },
+        { name: "twitter:description", content: p.description },
       ],
       links: [{ rel: "canonical", href: url }],
-      scripts: [
-        { type: "application/ld+json", children: JSON.stringify(jsonLd) },
-        { type: "application/ld+json", children: JSON.stringify(crumbs) },
-      ],
+      scripts,
     };
   },
   notFoundComponent: () => (
     <div className="mx-auto max-w-2xl px-6 py-24 text-center">
       <h1 className="font-instrument text-3xl text-ink">Essay not found</h1>
-      <Link to="/blog" className="mt-6 inline-block text-brand underline">Back to essays</Link>
+      <Link to="/blog" className="mt-6 inline-block text-brand underline">
+        Back to essays
+      </Link>
     </div>
   ),
   errorComponent: ({ error }) => (
@@ -71,7 +125,10 @@ export const Route = createFileRoute("/blog/$slug")({
 });
 
 function slugify(s: string) {
-  return s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+  return s
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
 }
 
 marked.use({
@@ -108,7 +165,10 @@ function BlogPostPage() {
     <article>
       <header className="border-b border-rule">
         <div className="mx-auto max-w-3xl px-6 pt-16 pb-10">
-          <Link to="/blog" className="text-[10px] uppercase tracking-[0.18em] text-ink-soft hover:text-ink font-mono-tech">
+          <Link
+            to="/blog"
+            className="text-[10px] uppercase tracking-[0.18em] text-ink-soft hover:text-ink font-mono-tech"
+          >
             ← Essays
           </Link>
           <div className="mt-6 text-[10px] uppercase tracking-[0.18em] text-[var(--accent-emerald)] font-mono-tech font-medium">
@@ -118,7 +178,13 @@ function BlogPostPage() {
             {p.title}
           </h1>
           <div className="mt-5 text-sm text-ink-soft flex flex-wrap gap-x-4 gap-y-1 font-mono-tech">
-            <span>{new Date(p.date).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}</span>
+            <span>
+              {new Date(p.date).toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })}
+            </span>
             <span>·</span>
             <span>{p.readingTime}</span>
             <span>·</span>
@@ -157,10 +223,15 @@ function BlogPostPage() {
             </DiagramFigure>
           ) : null}
           <div className="mt-10 pt-8 border-t border-rule">
-            <div className="text-[10px] uppercase tracking-[0.18em] text-ink-soft mb-3 font-mono-tech">Tags</div>
+            <div className="text-[10px] uppercase tracking-[0.18em] text-ink-soft mb-3 font-mono-tech">
+              Tags
+            </div>
             <div className="flex flex-wrap gap-2 font-sans">
               {p.tags.map((t) => (
-                <span key={t} className="text-xs px-2.5 py-1 border border-rule rounded-full text-ink-soft bg-surface">
+                <span
+                  key={t}
+                  className="text-xs px-2.5 py-1 border border-rule rounded-full text-ink-soft bg-surface"
+                >
                   {t}
                 </span>
               ))}
@@ -181,8 +252,12 @@ function BlogPostPage() {
                   params={{ slug: r.slug }}
                   className="group block bg-surface border border-rule rounded-2xl p-6 hover:border-ink/30 transition-colors"
                 >
-                  <div className="text-[10px] uppercase tracking-[0.18em] text-[var(--accent-emerald)] font-mono-tech">{r.category}</div>
-                  <div className="font-instrument text-lg text-ink mt-2 leading-snug group-hover:text-[var(--brand)] transition-colors">{r.title}</div>
+                  <div className="text-[10px] uppercase tracking-[0.18em] text-[var(--accent-emerald)] font-mono-tech">
+                    {r.category}
+                  </div>
+                  <div className="font-instrument text-lg text-ink mt-2 leading-snug group-hover:text-[var(--brand)] transition-colors">
+                    {r.title}
+                  </div>
                   <p className="text-sm text-ink-soft mt-2">{r.thesis ?? r.description}</p>
                 </Link>
               ))}

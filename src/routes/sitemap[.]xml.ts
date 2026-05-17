@@ -4,15 +4,14 @@ import { caseStudies } from "@/data/caseStudies";
 import { posts } from "@/data/posts";
 import { audiences } from "@/data/hubs";
 import { products } from "@/data/products";
-
-const TODAY_ISO = "2026-05-17";
-
-const BASE_URL = "https://rizwan-pay-architect.lovable.app";
+import { SITE_URL } from "@/lib/seo";
 
 export const Route = createFileRoute("/sitemap.xml")({
   server: {
     handlers: {
       GET: async () => {
+        const todayIso = new Date().toISOString().slice(0, 10);
+
         const staticPaths = [
           "/",
           "/about",
@@ -30,7 +29,7 @@ export const Route = createFileRoute("/sitemap.xml")({
           .map((p) => p.link)
           .filter((href) => href.startsWith("/products/"));
         // Only include posts dated on or before today.
-        const publicPosts = posts.filter((p) => p.date <= TODAY_ISO);
+        const publicPosts = posts.filter((p) => p.date <= todayIso);
         const paths = [
           ...staticPaths,
           // Topic hubs are currently thin (filter views) — excluded from sitemap until unique content lands.
@@ -42,7 +41,7 @@ export const Route = createFileRoute("/sitemap.xml")({
         const urls = paths
           .map(
             (p) =>
-              `  <url><loc>${BASE_URL}${p}</loc><changefreq>weekly</changefreq></url>`,
+              `  <url><loc>${SITE_URL}${p}</loc><lastmod>${todayIso}</lastmod><changefreq>weekly</changefreq></url>`,
           )
           .join("\n");
         const xml = `<?xml version="1.0" encoding="UTF-8"?>
