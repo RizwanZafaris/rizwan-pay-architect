@@ -1,4 +1,4 @@
-// Topic hubs — collection pages that group essays + case studies by domain.
+// Topic hubs, collection pages that group essays + case studies by domain.
 // Hubs are derived from existing post categories and tag patterns, so we
 // don't need to retag every post by hand.
 
@@ -26,7 +26,7 @@ export type Hub = {
   intro: string;
   /** Post categories that always belong to this hub. */
   categories?: string[];
-  /** Lowercased tag substrings — if any tag contains one, the post matches. */
+  /** Lowercased tag substrings, if any tag contains one, the post matches. */
   tagPatterns?: string[];
   /** Case-study categories that belong to this hub. */
   caseStudyCategories?: string[];
@@ -38,7 +38,7 @@ export const hubs: Hub[] = [
     title: "Payment Infrastructure",
     shortTitle: "Infrastructure",
     description:
-      "Building the regulated rails — pay-in, payout, ledgers, orchestration and the operating model that runs them.",
+      "Building the regulated rails, pay-in, payout, ledgers, orchestration and the operating model that runs them.",
     intro:
       "Payment infrastructure is the product surface where orchestration, ledger, settlement and risk meet. These essays and case studies cover what it actually takes to ship and operate a multi-rail platform at scale.",
     categories: ["Payment Infrastructure"],
@@ -72,9 +72,9 @@ export const hubs: Hub[] = [
     title: "Settlement & Reconciliation",
     shortTitle: "Settlement · Recon",
     description:
-      "Ledger design, three-way reconciliation, exception management and treasury — the trust layer of payments.",
+      "Ledger design, three-way reconciliation, exception management and treasury, the trust layer of payments.",
     intro:
-      "Settlement and reconciliation are not back-office problems — they decide trust with merchants and partners. These essays cover ledger design, exception management and the operating model underneath.",
+      "Settlement and reconciliation are not back-office problems, they decide trust with merchants and partners. These essays cover ledger design, exception management and the operating model underneath.",
     categories: ["Settlement & Reconciliation"],
     tagPatterns: ["settlement", "reconciliation", "recon", "ledger", "treasury"],
     caseStudyCategories: ["Settlement & Reconciliation"],
@@ -137,7 +137,7 @@ export const hubs: Hub[] = [
     title: "AI in Fintech & Payments",
     shortTitle: "AI · Fintech",
     description:
-      "GenAI use-case identification, value modeling and four production AI deployments in regulated payments — merchant support, monitoring, partner ops and fraud/AML.",
+      "GenAI use-case identification, value modeling and four production AI deployments in regulated payments, merchant support, monitoring, partner ops and fraud/AML.",
     intro:
       "AI in payments is moving from demos to production. These posts cover use-case identification, value modeling (ROI / feasibility / data readiness), RAG architectures for merchant support, auto-escalation bots, AI fraud detection and the regulatory frame in which all of it has to ship.",
     categories: ["AI in Fintech"],
@@ -231,7 +231,7 @@ export function hubForPost(p: Post): Hub | undefined {
   return hubs.find((h) => matchesHub(h, p.category, p.tags));
 }
 
-// Recruiter audience definitions — used by /for/* pages and filters.
+// Recruiter audience definitions, used by /for/* pages and filters.
 export type Audience = {
   slug: "visa-mastercard" | "stripe-adyen-wise-thunes" | "banks-fintechs";
   title: string;
@@ -249,7 +249,7 @@ export const audiences: Audience[] = [
     title: "For Visa & Mastercard",
     shortTitle: "Visa / Mastercard",
     description:
-      "Network-rails work — acceptance, tokenization, scheme settlement, cross-border product and emerging-market expansion.",
+      "Network-rails work, acceptance, tokenization, scheme settlement, cross-border product and emerging-market expansion.",
     intro:
       "Network product roles need leaders who can stand up acceptance, tokenization and settlement against scheme requirements while operating in markets that don't read like the US. This is what that work looks like in production.",
     hubs: [

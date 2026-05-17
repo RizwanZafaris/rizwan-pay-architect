@@ -3,7 +3,7 @@ title: "SWIFT Payment Delays: What Actually Causes Them"
 slug: "swift-payment-delays-what-actually-causes-them"
 category: "SWIFT & Cross-Border Payments"
 metaTitle: "SWIFT Payment Delays: What Causes Them | Rizwan Zafar"
-metaDescription: "The real reasons SWIFT payments are delayed — compliance review, correspondent chain length, cut-offs, holidays, weak data — and how to mitigate each."
+metaDescription: "The real reasons SWIFT payments are delayed, compliance review, correspondent chain length, cut-offs, holidays, weak data, and how to mitigate each."
 excerpt: "Most SWIFT 'delays' are not network delays. They are compliance reviews, cut-offs, or bad data."
 publishDate: "2026-06-26"
 readingTime: "7 min read"
@@ -53,6 +53,6 @@ Structured party data, addresses, and purpose codes reduce ambiguity at every do
 
 **Why does my payment say "in transit" for days?** Almost always a compliance hold somewhere in the chain.
 
-**Can a delayed SWIFT payment be cancelled?** Sometimes, via a cancellation request — depends on where the payment is and which correspondents are involved.
+**Can a delayed SWIFT payment be cancelled?** Sometimes, via a cancellation request, depends on where the payment is and which correspondents are involved.
 
 **Are weekend delays normal?** Yes. SWIFT operates continuously, but settlement systems and banks largely do not on weekends.

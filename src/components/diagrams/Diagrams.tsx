@@ -506,9 +506,9 @@ type DiagramEntry = { component: React.FC; title: string; caption: string };
 export const caseStudyDiagrams: Record<string, DiagramEntry> = {
   "simpaisa-payment-infrastructure": {
     component: RailsMapDiagram,
-    title: "One regulated rail — many partners, one API contract.",
+    title: "One regulated rail, many partners, one API contract.",
     caption:
-      "Cards, wallets, DCB, IBFT, bank transfers and cross-border corridors converge behind a single pay-in/payout API. Routing, risk, ledger and settlement run as shared services — not per-integration code.",
+      "Cards, wallets, DCB, IBFT, bank transfers and cross-border corridors converge behind a single pay-in/payout API. Routing, risk, ledger and settlement run as shared services, not per-integration code.",
   },
   "cross-border-corridors-fx": {
     component: RailsMapDiagram,
@@ -526,13 +526,13 @@ export const caseStudyDiagrams: Record<string, DiagramEntry> = {
     component: OnboardingFlowDiagram,
     title: "Onboarding and risk as one product surface.",
     caption:
-      "Capture, screening, tiering and decisioning share one policy engine. Activation grants capabilities; monitoring feeds back into the same policy — so risk and conversion move together.",
+      "Capture, screening, tiering and decisioning share one policy engine. Activation grants capabilities; monitoring feeds back into the same policy, so risk and conversion move together.",
   },
   "tapmad-wallet-billing-migration": {
     component: RailsMapDiagram,
     title: "Billing rail migration: from one expensive rail to a portfolio.",
     caption:
-      "Subscriber cohorts route across DCB, wallets and cards by cost, success and lifecycle. Retry orchestration and dunning are platform services, not per-rail glue — payment cost fell from ~50% to ~1%.",
+      "Subscriber cohorts route across DCB, wallets and cards by cost, success and lifecycle. Retry orchestration and dunning are platform services, not per-rail glue, payment cost fell from ~50% to ~1%.",
   },
   "fraud-risk-aml-cft": {
     component: OnboardingFlowDiagram,
@@ -547,13 +547,13 @@ export const postDiagrams: Record<string, DiagramEntry> = {
     component: ReconciliationFlowDiagram,
     title: "What the back office looks like when product owns it.",
     caption:
-      "Three sources, one engine, typed exceptions, a feedback loop. Once this exists, spreadsheets disappear — the product absorbed the work.",
+      "Three sources, one engine, typed exceptions, a feedback loop. Once this exists, spreadsheets disappear, the product absorbed the work.",
   },
   "kyc-risk-conversion-designed-together": {
     component: OnboardingFlowDiagram,
     title: "Onboarding, screening and risk as one surface.",
     caption:
-      "Splitting these creates leakage. Unified, the same policy decides activation and tiering — conversion and risk move on one dial.",
+      "Splitting these creates leakage. Unified, the same policy decides activation and tiering, conversion and risk move on one dial.",
   },
   "payment-infrastructure-product-problem": {
     component: RailsMapDiagram,

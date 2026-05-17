@@ -49,11 +49,11 @@ The answer is not to pick one. It is to design a stack where each plays its stre
 
 Three layers:
 
-1. **Hard rules** — regulatory thresholds, structuring detection, sanctions, PEP, jurisdiction prohibitions. Block or escalate. No model overrides allowed.
+1. **Hard rules**, regulatory thresholds, structuring detection, sanctions, PEP, jurisdiction prohibitions. Block or escalate. No model overrides allowed.
 
-2. **Risk scoring** — combined output of rule-based scores and model-based scores into a single risk band. Drives review prioritisation, step-up, enhanced due diligence.
+2. **Risk scoring**, combined output of rule-based scores and model-based scores into a single risk band. Drives review prioritisation, step-up, enhanced due diligence.
 
-3. **Investigation tooling** — visualisations, network graphs, peer-group comparison. Models surface candidates. Humans investigate and decide.
+3. **Investigation tooling**, visualisations, network graphs, peer-group comparison. Models surface candidates. Humans investigate and decide.
 
 Hard rules are deterministic. Risk scoring is probabilistic. Investigation is human. Each layer has its own owner and its own metrics.
 

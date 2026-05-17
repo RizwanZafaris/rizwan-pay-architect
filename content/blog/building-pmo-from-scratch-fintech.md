@@ -3,7 +3,7 @@ title: "Building a PMO from Scratch in a Fintech: A 90-Day Playbook"
 slug: "building-pmo-from-scratch-fintech"
 category: "Program Management"
 metaTitle: "Build a PMO from Scratch in a Fintech (90-Day Playbook) | Rizwan Zafar"
-metaDescription: "A practitioner playbook for standing up a PMO from scratch inside a fintech — what to build in the first 90 days, what to skip, what to govern centrally, and what to keep in the squads."
+metaDescription: "A practitioner playbook for standing up a PMO from scratch inside a fintech, what to build in the first 90 days, what to skip, what to govern centrally, and what to keep in the squads."
 excerpt: "A fintech PMO is not a governance overlay. It's the operating system that lets product, engineering, risk and compliance ship together at regulated-payments cadence."
 publishDate: "2026-04-28"
 readingTime: "9 min read"
@@ -35,13 +35,13 @@ relatedArticles:
 
 A fintech PMO is not a governance overlay. It is the operating system that lets product, engineering, risk and compliance ship together at regulated-payments cadence. Done well, it is invisible. Done badly, it is a meeting-generation machine.
 
-I have stood up PMOs from scratch twice — once at Wing Logic (a Dubai project portfolio firm) and once at Simpaisa (B2B payments, $0 → $1B+ TPV). This is the 90-day playbook.
+I have stood up PMOs from scratch twice, once at Wing Logic (a Dubai project portfolio firm) and once at Simpaisa (B2B payments, $0 → $1B+ TPV). This is the 90-day playbook.
 
 ## Day 1–30: Make the work visible
 
 The first month is anthropology, not architecture. You cannot govern what you cannot see.
 
-**Inventory in week 1.** List every initiative currently in flight. Owner, status, dependencies, target date. Half will be inaccurate. That's fine — the inaccuracy is the signal.
+**Inventory in week 1.** List every initiative currently in flight. Owner, status, dependencies, target date. Half will be inaccurate. That's fine, the inaccuracy is the signal.
 
 **RAID register in week 2.** One register. Risks, Assumptions, Issues, Dependencies. Every entry has an owner, a target date, and a decision path. Anything older than 30 days without movement gets a decision: act, accept, escalate.
 
@@ -78,7 +78,7 @@ Document the line. Defend the line. Most PMO failures are the PMO drifting acros
 
 ## Day 61–90: Build the rituals that compound
 
-The first two months were defensive. Month three is offensive — building the rituals that make the operating system improve itself.
+The first two months were defensive. Month three is offensive, building the rituals that make the operating system improve itself.
 
 **Weekly programme review in week 9.** PMO + workstream leads, 60 minutes, focused on the next 30 days. What's blocked? Who needs help? What decision can we push? No status theatre.
 
@@ -86,7 +86,7 @@ The first two months were defensive. Month three is offensive — building the r
 
 **Quarterly retrospective in week 12.** PMO on itself. What's working in the operating model? What's slowing teams down? Change one thing per quarter. Compound the improvements.
 
-**Stage-gate template by week 13.** For capital projects only. Stage-gates kill velocity if applied to product work — they earn their cost on regulatory or capital workstreams where evidence trails are required.
+**Stage-gate template by week 13.** For capital projects only. Stage-gates kill velocity if applied to product work, they earn their cost on regulatory or capital workstreams where evidence trails are required.
 
 ## What to centrally own vs delegate
 
@@ -94,7 +94,7 @@ Central: RAID register, SteerCo agenda, quarterly planning, vendor governance ab
 
 Delegate: sprint execution, intra-squad ceremonies, technical decisions, hiring within approved plan, vendor work below threshold.
 
-The PMO is a coordination function. It does not own delivery — workstream leads do.
+The PMO is a coordination function. It does not own delivery, workstream leads do.
 
 ## Common failure modes
 

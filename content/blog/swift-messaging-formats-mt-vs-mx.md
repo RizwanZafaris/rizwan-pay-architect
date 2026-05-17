@@ -20,7 +20,7 @@ The SWIFT messaging shift from **MT** to **MX** is the most visible artifact of 
 
 ## What MT is
 
-**MT (Message Type)** is the legacy SWIFT format dating to the 1970s — flat, line-oriented, field-coded. Examples:
+**MT (Message Type)** is the legacy SWIFT format dating to the 1970s, flat, line-oriented, field-coded. Examples:
 
 - **MT103:** Single customer credit transfer (the canonical "international wire").
 - **MT202:** General financial institution transfer.
@@ -57,7 +57,7 @@ Three reasons:
 
 - MT is legacy; MX is the standard.
 - MX is not a format change; it is a data-model change.
-- Capture-side UX is the leverage point — collect structured data at source.
+- Capture-side UX is the leverage point, collect structured data at source.
 
 ## FAQ
 

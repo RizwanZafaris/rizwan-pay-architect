@@ -15,7 +15,7 @@ export const Route = createFileRoute("/for/$audience")({
     const forUrl = absUrl("/for");
     return {
       meta: [
-        { title: `${a.shortTitle} — For recruiters | Rizwan Zafar` },
+        { title: `${a.shortTitle}, For recruiters | Rizwan Zafar` },
         { name: "description", content: a.description },
         { name: "robots", content: "noindex, follow" },
         { property: "og:title", content: a.title },

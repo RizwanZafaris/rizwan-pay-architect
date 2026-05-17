@@ -4,7 +4,7 @@ slug: "kyc-conversion-designed-together"
 category: "Merchant Onboarding"
 subcategory: "KYC"
 metaTitle: "KYC and Conversion Designed Together | Rizwan Zafar"
-metaDescription: "Why KYC and conversion are the same product surface — how to design identity verification flows that compliance accepts and merchants actually finish."
+metaDescription: "Why KYC and conversion are the same product surface, how to design identity verification flows that compliance accepts and merchants actually finish."
 excerpt: "Splitting KYC from conversion produces the worst of both: friction that does not reduce risk, and risk that does not justify the friction."
 publishDate: "2026-05-27"
 readingTime: "8 min read"
@@ -33,7 +33,7 @@ KYC and conversion are not adjacent surfaces. They are the same surface viewed f
 
 **2. Progressive disclosure.** Ask only what you need to make the next decision. Do not collect 40 fields upfront because someone might want them later. Each additional field that is not strictly required costs measurable conversion.
 
-**3. One job per screen.** Document upload, selfie capture, OTP — each is a different cognitive task. Combining them on one screen causes drops.
+**3. One job per screen.** Document upload, selfie capture, OTP, each is a different cognitive task. Combining them on one screen causes drops.
 
 **4. Show progress honestly.** A 5-step progress indicator that turns out to have 9 steps destroys trust. If steps are conditional, say so.
 
@@ -49,10 +49,10 @@ KYC and conversion are not adjacent surfaces. They are the same surface viewed f
 
 The genuine conflicts are narrower than the religious-war versions:
 
-- **Document re-upload on partial failure** — compliance wants the original, conversion wants OCR retry. Resolve with explicit re-upload only when OCR confidence is low.
-- **UBO depth** — compliance wants every layer, conversion wants two. Resolve by tier and jurisdiction.
-- **Selfie liveness** — compliance wants strict, conversion wants permissive. Resolve with stepped-up checks for higher-risk tiers.
-- **Bank verification mechanism** — compliance prefers micro-deposit, conversion prefers Open Banking. Resolve by availability per market.
+- **Document re-upload on partial failure**, compliance wants the original, conversion wants OCR retry. Resolve with explicit re-upload only when OCR confidence is low.
+- **UBO depth**, compliance wants every layer, conversion wants two. Resolve by tier and jurisdiction.
+- **Selfie liveness**, compliance wants strict, conversion wants permissive. Resolve with stepped-up checks for higher-risk tiers.
+- **Bank verification mechanism**, compliance prefers micro-deposit, conversion prefers Open Banking. Resolve by availability per market.
 
 Each of these has a defensible answer. The bad outcome is leaving the question unresolved and letting the merchant pay the cost.
 
@@ -84,7 +84,7 @@ These numbers are achievable. Most platforms run at 30–50% of them because the
 
 ## Operator lens
 
-The cheapest way to fix onboarding is to merge the org chart for two quarters. The teams discover that most of what they argued about did not matter, and the things that did matter were never on either backlog. After that, separate them again if you want — they will keep talking.
+The cheapest way to fix onboarding is to merge the org chart for two quarters. The teams discover that most of what they argued about did not matter, and the things that did matter were never on either backlog. After that, separate them again if you want, they will keep talking.
 
 ---
 

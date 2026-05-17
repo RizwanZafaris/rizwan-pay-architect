@@ -6,7 +6,7 @@ import { absUrl } from "@/lib/seo";
 // Web3Forms-compatible endpoint. Set VITE_CONTACT_ACCESS_KEY in your environment
 // to enable server-side submission. When unset the form falls back to mailto:.
 //   - Web3Forms (free, no sign-up email): https://web3forms.com
-//   - Compatible: Formspree, Getform, FormSubmit — adjust ENDPOINT + payload as needed
+//   - Compatible: Formspree, Getform, FormSubmit, adjust ENDPOINT + payload as needed
 type ContactEnv = { VITE_CONTACT_ACCESS_KEY?: string };
 const CONTACT_ACCESS_KEY: string =
   (typeof import.meta !== "undefined"
@@ -17,7 +17,7 @@ const CONTACT_ENDPOINT = "https://api.web3forms.com/submit";
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact — Rizwan Zafar | Payments Product Executive (Dubai)" },
+      { title: "Contact, Rizwan Zafar | Payments Product Executive (Dubai)" },
       {
         name: "description",
         content:
@@ -56,7 +56,7 @@ function ContactPage() {
     role: "",
     message: "",
     referral: "",
-    // honeypot — bots fill this; humans don't
+    // honeypot, bots fill this; humans don't
     website: "",
   });
 
@@ -84,9 +84,9 @@ function ContactPage() {
     const body =
       `Name: ${values.name}\n` +
       `Email: ${values.email}\n` +
-      `Company: ${values.company || "—"}\n` +
-      `Role you're hiring for: ${values.role || "—"}\n` +
-      `How did you hear about me: ${values.referral || "—"}\n\n` +
+      `Company: ${values.company || ","}\n` +
+      `Role you're hiring for: ${values.role || ","}\n` +
+      `How did you hear about me: ${values.referral || ","}\n\n` +
       `${values.message}`;
     const href = `mailto:${profile.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     window.location.href = href;
@@ -99,13 +99,13 @@ function ContactPage() {
     setErrors(errs);
     if (Object.keys(errs).length) return;
 
-    // Bot detected — silently succeed
+    // Bot detected, silently succeed
     if (values.website.trim().length > 0) {
       setState("sent");
       return;
     }
 
-    // No backend configured — fall back to mailto so the form still works
+    // No backend configured, fall back to mailto so the form still works
     if (!CONTACT_ACCESS_KEY) {
       openMailto();
       return;
@@ -121,9 +121,9 @@ function ContactPage() {
         subject: `Inbound from ${values.name}${values.company ? ` (${values.company})` : ""}`,
         name: values.name,
         email: values.email,
-        company: values.company || "—",
-        role_hiring_for: values.role || "—",
-        referral_source: values.referral || "—",
+        company: values.company || ",",
+        role_hiring_for: values.role || ",",
+        referral_source: values.referral || ",",
         message: values.message,
         // honeypot for Web3Forms
         botcheck: "",
@@ -184,16 +184,16 @@ function ContactPage() {
             aria-label="Preferred contact channels in order"
           >
             <li>
-              <span className="text-ink font-medium">1. Email</span> — for substantive intros and
+              <span className="text-ink font-medium">1. Email</span>, for substantive intros and
               role discussions.
             </li>
             <li>
-              <span className="text-ink font-medium">2. LinkedIn DM</span> — for quick pings or
+              <span className="text-ink font-medium">2. LinkedIn DM</span>, for quick pings or
               referrals.
             </li>
             <li>
-              <span className="text-ink font-medium">3. The form</span> — pre-formats your message
-              so I can triage faster.
+              <span className="text-ink font-medium">3. The form</span>, pre-formats your message so
+              I can triage faster.
             </li>
           </ol>
         </div>
@@ -302,7 +302,7 @@ function ContactPage() {
           </div>
         ) : (
           <form onSubmit={onSubmit} className="mt-6 space-y-4" noValidate>
-            {/* Honeypot — visually hidden from sighted users + screen readers */}
+            {/* Honeypot, visually hidden from sighted users + screen readers */}
             <div
               aria-hidden="true"
               style={{
@@ -440,7 +440,7 @@ function ContactPage() {
                 onChange={(e) => setValues({ ...values, referral: e.target.value })}
                 className={field}
               >
-                <option value="">—</option>
+                <option value="">,</option>
                 <option value="LinkedIn">LinkedIn</option>
                 <option value="Google search">Google search</option>
                 <option value="Referral">Referral</option>
@@ -479,7 +479,7 @@ function ContactPage() {
                 <span className="text-ink-soft">
                   {usesServerSubmission
                     ? "Submissions are protected with a spam filter and sent straight to my inbox."
-                    : "This opens your email app with the message pre-filled — it does not send from this site."}
+                    : "This opens your email app with the message pre-filled, it does not send from this site."}
                 </span>
               )}
             </p>

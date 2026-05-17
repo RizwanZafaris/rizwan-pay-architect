@@ -25,7 +25,7 @@ The default debate is binary: growth wants higher conversion, risk wants lower d
 
 ## The correct objective
 
-The objective is not "maximise conversion" or "minimise default". It is **maximise risk-adjusted activation** — the volume of merchants whose 12-month expected contribution net of expected loss is positive.
+The objective is not "maximise conversion" or "minimise default". It is **maximise risk-adjusted activation**, the volume of merchants whose 12-month expected contribution net of expected loss is positive.
 
 That single reframing changes everything. Suddenly:
 
@@ -51,11 +51,11 @@ You will not have 12-month data for new cohorts. Use 90-day proxies and back-tes
 
 Most "conversion vs default" arguments are about steps that affect neither in practice. The places where the tradeoff is real and large:
 
-- **UBO declaration depth** — asking for 2 vs 4 layers of beneficial ownership
-- **Document re-upload friction** — automatic OCR vs manual reupload on failure
-- **Sanctions hit handling** — auto-clear with low-confidence vs manual review
-- **Bank account verification** — micro-deposit vs instant Open Banking
-- **Vertical declaration** — free text vs structured taxonomy
+- **UBO declaration depth**, asking for 2 vs 4 layers of beneficial ownership
+- **Document re-upload friction**, automatic OCR vs manual reupload on failure
+- **Sanctions hit handling**, auto-clear with low-confidence vs manual review
+- **Bank account verification**, micro-deposit vs instant Open Banking
+- **Vertical declaration**, free text vs structured taxonomy
 
 For each of these, run a controlled experiment. Most teams have never done this and are guessing.
 
@@ -71,7 +71,7 @@ A single sensitivity threshold across all verticals is the fastest way to misall
 
 ## Time, not just decisions
 
-Conversion is not only "did they pass?" — it is "did they pass before they gave up?". Every 24 hours of activation delay typically costs 5–10% of cohort conversion. The cheapest conversion intervention is usually:
+Conversion is not only "did they pass?", it is "did they pass before they gave up?". Every 24 hours of activation delay typically costs 5–10% of cohort conversion. The cheapest conversion intervention is usually:
 
 - Auto-OCR the document the first time, not on retry
 - Surface what is needed in real time, not by email
@@ -91,7 +91,7 @@ These cost very little and move conversion materially without touching risk thre
 
 ## Operator lens
 
-The leaders who win this conversation are the ones who can show — with numbers — that a proposed friction change moves risk-adjusted activation up. Without that math, every meeting is a religious war between growth and risk. With it, the math wins.
+The leaders who win this conversation are the ones who can show, with numbers, that a proposed friction change moves risk-adjusted activation up. Without that math, every meeting is a religious war between growth and risk. With it, the math wins.
 
 ---
 

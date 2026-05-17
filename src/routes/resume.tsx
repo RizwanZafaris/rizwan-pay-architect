@@ -5,26 +5,26 @@ import { absUrl } from "@/lib/seo";
 export const Route = createFileRoute("/resume")({
   head: () => ({
     meta: [
-      { title: "Resume — Rizwan Zafar | Payments Product Executive" },
+      { title: "Resume, Rizwan Zafar | Payments Product Executive" },
       {
         name: "description",
         content:
-          "Resume of Rizwan Zafar — Payments Product Executive. 14+ years in product and delivery; 8+ building regulated payments infrastructure at $1B+ GTV.",
+          "Resume of Rizwan Zafar, Payments Product Executive. 14+ years in product and delivery; 8+ building regulated payments infrastructure at $1B+ GTV.",
       },
       // noindex so search engines always send recruiters to the homepage / latest version
       // (the canonical résumé surface is the homepage + downloadable PDF).
       { name: "robots", content: "noindex, follow" },
-      { property: "og:title", content: "Resume — Rizwan Zafar" },
+      { property: "og:title", content: "Resume, Rizwan Zafar" },
       {
         property: "og:description",
-        content: "Executive resume — payments product, infrastructure, risk and cross-border.",
+        content: "Executive resume, payments product, infrastructure, risk and cross-border.",
       },
       { property: "og:url", content: absUrl("/resume") },
-      { name: "twitter:title", content: "Resume — Rizwan Zafar" },
+      { name: "twitter:title", content: "Resume, Rizwan Zafar" },
       {
         name: "twitter:description",
         content:
-          "Executive resume — payments product, infrastructure, risk and cross-border. $1B+ GTV, 25M+ tx/mo.",
+          "Executive resume, payments product, infrastructure, risk and cross-border. $1B+ GTV, 25M+ tx/mo.",
       },
     ],
     links: [
@@ -43,14 +43,14 @@ export const Route = createFileRoute("/resume")({
 function ResumePage() {
   return (
     <div className="mx-auto max-w-4xl px-6 py-20">
-      {/* Top — recruiter snapshot */}
+      {/* Top, recruiter snapshot */}
       <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--accent-emerald)] font-mono-tech">
         ◆ Resume
       </div>
       <div className="mt-3 flex flex-wrap items-start justify-between gap-6">
         <div>
           <h1 className="font-instrument text-4xl md:text-5xl text-ink leading-tight">
-            {profile.name} — Payments Product Executive
+            {profile.name}, Payments Product Executive
           </h1>
           <p className="mt-2 text-ink-soft">
             {profile.role} · {profile.location}
@@ -82,7 +82,7 @@ function ResumePage() {
           </div>
         </div>
         <p className="md:col-span-8 font-instrument text-2xl text-ink leading-snug">
-          14+ years across product, payments and complex program delivery — including 8+ years
+          14+ years across product, payments and complex program delivery, including 8+ years
           building regulated payment infrastructure across emerging markets. Currently CPO at
           Simpaisa: $1B+ annual GTV, 25M+ monthly transactions across five countries. Led PCI DSS
           and ISO/IEC 27001 certification programs from scratch and held a dual CPO + acting CTO

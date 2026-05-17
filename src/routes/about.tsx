@@ -7,20 +7,20 @@ import portrait from "@/assets/rizwan-zafar.jpg";
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About — Rizwan Zafar | Payments Product Executive (Dubai)" },
+      { title: "About, Rizwan Zafar | Payments Product Executive (Dubai)" },
       {
         name: "description",
         content:
-          "Engineer-turned-payments-CPO building regulated payment infrastructure across emerging markets — $1B+ GTV, PCI DSS and ISO 27001 from scratch.",
+          "Engineer-turned-payments-CPO building regulated payment infrastructure across emerging markets, $1B+ GTV, PCI DSS and ISO 27001 from scratch.",
       },
-      { property: "og:title", content: "About Rizwan Zafar — Payments Product Executive" },
+      { property: "og:title", content: "About Rizwan Zafar, Payments Product Executive" },
       {
         property: "og:description",
         content:
           "14+ years across product, payments and program delivery. 8+ years building regulated payments infrastructure.",
       },
       { property: "og:url", content: absUrl("/about") },
-      { name: "twitter:title", content: "About Rizwan Zafar — Payments Product Executive" },
+      { name: "twitter:title", content: "About Rizwan Zafar, Payments Product Executive" },
       {
         name: "twitter:description",
         content:
@@ -84,12 +84,12 @@ function AboutPage() {
 
         <div className="prose-editorial mt-10">
           <p>
-            Before payments, I learned reliability in systems where failure had real consequences —
+            Before payments, I learned reliability in systems where failure had real consequences,
             five substations, real-time data, control-room shifts. That operating discipline shaped
             how I build payment infrastructure today.
           </p>
           <p>
-            14+ years across product, payments and complex program delivery — including 8+ years
+            14+ years across product, payments and complex program delivery, including 8+ years
             building regulated payment infrastructure at scale. PMO years at DS Engineering and Wing
             Logic taught me to make governance useful instead of bureaucratic. A year in the DRC
             running $8M of IT infrastructure taught me to plan when nothing is reliable.
@@ -97,13 +97,13 @@ function AboutPage() {
           <p>
             Tapmad was the leap into payments. A subscription business being eaten alive by telco
             margins. I launched DCB across all four major telcos, then migrated the rail mix to
-            wallets — payment cost dropped from ~50% of revenue to ~1%, ARPU grew 70%, and we scaled
+            wallets, payment cost dropped from ~50% of revenue to ~1%, ARPU grew 70%, and we scaled
             past 5M paid subscribers. That's when I learned that payments product is unit-economics
             work first and UX work second.
           </p>
           <p>
             Daraz (Alibaba Group) added multi-country payment operations during a COVID volume surge
-            — settlement, disputes, fraud rule configuration, COD-to-digital conversion across five
+            , settlement, disputes, fraud rule configuration, COD-to-digital conversion across five
             markets. Useful exposure to recon and compliance at Alibaba scale.
           </p>
           <p>
@@ -112,7 +112,7 @@ function AboutPage() {
             IBFT, payouts, cross-border corridors with real-time FX. Onboarding cut from weeks to
             hours. Fraud loss below 0.1% of GTV. Payment failure rate down from ~8% to ~1.2% through
             routing, retries and acquirer SLA management. Downtime down 90%. Local infrastructure
-            partner for DLocal, Thunes, Boku and Coda — enabling TikTok, Temu, Uber, InDrive,
+            partner for DLocal, Thunes, Boku and Coda, enabling TikTok, Temu, Uber, InDrive,
             MoneyGram and PUBG to collect and disburse where they had no local rails. $1B+ GTV. 25M+
             monthly transactions. 99.95% settlement SLA. Built and led a 40-engineer payments org
             across 12 cross-functional squads. Launched BNPL from 0 to 100K users in 8 months. PCI
@@ -122,7 +122,7 @@ function AboutPage() {
           <h2>Where I'm headed</h2>
           <p>
             Senior product and payment infrastructure roles at companies building serious payments
-            platforms — Visa, Mastercard, Stripe, Wise, Adyen, Thunes, DLocal and similar. Based in
+            platforms, Visa, Mastercard, Stripe, Wise, Adyen, Thunes, DLocal and similar. Based in
             Dubai. Open to UAE, KSA, Singapore, MENA, Europe and global fintech.
           </p>
         </div>
@@ -202,7 +202,7 @@ function AboutPage() {
 
           {/* Modern payments-era */}
           <h2 className="font-instrument text-3xl md:text-4xl text-ink mt-3 max-w-3xl">
-            From payments leaders <span className="italic text-ink-soft">— in progress.</span>
+            From payments leaders <span className="italic text-ink-soft">, in progress.</span>
           </h2>
 
           {paymentsRecommendations.length === 0 ? (
@@ -239,7 +239,7 @@ function AboutPage() {
             </div>
           )}
 
-          {/* Legacy — collapsed and de-emphasized */}
+          {/* Legacy, collapsed and de-emphasized */}
           {legacyRecommendations.length > 0 && (
             <details className="mt-16 group">
               <summary className="cursor-pointer list-none flex items-center gap-3 text-sm text-ink-soft hover:text-ink">

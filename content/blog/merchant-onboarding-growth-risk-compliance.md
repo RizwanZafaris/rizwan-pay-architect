@@ -3,7 +3,7 @@ title: "Merchant Onboarding: Where Growth, Risk and Compliance Collide"
 slug: "merchant-onboarding-growth-risk-compliance"
 category: "Merchant Onboarding"
 metaTitle: "Merchant Onboarding: Growth, Risk, Compliance | Rizwan Zafar"
-metaDescription: "Why merchant onboarding is a single product surface where growth, risk, and compliance must be designed together — not by three separate teams."
+metaDescription: "Why merchant onboarding is a single product surface where growth, risk, and compliance must be designed together, not by three separate teams."
 excerpt: "Three teams own onboarding. The merchant only sees one experience. That gap is the product."
 publishDate: "2026-05-22"
 readingTime: "10 min read"
@@ -33,7 +33,7 @@ Growth owns the funnel. Risk owns the decision. Compliance owns the documentatio
 
 This is the most expensive misalignment in fintech. It produces low activation, high false positives, and the kind of audit findings that quietly cap a license.
 
-I have run merchant onboarding in regulated payments at scale across South Asia and MENA. This essay is the operator argument for treating onboarding as one product surface — with one owner, one decision model, and one set of metrics that growth, risk, and compliance all sign.
+I have run merchant onboarding in regulated payments at scale across South Asia and MENA. This essay is the operator argument for treating onboarding as one product surface, with one owner, one decision model, and one set of metrics that growth, risk, and compliance all sign.
 
 ## Table of contents
 
@@ -76,12 +76,12 @@ The single most useful pattern is tiered onboarding. The merchant is admitted in
 
 A workable model:
 
-| Tier           | Onboarding                            | Limits                          | Monitoring               | Upgrade                         |
-| -------------- | ------------------------------------- | ------------------------------- | ------------------------ | ------------------------------- |
-| T0 — Express   | Self-serve, automated screening       | Low monthly cap, MCC-restricted | Behavioral, anomaly-only | After 30 days of clean activity |
-| T1 — Standard  | Documented KYB, automated screening   | Mid cap                         | Velocity + content       | After volume threshold + review |
-| T2 — Enhanced  | Documented KYB, manual review         | High cap                        | Continuous monitoring    | Quarterly review                |
-| T3 — Strategic | Full underwriting, named relationship | Negotiated                      | Dedicated risk analyst   | Annual review                   |
+| Tier          | Onboarding                            | Limits                          | Monitoring               | Upgrade                         |
+| ------------- | ------------------------------------- | ------------------------------- | ------------------------ | ------------------------------- |
+| T0, Express   | Self-serve, automated screening       | Low monthly cap, MCC-restricted | Behavioral, anomaly-only | After 30 days of clean activity |
+| T1, Standard  | Documented KYB, automated screening   | Mid cap                         | Velocity + content       | After volume threshold + review |
+| T2, Enhanced  | Documented KYB, manual review         | High cap                        | Continuous monitoring    | Quarterly review                |
+| T3, Strategic | Full underwriting, named relationship | Negotiated                      | Dedicated risk analyst   | Annual review                   |
 
 This single change typically lifts activation in the long tail by 30–60% while reducing manual review load, because the high-risk-and-tiny-volume merchants no longer block the queue meant for high-value ones.
 
@@ -101,7 +101,7 @@ The framing "we either get more merchants or fewer losses" assumes a one-dimensi
                     └─────────────────────────────▶ Activation
 ```
 
-The target zone exists. Reaching it requires segmenting merchants — not lowering the average bar. A platform that lowers its bar for everyone gets the worst of both worlds. A platform that tiers its decisions gets the target zone.
+The target zone exists. Reaching it requires segmenting merchants, not lowering the average bar. A platform that lowers its bar for everyone gets the worst of both worlds. A platform that tiers its decisions gets the target zone.
 
 ## Document capture is a product, not a form
 
@@ -120,7 +120,7 @@ This single area, done well, often shifts top-of-funnel activation by 10–20 pe
 
 Networks and sponsoring acquirers evaluate program managers on the discipline of their onboarding. A platform with explicit tiers, a documented decision model, and a feedback loop from losses is a platform that does not generate scheme penalties, BIN sponsor friction, or regulatory remediation.
 
-The opposite — a platform with "we manually review everything that looks weird" — is the kind of program that gets capped, repriced, or non-renewed.
+The opposite, a platform with "we manually review everything that looks weird", is the kind of program that gets capped, repriced, or non-renewed.
 
 ## Rizwan's operator lens
 
@@ -146,7 +146,7 @@ Within two quarters, activation in the long-tail SME segment increased materiall
 
 **Who should own onboarding?** A product owner with a combined activation-and-loss KPI. Not growth alone. Not risk alone.
 
-**Are tiered models compliant?** Yes — risk-based approaches are explicitly contemplated by FATF guidance and most national AML/CFT regimes. The tier model must be documented and consistently applied.
+**Are tiered models compliant?** Yes, risk-based approaches are explicitly contemplated by FATF guidance and most national AML/CFT regimes. The tier model must be documented and consistently applied.
 
 **Does this work for high-risk MCCs?** Yes, with tighter limits and faster re-verification cycles. The tier model adapts.
 
@@ -156,4 +156,4 @@ Within two quarters, activation in the long-tail SME segment increased materiall
 
 > Onboarding is the most expensive misalignment in fintech. Three teams optimize three metrics. The merchant feels the average.
 >
-> The fix is structural — one owner, one decision model, one feedback loop. Tiered onboarding does the rest.
+> The fix is structural, one owner, one decision model, one feedback loop. Tiered onboarding does the rest.

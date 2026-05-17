@@ -27,7 +27,7 @@ relatedArticles:
 
 # How Emerging Markets Pressure-Test Payment Product Strategy.
 
-The payment product assumptions that quietly run global platforms — cards as default, monthly bank settlement, English-language KYC, dollar-denominated FX — fail predictably the moment those platforms ship into Pakistan, Bangladesh, Egypt, Iraq, or the broader frontier of MENA and South Asia.
+The payment product assumptions that quietly run global platforms, cards as default, monthly bank settlement, English-language KYC, dollar-denominated FX, fail predictably the moment those platforms ship into Pakistan, Bangladesh, Egypt, Iraq, or the broader frontier of MENA and South Asia.
 
 That failure is the most useful pressure test a payment product team can run. The markets that look like they need accommodation are actually the markets that will surface the structural weaknesses in the product. Fix them there, and the product gets stronger everywhere.
 
@@ -62,7 +62,7 @@ Each of these assumptions is a load-bearing wall in the product. Each one breaks
 
 In Pakistan, card penetration is in low single digits among adults. In Bangladesh, similar. In Egypt and Iraq, somewhat higher but still a minority. The dominant rails are wallets (JazzCash, EasyPaisa, fawry, etc.), IBFT, DCB, and over-the-counter cash networks.
 
-A platform that ships cards-first and adds local payment methods later under-indexes on 60–80% of the addressable volume. The fix is structural — local payment methods must share the same SDK, error taxonomy, webhook semantics, and sandbox coverage as cards. (Covered in depth in [Local Payment Methods Are DX Problems](/blog/local-payment-methods-developer-experience).)
+A platform that ships cards-first and adds local payment methods later under-indexes on 60–80% of the addressable volume. The fix is structural, local payment methods must share the same SDK, error taxonomy, webhook semantics, and sandbox coverage as cards. (Covered in depth in [Local Payment Methods Are DX Problems](/blog/local-payment-methods-developer-experience).)
 
 The lesson that travels: even in mature markets, the share of non-card volume is rising. Building LPMs as first-class from the start prepares the platform for the world it is moving toward.
 
@@ -70,7 +70,7 @@ The lesson that travels: even in mature markets, the share of non-card volume is
 
 Frontier-market merchants run on tighter working capital than mature-market merchants. A T+2 settlement that is invisible in the US is the difference between paying suppliers and not, in Karachi or Dhaka.
 
-The platforms that win in these markets treat settlement timing as a product — instant settlement to wallet, daily settlement to bank, with explicit cost-of-money math exposed to the merchant. The "monthly is fine" default is a product position that concedes the merchant relationship.
+The platforms that win in these markets treat settlement timing as a product, instant settlement to wallet, daily settlement to bank, with explicit cost-of-money math exposed to the merchant. The "monthly is fine" default is a product position that concedes the merchant relationship.
 
 The lesson that travels: SMB merchants everywhere prefer faster settlement. Building settlement timing as a configurable product surface opens commercial models that flat monthly never allows.
 
@@ -94,15 +94,15 @@ A KYC form in English in a market where the population's documents are in Urdu, 
 
 The architecture that works:
 
-- A native UX in the market's primary language(s) — not a translation overlay.
-- A native identity model — Pakistani NIC, Bangladeshi NID, Egyptian National ID, Iraqi Civil ID — with the underlying validation logic, not a generic "ID" field.
-- A native capture flow — RTL where needed, document templates per jurisdiction, on-device OCR tuned for the local script.
+- A native UX in the market's primary language(s), not a translation overlay.
+- A native identity model, Pakistani NIC, Bangladeshi NID, Egyptian National ID, Iraqi Civil ID, with the underlying validation logic, not a generic "ID" field.
+- A native capture flow, RTL where needed, document templates per jurisdiction, on-device OCR tuned for the local script.
 
 The lesson that travels: identity is local everywhere, not only in frontier markets. The same model that supports Pakistani NIC supports the diversity of EU national IDs at less marginal cost.
 
 ## FX margin is the merchant's number, not the platform's
 
-In frontier markets, FX is the largest single component of cross-border payment cost — and the most opaque. Merchants who are sophisticated enough to compare platforms will eventually compute the platform's FX margin and act on it.
+In frontier markets, FX is the largest single component of cross-border payment cost, and the most opaque. Merchants who are sophisticated enough to compare platforms will eventually compute the platform's FX margin and act on it.
 
 The architecture that wins exposes FX margin as a line item, not a bundled spread. The platforms that hide FX may win the first quarter. They lose the second.
 
@@ -116,19 +116,19 @@ Frontier-market product discipline travels back to the core product. That is the
 
 ## Rizwan's operator lens
 
-The pattern across Simpaisa, Tapmad, and Daraz was consistent: every product decision that initially looked like a local accommodation turned out to be a generally better product decision once made. The native KYC flows were better than the English forms. The settlement-timing product was better than the monthly default. The transparent FX line item was better than the bundled spread. The platforms that fought to keep the global default lost. The platforms that absorbed the pressure test won — locally, and then globally.
+The pattern across Simpaisa, Tapmad, and Daraz was consistent: every product decision that initially looked like a local accommodation turned out to be a generally better product decision once made. The native KYC flows were better than the English forms. The settlement-timing product was better than the monthly default. The transparent FX line item was better than the bundled spread. The platforms that fought to keep the global default lost. The platforms that absorbed the pressure test won, locally, and then globally.
 
 ## Key takeaways
 
 - Emerging markets are not edge cases. They are pressure tests.
-- Cards are not the baseline anywhere — they are increasingly less so even in mature markets.
+- Cards are not the baseline anywhere, they are increasingly less so even in mature markets.
 - Settlement timing, compliance, language, and identity are first-class product surfaces.
 - Transparent FX is a directional bet on the whole industry.
 - The fixes that emerging markets force are upgrades that benefit every market the platform serves.
 
 ## FAQ
 
-**Are these markets really a strategic priority?** Yes — the next decade of transaction volume growth is disproportionately outside the US and EU. A platform that does not pressure-test in these markets is choosing a smaller future.
+**Are these markets really a strategic priority?** Yes, the next decade of transaction volume growth is disproportionately outside the US and EU. A platform that does not pressure-test in these markets is choosing a smaller future.
 
 **Isn't it cheaper to skip frontier markets and focus on the core?** It is cheaper in the first year. It is more expensive in the fifth, when the core product has not been pressure-tested and the competitor that did the work in the frontier shows up in the core.
 
@@ -140,4 +140,4 @@ The pattern across Simpaisa, Tapmad, and Daraz was consistent: every product dec
 
 > Emerging markets are the pressure test that improves the entire product.
 >
-> Cards-first, monthly settlement, English KYC, opaque FX — none of these survive contact with Pakistan, Bangladesh, Egypt, or Iraq. Fix them there and the platform gets stronger everywhere.
+> Cards-first, monthly settlement, English KYC, opaque FX, none of these survive contact with Pakistan, Bangladesh, Egypt, or Iraq. Fix them there and the platform gets stronger everywhere.

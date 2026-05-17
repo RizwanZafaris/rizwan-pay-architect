@@ -33,16 +33,16 @@ relatedArticles:
 
 Most fintech AI roadmaps fail at the same step: they prioritise the most ambitious use cases instead of the most ship-able ones. The result is a portfolio of half-built demos and one or two limping pilots.
 
-This is the four-axis framework that took 20+ candidate use cases at Simpaisa down to four production deployments — covering merchant integration support, incident auto-escalation, partner support automation and a fraud/AML banking pilot.
+This is the four-axis framework that took 20+ candidate use cases at Simpaisa down to four production deployments, covering merchant integration support, incident auto-escalation, partner support automation and a fraud/AML banking pilot.
 
 ## The four axes
 
 Every candidate use case is scored on:
 
-1. **ROI** — projected business value if it works
-2. **Feasibility** — can the team actually build it with current tools
-3. **Data readiness** — do we have the training data, retrieval corpus or feedback loop
-4. **Regulatory risk** — what's the worst case if it fails or drifts, and can we defend it to regulators
+1. **ROI**, projected business value if it works
+2. **Feasibility**, can the team actually build it with current tools
+3. **Data readiness**, do we have the training data, retrieval corpus or feedback loop
+4. **Regulatory risk**, what's the worst case if it fails or drifts, and can we defend it to regulators
 
 Score each axis 1–5. Multiply. Anything under a threshold (we used 100) gets parked. Anything over goes into deep design.
 
@@ -69,21 +69,21 @@ Feasibility + data readiness + regulatory risk are the three filters that separa
 **Regulatory risk (1–5):**
 1 = will be blocked · 2 = needs major regulatory engagement · 3 = needs documented controls · 4 = aligns with existing controls · 5 = no regulatory surface
 
-Score is multiplicative because every axis is a veto. A 5×5×5×1 use case scores 125. A 5×5×5×5 scores 625. The 1 on regulatory risk would block deployment in a regulated context — the multiplication captures the veto.
+Score is multiplicative because every axis is a veto. A 5×5×5×1 use case scores 125. A 5×5×5×5 scores 625. The 1 on regulatory risk would block deployment in a regulated context, the multiplication captures the veto.
 
 ## How this played out at Simpaisa
 
 Of the 20+ candidates we evaluated:
 
-- **Merchant integration support bot** — High on all four axes. Built first. (See [the four-use-case post](/blog/ai-in-payments-four-production-use-cases).)
-- **Auto-escalation agent** — High ROI, high feasibility, good data, low regulatory risk (internal-only). Built second.
-- **Partner support automation** — Same profile. Built third.
-- **Fraud/AML AI** — Highest ROI of any candidate, but data readiness was a 3 (still building the feedback loop) and regulatory risk was a 2 (significant engagement needed). Shipped as a pilot with a banking partner, not as a production rollout.
+- **Merchant integration support bot**, High on all four axes. Built first. (See [the four-use-case post](/blog/ai-in-payments-four-production-use-cases).)
+- **Auto-escalation agent**, High ROI, high feasibility, good data, low regulatory risk (internal-only). Built second.
+- **Partner support automation**, Same profile. Built third.
+- **Fraud/AML AI**, Highest ROI of any candidate, but data readiness was a 3 (still building the feedback loop) and regulatory risk was a 2 (significant engagement needed). Shipped as a pilot with a banking partner, not as a production rollout.
 
 What didn't make the cut:
 
-- **Personalised merchant pricing recommendations** — high ROI, low data readiness (no labelled outcomes), and regulatory risk on the discrimination axis. Parked.
-- **AI-generated dispute responses** — high feasibility, but regulatory risk too high (representment quality is a compliance surface, not just an ops surface). Parked until we built a tighter human-in-the-loop design.
+- **Personalised merchant pricing recommendations**, high ROI, low data readiness (no labelled outcomes), and regulatory risk on the discrimination axis. Parked.
+- **AI-generated dispute responses**, high feasibility, but regulatory risk too high (representment quality is a compliance surface, not just an ops surface). Parked until we built a tighter human-in-the-loop design.
 
 ## The value-modeling council
 
@@ -101,6 +101,6 @@ The framework narrows the list. It does not pick the next thing to build. Once y
 
 **What's a reasonable threshold?** We used 100 (out of 625 max). Adjust to your appetite.
 
-**How often do you re-score?** Quarterly. Data readiness scores in particular change fast — a use case scoring 2 today might score 4 in six months once the feedback loop is in place.
+**How often do you re-score?** Quarterly. Data readiness scores in particular change fast, a use case scoring 2 today might score 4 in six months once the feedback loop is in place.
 
 **Can this framework work for non-AI initiatives?** Yes, with axis adjustments. It's a generalisable prioritisation tool. We use a variant for any major platform investment.

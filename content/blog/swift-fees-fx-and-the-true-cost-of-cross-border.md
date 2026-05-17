@@ -3,7 +3,7 @@ title: "SWIFT Fees, FX, and the True Cost of a Cross-Border Payment"
 slug: "swift-fees-fx-and-the-true-cost-of-cross-border"
 category: "SWIFT & Cross-Border Payments"
 metaTitle: "SWIFT Fees, FX, and True Cost of Cross-Border Payments | Rizwan Zafar"
-metaDescription: "Where the real cost of a cross-border SWIFT payment hides — fees, FX margin, charge bearer, and the product decisions that compress it."
+metaDescription: "Where the real cost of a cross-border SWIFT payment hides, fees, FX margin, charge bearer, and the product decisions that compress it."
 excerpt: "The sticker fee is the smallest part of the cost. The FX margin is most of it. The product decisions decide both."
 publishDate: "2026-06-23"
 readingTime: "8 min read"
@@ -17,7 +17,7 @@ relatedArticles:
 
 # SWIFT Fees, FX, and the True Cost of a Cross-Border Payment
 
-The fee a customer sees on a cross-border payment confirmation is rarely the cost of the payment. It is the visible slice of a stack that includes correspondent deductions, FX margin, and charge-bearer rules — most of which never appear on the confirmation.
+The fee a customer sees on a cross-border payment confirmation is rarely the cost of the payment. It is the visible slice of a stack that includes correspondent deductions, FX margin, and charge-bearer rules, most of which never appear on the confirmation.
 
 ## Table of contents
 
@@ -59,7 +59,7 @@ The product question is whether the FX margin is **bundled** (a single "good rat
 
 ## gpi fee transparency
 
-[SWIFT gpi](/blog/swift-gpi-tracking-and-the-end-of-payment-uncertainty) requires correspondents to report deductions along the chain. The originator's bank can — and should — show the customer the full deduction trail. Most still do not. The platforms that do create a trust advantage that price alone cannot.
+[SWIFT gpi](/blog/swift-gpi-tracking-and-the-end-of-payment-uncertainty) requires correspondents to report deductions along the chain. The originator's bank can, and should, show the customer the full deduction trail. Most still do not. The platforms that do create a trust advantage that price alone cannot.
 
 ## Product moves that compress cost
 
@@ -78,7 +78,7 @@ Each of these is a product decision that affects cost more than any single contr
 - The visible fee is the smallest part of the cost.
 - FX margin is usually the largest line and the most opaque.
 - Charge-bearer rules are product decisions with downstream customer impact.
-- gpi gives the originator visibility into deductions — use it.
+- gpi gives the originator visibility into deductions, use it.
 - The structural cost moves come from routing, netting, and last-mile rail choice.
 
 ## FAQ
@@ -87,4 +87,4 @@ Each of these is a product decision that affects cost more than any single contr
 
 **Which charge bearer is best?** OUR for payroll and supplier payments where the recipient must receive a known amount. SHA for many consumer remittances. BEN is rare and operationally risky.
 
-**Does gpi reduce cost?** Indirectly — by exposing deductions and creating commercial pressure, not by lowering them directly.
+**Does gpi reduce cost?** Indirectly, by exposing deductions and creating commercial pressure, not by lowering them directly.

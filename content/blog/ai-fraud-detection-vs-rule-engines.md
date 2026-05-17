@@ -3,8 +3,8 @@ title: "AI Fraud Detection vs Rule Engines: A Field Comparison"
 slug: "ai-fraud-detection-vs-rule-engines"
 category: "AI in Fintech"
 metaTitle: "AI Fraud Detection vs Rule Engines: Field Comparison | Rizwan Zafar"
-metaDescription: "When does AI fraud detection beat a tuned rule engine in payments? A field comparison based on running both at $1B+ GTV — false positives, drift, explainability, regulator posture and the hybrid model that actually wins."
-excerpt: "AI fraud detection beats rule engines on novel-attack detection. Rule engines beat AI on explainability and ops cost. The right answer is almost always a hybrid — and the design of the hybrid is the actual work."
+metaDescription: "When does AI fraud detection beat a tuned rule engine in payments? A field comparison based on running both at $1B+ GTV, false positives, drift, explainability, regulator posture and the hybrid model that actually wins."
+excerpt: "AI fraud detection beats rule engines on novel-attack detection. Rule engines beat AI on explainability and ops cost. The right answer is almost always a hybrid, and the design of the hybrid is the actual work."
 publishDate: "2026-05-07"
 readingTime: "10 min read"
 tags:
@@ -33,7 +33,7 @@ relatedArticles:
 
 # AI Fraud Detection vs Rule Engines: A Field Comparison
 
-The "AI replaces rule engines" pitch in fraud is mostly wrong. The "rule engines beat ML in production" pitch is also mostly wrong. The right answer in regulated payments is almost always a hybrid — and the design of the hybrid is the actual work.
+The "AI replaces rule engines" pitch in fraud is mostly wrong. The "rule engines beat ML in production" pitch is also mostly wrong. The right answer in regulated payments is almost always a hybrid, and the design of the hybrid is the actual work.
 
 This is a field comparison from running both at $1B+ GTV across cards, wallets, DCB, IBFT and cross-border rails.
 
@@ -63,8 +63,8 @@ This is a field comparison from running both at $1B+ GTV across cards, wallets, 
 
 A two-layer architecture:
 
-1. **Deterministic rule layer** — hard blocks on the indefensibly bad. Sanctions hits. Known-bad device fingerprints. Velocity over a hard threshold. Geo-impossible. These are not opinions — they are policy.
-2. **ML scoring layer** — runs on everything that survives the rules. Scores risk continuously. Routes high scores to review, mid scores to soft challenge (3DS, OTP), low scores to clear.
+1. **Deterministic rule layer**, hard blocks on the indefensibly bad. Sanctions hits. Known-bad device fingerprints. Velocity over a hard threshold. Geo-impossible. These are not opinions, they are policy.
+2. **ML scoring layer**, runs on everything that survives the rules. Scores risk continuously. Routes high scores to review, mid scores to soft challenge (3DS, OTP), low scores to clear.
 
 The rule layer is small (20-40 rules), changes weekly, is owned by risk ops. The ML layer is one model per use case (acceptance, dispute, AML), retrained on a cadence, owned by data science with risk sign-off.
 
@@ -83,7 +83,7 @@ Without this loop, ML decays. With it, ML compounds.
 
 Beyond classical ML scoring, GenAI is now adding three things in fraud:
 
-- **Alert triage and narrative.** LLM drafts a case narrative for the analyst — what the transaction was, what made it suspicious, what the customer's history looks like — saving 5–15 minutes per case.
+- **Alert triage and narrative.** LLM drafts a case narrative for the analyst, what the transaction was, what made it suspicious, what the customer's history looks like, saving 5–15 minutes per case.
 - **Cross-channel pattern detection.** LLM agents reading across email, support tickets and transaction logs to find coordinated fraud earlier.
 - **AML typology drafting.** LLM proposes new typologies based on emerging patterns; humans validate before they enter production.
 

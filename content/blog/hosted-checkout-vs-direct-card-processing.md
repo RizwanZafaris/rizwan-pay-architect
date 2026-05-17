@@ -5,7 +5,7 @@ category: "Payment Infrastructure"
 subcategory: "Card Acceptance"
 metaTitle: "Hosted Checkout vs Direct Card Processing | Rizwan Zafar"
 metaDescription: "Hosted checkout ships fast. Direct card processing ships maturity. A practitioner walk-through of MPGS, MDES, tokenization, 3DS, and PCI scope decisions."
-excerpt: "Why hosted checkout is the right first step and the wrong last step — and what direct card processing actually demands from a product team."
+excerpt: "Why hosted checkout is the right first step and the wrong last step, and what direct card processing actually demands from a product team."
 publishDate: "2026-05-21"
 readingTime: "12 min read"
 tags:
@@ -40,7 +40,7 @@ relatedArticles:
 
 # Hosted Checkout Is Easy. Direct Card Processing Is Where Product Maturity Shows.
 
-Every fintech ships hosted checkout first. That is the right call. It is also the moment most teams stop investing in card acceptance — and the reason the next two years of their product roadmap is bottlenecked by something they outsourced.
+Every fintech ships hosted checkout first. That is the right call. It is also the moment most teams stop investing in card acceptance, and the reason the next two years of their product roadmap is bottlenecked by something they outsourced.
 
 This is a practitioner walk-through of what hosted checkout actually gives you, what it costs you, and what direct card processing demands when you decide to graduate.
 
@@ -61,7 +61,7 @@ This is a practitioner walk-through of what hosted checkout actually gives you, 
 
 ## The hosted checkout default
 
-Hosted checkout — MPGS-hosted sessions, Stripe Checkout, Adyen Drop-in, Checkout.com Frames in hosted mode — gives you a working card acceptance flow in days. The PSP hosts the page or iframe, captures the PAN, runs 3DS, and returns a token or a result. Your platform never touches a card number.
+Hosted checkout, MPGS-hosted sessions, Stripe Checkout, Adyen Drop-in, Checkout.com Frames in hosted mode, gives you a working card acceptance flow in days. The PSP hosts the page or iframe, captures the PAN, runs 3DS, and returns a token or a result. Your platform never touches a card number.
 
 For a platform under a few million USD in annual card volume, this is correct. The engineering cost of direct integration is not justified by the marginal control you gain.
 
@@ -84,7 +84,7 @@ In my experience, platforms move to direct card processing for one or more of th
 1. **Cost.** Hosted PSP mark-ups become material above mid-eight-figure card volume.
 2. **Conversion.** A custom checkout that handles regional failure modes, retries, and rail fallback can lift acceptance by several hundred basis points.
 3. **Tokenization control.** Owning network tokens (MDES, VTS) and the vault means PSP independence.
-4. **3DS strategy.** Direct 3DS server access lets the platform decide when to step up — instead of inheriting the PSP's default.
+4. **3DS strategy.** Direct 3DS server access lets the platform decide when to step up, instead of inheriting the PSP's default.
 5. **Routing.** Multi-acquirer routing, with real-time decisioning on BIN, country, currency, MCC, and historical acceptance rate, is only possible when the platform sees the auth request.
 
 If none of these apply, stay hosted.
@@ -113,7 +113,7 @@ The PCI DSS scoping decision is the one that determines everything else.
 | Direct API, no PAN storage | SAQ D-Merchant + tokenization   | Full UX control, no card data at rest  | Active PCI program required               |
 | Direct API + card vault    | SAQ D + Level 1 audit if volume | Maximum control, true PSP independence | Significant ongoing compliance investment |
 
-Most platforms that graduate to direct land on "Direct API, no PAN storage" — they take the PAN in transit, immediately exchange it for a network token, and never store the raw number. That is the sweet spot: meaningful product control, manageable PCI scope, and PSP independence.
+Most platforms that graduate to direct land on "Direct API, no PAN storage", they take the PAN in transit, immediately exchange it for a network token, and never store the raw number. That is the sweet spot: meaningful product control, manageable PCI scope, and PSP independence.
 
 ## Tokenization, network tokens, and MDES
 
@@ -123,13 +123,13 @@ The single most under-appreciated decision in direct card processing is who owns
 - **Acquirer tokens** are slightly better but still tie the platform to one acquirer.
 - **Network tokens** (MDES for Mastercard, VTS for Visa) are issued by the network, refresh automatically when the card is reissued, and are portable across acquirers.
 
-A direct card processing platform that does not have a network token strategy is a hosted platform that pays for direct. Network tokens are also material to conversion — issuers approve network-tokenized transactions at meaningfully higher rates than PAN-based ones, and refresh-on-reissue alone recovers a measurable share of recurring billing failures.
+A direct card processing platform that does not have a network token strategy is a hosted platform that pays for direct. Network tokens are also material to conversion, issuers approve network-tokenized transactions at meaningfully higher rates than PAN-based ones, and refresh-on-reissue alone recovers a measurable share of recurring billing failures.
 
 ## 3DS2 as a product surface
 
 3DS2 is not compliance plumbing. It is a conversion lever.
 
-- **Frictionless flows** — when the issuer accepts the data the platform passes — convert almost identically to non-3DS.
+- **Frictionless flows**, when the issuer accepts the data the platform passes, convert almost identically to non-3DS.
 - **Challenge flows** add friction and lose customers, but shift liability away from the merchant.
 - **Exemptions** (SCA exemptions in EU, similar mechanisms in other regions) let the platform skip step-up for low-risk transactions.
 
@@ -145,7 +145,7 @@ The honest framing is: hosted checkout is a derivative product, direct card proc
 
 At Simpaisa, the card acceptance journey followed exactly this arc. Hosted-first to get into market. Then a deliberate move to direct on MPGS, with a network token strategy and a routing engine that handled multi-acquirer fallback. The acceptance lift was meaningful, the cost reduction was meaningful, and the most important outcome was unrelated to either: the team developed muscle around card-level economics that hosted never would have produced.
 
-The same maturity arc applied at Daraz in handling card disputes — owning the dispute pipeline end-to-end made COD-to-digital migration economics workable. And at Tapmad, network-token-style portability is what makes a 1% payment cost defensible across recurring billing.
+The same maturity arc applied at Daraz in handling card disputes, owning the dispute pipeline end-to-end made COD-to-digital migration economics workable. And at Tapmad, network-token-style portability is what makes a 1% payment cost defensible across recurring billing.
 
 ## What product leaders should do next
 
@@ -177,7 +177,7 @@ The same maturity arc applied at Daraz in handling card disputes — owning the 
 - Mastercard MDES: _Digital Enablement Service_ documentation
 - Visa VTS: _Visa Token Service_ developer documentation
 - EMVCo: _3DS 2.x specifications_
-- Stripe Docs: _Network tokens_ — for one well-documented implementation reference
+- Stripe Docs: _Network tokens_, for one well-documented implementation reference
 
 ## FAQ
 
@@ -188,7 +188,7 @@ No. For low-volume platforms or those whose differentiation is not in payments, 
 Some. Hosted-field iframes give partial UX control. They do not give 3DS or routing control.
 
 **What is the cost of a PCI Level 1 program?**
-The QSA audit is the smallest line item. The ongoing controls, scope reviews, and engineering work are the real cost — typically a small team in perpetuity.
+The QSA audit is the smallest line item. The ongoing controls, scope reviews, and engineering work are the real cost, typically a small team in perpetuity.
 
 **Do I need network tokens if I am already PSP-tokenized?**
 Eventually yes. PSP tokens lock you in. Network tokens make migration possible and improve approval rates in their own right.
@@ -223,13 +223,13 @@ Underestimating the 3DS step-up product. Teams ship direct, default to step-up-e
 
 ### Open Graph
 
-- **og:title:** Hosted Checkout vs Direct Card Processing — Where Product Maturity Shows
+- **og:title:** Hosted Checkout vs Direct Card Processing, Where Product Maturity Shows
 - **og:description:** Why hosted is the right first step and the wrong last step. PCI scope, network tokens, 3DS2, and routing as product decisions.
 
 ### LinkedIn teaser
 
 > Every fintech ships hosted checkout first. The good ones graduate.
 >
-> Direct card processing is where the product team finally owns conversion, cost, tokenization, 3DS, and routing — and where PCI scope, network tokens, and acquirer routing become real product surfaces.
+> Direct card processing is where the product team finally owns conversion, cost, tokenization, 3DS, and routing, and where PCI scope, network tokens, and acquirer routing become real product surfaces.
 >
 > A walk-through of when to graduate and what it actually demands.

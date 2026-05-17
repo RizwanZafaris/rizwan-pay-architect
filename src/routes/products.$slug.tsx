@@ -12,18 +12,18 @@ export const Route = createFileRoute("/products/$slug")({
     const p = loaderData?.product;
     if (!p)
       return {
-        meta: [{ title: "Product — Rizwan Zafar" }, { name: "robots", content: "noindex" }],
+        meta: [{ title: "Product, Rizwan Zafar" }, { name: "robots", content: "noindex" }],
       };
     const url = absUrl(`/products/${params.slug}`);
     const isComingSoon = p.status === "coming-soon";
-    // Coming-soon detail pages have no unique content yet — canonical to /products and noindex.
+    // Coming-soon detail pages have no unique content yet, canonical to /products and noindex.
     const canonical = isComingSoon ? absUrl("/products") : url;
     return {
       meta: [
-        { title: `${p.name} — Rizwan Zafar` },
+        { title: `${p.name}, Rizwan Zafar` },
         { name: "description", content: p.oneLiner },
         ...(isComingSoon ? [{ name: "robots", content: "noindex, follow" }] : []),
-        { property: "og:title", content: `${p.name} — Rizwan Zafar` },
+        { property: "og:title", content: `${p.name}, Rizwan Zafar` },
         { property: "og:description", content: p.oneLiner },
         { property: "og:url", content: url },
       ],
@@ -80,7 +80,7 @@ function ProductDetail() {
           <>
             <h2 className="font-instrument text-xl text-ink mt-8">Preview access</h2>
             <p className="mt-3 text-ink-soft leading-relaxed">
-              {product.name} is in quiet build. Tap below to join the preview list — you'll get a
+              {product.name} is in quiet build. Tap below to join the preview list, you'll get a
               short, no-noise note when there is something to show.
             </p>
             {mailtoHref && (

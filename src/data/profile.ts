@@ -9,9 +9,9 @@ export const profile = {
   personalSite: "https://rizwan-pay-architect.lovable.app",
   resumeHref: "/Rizwan_Zafar_Resume.pdf",
   headline:
-    "Product & Program Leader — Payments, Fintech, AI in Payments and Cross-Border Systems. Built a B2B payments platform from $0 to $1B+ TPV across 5 markets, deployed 4 production AI solutions, and led a 40-engineer org built from 2 people.",
+    "Product & Program Leader, Payments, Fintech, AI in Payments and Cross-Border Systems. Built a B2B payments platform from $0 to $1B+ TPV across 5 markets, deployed 4 production AI solutions, and led a 40-engineer org built from 2 people.",
   positioning:
-    "I build regulated payment infrastructure where product, program delivery, network partnerships, risk, compliance and operations collide. My work turns fragmented local rails into reliable products: card acquiring, merchant onboarding, cross-border corridors, settlement and reconciliation, fraud and AML/CFT controls, and now AI-augmented operations. I run the full lifecycle — strategy → roadmap → PMO governance → execution → P&L — across regulated markets.",
+    "I build regulated payment infrastructure where product, program delivery, network partnerships, risk, compliance and operations collide. My work turns fragmented local rails into reliable products: card acquiring, merchant onboarding, cross-border corridors, settlement and reconciliation, fraud and AML/CFT controls, and now AI-augmented operations. I run the full lifecycle, strategy → roadmap → PMO governance → execution → P&L, across regulated markets.",
   bio: "Product & Program leader with 14+ years across payments, fintech and digital transformation. Currently CPO at Simpaisa, a B2B payments platform I scaled from $0 to $1B+ TPV across five markets (PK, BD, NP, EG, IQ), serving 50+ financial institution partners and enterprise clients including TikTok, Uber, Temu, MoneyGram and PUBG. Built and led the 40-engineer organisation (from 2 people) across 12 cross-functional squads. Deployed 4 production GenAI solutions covering merchant integration support (−65% support time), incident auto-escalation (−70% MTTR), partner support automation (90% resolution) and a fraud/AML AI pilot with a banking partner. Earlier: $3M digital transformation programme at TapmadTV, payments operations at Daraz (Alibaba Group), PMO setups at Wing Logic and DS Engineering. Engineer's discipline, programme manager's tempo, regulator's vocabulary. PMP, PMI-ACP, CSPO, CSM, COBIT 5, ITIL v3. PCI DSS and ISO/IEC 27001 led from scratch.",
   metrics: [
     { label: "TPV scaled", value: "$0 → $1B+" },
@@ -96,25 +96,25 @@ export const profile = {
     {
       company: "Simpaisa",
       role: "Chief Product Officer (acting CTO, 2024)",
-      period: "Aug 2020 — Present",
+      period: "Aug 2020, Present",
       location: "Dubai, UAE",
       bullets: [
         "Built full-stack payment infrastructure: card acquiring (MPGS/MDES), wallets, DCB, IBFT, vouchers, bill payments, payout switch, cash-over-counter and cross-border corridors with real-time FX and dynamic corridor pricing.",
-        "Designed merchant onboarding with self-service flows, automated KYC/KYB, tiered risk-based approval and category-based pricing — onboarding cut from weeks to hours for standard-risk merchants.",
+        "Designed merchant onboarding with self-service flows, automated KYC/KYB, tiered risk-based approval and category-based pricing, onboarding cut from weeks to hours for standard-risk merchants.",
         "Built fraud and risk infrastructure: transaction monitoring, velocity checks, device fingerprinting, AML/CFT controls, SAR workflows and chargeback management. Fraud loss held below 0.1% of GTV; fraud incidents reduced ~65%.",
         "Drove authorisation-rate optimisation across acquiring partners: payment failure rate dropped from ~8% to ~1.2% through routing logic, retry orchestration and bank SLA management.",
-        "Launched BNPL product from 0 to 100K users in 8 months — full risk model, underwriting, repayment flows and collections, shipped through iterative agile discovery.",
+        "Launched BNPL product from 0 to 100K users in 8 months, full risk model, underwriting, repayment flows and collections, shipped through iterative agile discovery.",
         "Led PCI DSS and ISO/IEC 27001 certification from scratch and stood up multi-jurisdiction regulatory reporting.",
         "Built and led a 40-engineer payments organisation across 12 cross-functional squads (mobile, backend, payments, risk, compliance). Managed $5M+ annual technology budget and 15+ vendor relationships.",
         "Scaled the partnership ecosystem: local infrastructure partner for DLocal, Thunes, Boku, Coda. Enabled TikTok, Temu, Uber, InDrive, MoneyGram, PUBG to collect and disburse where they had no local rails.",
-        "Took on dual CPO + acting CTO during 2024 CTO departure and regulatory tightening — held platform stability, security architecture and product direction at the same time.",
+        "Took on dual CPO + acting CTO during 2024 CTO departure and regulatory tightening, held platform stability, security architecture and product direction at the same time.",
         "Results: $1B+ GTV · 25M+ monthly transactions · 99.95% settlement SLA · 90% downtime reduction · 30% enterprise wallet adoption · expanded to Bangladesh, Nepal, Iraq and Egypt.",
       ],
     },
     {
       company: "Daraz (Alibaba Group)",
-      role: "Project Manager — Payments Operations",
-      period: "Mar 2020 — Sep 2020",
+      role: "Project Manager, Payments Operations",
+      period: "Mar 2020, Sep 2020",
       location: "Karachi, Pakistan",
       bullets: [
         "Ran delivery governance for payment operations across five markets (Pakistan, Bangladesh, Sri Lanka, Nepal, Myanmar) during a COVID-driven volume surge: settlement cycles, dispute resolution, fraud rule configuration and COD-to-digital conversion.",
@@ -126,12 +126,12 @@ export const profile = {
     {
       company: "Tapmad",
       role: "Sr. Project & Product Manager",
-      period: "Jul 2017 — May 2020",
+      period: "Jul 2017, May 2020",
       location: "Karachi, Pakistan",
       bullets: [
-        "Owned product strategy and monetization for Pakistan's leading OTT platform — built the billing infrastructure that turned it from near-zero revenue into a commercially viable business.",
+        "Owned product strategy and monetization for Pakistan's leading OTT platform, built the billing infrastructure that turned it from near-zero revenue into a commercially viable business.",
         "Designed and launched Direct Carrier Billing across all four major telcos. Drove acquisition from 0 to 5M paid subscribers in under 3 years.",
-        "Identified unsustainable unit economics (50% telco revenue share) and led the migration to wallet-based billing — payment cost dropped from 50% to 1%.",
+        "Identified unsustainable unit economics (50% telco revenue share) and led the migration to wallet-based billing, payment cost dropped from 50% to 1%.",
         "Improved retention via faster refunds, wallet-native subscription management and reduced payment failures. ARPU grew 70% through pricing, bundles and wallet promotions.",
         "Expanded DCB and wallet billing infrastructure into UAE and KSA with regional telco and wallet partners.",
         "Results: 0 → 5M subscribers · $10M+ ARR · ARPU +70% · payment cost 50% → 1% · MENA expansion.",
@@ -140,7 +140,7 @@ export const profile = {
     {
       company: "Wing Logic",
       role: "PMO & Project Manager",
-      period: "Apr 2017 — Oct 2017",
+      period: "Apr 2017, Oct 2017",
       location: "Dubai, UAE",
       bullets: [
         "First Dubai role. Built a PMO from nothing for a $12M+ project portfolio. Created dashboards and KPIs that executives actually used.",
@@ -149,28 +149,28 @@ export const profile = {
     },
     {
       company: "CIMKO (Nyumba Ya Akiba SA)",
-      role: "Asst. Manager — Projects",
-      period: "May 2016 — Jan 2017",
+      role: "Asst. Manager, Projects",
+      period: "May 2016, Jan 2017",
       location: "Democratic Republic of the Congo",
       bullets: [
         "$8M+ in IT infrastructure and ERP projects. Reduced project delays by 12% and cut procurement costs by 15%.",
-        "First international role: limited infrastructure, unpredictable logistics. Learned to plan when nothing is reliable — a mindset that carried into payments.",
+        "First international role: limited infrastructure, unpredictable logistics. Learned to plan when nothing is reliable, a mindset that carried into payments.",
       ],
     },
     {
       company: "DS Engineering Services",
-      role: "Project Manager — PMO",
-      period: "Sep 2012 — Feb 2016",
+      role: "Project Manager, PMO",
+      period: "Sep 2012, Feb 2016",
       location: "Karachi, Pakistan",
       bullets: [
-        "400+ engineering projects across utilities and power infrastructure — $15M portfolio.",
+        "400+ engineering projects across utilities and power infrastructure, $15M portfolio.",
         "Built reporting systems that improved delivery efficiency by 70%.",
       ],
     },
     {
       company: "Pakistan Engineering Services Co. (PESCO)",
       role: "Sr. Planning Engineer",
-      period: "Jun 2009 — Aug 2012",
+      period: "Jun 2009, Aug 2012",
       location: "Karachi, Pakistan",
       bullets: [
         "Five substations. Field operations. Built monitoring systems that reduced downtime by 6%.",
@@ -260,7 +260,7 @@ export const profile = {
     {
       title: "AI Partner Support Automation",
       description:
-        "GenAI support bot for merchant payment queries — settlement, disputes, decline codes, integration issues. Resolves 90% without human intervention. Running in production for months.",
+        "GenAI support bot for merchant payment queries, settlement, disputes, decline codes, integration issues. Resolves 90% without human intervention. Running in production for months.",
       stack: "RAG · domain-specific embeddings · ticketing integration",
       status: "Production",
     },
@@ -274,7 +274,7 @@ export const profile = {
   ],
   programDelivery: {
     largestProgramme:
-      "$3M digital transformation programme — TapmadTV launch (5 tech workstreams, 25-person team, 8 international vendors)",
+      "$3M digital transformation programme, TapmadTV launch (5 tech workstreams, 25-person team, 8 international vendors)",
     methodology:
       "Built Simpaisa's programme methodology from scratch: Agile sprints for product development, PMBOK-based stage gates for capital projects, hybrid framework for cross-functional initiatives.",
     governanceStack: [
@@ -302,12 +302,12 @@ export const profile = {
     "Data platforms & analytics infrastructure",
   ],
   certifications: [
-    "Project Management Professional (PMP) — PMI",
-    "PMI Agile Certified Practitioner (PMI-ACP) — PMI",
-    "Certified Scrum Product Owner (CSPO) — Scrum Alliance",
-    "Certified Scrum Master (CSM) — Scrum Alliance",
-    "COBIT 5 — IT Governance (ISACA)",
-    "ITIL v3 — IT Service Management (Axelos)",
+    "Project Management Professional (PMP), PMI",
+    "PMI Agile Certified Practitioner (PMI-ACP), PMI",
+    "Certified Scrum Product Owner (CSPO), Scrum Alliance",
+    "Certified Scrum Master (CSM), Scrum Alliance",
+    "COBIT 5, IT Governance (ISACA)",
+    "ITIL v3, IT Service Management (Axelos)",
     "Led PCI DSS certification program from scratch (Simpaisa)",
     "Led ISO/IEC 27001 certification program from scratch (Simpaisa)",
   ],
@@ -315,17 +315,17 @@ export const profile = {
     {
       school: "MIT Sloan School of Management",
       degree: "Mastering Design Thinking (Executive Program)",
-      period: "Aug 2022 — Dec 2022",
+      period: "Aug 2022, Dec 2022",
     },
     {
       school: "University of Karachi",
       degree: "M.Sc. Physics",
-      period: "2009 — 2012",
+      period: "2009, 2012",
     },
     {
       school: "University of Karachi",
       degree: "B.Sc. Physics",
-      period: "2007 — 2009",
+      period: "2007, 2009",
     },
   ],
   honors: [
@@ -334,13 +334,13 @@ export const profile = {
   volunteering: [
     {
       org: "PMI Karachi Pakistan Chapter",
-      role: "Vice President — Volunteering",
-      period: "Jun 2022 — Jun 2023",
+      role: "Vice President, Volunteering",
+      period: "Jun 2022, Jun 2023",
     },
     {
       org: "PMI Karachi Pakistan Chapter",
-      role: "Director — Governance",
-      period: "Jun 2021 — Jul 2022",
+      role: "Director, Governance",
+      period: "Jun 2021, Jul 2022",
     },
   ],
   openRolesIn: ["UAE", "KSA", "Singapore", "MENA", "Europe", "Global fintech"],

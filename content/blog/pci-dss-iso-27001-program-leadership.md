@@ -4,7 +4,7 @@ slug: "pci-dss-iso-27001-program-leadership"
 category: "Fraud & Risk"
 subcategory: "Compliance"
 metaTitle: "Leading PCI DSS and ISO 27001 Programs from Scratch | Rizwan Zafar"
-metaDescription: "What it takes to lead PCI DSS and ISO 27001 programs from scratch at a payments platform — scoping, evidence, controls, and the trap of treating compliance as paperwork."
+metaDescription: "What it takes to lead PCI DSS and ISO 27001 programs from scratch at a payments platform, scoping, evidence, controls, and the trap of treating compliance as paperwork."
 excerpt: "PCI DSS and ISO 27001 are not paperwork projects. Run as product programs, they make the platform measurably stronger."
 publishDate: "2026-05-30"
 readingTime: "10 min read"
@@ -37,7 +37,7 @@ The shift produces:
 
 That posture also dramatically reduces the cost of the second and third audits, which is where teams that took shortcuts get punished.
 
-## PCI DSS — scoping is the whole game
+## PCI DSS, scoping is the whole game
 
 The single highest-leverage decision in a PCI DSS program is scope. The smaller the cardholder data environment (CDE), the cheaper, faster, and safer the program. Specific moves that reduce scope:
 
@@ -50,7 +50,7 @@ The single highest-leverage decision in a PCI DSS program is scope. The smaller 
 
 Each of these removes systems, people, and processes from scope. Each removal is leverage that compounds for the next audit.
 
-## ISO 27001 — controls as product surfaces
+## ISO 27001, controls as product surfaces
 
 ISO 27001 is broader. It covers the entire information security management system. Treat each Annex A control as a product surface owned by a named role:
 

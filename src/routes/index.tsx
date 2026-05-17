@@ -18,13 +18,13 @@ const profilePageJsonLd = {
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Rizwan Zafar — Payments Product Executive | Dubai" },
+      { title: "Rizwan Zafar, Payments Product Executive | Dubai" },
       {
         name: "description",
         content:
           "Payments product executive: $1B+ GTV, 25M+ monthly transactions across 5 regulated markets. Cross-border rails, settlement, KYC/KYB, AML and fraud. Built infrastructure used by TikTok, Uber, Temu, MoneyGram and InDrive.",
       },
-      { property: "og:title", content: "Rizwan Zafar — Payments Product Executive | Dubai" },
+      { property: "og:title", content: "Rizwan Zafar, Payments Product Executive | Dubai" },
       {
         property: "og:description",
         content:
@@ -32,7 +32,7 @@ export const Route = createFileRoute("/")({
       },
       { property: "og:url", content: absUrl("/") },
       { property: "og:type", content: "profile" },
-      { name: "twitter:title", content: "Rizwan Zafar — Payments Product Executive | Dubai" },
+      { name: "twitter:title", content: "Rizwan Zafar, Payments Product Executive | Dubai" },
       {
         name: "twitter:description",
         content:
@@ -70,7 +70,7 @@ function HomePage() {
 
   return (
     <div>
-      {/* ============ HERO — Genz "Hello / I'm" concept ============ */}
+      {/* ============ HERO, Genz "Hello / I'm" concept ============ */}
       <section className="relative overflow-hidden">
         {/* Soft radial glows */}
         <div
@@ -91,7 +91,7 @@ function HomePage() {
         />
 
         <div className="relative mx-auto max-w-7xl px-5 sm:px-6 pt-10 md:pt-20 pb-12 md:pb-20 grid lg:grid-cols-12 gap-8 lg:gap-16 items-center">
-          {/* LEFT — Editorial intro + headline (TEXT FIRST on mobile) */}
+          {/* LEFT, Editorial intro + headline (TEXT FIRST on mobile) */}
           <div className="lg:col-span-7 order-1 relative z-10 min-w-0">
             <div className="inline-flex items-center gap-4 mb-6 md:mb-8">
               <span className="h-px w-12 bg-[var(--brand)]" />
@@ -101,27 +101,18 @@ function HomePage() {
             </div>
 
             <h1 className="font-instrument tracking-tight leading-[0.88] text-[56px] sm:text-[72px] md:text-[120px] lg:text-[148px] text-ink">
-              I'm{" "}
-              <span
-                className="bg-clip-text text-transparent"
-                style={{
-                  backgroundImage:
-                    "linear-gradient(135deg, var(--brand), color-mix(in oklab, var(--ink) 88%, var(--brand)) 60%, var(--ink))",
-                }}
-              >
-                Rizwan.
-              </span>
+              I'm <span className="italic text-ink">Rizwan.</span>
             </h1>
 
             <p className="mt-6 md:mt-10 max-w-2xl text-lg md:text-2xl text-ink-soft leading-snug font-light">
-              Product &amp; Program leader in Dubai building regulated payment infrastructure —{" "}
+              Product &amp; Program leader in Dubai building regulated payment infrastructure,{" "}
               <span className="text-ink font-medium italic">card acquiring</span>,{" "}
               <span className="text-ink font-medium">cross-border corridors</span>,{" "}
               <span className="font-medium italic text-[var(--brand)]">
                 settlement &amp; reconciliation
               </span>
               , KYC/KYB, AML/CFT, fraud and{" "}
-              <span className="text-ink font-medium">AI-augmented operations</span> — at $1B+ TPV
+              <span className="text-ink font-medium">AI-augmented operations</span>, at $1B+ TPV
               across 5 markets, with PMBOK + Agile programme governance underneath.
             </p>
             <p className="mt-4 text-sm text-ink-soft font-mono-tech uppercase tracking-[0.18em]">
@@ -168,7 +159,7 @@ function HomePage() {
             </div>
           </div>
 
-          {/* RIGHT — Portrait (below text on mobile, smaller on mobile) */}
+          {/* RIGHT, Portrait (below text on mobile, smaller on mobile) */}
           <div className="lg:col-span-5 order-2 relative min-w-0">
             <div className="relative mx-auto w-full max-w-[320px] sm:max-w-[420px] lg:max-w-[520px] aspect-[4/5]">
               <picture>
@@ -260,7 +251,7 @@ function HomePage() {
           </div>
         </div>
 
-        {/* ============ HOT TOPICS — horizontal cards ============ */}
+        {/* ============ HOT TOPICS, horizontal cards ============ */}
         <div className="relative mx-auto max-w-6xl px-6 pb-16">
           <div className="rounded-3xl border border-rule bg-card/70 backdrop-blur p-6 md:p-8 grid md:grid-cols-12 gap-6 items-start">
             <div className="md:col-span-3">
@@ -304,7 +295,7 @@ function HomePage() {
         </div>
       </section>
 
-      {/* ============ PRODUCTS — built & building ============ */}
+      {/* ============ PRODUCTS, built & building ============ */}
       <section className="relative">
         <div className="mx-auto max-w-6xl px-6 pt-10 pb-4">
           <div className="flex items-end justify-between flex-wrap gap-6 mb-10">
@@ -313,7 +304,7 @@ function HomePage() {
                 ◆ Products
               </div>
               <h2 className="font-instrument text-4xl md:text-6xl text-ink mt-3 leading-[1.02] max-w-3xl">
-                Products I have built — and products I am{" "}
+                Products I have built, and products I am{" "}
                 <span className="italic text-[var(--brand)]">building.</span>
               </h2>
             </div>
@@ -460,7 +451,7 @@ function HomePage() {
         </div>
       </section>
 
-      {/* ============ ABOUT BAND — sticker style ============ */}
+      {/* ============ ABOUT BAND, sticker style ============ */}
       <section className="relative border-y border-rule bg-surface-2/60">
         <div className="mx-auto max-w-6xl px-6 py-20 grid md:grid-cols-12 gap-10 items-center">
           <div className="md:col-span-4">
@@ -507,7 +498,7 @@ function HomePage() {
         </div>
       </section>
 
-      {/* ============ PRODUCT WORK — selected cases ============ */}
+      {/* ============ PRODUCT WORK, selected cases ============ */}
       <section>
         <div className="mx-auto max-w-6xl px-6 py-20">
           <div className="flex items-end justify-between mb-10 flex-wrap gap-6">
@@ -562,10 +553,10 @@ function HomePage() {
         </div>
       </section>
 
-      {/* ============ MARQUEE — ecosystem ============ */}
+      {/* ============ MARQUEE, ecosystem ============ */}
       <section
-        className="marquee-wrap border-y border-rule bg-card overflow-hidden py-6 md:py-7 w-full max-w-full"
-        aria-label="Partner ecosystem"
+        className="marquee-wrap border-y border-rule bg-surface overflow-hidden py-6 md:py-7 w-full max-w-full outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-inset"
+        aria-label="Partner ecosystem, scrolling. Hover or focus to pause."
         tabIndex={0}
       >
         <div className="flex gap-12 marquee-track whitespace-nowrap w-max">
@@ -591,7 +582,7 @@ function HomePage() {
             Hire me or just <span className="italic text-[var(--brand)]">say hello.</span>
           </h2>
           <p className="text-ink-soft mt-5 max-w-xl mx-auto">
-            Open to senior payments product roles globally — Visa, Mastercard, Stripe, Wise, Adyen,
+            Open to senior payments product roles globally, Visa, Mastercard, Stripe, Wise, Adyen,
             Thunes, DLocal, Checkout.com, Rapyd and regional fintechs. Replies within 24 hours,
             Sun–Thu (GST).
           </p>

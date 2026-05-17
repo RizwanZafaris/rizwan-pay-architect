@@ -44,7 +44,7 @@ The single most common framing mistake in cross-border product strategy is treat
 
 That gets the first transaction through. It does not get the hundredth-thousand through reliably. A corridor is not a route. It is an operating system with its own success rate, cost curve, FX behavior, compliance overlay, dispute timeline, and customer-experience model.
 
-This essay is the framing I have used to build pay-in and payout corridors across MENA and South Asia — UAE, Pakistan, Bangladesh, Nepal, Iraq, Egypt — and what product teams at corridor companies should internalize.
+This essay is the framing I have used to build pay-in and payout corridors across MENA and South Asia, UAE, Pakistan, Bangladesh, Nepal, Iraq, Egypt, and what product teams at corridor companies should internalize.
 
 ## Table of contents
 
@@ -81,11 +81,11 @@ A corridor is the bundle of:
 
 - **Pay-in instrument set** in the sender market (cards, wallets, bank rails, cash agents).
 - **Payout instrument set** in the receiver market (bank account, wallet, cash pickup, mobile money).
-- **FX leg** — book, spread, settlement currency, hedging policy.
-- **Compliance overlay** — sender KYC, receiver KYB if applicable, sanctions screening on both sides, source-of-funds policy, purpose codes.
-- **Operating hours** — sender cut-offs, FX market hours, receiver bank batch windows.
-- **Dispute and refund timeline** — different per instrument, per partner.
-- **Customer messaging** — what the sender sees, what the receiver sees, what the regulator sees on the bank statement.
+- **FX leg**, book, spread, settlement currency, hedging policy.
+- **Compliance overlay**, sender KYC, receiver KYB if applicable, sanctions screening on both sides, source-of-funds policy, purpose codes.
+- **Operating hours**, sender cut-offs, FX market hours, receiver bank batch windows.
+- **Dispute and refund timeline**, different per instrument, per partner.
+- **Customer messaging**, what the sender sees, what the receiver sees, what the regulator sees on the bank statement.
 
 If your product team does not own each of these as a deliberate decision per corridor, the corridor will be unstable in ways that look like partner problems but are actually product gaps.
 
@@ -97,12 +97,12 @@ The default pattern is: take whatever rate the partner offers, mark up, show the
 
 A real FX product handles:
 
-- **Quote validity** — how long the rate holds and what happens if the customer takes longer than that.
-- **Hedging** — what happens between quote and settlement, who carries the risk.
-- **Tiering** — do high-value corridors get tighter spreads.
-- **Display rate vs settlement rate** — and how the difference is communicated.
-- **Fallback rate source** — when the primary FX feed fails.
-- **Reconciliation of FX P&L** — yes, this lives in the reconciliation system, not in finance's spreadsheet.
+- **Quote validity**, how long the rate holds and what happens if the customer takes longer than that.
+- **Hedging**, what happens between quote and settlement, who carries the risk.
+- **Tiering**, do high-value corridors get tighter spreads.
+- **Display rate vs settlement rate**, and how the difference is communicated.
+- **Fallback rate source**, when the primary FX feed fails.
+- **Reconciliation of FX P&L**, yes, this lives in the reconciliation system, not in finance's spreadsheet.
 
 In emerging-market corridors, FX margin is often the largest line item in unit economics. A 50bps move in FX policy at a billion in corridor volume is $5M annually. Treating FX as a partner default leaves that on the table.
 
@@ -135,9 +135,9 @@ Most teams cannot produce this. The result is corridors that look profitable in 
 
 ## Why this matters
 
-The cross-border market is consolidating around the platforms that treat corridors as products. Thunes, Wise, dLocal, Stripe Connect payouts — the ones with the highest-quality corridors are the ones with the deepest product investment in each layer above. The platforms that treat cross-border as "we wired up SWIFT and added some receiver options" lose the corridor war one country at a time.
+The cross-border market is consolidating around the platforms that treat corridors as products. Thunes, Wise, dLocal, Stripe Connect payouts, the ones with the highest-quality corridors are the ones with the deepest product investment in each layer above. The platforms that treat cross-border as "we wired up SWIFT and added some receiver options" lose the corridor war one country at a time.
 
-For an emerging-market platform like Simpaisa operating across UAE, Pakistan, Bangladesh, Nepal, Iraq, and Egypt, the corridor-as-OS framing was the only one that scaled — because each of these markets has different rail dominance, different regulators, and different customer payment behaviors.
+For an emerging-market platform like Simpaisa operating across UAE, Pakistan, Bangladesh, Nepal, Iraq, and Egypt, the corridor-as-OS framing was the only one that scaled, because each of these markets has different rail dominance, different regulators, and different customer payment behaviors.
 
 ## Rizwan's operator lens
 
@@ -145,13 +145,13 @@ The corridor-as-product framing changed three things at Simpaisa:
 
 1. **Each corridor got a named product owner.** Not a partner manager. A product owner with the P&L and the roadmap.
 2. **Compliance became a designed layer in the corridor, not a gate at the end.** Source-of-funds checks moved into the quote flow for high-value bands; sanctions screening became asynchronous with hold queues for grey zones.
-3. **FX moved from a partner default to a product position.** Hedging policy, quote validity, spread tiering — all owned by the platform.
+3. **FX moved from a partner default to a product position.** Hedging policy, quote validity, spread tiering, all owned by the platform.
 
-The result was a corridor portfolio where the team could explain, per corridor, why margin was what it was — and could improve it deliberately.
+The result was a corridor portfolio where the team could explain, per corridor, why margin was what it was, and could improve it deliberately.
 
 ## What product leaders should do next
 
-1. **Pick your top three corridors and assign owners.** Not partner managers — product owners.
+1. **Pick your top three corridors and assign owners.** Not partner managers, product owners.
 2. **Build the corridor × partner × instrument × value band success-rate view.** This is the single highest-leverage piece of cross-border observability.
 3. **Audit your FX product.** If your team cannot answer the six FX questions above for any corridor, FX is undermanaged.
 4. **Map compliance controls to corridor flow.** Move what can move earlier; defer what can defer safely.
@@ -177,8 +177,8 @@ The result was a corridor portfolio where the team could explain, per corridor, 
 
 - BIS/CPMI: _Cross-border payments roadmap and quantitative targets_
 - FATF: _Recommendation 16_ on wire transfers
-- World Bank: _Remittance prices worldwide_ — for corridor-cost benchmarking
-- SWIFT: _gpi tracker_ documentation — for cross-border tracking expectations
+- World Bank: _Remittance prices worldwide_, for corridor-cost benchmarking
+- SWIFT: _gpi tracker_ documentation, for cross-border tracking expectations
 - ISO 20022: messaging standard documentation
 
 ## FAQ
@@ -226,7 +226,7 @@ Single-partner dependency with no segmented observability, leading to silent suc
 ### Open Graph
 
 - **og:title:** Cross-Border Corridors Are Operating Systems, Not Routes
-- **og:description:** FX, compliance, success rate, P&L — what owning a corridor actually means in emerging markets.
+- **og:description:** FX, compliance, success rate, P&L, what owning a corridor actually means in emerging markets.
 
 ### LinkedIn teaser
 

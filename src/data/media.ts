@@ -1,4 +1,4 @@
-// Videos, podcasts and conference talks. Add entries as they go live —
+// Videos, podcasts and conference talks. Add entries as they go live,
 // the /media route renders all three sections from this single file.
 
 export type MediaKind = "video" | "podcast" | "talk";
@@ -16,7 +16,7 @@ export type MediaItem = {
   date: string;
   /** Short blurb shown on the card. */
   description: string;
-  /** Topic tags — used to surface related content. */
+  /** Topic tags, used to surface related content. */
   tags: string[];
   /** Mark true if the recording isn't public yet. */
   comingSoon?: boolean;
@@ -25,14 +25,14 @@ export type MediaItem = {
 };
 
 export const mediaItems: MediaItem[] = [
-  // --- Videos / Loom walk-throughs (placeholders — replace URLs as recorded) ---
+  // --- Videos / Loom walk-throughs (placeholders, replace URLs as recorded) ---
   {
     kind: "video",
     title: "Walk-through: Simpaisa payments platform architecture",
     venue: "Loom · case-study companion",
     date: "Coming soon",
     description:
-      "A 5-minute architecture walk-through of the Simpaisa platform — pay-in / payout API, canonical ledger, corridor abstraction and risk service.",
+      "A 5-minute architecture walk-through of the Simpaisa platform, pay-in / payout API, canonical ledger, corridor abstraction and risk service.",
     tags: ["payment infrastructure", "architecture", "Simpaisa"],
     duration: "5 min",
     comingSoon: true,
@@ -43,7 +43,7 @@ export const mediaItems: MediaItem[] = [
     venue: "Loom · case-study companion",
     date: "Coming soon",
     description:
-      "How we shipped Simpaisa's BNPL product from concept to 100K active users in 8 months — credit, risk, regulator engagement and cohort discipline.",
+      "How we shipped Simpaisa's BNPL product from concept to 100K active users in 8 months, credit, risk, regulator engagement and cohort discipline.",
     tags: ["BNPL", "product strategy", "credit"],
     duration: "6 min",
     comingSoon: true,
@@ -54,13 +54,13 @@ export const mediaItems: MediaItem[] = [
     venue: "Loom · case-study companion",
     date: "Coming soon",
     description:
-      "Tour of the 4 GenAI solutions running in production at Simpaisa — merchant chatbot, auto-escalation, partner support automation and the fraud/AML pilot.",
+      "Tour of the 4 GenAI solutions running in production at Simpaisa, merchant chatbot, auto-escalation, partner support automation and the fraud/AML pilot.",
     tags: ["AI in fintech", "GenAI", "production AI"],
     duration: "7 min",
     comingSoon: true,
   },
 
-  // --- Podcasts (placeholders — add real episodes as recorded) ---
+  // --- Podcasts (placeholders, add real episodes as recorded) ---
   {
     kind: "podcast",
     title: "Payments product leadership in MENA & South Asia",
@@ -73,11 +73,11 @@ export const mediaItems: MediaItem[] = [
   },
   {
     kind: "podcast",
-    title: "AI in regulated payments — what shipped, what didn't",
+    title: "AI in regulated payments, what shipped, what didn't",
     venue: "Guest appearance · pending",
     date: "Coming soon",
     description:
-      "Practitioner conversation on shipping production GenAI in a regulated payments org — value modeling, RAG, fraud / AML AI, and the operating model regulators want to see.",
+      "Practitioner conversation on shipping production GenAI in a regulated payments org, value modeling, RAG, fraud / AML AI, and the operating model regulators want to see.",
     tags: ["AI in fintech", "GenAI", "regulator"],
     comingSoon: true,
   },
@@ -89,7 +89,7 @@ export const mediaItems: MediaItem[] = [
     venue: "Conference TBA",
     date: "Coming soon",
     description:
-      "Why a corridor is a first-class product object — and the design discipline that lets a corridor abstraction scale across MENA and South Asia.",
+      "Why a corridor is a first-class product object, and the design discipline that lets a corridor abstraction scale across MENA and South Asia.",
     tags: ["cross-border", "corridors", "FX"],
     comingSoon: true,
   },

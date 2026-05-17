@@ -1,6 +1,6 @@
 # Deploy to Hostinger (Shared / Premium / Business)
 
-Your TanStack Start app builds for Cloudflare Workers by default — which doesn't run on Hostinger's shared plans. The `bun run build:static` command converts it to a fully static export (35+ pre-rendered HTML files + assets + Apache `.htaccess`) that runs on any shared host.
+Your TanStack Start app builds for Cloudflare Workers by default, which doesn't run on Hostinger's shared plans. The `bun run build:static` command converts it to a fully static export (35+ pre-rendered HTML files + assets + Apache `.htaccess`) that runs on any shared host.
 
 **Total deploy time: ~10 minutes.**
 
@@ -8,7 +8,7 @@ Your TanStack Start app builds for Cloudflare Workers by default — which doesn
 
 ## One-time setup (5 min)
 
-1. **Buy a Hostinger plan** if you haven't (Premium or Business recommended — Single is fine for one site).
+1. **Buy a Hostinger plan** if you haven't (Premium or Business recommended, Single is fine for one site).
 2. **Add your domain** in Hostinger → Domains → Add domain. If you bought from Hostinger it's already there.
 3. **Enable free SSL** in Hostinger → SSL → install on your domain (Let's Encrypt, one-click).
 
@@ -16,7 +16,7 @@ Your TanStack Start app builds for Cloudflare Workers by default — which doesn
 
 ## Every deploy (5 min)
 
-### Step 1 — Build the static export locally
+### Step 1, Build the static export locally
 
 ```bash
 cd "/Volumes/T7 Shield/rizwan-pay-architect"
@@ -42,22 +42,22 @@ Prerendering 35 routes…
 ✓ Copied public/.htaccess → dist-static/.htaccess
 
 Done: 35 routes prerendered, 0 failed.
-Output: ./dist-static/  (upload contents to public_html/ on Hostinger)
+Output:./dist-static/  (upload contents to public_html/ on Hostinger)
 ```
 
-### Step 2 — Zip the output
+### Step 2, Zip the output
 
-Hostinger File Manager uploads a single .zip file faster than 1000 individual files.
+Hostinger File Manager uploads a single.zip file faster than 1000 individual files.
 
 ```bash
 cd dist-static
-zip -r ../site.zip . -x "._*" "**/._*"
-cd ..
+zip -r../site.zip. -x "._*" "**/._*"
+cd..
 
 ls -lh site.zip   # should be ~10-15 MB
 ```
 
-### Step 3 — Upload via Hostinger File Manager
+### Step 3, Upload via Hostinger File Manager
 
 1. Log in to https://hpanel.hostinger.com
 2. **Files → File Manager**
@@ -68,23 +68,23 @@ ls -lh site.zip   # should be ~10-15 MB
 7. Delete `site.zip` once extracted
 8. Confirm `.htaccess`, `index.html`, `sitemap.xml`, `robots.txt`, `assets/` and all the route folders (`about/`, `blog/`, etc.) are present at the root of `public_html/`
 
-### Step 4 — Verify
+### Step 4, Verify
 
 Open your domain in a browser. Check:
 
 - [ ] Homepage renders correctly
-- [ ] `https://yourdomain.com/about` works (direct URL — confirms `.htaccess` rewrite is active)
+- [ ] `https://yourdomain.com/about` works (direct URL, confirms `.htaccess` rewrite is active)
 - [ ] `https://yourdomain.com/blog/ai-in-payments-four-production-use-cases` works
 - [ ] `https://yourdomain.com/sitemap.xml` returns the XML sitemap
 - [ ] `https://yourdomain.com/robots.txt` returns robots.txt
 - [ ] HTTPS works (no mixed-content warnings)
-- [ ] Right-click → View source on any page — `<title>`, `<meta description>`, `og:*`, `twitter:*` and JSON-LD blocks are all present in the HTML
+- [ ] Right-click → View source on any page, `<title>`, `<meta description>`, `og:*`, `twitter:*` and JSON-LD blocks are all present in the HTML
 
 If `.htaccess` isn't working (direct URLs return 404):
 
 - Hostinger → Files → File Manager → confirm `.htaccess` exists in `public_html/`
 - Hostinger → Advanced → check `mod_rewrite` is enabled (it is by default on every Hostinger plan)
-- If you uploaded via FTP, some clients hide dotfiles by default — confirm via File Manager
+- If you uploaded via FTP, some clients hide dotfiles by default, confirm via File Manager
 
 ---
 
@@ -113,14 +113,14 @@ Hostinger Premium and above support Git auto-deploy. If you want to push to your
 2. Add repo: `https://github.com/RizwanZafaris/rizwan-pay-architect`
 3. Set branch: `main`
 4. Set path: `/public_html`
-5. **Build command**: Hostinger doesn't run Node/Bun on shared plans — so you can't `bun run build:static` server-side. Instead, you'd commit the `dist-static/` folder to a branch (e.g. `hostinger-static`) and point Git deploy at that branch.
+5. **Build command**: Hostinger doesn't run Node/Bun on shared plans, so you can't `bun run build:static` server-side. Instead, you'd commit the `dist-static/` folder to a branch (e.g. `hostinger-static`) and point Git deploy at that branch.
 
 To do this:
 
 ```bash
 git checkout -b hostinger-static
 # (one-time) un-ignore dist-static for this branch
-echo "!dist-static/" >> .gitignore
+echo "!dist-static/" >>.gitignore
 git add -f dist-static
 git commit -m "Hostinger static build"
 git push -u origin hostinger-static
@@ -136,12 +136,12 @@ Then in Hostinger Git settings, point at branch `hostinger-static`, path `dist-s
 
 ### What stays dynamic
 
-- **Contact form** — already uses Web3Forms (third-party POST endpoint). Set `VITE_CONTACT_ACCESS_KEY=<your_key>` in `.env.local` before `bun run build:static`, otherwise the form falls back to `mailto:`.
+- **Contact form**, already uses Web3Forms (third-party POST endpoint). Set `VITE_CONTACT_ACCESS_KEY=<your_key>` in `.env.local` before `bun run build:static`, otherwise the form falls back to `mailto:`.
 
 ### What was lost vs the SSR version
 
 - **`/sitemap.xml` is now build-time generated** instead of per-request. Rebuild & redeploy whenever you publish a new blog post or case study. Same end result for search engines.
-- **No server-side dynamic content** — every page is the same HTML for every visitor. For a portfolio site this is correct; for an app with personalisation, you'd need a Cloud or VPS plan.
+- **No server-side dynamic content**, every page is the same HTML for every visitor. For a portfolio site this is correct; for an app with personalisation, you'd need a Cloud or VPS plan.
 
 ### Custom domain DNS
 
@@ -168,7 +168,7 @@ OR keep DNS at your registrar and just add an A record pointing to your Hostinge
 
 If you generate Gemini images (per `website-review/11-IMAGES_NEEDED.md`), drop them in `public/og/` and `public/case-studies/` before running `bun run build:static`. They'll be copied into `dist-static/` automatically.
 
-For very large images (>5 MB), consider hosting on Cloudflare R2 or Cloudinary instead — they're optimised for image delivery and don't count against Hostinger storage.
+For very large images (>5 MB), consider hosting on Cloudflare R2 or Cloudinary instead, they're optimised for image delivery and don't count against Hostinger storage.
 
 ---
 
@@ -206,7 +206,7 @@ You can edit any individual `.html` file in `public_html/` directly via File Man
 
 ```
 dist-static/
-├── .htaccess            ← Apache config (rewrite + cache + compression + security)
+├──.htaccess            ← Apache config (rewrite + cache + compression + security)
 ├── index.html           ← Homepage (24 KB)
 ├── about/index.html
 ├── blog/index.html
@@ -237,8 +237,8 @@ Total: ~35 HTML files + 32 asset files + ~31 MB on disk.
 export VITE_SITE_URL=https://yourdomain.com
 bun run build:static
 find dist-static -name "._*" -delete
-cd dist-static && zip -r ../site.zip . && cd ..
+cd dist-static && zip -r../site.zip. && cd..
 # Upload site.zip via Hostinger File Manager → public_html/ → Extract
 ```
 
-That's it. Refresh your domain — the site is live.
+That's it. Refresh your domain, the site is live.

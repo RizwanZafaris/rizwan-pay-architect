@@ -3,7 +3,7 @@ title: "RAID Logs, SteerCo and the PMO Stack That Actually Ships at $1B+ Scale"
 slug: "raid-steerco-pmo-stack-that-ships"
 category: "Program Management"
 metaTitle: "RAID, SteerCo and the PMO Stack at $1B+ Scale | Rizwan Zafar"
-metaDescription: "What an actually-working PMO stack looks like at $1B+ TPV — RAID register design, SteerCo cadence, OKR + RICE prioritisation, escalation paths, and the rituals that compound."
+metaDescription: "What an actually-working PMO stack looks like at $1B+ TPV, RAID register design, SteerCo cadence, OKR + RICE prioritisation, escalation paths, and the rituals that compound."
 excerpt: "Most PMO failure modes come from registers without owners, SteerCos without decisions, and OKRs without consequences. Fix the stack, fix the delivery."
 publishDate: "2026-04-20"
 readingTime: "9 min read"
@@ -35,17 +35,17 @@ relatedArticles:
 
 # RAID Logs, SteerCo and the PMO Stack That Actually Ships at $1B+ Scale
 
-Most PMO failure modes come from registers without owners, SteerCos without decisions, and OKRs without consequences. The stack itself is not the problem — the discipline around the stack is.
+Most PMO failure modes come from registers without owners, SteerCos without decisions, and OKRs without consequences. The stack itself is not the problem, the discipline around the stack is.
 
 This is the working PMO stack from running 12 cross-functional squads at $1B+ TPV across five regulated markets at Simpaisa.
 
 ## The five-layer stack
 
-1. **RAID register** — the operating memory
-2. **SteerCo** — the decision cadence
-3. **OKRs** — the strategic alignment
-4. **RICE / MoSCoW** — the prioritisation discipline
-5. **Escalation paths** — the un-stuck button
+1. **RAID register**, the operating memory
+2. **SteerCo**, the decision cadence
+3. **OKRs**, the strategic alignment
+4. **RICE / MoSCoW**, the prioritisation discipline
+5. **Escalation paths**, the un-stuck button
 
 Each layer has a job. Each layer is one ritual away from becoming theatre. The PMO's job is to keep each layer's ritual real.
 
@@ -68,11 +68,11 @@ Monthly. 90 minutes. Standing agenda. Documented decisions.
 
 **Standing agenda:**
 
-- **In-flight programmes** (5 min) — RAG status, on-plan / off-plan, exception only
-- **RAID escalations** (15 min) — items needing leadership input
-- **Gate decisions** (30 min) — capital workstream gate sign-offs with documented decision
-- **Strategic items** (30 min) — what's changing, what's new, what's stopping
-- **Decisions log** (10 min) — recap and document
+- **In-flight programmes** (5 min), RAG status, on-plan / off-plan, exception only
+- **RAID escalations** (15 min), items needing leadership input
+- **Gate decisions** (30 min), capital workstream gate sign-offs with documented decision
+- **Strategic items** (30 min), what's changing, what's new, what's stopping
+- **Decisions log** (10 min), recap and document
 
 **SteerCo failure modes to design out:**
 
@@ -103,8 +103,8 @@ Quarterly. Three to five Os per quarter, max. Three KRs per O.
 
 For portfolio-level prioritisation. Both have a place:
 
-- **RICE** (Reach × Impact × Confidence ÷ Effort) — good for product-feature prioritisation where you have rough quantitative inputs
-- **MoSCoW** (Must / Should / Could / Won't) — good for programme-level scope decisions where the conversation is more qualitative
+- **RICE** (Reach × Impact × Confidence ÷ Effort), good for product-feature prioritisation where you have rough quantitative inputs
+- **MoSCoW** (Must / Should / Could / Won't), good for programme-level scope decisions where the conversation is more qualitative
 
 In practice, most fintechs use RICE for product prioritisation within squads and MoSCoW for cross-cutting programme scope. Both at quarterly cadence.
 
@@ -120,9 +120,9 @@ Most programmes don't slip on hard problems. They slip on stuck decisions.
 
 **Three escalation paths, named:**
 
-1. **In-squad** (within a workstream) — squad lead decides; resolves in days
-2. **Cross-squad** (between workstreams) — PMO convenes the relevant leads; resolves in a week
-3. **SteerCo** (organisation-level) — surfaces at next SteerCo; resolves in a month
+1. **In-squad** (within a workstream), squad lead decides; resolves in days
+2. **Cross-squad** (between workstreams), PMO convenes the relevant leads; resolves in a week
+3. **SteerCo** (organisation-level), surfaces at next SteerCo; resolves in a month
 
 If something is stuck longer than its tier, it auto-escalates. The PMO maintains the auto-escalation discipline.
 

@@ -3,7 +3,7 @@ title: "How SWIFT Payment Works: A Complete Overview"
 slug: "swift-payment-explained"
 category: "SWIFT & Cross-Border Payments"
 metaTitle: "How SWIFT Payment Works (2026) | Rizwan Zafar"
-metaDescription: "A practitioner overview of how SWIFT payments work — messaging, correspondent banking, settlement, gpi, and where ISO 20022 fits in."
+metaDescription: "A practitioner overview of how SWIFT payments work, messaging, correspondent banking, settlement, gpi, and where ISO 20022 fits in."
 excerpt: "SWIFT is messaging, not movement. Understand the difference and most cross-border problems become legible."
 publishDate: "2026-06-02"
 readingTime: "9 min read"
@@ -19,7 +19,7 @@ relatedArticles:
 
 # How SWIFT Payment Works: A Complete Overview
 
-SWIFT is the most misunderstood word in cross-border payments. It is not a payment network. It does not hold or move money. It is a secure messaging cooperative whose members — banks and financial institutions — use a shared format to instruct each other about money that moves through entirely separate settlement arrangements.
+SWIFT is the most misunderstood word in cross-border payments. It is not a payment network. It does not hold or move money. It is a secure messaging cooperative whose members, banks and financial institutions, use a shared format to instruct each other about money that moves through entirely separate settlement arrangements.
 
 Understanding that single distinction makes most cross-border payment problems legible.
 
@@ -54,7 +54,7 @@ The SWIFT message carries the instruction. The settlement carries the money. The
 
 ## Correspondent banking, briefly
 
-Most banks do not have accounts in every country. They use correspondent banks — institutions that hold accounts on their behalf in foreign jurisdictions. A payment from a small bank in Karachi to a small bank in São Paulo may traverse two or three correspondent relationships before settling. Each hop adds cost, FX margin, and time. The correspondent banking model is the reason cross-border payments can be slow and opaque, and the reason SWIFT gpi was created.
+Most banks do not have accounts in every country. They use correspondent banks, institutions that hold accounts on their behalf in foreign jurisdictions. A payment from a small bank in Karachi to a small bank in São Paulo may traverse two or three correspondent relationships before settling. Each hop adds cost, FX margin, and time. The correspondent banking model is the reason cross-border payments can be slow and opaque, and the reason SWIFT gpi was created.
 
 ## Messaging formats: MT and MX
 
@@ -62,7 +62,7 @@ SWIFT messages have historically used the **MT** format (e.g., MT103 for single 
 
 ## SWIFT gpi and end-to-end tracking
 
-SWIFT **gpi** (global payments innovation) added unique end-to-end transaction references, fee transparency, and tracking. With gpi, a payment can be tracked across correspondents in near real time — a sharp improvement over the historical "send and hope" model. Most major banks are gpi members; the experience of cross-border payment has materially improved as a result.
+SWIFT **gpi** (global payments innovation) added unique end-to-end transaction references, fee transparency, and tracking. With gpi, a payment can be tracked across correspondents in near real time, a sharp improvement over the historical "send and hope" model. Most major banks are gpi members; the experience of cross-border payment has materially improved as a result.
 
 ## Where ISO 20022 fits
 
@@ -89,7 +89,7 @@ Each of these is solvable at the product layer if the platform owns the message 
 - Correspondent banking explains most cross-border cost and latency.
 - MT → MX (ISO 20022) is the most important structural change in cross-border payments today.
 - gpi has closed much of the historical tracking gap.
-- The product opportunity is in the screening, reconciliation, and customer-facing UX around the message — not in the message itself.
+- The product opportunity is in the screening, reconciliation, and customer-facing UX around the message, not in the message itself.
 
 ## FAQ
 

@@ -4,7 +4,7 @@ slug: "exception-management-reconciliation"
 category: "Settlement & Reconciliation"
 subcategory: "Reconciliation"
 metaTitle: "Exception Management in Payment Reconciliation | Rizwan Zafar"
-metaDescription: "How to design exception management for payment reconciliation so finance ops scales sublinearly with GTV — taxonomy, routing, SLAs, and product feedback loops."
+metaDescription: "How to design exception management for payment reconciliation so finance ops scales sublinearly with GTV, taxonomy, routing, SLAs, and product feedback loops."
 excerpt: "Exception management is where reconciliation either becomes a product or becomes a permanent ops queue."
 publishDate: "2026-05-22"
 readingTime: "9 min read"
@@ -26,7 +26,7 @@ Reconciliation engines find breaks. Exception management is what you do with the
 
 ## The shape of the problem
 
-At $1B+ GTV with multi-rail acceptance, 0.5–2% of transactions generate exceptions on any given day. Most are trivial — timing windows, fee variance within tolerance — and should auto-resolve. The remaining 5–15% of _those_ are real money at risk.
+At $1B+ GTV with multi-rail acceptance, 0.5–2% of transactions generate exceptions on any given day. Most are trivial, timing windows, fee variance within tolerance, and should auto-resolve. The remaining 5–15% of _those_ are real money at risk.
 
 Without a structured workflow, finance ops becomes a queue that grows with GTV. With one, the queue is bounded and shrinks quarter over quarter as defects feed back into product.
 
@@ -34,7 +34,7 @@ Without a structured workflow, finance ops becomes a queue that grows with GTV. 
 
 **1. Classify before routing.** Every break enters with an exception type from a versioned taxonomy. No untyped breaks reach a human queue.
 
-**2. Auto-resolve aggressively but transparently.** Anything within tolerance, anything matching a known partner-side timing pattern, anything that clears on the next reconciliation cycle — auto-resolve and log. Never delete; always log with the resolution reason.
+**2. Auto-resolve aggressively but transparently.** Anything within tolerance, anything matching a known partner-side timing pattern, anything that clears on the next reconciliation cycle, auto-resolve and log. Never delete; always log with the resolution reason.
 
 **3. Route by owner, not by team.** Each exception type has a named owner role (finance ops, partner ops, treasury, product engineering). Routing is automatic. SLAs are per-type, not per-team.
 
@@ -46,11 +46,11 @@ Without a structured workflow, finance ops becomes a queue that grows with GTV. 
 
 A working exception management workflow has five states:
 
-1. **Detected** — engine logs the break with classification
-2. **Auto-resolved** — within tolerance or known-pattern, closed automatically
-3. **Pending owner review** — routed to owner queue with SLA clock
-4. **In partner escalation** — owner has reached out to PSP, bank, or merchant; clock paused
-5. **Closed** — resolved with documented reason and journal entry, or written off with approval
+1. **Detected**, engine logs the break with classification
+2. **Auto-resolved**, within tolerance or known-pattern, closed automatically
+3. **Pending owner review**, routed to owner queue with SLA clock
+4. **In partner escalation**, owner has reached out to PSP, bank, or merchant; clock paused
+5. **Closed**, resolved with documented reason and journal entry, or written off with approval
 
 Each state transition is a logged event. The full lifecycle is queryable for audit.
 

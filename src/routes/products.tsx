@@ -5,20 +5,20 @@ import { absUrl } from "@/lib/seo";
 export const Route = createFileRoute("/products")({
   head: () => ({
     meta: [
-      { title: "Products — Rizwan Zafar | Payments Product Lab" },
+      { title: "Products, Rizwan Zafar | Payments Product Lab" },
       {
         name: "description",
         content:
           "Products Rizwan Zafar has built and is building: Simpaisa payment infrastructure, Tapmad billing migration, plus new products in quiet build.",
       },
-      { property: "og:title", content: "Products — Rizwan Zafar" },
+      { property: "og:title", content: "Products, Rizwan Zafar" },
       {
         property: "og:description",
         content:
           "Payment infrastructure shipped at scale, plus new products in quiet build from Rizwan's product lab.",
       },
       { property: "og:url", content: absUrl("/products") },
-      { name: "twitter:title", content: "Products — Rizwan Zafar" },
+      { name: "twitter:title", content: "Products, Rizwan Zafar" },
       {
         name: "twitter:description",
         content: "Payment infrastructure shipped at scale, plus new products in quiet build.",
@@ -31,7 +31,7 @@ export const Route = createFileRoute("/products")({
         children: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "CollectionPage",
-          name: "Products — Rizwan Zafar",
+          name: "Products, Rizwan Zafar",
           url: absUrl("/products"),
           hasPart: products.map((p) => ({
             "@type": "CreativeWork",
@@ -53,11 +53,11 @@ function ProductsPage() {
         ◆ Products
       </div>
       <h1 className="font-instrument text-4xl md:text-6xl text-ink mt-3 leading-[1.05] max-w-3xl">
-        Products I have built — and products I am building.
+        Products I have built, and products I am building.
       </h1>
       <p className="mt-5 max-w-2xl text-lg text-ink-soft">
-        Shipped payment infrastructure — card acquiring, wallets, cross-border corridors, settlement
-        and reconciliation, KYC/KYB, AML/CFT and fraud — that has cleared $1B+ in annual GTV across
+        Shipped payment infrastructure, card acquiring, wallets, cross-border corridors, settlement
+        and reconciliation, KYC/KYB, AML/CFT and fraud, that has cleared $1B+ in annual GTV across
         five regulated markets. Plus a small portfolio of new products in quiet build from the
         product lab.
       </p>

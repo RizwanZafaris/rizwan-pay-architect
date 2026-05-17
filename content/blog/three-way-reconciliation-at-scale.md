@@ -4,7 +4,7 @@ slug: "three-way-reconciliation-at-scale"
 category: "Settlement & Reconciliation"
 subcategory: "Reconciliation"
 metaTitle: "Three-Way Reconciliation at Scale: A Practitioner Guide | Rizwan Zafar"
-metaDescription: "How to design three-way reconciliation across PSP, internal ledger and bank statement at $1B+ GTV — match keys, tolerances, exception taxonomy, and SLAs."
+metaDescription: "How to design three-way reconciliation across PSP, internal ledger and bank statement at $1B+ GTV, match keys, tolerances, exception taxonomy, and SLAs."
 excerpt: "Three-way reconciliation is the only model that survives multi-rail growth. Here is how to actually build it."
 publishDate: "2026-05-20"
 readingTime: "10 min read"
@@ -28,7 +28,7 @@ relatedArticles:
 
 # Three-Way Reconciliation at Scale
 
-Two-way reconciliation — comparing your ledger to a PSP report — is what most platforms ship first. It works until you grow. At scale, the only model that holds is three-way: PSP, internal ledger, bank statement, matched against a common transaction identity.
+Two-way reconciliation, comparing your ledger to a PSP report, is what most platforms ship first. It works until you grow. At scale, the only model that holds is three-way: PSP, internal ledger, bank statement, matched against a common transaction identity.
 
 ## Why two-way breaks
 
@@ -38,11 +38,11 @@ At $1B+ GTV, even a 5 bps unreconciled drift is a $500K hole per year. Two-way r
 
 ## The three legs
 
-**Leg 1 — PSP report.** Per-transaction status, gross, fee, net, settlement batch, settlement date.
+**Leg 1, PSP report.** Per-transaction status, gross, fee, net, settlement batch, settlement date.
 
-**Leg 2 — Internal ledger.** Every authorisation, capture, refund, chargeback, fee accrual posted as double-entry journal lines, keyed by your own transaction ID.
+**Leg 2, Internal ledger.** Every authorisation, capture, refund, chargeback, fee accrual posted as double-entry journal lines, keyed by your own transaction ID.
 
-**Leg 3 — Bank statement.** MT940/MX camt.053 or API feed of actual credits and debits into the settlement account, with PSP batch references in the narrative.
+**Leg 3, Bank statement.** MT940/MX camt.053 or API feed of actual credits and debits into the settlement account, with PSP batch references in the narrative.
 
 Reconciliation is the function that proves all three agree on every transaction and every settlement batch, every day.
 
@@ -50,9 +50,9 @@ Reconciliation is the function that proves all three agree on every transaction 
 
 The single biggest design choice is the match key. Most failed reconciliation systems chose the wrong one early and never recovered.
 
-- **Per-transaction match** — use your internal txn_id, propagated to the PSP via metadata and surfaced back in the report. This is the gold standard.
-- **Per-batch match** — use the PSP batch ID and reconcile aggregates. Necessary for the bank leg. Sufficient only when the PSP guarantees batch immutability.
-- **Heuristic match** — amount + date + last-4 + currency. Use only as a last-resort fallback for legacy rails.
+- **Per-transaction match**, use your internal txn_id, propagated to the PSP via metadata and surfaced back in the report. This is the gold standard.
+- **Per-batch match**, use the PSP batch ID and reconcile aggregates. Necessary for the bank leg. Sufficient only when the PSP guarantees batch immutability.
+- **Heuristic match**, amount + date + last-4 + currency. Use only as a last-resort fallback for legacy rails.
 
 Always store the chosen match key, the matched counterpart IDs, and the match confidence score on the ledger entry. Auditors will ask.
 
@@ -63,7 +63,7 @@ A 0.00 tolerance is impossible at scale because of FX rounding, fractional fees 
 - Currency rounding: ±0.01 in settlement currency
 - FX timing: ±0.5% on cross-border legs, escalated above
 - Fee variance: ±2% on declared rate cards, escalated above
-- Anything else: zero tolerance — treated as an exception
+- Anything else: zero tolerance, treated as an exception
 
 Document the band, who can change it, and require dual approval to widen it. This is a control surface, not a config.
 
@@ -71,15 +71,15 @@ Document the band, who can change it, and require dual approval to widen it. Thi
 
 Every break must classify into a finite, versioned taxonomy. A working starter set:
 
-1. PSP-only (in PSP, not in ledger) — usually webhook loss
-2. Ledger-only (in ledger, not in PSP) — usually duplicate capture or test data
-3. Amount mismatch within tolerance — auto-resolve, log
-4. Amount mismatch outside tolerance — manual review
+1. PSP-only (in PSP, not in ledger), usually webhook loss
+2. Ledger-only (in ledger, not in PSP), usually duplicate capture or test data
+3. Amount mismatch within tolerance, auto-resolve, log
+4. Amount mismatch outside tolerance, manual review
 5. Status mismatch (e.g. PSP says refunded, ledger says captured)
-6. Bank-only credit — partner payout, refund return, or unknown
-7. Bank shortfall — PSP claims settled, bank shows less
-8. Timing — settled in PSP, not yet in bank, within expected window
-9. Stale timing — outside expected window, escalate to PSP
+6. Bank-only credit, partner payout, refund return, or unknown
+7. Bank shortfall, PSP claims settled, bank shows less
+8. Timing, settled in PSP, not yet in bank, within expected window
+9. Stale timing, outside expected window, escalate to PSP
 
 Each exception type has an owner, an SLA, and a runbook. Without those, reconciliation becomes a queue, not a process.
 

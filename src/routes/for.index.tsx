@@ -6,16 +6,16 @@ import { absUrl, SITE_URL } from "@/lib/seo";
 export const Route = createFileRoute("/for/")({
   head: () => ({
     meta: [
-      { title: "For Recruiters — Rizwan Zafar | Payments" },
+      { title: "For Recruiters, Rizwan Zafar | Payments" },
       {
         name: "description",
         content:
           "Recruiter view by lens: Visa/Mastercard, Stripe/Adyen/Wise/Thunes, banks and regulated fintechs. Target roles, proof metrics, top case studies and essays.",
       },
-      { property: "og:title", content: "For Recruiters — Rizwan Zafar" },
+      { property: "og:title", content: "For Recruiters, Rizwan Zafar" },
       { property: "og:description", content: "Recruiter lenses, proof and resume in one page." },
       { property: "og:url", content: absUrl("/for") },
-      { name: "twitter:title", content: "For Recruiters — Rizwan Zafar" },
+      { name: "twitter:title", content: "For Recruiters, Rizwan Zafar" },
       {
         name: "twitter:description",
         content:
@@ -60,7 +60,7 @@ const TARGET_ROLES: Record<Audience["slug"], string[]> = {
   ],
 };
 
-// Tailored proof per audience — avoids repeating the same metrics
+// Tailored proof per audience, avoids repeating the same metrics
 const PROOF: Record<Audience["slug"], { label: string; value: string }[]> = {
   "visa-mastercard": [
     { label: "Annual GTV cleared", value: "$1B+" },
@@ -98,7 +98,7 @@ function ForIndex() {
         Pick your lens. Read the work in your language.
       </h1>
       <p className="mt-5 max-w-2xl text-lg text-ink-soft">
-        Three recruiter paths through the same body of work — networks, orchestrators, and regulated
+        Three recruiter paths through the same body of work, networks, orchestrators, and regulated
         fintechs. Each section lists target roles, proof you can verify, the most relevant case
         studies and essays, and a way to start a conversation.
       </p>
@@ -138,7 +138,7 @@ function ForIndex() {
               id="resume-preview-heading"
               className="font-instrument text-2xl md:text-3xl text-ink mt-2 leading-tight"
             >
-              Rizwan Zafar — Product &amp; Program Leader · Payments · Fintech · AI
+              Rizwan Zafar, Product &amp; Program Leader · Payments · Fintech · AI
             </h2>
             <p className="mt-2 text-sm text-ink-soft max-w-2xl">
               CPO at Simpaisa · $0 → $1B+ TPV · 5 markets · 40-engineer org built from 2 · 4
@@ -184,7 +184,7 @@ function ForIndex() {
             <div className="text-[10px] uppercase tracking-[0.18em] text-ink-soft mb-1 font-mono-tech">
               Now
             </div>
-            <div>CPO · Simpaisa · Dubai · Aug 2020 — Present</div>
+            <div>CPO · Simpaisa · Dubai · Aug 2020, Present</div>
           </div>
           <div>
             <div className="text-[10px] uppercase tracking-[0.18em] text-ink-soft mb-1 font-mono-tech">
@@ -361,7 +361,7 @@ function ForIndex() {
                     search={{ q: "", hub: slug, reader: "", company: "" }}
                     className="inline-flex items-center text-sm text-ink-soft hover:text-ink underline underline-offset-4"
                   >
-                    Filter essays — {h.shortTitle}
+                    Filter essays, {h.shortTitle}
                   </Link>
                 );
               })}

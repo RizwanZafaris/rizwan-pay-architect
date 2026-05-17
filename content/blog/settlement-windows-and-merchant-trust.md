@@ -40,10 +40,10 @@ The product surface here is not "speed". It is **predictability**.
 
 A settlement window is a function of four variables:
 
-1. **Rail clearing time** — cards clear faster than IBFT in some corridors, slower in others. DCB clears monthly. Wallets clear instantly intra-network.
-2. **Risk hold** — chargeback exposure, refund exposure, fraud rolling reserve.
-3. **Float economics** — your treasury earns yield on settled-but-unpaid balances. This is a real but conflicted lever.
-4. **Operational windows** — your bank's cutoff, your reconciliation cutoff, weekends and holidays.
+1. **Rail clearing time**, cards clear faster than IBFT in some corridors, slower in others. DCB clears monthly. Wallets clear instantly intra-network.
+2. **Risk hold**, chargeback exposure, refund exposure, fraud rolling reserve.
+3. **Float economics**, your treasury earns yield on settled-but-unpaid balances. This is a real but conflicted lever.
+4. **Operational windows**, your bank's cutoff, your reconciliation cutoff, weekends and holidays.
 
 Each window choice is a product policy. Document the rationale, expose it in the merchant agreement, and surface it in the dashboard.
 
@@ -51,10 +51,10 @@ Each window choice is a product policy. Document the rationale, expose it in the
 
 A single settlement window for all merchants is a sign of an immature platform. Mature platforms tier:
 
-- **New, low-tier merchants** — T+3 or T+5, with rolling reserve, until risk signals normalise
-- **Tenured merchants in good standing** — T+1
-- **Enterprise + low-risk verticals** — T+0 or same-day, often with prefunded float
-- **High-risk verticals** — T+7 with explicit reserve schedule
+- **New, low-tier merchants**, T+3 or T+5, with rolling reserve, until risk signals normalise
+- **Tenured merchants in good standing**, T+1
+- **Enterprise + low-risk verticals**, T+0 or same-day, often with prefunded float
+- **High-risk verticals**, T+7 with explicit reserve schedule
 
 Tiering belongs to the same product surface as onboarding risk tiers. They are the same decision viewed at different lifecycle stages.
 
@@ -76,7 +76,7 @@ A reserve the merchant cannot see is a reserve the merchant assumes is being hel
 
 ## Settlement failure handling
 
-When settlement fails — a bank reject, a partner shortfall, an FX exception — the merchant must hear it from you before they hear it from their own bank. Build:
+When settlement fails, a bank reject, a partner shortfall, an FX exception, the merchant must hear it from you before they hear it from their own bank. Build:
 
 - Automated alerts the same day the failure is detected
 - A status page entry if it affects more than one merchant

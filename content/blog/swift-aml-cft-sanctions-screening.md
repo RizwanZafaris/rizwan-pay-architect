@@ -3,7 +3,7 @@ title: "SWIFT, AML/CFT, and Sanctions Screening in Practice"
 slug: "swift-aml-cft-sanctions-screening"
 category: "SWIFT & Cross-Border Payments"
 metaTitle: "SWIFT AML/CFT and Sanctions Screening in Practice | Rizwan Zafar"
-metaDescription: "How AML/CFT and sanctions screening actually work on SWIFT-instructed cross-border payments — and the product decisions that decide false-positive rates."
+metaDescription: "How AML/CFT and sanctions screening actually work on SWIFT-instructed cross-border payments, and the product decisions that decide false-positive rates."
 excerpt: "Sanctions screening is where compliance theory meets throughput reality. The product decisions live in the list overlay, the matcher, and the review queue."
 publishDate: "2026-06-12"
 readingTime: "9 min read"
@@ -37,7 +37,7 @@ The operating reality is harder. The product decisions inside that compliance en
 
 A real screening implementation has four layers:
 
-1. **List management.** The lists themselves — OFAC, UN, EU, UK HMT, country-specific, internal — with versioned updates.
+1. **List management.** The lists themselves, OFAC, UN, EU, UK HMT, country-specific, internal, with versioned updates.
 2. **Matcher.** The algorithm that compares payment parties to list entries.
 3. **Decision logic.** What automatic actions follow a match (block, hold, allow with logging).
 4. **Review queue.** The human surface for ambiguous matches.
@@ -57,7 +57,7 @@ A platform that screens only against OFAC is non-compliant in most non-US jurisd
 
 ## The matcher problem
 
-Sanctions matchers are fuzzy by necessity — names transliterate across scripts, identifiers are inconsistent, and the same person appears multiple ways in different lists.
+Sanctions matchers are fuzzy by necessity, names transliterate across scripts, identifiers are inconsistent, and the same person appears multiple ways in different lists.
 
 The product decisions are:
 
@@ -73,11 +73,11 @@ The right answer varies by program. The wrong answer is to leave the vendor's de
 A sanctions hit that requires human review enters a queue. That queue is the highest-stakes UX in the compliance product:
 
 - **Decision support.** Reviewers need the matched fields, the candidate list entries, the payment context, and the platform's prior decisions on the same party.
-- **SLAs.** Every hold has a clock — both the customer's clock and the regulatory clock.
+- **SLAs.** Every hold has a clock, both the customer's clock and the regulatory clock.
 - **Audit trail.** Every decision, every reviewer, every justification, append-only.
 - **Feedback loop.** Every confirmed false positive informs matcher tuning.
 
-A queue without these properties degrades — slower reviews, inconsistent decisions, audit findings.
+A queue without these properties degrades, slower reviews, inconsistent decisions, audit findings.
 
 ## AML/CFT monitoring vs sanctions screening
 
@@ -103,8 +103,8 @@ This is one of the most underrated reasons to take the [ISO 20022 migration](/bl
 
 ## FAQ
 
-**Can fuzzy matching be safely tuned tighter?** Only with telemetry — confirmed false positives and confirmed misses over a long enough window.
+**Can fuzzy matching be safely tuned tighter?** Only with telemetry, confirmed false positives and confirmed misses over a long enough window.
 
 **Is automated decisioning acceptable for sanctions?** Auto-block on confirmed exact matches is standard. Auto-clear on partial matches without human review is generally not.
 
-**How often should lists be updated?** As frequently as the issuing authority publishes — for some lists this is daily.
+**How often should lists be updated?** As frequently as the issuing authority publishes, for some lists this is daily.

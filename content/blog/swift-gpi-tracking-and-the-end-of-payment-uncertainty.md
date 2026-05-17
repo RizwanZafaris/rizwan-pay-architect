@@ -39,11 +39,11 @@ gpi added three things to the cross-border payment experience:
 2. **Full transparency** of fees deducted along the route.
 3. **End-to-end tracking** of every payment from origin to credit.
 
-It did this without replacing the underlying correspondent banking model — it layered a tracking and SLA framework over it.
+It did this without replacing the underlying correspondent banking model, it layered a tracking and SLA framework over it.
 
 ## The unique end-to-end transaction reference (UETR)
 
-Every gpi-enabled payment carries a **UETR** — a unique identifier that persists through every correspondent and is reported back to the originator's bank as the payment moves. This is the first true correlation key in cross-border payments. Banks can query the gpi Tracker to see real-time status.
+Every gpi-enabled payment carries a **UETR**, a unique identifier that persists through every correspondent and is reported back to the originator's bank as the payment moves. This is the first true correlation key in cross-border payments. Banks can query the gpi Tracker to see real-time status.
 
 For product teams, the UETR is the field that unlocks:
 
@@ -53,7 +53,7 @@ For product teams, the UETR is the field that unlocks:
 
 ## Same-day credit, fee transparency, and traceability
 
-The gpi service levels include same-day usable funds in many corridors and, for the gpi Instant variants, near-real-time end-to-end credit. Fee transparency means each correspondent's deduction is recorded, so the difference between sent and received amounts can be explained — not hidden.
+The gpi service levels include same-day usable funds in many corridors and, for the gpi Instant variants, near-real-time end-to-end credit. Fee transparency means each correspondent's deduction is recorded, so the difference between sent and received amounts can be explained, not hidden.
 
 These were structural problems before gpi. They are now product surfaces the platform can lean into.
 
@@ -86,4 +86,4 @@ None of these are reasons to ignore gpi. They are reasons to combine gpi data wi
 
 **Does gpi work for low-value retail?** It was designed for higher-value bank payments. Retail-focused services often combine gpi with alternative rails.
 
-**Will ISO 20022 replace gpi?** No — gpi runs on top of the messaging layer. ISO 20022 enriches the message; gpi tracks it.
+**Will ISO 20022 replace gpi?** No, gpi runs on top of the messaging layer. ISO 20022 enriches the message; gpi tracks it.

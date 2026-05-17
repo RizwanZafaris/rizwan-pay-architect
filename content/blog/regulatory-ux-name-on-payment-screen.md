@@ -3,7 +3,7 @@ title: "Regulatory UX: Why the Name on a Payment Screen Can Block a Launch"
 slug: "regulatory-ux-name-on-payment-screen"
 category: "Fraud, Risk & Compliance"
 metaTitle: "Regulatory UX: Names, Screens, and Launches | Rizwan Zafar"
-metaDescription: "An operator essay on regulatory UX — why the words, names, and disclosures on a payment screen can be the difference between a launch and a six-month delay."
+metaDescription: "An operator essay on regulatory UX, why the words, names, and disclosures on a payment screen can be the difference between a launch and a six-month delay."
 excerpt: "Regulators do not read your roadmap. They read your screen."
 publishDate: "2026-05-23"
 readingTime: "9 min read"
@@ -64,7 +64,7 @@ Real examples that delay launches by weeks or quarters:
 - **Dual branding.** The screen shows the white-label brand prominently and the regulated entity in 8-point gray. Regulators read this as deceptive.
 - **Stale T&Cs.** The link goes to a version that does not match the active product. Audit finding, immediate.
 
-None of these are engineering problems. All of them are product surface problems that get caught — if caught at all — in the last review before launch.
+None of these are engineering problems. All of them are product surface problems that get caught, if caught at all, in the last review before launch.
 
 ## The merchant-name and DBA problem
 
@@ -98,13 +98,13 @@ The moment a platform operates across two regulators, every screen has to be tag
 - A disclosure pack per jurisdiction.
 - A test harness that renders every screen in every jurisdiction and checks for required elements.
 
-The wrong architecture — and the one most platforms ship first — is "we'll add country-specific copy later." Later is the day before launch, and it is a quarter of unplanned work.
+The wrong architecture, and the one most platforms ship first, is "we'll add country-specific copy later." Later is the day before launch, and it is a quarter of unplanned work.
 
 ## Why this matters to scheme reviewers and bank sponsors
 
 Scheme reviewers from Visa and Mastercard, and compliance teams from sponsoring banks, evaluate fintech programs on the discipline of their customer-facing surface. A platform that ships clean descriptors, jurisdiction-tagged disclosures, and explicit consent flows is a program that does not generate scheme penalties or sponsor escalations.
 
-The opposite — a platform that ships beautiful UI and improvises disclosures — is a program that gets paused on the eve of launch.
+The opposite, a platform that ships beautiful UI and improvises disclosures, is a program that gets paused on the eve of launch.
 
 ## Rizwan's operator lens
 
@@ -122,7 +122,7 @@ The change that produced the smoothest launches at Simpaisa was simple: regulato
 
 ## FAQ
 
-**Is this just for regulated wallets?** No. It applies to any program with a sponsoring bank, scheme review, or consumer-protection regulator — which is almost every payments product.
+**Is this just for regulated wallets?** No. It applies to any program with a sponsoring bank, scheme review, or consumer-protection regulator, which is almost every payments product.
 
 **How early should compliance review screens?** From the first mockup. Late review is the single largest source of launch delay.
 
@@ -134,4 +134,4 @@ The change that produced the smoothest launches at Simpaisa was simple: regulato
 
 > Regulators do not read your roadmap. They read your screen.
 >
-> Every name, every descriptor, every disclosure on a payment screen is product surface — and the cheapest place to lose a launch.
+> Every name, every descriptor, every disclosure on a payment screen is product surface, and the cheapest place to lose a launch.

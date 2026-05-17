@@ -25,19 +25,19 @@ export const Route = createFileRoute("/blog/")({
   validateSearch: zodValidator(searchSchema),
   head: () => ({
     meta: [
-      { title: "Payments Essays — Knowledge Base | Rizwan Zafar" },
+      { title: "Payments Essays, Knowledge Base | Rizwan Zafar" },
       {
         name: "description",
         content:
           "Searchable essays on payment infrastructure, cross-border payments, SWIFT, ISO 20022, settlement, fraud and merchant onboarding.",
       },
-      { property: "og:title", content: "Payments Essays — Rizwan Zafar" },
+      { property: "og:title", content: "Payments Essays, Rizwan Zafar" },
       {
         property: "og:description",
         content: "A searchable knowledge base for payments product leaders.",
       },
       { property: "og:url", content: absUrl("/blog") },
-      { name: "twitter:title", content: "Payments Essays — Rizwan Zafar" },
+      { name: "twitter:title", content: "Payments Essays, Rizwan Zafar" },
       {
         name: "twitter:description",
         content:
@@ -51,7 +51,7 @@ export const Route = createFileRoute("/blog/")({
         children: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "Blog",
-          name: "Payments Essays — Rizwan Zafar",
+          name: "Payments Essays, Rizwan Zafar",
           url: absUrl("/blog"),
           author: { "@type": "Person", name: "Rizwan Zafar" },
           blogPost: posts.map((p) => ({
@@ -68,7 +68,7 @@ export const Route = createFileRoute("/blog/")({
   component: BlogIndex,
 });
 
-// Heuristics — derived from existing post metadata so filters work without retagging.
+// Heuristics, derived from existing post metadata so filters work without retagging.
 function postRelevantFor(p: { tags: string[]; content: string; title: string }): string[] {
   const haystack = (p.title + " " + p.tags.join(" ") + " " + p.content).toLowerCase();
   return COMPANIES.filter((c) => haystack.includes(c.toLowerCase()));
@@ -124,7 +124,7 @@ function BlogIndex() {
         <span className="italic text-ink-soft">regulated payments.</span>
       </h1>
       <p className="mt-5 max-w-2xl text-lg text-ink-soft">
-        Practical writing from inside payments product — infrastructure, cross-border, settlement,
+        Practical writing from inside payments product, infrastructure, cross-border, settlement,
         risk, onboarding and the product decisions that shape them.
       </p>
 

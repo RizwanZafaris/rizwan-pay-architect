@@ -19,7 +19,7 @@ relatedArticles:
 
 # ISO 20022 Migration: What Payment Product Teams Must Know
 
-ISO 20022 is the biggest change in cross-border payments messaging in a generation. For product teams the migration is not a back-office IT project — it is a once-in-a-career opportunity to fix the data model under every payment surface the platform owns.
+ISO 20022 is the biggest change in cross-border payments messaging in a generation. For product teams the migration is not a back-office IT project, it is a once-in-a-career opportunity to fix the data model under every payment surface the platform owns.
 
 The deadlines are concrete. The benefits are too. Most teams underprepare because they assume the bank takes care of it.
 
@@ -36,7 +36,7 @@ The deadlines are concrete. The benefits are too. Most teams underprepare becaus
 
 ## What ISO 20022 actually is
 
-ISO 20022 is a global standard for financial messaging. It defines a structured, extensible data model in XML (and increasingly JSON) for payments, securities, FX, and trade. In the SWIFT context it surfaces as **MX messages** — for example, `pacs.008` (customer credit transfer) and `pacs.002` (status report) — replacing the legacy MT equivalents over time.
+ISO 20022 is a global standard for financial messaging. It defines a structured, extensible data model in XML (and increasingly JSON) for payments, securities, FX, and trade. In the SWIFT context it surfaces as **MX messages**, for example, `pacs.008` (customer credit transfer) and `pacs.002` (status report), replacing the legacy MT equivalents over time.
 
 The format change is not the point. The data structure is.
 
@@ -44,7 +44,7 @@ The format change is not the point. The data structure is.
 
 SWIFT's cross-border payments and reporting (CBPR+) is in a coexistence period that ends in **November 2025**, after which legacy MT for in-scope messages is retired. Major domestic systems (Fedwire, CHAPS, TARGET2) have already migrated. By 2026, ISO 20022 is the operating reality.
 
-Always confirm current deadlines against the SWIFT and central-bank publications for your jurisdiction — they have moved before.
+Always confirm current deadlines against the SWIFT and central-bank publications for your jurisdiction, they have moved before.
 
 ## Why it matters beyond compliance
 
@@ -52,7 +52,7 @@ Three product-level reasons:
 
 1. **Richer remittance and party data.** Long structured fields replace truncated free text. Reconciliation, screening, and accounting all improve.
 2. **Convergence with domestic rails.** Local instant-payment systems already use ISO 20022 (UPI, FedNow, SEPA Instant, Pakistan's Raast). Cross-border alignment unlocks straight-through processing at the rail boundary.
-3. **Determinism in compliance.** Structured party data — full names, addresses, identifiers — makes sanctions and AML screening more accurate. Fewer false positives. Fewer hand reviews.
+3. **Determinism in compliance.** Structured party data, full names, addresses, identifiers, makes sanctions and AML screening more accurate. Fewer false positives. Fewer hand reviews.
 
 ## What changes for product teams
 
@@ -61,7 +61,7 @@ The changes that affect roadmap:
 - **Field model.** Payments must carry structured originator and beneficiary details, not free-text strings.
 - **Purpose codes.** Standardized codes describe what the payment is for, supporting reporting and risk decisions.
 - **Charges model.** OUR/SHA/BEN charge bearer is preserved but with explicit fee fields.
-- **Reference handling.** End-to-end identifiers persist across all participants — finally a real correlation key.
+- **Reference handling.** End-to-end identifiers persist across all participants, finally a real correlation key.
 - **Customer-facing capture.** UX must collect structured address and identity fields. "Memo" lines become structured remittance fields with type codes.
 
 The platforms that ship ISO 20022 capture surfaces in product, not as overlay forms, gain the data advantage. The platforms that paste structured data into free-text fields lose it before the wire is sent.
@@ -85,7 +85,7 @@ The richer payload unlocks product capabilities that were impossible under MT:
 ## Key takeaways
 
 - ISO 20022 is a data-model change, not a format change.
-- The CBPR+ coexistence ends in late 2025 — product teams should already be live or in late testing.
+- The CBPR+ coexistence ends in late 2025, product teams should already be live or in late testing.
 - The upside is in reconciliation, screening, analytics, and customer support, not just in compliance.
 - Capture-side UX must collect structured data from the start.
 

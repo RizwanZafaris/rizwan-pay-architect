@@ -50,7 +50,7 @@ Most LPM integrations fail that test. This is the operator argument for why loca
 
 ## The acceptance gap is a DX gap
 
-In every emerging market I have shipped in — Pakistan, Bangladesh, Egypt, Iraq, parts of the Gulf — local payment methods (wallets, IBFT, DCB, OTC networks) represent 60–80% of consumer payment intent. Card penetration is the long tail, not the head.
+In every emerging market I have shipped in, Pakistan, Bangladesh, Egypt, Iraq, parts of the Gulf, local payment methods (wallets, IBFT, DCB, OTC networks) represent 60–80% of consumer payment intent. Card penetration is the long tail, not the head.
 
 Yet most international platforms ship cards-first and add LPMs as a "supported method" with worse docs, fewer SDK helpers, no parity in test mode, and webhook payloads that look like they were written by a different team. Merchants do the math: cards work, LPMs are flaky, the additional volume is not worth the integration cost.
 
@@ -89,7 +89,7 @@ Good webhook design looks like:
 - Delivery idempotency keyed on event ID, with at-least-once delivery semantics.
 - A replay endpoint and a delivery log the merchant can inspect.
 
-A merchant who has integrated cards and then attempts an LPM with different webhook semantics will conclude — accurately — that the LPM was bolted on. They will route it to the second-class queue inside their own platform.
+A merchant who has integrated cards and then attempts an LPM with different webhook semantics will conclude, accurately, that the LPM was bolted on. They will route it to the second-class queue inside their own platform.
 
 ## Sandbox parity is non-negotiable
 
@@ -102,7 +102,7 @@ Required sandbox coverage per LPM:
 - Soft decline with rail-specific reason code.
 - Hard decline with reason code.
 - Timeout / no response from the rail.
-- Refund — full and partial.
+- Refund, full and partial.
 - Reversal initiated by the rail after settlement.
 
 Most LPM sandboxes ship the first two and leave the merchant to discover the rest in production. That is where integrations stall.
@@ -126,7 +126,7 @@ A platform that adds an LPM with poor DX often sees:
 - Lower per-merchant volume on the LPM, even where end-user demand is high.
 - BD teams who attribute the gap to "market readiness" when the gap is in the SDK.
 
-The same platform after a DX rework — same partners, same rails, better SDK and webhooks — often sees 4–10x adoption with no additional partner integrations.
+The same platform after a DX rework, same partners, same rails, better SDK and webhooks, often sees 4–10x adoption with no additional partner integrations.
 
 ## Why this matters to Stripe, Adyen, Visa, Mastercard
 
@@ -138,7 +138,7 @@ Network and processor leaders evaluating partner platforms increasingly look at 
 
 At Simpaisa, the inflection in LPM acceptance came not from new partners but from rewriting the SDK and webhook layer so that every rail shared an API surface, error taxonomy, and webhook contract. Merchants who had integrated cards added wallets and DCB in days instead of months. The BD pipeline did not change. The DX did.
 
-The same lesson carried into the Tapmad billing migration: the speed at which wallets and DCB replaced operator billing was determined by how easily the engineering team could route, retry, and reconcile across rails — which is to say, by the DX of the platform's own internal LPM abstraction.
+The same lesson carried into the Tapmad billing migration: the speed at which wallets and DCB replaced operator billing was determined by how easily the engineering team could route, retry, and reconcile across rails, which is to say, by the DX of the platform's own internal LPM abstraction.
 
 ## Key takeaways
 
@@ -146,13 +146,13 @@ The same lesson carried into the Tapmad billing migration: the speed at which wa
 - LPMs must match cards on API surface, error taxonomy, webhook semantics, and sandbox coverage.
 - Webhook design is the single most common LPM failure.
 - One taxonomy across rails is the merchant's contract.
-- Bad LPM DX is not a market problem — it is a product problem the team owns.
+- Bad LPM DX is not a market problem, it is a product problem the team owns.
 
 ## FAQ
 
 **Doesn't the rail dictate the API?** No. The rail dictates the protocol; the platform decides the merchant-facing surface. Translation is the platform's job.
 
-**Is hosted checkout enough?** For small merchants, yes. For platforms whose enterprise merchants want direct integration, no — direct LPM SDKs determine acceptance.
+**Is hosted checkout enough?** For small merchants, yes. For platforms whose enterprise merchants want direct integration, no, direct LPM SDKs determine acceptance.
 
 **How long should a new LPM take to integrate?** A merchant who has integrated cards should add a new LPM in a day or less. If it takes a week, the SDK abstraction is wrong.
 
@@ -160,6 +160,6 @@ The same lesson carried into the Tapmad billing migration: the speed at which wa
 
 ### LinkedIn teaser
 
-> In emerging markets, acceptance is decided at the SDK and the webhook — not in marketing.
+> In emerging markets, acceptance is decided at the SDK and the webhook, not in marketing.
 >
 > A merchant adopts a local payment method only when integrating it is as easy as integrating cards. Most LPM integrations fail that test.

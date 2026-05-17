@@ -3,8 +3,8 @@ title: "Running a $3M Digital Transformation Programme: A Postmortem (TapmadTV)"
 slug: "three-million-dollar-transformation-postmortem"
 category: "Program Management"
 metaTitle: "Postmortem: $3M Digital Transformation Programme (TapmadTV) | Rizwan Zafar"
-metaDescription: "A practitioner postmortem on running a $3M digital transformation programme to launch Pakistan's first licensed OTT platform — 5 workstreams, 25 people, 8 international vendors, on-schedule landing."
-excerpt: "What it actually took to land a $3M transformation programme on schedule across 5 technology workstreams and 8 vendors — and the three things I would do differently."
+metaDescription: "A practitioner postmortem on running a $3M digital transformation programme to launch Pakistan's first licensed OTT platform, 5 workstreams, 25 people, 8 international vendors, on-schedule landing."
+excerpt: "What it actually took to land a $3M transformation programme on schedule across 5 technology workstreams and 8 vendors, and the three things I would do differently."
 publishDate: "2026-04-22"
 readingTime: "9 min read"
 tags:
@@ -34,9 +34,9 @@ relatedArticles:
 
 # Running a $3M Digital Transformation Programme: A Postmortem (TapmadTV)
 
-In 2016 I took on a $3M digital transformation programme at TapmadTV — Pakistan's first licensed OTT streaming platform. 5 technology workstreams (iOS, Android, web, CMS, CDN), 25-person team, 8 international vendors, a regulator-facing launch date with no slip room.
+In 2016 I took on a $3M digital transformation programme at TapmadTV, Pakistan's first licensed OTT streaming platform. 5 technology workstreams (iOS, Android, web, CMS, CDN), 25-person team, 8 international vendors, a regulator-facing launch date with no slip room.
 
-It landed on schedule. This is the postmortem — what worked, what didn't, and what I would do differently.
+It landed on schedule. This is the postmortem, what worked, what didn't, and what I would do differently.
 
 ## The setup
 
@@ -76,7 +76,7 @@ It landed on schedule. This is the postmortem — what worked, what didn't, and 
 
 **2. Integration testing on a sprint cadence from day one.** Not waiting for "the integration sprint." Each workstream is responsible for a minimum integration check every two weeks, even if the dependencies aren't fully built.
 
-**3. Vendor health independent of vendor reporting.** Build a second-channel signal — independent observation of vendor velocity, code commits, deliverable quality. Compare to their RAG reports weekly.
+**3. Vendor health independent of vendor reporting.** Build a second-channel signal, independent observation of vendor velocity, code commits, deliverable quality. Compare to their RAG reports weekly.
 
 **4. Formal go/no-go documentation.** Every major launch milestone gets a go/no-go meeting with a named decision-maker, a documented decision, and a documented "what would have made us say no."
 
@@ -96,7 +96,7 @@ Three things:
 
 **2. International vendors need joint rituals, not just SLAs.** SLAs document what should happen. Joint rituals (planning, standups, war rooms) make it happen. The SLA is for the dispute; the ritual is for the delivery.
 
-**3. The PMO is a tempo function.** Its job is to keep the programme moving at the right pace — not too fast (skipping evidence), not too slow (losing momentum). Tempo is measured by how often decisions actually get made.
+**3. The PMO is a tempo function.** Its job is to keep the programme moving at the right pace, not too fast (skipping evidence), not too slow (losing momentum). Tempo is measured by how often decisions actually get made.
 
 ## FAQ
 

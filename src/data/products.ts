@@ -60,7 +60,7 @@ export const products: Product[] = [
     statusLabel: "In build · preview later",
     oneLiner: "A consumer fintech product in quiet build from Rizwan's product lab.",
     description:
-      "Early-stage consumer fintech. Architecture, regulatory posture and onboarding flows are being designed in private — request preview to get on the early-access list when there is something real to show.",
+      "Early-stage consumer fintech. Architecture, regulatory posture and onboarding flows are being designed in private, request preview to get on the early-access list when there is something real to show.",
     link: "mailto:rizwanzaffar.pk@gmail.com?subject=Preview%20access%20%C2%B7%20Felo%20App&body=Hi%20Rizwan%2C%0A%0APlease%20add%20me%20to%20the%20Felo%20App%20preview%20list.%0A%0AName%3A%20%0ACompany%3A%20%0ARole%3A%20%0A",
     ctaLabel: "Request preview",
     waitlistEmail: "rizwanzaffar.pk@gmail.com",
@@ -73,7 +73,7 @@ export const products: Product[] = [
     oneLiner:
       "An AI-assisted job-search and applicant-workflow product, built on Rizwan's own search process.",
     description:
-      "Tools for senior operators running a focused job search — keyword/ATS profiling, target-company research, application tracking and outreach drafts. Built from Rizwan's own pipeline; request preview to get on the early-access list.",
+      "Tools for senior operators running a focused job search, keyword/ATS profiling, target-company research, application tracking and outreach drafts. Built from Rizwan's own pipeline; request preview to get on the early-access list.",
     link: "mailto:rizwanzaffar.pk@gmail.com?subject=Preview%20access%20%C2%B7%20Job%20Hunt&body=Hi%20Rizwan%2C%0A%0APlease%20add%20me%20to%20the%20Job%20Hunt%20preview%20list.%0A%0AName%3A%20%0ACompany%3A%20%0ARole%3A%20%0A",
     ctaLabel: "Request preview",
     waitlistEmail: "rizwanzaffar.pk@gmail.com",

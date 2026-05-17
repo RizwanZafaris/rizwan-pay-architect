@@ -5,20 +5,20 @@ import { videos, podcasts, talks, type MediaItem } from "@/data/media";
 export const Route = createFileRoute("/media")({
   head: () => ({
     meta: [
-      { title: "Media — Videos, Podcasts and Talks | Rizwan Zafar" },
+      { title: "Media, Videos, Podcasts and Talks | Rizwan Zafar" },
       {
         name: "description",
         content:
           "Videos, podcast appearances and conference talks by Rizwan Zafar on regulated payments, AI in fintech, cross-border corridors and program management.",
       },
-      { property: "og:title", content: "Media — Videos, Podcasts and Talks" },
+      { property: "og:title", content: "Media, Videos, Podcasts and Talks" },
       {
         property: "og:description",
         content:
           "Loom walk-throughs of case studies, podcast appearances and conference talks on payments, AI in fintech and programme management.",
       },
       { property: "og:url", content: absUrl("/media") },
-      { name: "twitter:title", content: "Media — Videos, Podcasts and Talks" },
+      { name: "twitter:title", content: "Media, Videos, Podcasts and Talks" },
       {
         name: "twitter:description",
         content:
@@ -92,7 +92,7 @@ function MediaPage() {
         ◆ Media
       </div>
       <h1 className="font-instrument text-4xl md:text-6xl text-ink mt-3 leading-[1.05] max-w-3xl">
-        Videos, podcasts and talks — payments, AI and program management.
+        Videos, podcasts and talks, payments, AI and program management.
       </h1>
       <p className="mt-5 max-w-2xl text-lg text-ink-soft">
         Loom walk-throughs of the case studies, podcast appearances on regulated payments and AI in
@@ -101,7 +101,7 @@ function MediaPage() {
 
       <Section
         title="Videos"
-        blurb="Short walk-throughs of the case studies — architecture, trade-offs, and what I'd do differently."
+        blurb="Short walk-throughs of the case studies, architecture, trade-offs, and what I'd do differently."
         items={videos}
       />
       <Section

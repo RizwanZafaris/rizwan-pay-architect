@@ -33,7 +33,7 @@ export const Route = createFileRoute("/sitemap.xml")({
         const publicPosts = posts.filter((p) => p.date <= todayIso);
         const paths = [
           ...staticPaths,
-          // Topic hubs are currently thin (filter views) — excluded from sitemap until unique content lands.
+          // Topic hubs are currently thin (filter views), excluded from sitemap until unique content lands.
           ...audiences.map((a) => `/for/${a.slug}`),
           ...productPaths,
           ...caseStudies.map((c) => `/product-work/${c.slug}`),

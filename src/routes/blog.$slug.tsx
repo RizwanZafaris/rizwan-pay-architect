@@ -1,5 +1,6 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { getPost, getRelated, type Post } from "@/data/posts";
+import { getPostContent } from "@/data/posts-content";
 import { profile } from "@/data/profile";
 import { absUrl, SITE_URL } from "@/lib/seo";
 import { DiagramFigure, postDiagrams } from "@/components/diagrams/Diagrams";
@@ -35,13 +36,14 @@ export const Route = createFileRoute("/blog/$slug")({
   loader: ({ params }) => {
     const post = getPost(params.slug);
     if (!post) throw notFound();
-    return { post, related: getRelated(params.slug) };
+    return { post, content: getPostContent(params.slug) ?? "", related: getRelated(params.slug) };
   },
   head: ({ loaderData, params }) => {
     const p = loaderData?.post;
+    const content = loaderData?.content ?? "";
     if (!p) return { meta: [{ title: "Essay" }] };
     const url = absUrl(`/blog/${params.slug}`);
-    const wordCount = p.content.trim().split(/\s+/).length;
+    const wordCount = content.trim().split(/\s+/).length;
     const jsonLd = {
       "@context": "https://schema.org",
       "@type": "BlogPosting",
@@ -68,7 +70,7 @@ export const Route = createFileRoute("/blog/$slug")({
       ],
     };
 
-    const faqs = extractFAQs(p.content);
+    const faqs = extractFAQs(content);
     const faqJsonLd =
       faqs.length > 0
         ? {
@@ -157,8 +159,16 @@ function extractTOC(md: string) {
 }
 
 function BlogPostPage() {
-  const { post: p, related } = Route.useLoaderData() as { post: Post; related: Post[] };
-  const toc = extractTOC(p.content);
+  const {
+    post: p,
+    content,
+    related,
+  } = Route.useLoaderData() as {
+    post: Post;
+    content: string;
+    related: Post[];
+  };
+  const toc = extractTOC(content);
   const diagram = postDiagrams[p.slug];
 
   return (
@@ -216,7 +226,7 @@ function BlogPostPage() {
 
         {/* Body */}
         <div className="lg:col-span-9 order-1 lg:order-2 prose-editorial">
-          {renderContent(p.content)}
+          {renderContent(content)}
           {diagram ? (
             <DiagramFigure title={diagram.title} caption={diagram.caption}>
               <diagram.component />

@@ -104,7 +104,7 @@ const personJsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
   name: profile.name,
-  jobTitle: "Chief Product Officer — Payments",
+  jobTitle: "Chief Product Officer, Payments",
   description: profile.bio,
   email: `mailto:${profile.email}`,
   url: SITE_URL,
@@ -143,7 +143,7 @@ const personJsonLd = {
 const websiteJsonLd = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  name: `${profile.name} — Payments Product Executive`,
+  name: `${profile.name}, Payments Product Executive`,
   url: SITE_URL,
   inLanguage: "en",
   author: { "@type": "Person", name: profile.name },
@@ -160,41 +160,41 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { name: "google-site-verification", content: "kWHcLbkjB3HB8amvRUoa8gMfThcigOtXteUIZUPu8mc" },
-      { title: "Rizwan Zafar — Payments Product Executive | Dubai" },
+      { title: "Rizwan Zafar, Payments Product Executive | Dubai" },
       {
         name: "description",
         content:
-          "Rizwan Zafar — payments product executive in Dubai building regulated payment infrastructure across emerging markets.",
+          "Rizwan Zafar, payments product executive in Dubai building regulated payment infrastructure across emerging markets.",
       },
       { name: "author", content: profile.name },
       { name: "keywords", content: SITE_KEYWORDS },
       { name: "theme-color", content: "#0f1115" },
       // Open Graph
-      { property: "og:site_name", content: `${profile.name} — Payments Product Executive` },
+      { property: "og:site_name", content: `${profile.name}, Payments Product Executive` },
       { property: "og:type", content: "website" },
       { property: "og:locale", content: "en_US" },
       { property: "og:url", content: SITE_URL },
-      { property: "og:title", content: "Rizwan Zafar — Payments Product Executive | Dubai" },
+      { property: "og:title", content: "Rizwan Zafar, Payments Product Executive | Dubai" },
       {
         property: "og:description",
         content:
-          "Payments product executive in Dubai. $1B+ GTV, 25M+ monthly transactions, 5 regulated markets — acceptance, cross-border, settlement, KYC/KYB, AML and fraud.",
+          "Payments product executive in Dubai. $1B+ GTV, 25M+ monthly transactions, 5 regulated markets, acceptance, cross-border, settlement, KYC/KYB, AML and fraud.",
       },
       { property: "og:image", content: OG_IMAGE_URL },
       { property: "og:image:width", content: "1200" },
       { property: "og:image:height", content: "630" },
-      { property: "og:image:alt", content: `${profile.name} — Payments Product Executive` },
+      { property: "og:image:alt", content: `${profile.name}, Payments Product Executive` },
       // Twitter
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:url", content: SITE_URL },
-      { name: "twitter:title", content: "Rizwan Zafar — Payments Product Executive | Dubai" },
+      { name: "twitter:title", content: "Rizwan Zafar, Payments Product Executive | Dubai" },
       {
         name: "twitter:description",
         content:
           "Payments product executive in Dubai. $1B+ GTV, 25M+ monthly transactions, 5 regulated markets.",
       },
       { name: "twitter:image", content: OG_IMAGE_URL },
-      { name: "twitter:image:alt", content: `${profile.name} — Payments Product Executive` },
+      { name: "twitter:image:alt", content: `${profile.name}, Payments Product Executive` },
     ],
     links: [
       { rel: "stylesheet", href: appCss },

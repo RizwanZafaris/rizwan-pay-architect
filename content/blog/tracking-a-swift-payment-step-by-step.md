@@ -3,7 +3,7 @@ title: "How to Track a SWIFT Payment Step by Step"
 slug: "tracking-a-swift-payment-step-by-step"
 category: "SWIFT & Cross-Border Payments"
 metaTitle: "How to Track a SWIFT Payment Step by Step | Rizwan Zafar"
-metaDescription: "A practical guide to tracking a SWIFT payment using the UETR and gpi Tracker — what to ask your bank and how to read the status."
+metaDescription: "A practical guide to tracking a SWIFT payment using the UETR and gpi Tracker, what to ask your bank and how to read the status."
 excerpt: "If your bank cannot tell you where the payment is, the bank does not have the system. The system exists."
 publishDate: "2026-07-03"
 readingTime: "6 min read"
@@ -16,7 +16,7 @@ relatedArticles:
 
 # How to Track a SWIFT Payment Step by Step
 
-Most SWIFT payments today carry a **UETR** — a unique end-to-end transaction reference that follows the payment from origin to credit. With it, the originating bank can query the gpi Tracker and report status in near real time. Without it, the customer is back in the pre-2017 world of phone calls between correspondents.
+Most SWIFT payments today carry a **UETR**, a unique end-to-end transaction reference that follows the payment from origin to credit. With it, the originating bank can query the gpi Tracker and report status in near real time. Without it, the customer is back in the pre-2017 world of phone calls between correspondents.
 
 ## Step 1: Get the UETR from the originating bank
 
@@ -50,7 +50,7 @@ A cancellation request can be initiated by the originating bank. Success depends
 
 - The UETR is the field that makes tracking possible.
 - Most major banks expose a tracking surface; ask for it.
-- Stalled payments almost always sit at a specific correspondent — the system can tell you which.
+- Stalled payments almost always sit at a specific correspondent, the system can tell you which.
 
 ## FAQ
 

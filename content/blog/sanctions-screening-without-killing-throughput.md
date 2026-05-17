@@ -41,10 +41,10 @@ Throwing a vendor at it without understanding the levers gives you a system that
 
 Not every event needs full screening. A working policy:
 
-- **Onboarding** — full screening on all parties (entity, UBOs, directors, signatories)
-- **Daily re-screening** — full screening on the active customer base against the latest lists
-- **Transaction screening** — counterparty screening for cross-border, beneficiary screening for payouts, originator screening for incoming wires
-- **Event triggers** — re-screen on UBO change, jurisdiction change, list addition
+- **Onboarding**, full screening on all parties (entity, UBOs, directors, signatories)
+- **Daily re-screening**, full screening on the active customer base against the latest lists
+- **Transaction screening**, counterparty screening for cross-border, beneficiary screening for payouts, originator screening for incoming wires
+- **Event triggers**, re-screen on UBO change, jurisdiction change, list addition
 
 Domestic, low-risk, low-value transactions between already-screened parties do not need transaction-time screening. Build the policy so this is explicit, not implicit.
 
@@ -52,23 +52,23 @@ Domestic, low-risk, low-value transactions between already-screened parties do n
 
 Different match types catch different things:
 
-- **Exact match** — too tight, misses almost everything real
-- **Phonetic match** (Soundex, Metaphone) — catches transliterations within a script
-- **Tokenised match** with edit distance — catches typos and word reordering
-- **Cross-script transliteration** (Arabic ↔ Latin, Cyrillic ↔ Latin) — non-negotiable for cross-border
-- **Date-of-birth corroboration** — sharply reduces false positives when DOB is available
-- **Address and nationality corroboration** — secondary signals to confirm or refute
+- **Exact match**, too tight, misses almost everything real
+- **Phonetic match** (Soundex, Metaphone), catches transliterations within a script
+- **Tokenised match** with edit distance, catches typos and word reordering
+- **Cross-script transliteration** (Arabic ↔ Latin, Cyrillic ↔ Latin), non-negotiable for cross-border
+- **Date-of-birth corroboration**, sharply reduces false positives when DOB is available
+- **Address and nationality corroboration**, secondary signals to confirm or refute
 
-A modern screening engine combines several. The match score is composed, not single-source. Tune the threshold for each list separately — OFAC SDN, UN, EU, UK HMT, and your jurisdiction's local list often have different precision characteristics.
+A modern screening engine combines several. The match score is composed, not single-source. Tune the threshold for each list separately, OFAC SDN, UN, EU, UK HMT, and your jurisdiction's local list often have different precision characteristics.
 
 ## False positive reduction
 
 A screening engine that produces 5% false positives on transaction screening is unworkable at scale. Specific reductions:
 
-- **Allow-listing** — confirmed-clear matches do not re-alert on identical re-screens
-- **DOB-aware scoring** — penalise score when DOB available and mismatched
-- **Common-name de-prioritisation** — common names require higher score for alert
-- **Field-aware matching** — match company name to entity records, person name to individual records, not cross-matched
+- **Allow-listing**, confirmed-clear matches do not re-alert on identical re-screens
+- **DOB-aware scoring**, penalise score when DOB available and mismatched
+- **Common-name de-prioritisation**, common names require higher score for alert
+- **Field-aware matching**, match company name to entity records, person name to individual records, not cross-matched
 
 Each of these is a tuning lever, owned by compliance with documented thresholds.
 

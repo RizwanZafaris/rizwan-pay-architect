@@ -14,20 +14,20 @@ export const Route = createFileRoute("/product-work/")({
   validateSearch: zodValidator(searchSchema),
   head: () => ({
     meta: [
-      { title: "Product Work — Payments Case Studies | Rizwan Zafar" },
+      { title: "Product Work, Payments Case Studies | Rizwan Zafar" },
       {
         name: "description",
         content:
-          "Case studies in regulated payments infrastructure: cross-border corridors, settlement, merchant onboarding, KYC/KYB, fraud and risk — from $1B+ GTV platforms.",
+          "Case studies in regulated payments infrastructure: cross-border corridors, settlement, merchant onboarding, KYC/KYB, fraud and risk, from $1B+ GTV platforms.",
       },
-      { property: "og:title", content: "Product Work — Rizwan Zafar" },
+      { property: "og:title", content: "Product Work, Rizwan Zafar" },
       {
         property: "og:description",
         content:
           "Selected case studies on payments infrastructure, settlement, cross-border, fraud and risk.",
       },
       { property: "og:url", content: absUrl("/product-work") },
-      { name: "twitter:title", content: "Product Work — Rizwan Zafar" },
+      { name: "twitter:title", content: "Product Work, Rizwan Zafar" },
       {
         name: "twitter:description",
         content:
@@ -41,7 +41,7 @@ export const Route = createFileRoute("/product-work/")({
         children: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "CollectionPage",
-          name: "Product Work — Payments Case Studies",
+          name: "Product Work, Payments Case Studies",
           url: absUrl("/product-work"),
           mainEntity: {
             "@type": "ItemList",

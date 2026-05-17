@@ -4,7 +4,7 @@ slug: "layered-fraud-controls-payments-stack"
 category: "Fraud & Risk"
 subcategory: "Fraud"
 metaTitle: "Layered Fraud Controls in the Payments Stack | Rizwan Zafar"
-metaDescription: "How to design layered fraud controls across device, identity, transaction, behavioural and network layers — without crushing conversion or throughput."
+metaDescription: "How to design layered fraud controls across device, identity, transaction, behavioural and network layers, without crushing conversion or throughput."
 excerpt: "No single fraud control survives a determined attacker. Layered controls do, and they do it without crushing conversion."
 publishDate: "2026-05-28"
 readingTime: "9 min read"
@@ -22,7 +22,7 @@ relatedArticles:
 
 # Layered Fraud Controls in the Payments Stack
 
-Fraud teams that rely on a single control — a model, a 3DS challenge, a velocity rule — lose to determined attackers within a quarter. The teams that hold up over years run layered defenses, each layer cheap on conversion, each layer covering a different attack class.
+Fraud teams that rely on a single control, a model, a 3DS challenge, a velocity rule, lose to determined attackers within a quarter. The teams that hold up over years run layered defenses, each layer cheap on conversion, each layer covering a different attack class.
 
 ## The five layers
 
@@ -38,11 +38,11 @@ A working stack has five layers, applied in order:
 
 5. **Network.** Cross-platform consortia, card-testing pattern detection, mule-account graphs, sanctions and PEP overlays.
 
-Each layer rejects, flags, or steps up. The decision is composable — no layer makes a unilateral block except for hard policy violations.
+Each layer rejects, flags, or steps up. The decision is composable, no layer makes a unilateral block except for hard policy violations.
 
 ## Step-up beats block
 
-Hard blocks are expensive. They cause false-positive damage and they teach attackers exactly where your threshold is. Step-up authentication — 3DS, OTP, biometric, document re-verification — is almost always the better intermediate response.
+Hard blocks are expensive. They cause false-positive damage and they teach attackers exactly where your threshold is. Step-up authentication, 3DS, OTP, biometric, document re-verification, is almost always the better intermediate response.
 
 A working step-up policy:
 
@@ -62,7 +62,7 @@ The "rules vs models" debate is unproductive. Production fraud stacks need both:
 
 Run them in parallel. Use the rule outcome when explainability matters (chargeback representment, regulator audit, merchant dispute). Use the model when sensitivity matters (catching novel attacks early).
 
-## Card testing — a special case
+## Card testing, a special case
 
 Card testing is the single most common attack on new platforms. Pattern: high volume of low-value attempts against a single merchant or BIN, often from many IPs.
 
@@ -109,7 +109,7 @@ A control without a feedback loop drifts. Within six months it is either too tig
 
 ## Operator lens
 
-The cheapest fraud control is the one you ship before you need it. The most expensive one is the one you ship after a regulator asks. Layered defenses are not a project — they are a posture, maintained continuously, reviewed every quarter against new attack patterns.
+The cheapest fraud control is the one you ship before you need it. The most expensive one is the one you ship after a regulator asks. Layered defenses are not a project, they are a posture, maintained continuously, reviewed every quarter against new attack patterns.
 
 ---
 

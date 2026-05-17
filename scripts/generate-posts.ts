@@ -111,7 +111,13 @@ posts.forEach((p) => {
 
 const categories = Array.from(new Set(posts.map((p) => p.category))).sort();
 
-const header = `// AUTO-GENERATED from content/blog/*.md by scripts/generate-posts.ts
+// Split metadata (lightweight, imported everywhere) from content (heavy, blog post route only).
+// Keeps the homepage / blog index / hubs from shipping ~150KB of markdown they do not render.
+const postsMeta = posts.map(({ content: _content, ...meta }) => meta);
+const postsContent: Record<string, string> = {};
+for (const p of posts) postsContent[p.slug] = p.content;
+
+const metaHeader = `// AUTO-GENERATED from content/blog/*.md by scripts/generate-posts.ts
 // Do not edit by hand. Run: bun scripts/generate-posts.ts
 
 export type Post = {
@@ -124,12 +130,11 @@ export type Post = {
   thesis?: string;
   featured?: boolean;
   tags: string[];
-  content: string;
 };
 
 export const categories = ${JSON.stringify(categories, null, 2)};
 
-export const posts: Post[] = ${JSON.stringify(posts, null, 2)};
+export const posts: Post[] = ${JSON.stringify(postsMeta, null, 2)};
 
 export const getPost = (slug: string) => posts.find((p) => p.slug === slug);
 export const getRelated = (slug: string) => {
@@ -141,6 +146,21 @@ export const getRelated = (slug: string) => {
 };
 `;
 
-writeFileSync(OUT, header);
-console.log(`Wrote ${posts.length} posts to ${OUT}`);
+const contentHeader = `// AUTO-GENERATED from content/blog/*.md by scripts/generate-posts.ts
+// Do not edit by hand. Run: bun scripts/generate-posts.ts
+//
+// Heavy markdown content keyed by slug. Imported only by /blog/$slug so the rest
+// of the site does not ship ~150KB of essay text in the main bundle.
+
+export const postContent: Record<string, string> = ${JSON.stringify(postsContent, null, 2)};
+
+export const getPostContent = (slug: string): string | undefined => postContent[slug];
+`;
+
+writeFileSync(OUT, metaHeader);
+writeFileSync(OUT.replace(/posts\.ts$/, "posts-content.ts"), contentHeader);
+console.log(`Wrote ${posts.length} posts (meta) to ${OUT}`);
+console.log(
+  `Wrote ${posts.length} posts (content) to ${OUT.replace(/posts\.ts$/, "posts-content.ts")}`,
+);
 console.log(`Categories: ${categories.join(", ")}`);

@@ -3,7 +3,7 @@ title: "SWIFT in 2026: ISO 20022, Instant Rails, and the Pressure on Corresponde
 slug: "swift-in-2026-trends-to-watch"
 category: "SWIFT & Cross-Border Payments"
 metaTitle: "SWIFT in 2026: Trends to Watch | Rizwan Zafar"
-metaDescription: "Where SWIFT and cross-border payments are heading in 2026 — ISO 20022 done, instant rails everywhere, correspondent banking under pressure, and the G20 roadmap deadline."
+metaDescription: "Where SWIFT and cross-border payments are heading in 2026, ISO 20022 done, instant rails everywhere, correspondent banking under pressure, and the G20 roadmap deadline."
 excerpt: "ISO 20022 is the past-tense story by 2026. The future-tense story is interoperability with instant domestic rails."
 publishDate: "2026-06-30"
 readingTime: "8 min read"
@@ -27,7 +27,7 @@ The CBPR+ coexistence period has ended. Cross-border bank-to-bank messaging is s
 
 ## Trend 2: Instant domestic rails are interoperating
 
-Pakistan's Raast, India's UPI, Brazil's Pix, the EU's SEPA Instant, the US's FedNow, and a long list of others are now production realities. The next stage is interoperability — bilateral linkages (India–Singapore PayNow–UPI as the canonical example) and multilateral schemes (BIS's Project Nexus).
+Pakistan's Raast, India's UPI, Brazil's Pix, the EU's SEPA Instant, the US's FedNow, and a long list of others are now production realities. The next stage is interoperability, bilateral linkages (India–Singapore PayNow–UPI as the canonical example) and multilateral schemes (BIS's Project Nexus).
 
 The product implication: corridor-by-corridor, the last mile is increasingly an instant local rail rather than a correspondent credit. The "30-minute cross-border" experience is no longer exotic.
 
@@ -55,7 +55,7 @@ Practical AI/ML applications are gaining traction in screening (false-positive r
 - Build routing that prefers local instant rails where available.
 - Expose gpi and corridor performance data to customers.
 - Quantify against the G20 targets.
-- Pilot stablecoin rails for specific, well-bounded use cases — not as a general replacement.
+- Pilot stablecoin rails for specific, well-bounded use cases, not as a general replacement.
 
 ## Key takeaways
 

@@ -5,9 +5,9 @@ export type CaseStudy = {
   title: string;
   tagline: string;
   category: string;
-  /** Markets the work touched — used for the index filter. */
+  /** Markets the work touched, used for the index filter. */
   markets?: string[];
-  /** Companies this case study is most relevant to — used for filters. */
+  /** Companies this case study is most relevant to, used for filters. */
   relevantFor?: string[];
   metrics: { label: string; value: string }[];
   beforeAfter?: BeforeAfter[];
@@ -29,7 +29,7 @@ export const caseStudies: CaseStudy[] = [
     slug: "simpaisa-payment-infrastructure",
     title: "Simpaisa Payment Infrastructure Platform",
     tagline:
-      "A regulated, multi-rail payments platform processing $1B+ annual GTV and 25M+ monthly transactions across pay-in, payout, wallets (DCB/IBFT), card acquiring (MPGS/MDES), settlement, FX and cross-border corridors — PCI DSS and ISO/IEC 27001 certified.",
+      "A regulated, multi-rail payments platform processing $1B+ annual GTV and 25M+ monthly transactions across pay-in, payout, wallets (DCB/IBFT), card acquiring (MPGS/MDES), settlement, FX and cross-border corridors, PCI DSS and ISO/IEC 27001 certified.",
     category: "Payment Infrastructure",
     markets: ["UAE", "Pakistan", "Bangladesh", "Nepal", "Iraq", "Egypt"],
     relevantFor: ["Visa", "Mastercard", "Stripe", "Adyen", "Thunes", "DLocal"],
@@ -59,9 +59,9 @@ export const caseStudies: CaseStudy[] = [
       { label: "Enterprise wallet adoption", value: "30%" },
     ],
     executiveSummary:
-      "Owned the product, architecture and operating model of a five-market payments platform serving global enterprises and local merchants. Took a fragmented integration estate and turned it into a single regulated rail with shared APIs, ledger, settlement and risk — through a CTO departure and a regulatory tightening.",
+      "Owned the product, architecture and operating model of a five-market payments platform serving global enterprises and local merchants. Took a fragmented integration estate and turned it into a single regulated rail with shared APIs, ledger, settlement and risk, through a CTO departure and a regulatory tightening.",
     problem:
-      "Merchants and platforms operating in Pakistan, Bangladesh, Nepal, Iraq and Egypt needed a single regulated rail to accept, payout, settle and reconcile across cards (MPGS/MDES), wallets, IBFT, DCB and cross-border corridors — without stitching together fragile point integrations. In 2024, regulatory tightening and a CTO departure forced the platform to operate under heightened scrutiny without losing pace.",
+      "Merchants and platforms operating in Pakistan, Bangladesh, Nepal, Iraq and Egypt needed a single regulated rail to accept, payout, settle and reconcile across cards (MPGS/MDES), wallets, IBFT, DCB and cross-border corridors, without stitching together fragile point integrations. In 2024, regulatory tightening and a CTO departure forced the platform to operate under heightened scrutiny without losing pace.",
     built: [
       "Unified pay-in API across cards, wallets, DCB, IBFT and bank transfers",
       "Payout and disbursement engine with corridor-aware routing",
@@ -71,7 +71,7 @@ export const caseStudies: CaseStudy[] = [
       "Merchant console: onboarding, KYC/KYB, dashboards and dispute workflows",
     ],
     architecture: [
-      "Single pay-in/payout API surface — rails are an implementation detail behind a stable contract",
+      "Single pay-in/payout API surface, rails are an implementation detail behind a stable contract",
       "Canonical double-entry ledger; rails post events, settlement reads from the ledger",
       "Corridor abstraction with routing policy (cost, success rate, partner health)",
       "Risk service in-line: pre-auth, post-auth and async monitoring share one feature store",
@@ -79,7 +79,7 @@ export const caseStudies: CaseStudy[] = [
     ],
     operatingModel: [
       "25+ person org across product, engineering, ops, risk and compliance",
-      "Weekly rail health reviews — success rate, cost, latency, dispute rate per partner",
+      "Weekly rail health reviews, success rate, cost, latency, dispute rate per partner",
       "Joint risk + product council owning the risk taxonomy and false-positive budget",
       "Regulator-facing reporting pipeline owned by product, not finance",
     ],
@@ -92,17 +92,17 @@ export const caseStudies: CaseStudy[] = [
       "Drove 30% enterprise wallet adoption and 99.95% settlement SLA",
     ],
     tradeoffs: [
-      "Chose a single ledger over per-rail ledgers — slower to ship rail #1, much faster after rail #3",
-      "Built risk in-house rather than fully outsourcing — higher ops cost, far lower false-positive rate",
-      "Kept enterprise-grade onboarding for low-volume merchants — accepted some activation friction to preserve regulator posture",
+      "Chose a single ledger over per-rail ledgers, slower to ship rail #1, much faster after rail #3",
+      "Built risk in-house rather than fully outsourcing, higher ops cost, far lower false-positive rate",
+      "Kept enterprise-grade onboarding for low-volume merchants, accepted some activation friction to preserve regulator posture",
     ],
     lessons: [
-      "Payment infrastructure is a product problem, not a platform problem — orchestration, error states and retries decide the experience.",
+      "Payment infrastructure is a product problem, not a platform problem, orchestration, error states and retries decide the experience.",
       "In emerging markets, local payment methods determine acceptance more than card-network features.",
       "Compliance posture (PCI DSS, ISO 27001, AML/CFT) is a sales asset, not a cost line.",
     ],
     whyItMatters:
-      "Visa, Mastercard, Stripe, Wise, Adyen, Thunes and DLocal need leaders who can stand up regulated multi-rail infrastructure across non-trivial markets and run it under regulator scrutiny. This is the full job — partner enablement, scheme readiness, settlement, risk, reporting — done at $1B+ GTV.",
+      "Visa, Mastercard, Stripe, Wise, Adyen, Thunes and DLocal need leaders who can stand up regulated multi-rail infrastructure across non-trivial markets and run it under regulator scrutiny. This is the full job, partner enablement, scheme readiness, settlement, risk, reporting, done at $1B+ GTV.",
     keywords: [
       "payment infrastructure",
       "cross-border payments",
@@ -116,7 +116,7 @@ export const caseStudies: CaseStudy[] = [
     slug: "merchant-onboarding-kyc",
     title: "Merchant Onboarding + KYC/KYB Automation",
     tagline:
-      "Automated merchant onboarding pipeline — KYC/KYB, UBO discovery, sanctions and PEP screening, risk-tiered decisioning with full audit trail. Activation cut from weeks to hours; manual review load down 70%.",
+      "Automated merchant onboarding pipeline, KYC/KYB, UBO discovery, sanctions and PEP screening, risk-tiered decisioning with full audit trail. Activation cut from weeks to hours; manual review load down 70%.",
     category: "Merchant Onboarding",
     markets: ["UAE", "Pakistan", "Bangladesh", "Nepal", "Iraq", "Egypt"],
     relevantFor: ["Stripe", "Adyen", "Wise", "Visa", "Mastercard"],
@@ -141,7 +141,7 @@ export const caseStudies: CaseStudy[] = [
     executiveSummary:
       "Re-architected merchant activation as a single risk + product surface: capture, screening, tiering, pricing and ops review all driven by one configurable engine instead of seven manual workflows.",
     problem:
-      "Manual KYC/KYB on regulated merchants was slow, inconsistent and the single biggest blocker to GTV growth — and a compliance risk.",
+      "Manual KYC/KYB on regulated merchants was slow, inconsistent and the single biggest blocker to GTV growth, and a compliance risk.",
     built: [
       "Document capture, OCR and liveness verification flow",
       "Risk-tiered KYB pipeline with sanctions, PEP and adverse media screening",
@@ -151,7 +151,7 @@ export const caseStudies: CaseStudy[] = [
     ],
     architecture: [
       "Capture, screening and decisioning split into independent services with one shared case object",
-      "Policy-as-config — jurisdiction rules versioned and audited per merchant decision",
+      "Policy-as-config, jurisdiction rules versioned and audited per merchant decision",
       "Decision explanations rendered to ops, merchant and regulator from the same source",
     ],
     operatingModel: [
@@ -165,11 +165,11 @@ export const caseStudies: CaseStudy[] = [
       "Standardized onboarding across UAE, Pakistan, Bangladesh, Nepal, Iraq and Egypt",
     ],
     tradeoffs: [
-      "Invested in capture quality before any policy automation — slower start, lower long-term review load",
+      "Invested in capture quality before any policy automation, slower start, lower long-term review load",
       "Forced a single global schema with jurisdiction overlays rather than per-country forms",
     ],
     lessons: [
-      "Onboarding conversion and risk are the same product surface — separating them creates leakage and false positives.",
+      "Onboarding conversion and risk are the same product surface, separating them creates leakage and false positives.",
       "Most KYB delays are document quality issues, not policy issues. Fix capture first.",
     ],
     whyItMatters:
@@ -180,7 +180,7 @@ export const caseStudies: CaseStudy[] = [
     slug: "settlement-reconciliation",
     title: "Settlement + Reconciliation Engine: 99.95% Accuracy at $1B+ GTV",
     tagline:
-      "A multi-rail settlement and reconciliation engine — canonical double-entry ledger, three-way auto-reconciliation, exception management and corridor-aware payout windows. Closed the gap between treasury, finance and product at $1B+ GTV.",
+      "A multi-rail settlement and reconciliation engine, canonical double-entry ledger, three-way auto-reconciliation, exception management and corridor-aware payout windows. Closed the gap between treasury, finance and product at $1B+ GTV.",
     category: "Settlement & Reconciliation",
     markets: ["UAE", "Pakistan", "Bangladesh", "Nepal", "Iraq", "Egypt"],
     relevantFor: ["Visa", "Mastercard", "Stripe", "Adyen"],
@@ -205,7 +205,7 @@ export const caseStudies: CaseStudy[] = [
     executiveSummary:
       "Replaced spreadsheet reconciliation across five rails with a canonical ledger, three-way auto-recon and an exception taxonomy that fed product. Made unit economics observable per rail, per corridor, per merchant.",
     problem:
-      "Multi-rail flows across cards, wallets, IBFT, DCB and cross-border corridors created reconciliation breakage that finance and treasury were absorbing manually — slowing payouts and obscuring real margin.",
+      "Multi-rail flows across cards, wallets, IBFT, DCB and cross-border corridors created reconciliation breakage that finance and treasury were absorbing manually, slowing payouts and obscuring real margin.",
     built: [
       "Canonical transaction ledger across all rails",
       "Automated three-way reconciliation: gateway, bank/partner, internal ledger",
@@ -229,10 +229,10 @@ export const caseStudies: CaseStudy[] = [
     ],
     tradeoffs: [
       "Held back a faster payout window until recon confidence was demonstrable",
-      "Built our own exception store rather than buying a recon tool — better feedback loop, more ownership",
+      "Built our own exception store rather than buying a recon tool, better feedback loop, more ownership",
     ],
     lessons: [
-      "Settlement and reconciliation are not back-office problems — they decide trust with merchants and partners.",
+      "Settlement and reconciliation are not back-office problems, they decide trust with merchants and partners.",
       "If finance is your reconciliation system, you don't have one.",
     ],
     whyItMatters:
@@ -243,7 +243,7 @@ export const caseStudies: CaseStudy[] = [
     slug: "fraud-risk-aml-cft",
     title: "Fraud, Risk and AML/CFT Controls: Layered Decisioning at $1B+ GTV",
     tagline:
-      "Layered fraud, AML/CFT and sanctions decisioning built natively into the payments stack — vendor signals, device intelligence, internal velocity rules, SAR-ready audit trails. Fraud loss held <0.1% of GTV; fraud incidents down ~65%.",
+      "Layered fraud, AML/CFT and sanctions decisioning built natively into the payments stack, vendor signals, device intelligence, internal velocity rules, SAR-ready audit trails. Fraud loss held <0.1% of GTV; fraud incidents down ~65%.",
     category: "Fraud & Risk",
     markets: ["UAE", "Pakistan", "Bangladesh", "Nepal", "Iraq", "Egypt"],
     relevantFor: ["Visa", "Mastercard", "Stripe", "Adyen"],
@@ -253,9 +253,9 @@ export const caseStudies: CaseStudy[] = [
       { label: "Certifications", value: "PCI DSS · ISO 27001" },
     ],
     executiveSummary:
-      "Treated risk as a product, not a vendor. Combined vendor signals, internal velocity rules and analyst feedback into one decisioning layer with SAR-ready audit trails — held loss rates below benchmark at $1B+ GTV.",
+      "Treated risk as a product, not a vendor. Combined vendor signals, internal velocity rules and analyst feedback into one decisioning layer with SAR-ready audit trails, held loss rates below benchmark at $1B+ GTV.",
     problem:
-      "Cross-border, wallet and DCB flows expose multiple fraud vectors — chargebacks, account takeover, mule activity, structuring and sanctions exposure — that no single off-the-shelf vendor covers.",
+      "Cross-border, wallet and DCB flows expose multiple fraud vectors, chargebacks, account takeover, mule activity, structuring and sanctions exposure, that no single off-the-shelf vendor covers.",
     built: [
       "Real-time decisioning layer combining vendor signals, device intelligence and internal velocity rules",
       "Case management for analysts with SAR-ready audit trails",
@@ -265,7 +265,7 @@ export const caseStudies: CaseStudy[] = [
     architecture: [
       "Pre-auth, post-auth and async monitoring share one feature store",
       "Decisions are explainable end-to-end (rule + signal + outcome)",
-      "Analyst feedback writes back to features — every closed case improves the model",
+      "Analyst feedback writes back to features, every closed case improves the model",
     ],
     role: "Defined the risk product strategy, selected vendors, built the internal rules platform and partnered with compliance and operations.",
     impact: [
@@ -279,7 +279,7 @@ export const caseStudies: CaseStudy[] = [
     ],
     lessons: [
       "Risk that is not a product surface becomes ops debt. Build review tools as carefully as merchant flows.",
-      "AML/CFT scenarios decay — they need a feedback loop with analysts, not just a launch.",
+      "AML/CFT scenarios decay, they need a feedback loop with analysts, not just a launch.",
     ],
     whyItMatters:
       "Every payments network has the same job here: keep loss below benchmark without strangling acceptance. The product playbook is identical.",
@@ -299,9 +299,9 @@ export const caseStudies: CaseStudy[] = [
       { label: "Routing", value: "Cost + success-rate aware" },
     ],
     executiveSummary:
-      "Built a corridor abstraction over multiple PSPs and remittance partners so global merchants saw one API and one economic model — and routing, FX and compliance happened underneath.",
+      "Built a corridor abstraction over multiple PSPs and remittance partners so global merchants saw one API and one economic model, and routing, FX and compliance happened underneath.",
     problem:
-      "Global merchants needed reliable, compliant pay-in and payout into Pakistan, Bangladesh, Nepal, Iraq and Egypt — and local merchants needed cross-border payouts and FX.",
+      "Global merchants needed reliable, compliant pay-in and payout into Pakistan, Bangladesh, Nepal, Iraq and Egypt, and local merchants needed cross-border payouts and FX.",
     built: [
       "Corridor abstraction layer over multiple PSPs and remittance partners",
       "FX engine with margin controls and quote/lock flows",
@@ -334,7 +334,7 @@ export const caseStudies: CaseStudy[] = [
     slug: "tapmad-wallet-billing-migration",
     title: "Tapmad Wallet/Billing Migration: 50% to 1%",
     tagline:
-      "Migrated subscription billing off high-cost rails and rebuilt wallet/DCB flows — payment cost from 50% to 1%.",
+      "Migrated subscription billing off high-cost rails and rebuilt wallet/DCB flows, payment cost from 50% to 1%.",
     category: "Product Strategy",
     markets: ["Pakistan", "UAE", "KSA"],
     relevantFor: ["Stripe", "Adyen", "Visa", "Mastercard"],
@@ -362,9 +362,9 @@ export const caseStudies: CaseStudy[] = [
       { label: "ARR", value: "$10M+" },
     ],
     executiveSummary:
-      "Diagnosed unit economics as a payments problem, not a pricing problem. Rebuilt rail mix, retries and dunning around wallet/DCB economics — pulled payment cost from ~50% to ~1% of revenue while scaling to 5M+ paid subscribers.",
+      "Diagnosed unit economics as a payments problem, not a pricing problem. Rebuilt rail mix, retries and dunning around wallet/DCB economics, pulled payment cost from ~50% to ~1% of revenue while scaling to 5M+ paid subscribers.",
     problem:
-      "Tapmad's subscription business was being eaten alive by payment cost — operator and aggregator margins consumed up to half of revenue, capping growth and ARPU.",
+      "Tapmad's subscription business was being eaten alive by payment cost, operator and aggregator margins consumed up to half of revenue, capping growth and ARPU.",
     built: [
       "Re-architected billing to prefer wallet, DCB and direct bank rails",
       "Smart retry and dunning flows tuned per rail and per cohort",
@@ -393,7 +393,7 @@ export const caseStudies: CaseStudy[] = [
     slug: "daraz-payment-operations",
     title: "Daraz (Alibaba Group) Payment Operations + COD-to-Digital Conversion",
     tagline:
-      "Built the multi-country payment operations spine for South Asia's largest marketplace — settlement, dispute resolution, fraud rule configuration, Alipay localisation, and the COD-to-digital conversion program across 5 markets.",
+      "Built the multi-country payment operations spine for South Asia's largest marketplace, settlement, dispute resolution, fraud rule configuration, Alipay localisation, and the COD-to-digital conversion program across 5 markets.",
     category: "Payment Operations",
     markets: ["Pakistan", "Bangladesh", "Sri Lanka", "Nepal", "Myanmar"],
     relevantFor: ["Stripe", "Adyen", "Wise"],
@@ -405,7 +405,7 @@ export const caseStudies: CaseStudy[] = [
     executiveSummary:
       "Stood up payment operations across five markets at Alibaba scale during a COVID volume surge, then ran the COD-to-digital migration as an incentives + trust program rather than a checkout change.",
     problem:
-      "Marketplace payments were dominated by COD with painful settlement, dispute and fraud workflows — limiting margin, working capital and digital growth.",
+      "Marketplace payments were dominated by COD with painful settlement, dispute and fraud workflows, limiting margin, working capital and digital growth.",
     built: [
       "Settlement and dispute workflows for sellers and logistics partners",
       "Fraud rules tuned per category, geography and seller cohort",
@@ -435,7 +435,7 @@ export const caseStudies: CaseStudy[] = [
     slug: "tapmad-digital-transformation-programme",
     title: "TapmadTV $3M Digital Transformation Programme",
     tagline:
-      "Led a $3M programme launching Pakistan's first licensed OTT platform — 5 tech workstreams (iOS, Android, web, CMS, CDN), 25-person team, 8 international vendors, PMBOK + Agile hybrid governance.",
+      "Led a $3M programme launching Pakistan's first licensed OTT platform, 5 tech workstreams (iOS, Android, web, CMS, CDN), 25-person team, 8 international vendors, PMBOK + Agile hybrid governance.",
     category: "Program Management",
     markets: ["Pakistan"],
     relevantFor: ["Banks", "Sponsor banks", "Telcos", "Fintech transformation teams"],
@@ -447,11 +447,11 @@ export const caseStudies: CaseStudy[] = [
       { label: "Launch", value: "On schedule" },
     ],
     executiveSummary:
-      "Built the PMO from scratch and ran governance for Pakistan's first licensed OTT platform — risk register, RAID logs, milestone tracking, SteerCo reporting and stage-gated capital project delivery — landed on schedule across 5 technology workstreams.",
+      "Built the PMO from scratch and ran governance for Pakistan's first licensed OTT platform, risk register, RAID logs, milestone tracking, SteerCo reporting and stage-gated capital project delivery, landed on schedule across 5 technology workstreams.",
     problem:
       "A first-of-its-kind regulated OTT launch in Pakistan: no internal PMO, 8 international vendors with different delivery cultures, 5 parallel technology workstreams, content-rights obligations, and a regulator-facing launch deadline with no slip room.",
     built: [
-      "PMO operating model — risk register, RAID logs, decision logs, milestone tracking",
+      "PMO operating model, risk register, RAID logs, decision logs, milestone tracking",
       "PMBOK-based stage gates for capital project workstreams (CDN, CMS infrastructure)",
       "Agile delivery cadence for iOS, Android and web product workstreams",
       "Vendor governance: SLAs, escalation paths, joint planning ceremonies",
@@ -460,7 +460,7 @@ export const caseStudies: CaseStudy[] = [
     ],
     architecture: [
       "Programme broken into 5 workstreams with named workstream leads + RACI",
-      "RAID register as the single source of truth — no parallel risk lists",
+      "RAID register as the single source of truth, no parallel risk lists",
       "Stage gates between vendor procurement → integration → UAT → launch",
       "Joint vendor war room for the final 6 weeks before launch",
     ],
@@ -472,16 +472,16 @@ export const caseStudies: CaseStudy[] = [
       "Established agile delivery practices across the 25-person product and engineering team",
     ],
     tradeoffs: [
-      "Hybrid PMBOK + Agile model added overhead — accepted because the regulator-facing capital workstreams needed gate evidence",
-      "Centralised vendor escalations through PMO — slowed minor decisions, prevented vendor-on-vendor finger-pointing",
+      "Hybrid PMBOK + Agile model added overhead, accepted because the regulator-facing capital workstreams needed gate evidence",
+      "Centralised vendor escalations through PMO, slowed minor decisions, prevented vendor-on-vendor finger-pointing",
     ],
     lessons: [
-      "First-of-kind regulated launches do not survive a pure-Agile PMO — capital workstreams need stage gates with auditable evidence.",
+      "First-of-kind regulated launches do not survive a pure-Agile PMO, capital workstreams need stage gates with auditable evidence.",
       "Vendor governance is the highest-leverage PMO surface. Joint rituals beat written SLAs every time.",
       "RAID is only useful if every entry has an owner, a date and a decision path. Otherwise it is a log, not a register.",
     ],
     whyItMatters:
-      "Banks, regulated fintechs and central-bank-licensed platforms run programmes that look exactly like this — capital workstreams, vendor stacks, regulator-facing launch dates, hybrid governance. This is the operating model that ships them.",
+      "Banks, regulated fintechs and central-bank-licensed platforms run programmes that look exactly like this, capital workstreams, vendor stacks, regulator-facing launch dates, hybrid governance. This is the operating model that ships them.",
     keywords: [
       "programme management",
       "PMO",
@@ -495,7 +495,7 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "simpaisa-ai-solutions-suite",
-    title: "Production GenAI Suite at Simpaisa — 4 Deployments in Regulated Payments",
+    title: "Production GenAI Suite at Simpaisa, 4 Deployments in Regulated Payments",
     tagline:
       "Identified, value-modeled and deployed 4 production GenAI solutions across merchant integration support, incident auto-escalation, partner support automation, and a fraud/AML AI pilot with a major banking partner.",
     category: "AI in Fintech",
@@ -510,18 +510,18 @@ export const caseStudies: CaseStudy[] = [
       { label: "Use cases evaluated", value: "20+" },
     ],
     executiveSummary:
-      "Ran GenAI use-case identification across the organisation, evaluated 20+ candidates with value modeling (ROI / feasibility / data readiness), and shipped four production deployments. Built the governance posture so AI runs alongside PCI DSS, ISO 27001 and AML/CFT controls — not despite them.",
+      "Ran GenAI use-case identification across the organisation, evaluated 20+ candidates with value modeling (ROI / feasibility / data readiness), and shipped four production deployments. Built the governance posture so AI runs alongside PCI DSS, ISO 27001 and AML/CFT controls, not despite them.",
     problem:
       "Payments organisations are flooded with low-leverage AI demos. The real questions are which use cases survive the regulatory frame, which have data and feedback loops in place, and which produce auditable, explainable behaviour in production. Without a value-modeling discipline, AI becomes a procurement exercise instead of a product surface.",
     built: [
-      "AI Merchant Integration Chatbot (Slack + Telegram) — RAG over API docs, error catalogue and integration playbooks. Cuts merchant integration support time by 65%.",
-      "Intelligent System Monitoring & Auto-Escalation Bot — detects payment error spikes, runs log analysis, identifies root cause, auto-escalates with full diagnostics. −70% MTTR.",
-      "AI Partner Support Automation — handles 90% of merchant payment queries (settlement, disputes, decline codes, integration) without human intervention.",
-      "Fraud Detection & AML Pilot — active pilot with a major banking partner; value model projects 40% reduction in manual review queues.",
-      "Use-case identification + value-modeling framework — ROI, feasibility, data readiness, regulatory risk per candidate.",
+      "AI Merchant Integration Chatbot (Slack + Telegram), RAG over API docs, error catalogue and integration playbooks. Cuts merchant integration support time by 65%.",
+      "Intelligent System Monitoring & Auto-Escalation Bot, detects payment error spikes, runs log analysis, identifies root cause, auto-escalates with full diagnostics. −70% MTTR.",
+      "AI Partner Support Automation, handles 90% of merchant payment queries (settlement, disputes, decline codes, integration) without human intervention.",
+      "Fraud Detection & AML Pilot, active pilot with a major banking partner; value model projects 40% reduction in manual review queues.",
+      "Use-case identification + value-modeling framework, ROI, feasibility, data readiness, regulatory risk per candidate.",
     ],
     architecture: [
-      "RAG-first for any LLM surface that touches merchant/partner instructions — citations always shown",
+      "RAG-first for any LLM surface that touches merchant/partner instructions, citations always shown",
       "Domain-specific embedding index per use case (integration docs, decline codes, dispute taxonomy)",
       "Audit trail for every AI decision (input, retrieved context, model output, human override)",
       "Feature store + analyst-feedback loop for the fraud/AML pilot",
@@ -532,7 +532,7 @@ export const caseStudies: CaseStudy[] = [
       "Every AI surface ships with a kill-switch and a human-in-the-loop fallback",
       "Quarterly bias / drift / hallucination audit against held-out cases",
     ],
-    role: "Led GenAI strategy end-to-end at Simpaisa — use-case identification, value modeling, vendor selection, regulator briefings, build/buy decisions, deployment governance and post-launch measurement.",
+    role: "Led GenAI strategy end-to-end at Simpaisa, use-case identification, value modeling, vendor selection, regulator briefings, build/buy decisions, deployment governance and post-launch measurement.",
     impact: [
       "4 production AI deployments live; one banking pilot in flight",
       "Merchant integration support time −65%, MTTR −70%, 90% partner queries auto-resolved",
@@ -540,8 +540,8 @@ export const caseStudies: CaseStudy[] = [
       "Briefed regulators on Simpaisa's AI posture for licence reviews",
     ],
     tradeoffs: [
-      "Chose RAG + open-source LLMs over closed APIs for the most sensitive merchant-facing surfaces — slower iteration, lower data-egress risk",
-      "Built our own value-modeling framework rather than adopting a vendor scorecard — better fit, more upfront effort",
+      "Chose RAG + open-source LLMs over closed APIs for the most sensitive merchant-facing surfaces, slower iteration, lower data-egress risk",
+      "Built our own value-modeling framework rather than adopting a vendor scorecard, better fit, more upfront effort",
     ],
     lessons: [
       "Most AI value in payments today is in operations and integration support, not in the customer-facing UI.",
@@ -549,7 +549,7 @@ export const caseStudies: CaseStudy[] = [
       "The fraud/AML use case has the highest stated ROI and the longest validation timeline. Plan for that.",
     ],
     whyItMatters:
-      "Every payments network, PSP, BaaS and regulated fintech is running this exact play in 2026. The operating model — use-case identification, value modeling, regulator-aware deployment, human-in-the-loop fallback — is the work, not the model choice.",
+      "Every payments network, PSP, BaaS and regulated fintech is running this exact play in 2026. The operating model, use-case identification, value modeling, regulator-aware deployment, human-in-the-loop fallback, is the work, not the model choice.",
     keywords: [
       "AI in payments",
       "GenAI fintech",
@@ -565,7 +565,7 @@ export const caseStudies: CaseStudy[] = [
     slug: "simpaisa-bnpl-launch",
     title: "BNPL Launch at Simpaisa: 0 → 100K Users in 8 Months",
     tagline:
-      "Launched Simpaisa's BNPL product from scratch — full underwriting, repayment flows, collections, regulator briefings — to 100K users in 8 months through iterative agile discovery.",
+      "Launched Simpaisa's BNPL product from scratch, full underwriting, repayment flows, collections, regulator briefings, to 100K users in 8 months through iterative agile discovery.",
     category: "Product Strategy",
     markets: ["Pakistan", "UAE"],
     relevantFor: ["Tabby", "Tamara", "Stripe", "Adyen", "Visa", "Mastercard", "BaaS providers"],
@@ -581,7 +581,7 @@ export const caseStudies: CaseStudy[] = [
       { label: "Markets", value: "Pakistan (launch), UAE (planned)" },
     ],
     executiveSummary:
-      "Took BNPL from product concept to 100K active users in 8 months. Built the full stack — eligibility, underwriting, repayment, dunning, collections, regulatory posture, and the consumer UX — using rapid agile discovery cycles and a tight feedback loop with credit and risk.",
+      "Took BNPL from product concept to 100K active users in 8 months. Built the full stack, eligibility, underwriting, repayment, dunning, collections, regulatory posture, and the consumer UX, using rapid agile discovery cycles and a tight feedback loop with credit and risk.",
     problem:
       "BNPL was being launched across the region by Tabby and Tamara, but most local merchants needed a partner who already handled their acceptance. Simpaisa had the merchant base and rails; what was missing was a defensible BNPL product with a credit, risk and ops model that worked in Pakistan and could port to MENA.",
     built: [
@@ -600,13 +600,13 @@ export const caseStudies: CaseStudy[] = [
       "Created the product blueprint Simpaisa is using for MENA expansion",
     ],
     tradeoffs: [
-      "Launched with bureau data only where available, alt-data scoring elsewhere — slower onboarding in low-data segments, but no skipped underwriting",
-      "Built dunning + collections in-house instead of outsourcing — higher ops cost early, much tighter feedback into the credit model",
+      "Launched with bureau data only where available, alt-data scoring elsewhere, slower onboarding in low-data segments, but no skipped underwriting",
+      "Built dunning + collections in-house instead of outsourcing, higher ops cost early, much tighter feedback into the credit model",
     ],
     lessons: [
       "BNPL is a credit product first, a checkout product second. Treating it as the latter is how funds get burnt.",
       "Cohort discipline is the difference between scale and a blowup. Track every cohort to maturity; do not average them.",
-      "Regulator engagement should start before discovery, not after — especially in markets with developing consumer-credit law.",
+      "Regulator engagement should start before discovery, not after, especially in markets with developing consumer-credit law.",
     ],
     whyItMatters:
       "Tabby, Tamara, BNPL-curious banks and BaaS providers in MENA all face the same question: how do you ship BNPL inside a regulated payments org, fast, without taking unmanaged credit risk? This is what that looks like in production.",

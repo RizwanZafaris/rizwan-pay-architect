@@ -21,11 +21,11 @@ export const Route = createFileRoute("/topics/$hub")({
     const canonical = absUrl("/topics");
     return {
       meta: [
-        { title: `${h.title} — Payments Knowledge Base | Rizwan Zafar` },
+        { title: `${h.title}, Payments Knowledge Base | Rizwan Zafar` },
         { name: "description", content: h.description },
-        // Thin until unique content — canonicalize to /topics and noindex.
+        // Thin until unique content, canonicalize to /topics and noindex.
         { name: "robots", content: "noindex, follow" },
-        { property: "og:title", content: `${h.title} — Rizwan Zafar` },
+        { property: "og:title", content: `${h.title}, Rizwan Zafar` },
         { property: "og:description", content: h.description },
         { property: "og:url", content: url },
       ],

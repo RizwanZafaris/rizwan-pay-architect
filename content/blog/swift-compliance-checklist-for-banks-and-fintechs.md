@@ -3,7 +3,7 @@ title: "A SWIFT Compliance Checklist for Banks and Fintechs"
 slug: "swift-compliance-checklist-for-banks-and-fintechs"
 category: "SWIFT & Cross-Border Payments"
 metaTitle: "SWIFT Compliance Checklist for Banks and Fintechs | Rizwan Zafar"
-metaDescription: "A practitioner checklist for SWIFT-related compliance — sanctions, AML/CFT, CSP, ISO 20022 readiness, gpi adoption, and audit trail."
+metaDescription: "A practitioner checklist for SWIFT-related compliance, sanctions, AML/CFT, CSP, ISO 20022 readiness, gpi adoption, and audit trail."
 excerpt: "A working checklist of the SWIFT compliance items that audits, sponsors, and regulators actually ask about."
 publishDate: "2026-07-17"
 readingTime: "7 min read"
@@ -98,6 +98,6 @@ A working checklist of the SWIFT-related compliance items that auditors, bank sp
 
 ## FAQ
 
-**Is this enough for a license application?** No — license applications require jurisdiction-specific tailoring. This checklist is the operating layer underneath.
+**Is this enough for a license application?** No, license applications require jurisdiction-specific tailoring. This checklist is the operating layer underneath.
 
 **How often should this be reviewed?** Quarterly, with the annual CSP attestation as a hard anchor.

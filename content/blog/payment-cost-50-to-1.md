@@ -3,7 +3,7 @@ title: "Payment Cost Is a Product Variable: From 50% to 1% (Tapmad Migration Pla
 slug: "payment-cost-50-to-1"
 category: "Product Strategy"
 metaTitle: "Payment Cost: From 50% to 1% | Rizwan Zafar"
-metaDescription: "How a subscription business cut payment cost from ~50% of revenue to ~1% by treating cost as a product variable — rail mix, dunning, smart retries."
+metaDescription: "How a subscription business cut payment cost from ~50% of revenue to ~1% by treating cost as a product variable, rail mix, dunning, smart retries."
 excerpt: "Payment cost is not procurement. It is product architecture. Here is the rail-mix playbook that pulled a subscription business from 50% to 1% cost-of-revenue."
 publishDate: "2026-05-29"
 readingTime: "11 min read"
@@ -78,7 +78,7 @@ At Tapmad, the rail mix before the migration was operator-billing-heavy. The mig
 - **Third choice:** operator-aggregator billing (high cost, used only as fallback).
 - **Cards:** offered to high-ARPU cohorts and cross-border subscribers.
 
-The user-facing change was small — a re-ordering of options in checkout, with copy that nudged toward the cheaper rail. The cost-of-revenue change was large.
+The user-facing change was small, a re-ordering of options in checkout, with copy that nudged toward the cheaper rail. The cost-of-revenue change was large.
 
 ## Smart retries tuned per rail
 
@@ -99,7 +99,7 @@ The standard dunning playbook is a series of emails. That is a notification syst
 The recovery playbook adds:
 
 - **In-app dunning surfaces.** A non-intrusive nudge on the user's home screen, not just an email.
-- **Rail switching during dunning.** "Your card failed — try with wallet" as a one-tap action.
+- **Rail switching during dunning.** "Your card failed, try with wallet" as a one-tap action.
 - **Win-back offers tied to failure reason.** A user who failed for insufficient balance gets a different offer than a user who failed for an expired card.
 - **Pause-not-cancel** as a default option, with a clear return path.
 
@@ -124,11 +124,11 @@ These outcomes were not produced by a single decision. They were the compounded 
 
 ## Why this matters to OTT, SaaS, and subscription leaders
 
-Any subscription business in a market where the dominant rails are not cards faces the same architecture. The framing that wins is "rail mix is a product decision" — not "billing is a vendor relationship." Companies that internalize this framing convert payment cost from a fixed line item into a managed variable. Companies that do not stay stuck at the rail's pricing.
+Any subscription business in a market where the dominant rails are not cards faces the same architecture. The framing that wins is "rail mix is a product decision", not "billing is a vendor relationship." Companies that internalize this framing convert payment cost from a fixed line item into a managed variable. Companies that do not stay stuck at the rail's pricing.
 
 ## Rizwan's operator lens
 
-The hardest part of the Tapmad work was not the engineering. It was convincing the organization that the rail mix could be moved at all. The dominant rail had cultural inertia — it was "how billing worked." The shift came when we showed, with a single cohort, that the cheaper rail could be the default without hurting acquisition. After that, the question stopped being "can we move" and became "how fast."
+The hardest part of the Tapmad work was not the engineering. It was convincing the organization that the rail mix could be moved at all. The dominant rail had cultural inertia, it was "how billing worked." The shift came when we showed, with a single cohort, that the cheaper rail could be the default without hurting acquisition. After that, the question stopped being "can we move" and became "how fast."
 
 ## Key takeaways
 
@@ -140,7 +140,7 @@ The hardest part of the Tapmad work was not the engineering. It was convincing t
 
 ## FAQ
 
-**Does this work outside OTT?** Yes — any subscription product in emerging markets faces the same rail-mix question. SaaS, gaming, and lending all have analogues.
+**Does this work outside OTT?** Yes, any subscription product in emerging markets faces the same rail-mix question. SaaS, gaming, and lending all have analogues.
 
 **Is wallet billing always cheaper?** Usually, once the user is linked. The first-link friction is a product investment that pays back across the subscriber's lifetime.
 

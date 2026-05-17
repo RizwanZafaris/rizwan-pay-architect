@@ -3,8 +3,8 @@ title: "RAG for Merchant Integration Support: A Production Playbook"
 slug: "rag-for-merchant-integration-support"
 category: "AI in Fintech"
 metaTitle: "RAG for Merchant Integration Support (Playbook) | Rizwan Zafar"
-metaDescription: "How to build a RAG-based merchant integration support bot for a payments platform — corpus design, citation discipline, fallback paths and the operating model that keeps it useful at scale."
-excerpt: "RAG is the right starting architecture for merchant integration support — but only if the corpus is curated, the citations are mandatory and the fallback paths are designed before launch."
+metaDescription: "How to build a RAG-based merchant integration support bot for a payments platform, corpus design, citation discipline, fallback paths and the operating model that keeps it useful at scale."
+excerpt: "RAG is the right starting architecture for merchant integration support, but only if the corpus is curated, the citations are mandatory and the fallback paths are designed before launch."
 publishDate: "2026-05-13"
 readingTime: "9 min read"
 tags:
@@ -36,7 +36,7 @@ We shipped this surface at Simpaisa and cut merchant integration support time by
 
 ## Why RAG, not fine-tuning
 
-Two reasons. First, your integration docs change every sprint — new endpoints, new error codes, new SDKs. Fine-tuned models go stale fast and re-fine-tuning is slow and expensive. RAG just re-indexes.
+Two reasons. First, your integration docs change every sprint, new endpoints, new error codes, new SDKs. Fine-tuned models go stale fast and re-fine-tuning is slow and expensive. RAG just re-indexes.
 
 Second, you need citations. Every answer the bot gives a merchant should be traceable to a doc page. Without citations you cannot defend the answer in a post-incident review.
 
@@ -63,9 +63,9 @@ Three fallback paths to design before you ship:
 
 - **Low-confidence handoff.** If retrieval similarity is low or the LLM signals uncertainty, route to a human with the question + retrieved context attached.
 - **Out-of-scope handoff.** Questions about billing, contracts, dispute outcomes or anything money-affecting. The bot says "I'll route this" and does.
-- **Explicit human request.** Merchant types "human" or "rep" — instant handoff, no friction.
+- **Explicit human request.** Merchant types "human" or "rep", instant handoff, no friction.
 
-If you don't design these paths, the bot will improvise — and that's where damage happens.
+If you don't design these paths, the bot will improvise, and that's where damage happens.
 
 ## Operating model: who owns the bot?
 
@@ -75,7 +75,7 @@ Three teams co-own it: DevRel/Docs (corpus quality), product engineering (retrie
 
 - **Stale doc detected too late.** The bot keeps answering with an old endpoint that's been deprecated. Mitigation: a quarterly doc audit + tagging deprecated content explicitly.
 - **Code-block hallucinations.** LLMs love to invent SDK method names. Mitigation: any code block in an answer must be matched against the actual SDK API surface; if no match, strip and hand off.
-- **Overconfidence on currency conversions or settlement timing.** Add specific guardrails for these topics — never let the bot quote money.
+- **Overconfidence on currency conversions or settlement timing.** Add specific guardrails for these topics, never let the bot quote money.
 
 ## What good looks like at 6 months
 
@@ -84,11 +84,11 @@ Three teams co-own it: DevRel/Docs (corpus quality), product engineering (retrie
 - Average time-to-first-successful-API-call for new merchants halved
 - Doc team gets a feed of the "bot said X, human corrected to Y" pairs and uses it to improve the docs
 
-The compound effect — better bot → better docs → better bot — is the actual unlock.
+The compound effect, better bot → better docs → better bot, is the actual unlock.
 
 ## FAQ
 
-**Do I need a vector DB?** Yes. Start with whatever is in your stack — pgvector, Pinecone, Weaviate. The DB choice matters far less than corpus quality.
+**Do I need a vector DB?** Yes. Start with whatever is in your stack, pgvector, Pinecone, Weaviate. The DB choice matters far less than corpus quality.
 
 **Closed-model APIs or open-source LLMs?** Either works. For merchant-facing surfaces with sensitive data, open-source self-hosted has the edge on data egress. For internal-only tooling, vendor APIs are faster to ship.
 

@@ -74,7 +74,7 @@ export function SiteHeader() {
           <Link
             to="/"
             className="flex items-center gap-2.5 min-w-0 group"
-            aria-label="Rizwan Zafar — Home"
+            aria-label="Rizwan Zafar, Home"
           >
             <span className="h-8 w-8 shrink-0 rounded-lg bg-ink text-background grid place-items-center font-display text-[13px] font-semibold tracking-tighter">
               RZ
@@ -89,7 +89,7 @@ export function SiteHeader() {
             </span>
           </Link>
 
-          {/* Desktop nav — lg+ only so tablet has room for hamburger */}
+          {/* Desktop nav, lg+ only so tablet has room for hamburger */}
           <nav
             className="hidden lg:flex items-center gap-1 text-[13px] text-ink-soft"
             aria-label="Primary"
@@ -98,7 +98,7 @@ export function SiteHeader() {
               <Link
                 key={n.to}
                 to={n.to}
-                className="px-3 py-1.5 rounded-full hover:text-ink hover:bg-ink/5 transition-colors"
+                className="px-3 py-2.5 rounded-full hover:text-ink hover:bg-ink/5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                 activeProps={{ className: "text-ink font-medium bg-ink/5" }}
               >
                 {n.label}
@@ -111,7 +111,7 @@ export function SiteHeader() {
               href={profile.resumeHref}
               download
               aria-label="Download resume (PDF)"
-              className="inline-flex items-center gap-1.5 rounded-full bg-ink text-background px-3.5 sm:px-4 py-2 text-[12px] font-medium hover:bg-brand transition-colors"
+              className="inline-flex items-center gap-1.5 rounded-full bg-ink text-background px-3.5 sm:px-4 py-2.5 text-[12px] font-medium hover:bg-brand transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background"
             >
               <svg
                 aria-hidden="true"
@@ -133,7 +133,7 @@ export function SiteHeader() {
               aria-expanded={open}
               aria-controls="mobile-menu"
               aria-label={open ? "Close menu" : "Open menu"}
-              className="lg:hidden inline-flex items-center justify-center w-10 h-10 rounded-full hover:bg-ink/5 transition-colors text-ink"
+              className="lg:hidden inline-flex items-center justify-center w-11 h-11 rounded-full hover:bg-ink/5 transition-colors text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background"
             >
               <svg
                 aria-hidden
@@ -153,7 +153,7 @@ export function SiteHeader() {
       {/* Mobile menu overlay */}
       {open && (
         <div data-mobile-menu-root>
-          {/* Backdrop — not focusable; click closes */}
+          {/* Backdrop, not focusable; click closes */}
           <div
             aria-hidden
             onClick={() => setOpen(false)}
@@ -211,7 +211,7 @@ export function SiteHeader() {
                 onClick={() => setOpen(false)}
                 className="mt-2 px-3 py-3 rounded-lg text-base text-ink hover:bg-ink/5 transition-colors"
               >
-                Resume — Download PDF
+                Resume, Download PDF
               </a>
             </nav>
             <div className="mt-3 pt-3 border-t border-rule flex items-center justify-between text-xs text-ink-soft font-mono-tech">
@@ -239,7 +239,7 @@ export function SiteFooter() {
             <div className="font-display text-lg text-ink">{profile.name}</div>
           </div>
           <p className="mt-3 text-ink-soft leading-relaxed max-w-md">
-            Rizwan Zafar — Payments Product Executive. Building regulated payment infrastructure
+            Rizwan Zafar, Payments Product Executive. Building regulated payment infrastructure
             across MENA and South Asia.
           </p>
           <div className="mt-5 inline-flex items-center gap-2 text-xs text-ink-soft">

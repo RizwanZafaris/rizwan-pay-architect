@@ -15,7 +15,7 @@ export const recommendations: Recommendation[] = [
     title: "Lead Electrical Expert",
     company: "Türk Standardları Enstitüsü",
     quote:
-      "An optimistic and willing professional who was a joy to work with. He could see the solution to a problem in advance before his colleagues. A man who saw a challenge instead of a problem — and passed every one of them with his iconic smile.",
+      "An optimistic and willing professional who was a joy to work with. He could see the solution to a problem in advance before his colleagues. A man who saw a challenge instead of a problem, and passed every one of them with his iconic smile.",
     date: "Mar 2019",
     era: "legacy",
   },

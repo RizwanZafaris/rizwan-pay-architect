@@ -5,16 +5,16 @@ import { absUrl } from "@/lib/seo";
 export const Route = createFileRoute("/topics")({
   head: () => ({
     meta: [
-      { title: "Topics — Payments Knowledge Base | Rizwan Zafar" },
+      { title: "Topics, Payments Knowledge Base | Rizwan Zafar" },
       {
         name: "description",
         content:
           "Topic hubs for payment infrastructure, cross-border, SWIFT & ISO 20022, settlement, onboarding, fraud, payment APIs and emerging markets.",
       },
-      { property: "og:title", content: "Topics — Payments Knowledge Base" },
+      { property: "og:title", content: "Topics, Payments Knowledge Base" },
       { property: "og:description", content: "Topic hubs for payments product leaders." },
       { property: "og:url", content: absUrl("/topics") },
-      { name: "twitter:title", content: "Topics — Payments Knowledge Base" },
+      { name: "twitter:title", content: "Topics, Payments Knowledge Base" },
       {
         name: "twitter:description",
         content:
@@ -28,7 +28,7 @@ export const Route = createFileRoute("/topics")({
         children: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "CollectionPage",
-          name: "Topics — Payments Knowledge Base",
+          name: "Topics, Payments Knowledge Base",
           url: absUrl("/topics"),
           hasPart: hubs.map((h) => ({
             "@type": "CollectionPage",

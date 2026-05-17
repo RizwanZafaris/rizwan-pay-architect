@@ -3,7 +3,7 @@ title: "Financial Controls Are Product Requirements, Not Compliance Afterthought
 slug: "financial-controls-are-product-requirements"
 category: "Settlement & Reconciliation"
 metaTitle: "Financial Controls Are Product Requirements | Rizwan Zafar"
-metaDescription: "Why financial controls — segregation of duties, audit trails, maker-checker, reversals — are product requirements, not compliance afterthoughts."
+metaDescription: "Why financial controls, segregation of duties, audit trails, maker-checker, reversals, are product requirements, not compliance afterthoughts."
 excerpt: "If your audit trail is reconstructed from logs, you do not have controls. You have archaeology."
 publishDate: "2026-05-26"
 readingTime: "9 min read"
@@ -59,7 +59,7 @@ For a payments platform, the controls that matter most are:
 - **Authorization limits.** Every actor and every API key has explicit, enforceable limits.
 - **Audit trail.** Every state-changing action is recorded with the actor, the input, the resulting state transition, and the precise time.
 - **Reconciliation.** Every transaction is three-way matched, with exceptions typed and tracked.
-- **Reversals.** Every reversal posts as an explicit, additive entry — never as a mutation of the original record.
+- **Reversals.** Every reversal posts as an explicit, additive entry, never as a mutation of the original record.
 - **Access reviews.** Every privileged role is reviewed on a known cadence, with revocation logged.
 
 Each of these is a product feature with a backlog ticket, a test, and a runtime enforcement point. None of them are documents.
@@ -71,7 +71,7 @@ The pattern that works at scale is role-typed authorization in the platform itse
 - The role of "initiator" can submit a payout request.
 - The role of "approver" can approve a payout request.
 - The role of "viewer" can read but neither submit nor approve.
-- The platform enforces — at the API and at the UI — that the same actor cannot occupy both initiator and approver for the same request.
+- The platform enforces, at the API and at the UI, that the same actor cannot occupy both initiator and approver for the same request.
 
 This is not a Jira workflow. It is a constraint enforced by the platform on every call. The auditor's question is "show me a payout where the same user did both," and the correct answer is "the platform makes that impossible."
 
@@ -107,13 +107,13 @@ If the audit trail is reconstructed from application logs, it is not an audit tr
 
 ## Why this matters to regulators and partners
 
-Central banks, sponsoring banks, and scheme compliance teams evaluate fintech platforms on the operability of their controls — not on the existence of their policies. A platform that demonstrates segregation of duties, maker-checker, and an append-only audit trail at the click of a button is a platform that gets license renewals and partner expansions.
+Central banks, sponsoring banks, and scheme compliance teams evaluate fintech platforms on the operability of their controls, not on the existence of their policies. A platform that demonstrates segregation of duties, maker-checker, and an append-only audit trail at the click of a button is a platform that gets license renewals and partner expansions.
 
-The opposite — a platform that produces evidence in PDFs the night before an audit — is a platform whose license, sponsorship, or scheme registration is one finding away from suspension.
+The opposite, a platform that produces evidence in PDFs the night before an audit, is a platform whose license, sponsorship, or scheme registration is one finding away from suspension.
 
 ## Rizwan's operator lens
 
-The work at Simpaisa that produced the cleanest audits was not a compliance project. It was a platform project. The team modeled controls as first-class entities — roles, limits, maker-checker pairs, posted entries — and surfaced them in the same admin console the ops team used every day. The auditor's first walkthrough took ninety minutes instead of three days. The cost saved in audit time was real. The cost saved in incident risk was larger.
+The work at Simpaisa that produced the cleanest audits was not a compliance project. It was a platform project. The team modeled controls as first-class entities, roles, limits, maker-checker pairs, posted entries, and surfaced them in the same admin console the ops team used every day. The auditor's first walkthrough took ninety minutes instead of three days. The cost saved in audit time was real. The cost saved in incident risk was larger.
 
 ## Key takeaways
 
