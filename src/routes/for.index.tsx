@@ -2,6 +2,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { audiences, getHub, postsForHub, caseStudiesForHub, type Audience } from "@/data/hubs";
 import { profile } from "@/data/profile";
 import { absUrl, SITE_URL } from "@/lib/seo";
+import { AnimatedMetric } from "@/components/motion/AnimatedMetric";
+import { Reveal } from "@/components/motion/Reveal";
 
 export const Route = createFileRoute("/for/")({
   head: () => ({
@@ -169,13 +171,17 @@ function ForIndex() {
         </div>
 
         <div className="mt-6 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3">
-          {profile.metrics.slice(0, 12).map((m) => (
-            <div key={m.label} className="rounded-xl border border-rule bg-background p-3">
-              <div className="font-mono-tech text-sm text-ink leading-tight">{m.value}</div>
-              <div className="text-[9px] uppercase tracking-[0.14em] text-ink-soft mt-1 font-mono-tech leading-tight">
-                {m.label}
+          {profile.metrics.slice(0, 12).map((m, i) => (
+            <Reveal key={m.label} delay={i * 40}>
+              <div className="rounded-xl border border-rule bg-background p-3 h-full">
+                <div className="font-mono-tech text-sm text-ink leading-tight">
+                  <AnimatedMetric value={m.value} />
+                </div>
+                <div className="text-[9px] uppercase tracking-[0.14em] text-ink-soft mt-1 font-mono-tech leading-tight">
+                  {m.label}
+                </div>
               </div>
-            </div>
+            </Reveal>
           ))}
         </div>
 

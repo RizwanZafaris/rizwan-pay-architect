@@ -179,6 +179,49 @@
     text-decoration: underline;
     text-underline-offset: 3px;
   }
+
+  /* Magazine drop-cap on the first paragraph of long-form prose.
+     Only applies to direct paragraph children, only on screens >= 640px
+     (mobile would crowd the small column width). */
+  @media (min-width: 640px) {
+    .prose-editorial > p:first-of-type::first-letter {
+      font-family: "Instrument Serif", "Source Serif 4", Georgia, serif;
+      font-style: italic;
+      font-weight: 400;
+      font-size: 4.8em;
+      line-height: 0.85;
+      float: left;
+      margin: 0.05em 0.12em 0 -0.04em;
+      color: var(--ink);
+    }
+  }
+
+  /* Chapter-break horizontal rule with brand glyph in the middle —
+     replaces plain <hr> in long-form prose. */
+  .prose-editorial hr {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    margin: 3.5em 0;
+    color: var(--brand);
+    font-family: "Instrument Serif", Georgia, serif;
+    font-style: italic;
+    font-size: 1.6em;
+    line-height: 0;
+    position: relative;
+    height: 1px;
+    background: var(--rule);
+    overflow: visible;
+  }
+  .prose-editorial hr::after {
+    content: "◆";
+    background: var(--background);
+    padding: 0 0.75em;
+    color: var(--brand);
+    font-size: 0.5em;
+    transform: translateY(0);
+  }
 }
 
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap");

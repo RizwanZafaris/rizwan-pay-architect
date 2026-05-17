@@ -5,6 +5,9 @@ import { posts, categories } from "@/data/posts";
 import { products } from "@/data/products";
 import { absUrl, SITE_URL } from "@/lib/seo";
 import { ctaClick, resumeDownload } from "@/lib/analytics";
+import { AnimatedMetric } from "@/components/motion/AnimatedMetric";
+import { CountUp } from "@/components/motion/CountUp";
+import { Reveal } from "@/components/motion/Reveal";
 import portraitPng from "@/assets/rizwan-zafar-cutout.png";
 import portraitWebp from "@/assets/rizwan-zafar-cutout.webp";
 import portraitWebpSmall from "@/assets/rizwan-zafar-cutout-460.webp";
@@ -104,9 +107,13 @@ function HomePage() {
             <h1 className="font-instrument tracking-tight leading-[0.92] text-[44px] sm:text-[60px] md:text-[88px] lg:text-[108px] text-ink">
               Payments product
               <br />
-              at <span className="italic text-[var(--brand)]">$1B+ TPV</span>
+              at{" "}
+              <span className="italic text-[var(--brand)]">
+                <CountUp value={1} template="${n}B+" duration={1600} /> TPV
+              </span>
               <br className="hidden sm:inline" />
-              <span className="sm:hidden"> </span>across 5 markets.
+              <span className="sm:hidden"> </span>across{" "}
+              <CountUp value={5} template="{n}" duration={1200} /> markets.
             </h1>
 
             <p className="mt-6 md:mt-8 max-w-2xl text-lg md:text-2xl text-ink-soft leading-snug font-light">
@@ -283,15 +290,24 @@ function HomePage() {
                   key={t.name}
                   to="/blog"
                   search={{ q: "", hub: t.hub, reader: "", company: "" }}
-                  className="group relative overflow-hidden rounded-2xl aspect-square sm:aspect-[5/4] lg:aspect-[4/5] p-3 sm:p-4 flex flex-col justify-end text-background border border-rule"
+                  className="group relative overflow-hidden rounded-2xl aspect-square sm:aspect-[5/4] lg:aspect-[4/5] p-3 sm:p-4 flex flex-col justify-end text-background border border-rule bg-ink hover:-translate-y-1 transition-all duration-300"
                   style={{
-                    background: `linear-gradient(160deg, color-mix(in oklab, var(--brand) ${22 + (i % 4) * 10}%, transparent), color-mix(in oklab, var(--ink) ${70 - (i % 3) * 10}%, transparent))`,
+                    backgroundImage: `radial-gradient(${80 + (i % 3) * 30}% 70% at ${(i * 30) % 100}% ${(i * 40) % 100}%, color-mix(in oklab, var(--brand) ${20 + (i % 3) * 8}%, transparent), transparent 65%)`,
                   }}
                 >
                   <div
-                    className="absolute inset-0 bg-noise opacity-30 mix-blend-overlay"
+                    className="absolute inset-0 bg-noise opacity-25 mix-blend-overlay"
                     aria-hidden
                   />
+                  {/* Oversized post-count numeral as second-read art (different
+                      per card) — gives the row visual variance instead of
+                      6 identical gradient rectangles. */}
+                  <div
+                    aria-hidden
+                    className="absolute -top-4 -right-2 font-instrument italic text-background/12 text-[110px] sm:text-[140px] leading-none select-none pointer-events-none tabular-nums"
+                  >
+                    {String(t.count).padStart(2, "0")}
+                  </div>
                   <div className="relative">
                     <div className="font-instrument text-base sm:text-lg leading-tight">
                       {t.name}
@@ -411,19 +427,40 @@ function HomePage() {
               params={{ slug: featuredPost.slug }}
               className="group lg:col-span-7 block"
             >
+              {/* Magazine cover treatment — uses the post's own title at hero
+                  scale as the artwork, not a generic gradient placeholder. */}
               <div
-                className="aspect-[16/10] rounded-3xl border border-rule mb-5 relative overflow-hidden"
+                className="aspect-[16/10] rounded-3xl border border-rule mb-5 relative overflow-hidden bg-ink"
                 style={{
-                  background:
-                    "linear-gradient(135deg, color-mix(in oklab, var(--brand) 35%, transparent), color-mix(in oklab, var(--ink) 80%, transparent))",
+                  backgroundImage:
+                    "radial-gradient(120% 80% at 100% 0%, color-mix(in oklab, var(--brand) 45%, transparent), transparent 60%), radial-gradient(80% 60% at 0% 100%, color-mix(in oklab, var(--brand) 18%, transparent), transparent 60%)",
                 }}
               >
                 <div
-                  className="absolute inset-0 bg-noise opacity-25 mix-blend-overlay"
+                  className="absolute inset-0 bg-noise opacity-30 mix-blend-overlay"
                   aria-hidden
                 />
-                <div className="absolute top-5 left-5 text-[10px] font-mono-tech uppercase tracking-[0.22em] text-background bg-ink/40 backdrop-blur rounded-full px-3 py-1">
-                  Featured · {featuredPost.category}
+                {/* Top-left category chip */}
+                <div className="absolute top-5 left-5 text-[10px] font-mono-tech uppercase tracking-[0.22em] text-background/95 bg-background/10 backdrop-blur rounded-full px-3 py-1 border border-background/15">
+                  ◆ Featured · {featuredPost.category}
+                </div>
+                {/* Bottom-left: oversized issue numeral as second-read moment */}
+                <div
+                  aria-hidden
+                  className="absolute -bottom-4 -left-2 font-instrument italic text-background/8 text-[180px] md:text-[260px] leading-none select-none pointer-events-none"
+                >
+                  №01
+                </div>
+                {/* Bottom-right: the post title in display serif, magazine-cover scale */}
+                <div className="absolute bottom-5 right-5 max-w-[78%] text-right">
+                  <div className="font-instrument italic text-background/95 leading-[0.95] text-2xl md:text-3xl lg:text-4xl tracking-tight">
+                    {featuredPost.title.length > 60
+                      ? featuredPost.title.slice(0, 58) + "…"
+                      : featuredPost.title}
+                  </div>
+                  <div className="mt-3 text-[10px] uppercase tracking-[0.22em] text-background/70 font-mono-tech">
+                    {featuredPost.readingTime} · Read essay →
+                  </div>
                 </div>
               </div>
               <div className="text-[10px] font-mono-tech uppercase tracking-[0.22em] text-ink-soft">
@@ -497,13 +534,17 @@ function HomePage() {
               </span>
             </p>
             <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4">
-              {profile.metrics.slice(0, 4).map((m) => (
-                <div key={m.label} className="rounded-2xl border border-rule bg-card p-4">
-                  <div className="font-mono-tech text-xl text-ink">{m.value}</div>
-                  <div className="text-[10px] uppercase tracking-[0.18em] text-ink-soft mt-1 font-mono-tech">
-                    {m.label}
+              {profile.metrics.slice(0, 4).map((m, i) => (
+                <Reveal key={m.label} delay={i * 80}>
+                  <div className="rounded-2xl border border-rule bg-card p-4 h-full">
+                    <div className="font-mono-tech text-xl text-ink">
+                      <AnimatedMetric value={m.value} />
+                    </div>
+                    <div className="text-[10px] uppercase tracking-[0.18em] text-ink-soft mt-1 font-mono-tech">
+                      {m.label}
+                    </div>
                   </div>
-                </div>
+                </Reveal>
               ))}
             </div>
           </div>
@@ -531,36 +572,53 @@ function HomePage() {
             </Link>
           </div>
           <div className="grid md:grid-cols-3 gap-5">
-            {featuredCases.map((c, i) => (
-              <Link
-                key={c.slug}
-                to="/product-work/$slug"
-                params={{ slug: c.slug }}
-                className="group relative rounded-3xl border border-rule bg-card p-6 hover:-translate-y-1 transition-all duration-300 hover:shadow-[0_25px_50px_-25px_color-mix(in_oklab,var(--brand)_50%,transparent)] flex flex-col"
-              >
-                <div
-                  className="aspect-[5/3] rounded-2xl mb-5 relative overflow-hidden"
-                  style={{
-                    background: `linear-gradient(${120 + i * 40}deg, color-mix(in oklab, var(--brand) ${30 + i * 10}%, transparent), color-mix(in oklab, var(--ink) ${60 + i * 5}%, transparent))`,
-                  }}
-                >
-                  <div
-                    className="absolute inset-0 bg-noise opacity-30 mix-blend-overlay"
-                    aria-hidden
-                  />
-                  <div className="absolute top-3 right-3 font-mono-tech text-[10px] tracking-[0.18em] text-background bg-ink/30 backdrop-blur rounded-full px-2 py-0.5">
-                    /0{i + 1}
-                  </div>
-                </div>
-                <span className="text-[10px] font-mono-tech uppercase tracking-[0.18em] text-[var(--brand)]">
-                  {c.category}
-                </span>
-                <h3 className="font-instrument text-xl text-ink mt-2 leading-snug group-hover:text-[var(--brand)] transition-colors">
-                  {c.title}
-                </h3>
-                <p className="text-sm text-ink-soft mt-2 leading-relaxed flex-1">{c.tagline}</p>
-              </Link>
-            ))}
+            {featuredCases.map((c, i) => {
+              // Pull the strongest stat from the case study for the card "art"
+              const heroStat = c.metrics?.[0];
+              return (
+                <Reveal key={c.slug} delay={i * 120}>
+                  <Link
+                    to="/product-work/$slug"
+                    params={{ slug: c.slug }}
+                    className="group relative rounded-3xl border border-rule bg-card p-6 hover:-translate-y-1 transition-all duration-300 hover:shadow-[0_25px_50px_-25px_color-mix(in_oklab,var(--brand)_50%,transparent)] flex flex-col h-full"
+                  >
+                    {/* Art-directed card hero: oversized number stat in display
+                        serif as the artwork, not gradient noise. */}
+                    <div
+                      className="aspect-[5/3] rounded-2xl mb-5 relative overflow-hidden bg-ink"
+                      style={{
+                        backgroundImage: `radial-gradient(${110 + i * 40}% 80% at ${i * 50}% 100%, color-mix(in oklab, var(--brand) ${22 + i * 6}%, transparent), transparent 60%)`,
+                      }}
+                    >
+                      <div
+                        className="absolute inset-0 bg-noise opacity-25 mix-blend-overlay"
+                        aria-hidden
+                      />
+                      <div className="absolute top-3 left-4 font-mono-tech text-[10px] tracking-[0.18em] text-background/95 uppercase">
+                        ◆ Case study /0{i + 1}
+                      </div>
+                      {heroStat && (
+                        <div className="absolute inset-0 flex flex-col items-center justify-center px-4 text-center pointer-events-none">
+                          <div className="font-instrument italic text-background text-4xl md:text-5xl lg:text-6xl leading-none tracking-tight">
+                            {heroStat.value}
+                          </div>
+                          <div className="mt-3 text-[9px] uppercase tracking-[0.22em] text-background/80 font-mono-tech">
+                            {heroStat.label}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                    <span className="text-[10px] font-mono-tech uppercase tracking-[0.18em] text-[var(--brand)]">
+                      {c.category}
+                    </span>
+                    <h3 className="font-instrument text-xl text-ink mt-2 leading-snug group-hover:text-[var(--brand)] transition-colors">
+                      {c.title}
+                    </h3>
+                    <p className="text-sm text-ink-soft mt-2 leading-relaxed flex-1">{c.tagline}</p>
+                  </Link>
+                </Reveal>
+              );
+            })}
           </div>
         </div>
       </section>

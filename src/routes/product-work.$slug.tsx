@@ -4,6 +4,9 @@ import { caseStudies, getCaseStudy, type CaseStudy } from "@/data/caseStudies";
 import { absUrl, SITE_URL } from "@/lib/seo";
 import { DiagramFigure, caseStudyDiagrams } from "@/components/diagrams/Diagrams";
 import { ctaClick, resumeDownload, trackEvent } from "@/lib/analytics";
+import { AnimatedMetric } from "@/components/motion/AnimatedMetric";
+import { Reveal } from "@/components/motion/Reveal";
+import { PullQuote } from "@/components/editorial/PullQuote";
 
 export const Route = createFileRoute("/product-work/$slug")({
   loader: ({ params }) => {
@@ -133,13 +136,15 @@ function CaseStudyPage() {
         </div>
         <div className="bg-surface-2 border-t border-rule">
           <div className="mx-auto max-w-4xl px-6 py-6 grid grid-cols-2 md:grid-cols-4 gap-6">
-            {s.metrics.map((m) => (
-              <div key={m.label}>
-                <div className="font-mono-tech text-xl text-ink">{m.value}</div>
+            {s.metrics.map((m, i) => (
+              <Reveal key={m.label} delay={i * 80}>
+                <div className="font-mono-tech text-xl text-ink">
+                  <AnimatedMetric value={m.value} />
+                </div>
                 <div className="text-[10px] uppercase tracking-[0.14em] text-ink-soft mt-1 font-mono-tech">
                   {m.label}
                 </div>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -150,6 +155,12 @@ function CaseStudyPage() {
         <Section id="summary" label="Executive summary" title="What this is, in one paragraph.">
           <p>{s.executiveSummary}</p>
         </Section>
+
+        {/* Magazine-grade visual breath — uses the case study's own tagline
+            at hero scale, so every CSU has at least one display-type moment. */}
+        <Reveal>
+          <PullQuote>{s.tagline}</PullQuote>
+        </Reveal>
 
         {s.beforeAfter && s.beforeAfter.length > 0 && (
           <section className="mt-12 rounded-2xl border border-rule bg-surface p-6 md:p-8">
