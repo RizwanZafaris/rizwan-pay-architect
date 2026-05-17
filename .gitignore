@@ -11,6 +11,12 @@ node_modules
 dist
 dist-ssr
 dist-static
+
+# Consolidated docs: keep reviews + INDEX + deploy.md + reference README,
+# ignore heavy cloned reference repos + the deploy zip artifact
+docs/references/*
+!docs/references/README.md
+docs/deploy/*.zip
 .output
 .vinxi
 .tanstack/**
