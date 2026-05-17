@@ -51,9 +51,25 @@ function ProductsPage() {
         Products I have built — and products I am building.
       </h1>
       <p className="mt-5 max-w-2xl text-lg text-ink-soft">
-        Shipped payment infrastructure that has cleared $1B+ in annual volume,
-        and a small portfolio of new products in quiet build from the product lab.
+        Shipped payment infrastructure that has cleared $1B+ in annual volume across five
+        regulated markets, plus a small portfolio of new products in quiet build from the
+        product lab.
       </p>
+      <ul className="mt-6 grid sm:grid-cols-2 lg:grid-cols-4 gap-3 max-w-4xl">
+        {[
+          { v: "$1B+", l: "annual GTV cleared" },
+          { v: "25M+", l: "monthly transactions" },
+          { v: "5", l: "regulated markets" },
+          { v: "99.95%", l: "settlement SLA" },
+        ].map((p) => (
+          <li key={p.l} className="rounded-xl border border-rule bg-surface p-4">
+            <div className="font-mono-tech text-lg text-ink">{p.v}</div>
+            <div className="text-[10px] uppercase tracking-[0.14em] text-ink-soft mt-1 font-mono-tech">
+              {p.l}
+            </div>
+          </li>
+        ))}
+      </ul>
 
       <div className="mt-14 grid md:grid-cols-2 gap-6">
         {products.map((p) => (
