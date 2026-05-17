@@ -123,6 +123,84 @@ function ForIndex() {
         </a>
       </div>
 
+      {/* ============ RESUME PREVIEW STRIP ============ */}
+      <section
+        id="resume-preview"
+        className="mt-12 rounded-3xl border border-rule bg-surface p-6 md:p-8"
+        aria-labelledby="resume-preview-heading"
+      >
+        <div className="flex flex-wrap items-start justify-between gap-4">
+          <div className="min-w-0">
+            <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--accent-emerald)] font-mono-tech">
+              ◆ Résumé · 30-second view
+            </div>
+            <h2
+              id="resume-preview-heading"
+              className="font-instrument text-2xl md:text-3xl text-ink mt-2 leading-tight"
+            >
+              Rizwan Zafar — Product &amp; Program Leader · Payments · Fintech · AI
+            </h2>
+            <p className="mt-2 text-sm text-ink-soft max-w-2xl">
+              CPO at Simpaisa · $0 → $1B+ TPV · 5 markets · 40-engineer org built from 2 · 4
+              production GenAI deployments · PMP / PMI-ACP / CSPO / CSM / COBIT 5 / ITIL v3.
+            </p>
+          </div>
+          <div className="flex flex-wrap gap-2 shrink-0">
+            <a
+              href={profile.resumeHref}
+              download
+              className="inline-flex items-center gap-1.5 rounded-full bg-ink text-background px-4 py-2 text-xs font-mono-tech uppercase tracking-[0.12em] hover:bg-brand transition-colors"
+            >
+              Download PDF
+            </a>
+            <Link
+              to="/resume"
+              className="inline-flex items-center gap-1.5 rounded-full border border-ink/20 px-4 py-2 text-xs font-mono-tech uppercase tracking-[0.12em] text-ink hover:border-ink/50 transition-colors"
+            >
+              Full résumé →
+            </Link>
+            <Link
+              to="/contact"
+              className="inline-flex items-center gap-1.5 rounded-full border border-ink/20 px-4 py-2 text-xs font-mono-tech uppercase tracking-[0.12em] text-ink hover:border-ink/50 transition-colors"
+            >
+              Discuss a role
+            </Link>
+          </div>
+        </div>
+
+        <div className="mt-6 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3">
+          {profile.metrics.slice(0, 12).map((m) => (
+            <div key={m.label} className="rounded-xl border border-rule bg-background p-3">
+              <div className="font-mono-tech text-sm text-ink leading-tight">{m.value}</div>
+              <div className="text-[9px] uppercase tracking-[0.14em] text-ink-soft mt-1 font-mono-tech leading-tight">
+                {m.label}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-6 grid sm:grid-cols-3 gap-4 text-xs text-ink-soft">
+          <div>
+            <div className="text-[10px] uppercase tracking-[0.18em] text-ink-soft mb-1 font-mono-tech">
+              Now
+            </div>
+            <div>CPO · Simpaisa · Dubai · Aug 2020 — Present</div>
+          </div>
+          <div>
+            <div className="text-[10px] uppercase tracking-[0.18em] text-ink-soft mb-1 font-mono-tech">
+              Open to
+            </div>
+            <div>Director / VP / Head of Product · PMO Director · Director AI in Payments</div>
+          </div>
+          <div>
+            <div className="text-[10px] uppercase tracking-[0.18em] text-ink-soft mb-1 font-mono-tech">
+              Locations
+            </div>
+            <div>UAE · KSA · Singapore · MENA · Europe · Global fintech (remote)</div>
+          </div>
+        </div>
+      </section>
+
       {audiences.map((a) => {
         const studies = a.hubs
           .flatMap((h) => caseStudiesForHub(h))

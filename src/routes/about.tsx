@@ -72,11 +72,14 @@ function AboutPage() {
         </h1>
 
         <p className="mt-6 text-lg text-ink-soft leading-relaxed max-w-2xl">
-          Chief Product Officer in regulated payments. 14+ years in product, payments and program
-          delivery. Currently CPO at Simpaisa: $1B+ annual GTV, 25M+ monthly transactions,
-          40-engineer payments org across 12 squads, infrastructure used by TikTok, Uber, Temu,
-          InDrive, MoneyGram and PUBG. Engineer's discipline, operator's tempo, regulator's
-          vocabulary.
+          Product &amp; Program leader in regulated payments. 14+ years across product, payments,
+          programme delivery and digital transformation. Currently CPO at Simpaisa: scaled the B2B
+          payments platform from $0 to $1B+ TPV across 5 markets, built the 40-engineer organisation
+          from 2 people across 12 cross-functional squads, deployed 4 production GenAI solutions,
+          and infrastructure now used by TikTok, Uber, Temu, InDrive, MoneyGram and PUBG. Earlier:
+          $3M digital transformation programme at TapmadTV, payments ops at Daraz (Alibaba Group),
+          PMO setups at Wing Logic and DS Engineering. PMP, PMI-ACP, CSPO, CSM, COBIT 5, ITIL v3.
+          Engineer's discipline, programme manager's tempo, regulator's vocabulary.
         </p>
 
         <div className="prose-editorial mt-10">

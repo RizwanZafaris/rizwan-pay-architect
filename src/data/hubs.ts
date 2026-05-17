@@ -13,7 +13,10 @@ export type HubSlug =
   | "merchant-onboarding"
   | "fraud-aml"
   | "payment-apis"
-  | "emerging-markets";
+  | "emerging-markets"
+  | "ai-in-fintech"
+  | "crypto-stablecoins"
+  | "program-management-pmo";
 
 export type Hub = {
   slug: HubSlug;
@@ -128,6 +131,73 @@ export const hubs: Hub[] = [
       "bangladesh",
       "uae",
     ],
+  },
+  {
+    slug: "ai-in-fintech",
+    title: "AI in Fintech & Payments",
+    shortTitle: "AI · Fintech",
+    description:
+      "GenAI use-case identification, value modeling and four production AI deployments in regulated payments — merchant support, monitoring, partner ops and fraud/AML.",
+    intro:
+      "AI in payments is moving from demos to production. These posts cover use-case identification, value modeling (ROI / feasibility / data readiness), RAG architectures for merchant support, auto-escalation bots, AI fraud detection and the regulatory frame in which all of it has to ship.",
+    categories: ["AI in Fintech"],
+    tagPatterns: [
+      "ai",
+      "genai",
+      "llm",
+      "rag",
+      "machine learning",
+      "automation",
+      "chatbot",
+      "agent",
+    ],
+    caseStudyCategories: ["AI in Fintech"],
+  },
+  {
+    slug: "crypto-stablecoins",
+    title: "Crypto & Stablecoin Payments",
+    shortTitle: "Crypto · Stablecoins",
+    description:
+      "On-ramps and off-ramps, stablecoin settlement, custody design, Travel Rule and VARA/FATF alignment for regulated payments teams.",
+    intro:
+      "Crypto on-ramps and off-ramps are now part of regulated payments. These posts cover product design for fiat↔crypto rails, stablecoin settlement, custody and the compliance frame (Travel Rule, VARA, FATF) that a payments product team has to ship inside.",
+    categories: ["Crypto & Stablecoins"],
+    tagPatterns: [
+      "crypto",
+      "stablecoin",
+      "on-ramp",
+      "off-ramp",
+      "vara",
+      "travel rule",
+      "usdc",
+      "usdt",
+      "custody",
+    ],
+    caseStudyCategories: ["Crypto & Stablecoins"],
+  },
+  {
+    slug: "program-management-pmo",
+    title: "Program Management & PMO",
+    shortTitle: "Program · PMO",
+    description:
+      "PMBOK + Agile hybrid frameworks, RAID logs, SteerCo governance, OKRs and the PMO stack that actually ships at $1B+ scale.",
+    intro:
+      "Programme management is the operating system underneath every regulated payments build. These posts cover building a PMO from scratch, PMBOK + Agile hybrids, RAID governance, SteerCo cadence, OKR design and the rituals that hold a 12-squad org together.",
+    categories: ["Program Management", "PMO", "Product Strategy"],
+    tagPatterns: [
+      "pmo",
+      "programme",
+      "program management",
+      "raid",
+      "steerco",
+      "pmbok",
+      "okr",
+      "scrum",
+      "agile",
+      "delivery",
+      "governance",
+    ],
+    caseStudyCategories: ["Program Management"],
   },
 ];
 

@@ -114,18 +114,21 @@ function HomePage() {
             </h1>
 
             <p className="mt-6 md:mt-10 max-w-2xl text-lg md:text-2xl text-ink-soft leading-snug font-light">
-              Payments product executive in Dubai. I build regulated payment infrastructure across{" "}
+              Product &amp; Program leader in Dubai building regulated payment infrastructure —{" "}
               <span className="text-ink font-medium italic">card acquiring</span>,{" "}
               <span className="text-ink font-medium">cross-border corridors</span>,{" "}
               <span className="font-medium italic text-[var(--brand)]">
                 settlement &amp; reconciliation
               </span>
-              , KYC/KYB, AML/CFT and fraud — at $1B+ GTV across 5 regulated markets.
+              , KYC/KYB, AML/CFT, fraud and{" "}
+              <span className="text-ink font-medium">AI-augmented operations</span> — at $1B+ TPV
+              across 5 markets, with PMBOK + Agile programme governance underneath.
             </p>
             <p className="mt-4 text-sm text-ink-soft font-mono-tech uppercase tracking-[0.18em]">
-              Infrastructure used in production by <span className="text-ink">TikTok</span> ·{" "}
+              Used in production by <span className="text-ink">TikTok</span> ·{" "}
               <span className="text-ink">Uber</span> · <span className="text-ink">Temu</span> ·{" "}
-              <span className="text-ink">MoneyGram</span>
+              <span className="text-ink">MoneyGram</span> · <span className="text-ink">PUBG</span> ·{" "}
+              <span className="text-ink">InDrive</span>
             </p>
 
             <div className="mt-8 md:mt-10 flex flex-col sm:flex-row sm:items-center gap-3">
@@ -156,7 +159,7 @@ function HomePage() {
                 <span className="transition-transform group-hover:translate-x-1">→</span>
               </Link>
               <Link to="/blog" className="hover:text-ink inline-flex items-center gap-1.5 group">
-                Payments essays{" "}
+                Read the blog{" "}
                 <span className="transition-transform group-hover:translate-x-1">→</span>
               </Link>
               <Link to="/contact" className="hover:text-ink inline-flex items-center gap-1.5 group">
@@ -384,18 +387,17 @@ function HomePage() {
           <div className="flex items-end justify-between flex-wrap gap-6 mb-10">
             <div>
               <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
-                ◆ Editor's picked
+                ◆ Editor's picks
               </div>
               <h2 className="font-instrument text-4xl md:text-6xl text-ink mt-3 leading-[1.02]">
-                The essays I'd read <span className="italic text-[var(--brand)]">first.</span>
+                The posts I'd read <span className="italic text-[var(--brand)]">first.</span>
               </h2>
             </div>
             <Link
               to="/blog"
               className="text-sm text-ink-soft hover:text-ink inline-flex items-center gap-1.5 group"
             >
-              See all essays{" "}
-              <span className="transition-transform group-hover:translate-x-1">→</span>
+              All posts <span className="transition-transform group-hover:translate-x-1">→</span>
             </Link>
           </div>
 

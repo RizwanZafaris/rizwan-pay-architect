@@ -4,8 +4,9 @@ import { profile } from "@/data/profile";
 
 const nav = [
   { to: "/products", label: "Products" },
-  { to: "/product-work", label: "Work" },
-  { to: "/blog", label: "Essays" },
+  { to: "/product-work", label: "Case Studies" },
+  { to: "/blog", label: "Blog" },
+  { to: "/media", label: "Media" },
   { to: "/topics", label: "Topics" },
   { to: "/for", label: "For recruiters" },
   { to: "/contact", label: "Contact" },
@@ -261,12 +262,12 @@ export function SiteFooter() {
             </li>
             <li>
               <Link to="/product-work" className="hover:text-ink text-ink-soft">
-                Product Work
+                Case Studies
               </Link>
             </li>
             <li>
               <Link to="/blog" className="hover:text-ink text-ink-soft">
-                Essays
+                Blog
               </Link>
             </li>
             <li>

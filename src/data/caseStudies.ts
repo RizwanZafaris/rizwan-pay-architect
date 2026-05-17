@@ -431,6 +431,195 @@ export const caseStudies: CaseStudy[] = [
       "South Asia fintech",
     ],
   },
+  {
+    slug: "tapmad-digital-transformation-programme",
+    title: "TapmadTV $3M Digital Transformation Programme",
+    tagline:
+      "Led a $3M programme launching Pakistan's first licensed OTT platform — 5 tech workstreams (iOS, Android, web, CMS, CDN), 25-person team, 8 international vendors, PMBOK + Agile hybrid governance.",
+    category: "Program Management",
+    markets: ["Pakistan"],
+    relevantFor: ["Banks", "Sponsor banks", "Telcos", "Fintech transformation teams"],
+    metrics: [
+      { label: "Programme value", value: "$3M" },
+      { label: "Workstreams", value: "5 (iOS · Android · Web · CMS · CDN)" },
+      { label: "Team", value: "25 people" },
+      { label: "Vendors", value: "8 international" },
+      { label: "Launch", value: "On schedule" },
+    ],
+    executiveSummary:
+      "Built the PMO from scratch and ran governance for Pakistan's first licensed OTT platform — risk register, RAID logs, milestone tracking, SteerCo reporting and stage-gated capital project delivery — landed on schedule across 5 technology workstreams.",
+    problem:
+      "A first-of-its-kind regulated OTT launch in Pakistan: no internal PMO, 8 international vendors with different delivery cultures, 5 parallel technology workstreams, content-rights obligations, and a regulator-facing launch deadline with no slip room.",
+    built: [
+      "PMO operating model — risk register, RAID logs, decision logs, milestone tracking",
+      "PMBOK-based stage gates for capital project workstreams (CDN, CMS infrastructure)",
+      "Agile delivery cadence for iOS, Android and web product workstreams",
+      "Vendor governance: SLAs, escalation paths, joint planning ceremonies",
+      "SteerCo with monthly board reporting; weekly programme reviews",
+      "Content-rights and regulator-facing compliance tracking",
+    ],
+    architecture: [
+      "Programme broken into 5 workstreams with named workstream leads + RACI",
+      "RAID register as the single source of truth — no parallel risk lists",
+      "Stage gates between vendor procurement → integration → UAT → launch",
+      "Joint vendor war room for the final 6 weeks before launch",
+    ],
+    role: "Programme Manager / PMO Lead. Owned governance, stakeholder management, vendor relationships, risk posture and launch readiness end-to-end. Direct reporting line to the CEO and the board's tech committee.",
+    impact: [
+      "Delivered Pakistan's first licensed OTT platform on schedule",
+      "Held 5 technology workstreams to a single launch milestone with zero workstream slip",
+      "Built a PMO playbook the company continued to use after launch",
+      "Established agile delivery practices across the 25-person product and engineering team",
+    ],
+    tradeoffs: [
+      "Hybrid PMBOK + Agile model added overhead — accepted because the regulator-facing capital workstreams needed gate evidence",
+      "Centralised vendor escalations through PMO — slowed minor decisions, prevented vendor-on-vendor finger-pointing",
+    ],
+    lessons: [
+      "First-of-kind regulated launches do not survive a pure-Agile PMO — capital workstreams need stage gates with auditable evidence.",
+      "Vendor governance is the highest-leverage PMO surface. Joint rituals beat written SLAs every time.",
+      "RAID is only useful if every entry has an owner, a date and a decision path. Otherwise it is a log, not a register.",
+    ],
+    whyItMatters:
+      "Banks, regulated fintechs and central-bank-licensed platforms run programmes that look exactly like this — capital workstreams, vendor stacks, regulator-facing launch dates, hybrid governance. This is the operating model that ships them.",
+    keywords: [
+      "programme management",
+      "PMO",
+      "digital transformation",
+      "PMBOK",
+      "RAID",
+      "SteerCo",
+      "vendor governance",
+      "OTT launch",
+    ],
+  },
+  {
+    slug: "simpaisa-ai-solutions-suite",
+    title: "Production GenAI Suite at Simpaisa — 4 Deployments in Regulated Payments",
+    tagline:
+      "Identified, value-modeled and deployed 4 production GenAI solutions across merchant integration support, incident auto-escalation, partner support automation, and a fraud/AML AI pilot with a major banking partner.",
+    category: "AI in Fintech",
+    markets: ["UAE", "Pakistan", "Bangladesh", "Nepal", "Iraq", "Egypt"],
+    relevantFor: ["Visa", "Mastercard", "Stripe", "Adyen", "Sponsor banks", "PSPs"],
+    metrics: [
+      { label: "AI solutions in production", value: "4" },
+      { label: "Merchant support time", value: "−65%" },
+      { label: "Incident response MTTR", value: "−70%" },
+      { label: "Partner queries auto-resolved", value: "90%" },
+      { label: "Projected manual-review reduction", value: "−40% (pilot)" },
+      { label: "Use cases evaluated", value: "20+" },
+    ],
+    executiveSummary:
+      "Ran GenAI use-case identification across the organisation, evaluated 20+ candidates with value modeling (ROI / feasibility / data readiness), and shipped four production deployments. Built the governance posture so AI runs alongside PCI DSS, ISO 27001 and AML/CFT controls — not despite them.",
+    problem:
+      "Payments organisations are flooded with low-leverage AI demos. The real questions are which use cases survive the regulatory frame, which have data and feedback loops in place, and which produce auditable, explainable behaviour in production. Without a value-modeling discipline, AI becomes a procurement exercise instead of a product surface.",
+    built: [
+      "AI Merchant Integration Chatbot (Slack + Telegram) — RAG over API docs, error catalogue and integration playbooks. Cuts merchant integration support time by 65%.",
+      "Intelligent System Monitoring & Auto-Escalation Bot — detects payment error spikes, runs log analysis, identifies root cause, auto-escalates with full diagnostics. −70% MTTR.",
+      "AI Partner Support Automation — handles 90% of merchant payment queries (settlement, disputes, decline codes, integration) without human intervention.",
+      "Fraud Detection & AML Pilot — active pilot with a major banking partner; value model projects 40% reduction in manual review queues.",
+      "Use-case identification + value-modeling framework — ROI, feasibility, data readiness, regulatory risk per candidate.",
+    ],
+    architecture: [
+      "RAG-first for any LLM surface that touches merchant/partner instructions — citations always shown",
+      "Domain-specific embedding index per use case (integration docs, decline codes, dispute taxonomy)",
+      "Audit trail for every AI decision (input, retrieved context, model output, human override)",
+      "Feature store + analyst-feedback loop for the fraud/AML pilot",
+      "Open-source LLMs for non-sensitive surfaces, vendor LLMs for narrower use cases",
+    ],
+    operatingModel: [
+      "AI use cases reviewed in a monthly product + risk + compliance council",
+      "Every AI surface ships with a kill-switch and a human-in-the-loop fallback",
+      "Quarterly bias / drift / hallucination audit against held-out cases",
+    ],
+    role: "Led GenAI strategy end-to-end at Simpaisa — use-case identification, value modeling, vendor selection, regulator briefings, build/buy decisions, deployment governance and post-launch measurement.",
+    impact: [
+      "4 production AI deployments live; one banking pilot in flight",
+      "Merchant integration support time −65%, MTTR −70%, 90% partner queries auto-resolved",
+      "Established the AI use-case discipline (ROI / feasibility / data readiness / regulatory risk) used quarterly",
+      "Briefed regulators on Simpaisa's AI posture for licence reviews",
+    ],
+    tradeoffs: [
+      "Chose RAG + open-source LLMs over closed APIs for the most sensitive merchant-facing surfaces — slower iteration, lower data-egress risk",
+      "Built our own value-modeling framework rather than adopting a vendor scorecard — better fit, more upfront effort",
+    ],
+    lessons: [
+      "Most AI value in payments today is in operations and integration support, not in the customer-facing UI.",
+      "Auditable behaviour beats raw model performance. A 92% model with full citations is better than a 96% model that can't explain itself.",
+      "The fraud/AML use case has the highest stated ROI and the longest validation timeline. Plan for that.",
+    ],
+    whyItMatters:
+      "Every payments network, PSP, BaaS and regulated fintech is running this exact play in 2026. The operating model — use-case identification, value modeling, regulator-aware deployment, human-in-the-loop fallback — is the work, not the model choice.",
+    keywords: [
+      "AI in payments",
+      "GenAI fintech",
+      "RAG architecture",
+      "AI fraud detection",
+      "AML AI",
+      "merchant support automation",
+      "value modeling AI",
+      "regulated AI deployment",
+    ],
+  },
+  {
+    slug: "simpaisa-bnpl-launch",
+    title: "BNPL Launch at Simpaisa: 0 → 100K Users in 8 Months",
+    tagline:
+      "Launched Simpaisa's BNPL product from scratch — full underwriting, repayment flows, collections, regulator briefings — to 100K users in 8 months through iterative agile discovery.",
+    category: "Product Strategy",
+    markets: ["Pakistan", "UAE"],
+    relevantFor: ["Tabby", "Tamara", "Stripe", "Adyen", "Visa", "Mastercard", "BaaS providers"],
+    beforeAfter: [
+      { metric: "Active users", before: "0", after: "100K (8 months)" },
+      { metric: "Time-to-first-product", before: "n/a", after: "Discovery → live in 14 weeks" },
+      { metric: "Default rate", before: "n/a", after: "Within target band" },
+    ],
+    metrics: [
+      { label: "Active users", value: "0 → 100K" },
+      { label: "Launch time", value: "8 months" },
+      { label: "Discovery → live", value: "14 weeks" },
+      { label: "Markets", value: "Pakistan (launch), UAE (planned)" },
+    ],
+    executiveSummary:
+      "Took BNPL from product concept to 100K active users in 8 months. Built the full stack — eligibility, underwriting, repayment, dunning, collections, regulatory posture, and the consumer UX — using rapid agile discovery cycles and a tight feedback loop with credit and risk.",
+    problem:
+      "BNPL was being launched across the region by Tabby and Tamara, but most local merchants needed a partner who already handled their acceptance. Simpaisa had the merchant base and rails; what was missing was a defensible BNPL product with a credit, risk and ops model that worked in Pakistan and could port to MENA.",
+    built: [
+      "Eligibility + underwriting engine (alt-data scoring + bureau where available)",
+      "Repayment scheduling, dunning and collections workflows",
+      "Merchant-facing BNPL integration (existing SDKs + new BNPL endpoints)",
+      "Consumer onboarding KYC flow with friction-tier risk-based capture",
+      "Regulator briefings + central-bank engagement on consumer-credit posture",
+      "Analytics: cohort default tracking, ARPU per cohort, recovery funnel",
+    ],
+    role: "CPO. Owned product strategy, regulatory engagement, partner stack (bureau, alt-data, collections), and the cross-functional discovery cadence with risk, credit ops and engineering.",
+    impact: [
+      "Reached 100K active users in 8 months",
+      "Discovery → first live merchant in 14 weeks",
+      "Default rate held within target band through cohort-by-cohort tightening",
+      "Created the product blueprint Simpaisa is using for MENA expansion",
+    ],
+    tradeoffs: [
+      "Launched with bureau data only where available, alt-data scoring elsewhere — slower onboarding in low-data segments, but no skipped underwriting",
+      "Built dunning + collections in-house instead of outsourcing — higher ops cost early, much tighter feedback into the credit model",
+    ],
+    lessons: [
+      "BNPL is a credit product first, a checkout product second. Treating it as the latter is how funds get burnt.",
+      "Cohort discipline is the difference between scale and a blowup. Track every cohort to maturity; do not average them.",
+      "Regulator engagement should start before discovery, not after — especially in markets with developing consumer-credit law.",
+    ],
+    whyItMatters:
+      "Tabby, Tamara, BNPL-curious banks and BaaS providers in MENA all face the same question: how do you ship BNPL inside a regulated payments org, fast, without taking unmanaged credit risk? This is what that looks like in production.",
+    keywords: [
+      "BNPL launch",
+      "buy now pay later",
+      "consumer credit fintech",
+      "underwriting",
+      "MENA BNPL",
+      "Pakistan BNPL",
+      "credit product strategy",
+    ],
+  },
 ];
 
 export const getCaseStudy = (slug: string) => caseStudies.find((c) => c.slug === slug);
