@@ -1,6 +1,7 @@
 # Product Work Review — `/product-work` + 7 case studies
 
 **URLs:**
+
 - Index: `/product-work`
 - `/product-work/simpaisa-payment-infrastructure`
 - `/product-work/merchant-onboarding-kyc`
@@ -16,12 +17,12 @@
 
 ## Current state — index page
 
-| Element | Current value |
-|---------|---------------|
-| H1 | "Case studies in regulated payments infrastructure" |
-| Filters | Company (Adyen, DLocal, Mastercard, Stripe, Thunes, Visa, Wise) · Compliance theme (PCI DSS, AML/CFT, KYC/KYB, Fraud & Risk, Settlement, Cross-Border, Payment Infrastructure) |
-| Cards | 7 case studies with numbering 01–07 |
-| Meta description | **Missing** ❌ |
+| Element          | Current value                                                                                                                                                                  |
+| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| H1               | "Case studies in regulated payments infrastructure"                                                                                                                            |
+| Filters          | Company (Adyen, DLocal, Mastercard, Stripe, Thunes, Visa, Wise) · Compliance theme (PCI DSS, AML/CFT, KYC/KYB, Fraud & Risk, Settlement, Cross-Border, Payment Infrastructure) |
+| Cards            | 7 case studies with numbering 01–07                                                                                                                                            |
+| Meta description | **Missing** ❌                                                                                                                                                                 |
 
 ## Current state — sample case study (Simpaisa)
 
@@ -36,17 +37,20 @@ Has all the right sections: Executive summary · Before/after · Problem · Syst
 **Vague metrics on tile descriptions.** Several case study tiles use words like "Materially reduced" and "Significantly down". Recruiters in payments will dismiss these immediately — they read those as "the number is not impressive enough to publish".
 
 Audit every tile and either:
+
 - Replace with the actual number (`Fraud loss <0.1% of GTV`), or
 - Remove the line entirely.
 
-If the number is under NDA, say so explicitly: *"Under NDA. Discussed in interviews."* That is far more credible than "materially reduced".
+If the number is under NDA, say so explicitly: _"Under NDA. Discussed in interviews."_ That is far more credible than "materially reduced".
 
 **Add meta description.**
+
 - Suggested: "Seven case studies in regulated payments infrastructure: Simpaisa platform ($1B+ GTV), merchant onboarding/KYC, settlement engine (99.95% SLA), fraud/AML controls, cross-border corridors, Tapmad migration (50%→1% cost), Daraz payment ops."
 
 ### P1 — strong improvements
 
-**The "Filter by company" row is clever** (lets a Visa recruiter find Visa-relevant work). But it can mislead: if I click "Stripe", I expect work you did *at* Stripe, not work *relevant to* Stripe. Add a one-line tooltip or header:
+**The "Filter by company" row is clever** (lets a Visa recruiter find Visa-relevant work). But it can mislead: if I click "Stripe", I expect work you did _at_ Stripe, not work _relevant to_ Stripe. Add a one-line tooltip or header:
+
 > "Work that maps to what each company hires for. I have not been employed at these companies."
 
 This protects credibility — leaving the ambiguity open is risky.
@@ -68,7 +72,7 @@ This protects credibility — leaving the ambiguity open is risky.
 
 - Section structure (Exec summary → Before/after → Problem → System → Architecture → Operating model → My role → Impact → Trade-offs → Lessons → Why it matters).
 - Specific named customers (TikTok, Uber, Temu).
-- Honest trade-offs section — this is *very* rare on candidate sites and signals seniority.
+- Honest trade-offs section — this is _very_ rare on candidate sites and signals seniority.
 - Geography list (Pakistan, Bangladesh, Nepal, Iraq, Egypt).
 
 ### P0 — fix on every case study
@@ -84,7 +88,7 @@ Team owned: Backend implementation (8 eng), QA, ops runbooks.
 
 **Add a "What this would look like at your company" closer.** A short paragraph that translates the work to a hiring company's context:
 
-> *"At Visa, this would map to a Director, Acceptance Product role — owning issuer/acquirer cert programmes, scheme governance, and merchant tier strategy."*
+> _"At Visa, this would map to a Director, Acceptance Product role — owning issuer/acquirer cert programmes, scheme governance, and merchant tier strategy."_
 
 This is the single most under-used technique on candidate sites. It does the recruiter's job for them.
 
@@ -94,9 +98,9 @@ This is the single most under-used technique on candidate sites. It does the rec
 
 **Add quotes if you can get them.** Even one line from a CEO, customer or co-founder per case study transforms the credibility. "Proof being gathered" (current copy) is fine as a placeholder for 30 days; after that, it reads stale.
 
-**Trade-offs section is gold — make it longer.** Most candidate sites pretend everything went well. Yours doesn't. Add 2–3 *specific* trade-offs per study with the reasoning. Example:
+**Trade-offs section is gold — make it longer.** Most candidate sites pretend everything went well. Yours doesn't. Add 2–3 _specific_ trade-offs per study with the reasoning. Example:
 
-> *"Built our own settlement engine instead of buying Modulr/Currencycloud. Trade-off: 6 months of build vs. 3 months to integrate. Why: cross-border requirements in Iraq/Egypt weren't supported by off-the-shelf rails. Would I do it again? Yes, but I'd hire a settlement specialist on day one."*
+> _"Built our own settlement engine instead of buying Modulr/Currencycloud. Trade-off: 6 months of build vs. 3 months to integrate. Why: cross-border requirements in Iraq/Egypt weren't supported by off-the-shelf rails. Would I do it again? Yes, but I'd hire a settlement specialist on day one."_
 
 ### P2 — polish
 
@@ -115,15 +119,20 @@ This is the single most under-used technique on candidate sites. It does the rec
 ## SEO per case study
 
 Each case study should have:
+
 - Unique `<title>`: `<Case study name> — Rizwan Zafar`
 - Unique meta description (~150 chars summarising problem + result)
 - `Article` JSON-LD schema with `datePublished`, `author`, `about` (topic tags)
 - `BreadcrumbList` schema: Home > Product Work > [Case study]
 
 Example for Simpaisa:
+
 ```html
 <title>Simpaisa Payment Infrastructure: $1B+ GTV across 5 markets — Rizwan Zafar</title>
-<meta name="description" content="Building Simpaisa's regulated payment platform from scratch: cards, wallets, DCB, IBFT, cross-border, FX, settlement, KYC/KYB. $1B+ annual GTV, 25M+ tx/mo, 99.95% SLA across PK/BD/NP/IQ/EG. Customers include TikTok, Uber, Temu.">
+<meta
+  name="description"
+  content="Building Simpaisa's regulated payment platform from scratch: cards, wallets, DCB, IBFT, cross-border, FX, settlement, KYC/KYB. $1B+ annual GTV, 25M+ tx/mo, 99.95% SLA across PK/BD/NP/IQ/EG. Customers include TikTok, Uber, Temu."
+/>
 ```
 
 ---

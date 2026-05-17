@@ -10,38 +10,38 @@ These are MCP servers I can already see in your environment. You can use them to
 
 ### Image / design generation
 
-| MCP | What it does | Good for |
-|-----|--------------|----------|
-| **Canva** (`mcp__c0287d4b...__*`) | Generate full designs, brand-template variations, social photos, export to PNG/PDF | Quick branded social posts, presentation slides, brand template assets |
-| **Stitch** (`mcp__stitch__*`) | Google Stitch — generates UI mockups from text prompts | First-pass UI variants for new pages (e.g. /media, /resume), responsive screens |
-| **Figma** (`mcp__b609d57b...__*`) | Pull design context from Figma, generate diagrams, get component code | If you build a Figma design system, I can pull tokens and component code |
-| **Claude Preview** (`mcp__Claude_Preview__*`) | Live preview of in-progress designs, click + screenshot + console logs | Quick visual QA after making style changes |
+| MCP                                           | What it does                                                                       | Good for                                                                        |
+| --------------------------------------------- | ---------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| **Canva** (`mcp__c0287d4b...__*`)             | Generate full designs, brand-template variations, social photos, export to PNG/PDF | Quick branded social posts, presentation slides, brand template assets          |
+| **Stitch** (`mcp__stitch__*`)                 | Google Stitch — generates UI mockups from text prompts                             | First-pass UI variants for new pages (e.g. /media, /resume), responsive screens |
+| **Figma** (`mcp__b609d57b...__*`)             | Pull design context from Figma, generate diagrams, get component code              | If you build a Figma design system, I can pull tokens and component code        |
+| **Claude Preview** (`mcp__Claude_Preview__*`) | Live preview of in-progress designs, click + screenshot + console logs             | Quick visual QA after making style changes                                      |
 
 ### Site / content workflow
 
-| MCP | What it does | Good for |
-|-----|--------------|----------|
-| **Vercel** (`mcp__981d58ba...__*`, plus `vercel:*` skills) | Deploy, env vars, runtime logs, build logs | If you migrate from Lovable to Vercel for the custom-domain move |
-| **SearchFit SEO** (`searchfit-seo:*`) | Keyword clustering, on-page SEO, broken-link scans, schema markup, content briefs, AI-visibility check | High-leverage — run `searchfit-seo:seo-audit` after pushing this batch |
-| **21st.dev** (`twentyfirst-dev` skill) | Curated production-ready React/Next components and blocks | When you need a new section (e.g. testimonials, pricing, CTA) — pull a pattern instead of building |
-| **shadcn/ui** (`vercel:shadcn`) | shadcn component library — already in your stack | Already wired; use for any new UI component |
-| **Awesome lists / skills** (`awesome-agent-skills`, `awesome-lists`) | Discover new skills/lists for any topic | Search when you have a new need |
+| MCP                                                                  | What it does                                                                                           | Good for                                                                                           |
+| -------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------- |
+| **Vercel** (`mcp__981d58ba...__*`, plus `vercel:*` skills)           | Deploy, env vars, runtime logs, build logs                                                             | If you migrate from Lovable to Vercel for the custom-domain move                                   |
+| **SearchFit SEO** (`searchfit-seo:*`)                                | Keyword clustering, on-page SEO, broken-link scans, schema markup, content briefs, AI-visibility check | High-leverage — run `searchfit-seo:seo-audit` after pushing this batch                             |
+| **21st.dev** (`twentyfirst-dev` skill)                               | Curated production-ready React/Next components and blocks                                              | When you need a new section (e.g. testimonials, pricing, CTA) — pull a pattern instead of building |
+| **shadcn/ui** (`vercel:shadcn`)                                      | shadcn component library — already in your stack                                                       | Already wired; use for any new UI component                                                        |
+| **Awesome lists / skills** (`awesome-agent-skills`, `awesome-lists`) | Discover new skills/lists for any topic                                                                | Search when you have a new need                                                                    |
 
 ### Productivity / publishing
 
-| MCP | What it does | Good for |
-|-----|--------------|----------|
-| **Notion** (`mcp__93e307e4...__*`) | Read/write Notion pages and databases | If you draft blog posts in Notion first |
-| **Google Drive** (`mcp__6ae656a7...__*`) | List recent files, read content | If you keep your case-study source content in Drive |
-| **Slack** | Read/write Slack messages, drafts, canvases | Cross-posting blog posts or coordinating with collaborators |
+| MCP                                      | What it does                                | Good for                                                    |
+| ---------------------------------------- | ------------------------------------------- | ----------------------------------------------------------- |
+| **Notion** (`mcp__93e307e4...__*`)       | Read/write Notion pages and databases       | If you draft blog posts in Notion first                     |
+| **Google Drive** (`mcp__6ae656a7...__*`) | List recent files, read content             | If you keep your case-study source content in Drive         |
+| **Slack**                                | Read/write Slack messages, drafts, canvases | Cross-posting blog posts or coordinating with collaborators |
 
 ### Outreach / job hunting (your existing work)
 
-| MCP | What it does |
-|-----|--------------|
+| MCP                                                   | What it does                                                                                                  |
+| ----------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
 | **Apollo** (`mcp__6cdebdac...__*`, `apollo:*` skills) | Prospect, enrich-lead, sequence-load — for outbound targeting at the 68 target companies in your jobHunt repo |
-| **Common Room** (`common-room:*` skills) | Account research, contact research, call prep |
-| **Calendar** (`mcp__37406e58...__*`) | Schedule, suggest times, respond — pair with the contact form for inbound flow |
+| **Common Room** (`common-room:*` skills)              | Account research, contact research, call prep                                                                 |
+| **Calendar** (`mcp__37406e58...__*`)                  | Schedule, suggest times, respond — pair with the contact form for inbound flow                                |
 
 ---
 
@@ -101,18 +101,18 @@ For UI/UX iteration:
 
 ## Skills (not MCPs) worth knowing about for the site
 
-| Skill | Use for |
-|-------|---------|
-| `frontend-design` | Distinctive frontend work — non-generic aesthetic |
-| `ui-ux-pro-max` | Polish pass on UI quality |
-| `polish` | Final-quality pass before shipping |
-| `audit` | Technical quality audit (a11y, perf, theming, responsive, anti-patterns) |
-| `seo-audit` (searchfit) | SEO audit per page |
-| `animate` | Add purposeful animations and micro-interactions |
-| `delight` | Add memorable details |
-| `clarify` | Fix unclear UX copy |
-| `typeset` | Improve typography hierarchy |
-| `colorize` | Add strategic color where the design is too monochromatic |
+| Skill                   | Use for                                                                  |
+| ----------------------- | ------------------------------------------------------------------------ |
+| `frontend-design`       | Distinctive frontend work — non-generic aesthetic                        |
+| `ui-ux-pro-max`         | Polish pass on UI quality                                                |
+| `polish`                | Final-quality pass before shipping                                       |
+| `audit`                 | Technical quality audit (a11y, perf, theming, responsive, anti-patterns) |
+| `seo-audit` (searchfit) | SEO audit per page                                                       |
+| `animate`               | Add purposeful animations and micro-interactions                         |
+| `delight`               | Add memorable details                                                    |
+| `clarify`               | Fix unclear UX copy                                                      |
+| `typeset`               | Improve typography hierarchy                                             |
+| `colorize`              | Add strategic color where the design is too monochromatic                |
 
 You can invoke any of these by typing `/<skill-name>` in the chat. They are pre-loaded and ready.
 

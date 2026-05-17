@@ -96,24 +96,23 @@ function HomePage() {
             <div className="inline-flex items-center gap-4 mb-6 md:mb-8">
               <span className="h-px w-12 bg-[var(--brand)]" />
               <span className="text-[10px] uppercase tracking-[0.32em] text-[var(--brand)] font-mono-tech font-semibold">
-                Introduction
+                ◆ Introduction · I'm Rizwan
               </span>
             </div>
 
-            <h1 className="font-instrument tracking-tight leading-[0.88] text-[56px] sm:text-[72px] md:text-[120px] lg:text-[148px] text-ink">
-              I'm <span className="italic text-ink">Rizwan.</span>
+            <h1 className="font-instrument tracking-tight leading-[0.92] text-[44px] sm:text-[60px] md:text-[88px] lg:text-[108px] text-ink">
+              Payments product
+              <br />
+              at <span className="italic text-[var(--brand)]">$1B+ TPV</span>
+              <br className="hidden sm:inline" />
+              <span className="sm:hidden"> </span>across 5 markets.
             </h1>
 
-            <p className="mt-6 md:mt-10 max-w-2xl text-lg md:text-2xl text-ink-soft leading-snug font-light">
-              Product &amp; Program leader in Dubai building regulated payment infrastructure,{" "}
-              <span className="text-ink font-medium italic">card acquiring</span>,{" "}
-              <span className="text-ink font-medium">cross-border corridors</span>,{" "}
-              <span className="font-medium italic text-[var(--brand)]">
-                settlement &amp; reconciliation
-              </span>
-              , KYC/KYB, AML/CFT, fraud and{" "}
-              <span className="text-ink font-medium">AI-augmented operations</span>, at $1B+ TPV
-              across 5 markets, with PMBOK + Agile programme governance underneath.
+            <p className="mt-6 md:mt-8 max-w-2xl text-lg md:text-2xl text-ink-soft leading-snug font-light">
+              CPO at Simpaisa, Dubai. <span className="text-ink font-medium">14+ years</span> in
+              product, programme and payments.{" "}
+              <span className="text-ink font-medium">4 production GenAI deployments</span>.{" "}
+              <span className="text-ink font-medium">40-engineer org built from 2</span>.
             </p>
             <p className="mt-4 text-sm text-ink-soft font-mono-tech uppercase tracking-[0.18em]">
               Used in production by <span className="text-ink">TikTok</span> ·{" "}
@@ -123,19 +122,25 @@ function HomePage() {
             </p>
 
             <div className="mt-8 md:mt-10 flex flex-col sm:flex-row sm:items-center gap-3">
-              <a
-                href={profile.resumeHref}
-                download
-                className="group inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-[11px] uppercase tracking-[0.18em] font-semibold text-[var(--brand-foreground)] bg-ink hover:bg-[var(--brand)] transition-colors"
+              <Link
+                to="/product-work"
+                className="group inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-[11px] uppercase tracking-[0.18em] font-semibold text-[var(--brand-foreground)] bg-ink hover:bg-[var(--brand)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background transition-colors"
               >
-                Download resume
+                See case studies
                 <span className="transition-transform group-hover:translate-x-1" aria-hidden>
                   →
                 </span>
+              </Link>
+              <a
+                href={profile.resumeHref}
+                download
+                className="inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-[11px] uppercase tracking-[0.18em] font-semibold text-ink border border-ink/20 hover:border-ink/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background transition-colors"
+              >
+                Download resume
               </a>
               <a
                 href={`mailto:${profile.email}`}
-                className="inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-[11px] uppercase tracking-[0.18em] font-semibold text-ink border border-ink/20 hover:border-ink/50 transition-colors"
+                className="inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-[11px] uppercase tracking-[0.18em] font-semibold text-ink border border-ink/20 hover:border-ink/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background transition-colors"
               >
                 Email me
               </a>

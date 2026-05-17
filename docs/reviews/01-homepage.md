@@ -7,14 +7,14 @@
 
 ## Current state
 
-| Element | Current value |
-|---------|---------------|
-| `<title>` | Rizwan Zafar — Payments Product Executive |
-| Meta description | "Rizwan Zafar — Payments Product Executive. Building regulated payment infrastructure across MENA and South Asia." |
-| H1 | "I'm Rizwan." |
-| Hero portrait alt | "Portrait of Rizwan Zafar, Chief Product Officer, Payments" ✅ |
-| Primary CTA | "Download resume →" + "Email me" |
-| H2 sections | Where I write the most · Products built/building · Essays I'd read first · Infrastructure shipped at scale · Hire me or just say hello |
+| Element           | Current value                                                                                                                          |
+| ----------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| `<title>`         | Rizwan Zafar — Payments Product Executive                                                                                              |
+| Meta description  | "Rizwan Zafar — Payments Product Executive. Building regulated payment infrastructure across MENA and South Asia."                     |
+| H1                | "I'm Rizwan."                                                                                                                          |
+| Hero portrait alt | "Portrait of Rizwan Zafar, Chief Product Officer, Payments" ✅                                                                         |
+| Primary CTA       | "Download resume →" + "Email me"                                                                                                       |
+| H2 sections       | Where I write the most · Products built/building · Essays I'd read first · Infrastructure shipped at scale · Hire me or just say hello |
 
 ---
 
@@ -27,11 +27,13 @@ Current: `I'm Rizwan.`
 A recruiter scanning a tab strip with 20 candidate sites open needs to know in 0.4 seconds what you do. "I'm Rizwan." forces them to read the next paragraph.
 
 **Recommended H1:**
+
 > Payments product executive. Regulated infrastructure at $1B+ GTV.
 
 Keep "I'm Rizwan." as the eyebrow or as the second line — it's warm and personal and you should not lose it entirely.
 
 **Suggested hero structure:**
+
 ```
 [eyebrow]  I'm Rizwan.
 [H1]       Payments product executive. Regulated infrastructure at $1B+ GTV.
@@ -42,6 +44,7 @@ Keep "I'm Rizwan." as the eyebrow or as the second line — it's warm and person
 ### P1 — strong improvements
 
 **Meta description is generic.** Add the keywords recruiters actually search.
+
 - Current: "Rizwan Zafar — Payments Product Executive. Building regulated payment infrastructure across MENA and South Asia."
 - Recommended: "Rizwan Zafar — Payments product executive (Dubai). 14+ yrs building regulated payments infra: acceptance, cross-border, settlement, KYC/KYB, AML/CFT. $1B+ GTV, 25M+ monthly tx, 99.95% SLA. Open to senior roles globally."
 - Why: includes the proof points + the "open to roles" intent so the SERP snippet alone qualifies the click.
@@ -49,6 +52,7 @@ Keep "I'm Rizwan." as the eyebrow or as the second line — it's warm and person
 **Two duplicate CTAs above the fold** ("Download resume" appears in the hero AND in the sticky header). Pick one location for the hero; let the header carry the persistent one.
 
 **The "Hot topics" / "Editor's picked" labels feel templated.**
+
 - "Editor's picked" should be "Editor's picks" (grammar).
 - Consider plainer language: "Most-read this month" and "Start here".
 
@@ -72,22 +76,31 @@ Keep "I'm Rizwan." as the eyebrow or as the second line — it's warm and person
 
 ```html
 <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Rizwan Zafar",
-  "jobTitle": "Chief Product Officer, Payments",
-  "url": "https://rizwan-pay-architect.lovable.app/",
-  "email": "mailto:rizwanzaffar.pk@gmail.com",
-  "image": "https://rizwan-pay-architect.lovable.app/rizwan-zafar-cutout.png",
-  "address": { "@type": "PostalAddress", "addressLocality": "Dubai", "addressCountry": "AE" },
-  "sameAs": ["https://www.linkedin.com/in/rizwanzaffar"],
-  "knowsAbout": ["Payment infrastructure","Cross-border payments","Settlement and reconciliation","KYC/KYB","AML/CFT","Fraud risk","ISO 20022","SWIFT"],
-  "alumniOf": [
-    {"@type":"EducationalOrganization","name":"MIT Sloan School of Management"},
-    {"@type":"EducationalOrganization","name":"University of Karachi"}
-  ]
-}
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Rizwan Zafar",
+    "jobTitle": "Chief Product Officer, Payments",
+    "url": "https://rizwan-pay-architect.lovable.app/",
+    "email": "mailto:rizwanzaffar.pk@gmail.com",
+    "image": "https://rizwan-pay-architect.lovable.app/rizwan-zafar-cutout.png",
+    "address": { "@type": "PostalAddress", "addressLocality": "Dubai", "addressCountry": "AE" },
+    "sameAs": ["https://www.linkedin.com/in/rizwanzaffar"],
+    "knowsAbout": [
+      "Payment infrastructure",
+      "Cross-border payments",
+      "Settlement and reconciliation",
+      "KYC/KYB",
+      "AML/CFT",
+      "Fraud risk",
+      "ISO 20022",
+      "SWIFT"
+    ],
+    "alumniOf": [
+      { "@type": "EducationalOrganization", "name": "MIT Sloan School of Management" },
+      { "@type": "EducationalOrganization", "name": "University of Karachi" }
+    ]
+  }
 </script>
 ```
 
@@ -96,6 +109,7 @@ Keep "I'm Rizwan." as the eyebrow or as the second line — it's warm and person
 ## Copy rewrite — hero section
 
 **Before:**
+
 ```
 I'm Rizwan.
 Payments product executive in Dubai. I build regulated payment infrastructure across
@@ -104,6 +118,7 @@ acceptance, cross-border corridors, settlement, KYC/KYB, AML and fraud.
 ```
 
 **After:**
+
 ```
 I'm Rizwan.
 

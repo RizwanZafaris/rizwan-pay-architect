@@ -7,13 +7,13 @@
 
 ## Current state
 
-| Element | Current value |
-|---------|---------------|
-| `<title>` | "Rizwan Zafar — Payments Product Executive" |
-| Meta description | **Missing** ❌ |
-| Sections | Summary · Key metrics · Target roles · Experience (7 roles) · Education · Certifications · Skills |
-| CTAs | Download PDF (×3) · LinkedIn · Email |
-| PDF link | `/Rizwan_Zafar_Resume.pdf` |
+| Element          | Current value                                                                                     |
+| ---------------- | ------------------------------------------------------------------------------------------------- |
+| `<title>`        | "Rizwan Zafar — Payments Product Executive"                                                       |
+| Meta description | **Missing** ❌                                                                                    |
+| Sections         | Summary · Key metrics · Target roles · Experience (7 roles) · Education · Certifications · Skills |
+| CTAs             | Download PDF (×3) · LinkedIn · Email                                                              |
+| PDF link         | `/Rizwan_Zafar_Resume.pdf`                                                                        |
 
 ---
 
@@ -32,9 +32,11 @@
 **Three PDF download buttons on one page is too many.** Pick one location (top-right of the header, sticky). The repetition signals anxiety. One prominent button converts better than three competing ones.
 
 **Add meta description.**
+
 - Suggested: "Rizwan Zafar — résumé. Payments product executive (CPO, Simpaisa). 14+ yrs product/payments. $1B+ GTV. MIT Sloan, PMP, PCI DSS. Dubai-based, open globally."
 
 **Expand abbreviations on first use.** The text fetch shows `DCB`, `IBFT`, `FX` without expansions. Most payments recruiters know these, but candidate sites are also read by HR, talent partners, and execs from adjacent domains. First-use expansion is free credibility:
+
 - DCB → Direct Carrier Billing (DCB)
 - IBFT → Inter-Bank Fund Transfer (IBFT)
 - FX → foreign exchange (FX)
@@ -68,10 +70,11 @@ What I personally owned
 
 Apply consistently across all 7 roles. Even if some early roles only have 1–2 bullets, the structure makes the page much more scannable.
 
-**The role "Assistant Manager, Projects · DR Congo · 2016–2017" needs context.** This is the most-asked-about line on your résumé (people will pause: *"What was he doing in DRC?"*). Add a single line: *"Industrial project delivery for a global infrastructure firm — sharpened risk and ops discipline that I now apply to payments."*
+**The role "Assistant Manager, Projects · DR Congo · 2016–2017" needs context.** This is the most-asked-about line on your résumé (people will pause: _"What was he doing in DRC?"_). Add a single line: _"Industrial project delivery for a global infrastructure firm — sharpened risk and ops discipline that I now apply to payments."_
 
 **Date overlaps and the "acting CTO 2024" line need clarity.** From the fetch:
-- "CPO (acting CTO)" with dates "Aug 2020–Present" — recommend writing this as: *"CPO, Simpaisa (Aug 2020–present). Acting CTO during 2024 while we re-built the platform team."*
+
+- "CPO (acting CTO)" with dates "Aug 2020–Present" — recommend writing this as: _"CPO, Simpaisa (Aug 2020–present). Acting CTO during 2024 while we re-built the platform team."_
 
 This shows that "acting CTO" was a specific, time-bound responsibility rather than a permanent dual title. More credible.
 
@@ -113,7 +116,10 @@ Could not fetch the PDF directly in this review. **Manual checks for the PDF:**
 
 ```html
 <title>Résumé — Rizwan Zafar, payments product executive (Dubai)</title>
-<meta name="description" content="Résumé of Rizwan Zafar — 14+ years product, payments, program delivery. CPO at Simpaisa: $1B+ GTV, 25M+ tx/mo, 99.95% SLA. MIT Sloan, PMP, PCI DSS. Open to senior roles globally.">
+<meta
+  name="description"
+  content="Résumé of Rizwan Zafar — 14+ years product, payments, program delivery. CPO at Simpaisa: $1B+ GTV, 25M+ tx/mo, 99.95% SLA. MIT Sloan, PMP, PCI DSS. Open to senior roles globally."
+/>
 ```
 
 Note: most candidates `noindex` their resume page to keep older versions out of search results. **Recommend `<meta name="robots" content="noindex,follow">`** on this URL so only the current version is canonical and recruiters always hit the freshest copy via your homepage.

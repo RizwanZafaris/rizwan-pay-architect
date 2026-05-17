@@ -5,6 +5,7 @@
 ## What shipped this session
 
 ### Structural
+
 - ✅ Tagline + positioning rewritten — now leads with "Product & Program Leader · Payments · Fintech · AI"
 - ✅ Profile data enriched with PMO, programme management and AI signals — 4 production AI solutions, 40-engineer org, full programme delivery stack
 - ✅ Bio under About-page H1 added; surfaces PMO + AI experience
@@ -17,6 +18,7 @@
 - ✅ Navigation expanded to include Media
 
 ### Content (data + markdown)
+
 - ✅ 3 new case studies added (now 10 total):
   - TapmadTV $3M Digital Transformation Programme (Program Management)
   - Production GenAI Suite at Simpaisa — 4 deployments (AI in Fintech)
@@ -31,6 +33,7 @@
   - Program Management & PMO
 
 ### Code & infra
+
 - ✅ All new content has full SEO frontmatter (metaTitle, metaDescription, keywords, FAQ sections)
 - ✅ Posts.ts regenerated (38 → 50 posts; 7 → 10 categories)
 - ✅ Build still passes
@@ -41,15 +44,18 @@
 ## What's next — priority order
 
 ### P0 — visual polish (you do)
+
 - [ ] Generate 8 OG card images per `11-IMAGES_NEEDED.md` Priority 1
 - [ ] Generate 10 case-study hero images per `11-IMAGES_NEEDED.md` Priority 2
 - [ ] Drop into `public/og/` and `public/case-studies/`, ping me to wire them in
 
 ### P0 — first videos (you do)
+
 - [ ] Record 3 Loom walk-throughs (Simpaisa architecture, BNPL launch, AI suite)
 - [ ] Update `src/data/media.ts` with URLs; remove "Coming soon" badges (or ask me to)
 
 ### P1 — content depth (next 30 days)
+
 - [ ] **Write 6 more blog posts** to round out the AI / Crypto / PMO hubs:
   - AI: "Building a value-modeling council for fintech AI", "AI compliance posture: what regulators actually ask"
   - Crypto: "Travel Rule integration: what your platform actually needs to ship", "Stablecoin settlement: the working capital implications"
@@ -59,22 +65,26 @@
   - Issuer Enablement Programme (50+ partners, +14% authorisation uplift)
 
 ### P1 — distribution
+
 - [ ] Custom domain (`rizwanzafar.com` or similar) — see `00-INDEX.md`
 - [ ] Real contact form backend — set `VITE_CONTACT_ACCESS_KEY` in Lovable env (see `.env.example`)
 - [ ] LinkedIn weekly cross-post of the most relevant blog post to each lens audience
 
 ### P2 — site structure
+
 - [ ] Per-topic landing pages (`/topics/<slug>`) — currently topics route exists but doesn't deep-dive each hub
 - [ ] Per-company sub-pages under `/for` (e.g. `/for/visa`, `/for/stripe`) — only 3 lens pages today; we could spin out top 8 companies
 - [ ] Testimonials section once you have real recommendations from payments leaders
 - [ ] A `/now` page (what you're working on this month) — strong recruiter signal
 
 ### P2 — discovery
+
 - [ ] Subscribe widget on blog posts (ConvertKit or Buttondown — free at this scale)
 - [ ] RSS feed at `/feed.xml`
 - [ ] Newsletter monthly digest auto-composed from the month's posts
 
 ### P3 — long-term
+
 - [ ] First conference talk lined up; update `/media`
 - [ ] First podcast appearance lined up
 - [ ] Open-source one of the diagrams (e.g. the multi-rail architecture) as a reusable reference
@@ -86,6 +96,7 @@
 **2 blog posts per month, indefinitely.** That signals momentum without being unsustainable.
 
 Suggested rotation (12 months out):
+
 - Month 1–2: finish the AI / Crypto / PMO scaffolds with 6 more posts
 - Month 3–4: real customer-quote + case-study refresh
 - Month 5–6: video walk-throughs for top 5 case studies
@@ -96,25 +107,26 @@ Suggested rotation (12 months out):
 
 ## Categories now live
 
-| Hub | Essays | Case studies | Live link |
-|-----|--------|--------------|-----------|
-| Payment Infrastructure | 10+ | 1 | `/topics` |
-| Cross-Border Payments | 15+ | 1 | `/topics` |
-| SWIFT & ISO 20022 | 16+ | 0 | `/topics` |
-| Settlement & Reconciliation | 6+ | 1 | `/topics` |
-| Merchant Onboarding | 6+ | 1 | `/topics` |
-| Fraud & AML/CFT | 12+ | 1 | `/topics` |
-| Payment APIs | 2+ | 0 | `/topics` |
-| Emerging Markets | 6+ | 0 | `/topics` |
-| **AI in Fintech** (new) | **5** | **1** | `/topics` |
-| **Crypto & Stablecoins** (new) | **3** | **0** | `/topics` |
-| **Program Management & PMO** (new) | **4** | **1** | `/topics` |
+| Hub                                | Essays | Case studies | Live link |
+| ---------------------------------- | ------ | ------------ | --------- |
+| Payment Infrastructure             | 10+    | 1            | `/topics` |
+| Cross-Border Payments              | 15+    | 1            | `/topics` |
+| SWIFT & ISO 20022                  | 16+    | 0            | `/topics` |
+| Settlement & Reconciliation        | 6+     | 1            | `/topics` |
+| Merchant Onboarding                | 6+     | 1            | `/topics` |
+| Fraud & AML/CFT                    | 12+    | 1            | `/topics` |
+| Payment APIs                       | 2+     | 0            | `/topics` |
+| Emerging Markets                   | 6+     | 0            | `/topics` |
+| **AI in Fintech** (new)            | **5**  | **1**        | `/topics` |
+| **Crypto & Stablecoins** (new)     | **3**  | **0**        | `/topics` |
+| **Program Management & PMO** (new) | **4**  | **1**        | `/topics` |
 
 ---
 
 ## Quick sanity check
 
 Visit https://rizwan-pay-architect.lovable.app after the next deploy and verify:
+
 - Nav reads: Products · Case Studies · Blog · Media · Topics · For recruiters · Contact
 - Hero subhead mentions AI-augmented operations + PMBOK/Agile
 - `/for` has the new "Résumé · 30-second view" panel near the top

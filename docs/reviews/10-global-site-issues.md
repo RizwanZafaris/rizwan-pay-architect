@@ -11,11 +11,13 @@ These are findings that apply across the whole site. Fix once, the impact propag
 ### Move off `lovable.app` subdomain
 
 **Why it matters:** A `*.lovable.app` URL on a senior payments product candidate's CV reads as "still figuring this out". Recruiters at Visa/Mastercard/Stripe will share your URL internally — the domain is part of the first impression. A `lovable.app` subdomain also:
+
 - Cannot rank as authoritatively on SEO as a custom domain.
 - Inherits any reputation hits the parent domain receives.
 - Looks transient (recruiters worry the site won't be there in 6 months).
 
 **Recommendation:**
+
 - Register **`rizwanzafar.com`** (or `.io` / `.dev` if .com is taken).
 - Configure DNS to point at Lovable hosting.
 - Add a 301 redirect from the old `lovable.app` URL so existing inbound links don't break.
@@ -38,6 +40,7 @@ Some pages render as `"RZ Rizwan Zafar Payments · Product"`, others as `"Rizwan
 **Recommended:** `<Page-specific title> — Rizwan Zafar`
 
 Examples:
+
 - `Home — Rizwan Zafar` (or just `Rizwan Zafar — Payments Product Executive`)
 - `Products — Rizwan Zafar`
 - `Case studies — Rizwan Zafar`
@@ -50,20 +53,21 @@ Examples:
 Without these, when someone shares your URL on LinkedIn, WhatsApp, Slack, or X, the link preview is empty or generic. **You're being shared in private channels and showing nothing — fix this once and benefit forever.**
 
 Add to every page's `<head>`:
-```html
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="Rizwan Zafar">
-<meta property="og:url" content="https://rizwanzafar.com/<path>">
-<meta property="og:title" content="<page title>">
-<meta property="og:description" content="<page meta description>">
-<meta property="og:image" content="https://rizwanzafar.com/og/<page-slug>.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
 
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="<page title>">
-<meta name="twitter:description" content="<page meta description>">
-<meta name="twitter:image" content="https://rizwanzafar.com/og/<page-slug>.png">
+```html
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Rizwan Zafar" />
+<meta property="og:url" content="https://rizwanzafar.com/<path>" />
+<meta property="og:title" content="<page title>" />
+<meta property="og:description" content="<page meta description>" />
+<meta property="og:image" content="https://rizwanzafar.com/og/<page-slug>.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="<page title>" />
+<meta name="twitter:description" content="<page meta description>" />
+<meta name="twitter:image" content="https://rizwanzafar.com/og/<page-slug>.png" />
 ```
 
 You'll need a 1200×630 OG image per page (or at least one default). Tools: Vercel OG Image, Cloudinary, or hand-designed in Figma.
@@ -72,15 +76,15 @@ You'll need a 1200×630 OG image per page (or at least one default). Tools: Verc
 
 No structured data means you're invisible to AI search (ChatGPT browse, Perplexity, Google AI Overviews). Add per page type:
 
-| Page | Schema type |
-|---|---|
-| `/` | `Person` |
-| `/about` | `AboutPage` + `Person` |
-| `/resume` | `Person` with `workExample` array |
-| `/blog/<slug>` | `Article` |
-| `/product-work/<slug>` | `Article` (or `CreativeWork`) |
-| `/topics/<slug>` | `CollectionPage` |
-| All pages | `BreadcrumbList` |
+| Page                   | Schema type                       |
+| ---------------------- | --------------------------------- |
+| `/`                    | `Person`                          |
+| `/about`               | `AboutPage` + `Person`            |
+| `/resume`              | `Person` with `workExample` array |
+| `/blog/<slug>`         | `Article`                         |
+| `/product-work/<slug>` | `Article` (or `CreativeWork`)     |
+| `/topics/<slug>`       | `CollectionPage`                  |
+| All pages              | `BreadcrumbList`                  |
 
 Person schema example provided in `01-homepage.md`. Article schema example in `04-blog.md`.
 
@@ -91,6 +95,7 @@ Add `<link rel="canonical" href="...">` to every page pointing at the clean URL.
 ### 2f. XML sitemap is good — keep it
 
 `sitemap.xml` exists and lists 57 URLs. Verify:
+
 - It updates automatically when you publish new essays.
 - All URLs return 200 (some `/case-studies/...` URLs returned 404 in testing — confirm slug pattern).
 - `<lastmod>` is populated.
@@ -140,6 +145,7 @@ Verify all text passes WCAG AA contrast (4.5:1 for body text, 3:1 for large text
 ### 4e. Keyboard navigation
 
 Tab through every page. Every interactive element should:
+
 - Show a visible focus ring.
 - Be reachable in source order.
 - Activate with Enter/Space.
@@ -169,10 +175,12 @@ Some pages show `"RZ Rizwan Zafar Payments · Product"` in the title. The `RZ` i
 ## 7. URL hygiene
 
 **Filter URLs use ugly query parameters.** From the blog: `?q=&hub=&reader=&company=`. Two issues:
+
 - Empty filter params bloat URLs and confuse analytics.
 - Search engines may index multiple versions of the same page (duplicate content).
 
 **Action:**
+
 - Only include query params with non-empty values.
 - Add `<link rel="canonical">` pointing to the clean URL.
 - Consider rewriting filters to use path segments where possible (`/blog/topic/cross-border` instead of `/blog?topic=cross-border`).
@@ -216,6 +224,7 @@ Even one essay per month signals momentum. The 31-essay archive is impressive �
 ### Quarterly review
 
 Block 2 hours every quarter to:
+
 - Update the homepage credibility strip with newest customers
 - Refresh the "Currently" line
 - Update the "Available from" date on `/about`
@@ -227,6 +236,7 @@ Block 2 hours every quarter to:
 ## Cross-cutting checklist
 
 ### SEO
+
 - [ ] Custom domain
 - [ ] Meta description on every page
 - [ ] Standardised title pattern
@@ -237,12 +247,14 @@ Block 2 hours every quarter to:
 - [ ] Internal linking pass
 
 ### Performance
+
 - [ ] Lighthouse ≥90 on all 4 metrics
 - [ ] Hero portrait in WebP/AVIF
 - [ ] Lazy-load below-fold images
 - [ ] Preload custom fonts
 
 ### Accessibility
+
 - [ ] Descriptive alt text on every image
 - [ ] Heading hierarchy clean (no skipped levels)
 - [ ] Visible form labels (not just placeholders)
@@ -251,6 +263,7 @@ Block 2 hours every quarter to:
 - [ ] Screen reader spot-check
 
 ### Tech hygiene
+
 - [ ] Remove "RZ" prefix from titles
 - [ ] Auto-update footer copyright year
 - [ ] Clean filter URLs (drop empty params)
