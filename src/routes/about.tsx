@@ -2,7 +2,9 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { profile } from "@/data/profile";
 import { legacyRecommendations, paymentsRecommendations } from "@/data/recommendations";
 import { absUrl } from "@/lib/seo";
-import portrait from "@/assets/rizwan-zafar.jpg";
+// 96×96 circle on this page — using the small WebP cutout (24KB) instead of the
+// 1.3MB full JPG. Same person, same brand asset, 50× smaller payload.
+import portrait from "@/assets/rizwan-zafar-cutout-460.webp";
 
 export const Route = createFileRoute("/about")({
   head: () => ({

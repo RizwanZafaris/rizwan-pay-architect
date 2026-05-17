@@ -1,6 +1,5 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { getPost, getRelated, type Post } from "@/data/posts";
-import { getPostContent } from "@/data/posts-content";
 import { profile } from "@/data/profile";
 import { absUrl, SITE_URL } from "@/lib/seo";
 import { DiagramFigure, postDiagrams } from "@/components/diagrams/Diagrams";
@@ -33,9 +32,13 @@ function extractFAQs(md: string): { question: string; answer: string }[] {
 }
 
 export const Route = createFileRoute("/blog/$slug")({
-  loader: ({ params }) => {
+  loader: async ({ params }) => {
     const post = getPost(params.slug);
     if (!post) throw notFound();
+    // Dynamic import so the heavy posts-content map (~150KB minified) does not get
+    // bundled into the main entry chunk. Vite splits this into its own lazy chunk
+    // that is only fetched when a /blog/$slug route is hit.
+    const { getPostContent } = await import("@/data/posts-content");
     return { post, content: getPostContent(params.slug) ?? "", related: getRelated(params.slug) };
   },
   head: ({ loaderData, params }) => {
