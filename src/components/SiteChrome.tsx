@@ -1,6 +1,7 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { profile } from "@/data/profile";
+import { ctaClick, outboundClick, resumeDownload } from "@/lib/analytics";
 
 const nav = [
   { to: "/products", label: "Products" },
@@ -111,6 +112,10 @@ export function SiteHeader() {
               href={profile.resumeHref}
               download
               aria-label="Download resume (PDF)"
+              onClick={() => {
+                ctaClick("download_resume", "header", profile.resumeHref);
+                resumeDownload("header");
+              }}
               className="inline-flex items-center gap-1.5 rounded-full bg-ink text-background px-3.5 sm:px-4 py-2.5 text-[12px] font-medium hover:bg-brand transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background"
             >
               <svg
@@ -300,6 +305,7 @@ export function SiteFooter() {
             <li>
               <a
                 href={`mailto:${profile.email}`}
+                onClick={() => outboundClick(`mailto:${profile.email}`, "footer")}
                 className="hover:text-ink text-ink-soft break-all"
               >
                 {profile.email}
@@ -310,6 +316,7 @@ export function SiteFooter() {
                 href={profile.linkedin}
                 target="_blank"
                 rel="noreferrer"
+                onClick={() => outboundClick(profile.linkedin, "footer")}
                 className="hover:text-ink text-ink-soft"
               >
                 LinkedIn

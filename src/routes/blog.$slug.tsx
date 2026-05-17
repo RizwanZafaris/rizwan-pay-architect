@@ -1,8 +1,10 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { useEffect } from "react";
 import { getPost, getRelated, type Post } from "@/data/posts";
 import { profile } from "@/data/profile";
 import { absUrl, SITE_URL } from "@/lib/seo";
 import { DiagramFigure, postDiagrams } from "@/components/diagrams/Diagrams";
+import { trackEvent } from "@/lib/analytics";
 import { marked } from "marked";
 
 // Pull Q&A pairs out of a "## FAQ" section so we can emit FAQPage JSON-LD.
@@ -173,6 +175,16 @@ function BlogPostPage() {
   };
   const toc = extractTOC(content);
   const diagram = postDiagrams[p.slug];
+
+  // Fire blog_view to dataLayer once per post mount (after spa_pageview, with
+  // post-specific dims that the generic pageview can't carry).
+  useEffect(() => {
+    trackEvent("blog_view", {
+      blog_slug: p.slug,
+      blog_category: p.category,
+      blog_reading_time: p.readingTime,
+    });
+  }, [p.slug, p.category, p.readingTime]);
 
   return (
     <article>

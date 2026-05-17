@@ -4,6 +4,7 @@ import { caseStudies } from "@/data/caseStudies";
 import { posts, categories } from "@/data/posts";
 import { products } from "@/data/products";
 import { absUrl, SITE_URL } from "@/lib/seo";
+import { ctaClick, resumeDownload } from "@/lib/analytics";
 import portraitPng from "@/assets/rizwan-zafar-cutout.png";
 import portraitWebp from "@/assets/rizwan-zafar-cutout.webp";
 import portraitWebpSmall from "@/assets/rizwan-zafar-cutout-460.webp";
@@ -124,6 +125,7 @@ function HomePage() {
             <div className="mt-8 md:mt-10 flex flex-col sm:flex-row sm:items-center gap-3">
               <Link
                 to="/product-work"
+                onClick={() => ctaClick("see_case_studies", "hero", "/product-work")}
                 className="group inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-[11px] uppercase tracking-[0.18em] font-semibold text-[var(--brand-foreground)] bg-ink hover:bg-[var(--brand)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background transition-colors"
               >
                 See case studies
@@ -134,12 +136,17 @@ function HomePage() {
               <a
                 href={profile.resumeHref}
                 download
+                onClick={() => {
+                  ctaClick("download_resume", "hero", profile.resumeHref);
+                  resumeDownload("hero");
+                }}
                 className="inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-[11px] uppercase tracking-[0.18em] font-semibold text-ink border border-ink/20 hover:border-ink/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background transition-colors"
               >
                 Download resume
               </a>
               <a
                 href={`mailto:${profile.email}`}
+                onClick={() => ctaClick("email_me", "hero", `mailto:${profile.email}`)}
                 className="inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-[11px] uppercase tracking-[0.18em] font-semibold text-ink border border-ink/20 hover:border-ink/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background transition-colors"
               >
                 Email me

@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { profile } from "@/data/profile";
 import { absUrl } from "@/lib/seo";
+import { ctaClick, outboundClick, trackEvent } from "@/lib/analytics";
 
 // Web3Forms-compatible endpoint. Set VITE_CONTACT_ACCESS_KEY in your environment
 // to enable server-side submission. When unset the form falls back to mailto:.
@@ -74,6 +75,7 @@ function ContactPage() {
       await navigator.clipboard.writeText(profile.email);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
+      ctaClick("copy_email", "contact_page", profile.email);
     } catch {
       /* noop */
     }
@@ -91,6 +93,16 @@ function ContactPage() {
     const href = `mailto:${profile.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     window.location.href = href;
     setState("mailto");
+    trackEvent("contact_form_submit", { submit_method: "mailto", submit_status: "sent" });
+  }
+
+  // Fire "contact_form_start" on first interaction with any field (not every
+  // keystroke). We track first touch by checking if any field has length.
+  const [hasInteracted, setHasInteracted] = useState(false);
+  function markStart() {
+    if (hasInteracted) return;
+    setHasInteracted(true);
+    trackEvent("contact_form_start", {});
   }
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -99,7 +111,7 @@ function ContactPage() {
     setErrors(errs);
     if (Object.keys(errs).length) return;
 
-    // Bot detected, silently succeed
+    // Bot detected, silently succeed (don't log to GTM — would dirty data)
     if (values.website.trim().length > 0) {
       setState("sent");
       return;
@@ -136,15 +148,27 @@ function ContactPage() {
       const json = (await res.json()) as { success?: boolean; message?: string };
       if (res.ok && json.success !== false) {
         setState("sent");
+        trackEvent("contact_form_submit", { submit_method: "server", submit_status: "sent" });
       } else {
         setState("error");
-        setErrorMsg(json.message || "Submission failed. Please try the email link below.");
+        const errMsg = json.message || "Submission failed. Please try the email link below.";
+        setErrorMsg(errMsg);
+        trackEvent("contact_form_submit", {
+          submit_method: "server",
+          submit_status: "error",
+          submit_error: errMsg.slice(0, 200),
+        });
       }
     } catch (err) {
       setState("error");
-      setErrorMsg(
-        err instanceof Error ? err.message : "Network error. Please use the email link below.",
-      );
+      const msg =
+        err instanceof Error ? err.message : "Network error. Please use the email link below.";
+      setErrorMsg(msg);
+      trackEvent("contact_form_submit", {
+        submit_method: "server",
+        submit_status: "error",
+        submit_error: msg.slice(0, 200),
+      });
     }
   }
 
@@ -201,6 +225,10 @@ function ContactPage() {
         <div className="mt-8 space-y-4">
           <a
             href={`mailto:${profile.email}`}
+            onClick={() => {
+              ctaClick("email_me", "contact_page", `mailto:${profile.email}`);
+              outboundClick(`mailto:${profile.email}`, "contact_page");
+            }}
             className="flex items-center justify-between border border-rule rounded-lg px-5 py-4 hover:border-ink focus:outline-none focus:ring-2 focus:ring-ink/30 transition-colors group"
           >
             <div>
@@ -213,6 +241,7 @@ function ContactPage() {
             href={profile.linkedin}
             target="_blank"
             rel="noreferrer"
+            onClick={() => outboundClick(profile.linkedin, "contact_page")}
             className="flex items-center justify-between border border-rule rounded-lg px-5 py-4 hover:border-ink focus:outline-none focus:ring-2 focus:ring-ink/30 transition-colors group"
           >
             <div>
@@ -301,7 +330,7 @@ function ContactPage() {
             </button>
           </div>
         ) : (
-          <form onSubmit={onSubmit} className="mt-6 space-y-4" noValidate>
+          <form onSubmit={onSubmit} onFocus={markStart} className="mt-6 space-y-4" noValidate>
             {/* Honeypot, visually hidden from sighted users + screen readers */}
             <div
               aria-hidden="true"

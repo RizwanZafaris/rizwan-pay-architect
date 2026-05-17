@@ -1,7 +1,9 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { useEffect } from "react";
 import { caseStudies, getCaseStudy, type CaseStudy } from "@/data/caseStudies";
 import { absUrl, SITE_URL } from "@/lib/seo";
 import { DiagramFigure, caseStudyDiagrams } from "@/components/diagrams/Diagrams";
+import { ctaClick, resumeDownload, trackEvent } from "@/lib/analytics";
 
 export const Route = createFileRoute("/product-work/$slug")({
   loader: ({ params }) => {
@@ -101,6 +103,15 @@ function CaseStudyPage() {
   const { study: s } = Route.useLoaderData() as { study: CaseStudy };
   const others = caseStudies.filter((c) => c.slug !== s.slug).slice(0, 3);
   const diagram = caseStudyDiagrams[s.slug];
+
+  // Per-case-study dim — fires after spa_pageview so GA4 can attribute the
+  // specific study viewed.
+  useEffect(() => {
+    trackEvent("case_study_view", {
+      case_study_slug: s.slug,
+      case_study_category: s.category,
+    });
+  }, [s.slug, s.category]);
 
   return (
     <article>
@@ -265,12 +276,17 @@ function CaseStudyPage() {
             <a
               href="/Rizwan_Zafar_Resume.pdf"
               download
+              onClick={() => {
+                ctaClick("download_resume", "case_study_footer", "/Rizwan_Zafar_Resume.pdf");
+                resumeDownload("case_study");
+              }}
               className="inline-flex rounded-md bg-ink text-background px-5 py-2.5 text-sm font-medium hover:bg-brand transition-colors"
             >
               Download résumé (PDF)
             </a>
             <Link
               to="/contact"
+              onClick={() => ctaClick("discuss_a_role", "case_study_footer", "/contact")}
               className="inline-flex rounded-md border border-ink/20 px-5 py-2.5 text-sm font-medium text-ink hover:border-ink/40"
             >
               Discuss a role
