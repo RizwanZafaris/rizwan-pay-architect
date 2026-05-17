@@ -4,15 +4,44 @@ import {
   Link,
   createRootRouteWithContext,
   useRouter,
+  useRouterState,
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
 import { useEffect } from "react";
 
+// SPA page-view tracker: pushes to dataLayer on every client-side route change
+// so GTM tags fire on navigation, not just the initial load. Pair with GTM's
+// "History Change" or a Custom Event ("spa_pageview") trigger.
+declare global {
+  interface Window {
+    dataLayer?: Array<Record<string, unknown>>;
+  }
+}
+function GtmRouteTracker() {
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  useEffect(() => {
+    if (typeof window === "undefined" || !window.dataLayer) return;
+    window.dataLayer.push({
+      event: "spa_pageview",
+      page_path: pathname,
+      page_location: window.location.href,
+      page_title: document.title,
+    });
+  }, [pathname]);
+  return null;
+}
+
 import appCss from "../styles.css?url";
 import { SiteHeader, SiteFooter } from "@/components/SiteChrome";
 import { profile } from "@/data/profile";
-import { SITE_URL, OG_IMAGE_URL, SITE_KEYWORDS } from "@/lib/seo";
+import { SITE_URL, OG_IMAGE_URL, SITE_KEYWORDS, GTM_ID } from "@/lib/seo";
+
+// Google Tag Manager bootstrap, runs as early as possible. Mirrors Google's
+// official snippet. Skipped when GTM_ID is empty (e.g. local dev).
+const gtmScript = GTM_ID
+  ? `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','${GTM_ID}');`
+  : "";
 
 function NotFoundComponent() {
   useEffect(() => {
@@ -215,9 +244,23 @@ function RootShell({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <head>
+        {/* GTM, kept as the first <script> in <head> per Google's spec */}
+        {gtmScript && <script dangerouslySetInnerHTML={{ __html: gtmScript }} />}
         <HeadContent />
       </head>
       <body>
+        {/* GTM noscript fallback, must be the first child of <body> */}
+        {GTM_ID && (
+          <noscript>
+            <iframe
+              src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
+              height="0"
+              width="0"
+              style={{ display: "none", visibility: "hidden" }}
+              title="Google Tag Manager"
+            />
+          </noscript>
+        )}
         {children}
         <Scripts />
       </body>
@@ -229,6 +272,7 @@ function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   return (
     <QueryClientProvider client={queryClient}>
+      {GTM_ID && <GtmRouteTracker />}
       <div className="min-h-screen flex flex-col">
         <SiteHeader />
         <main className="flex-1">
