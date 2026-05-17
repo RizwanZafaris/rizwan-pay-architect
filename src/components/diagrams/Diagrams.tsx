@@ -462,6 +462,18 @@ export const caseStudyDiagrams: Record<string, DiagramEntry> = {
     caption:
       "Capture, screening, tiering and decisioning share one policy engine. Activation grants capabilities; monitoring feeds back into the same policy — so risk and conversion move together.",
   },
+  "tapmad-wallet-billing-migration": {
+    component: RailsMapDiagram,
+    title: "Billing rail migration: from one expensive rail to a portfolio.",
+    caption:
+      "Subscriber cohorts route across DCB, wallets and cards by cost, success and lifecycle. Retry orchestration and dunning are platform services, not per-rail glue — payment cost fell from ~50% to ~1%.",
+  },
+  "fraud-risk-aml-cft": {
+    component: OnboardingFlowDiagram,
+    title: "Layered controls: pre-auth, post-auth and async.",
+    caption:
+      "Sanctions, PEP and AML screening at onboarding. Real-time scoring at authorization. Async monitoring on behavior and velocity. Each layer feeds the policy engine that decides the next.",
+  },
 };
 
 export const postDiagrams: Record<string, DiagramEntry> = {
