@@ -105,30 +105,87 @@ lftp -u USERNAME,PASSWORD ftp.yourdomain.com -e "mirror -R --delete --exclude='.
 
 ---
 
-## Alternative: Hostinger Git deploy
+## Hostinger Git deploy (recommended for repeat deploys)
 
-Hostinger Premium and above support Git auto-deploy. If you want to push to your repo and have Hostinger pull and rebuild:
+> **Common 404 trap:** pointing Hostinger Git deploy at the `main` branch gives it the source code (`src/`, `package.json`, etc.) — there's no `index.html` at the repo root, so the site 404s. Hostinger shared plans can't run `bun run build:static` server-side. **The fix is to deploy a separate branch that contains the built files at its root.**
 
-1. Hostinger → Files → Git
-2. Add repo: `https://github.com/RizwanZafaris/rizwan-pay-architect`
-3. Set branch: `main`
-4. Set path: `/public_html`
-5. **Build command**: Hostinger doesn't run Node/Bun on shared plans, so you can't `bun run build:static` server-side. Instead, you'd commit the `dist-static/` folder to a branch (e.g. `hostinger-static`) and point Git deploy at that branch.
+The `hostinger-static` branch already exists on the remote and is auto-managed by a one-command script.
 
-To do this:
+### One-time Hostinger setup
+
+1. hPanel → **Files → Git**
+2. **Repository URL:** `https://github.com/RizwanZafaris/rizwan-pay-architect`
+3. **Branch:** `hostinger-static` &nbsp;← critical, **not** `main`
+4. **Repository path:** `/public_html` &nbsp;← the web root
+5. _(If your hPanel shows a "Build path" or "Subdirectory" field, leave it BLANK or `/`. The `hostinger-static` branch has `index.html`, `.htaccess`, `about/`, `blog/`, etc. directly at its root.)_
+6. Connect / create webhook so future pushes auto-deploy.
+7. Click **Force pull** once to populate `public_html/` immediately.
+
+### Every deploy
 
 ```bash
-git checkout -b hostinger-static
-# (one-time) un-ignore dist-static for this branch
-echo "!dist-static/" >>.gitignore
-git add -f dist-static
-git commit -m "Hostinger static build"
-git push -u origin hostinger-static
+cd "/Volumes/T7 Shield/rizwan-pay-architect"
+export VITE_SITE_URL=https://yourdomain.com   # only if not already in your shell
+bun run deploy:git-static
 ```
 
-Then in Hostinger Git settings, point at branch `hostinger-static`, path `dist-static/`. Each future deploy: rebuild locally, force-push `dist-static/` to the branch, Hostinger pulls.
+That script (`scripts/deploy-git-static.sh`):
 
-**Recommendation: use File Manager + zip for the first few deploys.** Only switch to Git auto-deploy once you're confident in the build output.
+1. Rebuilds `dist-static/` (so the branch always reflects current `main`).
+2. Uses a temporary `git worktree` on the `hostinger-static` branch — your `main` working tree is never touched.
+3. Wipes that worktree and copies fresh `dist-static/` contents into its root.
+4. Commits + pushes to `origin/hostinger-static`.
+5. Cleans up the worktree.
+6. Hostinger's webhook fires → pulls the new branch into `public_html/` → site is live within ~30 seconds.
+
+### Verifying the deploy worked
+
+After `bun run deploy:git-static`:
+
+- Check the branch on GitHub: <https://github.com/RizwanZafaris/rizwan-pay-architect/tree/hostinger-static> — should show `index.html`, `assets/`, `about/`, `blog/`, `.htaccess`, `sitemap.xml`, etc. at the root.
+- Hostinger Git panel → "Last pulled" timestamp updated within the last minute.
+- Open `https://yourdomain.com` → site renders.
+- **Direct URL test**: `https://yourdomain.com/about` must work (proves `.htaccess` rewrites are active).
+
+### If you still get a 404
+
+| Symptom                                                            | Likely cause                          | Fix                                                                                                           |
+| ------------------------------------------------------------------ | ------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| All pages 404                                                      | Hostinger Git is pointed at `main`    | Change branch to `hostinger-static` in hPanel → Git                                                           |
+| Homepage works, /about 404                                         | `.htaccess` missing in `public_html/` | hPanel → File Manager → confirm `.htaccess` is at the root. Re-run `bun run deploy:git-static`.               |
+| GitHub shows `hostinger-static` updated, but Hostinger didn't pull | Webhook not registered                | hPanel → Git → click **Force pull**, then verify the webhook URL is in your GitHub repo's Settings → Webhooks |
+| Assets 404, CSS not loading                                        | `assets/` folder didn't deploy        | Check GitHub `hostinger-static` branch root has `assets/` — if not, the script failed mid-way; re-run         |
+
+### Manual unstick
+
+If the helper script gets confused or you want to inspect what's about to go up:
+
+```bash
+# Manually look at what's on the deploy branch right now
+git worktree add /tmp/inspect-hs hostinger-static
+ls /tmp/inspect-hs    # should show index.html, .htaccess, about/, etc.
+git worktree remove /tmp/inspect-hs
+```
+
+---
+
+## Fallback: File Manager + zip upload
+
+For one-off uploads or if Git deploy is misbehaving:
+
+```bash
+cd "/Volumes/T7 Shield/rizwan-pay-architect"
+bun run build:static
+find dist-static -name "._*" -delete
+cd dist-static && zip -qr ../docs/deploy/site.zip . -x "._*" "**/._*"
+```
+
+Then hPanel → Files → File Manager → `public_html/`:
+
+1. Delete existing files
+2. Upload `docs/deploy/site.zip`
+3. Right-click → Extract → into `public_html/`
+4. Delete the zip after extraction
 
 ---
 
