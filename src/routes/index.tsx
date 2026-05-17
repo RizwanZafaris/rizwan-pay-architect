@@ -4,7 +4,9 @@ import { caseStudies } from "@/data/caseStudies";
 import { posts, categories } from "@/data/posts";
 import { products } from "@/data/products";
 import { absUrl, SITE_URL } from "@/lib/seo";
-import portrait from "@/assets/rizwan-zafar-cutout.png";
+import portraitPng from "@/assets/rizwan-zafar-cutout.png";
+import portraitWebp from "@/assets/rizwan-zafar-cutout.webp";
+import portraitWebpSmall from "@/assets/rizwan-zafar-cutout-460.webp";
 
 const profilePageJsonLd = {
   "@context": "https://schema.org",
@@ -44,11 +46,23 @@ function HomePage() {
   const editorsPicked = posts.slice(0, 6);
   const featuredCases = caseStudies.slice(0, 3);
 
-  // Hot topics = category cards with post counts
-  const hotTopics = categories.map((cat) => ({
-    name: cat,
-    count: posts.filter((p) => p.category === cat).length,
-  }));
+  // Hot topics map directly to blog filter URLs (?hub=...)
+  const CATEGORY_TO_HUB: Record<string, string> = {
+    "Cross-Border Payments": "cross-border-payments",
+    "Fraud & Risk": "fraud-aml",
+    "Merchant Onboarding": "merchant-onboarding",
+    "Payment Infrastructure": "payment-infrastructure",
+    "Settlement & Reconciliation": "settlement-reconciliation",
+    "Emerging Markets": "emerging-markets",
+    "Product Strategy": "",
+  };
+  const hotTopics = categories
+    .filter((c) => CATEGORY_TO_HUB[c])
+    .map((cat) => ({
+      name: cat,
+      hub: CATEGORY_TO_HUB[cat],
+      count: posts.filter((p) => p.category === cat).length,
+    }));
 
   return (
     <div>
@@ -130,17 +144,23 @@ function HomePage() {
           {/* RIGHT — Portrait (below text on mobile, smaller on mobile) */}
           <div className="lg:col-span-5 order-2 relative min-w-0">
             <div className="relative mx-auto w-full max-w-[320px] sm:max-w-[420px] lg:max-w-[520px] aspect-[4/5]">
-              <img
-                src={portrait}
-                alt="Portrait of Rizwan Zafar, Chief Product Officer, Payments"
-                width={920}
-                height={1150}
-                loading="eager"
-                decoding="async"
-                {...({ fetchpriority: "high" } as any)}
-                className="relative z-10 h-full w-full object-contain object-bottom"
-              />
-
+              <picture>
+                <source
+                  type="image/webp"
+                  srcSet={`${portraitWebpSmall} 460w, ${portraitWebp} 920w`}
+                  sizes="(max-width: 640px) 320px, (max-width: 1024px) 420px, 520px"
+                />
+                <img
+                  src={portraitPng}
+                  alt="Portrait of Rizwan Zafar, Chief Product Officer, Payments"
+                  width={920}
+                  height={1150}
+                  loading="eager"
+                  decoding="async"
+                  {...({ fetchpriority: "high" } as any)}
+                  className="relative z-10 h-full w-full object-contain object-bottom"
+                />
+              </picture>
               <div className="absolute top-3 right-2 md:right-6 z-20 bg-card/95 backdrop-blur-sm border border-rule px-3 py-1 text-[10px] tracking-[0.22em] font-bold uppercase text-ink font-mono-tech shadow-sm">
                 Dubai · UAE
               </div>
@@ -194,6 +214,7 @@ function HomePage() {
                 <Link
                   key={t.name}
                   to="/blog"
+                  search={{ q: "", hub: t.hub, reader: "", company: "" }}
                   className="group relative overflow-hidden rounded-2xl aspect-square sm:aspect-[5/4] lg:aspect-[4/5] p-3 sm:p-4 flex flex-col justify-end text-background border border-rule"
                   style={{
                     background: `linear-gradient(160deg, color-mix(in oklab, var(--brand) ${22 + (i % 4) * 10}%, transparent), color-mix(in oklab, var(--ink) ${70 - (i % 3) * 10}%, transparent))`,
@@ -203,7 +224,7 @@ function HomePage() {
                   <div className="relative">
                     <div className="font-instrument text-base sm:text-lg leading-tight">{t.name}</div>
                     <div className="text-[10px] font-mono-tech uppercase tracking-[0.18em] mt-1 opacity-80">
-                      {t.count} {t.count === 1 ? "article" : "articles"}
+                      {t.count} {t.count === 1 ? "article" : "articles"} · Filter →
                     </div>
                   </div>
                 </Link>

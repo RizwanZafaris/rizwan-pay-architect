@@ -176,11 +176,19 @@ function ContactPage() {
                 onClick={copyEmail}
                 className="inline-flex items-center rounded-md border border-ink/20 px-5 py-2.5 text-sm font-medium text-ink hover:border-ink/50 focus:outline-none focus:ring-2 focus:ring-ink/30 transition-colors"
               >
-                {copied ? "Email copied" : "Copy email"}
+                {copied ? "Email copied ✓" : "Copy email"}
               </button>
             </div>
-            <p className="text-xs text-ink-soft pt-1">
-              This opens your email app with the message pre-filled — it does not send from this site.
+            <p role="status" aria-live="polite" className="min-h-[1.25rem] text-xs">
+              {copied ? (
+                <span className="text-[var(--accent-emerald)] font-medium">
+                  Email address copied to clipboard.
+                </span>
+              ) : (
+                <span className="text-ink-soft">
+                  This opens your email app with the message pre-filled — it does not send from this site.
+                </span>
+              )}
             </p>
           </form>
         )}

@@ -8,7 +8,6 @@ const nav = [
   { to: "/blog", label: "Essays" },
   { to: "/topics", label: "Topics" },
   { to: "/for", label: "For recruiters" },
-  { to: "/resume", label: "Resume" },
   { to: "/contact", label: "Contact" },
 ] as const;
 
@@ -16,6 +15,7 @@ export function SiteHeader() {
   const [open, setOpen] = useState(false);
   const panelRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
+  const closeBtnRef = useRef<HTMLButtonElement>(null);
   const { location } = useRouterState();
 
   // Close on route change
@@ -23,12 +23,20 @@ export function SiteHeader() {
     setOpen(false);
   }, [location.pathname]);
 
-  // Esc + focus trap
+  // Esc + focus trap + inert main on open
   useEffect(() => {
     if (!open) return;
     document.body.style.overflow = "hidden";
+
+    // Inert main + footer so underlying links aren't tabbable while menu is open
+    const inertTargets = Array.from(
+      document.querySelectorAll<HTMLElement>("main, footer"),
+    );
+    inertTargets.forEach((n) => n.setAttribute("inert", ""));
+
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
+        e.preventDefault();
         setOpen(false);
         triggerRef.current?.focus();
       }
@@ -49,13 +57,14 @@ export function SiteHeader() {
       }
     };
     document.addEventListener("keydown", onKey);
-    // Focus first link
+    // Focus the close button first
     requestAnimationFrame(() => {
-      panelRef.current?.querySelector<HTMLElement>("a")?.focus();
+      closeBtnRef.current?.focus();
     });
     return () => {
       document.body.style.overflow = "";
       document.removeEventListener("keydown", onKey);
+      inertTargets.forEach((n) => n.removeAttribute("inert"));
     };
   }, [open]);
 
@@ -99,7 +108,7 @@ export function SiteHeader() {
               <svg aria-hidden="true" className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14" />
               </svg>
-              <span className="hidden sm:inline">Resume</span>
+              <span className="hidden sm:inline">Download PDF</span>
             </a>
             {/* Mobile/tablet menu trigger */}
             <button
@@ -121,10 +130,10 @@ export function SiteHeader() {
 
       {/* Mobile menu overlay */}
       {open && (
-        <>
-          <button
-            type="button"
-            aria-label="Close menu"
+        <div data-mobile-menu-root>
+          {/* Backdrop — not focusable; click closes */}
+          <div
+            aria-hidden
             onClick={() => setOpen(false)}
             className="fixed inset-0 z-40 bg-ink/30 backdrop-blur-sm lg:hidden"
           />
@@ -136,6 +145,22 @@ export function SiteHeader() {
             aria-label="Site menu"
             className="fixed inset-x-3 top-20 z-50 lg:hidden rounded-2xl border border-ink/10 bg-background shadow-xl p-4"
           >
+            <div className="flex items-center justify-between mb-2">
+              <span className="text-[10px] uppercase tracking-[0.22em] text-ink-soft font-mono-tech">
+                Menu
+              </span>
+              <button
+                ref={closeBtnRef}
+                type="button"
+                onClick={() => { setOpen(false); triggerRef.current?.focus(); }}
+                aria-label="Close menu"
+                className="inline-flex items-center justify-center w-9 h-9 rounded-full hover:bg-ink/5 text-ink"
+              >
+                <svg aria-hidden className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M6 6l12 12M18 6l-12 12" />
+                </svg>
+              </button>
+            </div>
             <nav className="flex flex-col" aria-label="Mobile primary">
               {nav.map((n) => (
                 <Link
@@ -148,6 +173,14 @@ export function SiteHeader() {
                   {n.label}
                 </Link>
               ))}
+              <a
+                href={profile.resumeHref}
+                download
+                onClick={() => setOpen(false)}
+                className="mt-2 px-3 py-3 rounded-lg text-base text-ink hover:bg-ink/5 transition-colors"
+              >
+                Resume — Download PDF
+              </a>
             </nav>
             <div className="mt-3 pt-3 border-t border-rule flex items-center justify-between text-xs text-ink-soft font-mono-tech">
               <span>{profile.location}</span>
@@ -156,7 +189,7 @@ export function SiteHeader() {
               </a>
             </div>
           </div>
-        </>
+        </div>
       )}
     </header>
   );
