@@ -3,13 +3,18 @@ import { useEffect, useRef, useState } from "react";
 import { profile } from "@/data/profile";
 import { ctaClick, outboundClick, resumeDownload } from "@/lib/analytics";
 
+// Recruiter-first nav. 6 tabs ordered along the executive scan path:
+// Home → proof → case studies → fit (recruiters) → resume → contact.
+// /products, /media, /topics stayed off the top bar because they
+// dilute the senior narrative when scanned in 5 seconds. They remain
+// reachable: products from /about (and the Products section on the
+// homepage); media/topics from the footer's secondary nav and from
+// in-context links inside the blog.
 const nav = [
-  { to: "/products", label: "Products" },
   { to: "/product-work", label: "Case Studies" },
   { to: "/blog", label: "Blog" },
-  { to: "/media", label: "Media" },
-  { to: "/topics", label: "Topics" },
-  { to: "/for", label: "For recruiters" },
+  { to: "/for", label: "Recruiters" },
+  { to: "/resume", label: "Resume" },
   { to: "/contact", label: "Contact" },
 ] as const;
 
@@ -278,6 +283,11 @@ export function SiteFooter() {
             <li>
               <Link to="/topics" className="hover:text-ink text-ink-soft">
                 Topics
+              </Link>
+            </li>
+            <li>
+              <Link to="/media" className="hover:text-ink text-ink-soft">
+                Media
               </Link>
             </li>
             <li>

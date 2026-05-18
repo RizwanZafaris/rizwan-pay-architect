@@ -84,7 +84,7 @@ function ResumePage() {
       <div className="mt-3 flex flex-wrap items-start justify-between gap-6">
         <div>
           <h1 className="font-instrument text-4xl md:text-5xl text-ink leading-tight">
-            {profile.name}, Payments Product Executive
+            {profile.name}, Product &amp; Program Executive
           </h1>
           <p className="mt-2 text-ink-soft">
             {profile.role} · {profile.location}
