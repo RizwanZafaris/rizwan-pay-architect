@@ -6,7 +6,6 @@ import { products } from "@/data/products";
 import { absUrl, SITE_URL } from "@/lib/seo";
 import { ctaClick, resumeDownload } from "@/lib/analytics";
 import { AnimatedMetric } from "@/components/motion/AnimatedMetric";
-import { CountUp } from "@/components/motion/CountUp";
 import { Reveal } from "@/components/motion/Reveal";
 import portraitPng from "@/assets/rizwan-zafar-cutout.png";
 import portraitWebp from "@/assets/rizwan-zafar-cutout.webp";
@@ -22,25 +21,31 @@ const profilePageJsonLd = {
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Rizwan Zafar, Payments Product Executive | Dubai" },
+      { title: "Rizwan Zafar — Product & Program Executive | Fintech, Dubai" },
       {
         name: "description",
         content:
-          "Payments product executive: $1B+ GTV, 25M+ monthly transactions across 5 regulated markets. Cross-border rails, settlement, KYC/KYB, AML and fraud. Built infrastructure used by TikTok, Uber, Temu, MoneyGram and InDrive.",
+          "Product & Program Executive scaling fintech infrastructure in complex markets. CPO at Simpaisa, Dubai: $1B+ GTV, 25M+ monthly transactions, 7 markets, 50+ bank, wallet and financial institution partners. Used by TikTok, Uber, Temu, MoneyGram, InDrive.",
       },
-      { property: "og:title", content: "Rizwan Zafar, Payments Product Executive | Dubai" },
+      {
+        property: "og:title",
+        content: "Rizwan Zafar — Product & Program Executive Scaling Fintech Infrastructure",
+      },
       {
         property: "og:description",
         content:
-          "Payments infrastructure for complex markets. $1B+ GTV. 25M+ monthly transactions. 5 markets. Used by TikTok, Uber, Temu.",
+          "Payment infrastructure for complex markets. $1B+ GTV. 25M+ monthly transactions. 7 markets. 50+ bank & wallet partners. Used by TikTok, Uber, Temu.",
       },
       { property: "og:url", content: absUrl("/") },
       { property: "og:type", content: "profile" },
-      { name: "twitter:title", content: "Rizwan Zafar, Payments Product Executive | Dubai" },
+      {
+        name: "twitter:title",
+        content: "Rizwan Zafar — Product & Program Executive, Fintech Infrastructure",
+      },
       {
         name: "twitter:description",
         content:
-          "Payments infrastructure for complex markets. $1B+ GTV. 25M+ monthly transactions. 5 markets.",
+          "Payment infrastructure for complex markets. $1B+ GTV. 25M+ monthly transactions. 7 markets. 50+ bank & wallet partners.",
       },
     ],
     links: [{ rel: "canonical", href: absUrl("/") }],
@@ -74,66 +79,100 @@ function HomePage() {
 
   return (
     <div>
-      {/* ============ HERO, Genz "Hello / I'm" concept ============ */}
+      {/* ============ HERO ============ */}
       <section className="relative overflow-hidden">
-        {/* Soft radial glows */}
+        {/* Soft radial glows — sit BEHIND the content via z-0. */}
         <div
           aria-hidden
-          className="pointer-events-none absolute -top-40 -left-40 h-[640px] w-[640px] rounded-full opacity-60 blur-[140px]"
+          className="pointer-events-none absolute -top-32 -left-32 h-[520px] w-[520px] rounded-full opacity-50 blur-[140px]"
           style={{
             background:
-              "radial-gradient(circle, color-mix(in oklab, var(--brand) 28%, transparent), transparent 70%)",
+              "radial-gradient(circle, color-mix(in oklab, var(--brand) 26%, transparent), transparent 70%)",
           }}
         />
         <div
           aria-hidden
-          className="pointer-events-none absolute top-1/3 right-[-180px] h-[520px] w-[520px] rounded-full opacity-40 blur-[120px]"
+          className="pointer-events-none absolute top-1/4 right-[-140px] h-[460px] w-[460px] rounded-full opacity-35 blur-[120px]"
           style={{
             background:
-              "radial-gradient(circle, color-mix(in oklab, var(--brand) 22%, transparent), transparent 70%)",
+              "radial-gradient(circle, color-mix(in oklab, var(--brand) 20%, transparent), transparent 70%)",
           }}
         />
 
-        <div className="relative mx-auto max-w-7xl px-5 sm:px-6 pt-10 md:pt-20 pb-12 md:pb-20 grid lg:grid-cols-12 gap-8 lg:gap-16 items-center">
-          {/* LEFT, Editorial intro + headline (TEXT FIRST on mobile) */}
+        <div className="relative mx-auto max-w-7xl px-5 sm:px-6 pt-6 md:pt-10 pb-8 md:pb-12 grid lg:grid-cols-12 gap-6 lg:gap-10 items-center">
+          {/* LEFT — 58% (7/12). Narrative + proof. */}
           <div className="lg:col-span-7 order-1 relative z-10 min-w-0">
-            <div className="inline-flex items-center gap-4 mb-6 md:mb-8">
-              <span className="h-px w-12 bg-[var(--brand)]" />
+            <div className="inline-flex items-center gap-4 mb-4 md:mb-6">
+              <span className="h-px w-10 bg-[var(--brand)]" />
               <span className="text-[10px] uppercase tracking-[0.32em] text-[var(--brand)] font-mono-tech font-semibold">
                 ◆ Introduction · I'm Rizwan
               </span>
             </div>
 
-            <h1 className="font-instrument tracking-tight leading-[0.92] text-[44px] sm:text-[60px] md:text-[88px] lg:text-[108px] text-ink">
-              Payments product
-              <br />
-              at{" "}
-              <span className="italic text-[var(--brand)]">
-                <CountUp value={1} template="${n}B+" duration={1600} /> TPV
-              </span>
-              <br className="hidden sm:inline" />
-              <span className="sm:hidden"> </span>across{" "}
-              <CountUp value={5} template="{n}" duration={1200} /> markets.
+            <h1 className="font-instrument tracking-tight leading-[1.06] text-[30px] sm:text-[38px] md:text-[48px] lg:text-[56px] xl:text-[62px] text-ink">
+              Product &amp; Program Executive Scaling{" "}
+              <span className="italic text-[var(--brand)]">Fintech Infrastructure</span> in Complex
+              Markets
             </h1>
 
-            <p className="mt-6 md:mt-8 max-w-2xl text-lg md:text-2xl text-ink-soft leading-snug font-light">
-              CPO at Simpaisa, Dubai. <span className="text-ink font-medium">14+ years</span> in
-              product, programme and payments.{" "}
-              <span className="text-ink font-medium">4 production GenAI deployments</span>.{" "}
-              <span className="text-ink font-medium">40-engineer org built from 2</span>.
-            </p>
-            <p className="mt-4 text-sm text-ink-soft font-mono-tech uppercase tracking-[0.18em]">
-              Used in production by <span className="text-ink">TikTok</span> ·{" "}
-              <span className="text-ink">Uber</span> · <span className="text-ink">Temu</span> ·{" "}
-              <span className="text-ink">MoneyGram</span> · <span className="text-ink">PUBG</span> ·{" "}
-              <span className="text-ink">InDrive</span>
+            <p className="mt-5 md:mt-6 max-w-2xl text-base md:text-lg text-ink-soft leading-relaxed">
+              I build payment rails where market complexity and scale collide. As CPO at Simpaisa in
+              Dubai, I helped scale infrastructure across{" "}
+              <span className="text-ink font-medium">7 markets</span>,{" "}
+              <span className="text-ink font-medium">$1B+ GTV</span>,{" "}
+              <span className="text-ink font-medium">25M+ monthly transactions</span> and{" "}
+              <span className="text-ink font-medium">
+                50+ bank, wallet and financial institution
+              </span>{" "}
+              partners.
             </p>
 
-            <div className="mt-8 md:mt-10 flex flex-col sm:flex-row sm:items-center gap-3">
+            {/* Proof row — 4 compact tiles. Mobile: 2×2, desktop: 1×4. */}
+            <div className="mt-6 md:mt-7 grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-2xl">
+              {(
+                [
+                  { value: "$1B+", label: "GTV" },
+                  { value: "25M+", label: "Monthly transactions" },
+                  { value: "7", label: "Markets" },
+                  { value: "50+", label: "Bank & wallet partners" },
+                ] as const
+              ).map((m) => (
+                <div
+                  key={m.label}
+                  className="rounded-xl border border-rule bg-card/70 backdrop-blur-sm px-3 py-2.5 sm:px-4 sm:py-3"
+                >
+                  <div className="font-instrument text-xl md:text-2xl text-ink leading-none">
+                    <AnimatedMetric value={m.value} />
+                  </div>
+                  <div className="text-[9px] uppercase tracking-[0.16em] text-ink-soft mt-1.5 font-mono-tech leading-tight">
+                    {m.label}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Certification trust line. */}
+            <p className="mt-4 text-[10px] sm:text-[11px] uppercase tracking-[0.22em] text-ink-soft font-mono-tech">
+              <span className="text-ink-soft/70">Certified:</span>{" "}
+              <span className="text-ink">PMP</span>
+              <span className="opacity-40 mx-1.5">·</span>
+              <span className="text-ink">PMI-ACP</span>
+              <span className="opacity-40 mx-1.5">·</span>
+              <span className="text-ink">CSPO</span>
+              <span className="opacity-40 mx-1.5">·</span>
+              <span className="text-ink">CSM</span>
+              <span className="opacity-40 mx-1.5">·</span>
+              <span className="text-ink">COBIT 5</span>
+              <span className="opacity-40 mx-1.5">·</span>
+              <span className="text-ink">ITIL</span>
+            </p>
+
+            {/* CTAs — visible in first viewport. */}
+            <div className="mt-5 md:mt-6 flex flex-col sm:flex-row sm:items-center gap-3">
               <Link
                 to="/product-work"
                 onClick={() => ctaClick("see_case_studies", "hero", "/product-work")}
-                className="group inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-[11px] uppercase tracking-[0.18em] font-semibold text-[var(--brand-foreground)] bg-ink hover:bg-[var(--brand)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background transition-colors"
+                className="group inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-[11px] uppercase tracking-[0.18em] font-semibold text-[var(--brand-foreground)] bg-ink hover:bg-[var(--brand)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background transition-colors"
               >
                 See case studies
                 <span className="transition-transform group-hover:translate-x-1" aria-hidden>
@@ -147,45 +186,64 @@ function HomePage() {
                   ctaClick("download_resume", "hero", profile.resumeHref);
                   resumeDownload("hero");
                 }}
-                className="inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-[11px] uppercase tracking-[0.18em] font-semibold text-ink border border-ink/20 hover:border-ink/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background transition-colors"
+                className="inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-[11px] uppercase tracking-[0.18em] font-semibold text-ink border border-ink/20 hover:border-ink/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background transition-colors"
               >
                 Download resume
               </a>
               <a
                 href={`mailto:${profile.email}`}
                 onClick={() => ctaClick("email_me", "hero", `mailto:${profile.email}`)}
-                className="inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-[11px] uppercase tracking-[0.18em] font-semibold text-ink border border-ink/20 hover:border-ink/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background transition-colors"
+                className="inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-[11px] uppercase tracking-[0.18em] font-semibold text-ink border border-ink/20 hover:border-ink/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background transition-colors"
               >
                 Email me
               </a>
             </div>
 
-            <div className="mt-6 md:mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-ink-soft">
-              <Link
-                to="/product-work"
-                className="hover:text-ink inline-flex items-center gap-1.5 group"
-              >
-                Product work{" "}
-                <span className="transition-transform group-hover:translate-x-1">→</span>
-              </Link>
-              <Link to="/blog" className="hover:text-ink inline-flex items-center gap-1.5 group">
-                Read the blog{" "}
-                <span className="transition-transform group-hover:translate-x-1">→</span>
-              </Link>
-              <Link to="/contact" className="hover:text-ink inline-flex items-center gap-1.5 group">
-                Contact <span className="transition-transform group-hover:translate-x-1">→</span>
-              </Link>
-            </div>
+            {/* Used-by — secondary credibility, smaller. */}
+            <p className="mt-4 text-[10px] sm:text-[11px] text-ink-soft font-mono-tech uppercase tracking-[0.18em] leading-relaxed">
+              <span className="opacity-70">Used in production by</span>{" "}
+              <span className="text-ink">TikTok</span>
+              <span className="opacity-40 mx-1.5">·</span>
+              <span className="text-ink">Uber</span>
+              <span className="opacity-40 mx-1.5">·</span>
+              <span className="text-ink">Temu</span>
+              <span className="opacity-40 mx-1.5">·</span>
+              <span className="text-ink">MoneyGram</span>
+              <span className="opacity-40 mx-1.5">·</span>
+              <span className="text-ink">InDrive</span>
+              <span className="opacity-40 mx-1.5">·</span>
+              <span className="text-ink">PUBG</span>
+            </p>
           </div>
 
-          {/* RIGHT, Portrait (below text on mobile, smaller on mobile) */}
+          {/* RIGHT — 42% (5/12). Portrait + premium depth backdrop. */}
           <div className="lg:col-span-5 order-2 relative min-w-0">
-            <div className="relative mx-auto w-full max-w-[320px] sm:max-w-[420px] lg:max-w-[520px] aspect-[4/5]">
+            <div className="relative mx-auto w-full max-w-[280px] sm:max-w-[360px] lg:max-w-[440px] aspect-[4/5]">
+              {/* Subtle depth: soft radial wash behind the portrait. Inset so
+                  it can't touch the column edges and clip awkwardly. */}
+              <div
+                aria-hidden
+                className="pointer-events-none absolute inset-x-4 inset-y-8 -z-10 rounded-[40%] blur-3xl opacity-60"
+                style={{
+                  background:
+                    "radial-gradient(60% 60% at 50% 45%, color-mix(in oklab, var(--brand) 22%, transparent), transparent 75%)",
+                }}
+              />
+              {/* Thin brand ring behind the portrait — premium framing without
+                  a hard card edge. */}
+              <div
+                aria-hidden
+                className="pointer-events-none absolute inset-2 -z-10 rounded-[36%]"
+                style={{
+                  border: "1px solid color-mix(in oklab, var(--brand) 25%, transparent)",
+                }}
+              />
+
               <picture>
                 <source
                   type="image/webp"
                   srcSet={`${portraitWebpSmall} 460w, ${portraitWebp} 920w`}
-                  sizes="(max-width: 640px) 320px, (max-width: 1024px) 420px, 520px"
+                  sizes="(max-width: 640px) 280px, (max-width: 1024px) 360px, 440px"
                 />
                 <img
                   src={portraitPng}
@@ -198,53 +256,59 @@ function HomePage() {
                   className="relative z-10 h-full w-full object-contain object-bottom"
                 />
               </picture>
-              <div className="absolute top-3 right-2 md:right-6 z-20 bg-card/95 backdrop-blur-sm border border-rule px-3 py-1 text-[10px] tracking-[0.22em] font-bold uppercase text-ink font-mono-tech shadow-sm">
+
+              {/* Dubai tag — anchored to the top-right of the portrait box,
+                  inset so it doesn't float off the column edge. */}
+              <div className="absolute top-2 right-2 z-20 bg-card/95 backdrop-blur-sm border border-rule px-2.5 py-1 text-[10px] tracking-[0.22em] font-bold uppercase text-ink font-mono-tech shadow-sm">
                 Dubai · UAE
               </div>
 
+              {/* Decorative accents — all positioned at the portrait box's
+                  EDGES so they never overlap the face. Each has a CSS-only
+                  slow float / glow animation that respects reduced motion. */}
               {(
                 [
+                  // 3 pluses around the edges
                   {
                     type: "plus",
-                    top: "8%",
-                    left: "88%",
-                    size: "text-4xl md:text-5xl",
-                    color: "text-[var(--brand)]",
-                  },
-                  {
-                    type: "plus",
-                    top: "30%",
-                    left: "92%",
-                    size: "text-2xl md:text-3xl",
-                    color: "text-[var(--brand)]/70",
-                  },
-                  {
-                    type: "plus",
-                    top: "48%",
-                    left: "4%",
+                    top: "-2%",
+                    left: "94%",
                     size: "text-3xl md:text-4xl",
                     color: "text-[var(--brand)]",
+                    anim: "hero-float-a",
                   },
                   {
+                    type: "plus",
+                    top: "60%",
+                    left: "-4%",
+                    size: "text-2xl md:text-3xl",
+                    color: "text-[var(--brand)]/70",
+                    anim: "hero-float-b",
+                  },
+                  {
+                    type: "plus",
+                    top: "98%",
+                    left: "92%",
+                    size: "text-2xl md:text-3xl",
+                    color: "text-[var(--brand)]",
+                    anim: "hero-float-a",
+                  },
+                  // 2 dots for rhythm
+                  {
                     type: "dot",
-                    top: "22%",
-                    left: "6%",
+                    top: "14%",
+                    left: "-3%",
                     size: "h-2 w-2",
                     color: "bg-[var(--brand)]/70",
+                    anim: "hero-glow-a",
                   },
                   {
                     type: "dot",
-                    top: "58%",
-                    left: "94%",
-                    size: "h-3 w-3",
+                    top: "92%",
+                    left: "44%",
+                    size: "h-2.5 w-2.5",
                     color: "bg-[var(--brand)]",
-                  },
-                  {
-                    type: "dot",
-                    top: "88%",
-                    left: "50%",
-                    size: "h-3 w-3 md:h-3.5 md:w-3.5",
-                    color: "bg-[var(--brand)]",
+                    anim: "hero-glow-b",
                   },
                 ] as const
               ).map((g, i) =>
@@ -252,7 +316,7 @@ function HomePage() {
                   <span
                     key={i}
                     aria-hidden
-                    className={`absolute z-20 font-light leading-none select-none -translate-x-1/2 -translate-y-1/2 ${g.size} ${g.color}`}
+                    className={`absolute z-20 font-light leading-none select-none ${g.size} ${g.color} ${g.anim}`}
                     style={{ top: g.top, left: g.left }}
                   >
                     +
@@ -261,7 +325,7 @@ function HomePage() {
                   <span
                     key={i}
                     aria-hidden
-                    className={`absolute z-20 rounded-full -translate-x-1/2 -translate-y-1/2 ${g.size} ${g.color}`}
+                    className={`absolute z-20 rounded-full ${g.size} ${g.color} ${g.anim}`}
                     style={{ top: g.top, left: g.left }}
                   />
                 ),
@@ -518,7 +582,7 @@ function HomePage() {
                 14+ years.
                 <br />
                 $1B+ GTV.
-                <br />5 markets.
+                <br />7 markets.
               </div>
               <Link to="/about" className="mt-6 inline-flex items-center gap-1.5 text-sm group">
                 My story <span className="transition-transform group-hover:translate-x-1">→</span>

@@ -143,8 +143,9 @@ function ForIndex() {
               Rizwan Zafar, Product &amp; Program Leader · Payments · Fintech · AI
             </h2>
             <p className="mt-2 text-sm text-ink-soft max-w-2xl">
-              CPO at Simpaisa · $0 → $1B+ TPV · 5 markets · 40-engineer org built from 2 · 4
-              production GenAI deployments · PMP / PMI-ACP / CSPO / CSM / COBIT 5 / ITIL v3.
+              CPO at Simpaisa · $0 → $1B+ TPV · 7 markets · 50+ bank & wallet partners · 40-engineer
+              org built from 2 · 4 production GenAI deployments · PMP / PMI-ACP / CSPO / CSM / COBIT
+              5 / ITIL v3.
             </p>
           </div>
           <div className="flex flex-wrap gap-2 shrink-0">

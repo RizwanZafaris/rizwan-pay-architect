@@ -49,20 +49,25 @@ const svg = `
   </text>
 
   <!-- Name + title -->
-  <text x="80" y="270"
+  <text x="80" y="260"
         font-family="'Instrument Serif', 'Source Serif 4', Georgia, serif"
-        font-size="96" fill="${INK}" font-weight="400" letter-spacing="-2">
+        font-size="88" fill="${INK}" font-weight="400" letter-spacing="-2">
     Rizwan Zafar
   </text>
-  <text x="80" y="370"
+  <text x="80" y="345"
         font-family="'Instrument Serif', 'Source Serif 4', Georgia, serif"
-        font-size="64" fill="${BRAND}" font-style="italic" font-weight="400">
-    Payments Product Executive
+        font-size="48" fill="${BRAND}" font-style="italic" font-weight="400">
+    Product &amp; Program Executive
   </text>
-  <text x="80" y="430"
+  <text x="80" y="395"
+        font-family="'Instrument Serif', 'Source Serif 4', Georgia, serif"
+        font-size="40" fill="${INK}" font-style="italic" font-weight="400">
+    Scaling Fintech Infrastructure
+  </text>
+  <text x="80" y="455"
         font-family="'Inter', system-ui, sans-serif"
-        font-size="26" fill="${SOFT}" letter-spacing="0.5">
-    Dubai · $1B+ TPV · 25M+ tx/mo · 5 markets · 50+ FI partners
+        font-size="24" fill="${SOFT}" letter-spacing="0.5">
+    Dubai · $1B+ GTV · 25M+ tx/mo · 7 markets · 50+ bank &amp; wallet partners
   </text>
 
   <!-- Footer mono caps -->

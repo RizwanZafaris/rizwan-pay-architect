@@ -11,7 +11,7 @@ export const Route = createFileRoute("/resume")({
         {
           name: "description",
           content:
-            "Resume of Rizwan Zafar, payments product executive in Dubai. 14+ years in product and programme delivery; 8+ years building regulated payment infrastructure at $1B+ GTV across MENA and South Asia.",
+            "Resume of Rizwan Zafar, Product & Program Executive scaling fintech infrastructure in complex markets. 14+ years; 8+ years building regulated payment infrastructure at $1B+ GTV across 7 markets, 50+ bank, wallet and FI partners.",
         },
         { property: "og:title", content: "Resume — Rizwan Zafar, Payments Product Executive" },
         {
@@ -117,10 +117,10 @@ function ResumePage() {
         </div>
         <p className="md:col-span-8 font-instrument text-2xl text-ink leading-snug">
           14+ years across product, payments and complex program delivery, including 8+ years
-          building regulated payment infrastructure across emerging markets. Currently CPO at
-          Simpaisa: $1B+ annual GTV, 25M+ monthly transactions across five countries. Led PCI DSS
-          and ISO/IEC 27001 certification programs from scratch and held a dual CPO + acting CTO
-          role through a regulatory tightening.
+          building regulated payment infrastructure in complex markets. Currently CPO at Simpaisa:
+          $1B+ annual GTV, 25M+ monthly transactions across 7 markets, 50+ bank, wallet and FI
+          partners. Led PCI DSS and ISO/IEC 27001 certification programs from scratch and held a
+          dual CPO + acting CTO role through a regulatory tightening.
         </p>
       </section>
 

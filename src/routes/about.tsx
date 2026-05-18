@@ -75,13 +75,14 @@ function AboutPage() {
 
         <p className="mt-6 text-lg text-ink-soft leading-relaxed max-w-2xl">
           Product &amp; Program leader in regulated payments. 14+ years across product, payments,
-          programme delivery and digital transformation. Currently CPO at Simpaisa: scaled the B2B
-          payments platform from $0 to $1B+ TPV across 5 markets, built the 40-engineer organisation
-          from 2 people across 12 cross-functional squads, deployed 4 production GenAI solutions,
-          and infrastructure now used by TikTok, Uber, Temu, InDrive, MoneyGram and PUBG. Earlier:
-          $3M digital transformation programme at TapmadTV, payments ops at Daraz (Alibaba Group),
-          PMO setups at Wing Logic and DS Engineering. PMP, PMI-ACP, CSPO, CSM, COBIT 5, ITIL v3.
-          Engineer's discipline, programme manager's tempo, regulator's vocabulary.
+          programme delivery and digital transformation. Currently CPO at Simpaisa: helped scale the
+          B2B payments platform from $0 to $1B+ TPV across 7 markets, 50+ bank, wallet and FI
+          partners, built the 40-engineer organisation from 2 people across 12 cross-functional
+          squads, deployed 4 production GenAI solutions, and infrastructure now used by TikTok,
+          Uber, Temu, InDrive, MoneyGram and PUBG. Earlier: $3M digital transformation programme at
+          TapmadTV, payments ops at Daraz (Alibaba Group), PMO setups at Wing Logic and DS
+          Engineering. PMP, PMI-ACP, CSPO, CSM, COBIT 5, ITIL v3. Engineer's discipline, programme
+          manager's tempo, regulator's vocabulary.
         </p>
 
         <div className="prose-editorial mt-10">

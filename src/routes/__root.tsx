@@ -236,7 +236,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         property: "og:description",
         content:
-          "Payments product executive in Dubai. $1B+ GTV, 25M+ monthly transactions, 5 regulated markets, acceptance, cross-border, settlement, KYC/KYB, AML and fraud.",
+          "Product & Program Executive scaling fintech infrastructure in complex markets. $1B+ GTV, 25M+ monthly transactions, 7 markets, 50+ bank, wallet and FI partners. Acceptance, cross-border, settlement, KYC/KYB, AML and fraud.",
       },
       { property: "og:image", content: OG_IMAGE_URL },
       { property: "og:image:width", content: "1200" },
@@ -249,7 +249,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         name: "twitter:description",
         content:
-          "Payments product executive in Dubai. $1B+ GTV, 25M+ monthly transactions, 5 regulated markets.",
+          "Product & Program Executive scaling fintech infrastructure in complex markets. $1B+ GTV, 25M+ monthly transactions, 7 markets, 50+ bank & wallet partners.",
       },
       { name: "twitter:image", content: OG_IMAGE_URL },
       { name: "twitter:image:alt", content: `${profile.name}, Payments Product Executive` },

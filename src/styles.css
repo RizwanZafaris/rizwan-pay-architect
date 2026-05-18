@@ -294,4 +294,76 @@
       transform: none;
     }
   }
+
+  /* Hero portrait decorative accents — slow elegant float / glow.
+     Two variants of each so adjacent accents don't visibly pulse in lockstep.
+     Animation is purely decorative; suppress under prefers-reduced-motion. */
+  @keyframes rz-hero-float-a {
+    0%,
+    100% {
+      transform: translateY(0);
+      opacity: 0.85;
+    }
+    50% {
+      transform: translateY(-5px);
+      opacity: 1;
+    }
+  }
+  @keyframes rz-hero-float-b {
+    0%,
+    100% {
+      transform: translateY(0) translateX(0);
+      opacity: 0.6;
+    }
+    50% {
+      transform: translateY(3px) translateX(-2px);
+      opacity: 0.95;
+    }
+  }
+  @keyframes rz-hero-glow-a {
+    0%,
+    100% {
+      transform: scale(1);
+      opacity: 0.7;
+    }
+    50% {
+      transform: scale(1.25);
+      opacity: 1;
+    }
+  }
+  @keyframes rz-hero-glow-b {
+    0%,
+    100% {
+      transform: scale(1);
+      opacity: 0.5;
+    }
+    50% {
+      transform: scale(1.4);
+      opacity: 0.95;
+    }
+  }
+  .hero-float-a {
+    animation: rz-hero-float-a 5.5s ease-in-out infinite;
+    will-change: transform, opacity;
+  }
+  .hero-float-b {
+    animation: rz-hero-float-b 7s ease-in-out infinite;
+    will-change: transform, opacity;
+  }
+  .hero-glow-a {
+    animation: rz-hero-glow-a 6s ease-in-out infinite;
+    will-change: transform, opacity;
+  }
+  .hero-glow-b {
+    animation: rz-hero-glow-b 8s ease-in-out infinite;
+    will-change: transform, opacity;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-float-a,
+    .hero-float-b,
+    .hero-glow-a,
+    .hero-glow-b {
+      animation: none;
+    }
+  }
 }

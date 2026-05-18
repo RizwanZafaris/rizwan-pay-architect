@@ -9,15 +9,15 @@ export const profile = {
   personalSite: "https://rzifi.com",
   resumeHref: "/Rizwan_Zafar_Resume.pdf",
   headline:
-    "Product & Program Leader, Payments, Fintech, AI in Payments and Cross-Border Systems. Built a B2B payments platform from $0 to $1B+ TPV across 5 markets, deployed 4 production AI solutions, and led a 40-engineer org built from 2 people.",
+    "Product & Program Executive Scaling Fintech Infrastructure in Complex Markets. As CPO at Simpaisa in Dubai, I helped scale payment infrastructure across 7 markets, $1B+ GTV, 25M+ monthly transactions and 50+ bank, wallet and financial institution partners.",
   positioning:
     "I build regulated payment infrastructure where product, program delivery, network partnerships, risk, compliance and operations collide. My work turns fragmented local rails into reliable products: card acquiring, merchant onboarding, cross-border corridors, settlement and reconciliation, fraud and AML/CFT controls, and now AI-augmented operations. I run the full lifecycle, strategy → roadmap → PMO governance → execution → P&L, across regulated markets.",
-  bio: "Product & Program leader with 14+ years across payments, fintech and digital transformation. Currently CPO at Simpaisa, a B2B payments platform I scaled from $0 to $1B+ TPV across five markets (PK, BD, NP, EG, IQ), serving 50+ financial institution partners and enterprise clients including TikTok, Uber, Temu, MoneyGram and PUBG. Built and led the 40-engineer organisation (from 2 people) across 12 cross-functional squads. Deployed 4 production GenAI solutions covering merchant integration support (−65% support time), incident auto-escalation (−70% MTTR), partner support automation (90% resolution) and a fraud/AML AI pilot with a banking partner. Earlier: $3M digital transformation programme at TapmadTV, payments operations at Daraz (Alibaba Group), PMO setups at Wing Logic and DS Engineering. Engineer's discipline, programme manager's tempo, regulator's vocabulary. PMP, PMI-ACP, CSPO, CSM, COBIT 5, ITIL v3. PCI DSS and ISO/IEC 27001 led from scratch.",
+  bio: "Product & Program leader with 14+ years across payments, fintech and digital transformation. Currently CPO at Simpaisa, a B2B payments platform I helped scale from $0 to $1B+ TPV across seven markets in MENA and South Asia, serving 50+ bank, wallet and financial institution partners and enterprise clients including TikTok, Uber, Temu, MoneyGram, InDrive and PUBG. Built and led the 40-engineer organisation (from 2 people) across 12 cross-functional squads. Deployed 4 production GenAI solutions covering merchant integration support (−65% support time), incident auto-escalation (−70% MTTR), partner support automation (90% resolution) and a fraud/AML AI pilot with a banking partner. Earlier: $3M digital transformation programme at TapmadTV, payments operations at Daraz (Alibaba Group), PMO setups at Wing Logic and DS Engineering. Engineer's discipline, programme manager's tempo, regulator's vocabulary. PMP, PMI-ACP, CSPO, CSM, COBIT 5, ITIL v3. PCI DSS and ISO/IEC 27001 led from scratch.",
   metrics: [
     { label: "TPV scaled", value: "$0 → $1B+" },
     { label: "Monthly transactions", value: "25M+" },
-    { label: "Markets", value: "5" },
-    { label: "Issuer partners", value: "50+" },
+    { label: "Markets", value: "7" },
+    { label: "Bank & wallet partners", value: "50+" },
     { label: "Merchant integrations", value: "150+" },
     { label: "Payment success", value: "60% → 85%" },
     { label: "Authorization uplift", value: "+14%" },
@@ -234,7 +234,7 @@ export const profile = {
         "Network & issuer partner enablement",
         "Regulator and central-bank engagement",
         "Pricing, unit economics, ARPU",
-        "Go-to-market across 5 regulated markets",
+        "Go-to-market across 7 regulated markets",
       ],
     },
     {
