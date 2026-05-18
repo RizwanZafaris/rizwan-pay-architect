@@ -512,6 +512,77 @@ export const posts: Post[] = [
     ],
   },
   {
+    slug: "virtual-card-accounts-product-guide",
+    title:
+      "Virtual Card Accounts (VCA): The Quiet Backbone of B2B, Travel and Marketplace Payments",
+    date: "2026-05-18",
+    category: "Payment Infrastructure",
+    readingTime: "10 min read",
+    description:
+      "What virtual card accounts (VCAs) are, how they're issued, where they win against ACH and wires, the control surface that matters, and how product teams should think about interchange, reconciliation, and the four real use cases.",
+    thesis:
+      "VCAs look like a card primitive. They are actually a control primitive. The product job is to decide which controls travel with the number, and which sit in the platform.",
+    featured: true,
+    tags: [
+      "virtual card accounts",
+      "VCA",
+      "B2B payments",
+      "travel payments",
+      "AP automation",
+      "interchange",
+      "issuing",
+      "Visa",
+      "Mastercard",
+    ],
+  },
+  {
+    slug: "open-banking-product-architecture",
+    title:
+      "Open Banking Product Architecture: Aggregator vs Direct, AISP vs PISP, and Where the Value Actually Lives",
+    date: "2026-05-17",
+    category: "Payment Infrastructure",
+    readingTime: "11 min read",
+    description:
+      "The product architecture of open banking: aggregator vs direct, AISP vs PISP scope, authentication UX as the entire product, A2A vs card-rail economics, and where the durable value lives beyond data access.",
+    thesis:
+      "Open banking is not a data product. It is a workflow product that happens to use bank data as its raw material. Teams that miss this build pretty dashboards and weak businesses.",
+    featured: true,
+    tags: [
+      "open banking",
+      "PSD2",
+      "PSD3",
+      "AISP",
+      "PISP",
+      "A2A payments",
+      "aggregator",
+      "account-to-account",
+      "variable recurring payments",
+      "VRP",
+    ],
+  },
+  {
+    slug: "product-management-for-payments-platforms",
+    title: "Product Management for Payments Platforms: What's Different, and What's Not",
+    date: "2026-05-16",
+    category: "Product Strategy",
+    readingTime: "11 min read",
+    description:
+      "What payments product management actually requires: five constituencies (merchant, consumer, scheme, regulator, ops), what translates from SaaS PM and what doesn't, the risk-adjusted backlog, the KPIs that matter, and the reconciliation reflex.",
+    thesis:
+      "A payments PM is a SaaS PM with three extra constituencies and one extra reflex. Get the reflex wrong and the other constituencies stop trusting you.",
+    featured: true,
+    tags: [
+      "product management",
+      "payments product management",
+      "fintech PM",
+      "product strategy",
+      "authorization rate",
+      "reconciliation",
+      "risk-adjusted backlog",
+      "product KPIs",
+    ],
+  },
+  {
     slug: "ai-in-payments-four-production-use-cases",
     title: "GenAI in Fintech: 4 Production Use Cases That Actually Ship",
     date: "2026-05-15",
@@ -530,6 +601,51 @@ export const posts: Post[] = [
       "fraud detection",
       "AML",
       "production AI",
+    ],
+  },
+  {
+    slug: "project-management-fintech-regulatory-programmes",
+    title:
+      "Project Management for Fintech Regulatory Programmes: PCI DSS, ISO 27001, SOC 2, AML/CFT",
+    date: "2026-05-14",
+    category: "Program Management",
+    readingTime: "11 min read",
+    description:
+      "How to run regulatory programmes (PCI DSS, ISO 27001, SOC 2, AML/CFT) as actual projects with hard audit dates: scope, evidence, remediation, audit handling, document control, and the operational handoff that decides whether the certification survives.",
+    thesis:
+      "A regulatory programme is not a compliance exercise. It is a project with an immovable deadline (the audit), an external grader (the auditor), and a delivery cost (remediation) that gets paid up front or many times over.",
+    tags: [
+      "project management",
+      "PCI DSS",
+      "ISO 27001",
+      "SOC 2",
+      "AML CFT",
+      "regulatory programme",
+      "audit readiness",
+      "compliance project management",
+      "evidence management",
+      "remediation",
+    ],
+  },
+  {
+    slug: "program-vs-product-management-fintech",
+    title: "Program Management vs Product Management in Fintech: Lane Lines That Actually Hold",
+    date: "2026-05-13",
+    category: "Program Management",
+    readingTime: "10 min read",
+    description:
+      "The five places product and program management collide in fintech, what each role actually owns, the reporting lines and decision rights that work, and the sequencing (PM first, then PgM, then PMO) that lets a fintech scale without internal friction.",
+    thesis:
+      "Product and program management overlap because they have to. The overlap is where most fintechs break. Hold the lane lines and the overlap becomes the most productive seam in the org.",
+    tags: [
+      "program management",
+      "product management",
+      "PgM",
+      "org design",
+      "fintech operations",
+      "PMO",
+      "decision rights",
+      "delivery",
     ],
   },
   {

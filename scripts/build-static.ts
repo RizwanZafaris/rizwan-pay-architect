@@ -39,7 +39,6 @@ type Worker = {
 };
 
 function collectRoutes(): string[] {
-  const today = new Date().toISOString().slice(0, 10);
   const staticPaths = [
     "/",
     "/about",
@@ -58,7 +57,10 @@ function collectRoutes(): string[] {
     .filter((href) => href.startsWith("/products/"));
   const audiencePaths = audiences.map((a) => `/for/${a.slug}`);
   const caseStudyPaths = caseStudies.map((c) => `/product-work/${c.slug}`);
-  const blogPaths = posts.filter((p) => p.date <= today).map((p) => `/blog/${p.slug}`);
+  // Prerender every post regardless of publishDate. Static-only deploys (Hostinger)
+  // need physical HTML for every post the blog index links to, otherwise links 404.
+  // "Scheduling" via future dates does not work for a manually-uploaded static build.
+  const blogPaths = posts.map((p) => `/blog/${p.slug}`);
   return [...staticPaths, ...productPaths, ...audiencePaths, ...caseStudyPaths, ...blogPaths];
 }
 
