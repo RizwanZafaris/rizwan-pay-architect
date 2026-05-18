@@ -1,6 +1,12 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { useEffect } from "react";
-import { caseStudies, getCaseStudy, type CaseStudy } from "@/data/caseStudies";
+import {
+  caseStudies,
+  caseStudyHero,
+  caseStudyThumb,
+  getCaseStudy,
+  type CaseStudy,
+} from "@/data/caseStudies";
 import { absUrl, SITE_URL } from "@/lib/seo";
 import { DiagramFigure, caseStudyDiagrams } from "@/components/diagrams/Diagrams";
 import { ctaClick, resumeDownload, trackEvent } from "@/lib/analytics";
@@ -118,8 +124,35 @@ function CaseStudyPage() {
 
   return (
     <article>
-      <header className="border-b border-rule">
-        <div className="mx-auto max-w-4xl px-6 pt-16 pb-12">
+      <header className="relative border-b border-rule overflow-hidden">
+        {/* Abstract symbolic hero image — Higgsfield-generated, brand-coherent.
+            Sits BEHIND the text with a strong dark gradient overlay so the
+            headline stays readable. Eagerly loaded (above the fold). */}
+        <div className="absolute inset-0 -z-10">
+          <img
+            src={caseStudyHero(s.slug)}
+            alt={
+              s.imageAlt ??
+              `Abstract symbolic illustration for ${s.title} — ${s.category}, brand-cyan editorial composition on dark canvas`
+            }
+            width={1600}
+            height={900}
+            loading="eager"
+            decoding="async"
+            {...({ fetchpriority: "high" } as any)}
+            className="h-full w-full object-cover opacity-60"
+          />
+          {/* Gradient overlay: heavier on the bottom-left where the H1 sits,
+              lighter on the top-right so the image still reads. */}
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                "linear-gradient(135deg, color-mix(in oklab, var(--background) 92%, transparent) 0%, color-mix(in oklab, var(--background) 70%, transparent) 50%, color-mix(in oklab, var(--background) 50%, transparent) 100%)",
+            }}
+          />
+        </div>
+        <div className="relative mx-auto max-w-4xl px-6 pt-16 pb-12">
           <Link
             to="/product-work"
             className="text-[10px] uppercase tracking-[0.18em] text-ink-soft hover:text-ink font-mono-tech"
@@ -315,15 +348,28 @@ function CaseStudyPage() {
                 key={c.slug}
                 to="/product-work/$slug"
                 params={{ slug: c.slug }}
-                className="group block bg-surface border border-rule rounded-2xl p-6 hover:border-ink/30 transition-colors"
+                className="group block bg-surface border border-rule rounded-2xl overflow-hidden hover:border-ink/30 transition-colors"
               >
-                <div className="text-[10px] uppercase tracking-[0.18em] text-[var(--accent-emerald)] font-mono-tech">
-                  {c.category}
+                <div className="relative aspect-[16/9] overflow-hidden border-b border-rule">
+                  <img
+                    src={caseStudyThumb(c.slug)}
+                    alt={c.imageAlt ?? `${c.title} — abstract editorial illustration`}
+                    width={800}
+                    height={450}
+                    loading="lazy"
+                    decoding="async"
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                  />
                 </div>
-                <div className="font-instrument text-lg text-ink mt-2 leading-snug group-hover:text-[var(--brand)] transition-colors">
-                  {c.title}
+                <div className="p-5">
+                  <div className="text-[10px] uppercase tracking-[0.18em] text-[var(--accent-emerald)] font-mono-tech">
+                    {c.category}
+                  </div>
+                  <div className="font-instrument text-lg text-ink mt-2 leading-snug group-hover:text-[var(--brand)] transition-colors">
+                    {c.title}
+                  </div>
+                  <p className="text-sm text-ink-soft mt-2">{c.tagline}</p>
                 </div>
-                <p className="text-sm text-ink-soft mt-2">{c.tagline}</p>
               </Link>
             ))}
           </div>

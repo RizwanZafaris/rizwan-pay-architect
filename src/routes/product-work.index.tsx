@@ -2,7 +2,7 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { zodValidator, fallback } from "@tanstack/zod-adapter";
 import { z } from "zod";
 import { useMemo } from "react";
-import { caseStudies, type CaseStudy } from "@/data/caseStudies";
+import { caseStudies, caseStudyThumb, type CaseStudy } from "@/data/caseStudies";
 import { absUrl } from "@/lib/seo";
 
 const searchSchema = z.object({
@@ -195,42 +195,56 @@ function ProductWorkIndex() {
             key={c.slug}
             to="/product-work/$slug"
             params={{ slug: c.slug }}
-            className="group rounded-2xl border border-ink/10 bg-surface p-7 md:p-8 hover:border-ink/30 hover:-translate-y-0.5 transition-all duration-200 grid md:grid-cols-12 gap-6 items-start"
+            className="group rounded-2xl border border-ink/10 bg-surface overflow-hidden hover:border-ink/30 hover:-translate-y-0.5 transition-all duration-200 grid md:grid-cols-12 items-stretch"
           >
-            <div className="md:col-span-3">
-              <div className="text-[10px] uppercase tracking-[0.18em] text-[var(--accent-emerald)] font-mono-tech font-medium">
-                {c.category}
-              </div>
-              <div className="mt-2 font-mono-tech text-xs text-ink-soft">/0{i + 1}</div>
+            {/* Abstract symbolic thumb — Higgsfield-generated, brand-coherent. */}
+            <div className="md:col-span-4 relative aspect-[16/9] md:aspect-auto overflow-hidden border-b md:border-b-0 md:border-r border-rule">
+              <img
+                src={caseStudyThumb(c.slug)}
+                alt={c.imageAlt ?? `${c.title} — abstract editorial illustration`}
+                width={800}
+                height={450}
+                loading={i < 3 ? "eager" : "lazy"}
+                decoding="async"
+                className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+              />
             </div>
-            <div className="md:col-span-6">
-              <h2 className="font-instrument text-2xl text-ink group-hover:text-[var(--brand)] transition-colors leading-snug">
-                {c.title}
-              </h2>
-              <p className="text-sm text-ink-soft mt-2 leading-relaxed">{c.tagline}</p>
-              <div className="mt-4 flex flex-wrap gap-2">
-                {c.keywords.slice(0, 4).map((k) => (
-                  <span
-                    key={k}
-                    className="text-[10px] px-2 py-0.5 border border-rule rounded-full text-ink-soft bg-background font-mono-tech uppercase tracking-[0.1em]"
-                  >
-                    {k}
+            <div className="md:col-span-8 p-7 md:p-8 grid md:grid-cols-9 gap-5">
+              <div className="md:col-span-6">
+                <div className="flex items-center gap-3">
+                  <span className="text-[10px] uppercase tracking-[0.18em] text-[var(--accent-emerald)] font-mono-tech font-medium">
+                    {c.category}
                   </span>
-                ))}
+                  <span className="font-mono-tech text-xs text-ink-soft">/0{i + 1}</span>
+                </div>
+                <h2 className="mt-2 font-instrument text-2xl text-ink group-hover:text-[var(--brand)] transition-colors leading-snug">
+                  {c.title}
+                </h2>
+                <p className="text-sm text-ink-soft mt-2 leading-relaxed">{c.tagline}</p>
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {c.keywords.slice(0, 4).map((k) => (
+                    <span
+                      key={k}
+                      className="text-[10px] px-2 py-0.5 border border-rule rounded-full text-ink-soft bg-background font-mono-tech uppercase tracking-[0.1em]"
+                    >
+                      {k}
+                    </span>
+                  ))}
+                </div>
               </div>
-            </div>
-            <div className="md:col-span-3 flex md:justify-end">
-              <div className="flex gap-5 md:gap-6">
-                {c.metrics.slice(0, 2).map((m) => (
-                  <div key={m.label}>
-                    <div className="font-mono-tech text-base text-ink whitespace-nowrap">
-                      {m.value}
+              <div className="md:col-span-3 flex md:justify-end">
+                <div className="flex gap-5 md:gap-6">
+                  {c.metrics.slice(0, 2).map((m) => (
+                    <div key={m.label}>
+                      <div className="font-mono-tech text-base text-ink whitespace-nowrap">
+                        {m.value}
+                      </div>
+                      <div className="text-[10px] uppercase tracking-[0.1em] text-ink-soft font-mono-tech">
+                        {m.label}
+                      </div>
                     </div>
-                    <div className="text-[10px] uppercase tracking-[0.1em] text-ink-soft font-mono-tech">
-                      {m.label}
-                    </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
             </div>
           </Link>

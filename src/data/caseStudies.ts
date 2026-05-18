@@ -22,7 +22,14 @@ export type CaseStudy = {
   lessons: string[];
   whyItMatters: string;
   keywords: string[];
+  /** Alt text for the abstract symbolic hero image at /cs/<slug>.webp. */
+  imageAlt?: string;
 };
+
+// Hero image paths follow a strict convention so routes don't need to look
+// up the path from data — same slug, two sizes. See public/cs/.
+export const caseStudyHero = (slug: string) => `/cs/${slug}.webp`;
+export const caseStudyThumb = (slug: string) => `/cs/${slug}-thumb.webp`;
 
 export const caseStudies: CaseStudy[] = [
   {

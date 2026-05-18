@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { profile } from "@/data/profile";
-import { caseStudies } from "@/data/caseStudies";
+import { caseStudies, caseStudyThumb } from "@/data/caseStudies";
 import { posts, categories } from "@/data/posts";
 import { products } from "@/data/products";
 import { absUrl, SITE_URL } from "@/lib/seo";
@@ -81,7 +81,31 @@ function HomePage() {
     <div>
       {/* ============ HERO ============ */}
       <section className="relative overflow-hidden">
-        {/* Soft radial glows — sit BEHIND the content via z-0. */}
+        {/* Higgsfield-generated brand backdrop — flowing cyan network mesh on
+            deep charcoal. Sits behind everything, low opacity so it never
+            competes with the portrait or text. */}
+        <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
+          <img
+            src="/hero-bg.webp"
+            alt=""
+            aria-hidden="true"
+            width={2400}
+            height={1350}
+            loading="eager"
+            decoding="async"
+            className="h-full w-full object-cover opacity-50"
+          />
+          {/* Light tint over the backdrop so the page background colour shows
+              through. Keeps the hero feeling like the rest of the site. */}
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                "linear-gradient(180deg, color-mix(in oklab, var(--background) 60%, transparent) 0%, color-mix(in oklab, var(--background) 90%, transparent) 100%)",
+            }}
+          />
+        </div>
+        {/* Brand-cyan accent glows — kept on top of the backdrop for depth. */}
         <div
           aria-hidden
           className="pointer-events-none absolute -top-32 -left-32 h-[520px] w-[520px] rounded-full opacity-50 blur-[140px]"
@@ -650,27 +674,35 @@ function HomePage() {
                     params={{ slug: c.slug }}
                     className="group relative rounded-3xl border border-rule bg-card p-6 hover:-translate-y-1 transition-all duration-300 hover:shadow-[0_25px_50px_-25px_color-mix(in_oklab,var(--brand)_50%,transparent)] flex flex-col h-full"
                   >
-                    {/* Art-directed card hero: oversized number stat in display
-                        serif as the artwork, not gradient noise. */}
-                    <div
-                      className="aspect-[5/3] rounded-2xl mb-5 relative overflow-hidden bg-ink"
-                      style={{
-                        backgroundImage: `radial-gradient(${110 + i * 40}% 80% at ${i * 50}% 100%, color-mix(in oklab, var(--brand) ${22 + i * 6}%, transparent), transparent 60%)`,
-                      }}
-                    >
-                      <div
-                        className="absolute inset-0 bg-noise opacity-25 mix-blend-overlay"
-                        aria-hidden
+                    {/* Card hero: Higgsfield-generated brand-coherent thumb
+                        with the strongest metric overlaid in display serif. */}
+                    <div className="aspect-[5/3] rounded-2xl mb-5 relative overflow-hidden bg-ink">
+                      <img
+                        src={caseStudyThumb(c.slug)}
+                        alt={c.imageAlt ?? `${c.title} — abstract editorial illustration`}
+                        width={800}
+                        height={450}
+                        loading="lazy"
+                        decoding="async"
+                        className="absolute inset-0 h-full w-full object-cover opacity-90 transition-transform duration-500 group-hover:scale-[1.04]"
                       />
-                      <div className="absolute top-3 left-4 font-mono-tech text-[10px] tracking-[0.18em] text-background/95 uppercase">
+                      {/* Dark gradient overlay so the stat reads cleanly. */}
+                      <div
+                        className="absolute inset-0"
+                        style={{
+                          background:
+                            "linear-gradient(180deg, color-mix(in oklab, #000 30%, transparent) 0%, transparent 35%, color-mix(in oklab, #000 70%, transparent) 100%)",
+                        }}
+                      />
+                      <div className="absolute top-3 left-4 z-10 font-mono-tech text-[10px] tracking-[0.18em] text-background/95 uppercase">
                         ◆ Case study /0{i + 1}
                       </div>
                       {heroStat && (
-                        <div className="absolute inset-0 flex flex-col items-center justify-center px-4 text-center pointer-events-none">
-                          <div className="font-instrument italic text-background text-4xl md:text-5xl lg:text-6xl leading-none tracking-tight">
+                        <div className="absolute inset-x-0 bottom-3 z-10 flex flex-col items-center text-center px-4 pointer-events-none">
+                          <div className="font-instrument italic text-background text-4xl md:text-5xl leading-none tracking-tight drop-shadow-lg">
                             {heroStat.value}
                           </div>
-                          <div className="mt-3 text-[9px] uppercase tracking-[0.22em] text-background/80 font-mono-tech">
+                          <div className="mt-2 text-[9px] uppercase tracking-[0.22em] text-background/80 font-mono-tech">
                             {heroStat.label}
                           </div>
                         </div>
