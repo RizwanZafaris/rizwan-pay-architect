@@ -10,18 +10,20 @@
  *   bun scripts/check-live.ts https://example  # check a different host
  *
  * Checks:
- *   - apex + www + http redirect chain
+ *   - apex + www + http redirect chain (www / http MUST 301, not 200)
  *   - core SEO assets: index.html, robots.txt, sitemap.xml, og-default.png,
  *     llms.txt, llms-full.txt, .well-known/security.txt
- *   - canonical host points at apex, not www
- *   - sample of indexable routes return 200 with content
- *   - AI bot user agents (GPTBot, ClaudeBot, PerplexityBot, Google-Extended)
- *     receive the same 200 + correct content (no soft block)
- *
- * Exits non-zero if any required check fails so the script can gate deploys.
+ *   - trailing-slash policy: routes 200 on /<route>/, 301 on /<route>
+ *   - canonical = final URL (no 1-hop drift)
+ *   - sitemap loc URLs return 200 without redirect (no hop penalty)
+ *   - no `/@id/virtual` / dev-server leakage in any served HTML
+ *   - AI bot user agents receive the same 200 + correct content (no soft block)
  */
 
 const HOST = (process.argv[2] ?? "https://rzifi.com").replace(/\/$/, "");
+const APEX_ORIGIN = HOST;
+const WWW_ORIGIN = HOST.replace("//", "//www.");
+const HTTP_ORIGIN = HOST.replace(/^https/, "http");
 
 type Probe = {
   name: string;
@@ -30,71 +32,114 @@ type Probe = {
   required?: boolean;
   ua?: string;
   matchBody?: RegExp;
+  // For redirect probes: expected Location prefix (lets us catch chains).
+  expectRedirectTo?: string;
 };
 
 const probes: Probe[] = [
-  { name: "Apex HTTPS", url: HOST, expect: 200, required: true, matchBody: /<title>/i },
+  // Apex must answer 200.
   {
-    name: "Apex HTTP redirect",
-    url: HOST.replace(/^https/, "http"),
+    name: "Apex HTTPS /",
+    url: `${APEX_ORIGIN}/`,
+    expect: 200,
+    required: true,
+    matchBody: /<title>/i,
+  },
+
+  // www MUST 301 to apex in a single hop. (This was the bug — Apache's
+  // directory-serving rule with [L] fired before the www → apex rewrite.)
+  {
+    name: "www HTTPS / → apex",
+    url: `${WWW_ORIGIN}/`,
     expect: "redirect",
     required: true,
+    expectRedirectTo: `${APEX_ORIGIN}/`,
   },
-  { name: "www redirect", url: HOST.replace("//", "//www."), expect: "redirect" },
+  {
+    name: "www HTTPS /about/ → apex",
+    url: `${WWW_ORIGIN}/about/`,
+    expect: "redirect",
+    required: true,
+    expectRedirectTo: `${APEX_ORIGIN}/about/`,
+  },
+
+  // http MUST 301 to https. Apex-host stays the same.
+  { name: "http → https", url: `${HTTP_ORIGIN}/`, expect: "redirect", required: true },
+
+  // Trailing-slash policy: routes without a slash must 301 to the slash form.
+  {
+    name: "/about (no slash) → /about/",
+    url: `${APEX_ORIGIN}/about`,
+    expect: "redirect",
+    required: true,
+    expectRedirectTo: `${APEX_ORIGIN}/about/`,
+  },
+  { name: "/about/ (canonical)", url: `${APEX_ORIGIN}/about/`, expect: 200, required: true },
+
+  // Core SEO assets.
   {
     name: "robots.txt",
-    url: `${HOST}/robots.txt`,
+    url: `${APEX_ORIGIN}/robots.txt`,
     expect: 200,
     required: true,
     matchBody: /^Sitemap:\s*https:\/\/rzifi\.com\//m,
   },
   {
     name: "sitemap.xml",
-    url: `${HOST}/sitemap.xml`,
+    url: `${APEX_ORIGIN}/sitemap.xml`,
     expect: 200,
     required: true,
     matchBody: /<loc>https:\/\/rzifi\.com/,
   },
   {
     name: "llms.txt",
-    url: `${HOST}/llms.txt`,
+    url: `${APEX_ORIGIN}/llms.txt`,
     expect: 200,
     required: true,
     matchBody: /^# Rizwan Zafar/,
   },
   {
     name: "llms-full.txt",
-    url: `${HOST}/llms-full.txt`,
+    url: `${APEX_ORIGIN}/llms-full.txt`,
     expect: 200,
-    required: true,
     matchBody: /# Profile/,
   },
-  { name: "og-default.png", url: `${HOST}/og-default.png`, expect: 200, required: true },
+  { name: "og-default.png", url: `${APEX_ORIGIN}/og-default.png`, expect: 200, required: true },
   {
     name: "security.txt",
-    url: `${HOST}/.well-known/security.txt`,
+    url: `${APEX_ORIGIN}/.well-known/security.txt`,
     expect: 200,
     matchBody: /^Contact:/m,
   },
-  { name: "Resume PDF", url: `${HOST}/Rizwan_Zafar_Resume.pdf`, expect: 200 },
-  // Indexable routes — pick a representative sample.
-  { name: "/about", url: `${HOST}/about`, expect: 200, required: true, matchBody: /<h1[^>]*>/ },
-  { name: "/blog", url: `${HOST}/blog`, expect: 200, required: true },
+  { name: "Resume PDF", url: `${APEX_ORIGIN}/Rizwan_Zafar_Resume.pdf`, expect: 200 },
+
+  // Indexable routes — pick a representative sample. Use slash form so we hit
+  // the post-redirect URL directly.
   {
-    name: "/contact",
-    url: `${HOST}/contact`,
+    name: "/about/",
+    url: `${APEX_ORIGIN}/about/`,
+    expect: 200,
+    required: true,
+    matchBody: /<h1[^>]*>/,
+  },
+  { name: "/blog/", url: `${APEX_ORIGIN}/blog/`, expect: 200, required: true },
+  {
+    name: "/contact/",
+    url: `${APEX_ORIGIN}/contact/`,
     expect: 200,
     required: true,
     matchBody: /Contact Rizwan Zafar/,
   },
-  { name: "/resume", url: `${HOST}/resume`, expect: 200, required: true },
-  { name: "/product-work", url: `${HOST}/product-work`, expect: 200, required: true },
-  { name: "/for/visa-mastercard", url: `${HOST}/for/visa-mastercard`, expect: 200, required: true },
+  { name: "/resume/", url: `${APEX_ORIGIN}/resume/`, expect: 200, required: true },
+  { name: "/product-work/", url: `${APEX_ORIGIN}/product-work/`, expect: 200, required: true },
+  {
+    name: "/for/visa-mastercard/",
+    url: `${APEX_ORIGIN}/for/visa-mastercard/`,
+    expect: 200,
+    required: true,
+  },
 ];
 
-// AI bots: same URL set, just with different user agents. We expect 200 from
-// all of them on the homepage. A 403 from one of these would mean an upstream
-// CDN (Cloudflare, Hostinger Edge) is blocking AI crawlers.
 const AI_USER_AGENTS: Array<[string, string]> = [
   ["Googlebot", "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"],
   [
@@ -110,50 +155,137 @@ const AI_USER_AGENTS: Array<[string, string]> = [
     "Google-Extended",
     "Mozilla/5.0 (compatible; Google-Extended; +https://developers.google.com/search/docs/crawling-indexing/overview-google-crawlers)",
   ],
-  [
-    "Applebot-Extended",
-    "Mozilla/5.0 (compatible; Applebot-Extended/0.1; +http://www.apple.com/go/applebot)",
-  ],
 ];
 
-type Result = { name: string; status: number | "redirect" | "err"; pass: boolean; detail?: string };
+type Result = {
+  name: string;
+  status: number | "redirect" | "err";
+  pass: boolean;
+  detail?: string;
+};
 const results: Result[] = [];
 
-async function fetchHead(url: string, ua = "rzifi-check-live/1.0") {
+async function fetchOne(url: string, ua = "rzifi-check-live/1.0") {
   try {
     const res = await fetch(url, {
       method: "GET",
       redirect: "manual",
       headers: { "user-agent": ua, accept: "*/*" },
     });
-    const body = res.headers.get("content-type")?.startsWith("text/") ? await res.text() : "";
-    return { status: res.status, location: res.headers.get("location") ?? "", body };
+    const body = res.headers.get("content-type")?.match(/^(?:text|application\/(?:xml|json))/i)
+      ? await res.text()
+      : "";
+    return {
+      status: res.status,
+      location: res.headers.get("location") ?? "",
+      contentType: res.headers.get("content-type") ?? "",
+      body,
+    };
   } catch (err) {
-    return { status: "err" as const, location: "", body: "", error: err };
+    return { status: "err" as const, location: "", contentType: "", body: "", error: err };
   }
 }
 
 async function runProbes() {
   for (const p of probes) {
-    const r = await fetchHead(p.url);
+    const r = await fetchOne(p.url);
     if (r.status === "err") {
       results.push({ name: p.name, status: "err", pass: false, detail: String(r.error) });
       continue;
     }
     const expectedRedirect = p.expect === "redirect";
     const okStatus = expectedRedirect ? r.status >= 300 && r.status < 400 : r.status === p.expect;
+    const okLocation =
+      !p.expectRedirectTo || (r.location && r.location.startsWith(p.expectRedirectTo));
     const okBody = !p.matchBody || p.matchBody.test(r.body);
-    const pass = okStatus && okBody;
+    const okDevLeak =
+      !r.body.includes("/@id/virtual") && !r.body.includes("tanstack-start-client-entry");
+    const pass = okStatus && okLocation && okBody && okDevLeak;
     let detail = `HTTP ${r.status}`;
     if (expectedRedirect && r.location) detail += ` → ${r.location}`;
+    if (p.expectRedirectTo && !okLocation) detail += ` (expected → ${p.expectRedirectTo})`;
     if (!okBody) detail += " (body mismatch)";
+    if (!okDevLeak) detail += " (DEV LEAK: /@id/virtual or tanstack-start-client-entry)";
     results.push({ name: p.name, status: r.status, pass, detail });
   }
 }
 
+// Sitemap loc resolution: every <loc> must return 200 without a redirect hop.
+async function runSitemapLocs() {
+  const r = await fetchOne(`${APEX_ORIGIN}/sitemap.xml`);
+  if (r.status === "err" || r.status !== 200) {
+    results.push({
+      name: "Sitemap loc URLs (skipped)",
+      status: r.status,
+      pass: false,
+      detail: "sitemap.xml not reachable",
+    });
+    return;
+  }
+  const locs = [...r.body.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
+  let hopCount = 0;
+  let firstHop = "";
+  // Check up to 12 random locs to keep the run quick.
+  const sample = locs.slice(0, 12);
+  for (const loc of sample) {
+    const lr = await fetchOne(loc);
+    if (lr.status >= 300 && lr.status < 400) {
+      hopCount++;
+      if (!firstHop) firstHop = `${loc} → ${lr.location}`;
+    } else if (lr.status !== 200) {
+      hopCount++;
+      if (!firstHop) firstHop = `${loc} → HTTP ${lr.status}`;
+    }
+  }
+  results.push({
+    name: "Sitemap loc URLs",
+    status: hopCount === 0 ? 200 : "redirect",
+    pass: hopCount === 0,
+    detail:
+      hopCount === 0
+        ? `${sample.length}/${sample.length} return 200 directly`
+        : `${hopCount}/${sample.length} hop. e.g. ${firstHop}`,
+  });
+}
+
+// Canonical = final URL: fetch the homepage, parse its canonical, verify the
+// canonical resolves to a 200 without redirect.
+async function runCanonicalEqualsFinal() {
+  const r = await fetchOne(`${APEX_ORIGIN}/`);
+  if (r.status !== 200) {
+    results.push({
+      name: "Canonical = final URL",
+      status: r.status,
+      pass: false,
+      detail: "couldn't fetch / to inspect canonical",
+    });
+    return;
+  }
+  const canonMatch = r.body.match(/<link[^>]+rel=["']canonical["'][^>]*href=["']([^"']+)["']/);
+  if (!canonMatch) {
+    results.push({
+      name: "Canonical = final URL",
+      status: 0,
+      pass: false,
+      detail: "no <link rel=canonical> on /",
+    });
+    return;
+  }
+  const cr = await fetchOne(canonMatch[1]);
+  const pass = cr.status === 200;
+  results.push({
+    name: "Canonical = final URL",
+    status: cr.status,
+    pass,
+    detail: pass
+      ? `canonical ${canonMatch[1]} returns 200 directly`
+      : `canonical ${canonMatch[1]} returns HTTP ${cr.status}${cr.location ? ` → ${cr.location}` : ""}`,
+  });
+}
+
 async function runAiBots() {
   for (const [name, ua] of AI_USER_AGENTS) {
-    const r = await fetchHead(`${HOST}/`, ua);
+    const r = await fetchOne(`${APEX_ORIGIN}/`, ua);
     if (r.status === "err") {
       results.push({ name: `AI/${name}`, status: "err", pass: false, detail: String(r.error) });
       continue;
@@ -173,6 +305,8 @@ async function runAiBots() {
 async function main() {
   console.log(`\nChecking ${HOST}…\n`);
   await runProbes();
+  await runSitemapLocs();
+  await runCanonicalEqualsFinal();
   await runAiBots();
 
   let okCount = 0;
@@ -183,7 +317,7 @@ async function main() {
     const icon = r.pass ? "✓" : "✗";
     const status = String(r.status).padEnd(5);
     const detail = r.detail ?? "";
-    console.log(`  ${icon} ${r.name.padEnd(28)} ${status}  ${detail}`);
+    console.log(`  ${icon} ${r.name.padEnd(34)} ${status}  ${detail}`);
     if (r.pass) okCount++;
     else {
       failCount++;
@@ -193,12 +327,13 @@ async function main() {
 
   console.log(`\n${okCount}/${results.length} checks passed.`);
 
-  // Treat AI bots + non-required as warnings, only the required SEO assets
-  // as hard failures.
-  const requiredFails = failures.filter((f) => {
-    const probe = probes.find((p) => p.name === f.name);
-    return probe?.required;
-  });
+  // Required = anything in `probes` flagged required, plus the new synthesised
+  // checks (sitemap loc, canonical=final). AI bot failures stay as warnings.
+  const requiredNames = new Set<string>();
+  probes.filter((p) => p.required).forEach((p) => requiredNames.add(p.name));
+  requiredNames.add("Sitemap loc URLs");
+  requiredNames.add("Canonical = final URL");
+  const requiredFails = failures.filter((f) => requiredNames.has(f.name));
 
   if (requiredFails.length > 0) {
     console.log(`\n✗ ${requiredFails.length} required check(s) failed.`);

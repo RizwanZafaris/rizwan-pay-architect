@@ -7,7 +7,7 @@ import {
   getCaseStudy,
   type CaseStudy,
 } from "@/data/caseStudies";
-import { absUrl, SITE_URL } from "@/lib/seo";
+import { absUrl, SITE_URL, titleFor, trimToMax } from "@/lib/seo";
 import { DiagramFigure, caseStudyDiagrams } from "@/components/diagrams/Diagrams";
 import { ctaClick, resumeDownload, trackEvent } from "@/lib/analytics";
 import { AnimatedMetric } from "@/components/motion/AnimatedMetric";
@@ -24,10 +24,12 @@ export const Route = createFileRoute("/product-work/$slug")({
     const s = loaderData?.study;
     if (!s) return { meta: [{ title: "Case Study" }] };
     const url = absUrl(`/product-work/${params.slug}`);
+    const titleTag = titleFor(s.title);
+    const metaDescription = trimToMax(s.tagline, 160);
     return {
       meta: [
-        { title: `${s.title} | Rizwan Zafar` },
-        { name: "description", content: s.tagline },
+        { title: titleTag },
+        { name: "description", content: metaDescription },
         { name: "keywords", content: s.keywords.join(", ") },
         { property: "og:title", content: s.title },
         { property: "og:description", content: s.tagline },

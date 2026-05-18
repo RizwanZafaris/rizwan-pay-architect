@@ -61,6 +61,12 @@ const files = readdirSync(BLOG_DIR)
 type Post = {
   slug: string;
   title: string;
+  /**
+   * SEO-optimized title (frontmatter `metaTitle`). Used for the <title>
+   * tag and og:title; the route renders `title` for the H1 and card UI.
+   * Optional — falls back to a trimmed `title + " | Rizwan Zafar"`.
+   */
+  metaTitle?: string;
   date: string;
   category: string;
   readingTime: string;
@@ -83,6 +89,7 @@ const posts: Post[] = files.map((f) => {
   return {
     slug: data.slug || f.replace(/\.md$/, ""),
     title: data.title || "Untitled",
+    metaTitle: data.metaTitle || undefined,
     date: data.publishDate || data.date || "2026-01-01",
     category: categoryAlias[rawCat] || rawCat,
     readingTime: data.readingTime || "8 min read",
@@ -123,6 +130,9 @@ const metaHeader = `// AUTO-GENERATED from content/blog/*.md by scripts/generate
 export type Post = {
   slug: string;
   title: string;
+  /** SEO-tightened title from frontmatter \`metaTitle\` (kept under 60 chars).
+   *  Falls back to \`title\` + brand suffix when undefined. */
+  metaTitle?: string;
   date: string;
   category: string;
   readingTime: string;

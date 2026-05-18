@@ -7,11 +7,11 @@ export const Route = createFileRoute("/resume")({
     const url = absUrl("/resume");
     return {
       meta: [
-        { title: "Resume | Rizwan Zafar, Payments Product Executive (Dubai)" },
+        { title: "Resume | Rizwan Zafar, Product & Program Executive" },
         {
           name: "description",
           content:
-            "Resume of Rizwan Zafar, Product & Program Executive scaling fintech infrastructure in complex markets. 14+ years; 8+ years building regulated payment infrastructure at $1B+ GTV across 7 markets, 50+ bank, wallet and FI partners.",
+            "Executive resume — Product & Program leader in fintech: 14+ years, $1B+ GTV, 25M+ monthly transactions, 7 markets, 50+ FI partners. Dubai.",
         },
         { property: "og:title", content: "Resume — Rizwan Zafar, Payments Product Executive" },
         {

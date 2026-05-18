@@ -4,7 +4,7 @@ import { caseStudies } from "@/data/caseStudies";
 import { posts } from "@/data/posts";
 import { audiences } from "@/data/hubs";
 import { products } from "@/data/products";
-import { SITE_URL } from "@/lib/seo";
+import { absUrl } from "@/lib/seo";
 
 export const Route = createFileRoute("/sitemap.xml")({
   server: {
@@ -40,10 +40,12 @@ export const Route = createFileRoute("/sitemap.xml")({
           ...caseStudies.map((c) => `/product-work/${c.slug}`),
           ...posts.map((p) => `/blog/${p.slug}`),
         ];
+        // Use absUrl() so every loc has the trailing slash Apache redirects to
+        // — no 301 hops on sitemap fetches.
         const urls = paths
           .map(
             (p) =>
-              `  <url><loc>${SITE_URL}${p}</loc><lastmod>${todayIso}</lastmod><changefreq>weekly</changefreq></url>`,
+              `  <url><loc>${absUrl(p)}</loc><lastmod>${todayIso}</lastmod><changefreq>weekly</changefreq></url>`,
           )
           .join("\n");
         const xml = `<?xml version="1.0" encoding="UTF-8"?>

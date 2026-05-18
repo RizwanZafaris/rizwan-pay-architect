@@ -21,11 +21,11 @@ const profilePageJsonLd = {
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Rizwan Zafar — Product & Program Executive | Fintech, Dubai" },
+      { title: "Rizwan Zafar | Product & Program Executive, Fintech" },
       {
         name: "description",
         content:
-          "Product & Program Executive scaling fintech infrastructure in complex markets. CPO at Simpaisa, Dubai: $1B+ GTV, 25M+ monthly transactions, 7 markets, 50+ bank, wallet and financial institution partners. Used by TikTok, Uber, Temu, MoneyGram, InDrive.",
+          "Product & Program Executive scaling fintech infrastructure in complex markets: $1B+ GTV, 25M+ monthly transactions, 7 markets, 50+ FI partners. Dubai.",
       },
       {
         property: "og:title",
@@ -222,9 +222,12 @@ function HomePage() {
               </a>
             </div>
 
-            {/* Used-by — small trust strip directly under the CTAs. */}
+            {/* Used-by — small trust strip directly under the CTAs.
+                Wording is intentionally precise: the platforms below are
+                enterprise customers of the Simpaisa infrastructure I helped
+                scale, not direct projects I owned end-to-end. */}
             <p className="mt-3 text-[10px] text-ink-soft font-mono-tech uppercase tracking-[0.18em] leading-relaxed">
-              <span className="opacity-70">Used in production by</span>{" "}
+              <span className="opacity-70">Infrastructure used by enterprise platforms incl.</span>{" "}
               <span className="text-ink">TikTok</span>
               <span className="opacity-40 mx-1">·</span>
               <span className="text-ink">Uber</span>
@@ -234,8 +237,6 @@ function HomePage() {
               <span className="text-ink">MoneyGram</span>
               <span className="opacity-40 mx-1">·</span>
               <span className="text-ink">InDrive</span>
-              <span className="opacity-40 mx-1">·</span>
-              <span className="text-ink">PUBG</span>
             </p>
           </div>
 

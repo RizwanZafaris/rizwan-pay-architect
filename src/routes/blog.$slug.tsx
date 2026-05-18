@@ -2,7 +2,7 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { useEffect } from "react";
 import { getPost, getRelated, type Post } from "@/data/posts";
 import { profile } from "@/data/profile";
-import { absUrl, SITE_URL, OG_IMAGE_URL } from "@/lib/seo";
+import { absUrl, SITE_URL, OG_IMAGE_URL, titleFor, trimToMax } from "@/lib/seo";
 import { DiagramFigure, postDiagrams } from "@/components/diagrams/Diagrams";
 import { trackEvent } from "@/lib/analytics";
 import { marked } from "marked";
@@ -104,10 +104,18 @@ export const Route = createFileRoute("/blog/$slug")({
     if (faqJsonLd)
       scripts.push({ type: "application/ld+json", children: JSON.stringify(faqJsonLd) });
 
+    // Use frontmatter `metaTitle` if it fits, else append the brand suffix
+    // when the title is short enough, else smart-truncate.
+    const titleTag = titleFor(p.title, { meta: p.metaTitle });
+    // Meta description must stay under 160 chars (Google snippet truncation).
+    // Many frontmatter `metaDescription`s exceed that — smart-trim here so
+    // we don't have to hand-edit 55 markdown files.
+    const metaDescription = trimToMax(p.description, 160);
+
     return {
       meta: [
-        { title: `${p.title} | Rizwan Zafar` },
-        { name: "description", content: p.description },
+        { title: titleTag },
+        { name: "description", content: metaDescription },
         { name: "keywords", content: p.tags.join(", ") },
         { property: "og:title", content: p.title },
         { property: "og:description", content: p.description },

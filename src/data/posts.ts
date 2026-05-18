@@ -4,6 +4,9 @@
 export type Post = {
   slug: string;
   title: string;
+  /** SEO-tightened title from frontmatter `metaTitle` (kept under 60 chars).
+   *  Falls back to `title` + brand suffix when undefined. */
+  metaTitle?: string;
   date: string;
   category: string;
   readingTime: string;
@@ -30,6 +33,7 @@ export const posts: Post[] = [
   {
     slug: "swift-compliance-checklist-for-banks-and-fintechs",
     title: "A SWIFT Compliance Checklist for Banks and Fintechs",
+    metaTitle: "SWIFT Compliance Checklist for Banks and Fintechs | Rizwan Zafar",
     date: "2026-07-17",
     category: "Cross-Border Payments",
     readingTime: "7 min read",
@@ -42,6 +46,7 @@ export const posts: Post[] = [
   {
     slug: "swift-for-emerging-markets-banking",
     title: "The Role of SWIFT in Emerging-Markets Banking",
+    metaTitle: "The Role of SWIFT in Emerging-Markets Banking | Rizwan Zafar",
     date: "2026-07-14",
     category: "Cross-Border Payments",
     readingTime: "8 min read",
@@ -54,6 +59,7 @@ export const posts: Post[] = [
   {
     slug: "swift-messaging-formats-mt-vs-mx",
     title: "SWIFT Messaging Formats: MT vs MX (and Why It Matters Now)",
+    metaTitle: "SWIFT Messaging Formats: MT vs MX | Rizwan Zafar",
     date: "2026-07-10",
     category: "Cross-Border Payments",
     readingTime: "7 min read",
@@ -66,6 +72,7 @@ export const posts: Post[] = [
   {
     slug: "swift-and-cryptocurrency-the-honest-take",
     title: "SWIFT and Cryptocurrency: The Honest Take",
+    metaTitle: "SWIFT and Cryptocurrency: The Honest Take | Rizwan Zafar",
     date: "2026-07-07",
     category: "Cross-Border Payments",
     readingTime: "8 min read",
@@ -78,6 +85,7 @@ export const posts: Post[] = [
   {
     slug: "tracking-a-swift-payment-step-by-step",
     title: "How to Track a SWIFT Payment Step by Step",
+    metaTitle: "How to Track a SWIFT Payment Step by Step | Rizwan Zafar",
     date: "2026-07-03",
     category: "Cross-Border Payments",
     readingTime: "6 min read",
@@ -90,6 +98,7 @@ export const posts: Post[] = [
   {
     slug: "swift-in-2026-trends-to-watch",
     title: "SWIFT in 2026: ISO 20022, Instant Rails, and the Pressure on Correspondent Banking",
+    metaTitle: "SWIFT in 2026: Trends to Watch | Rizwan Zafar",
     date: "2026-06-30",
     category: "Cross-Border Payments",
     readingTime: "8 min read",
@@ -102,6 +111,7 @@ export const posts: Post[] = [
   {
     slug: "swift-payment-delays-what-actually-causes-them",
     title: "SWIFT Payment Delays: What Actually Causes Them",
+    metaTitle: "SWIFT Payment Delays: What Causes Them | Rizwan Zafar",
     date: "2026-06-26",
     category: "Cross-Border Payments",
     readingTime: "7 min read",
@@ -114,6 +124,7 @@ export const posts: Post[] = [
   {
     slug: "swift-fees-fx-and-the-true-cost-of-cross-border",
     title: "SWIFT Fees, FX, and the True Cost of a Cross-Border Payment",
+    metaTitle: "SWIFT Fees, FX, and True Cost of Cross-Border Payments | Rizwan Zafar",
     date: "2026-06-23",
     category: "Cross-Border Payments",
     readingTime: "8 min read",
@@ -126,6 +137,7 @@ export const posts: Post[] = [
   {
     slug: "correspondent-banking-and-emerging-market-corridors",
     title: "Correspondent Banking and the Reality of Emerging-Market Corridors",
+    metaTitle: "Correspondent Banking in Emerging-Market Corridors | Rizwan Zafar",
     date: "2026-06-19",
     category: "Cross-Border Payments",
     readingTime: "9 min read",
@@ -144,6 +156,7 @@ export const posts: Post[] = [
   {
     slug: "swift-vs-card-rails-vs-local-wallets",
     title: "SWIFT vs Card Rails vs Local Wallets: When to Use What",
+    metaTitle: "SWIFT vs Card Rails vs Local Wallets | Rizwan Zafar",
     date: "2026-06-16",
     category: "Cross-Border Payments",
     readingTime: "9 min read",
@@ -156,6 +169,7 @@ export const posts: Post[] = [
   {
     slug: "swift-aml-cft-sanctions-screening",
     title: "SWIFT, AML/CFT, and Sanctions Screening in Practice",
+    metaTitle: "SWIFT AML/CFT and Sanctions Screening in Practice | Rizwan Zafar",
     date: "2026-06-12",
     category: "Cross-Border Payments",
     readingTime: "9 min read",
@@ -168,6 +182,7 @@ export const posts: Post[] = [
   {
     slug: "swift-gpi-tracking-and-the-end-of-payment-uncertainty",
     title: "SWIFT gpi, Tracking, and the End of Payment Uncertainty",
+    metaTitle: "SWIFT gpi and End-to-End Payment Tracking | Rizwan Zafar",
     date: "2026-06-09",
     category: "Cross-Border Payments",
     readingTime: "8 min read",
@@ -180,6 +195,7 @@ export const posts: Post[] = [
   {
     slug: "iso-20022-migration-what-product-teams-must-know",
     title: "ISO 20022 Migration: What Payment Product Teams Must Know",
+    metaTitle: "ISO 20022 Migration for Product Teams | Rizwan Zafar",
     date: "2026-06-05",
     category: "Cross-Border Payments",
     readingTime: "10 min read",
@@ -192,6 +208,7 @@ export const posts: Post[] = [
   {
     slug: "swift-vs-wire-transfer",
     title: "SWIFT Payment vs Wire Transfer: Key Differences",
+    metaTitle: "SWIFT Payment vs Wire Transfer: Key Differences | Rizwan Zafar",
     date: "2026-06-03",
     category: "Cross-Border Payments",
     readingTime: "7 min read",
@@ -204,6 +221,7 @@ export const posts: Post[] = [
   {
     slug: "swift-payment-explained",
     title: "How SWIFT Payment Works: A Complete Overview",
+    metaTitle: "How SWIFT Payment Works (2026) | Rizwan Zafar",
     date: "2026-06-02",
     category: "Cross-Border Payments",
     readingTime: "9 min read",
@@ -217,6 +235,7 @@ export const posts: Post[] = [
   {
     slug: "sanctions-screening-without-killing-throughput",
     title: "Sanctions Screening Without Killing Throughput",
+    metaTitle: "Sanctions Screening Without Killing Throughput | Rizwan Zafar",
     date: "2026-06-01",
     category: "Fraud & Risk",
     readingTime: "8 min read",
@@ -229,6 +248,7 @@ export const posts: Post[] = [
   {
     slug: "aml-cft-rules-vs-models",
     title: "AML/CFT: Rules vs Models, and Why You Need Both",
+    metaTitle: "AML/CFT: Rules vs Models, and Why You Need Both | Rizwan Zafar",
     date: "2026-05-31",
     category: "Fraud & Risk",
     readingTime: "9 min read",
@@ -241,6 +261,7 @@ export const posts: Post[] = [
   {
     slug: "emerging-markets-pressure-test-payments",
     title: "How Emerging Markets Pressure-Test Payment Product Strategy",
+    metaTitle: "How Emerging Markets Pressure-Test Payment Strategy | Rizwan Zafar",
     date: "2026-05-31",
     category: "Emerging Markets",
     readingTime: "10 min read",
@@ -253,6 +274,7 @@ export const posts: Post[] = [
   {
     slug: "pci-dss-iso-27001-program-leadership",
     title: "PCI DSS and ISO 27001 as Product Programs",
+    metaTitle: "Leading PCI DSS and ISO 27001 Programs from Scratch | Rizwan Zafar",
     date: "2026-05-30",
     category: "Fraud & Risk",
     readingTime: "10 min read",
@@ -265,6 +287,7 @@ export const posts: Post[] = [
   {
     slug: "chargebacks-product-problem",
     title: "Chargebacks Are a Product Problem",
+    metaTitle: "Chargebacks Are a Product Problem, Not an Ops Cost | Rizwan Zafar",
     date: "2026-05-29",
     category: "Fraud & Risk",
     readingTime: "8 min read",
@@ -276,6 +299,7 @@ export const posts: Post[] = [
   {
     slug: "payment-cost-50-to-1",
     title: "Payment Cost Is a Product Variable: From 50% to 1% (Tapmad Migration Playbook)",
+    metaTitle: "Payment Cost: From 50% to 1% | Rizwan Zafar",
     date: "2026-05-29",
     category: "Product Strategy",
     readingTime: "11 min read",
@@ -289,6 +313,7 @@ export const posts: Post[] = [
   {
     slug: "layered-fraud-controls-payments-stack",
     title: "Layered Fraud Controls in the Payments Stack",
+    metaTitle: "Layered Fraud Controls in the Payments Stack | Rizwan Zafar",
     date: "2026-05-28",
     category: "Fraud & Risk",
     readingTime: "9 min read",
@@ -301,6 +326,7 @@ export const posts: Post[] = [
   {
     slug: "kyc-conversion-designed-together",
     title: "KYC and Conversion Designed Together",
+    metaTitle: "KYC and Conversion Designed Together | Rizwan Zafar",
     date: "2026-05-27",
     category: "Merchant Onboarding",
     readingTime: "8 min read",
@@ -313,6 +339,7 @@ export const posts: Post[] = [
   {
     slug: "local-payment-methods-developer-experience",
     title: "Why Local Payment Methods Are a Developer-Experience Problem",
+    metaTitle: "Local Payment Methods Are DX Problems | Rizwan Zafar",
     date: "2026-05-27",
     category: "Payment Infrastructure",
     readingTime: "10 min read",
@@ -325,6 +352,7 @@ export const posts: Post[] = [
   {
     slug: "cross-border-corridors-are-operating-systems",
     title: "Cross-Border Corridors Are Operating Systems, Not Routes",
+    metaTitle: "Cross-Border Payment Corridors Are Operating Systems | Rizwan Zafar",
     date: "2026-05-26",
     category: "Cross-Border Payments",
     readingTime: "11 min read",
@@ -338,6 +366,7 @@ export const posts: Post[] = [
   {
     slug: "financial-controls-are-product-requirements",
     title: "Financial Controls Are Product Requirements, Not Compliance Afterthoughts",
+    metaTitle: "Financial Controls Are Product Requirements | Rizwan Zafar",
     date: "2026-05-26",
     category: "Settlement & Reconciliation",
     readingTime: "9 min read",
@@ -357,6 +386,7 @@ export const posts: Post[] = [
   {
     slug: "onboarding-conversion-vs-default-rate-tradeoff",
     title: "Onboarding Conversion vs. Default Rate: The Real Tradeoff",
+    metaTitle: "Merchant Onboarding Conversion vs Default Rate Tradeoff | Rizwan Zafar",
     date: "2026-05-26",
     category: "Merchant Onboarding",
     readingTime: "8 min read",
@@ -369,6 +399,7 @@ export const posts: Post[] = [
   {
     slug: "risk-tiering-merchants-product-decision",
     title: "Risk Tiering Merchants Is a Product Decision",
+    metaTitle: "Risk Tiering Merchants Is a Product Decision | Rizwan Zafar",
     date: "2026-05-25",
     category: "Merchant Onboarding",
     readingTime: "8 min read",
@@ -381,6 +412,7 @@ export const posts: Post[] = [
   {
     slug: "kyb-automation-without-blowing-up-risk",
     title: "KYB Automation Without Blowing Up Risk",
+    metaTitle: "KYB Automation Without Blowing Up Risk | Rizwan Zafar",
     date: "2026-05-24",
     category: "Merchant Onboarding",
     readingTime: "9 min read",
@@ -393,6 +425,7 @@ export const posts: Post[] = [
   {
     slug: "ledger-design-for-multi-rail-payments",
     title: "Ledger Design for Multi-Rail Payments",
+    metaTitle: "Ledger Design for Multi-Rail Payment Platforms | Rizwan Zafar",
     date: "2026-05-23",
     category: "Settlement & Reconciliation",
     readingTime: "11 min read",
@@ -405,6 +438,7 @@ export const posts: Post[] = [
   {
     slug: "regulatory-ux-name-on-payment-screen",
     title: "Regulatory UX: Why the Name on a Payment Screen Can Block a Launch",
+    metaTitle: "Regulatory UX: Names, Screens, and Launches | Rizwan Zafar",
     date: "2026-05-23",
     category: "Fraud & Risk",
     readingTime: "9 min read",
@@ -422,6 +456,7 @@ export const posts: Post[] = [
   {
     slug: "exception-management-reconciliation",
     title: "Exception Management in Reconciliation",
+    metaTitle: "Exception Management in Payment Reconciliation | Rizwan Zafar",
     date: "2026-05-22",
     category: "Settlement & Reconciliation",
     readingTime: "9 min read",
@@ -434,6 +469,7 @@ export const posts: Post[] = [
   {
     slug: "merchant-onboarding-growth-risk-compliance",
     title: "Merchant Onboarding: Where Growth, Risk and Compliance Collide",
+    metaTitle: "Merchant Onboarding: Growth, Risk, Compliance | Rizwan Zafar",
     date: "2026-05-22",
     category: "Merchant Onboarding",
     readingTime: "10 min read",
@@ -446,6 +482,7 @@ export const posts: Post[] = [
   {
     slug: "hosted-checkout-vs-direct-card-processing",
     title: "Hosted Checkout vs Direct Card Processing: A Product Maturity Guide (MPGS, MDES, 3DS)",
+    metaTitle: "Hosted Checkout vs Direct Card Processing | Rizwan Zafar",
     date: "2026-05-21",
     category: "Payment Infrastructure",
     readingTime: "12 min read",
@@ -459,6 +496,7 @@ export const posts: Post[] = [
   {
     slug: "settlement-windows-and-merchant-trust",
     title: "Settlement Windows and Merchant Trust",
+    metaTitle: "Settlement Windows and Merchant Trust | Rizwan Zafar",
     date: "2026-05-21",
     category: "Settlement & Reconciliation",
     readingTime: "8 min read",
@@ -470,6 +508,7 @@ export const posts: Post[] = [
   {
     slug: "payment-infrastructure-state-trust-failure",
     title: "Payment Infrastructure Is Not Just APIs, It Is State, Trust and Failure Handling",
+    metaTitle: "Payment Infrastructure: State, Trust, Failure Handling | Rizwan Zafar",
     date: "2026-05-20",
     category: "Payment Infrastructure",
     readingTime: "10 min read",
@@ -482,6 +521,7 @@ export const posts: Post[] = [
   {
     slug: "three-way-reconciliation-at-scale",
     title: "Three-Way Reconciliation at Scale",
+    metaTitle: "Three-Way Reconciliation at Scale: A Practitioner Guide | Rizwan Zafar",
     date: "2026-05-20",
     category: "Settlement & Reconciliation",
     readingTime: "10 min read",
@@ -494,6 +534,7 @@ export const posts: Post[] = [
   {
     slug: "reconciliation-is-product-infrastructure",
     title: "Reconciliation Is Product Infrastructure, Not Back Office",
+    metaTitle: "Reconciliation Is Product Infrastructure, Not Back Office | Rizwan Zafar",
     date: "2026-05-19",
     category: "Settlement & Reconciliation",
     readingTime: "11 min read",
@@ -515,6 +556,7 @@ export const posts: Post[] = [
     slug: "virtual-card-accounts-product-guide",
     title:
       "Virtual Card Accounts (VCA): The Quiet Backbone of B2B, Travel and Marketplace Payments",
+    metaTitle: "Virtual Card Accounts (VCA): A Product Guide for Payments Teams | Rizwan Zafar",
     date: "2026-05-18",
     category: "Payment Infrastructure",
     readingTime: "10 min read",
@@ -539,6 +581,7 @@ export const posts: Post[] = [
     slug: "open-banking-product-architecture",
     title:
       "Open Banking Product Architecture: Aggregator vs Direct, AISP vs PISP, and Where the Value Actually Lives",
+    metaTitle: "Open Banking Product Architecture (PSD2, AISP, PISP, A2A) | Rizwan Zafar",
     date: "2026-05-17",
     category: "Payment Infrastructure",
     readingTime: "11 min read",
@@ -563,6 +606,7 @@ export const posts: Post[] = [
   {
     slug: "product-management-for-payments-platforms",
     title: "Product Management for Payments Platforms: What's Different, and What's Not",
+    metaTitle: "Product Management for Payments Platforms (What's Different) | Rizwan Zafar",
     date: "2026-05-16",
     category: "Product Strategy",
     readingTime: "11 min read",
@@ -585,6 +629,7 @@ export const posts: Post[] = [
   {
     slug: "ai-in-payments-four-production-use-cases",
     title: "GenAI in Fintech: 4 Production Use Cases That Actually Ship",
+    metaTitle: "GenAI in Fintech: 4 Production Use Cases (2026) | Rizwan Zafar",
     date: "2026-05-15",
     category: "AI in Fintech",
     readingTime: "10 min read",
@@ -607,6 +652,8 @@ export const posts: Post[] = [
     slug: "project-management-fintech-regulatory-programmes",
     title:
       "Project Management for Fintech Regulatory Programmes: PCI DSS, ISO 27001, SOC 2, AML/CFT",
+    metaTitle:
+      "Project Management for Fintech Regulatory Programmes (PCI, ISO, SOC 2, AML) | Rizwan Zafar",
     date: "2026-05-14",
     category: "Program Management",
     readingTime: "11 min read",
@@ -630,6 +677,7 @@ export const posts: Post[] = [
   {
     slug: "program-vs-product-management-fintech",
     title: "Program Management vs Product Management in Fintech: Lane Lines That Actually Hold",
+    metaTitle: "Program Management vs Product Management in Fintech | Rizwan Zafar",
     date: "2026-05-13",
     category: "Program Management",
     readingTime: "10 min read",
@@ -651,6 +699,7 @@ export const posts: Post[] = [
   {
     slug: "rag-for-merchant-integration-support",
     title: "RAG for Merchant Integration Support: A Production Playbook",
+    metaTitle: "RAG for Merchant Integration Support (Playbook) | Rizwan Zafar",
     date: "2026-05-13",
     category: "AI in Fintech",
     readingTime: "9 min read",
@@ -671,6 +720,7 @@ export const posts: Post[] = [
   {
     slug: "ai-auto-escalation-payment-ops",
     title: "AI-Powered Auto-Escalation: Cutting Payment Incident MTTR by 70%",
+    metaTitle: "AI Auto-Escalation for Payment Ops (−70% MTTR) | Rizwan Zafar",
     date: "2026-05-11",
     category: "AI in Fintech",
     readingTime: "8 min read",
@@ -692,6 +742,7 @@ export const posts: Post[] = [
     slug: "value-modeling-genai-use-cases-fintech",
     title:
       "Value-Modeling GenAI Use Cases in Fintech: ROI, Feasibility, Data Readiness, Regulatory Risk",
+    metaTitle: "Value-Modeling GenAI Use Cases in Fintech | Rizwan Zafar",
     date: "2026-05-09",
     category: "AI in Fintech",
     readingTime: "9 min read",
@@ -712,6 +763,7 @@ export const posts: Post[] = [
   {
     slug: "ai-fraud-detection-vs-rule-engines",
     title: "AI Fraud Detection vs Rule Engines: A Field Comparison",
+    metaTitle: "AI Fraud Detection vs Rule Engines: Field Comparison | Rizwan Zafar",
     date: "2026-05-07",
     category: "AI in Fintech",
     readingTime: "10 min read",
@@ -733,6 +785,7 @@ export const posts: Post[] = [
   {
     slug: "crypto-on-ramps-product-guide",
     title: "Crypto On-Ramps: A Product Guide for Banks and Fintechs",
+    metaTitle: "Crypto On-Ramps: Product Guide for Banks and Fintechs (2026) | Rizwan Zafar",
     date: "2026-05-05",
     category: "Crypto & Stablecoins",
     readingTime: "10 min read",
@@ -754,6 +807,7 @@ export const posts: Post[] = [
   {
     slug: "crypto-off-ramps-emerging-markets",
     title: "Crypto Off-Ramps in Emerging Markets: The Real Plumbing",
+    metaTitle: "Crypto Off-Ramps in Emerging Markets (2026) | Rizwan Zafar",
     date: "2026-05-03",
     category: "Crypto & Stablecoins",
     readingTime: "9 min read",
@@ -775,6 +829,7 @@ export const posts: Post[] = [
   {
     slug: "stablecoin-payments-2026",
     title: "Stablecoin Payments in 2026: Where USDC, USDT and Bank-Issued Stables Actually Fit",
+    metaTitle: "Stablecoin Payments in 2026: USDC, USDT, Bank-Issued | Rizwan Zafar",
     date: "2026-05-01",
     category: "Crypto & Stablecoins",
     readingTime: "10 min read",
@@ -796,6 +851,7 @@ export const posts: Post[] = [
   {
     slug: "building-pmo-from-scratch-fintech",
     title: "Building a PMO from Scratch in a Fintech: A 90-Day Playbook",
+    metaTitle: "Build a PMO from Scratch in a Fintech (90-Day Playbook) | Rizwan Zafar",
     date: "2026-04-28",
     category: "Program Management",
     readingTime: "9 min read",
@@ -817,6 +873,7 @@ export const posts: Post[] = [
   {
     slug: "pmbok-plus-agile-hybrid-frameworks",
     title: "PMBOK + Agile Hybrid Frameworks for Payments Teams",
+    metaTitle: "PMBOK + Agile Hybrid for Payments Teams | Rizwan Zafar",
     date: "2026-04-25",
     category: "Program Management",
     readingTime: "8 min read",
@@ -838,6 +895,7 @@ export const posts: Post[] = [
   {
     slug: "three-million-dollar-transformation-postmortem",
     title: "Running a $3M Digital Transformation Programme: A Postmortem (TapmadTV)",
+    metaTitle: "Postmortem: $3M Digital Transformation Programme (TapmadTV) | Rizwan Zafar",
     date: "2026-04-22",
     category: "Program Management",
     readingTime: "9 min read",
@@ -859,6 +917,7 @@ export const posts: Post[] = [
   {
     slug: "raid-steerco-pmo-stack-that-ships",
     title: "RAID Logs, SteerCo and the PMO Stack That Actually Ships at $1B+ Scale",
+    metaTitle: "RAID, SteerCo and the PMO Stack at $1B+ Scale | Rizwan Zafar",
     date: "2026-04-20",
     category: "Program Management",
     readingTime: "9 min read",

@@ -24,7 +24,7 @@ export const Route = createFileRoute("/contact")({
         {
           name: "description",
           content:
-            "Contact Rizwan Zafar, payments product executive in Dubai. Open to senior fintech, payment infrastructure and cross-border roles. Replies within 24 hours, Sun–Thu GST.",
+            "Contact Rizwan Zafar, Product & Program Executive in Dubai. Open to senior fintech and payment infrastructure roles. Replies in 24h, Sun–Thu GST.",
         },
         { property: "og:title", content: "Contact Rizwan Zafar, Payments Product Executive" },
         {

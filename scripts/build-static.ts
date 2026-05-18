@@ -26,7 +26,7 @@ import { caseStudies } from "../src/data/caseStudies";
 import { posts } from "../src/data/posts";
 import { audiences } from "../src/data/hubs";
 import { products } from "../src/data/products";
-import { SITE_URL } from "../src/lib/seo";
+import { absUrl } from "../src/lib/seo";
 
 const OUT_DIR = "dist-static";
 const CLIENT_DIR = "dist/client";
@@ -114,6 +114,7 @@ async function prerender(worker: Worker, routes: string[]) {
       }
       let html = await res.text();
       html = patchEmptyMainFallback(route, html);
+      html = stripDevServerScripts(html);
       const file = pathToFile(route);
       await mkdir(dirname(file), { recursive: true });
       await writeFile(file, html, "utf-8");
@@ -127,6 +128,42 @@ async function prerender(worker: Worker, routes: string[]) {
     }
   }
   return { ok, fail };
+}
+
+/**
+ * Strip dev-only TanStack Start / Vite scripts from the prerendered HTML.
+ *
+ * TanStack Start emits a placeholder `<script type="module">import("/@id/
+ * virtual:tanstack-start-client-entry")</script>` for the client hydration
+ * entry. In the SSR-on-Cloudflare-Worker output we consume here, that path
+ * never gets resolved to a real hashed bundle — it's the Vite dev-server
+ * module syntax. Production browsers fetch it, get a 404, and the site
+ * still works because every animation we use is CSS-only and every link is
+ * a real `<a>` that loads the prerendered HTML of the next route.
+ *
+ * Also strips any TanStack `$_TSR` / `$R` stream barriers that depend on
+ * client-side hydration. Without the hydration runtime they're inert noise.
+ *
+ * Net effect: the static export becomes pure server-rendered HTML with CSS
+ * animations and standard MPA navigation — no broken /@id/virtual fetches,
+ * no failed dynamic import, no 404 in DevTools.
+ */
+function stripDevServerScripts(html: string): string {
+  let out = html;
+  // 1. The hydration entry script (the `/@id/virtual:` import).
+  out = out.replace(
+    /<script[^>]*type=["']module["'][^>]*>\s*import\(["']\/@id\/virtual:[^"']+["']\)\s*<\/script>/gi,
+    "",
+  );
+  // 2. The TanStack stream barrier (depends on hydration to clear itself).
+  out = out.replace(
+    /<script class=["']\$tsr["'][\s\S]*?document\.currentScript\.remove\(\)<\/script>/gi,
+    "",
+  );
+  // 3. Any other lingering /@id/virtual: reference embedded in the stream
+  //    barrier payload (the TanStack manifest can include them inline).
+  out = out.replace(/<script[^>]*>\s*\(self\.\$R=self\.\$R[\s\S]*?<\/script>/g, "");
+  return out;
 }
 
 /**
@@ -165,7 +202,9 @@ async function writeSitemap(routes: string[]) {
   const urls = routes
     .map(
       (r) =>
-        `  <url><loc>${SITE_URL}${r}</loc><lastmod>${today}</lastmod><changefreq>weekly</changefreq></url>`,
+        // absUrl() adds the trailing slash for non-file routes so each loc
+        // matches the Apache-301 canonical form (no redirect hops).
+        `  <url><loc>${absUrl(r)}</loc><lastmod>${today}</lastmod><changefreq>weekly</changefreq></url>`,
     )
     .join("\n");
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
