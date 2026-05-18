@@ -1,6 +1,6 @@
 # Rizwan Zafar — Payments Product Executive
 
-> Product & Program Leader, Payments, Fintech, AI in Payments and Cross-Border Systems. Built a B2B payments platform from $0 to $1B+ TPV across 5 markets, deployed 4 production AI solutions, and led a 40-engineer org built from 2 people.
+> Product & Program Executive Scaling Fintech Infrastructure in Complex Markets. As CPO at Simpaisa in Dubai, I helped scale payment infrastructure across 7 markets, $1B+ GTV, 25M+ monthly transactions and 50+ bank, wallet and financial institution partners.
 
 Rizwan Zafar is Chief Product Officer · Payments, Fintech & AI, based in Dubai, UAE. Site: https://rzifi.com. Topics: payment infrastructure, cross-border payments, settlement, KYC/KYB, AML/CFT, fraud risk, SWIFT, ISO 20022, merchant onboarding, regulated fintech.
 
@@ -83,8 +83,8 @@ Rizwan Zafar is Chief Product Officer · Payments, Fintech & AI, based in Dubai,
 ### Selected metrics
 - TPV scaled: $0 → $1B+
 - Monthly transactions: 25M+
-- Markets: 5
-- Issuer partners: 50+
+- Markets: 7
+- Bank & wallet partners: 50+
 - Merchant integrations: 150+
 - Payment success: 60% → 85%
 - Authorization uplift: +14%
