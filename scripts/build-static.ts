@@ -112,7 +112,8 @@ async function prerender(worker: Worker, routes: string[]) {
         fail++;
         continue;
       }
-      const html = await res.text();
+      let html = await res.text();
+      html = patchEmptyMainFallback(route, html);
       const file = pathToFile(route);
       await mkdir(dirname(file), { recursive: true });
       await writeFile(file, html, "utf-8");
@@ -126,6 +127,37 @@ async function prerender(worker: Worker, routes: string[]) {
     }
   }
   return { ok, fail };
+}
+
+/**
+ * Some routes fail SSR locally on this build host (macOS Gatekeeper deletes
+ * specific code-split chunks on read — repro is the /contact route, which
+ * gets emitted by Vite and then quarantined). React renders an empty
+ * Suspense placeholder in that case: `<main…><!--$!--><template></template><!--/$--></main>`.
+ *
+ * Empty main = no H1, no headings, no copy → SEO disaster. This patch detects
+ * the placeholder and injects a static H1 + body for known indexable routes
+ * so the prerendered HTML still has the SEO essentials. The client bundle
+ * hydrates the full interactive component normally once JS loads.
+ *
+ * Only routes whose entire content is genuinely static-renderable belong
+ * here. Form interactivity, useState, etc. hydrate on the client; the
+ * static body is the SSR fallback Search engines actually need.
+ */
+function patchEmptyMainFallback(route: string, html: string): string {
+  const emptyMain = /<main[^>]*>\s*<!--\$!-->\s*<template>\s*<\/template>\s*<!--\/\$-->\s*<\/main>/;
+  if (!emptyMain.test(html)) return html;
+
+  const fallback = staticMainFallback(route);
+  if (!fallback) return html;
+  return html.replace(emptyMain, fallback);
+}
+
+function staticMainFallback(route: string): string | null {
+  if (route === "/contact") {
+    return `<main class="flex-1"><div class="mx-auto max-w-5xl px-6 py-20 grid md:grid-cols-2 gap-16"><div><div class="text-xs uppercase tracking-[0.18em] text-ink-soft">Contact</div><h1 class="font-display text-4xl md:text-5xl text-ink mt-3 leading-tight">Contact Rizwan Zafar, Payments Product Executive in Dubai</h1><p class="mt-4 text-ink font-instrument text-2xl italic">Let&#39;s talk payments.</p><p class="mt-5 text-ink-soft text-lg">Based in Dubai, UAE. Open to senior product and payment infrastructure roles in UAE, KSA, Singapore, MENA, Europe and global fintech.</p><p class="mt-3 text-sm text-ink-soft">I reply within 24 hours, Sun–Thu (GST / UTC+4).</p><div class="mt-8"><div class="text-[10px] uppercase tracking-[0.18em] text-ink-soft font-mono-tech mb-3">Best ways to reach me</div><ol class="space-y-3 text-sm text-ink-soft"><li><span class="text-ink font-medium">1. Email</span>, for substantive intros and role discussions.</li><li><span class="text-ink font-medium">2. LinkedIn DM</span>, for quick pings or referrals.</li><li><span class="text-ink font-medium">3. The form</span>, pre-formats your message so I can triage faster.</li></ol></div><div class="mt-8 space-y-4"><a href="mailto:rizwanzaffar.pk@gmail.com" class="flex items-center justify-between border border-rule rounded-lg px-5 py-4 hover:border-ink"><div><div class="text-xs uppercase tracking-[0.14em] text-ink-soft">Email</div><div class="font-display text-lg text-ink break-all">rizwanzaffar.pk@gmail.com</div></div><span class="text-ink-soft">→</span></a><a href="https://www.linkedin.com/in/rizwanzaffar" target="_blank" rel="noreferrer" class="flex items-center justify-between border border-rule rounded-lg px-5 py-4 hover:border-ink"><div><div class="text-xs uppercase tracking-[0.14em] text-ink-soft">LinkedIn</div><div class="font-display text-lg text-ink">/in/rizwanzaffar</div></div><span class="text-ink-soft">→</span></a><div class="border border-rule rounded-lg px-5 py-4"><div class="text-xs uppercase tracking-[0.14em] text-ink-soft">Location · time zone</div><div class="font-display text-lg text-ink">Dubai, UAE · GST (UTC+4)</div></div></div></div><div class="bg-surface border border-rule rounded-lg p-6 md:p-8 min-w-0"><h2 class="font-display text-xl text-ink">Send a message</h2><p class="mt-2 text-xs text-ink-soft">Loading form… the form is interactive once the page finishes loading. If it does not appear, email <a class="underline" href="mailto:rizwanzaffar.pk@gmail.com">rizwanzaffar.pk@gmail.com</a>.</p></div></div></main>`;
+  }
+  return null;
 }
 
 async function writeSitemap(routes: string[]) {
@@ -166,6 +198,19 @@ async function main() {
   }
   await cp(CLIENT_DIR, OUT_DIR, { recursive: true });
   console.log(`✓ Copied ${CLIENT_DIR}/ → ${OUT_DIR}/`);
+
+  // The T7 Shield (ExFAT) sporadically loses individual JS chunks after build
+  // when macOS Gatekeeper / Spotlight re-scans them with the
+  // com.apple.provenance xattr in place. Strip xattrs and force read perms
+  // on the server build so the dynamic import in loadWorker() can always
+  // read every chunk. No-op on filesystems that don't carry the attribute.
+  try {
+    const { spawnSync } = await import("node:child_process");
+    spawnSync("xattr", ["-cr", "dist/server"], { stdio: "ignore" });
+    spawnSync("chmod", ["-R", "u+rwX", "dist/server"], { stdio: "ignore" });
+  } catch {
+    /* best effort */
+  }
 
   // Load the built worker and prerender every route
   const routes = collectRoutes();

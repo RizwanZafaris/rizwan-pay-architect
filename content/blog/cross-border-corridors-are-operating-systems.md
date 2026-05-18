@@ -214,12 +214,12 @@ Single-partner dependency with no segmented observability, leading to silent suc
   "author": {
     "@type": "Person",
     "name": "Rizwan Zafar",
-    "url": "https://rizwan-pay-architect.lovable.app"
+    "url": "https://rzifi.com"
   },
   "datePublished": "2026-05-26",
   "articleSection": "SWIFT & Cross-Border Payments",
   "keywords": "cross-border payments, corridor product, FX, SWIFT, ISO 20022, emerging markets",
-  "mainEntityOfPage": "https://rizwan-pay-architect.lovable.app/blog/cross-border-corridors-are-operating-systems"
+  "mainEntityOfPage": "https://rzifi.com/blog/cross-border-corridors-are-operating-systems"
 }
 ```
 

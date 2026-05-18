@@ -1,42 +1,76 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { profile } from "@/data/profile";
-import { absUrl } from "@/lib/seo";
+import { absUrl, SITE_URL } from "@/lib/seo";
 
 export const Route = createFileRoute("/resume")({
-  head: () => ({
-    meta: [
-      { title: "Resume, Rizwan Zafar | Payments Product Executive" },
-      {
-        name: "description",
-        content:
-          "Resume of Rizwan Zafar, Payments Product Executive. 14+ years in product and delivery; 8+ building regulated payments infrastructure at $1B+ GTV.",
-      },
-      // noindex so search engines always send recruiters to the homepage / latest version
-      // (the canonical résumé surface is the homepage + downloadable PDF).
-      { name: "robots", content: "noindex, follow" },
-      { property: "og:title", content: "Resume, Rizwan Zafar" },
-      {
-        property: "og:description",
-        content: "Executive resume, payments product, infrastructure, risk and cross-border.",
-      },
-      { property: "og:url", content: absUrl("/resume") },
-      { name: "twitter:title", content: "Resume, Rizwan Zafar" },
-      {
-        name: "twitter:description",
-        content:
-          "Executive resume, payments product, infrastructure, risk and cross-border. $1B+ GTV, 25M+ tx/mo.",
-      },
-    ],
-    links: [
-      { rel: "canonical", href: absUrl("/resume") },
-      {
-        rel: "alternate",
-        type: "application/pdf",
-        href: profile.resumeHref,
-        title: "Download PDF resume",
-      },
-    ],
-  }),
+  head: () => {
+    const url = absUrl("/resume");
+    return {
+      meta: [
+        { title: "Resume | Rizwan Zafar, Payments Product Executive (Dubai)" },
+        {
+          name: "description",
+          content:
+            "Resume of Rizwan Zafar, payments product executive in Dubai. 14+ years in product and programme delivery; 8+ years building regulated payment infrastructure at $1B+ GTV across MENA and South Asia.",
+        },
+        { property: "og:title", content: "Resume — Rizwan Zafar, Payments Product Executive" },
+        {
+          property: "og:description",
+          content:
+            "Executive resume: payments product leadership, payment infrastructure, settlement, KYC/KYB, AML/CFT, fraud, cross-border rails. $1B+ GTV, 25M+ tx/mo.",
+        },
+        { property: "og:url", content: url },
+        { property: "og:type", content: "profile" },
+        { name: "twitter:title", content: "Resume — Rizwan Zafar, Payments Product Executive" },
+        {
+          name: "twitter:description",
+          content:
+            "Executive resume: payments product, infrastructure, risk, cross-border. $1B+ GTV, 25M+ tx/mo.",
+        },
+      ],
+      links: [
+        { rel: "canonical", href: url },
+        {
+          rel: "alternate",
+          type: "application/pdf",
+          href: profile.resumeHref,
+          title: "Download PDF resume",
+        },
+      ],
+      scripts: [
+        {
+          type: "application/ld+json",
+          children: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "ProfilePage",
+            url,
+            mainEntity: {
+              "@type": "Person",
+              name: profile.name,
+              jobTitle: "Chief Product Officer, Payments",
+              url: SITE_URL,
+              address: {
+                "@type": "PostalAddress",
+                addressLocality: "Dubai",
+                addressCountry: "AE",
+              },
+            },
+          }),
+        },
+        {
+          type: "application/ld+json",
+          children: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+              { "@type": "ListItem", position: 2, name: "Resume", item: url },
+            ],
+          }),
+        },
+      ],
+    };
+  },
   component: ResumePage,
 });
 

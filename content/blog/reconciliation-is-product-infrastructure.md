@@ -216,12 +216,12 @@ A product owner, one or two engineers, an accounting partner, and a clear charte
   "author": {
     "@type": "Person",
     "name": "Rizwan Zafar",
-    "url": "https://rizwan-pay-architect.lovable.app"
+    "url": "https://rzifi.com"
   },
   "datePublished": "2026-05-19",
   "articleSection": "Settlement & Reconciliation",
   "keywords": "reconciliation, settlement, ledger, payment infrastructure, three-way match",
-  "mainEntityOfPage": "https://rizwan-pay-architect.lovable.app/blog/reconciliation-is-product-infrastructure"
+  "mainEntityOfPage": "https://rzifi.com/blog/reconciliation-is-product-infrastructure"
 }
 ```
 

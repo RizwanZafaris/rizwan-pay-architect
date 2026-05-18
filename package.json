@@ -8,6 +8,7 @@
     "build": "vite build",
     "build:dev": "vite build --mode development",
     "build:static": "bun run build && bun scripts/build-static.ts",
+    "seo:audit": "bun scripts/seo-audit.ts",
     "deploy:git-static": "bash scripts/deploy-git-static.sh",
     "preview": "vite preview",
     "lint": "eslint .",

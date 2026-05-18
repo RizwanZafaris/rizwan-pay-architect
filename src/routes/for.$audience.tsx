@@ -11,20 +11,37 @@ export const Route = createFileRoute("/for/$audience")({
   },
   head: ({ loaderData, params }) => {
     const a = loaderData?.audience;
-    if (!a) return { meta: [{ title: "For recruiters" }] };
+    if (!a) return { meta: [{ title: "For recruiters | Rizwan Zafar" }] };
     const forUrl = absUrl("/for");
+    const url = absUrl(`/for/${params.audience}`);
     return {
       meta: [
-        { title: `${a.shortTitle}, For recruiters | Rizwan Zafar` },
+        { title: `${a.shortTitle} | For recruiters — Rizwan Zafar, Payments Product Executive` },
         { name: "description", content: a.description },
-        { name: "robots", content: "noindex, follow" },
         { property: "og:title", content: a.title },
         { property: "og:description", content: a.description },
-        { property: "og:url", content: forUrl },
+        { property: "og:url", content: url },
+        { property: "og:type", content: "website" },
+        { name: "twitter:title", content: a.title },
+        { name: "twitter:description", content: a.description },
       ],
-      // Canonicalize subpages back to /for so we don't add public route sprawl
-      links: [{ rel: "canonical", href: forUrl }],
+      // Self-canonical: this is a unique landing page tailored to a specific
+      // recruiter audience (Visa/Mastercard, Stripe/Adyen/Wise/Thunes, banks/
+      // fintechs). Each has unique copy, unique essay set and unique case
+      // studies, so it earns its own canonical and stays indexable.
+      links: [{ rel: "canonical", href: url }],
       scripts: [
+        {
+          type: "application/ld+json",
+          children: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "CollectionPage",
+            name: a.title,
+            description: a.description,
+            url,
+            mainEntity: { "@type": "Person", name: "Rizwan Zafar", url: SITE_URL },
+          }),
+        },
         {
           type: "application/ld+json",
           children: JSON.stringify({
@@ -33,12 +50,7 @@ export const Route = createFileRoute("/for/$audience")({
             itemListElement: [
               { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
               { "@type": "ListItem", position: 2, name: "For recruiters", item: forUrl },
-              {
-                "@type": "ListItem",
-                position: 3,
-                name: a.title,
-                item: `${forUrl}#${params.audience}`,
-              },
+              { "@type": "ListItem", position: 3, name: a.title, item: url },
             ],
           }),
         },

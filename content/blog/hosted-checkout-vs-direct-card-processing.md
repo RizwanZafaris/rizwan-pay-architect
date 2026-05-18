@@ -212,12 +212,12 @@ Underestimating the 3DS step-up product. Teams ship direct, default to step-up-e
   "author": {
     "@type": "Person",
     "name": "Rizwan Zafar",
-    "url": "https://rizwan-pay-architect.lovable.app"
+    "url": "https://rzifi.com"
   },
   "datePublished": "2026-05-21",
   "articleSection": "Payment Infrastructure",
   "keywords": "hosted checkout, direct card processing, MPGS, MDES, tokenization, 3DS2, PCI DSS",
-  "mainEntityOfPage": "https://rizwan-pay-architect.lovable.app/blog/hosted-checkout-vs-direct-card-processing"
+  "mainEntityOfPage": "https://rzifi.com/blog/hosted-checkout-vs-direct-card-processing"
 }
 ```
 

@@ -6,7 +6,7 @@ export const profile = {
   phone: "+971-58-9683970",
   linkedin: "https://www.linkedin.com/in/rizwanzaffar",
   twitter: "https://twitter.com/rizwan_zafar",
-  personalSite: "https://rizwan-pay-architect.lovable.app",
+  personalSite: "https://rzifi.com",
   resumeHref: "/Rizwan_Zafar_Resume.pdf",
   headline:
     "Product & Program Leader, Payments, Fintech, AI in Payments and Cross-Border Systems. Built a B2B payments platform from $0 to $1B+ TPV across 5 markets, deployed 4 production AI solutions, and led a 40-engineer org built from 2 people.",

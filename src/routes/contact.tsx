@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { profile } from "@/data/profile";
-import { absUrl } from "@/lib/seo";
+import { absUrl, SITE_URL } from "@/lib/seo";
 import { ctaClick, outboundClick, trackEvent } from "@/lib/analytics";
 
 // Web3Forms-compatible endpoint. Set VITE_CONTACT_ACCESS_KEY in your environment
@@ -16,29 +16,56 @@ const CONTACT_ACCESS_KEY: string =
 const CONTACT_ENDPOINT = "https://api.web3forms.com/submit";
 
 export const Route = createFileRoute("/contact")({
-  head: () => ({
-    meta: [
-      { title: "Contact, Rizwan Zafar | Payments Product Executive (Dubai)" },
-      {
-        name: "description",
-        content:
-          "Open to senior product and payment infrastructure roles in UAE, KSA, Singapore, MENA, Europe and global fintech. Reply within 24 hours, Sun–Thu Dubai time.",
-      },
-      { property: "og:title", content: "Contact Rizwan Zafar" },
-      {
-        property: "og:description",
-        content:
-          "Open to senior payments product roles. Based in Dubai. Replies within 24 hours, Sun–Thu GST.",
-      },
-      { property: "og:url", content: absUrl("/contact") },
-      { name: "twitter:title", content: "Contact Rizwan Zafar" },
-      {
-        name: "twitter:description",
-        content: "Open to senior payments product roles. Dubai-based. Reply within 24h, Sun–Thu.",
-      },
-    ],
-    links: [{ rel: "canonical", href: absUrl("/contact") }],
-  }),
+  head: () => {
+    const url = absUrl("/contact");
+    return {
+      meta: [
+        { title: "Contact Rizwan Zafar | Payments Product Executive, Dubai" },
+        {
+          name: "description",
+          content:
+            "Contact Rizwan Zafar, payments product executive in Dubai. Open to senior fintech, payment infrastructure and cross-border roles. Replies within 24 hours, Sun–Thu GST.",
+        },
+        { property: "og:title", content: "Contact Rizwan Zafar, Payments Product Executive" },
+        {
+          property: "og:description",
+          content:
+            "Open to senior payments product roles. Based in Dubai. Replies within 24 hours, Sun–Thu GST.",
+        },
+        { property: "og:url", content: url },
+        { property: "og:type", content: "website" },
+        { name: "twitter:title", content: "Contact Rizwan Zafar" },
+        {
+          name: "twitter:description",
+          content: "Open to senior payments product roles. Dubai-based. Reply within 24h, Sun–Thu.",
+        },
+      ],
+      links: [{ rel: "canonical", href: url }],
+      scripts: [
+        {
+          type: "application/ld+json",
+          children: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "ContactPage",
+            url,
+            name: "Contact Rizwan Zafar, Payments Product Executive",
+            mainEntity: { "@type": "Person", name: "Rizwan Zafar", url: SITE_URL },
+          }),
+        },
+        {
+          type: "application/ld+json",
+          children: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+              { "@type": "ListItem", position: 2, name: "Contact", item: url },
+            ],
+          }),
+        },
+      ],
+    };
+  },
   component: ContactPage,
 });
 
@@ -189,8 +216,9 @@ function ContactPage() {
       <div>
         <div className="text-xs uppercase tracking-[0.18em] text-ink-soft">Contact</div>
         <h1 className="font-display text-4xl md:text-5xl text-ink mt-3 leading-tight">
-          Let's talk payments.
+          Contact Rizwan Zafar, Payments Product Executive in Dubai
         </h1>
+        <p className="mt-4 text-ink font-instrument text-2xl italic">Let's talk payments.</p>
         <p className="mt-5 text-ink-soft text-lg">
           Based in {profile.location}. Open to senior product and payment infrastructure roles in
           UAE, KSA, Singapore, MENA, Europe and global fintech.

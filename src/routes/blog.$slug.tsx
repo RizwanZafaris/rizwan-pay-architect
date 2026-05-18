@@ -2,7 +2,7 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { useEffect } from "react";
 import { getPost, getRelated, type Post } from "@/data/posts";
 import { profile } from "@/data/profile";
-import { absUrl, SITE_URL } from "@/lib/seo";
+import { absUrl, SITE_URL, OG_IMAGE_URL } from "@/lib/seo";
 import { DiagramFigure, postDiagrams } from "@/components/diagrams/Diagrams";
 import { trackEvent } from "@/lib/analytics";
 import { marked } from "marked";
@@ -54,6 +54,7 @@ export const Route = createFileRoute("/blog/$slug")({
       "@type": "BlogPosting",
       headline: p.title,
       description: p.description,
+      image: [OG_IMAGE_URL],
       datePublished: p.date,
       dateModified: p.date,
       author: { "@type": "Person", name: profile.name, url: SITE_URL },
@@ -62,7 +63,7 @@ export const Route = createFileRoute("/blog/$slug")({
       articleSection: p.category,
       wordCount,
       inLanguage: "en",
-      mainEntityOfPage: url,
+      mainEntityOfPage: { "@type": "WebPage", "@id": url },
       url,
     };
     const crumbs = {
@@ -105,11 +106,15 @@ export const Route = createFileRoute("/blog/$slug")({
         { property: "og:description", content: p.description },
         { property: "og:type", content: "article" },
         { property: "og:url", content: url },
+        { property: "og:image", content: OG_IMAGE_URL },
         { property: "article:published_time", content: p.date },
+        { property: "article:modified_time", content: p.date },
         { property: "article:section", content: p.category },
         { property: "article:author", content: profile.name },
+        ...p.tags.map((tag) => ({ property: "article:tag", content: tag })),
         { name: "twitter:title", content: p.title },
         { name: "twitter:description", content: p.description },
+        { name: "twitter:image", content: OG_IMAGE_URL },
       ],
       links: [{ rel: "canonical", href: url }],
       scripts,

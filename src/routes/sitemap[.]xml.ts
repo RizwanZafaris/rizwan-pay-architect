@@ -29,15 +29,16 @@ export const Route = createFileRoute("/sitemap.xml")({
           .filter((p) => p.status !== "coming-soon")
           .map((p) => p.link)
           .filter((href) => href.startsWith("/products/"));
-        // Only include posts dated on or before today.
-        const publicPosts = posts.filter((p) => p.date <= todayIso);
+        // Include every post. Each post has its own indexable HTML, and the
+        // build script (scripts/build-static.ts) prerenders every slug, so a
+        // date-based filter here would simply omit content from search engines.
         const paths = [
           ...staticPaths,
           // Topic hubs are currently thin (filter views), excluded from sitemap until unique content lands.
           ...audiences.map((a) => `/for/${a.slug}`),
           ...productPaths,
           ...caseStudies.map((c) => `/product-work/${c.slug}`),
-          ...publicPosts.map((p) => `/blog/${p.slug}`),
+          ...posts.map((p) => `/blog/${p.slug}`),
         ];
         const urls = paths
           .map(

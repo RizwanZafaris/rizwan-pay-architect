@@ -173,12 +173,17 @@ const websiteJsonLd = {
   "@context": "https://schema.org",
   "@type": "WebSite",
   name: `${profile.name}, Payments Product Executive`,
+  alternateName: "rzifi.com",
   url: SITE_URL,
   inLanguage: "en",
-  author: { "@type": "Person", name: profile.name },
+  author: { "@type": "Person", name: profile.name, url: SITE_URL },
+  publisher: { "@type": "Person", name: profile.name, url: SITE_URL },
   potentialAction: {
     "@type": "SearchAction",
-    target: `${SITE_URL}/blog?q={search_term_string}`,
+    target: {
+      "@type": "EntryPoint",
+      urlTemplate: `${SITE_URL}/blog?q={search_term_string}`,
+    },
     "query-input": "required name=search_term_string",
   },
 };
@@ -225,10 +230,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:image", content: OG_IMAGE_URL },
       { name: "twitter:image:alt", content: `${profile.name}, Payments Product Executive` },
     ],
-    links: [
-      { rel: "stylesheet", href: appCss },
-      { rel: "canonical", href: SITE_URL },
-    ],
+    // Note: no root-level <link rel="canonical">. Every route sets its own
+    // self-canonical via absUrl(path); a root canonical pointing at SITE_URL
+    // would duplicate (and conflict with) the page-level one on every subpage.
+    links: [{ rel: "stylesheet", href: appCss }],
     scripts: [
       { type: "application/ld+json", children: JSON.stringify(personJsonLd) },
       { type: "application/ld+json", children: JSON.stringify(websiteJsonLd) },
