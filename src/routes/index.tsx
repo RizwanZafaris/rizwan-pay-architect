@@ -752,9 +752,9 @@ function HomePage() {
             Hire me or just <span className="italic text-[var(--brand)]">say hello.</span>
           </h2>
           <p className="text-ink-soft mt-5 max-w-xl mx-auto">
-            Open to senior payments product roles globally, Visa, Mastercard, Stripe, Wise, Adyen,
-            Thunes, DLocal, Checkout.com, Rapyd and regional fintechs. Replies within 24 hours,
-            Sun–Thu (GST).
+            Open to senior Product &amp; Program roles in fintech and payment infrastructure, Visa,
+            Mastercard, Stripe, Wise, Adyen, Thunes, DLocal, Checkout.com, Rapyd and regional
+            fintechs. Replies within 24 hours, Sun–Thu (GST).
           </p>
           <div className="mt-9 mx-auto max-w-md rounded-2xl sm:rounded-full border border-rule bg-card p-2 sm:p-1.5 sm:pl-5 flex flex-col sm:flex-row sm:items-center gap-3 shadow-[0_15px_40px_-20px_color-mix(in_oklab,var(--brand)_60%,transparent)]">
             <span className="text-sm text-ink-soft font-mono-tech truncate min-w-0 px-2 sm:px-0">

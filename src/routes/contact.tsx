@@ -30,14 +30,15 @@ export const Route = createFileRoute("/contact")({
         {
           property: "og:description",
           content:
-            "Open to senior payments product roles. Based in Dubai. Replies within 24 hours, Sun–Thu GST.",
+            "Open to senior Product & Program roles in fintech. Based in Dubai. Replies within 24 hours, Sun–Thu GST.",
         },
         { property: "og:url", content: url },
         { property: "og:type", content: "website" },
         { name: "twitter:title", content: "Contact Rizwan Zafar" },
         {
           name: "twitter:description",
-          content: "Open to senior payments product roles. Dubai-based. Reply within 24h, Sun–Thu.",
+          content:
+            "Open to senior Product & Program roles in fintech. Dubai-based. Reply within 24h, Sun–Thu.",
         },
       ],
       links: [{ rel: "canonical", href: url }],

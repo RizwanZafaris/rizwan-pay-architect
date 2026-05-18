@@ -189,7 +189,7 @@ function AudiencePage() {
       {/* CTA */}
       <div className="mt-20 rounded-3xl border border-ink/10 bg-surface p-10 md:p-12">
         <h2 className="font-instrument text-3xl text-ink leading-tight">
-          Open to senior payments product roles.
+          Open to senior Product &amp; Program roles in fintech.
         </h2>
         <p className="mt-4 text-ink-soft max-w-2xl">
           Based in {profile.location}. Reference-available. Resume below or get in touch directly.

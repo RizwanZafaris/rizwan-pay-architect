@@ -76,7 +76,7 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-40 px-3 sm:px-4 pt-3 sm:pt-4">
       <div className="mx-auto max-w-6xl">
-        <div className="flex items-center justify-between gap-3 rounded-full border border-ink/10 bg-background/70 backdrop-blur-xl pl-3 pr-2 py-2 shadow-[0_1px_0_rgba(255,255,255,0.6)_inset,0_8px_30px_-12px_rgba(15,23,42,0.18)]">
+        <div className="flex items-center justify-between gap-3 rounded-full border border-ink/10 bg-background/92 backdrop-blur-xl pl-3 pr-2 py-2 shadow-[0_1px_0_rgba(255,255,255,0.6)_inset,0_8px_30px_-12px_rgba(15,23,42,0.18)]">
           <Link
             to="/"
             className="flex items-center gap-2.5 min-w-0 group"
@@ -249,8 +249,8 @@ export function SiteFooter() {
             <div className="font-display text-lg text-ink">{profile.name}</div>
           </div>
           <p className="mt-3 text-ink-soft leading-relaxed max-w-md">
-            Rizwan Zafar, Payments Product Executive. Building regulated payment infrastructure
-            across MENA and South Asia.
+            Rizwan Zafar, Product &amp; Program Executive. Scaling regulated fintech infrastructure
+            in complex markets across MENA and South Asia.
           </p>
           <div className="mt-5 inline-flex items-center gap-2 text-xs text-ink-soft">
             <span className="relative inline-flex h-2 w-2">
@@ -340,7 +340,7 @@ export function SiteFooter() {
           <span>
             © {new Date().getFullYear()} {profile.name} · Dubai, UAE
           </span>
-          <span>Built for senior payments product roles</span>
+          <span>Built for senior Product &amp; Program roles in fintech</span>
         </div>
       </div>
     </footer>

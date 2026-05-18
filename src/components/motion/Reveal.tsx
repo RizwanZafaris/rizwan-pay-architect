@@ -33,6 +33,22 @@ export function Reveal({
     }
     const el = ref.current;
     if (!el) return;
+
+    // Synchronous in-viewport check on mount.
+    // IntersectionObserver does fire its initial callback when observe() is
+    // called, but that callback is async and may not flush in time when the
+    // user lands mid-page (refresh + scroll restore, deep anchor link, or
+    // programmatic scroll). Without this, Reveal-wrapped sections below the
+    // initial fold can stay stuck at opacity:0 indefinitely.
+    const rect = el.getBoundingClientRect();
+    const vh = window.innerHeight || document.documentElement.clientHeight;
+    const vw = window.innerWidth || document.documentElement.clientWidth;
+    const initiallyInView = rect.top < vh && rect.bottom > 0 && rect.left < vw && rect.right > 0;
+    if (initiallyInView) {
+      setVisible(true);
+      return;
+    }
+
     const io = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
@@ -46,7 +62,16 @@ export function Reveal({
       { rootMargin: "0px 0px -10% 0px", threshold: 0.05 },
     );
     io.observe(el);
-    return () => io.disconnect();
+
+    // Belt-and-braces fallback: if the observer hasn't fired after 2s
+    // (e.g. fast scroll fling, edge-case browser), force-reveal so content
+    // never stays invisible. Cheap and idempotent.
+    const fallback = window.setTimeout(() => setVisible(true), 2000);
+
+    return () => {
+      io.disconnect();
+      window.clearTimeout(fallback);
+    };
   }, []);
 
   // Render via React.createElement so polymorphic tag stays typed.
