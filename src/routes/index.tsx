@@ -56,7 +56,31 @@ export const Route = createFileRoute("/")({
 
 function HomePage() {
   const featuredPost = posts.find((p) => p.featured) ?? posts[0];
-  const editorsPicked = posts.slice(0, 6);
+  // Cluster-balanced Editor's Picks. Naively .slice(0, 6) gave us the 6
+  // newest posts, but because the SWIFT cluster has 8 future-dated essays
+  // it took ALL the slots — the homepage looked like a single-topic blog.
+  // We pick the newest post from each of these 5 priority clusters so the
+  // homepage telegraphs topical breadth (cross-border, program, AI,
+  // settlement, fraud) within the recruiter's first scan.
+  const PICK_ORDER = [
+    "Cross-Border Payments",
+    "Program Management",
+    "AI in Fintech",
+    "Settlement & Reconciliation",
+    "Fraud & Risk",
+    "Payment Infrastructure",
+  ] as const;
+  const editorsPicked: typeof posts = [];
+  for (const cat of PICK_ORDER) {
+    const next = posts.find((p) => p.category === cat && !editorsPicked.includes(p));
+    if (next) editorsPicked.push(next);
+    if (editorsPicked.length === 6) break;
+  }
+  // Backfill from the newest list if a category had no post.
+  for (const p of posts) {
+    if (editorsPicked.length >= 6) break;
+    if (!editorsPicked.includes(p)) editorsPicked.push(p);
+  }
   const featuredCases = caseStudies.slice(0, 3);
 
   // Hot topics map directly to blog filter URLs (?hub=...)
@@ -436,8 +460,13 @@ function HomePage() {
             </Link>
           </div>
 
+          {/* Homepage shows only PROVEN products. The coming-soon items
+              (Felo App, Job Hunt) live at /products in the full pipeline view —
+              on the executive scan path they read as off-narrative noise. */}
           <div className="grid md:grid-cols-2 gap-5">
-            {products.map((p) => {
+            {products
+              .filter((p) => p.status === "shipped-scaled")
+              .map((p) => {
               const isInternal = p.link.startsWith("/");
               const CardInner = (
                 <>
