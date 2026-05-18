@@ -125,7 +125,7 @@ Suggested rotation (12 months out):
 
 ## Quick sanity check
 
-Visit https://rizwan-pay-architect.lovable.app after the next deploy and verify:
+Visit https://rzifi.com after the next deploy and verify:
 
 - Nav reads: Products · Case Studies · Blog · Media · Topics · For recruiters · Contact
 - Hero subhead mentions AI-augmented operations + PMBOK/Agile

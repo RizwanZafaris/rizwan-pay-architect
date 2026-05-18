@@ -295,17 +295,18 @@
     }
   }
 
-  /* Hero portrait decorative accents — slow elegant float / glow.
-     Two variants of each so adjacent accents don't visibly pulse in lockstep.
-     Animation is purely decorative; suppress under prefers-reduced-motion. */
+  /* Hero portrait decorative accents.
+     Travel + scale tuned so motion is visible at a glance without being
+     distracting. Two variants of each so adjacent accents don't pulse in
+     lockstep. Suppressed under prefers-reduced-motion. */
   @keyframes rz-hero-float-a {
     0%,
     100% {
       transform: translateY(0);
-      opacity: 0.85;
+      opacity: 0.7;
     }
     50% {
-      transform: translateY(-5px);
+      transform: translateY(-14px);
       opacity: 1;
     }
   }
@@ -313,56 +314,74 @@
     0%,
     100% {
       transform: translateY(0) translateX(0);
-      opacity: 0.6;
+      opacity: 0.55;
     }
     50% {
-      transform: translateY(3px) translateX(-2px);
-      opacity: 0.95;
+      transform: translateY(10px) translateX(-6px);
+      opacity: 1;
     }
   }
   @keyframes rz-hero-glow-a {
     0%,
     100% {
-      transform: scale(1);
-      opacity: 0.7;
+      transform: scale(0.85);
+      opacity: 0.55;
     }
     50% {
-      transform: scale(1.25);
+      transform: scale(1.7);
       opacity: 1;
     }
   }
   @keyframes rz-hero-glow-b {
     0%,
     100% {
-      transform: scale(1);
-      opacity: 0.5;
+      transform: scale(0.9);
+      opacity: 0.4;
     }
     50% {
-      transform: scale(1.4);
+      transform: scale(2);
+      opacity: 1;
+    }
+  }
+  /* Slow breathing ring behind the portrait — premium, ambient. */
+  @keyframes rz-hero-ring-breathe {
+    0%,
+    100% {
+      transform: scale(0.98);
+      opacity: 0.45;
+    }
+    50% {
+      transform: scale(1.04);
       opacity: 0.95;
     }
   }
   .hero-float-a {
-    animation: rz-hero-float-a 5.5s ease-in-out infinite;
+    animation: rz-hero-float-a 4.5s ease-in-out infinite;
     will-change: transform, opacity;
   }
   .hero-float-b {
-    animation: rz-hero-float-b 7s ease-in-out infinite;
+    animation: rz-hero-float-b 6s ease-in-out infinite;
     will-change: transform, opacity;
   }
   .hero-glow-a {
-    animation: rz-hero-glow-a 6s ease-in-out infinite;
+    animation: rz-hero-glow-a 3.5s ease-in-out infinite;
     will-change: transform, opacity;
   }
   .hero-glow-b {
-    animation: rz-hero-glow-b 8s ease-in-out infinite;
+    animation: rz-hero-glow-b 5s ease-in-out infinite;
+    will-change: transform, opacity;
+  }
+  .hero-ring-breathe {
+    animation: rz-hero-ring-breathe 8s ease-in-out infinite;
+    transform-origin: center;
     will-change: transform, opacity;
   }
   @media (prefers-reduced-motion: reduce) {
     .hero-float-a,
     .hero-float-b,
     .hero-glow-a,
-    .hero-glow-b {
+    .hero-glow-b,
+    .hero-ring-breathe {
       animation: none;
     }
   }

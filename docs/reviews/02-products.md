@@ -1,6 +1,6 @@
 # Products Page Review — `/products`
 
-**URL:** https://rizwan-pay-architect.lovable.app/products
+**URL:** https://rzifi.com/products
 **Severity:** Medium (functional; two empty tiles hurt credibility)
 
 ---

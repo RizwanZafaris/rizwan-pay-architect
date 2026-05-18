@@ -180,7 +180,7 @@ In **Explore → Free form**:
 
 ### Quick checks (DevTools console, no GA4 needed)
 
-1. Open <https://rizwan-pay-architect.lovable.app> in Chrome.
+1. Open <https://rzifi.com> in Chrome.
 2. DevTools → Console → type `dataLayer` → you should see an array with at least:
    - `{ event: "gtm.js", ... }`
    - `{ event: "gtm.dom", ... }`

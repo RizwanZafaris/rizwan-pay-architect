@@ -1,6 +1,6 @@
 # Homepage Review — `/`
 
-**URL:** https://rizwan-pay-architect.lovable.app/
+**URL:** https://rzifi.com/
 **Severity:** High (this is the first impression for every recruiter)
 
 ---
@@ -81,9 +81,9 @@ Keep "I'm Rizwan." as the eyebrow or as the second line — it's warm and person
     "@type": "Person",
     "name": "Rizwan Zafar",
     "jobTitle": "Chief Product Officer, Payments",
-    "url": "https://rizwan-pay-architect.lovable.app/",
+    "url": "https://rzifi.com/",
     "email": "mailto:rizwanzaffar.pk@gmail.com",
-    "image": "https://rizwan-pay-architect.lovable.app/rizwan-zafar-cutout.png",
+    "image": "https://rzifi.com/rizwan-zafar-cutout.png",
     "address": { "@type": "PostalAddress", "addressLocality": "Dubai", "addressCountry": "AE" },
     "sameAs": ["https://www.linkedin.com/in/rizwanzaffar"],
     "knowsAbout": [

@@ -1,6 +1,6 @@
 # Topics Page Review — `/topics`
 
-**URL:** https://rizwan-pay-architect.lovable.app/topics
+**URL:** https://rzifi.com/topics
 **Severity:** Low (functional and well-structured; minor polish only)
 
 ---
@@ -92,7 +92,7 @@ Add `CollectionPage` schema:
     "@context": "https://schema.org",
     "@type": "CollectionPage",
     "name": "Cross-Border Payments",
-    "url": "https://rizwan-pay-architect.lovable.app/topics/cross-border",
+    "url": "https://rzifi.com/topics/cross-border",
     "hasPart": [
       /* list of article URLs in this hub */
     ]

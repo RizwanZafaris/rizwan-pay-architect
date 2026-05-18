@@ -10,7 +10,7 @@ Everything related to this site lives under `docs/` (locally). Reference repos a
 
 | What                          | Where                                                                             | Notes                                                                 |
 | ----------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
-| **Live site**                 | https://rizwan-pay-architect.lovable.app                                          | Lovable auto-deploys from `main`                                      |
+| **Live site**                 | https://rzifi.com                                                                 | Auto-published from `main` via the `hostinger-static` branch          |
 | **GitHub repo**               | https://github.com/RizwanZafaris/rizwan-pay-architect                             | Push to `main` to ship                                                |
 | **Latest commit on `main`**   | [`2d53161`](https://github.com/RizwanZafaris/rizwan-pay-architect/commit/2d53161) | Perf fix: bundle 813KB→549KB, /about JPG 1.3MB→24KB                   |
 | **Hostinger deploy artifact** | [`docs/deploy/site.zip`](deploy/site.zip)                                         | 2.1 MB. Upload via Hostinger File Manager → extract in `public_html/` |
@@ -155,8 +155,6 @@ All discoverable via `awesome-agent-skills` skill or the standard skill list.
 
 ## What's NOT yet done (open items)
 
-1. **OG card images** — 8 cards prompted in [`11-IMAGES_NEEDED.md`](reviews/11-IMAGES_NEEDED.md). Generate via Gemini → drop into `public/og/` → ping me, I wire them in.
-2. **Custom domain** — site still on `*.lovable.app`. Register `rizwanzafar.com` etc., point DNS, update `VITE_SITE_URL`.
-3. **Contact form backend** — set `VITE_CONTACT_ACCESS_KEY=<web3forms_key>` in Lovable env to enable real submissions (otherwise falls back to mailto).
-4. **Video walk-throughs** — [`/media`](https://rizwan-pay-architect.lovable.app/media) has placeholders for 3 Looms (Simpaisa architecture, BNPL launch, AI suite).
-5. **Hostinger upload** — `docs/deploy/site.zip` is ready. Just upload via File Manager.
+1. **OG card images** — per-route 1200×630 cards prompted in [`11-IMAGES_NEEDED.md`](reviews/11-IMAGES_NEEDED.md). The sitewide default at `public/og-default.png` is shipped; per-page cards still pending.
+2. **Contact form backend** — set `VITE_CONTACT_ACCESS_KEY=<web3forms_key>` in the deploy environment to enable server-side submissions (otherwise falls back to mailto).
+3. **Video walk-throughs** — [`/media`](https://rzifi.com/media) has placeholders for 3 Looms (Simpaisa architecture, BNPL launch, AI suite).

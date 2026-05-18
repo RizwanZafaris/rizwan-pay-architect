@@ -1,6 +1,6 @@
 # About Page Review — `/about`
 
-**URL:** https://rizwan-pay-architect.lovable.app/about
+**URL:** https://rzifi.com/about
 **Severity:** Medium (good bones; needs sharper opening and proof)
 
 ---

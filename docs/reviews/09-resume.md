@@ -1,6 +1,6 @@
 # Resume Page Review — `/resume`
 
-**URL:** https://rizwan-pay-architect.lovable.app/resume
+**URL:** https://rzifi.com/resume
 **Severity:** Medium (content is solid; formatting and density need work)
 
 ---

@@ -1,4 +1,4 @@
-# Website Review — rizwan-pay-architect.lovable.app
+# Website Review — rzifi.com
 
 **Reviewed:** 2026-05-17
 **Site owner:** Rizwan Zafar — Payments Product Executive
@@ -29,8 +29,8 @@ Severity scale: **Critical** = blocks credibility · **High** = visible impact �
 ## Top 10 fixes (do these first)
 
 1. **Add unique `<meta name="description">` to every page** — only the homepage has one. This is the single biggest SEO loss. _(see 10-global-site-issues.md)_
-2. **Move off the `lovable.app` subdomain to a custom domain** (e.g. `rizwanzafar.com`) — recruiters will not take a `*.lovable.app` URL on a CV seriously. _(see 10)_
-3. **Replace the mailto-only contact form** with a real submission (Formspree, Web3Forms, or a Lovable backend). Many recruiters use webmail that does not trigger `mailto:`. _(see 07-contact.md)_
+2. **Custom domain rzifi.com** is live on Hostinger; the original platform subdomain is no longer the canonical surface. _(see 10)_
+3. **Replace the mailto-only contact form** with a real submission (Formspree, Web3Forms, or a self-hosted endpoint). Many recruiters use webmail that does not trigger `mailto:`. _(see 07-contact.md)_
 4. **Add Open Graph + Twitter Card meta tags** so the link previews well on LinkedIn, WhatsApp, and X. _(see 10)_
 5. **Add JSON-LD `Person` and `Article` schema** for AI search visibility (ChatGPT, Perplexity, Google AI Overviews). _(see 10)_
 6. **Fix the "Coming soon" copy on Felo App and Job Hunt** — either give a date or remove them from the public catalogue. Empty cards weaken the portfolio. _(see 02-products.md)_

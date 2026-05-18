@@ -296,7 +296,7 @@ Run the 5-query AI citation check from §2d. Log results in a sheet.
 | AI tools never cite your URL                          | `bun run seo:check-live`                       | Verify AI bot UAs get 200. If they don't, your CDN is blocking them.                                          |
 | Slow LCP                                              | <https://pagespeed.web.dev/> on rzifi.com      | Check the perf brief in CLAUDE / the existing performance-optimization skill.                                 |
 | Sitemap not picked up                                 | GSC → Sitemaps                                 | Re-submit. If it fails to fetch: live-site sitemap.xml is 404 → deploy issue.                                 |
-| Old lovable.app showing up in search results          | None (Google has it cached)                    | Wait 4–8 weeks for Google to drop the old URLs. The new canonicals point at rzifi.com so authority transfers. |
+| Old subdomain URLs still in search results            | None (Google has them cached)                  | Wait 4–8 weeks for Google to drop the old URLs. The new canonicals point at rzifi.com so authority transfers. |
 | Brand search "Rizwan Zafar" doesn't rank rzifi.com #1 | GSC → Performance → query filter for your name | Strengthen brand mentions on LinkedIn, Wikidata, Crunchbase. Brand SERP takes 4–12 weeks.                     |
 
 ---

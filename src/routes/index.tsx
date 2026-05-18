@@ -230,12 +230,15 @@ function HomePage() {
                 }}
               />
               {/* Thin brand ring behind the portrait — premium framing without
-                  a hard card edge. */}
+                  a hard card edge. Slow breathing animation gives the hero a
+                  pulse without distracting the viewer. */}
               <div
                 aria-hidden
-                className="pointer-events-none absolute inset-2 -z-10 rounded-[36%]"
+                className="hero-ring-breathe pointer-events-none absolute inset-2 -z-10 rounded-[36%]"
                 style={{
-                  border: "1px solid color-mix(in oklab, var(--brand) 25%, transparent)",
+                  border: "1px solid color-mix(in oklab, var(--brand) 40%, transparent)",
+                  boxShadow:
+                    "0 0 0 1px color-mix(in oklab, var(--brand) 10%, transparent), 0 0 40px 4px color-mix(in oklab, var(--brand) 15%, transparent)",
                 }}
               />
 
@@ -263,9 +266,10 @@ function HomePage() {
                 Dubai · UAE
               </div>
 
-              {/* Decorative accents — all positioned at the portrait box's
-                  EDGES so they never overlap the face. Each has a CSS-only
-                  slow float / glow animation that respects reduced motion. */}
+              {/* Decorative accents — positioned at the portrait box's EDGES
+                  so they never overlap the face. Each carries a CSS-only
+                  ease-in-out animation; prefers-reduced-motion: reduce
+                  suppresses all of them. */}
               {(
                 [
                   // 3 pluses around the edges
@@ -273,7 +277,7 @@ function HomePage() {
                     type: "plus",
                     top: "-2%",
                     left: "94%",
-                    size: "text-3xl md:text-4xl",
+                    size: "text-4xl md:text-5xl",
                     color: "text-[var(--brand)]",
                     anim: "hero-float-a",
                   },
@@ -281,15 +285,15 @@ function HomePage() {
                     type: "plus",
                     top: "60%",
                     left: "-4%",
-                    size: "text-2xl md:text-3xl",
-                    color: "text-[var(--brand)]/70",
+                    size: "text-3xl md:text-4xl",
+                    color: "text-[var(--brand)]/80",
                     anim: "hero-float-b",
                   },
                   {
                     type: "plus",
                     top: "98%",
                     left: "92%",
-                    size: "text-2xl md:text-3xl",
+                    size: "text-3xl md:text-4xl",
                     color: "text-[var(--brand)]",
                     anim: "hero-float-a",
                   },
@@ -298,15 +302,15 @@ function HomePage() {
                     type: "dot",
                     top: "14%",
                     left: "-3%",
-                    size: "h-2 w-2",
-                    color: "bg-[var(--brand)]/70",
+                    size: "h-2.5 w-2.5",
+                    color: "bg-[var(--brand)]",
                     anim: "hero-glow-a",
                   },
                   {
                     type: "dot",
                     top: "92%",
                     left: "44%",
-                    size: "h-2.5 w-2.5",
+                    size: "h-3 w-3",
                     color: "bg-[var(--brand)]",
                     anim: "hero-glow-b",
                   },

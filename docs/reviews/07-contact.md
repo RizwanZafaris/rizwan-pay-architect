@@ -1,6 +1,6 @@
 # Contact Page Review — `/contact`
 
-**URL:** https://rizwan-pay-architect.lovable.app/contact
+**URL:** https://rzifi.com/contact
 **Severity:** High (your contact page is leaking inbound)
 
 ---

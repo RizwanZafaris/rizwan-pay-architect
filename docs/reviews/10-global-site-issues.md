@@ -6,22 +6,9 @@ These are findings that apply across the whole site. Fix once, the impact propag
 
 ---
 
-## 1. Hosting / domain
+## 1. Hosting / domain — ✅ done
 
-### Move off `lovable.app` subdomain
-
-**Why it matters:** A `*.lovable.app` URL on a senior payments product candidate's CV reads as "still figuring this out". Recruiters at Visa/Mastercard/Stripe will share your URL internally — the domain is part of the first impression. A `lovable.app` subdomain also:
-
-- Cannot rank as authoritatively on SEO as a custom domain.
-- Inherits any reputation hits the parent domain receives.
-- Looks transient (recruiters worry the site won't be there in 6 months).
-
-**Recommendation:**
-
-- Register **`rizwanzafar.com`** (or `.io` / `.dev` if .com is taken).
-- Configure DNS to point at Lovable hosting.
-- Add a 301 redirect from the old `lovable.app` URL so existing inbound links don't break.
-- Cost: ~$12/year for the domain. ROI is immediate and permanent.
+The site moved off the original subdomain to the custom domain **`rzifi.com`** hosted on Hostinger. The static export is built in `dist-static/` and synced to the `hostinger-static` git branch via `bun run deploy:git-static`. The custom Vite config in `vite.config.ts` no longer depends on the original platform wrapper — every plugin is wired explicitly.
 
 ---
 

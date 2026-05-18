@@ -94,18 +94,18 @@ Assuming the article template renders correctly, these are the recommended must-
     "author": {
       "@type": "Person",
       "name": "Rizwan Zafar",
-      "url": "https://rizwan-pay-architect.lovable.app/about"
+      "url": "https://rzifi.com/about"
     },
     "datePublished": "2026-01-15",
     "dateModified": "2026-05-01",
-    "image": "https://rizwan-pay-architect.lovable.app/og/swift-overview.png",
+    "image": "https://rzifi.com/og/swift-overview.png",
     "publisher": { "@type": "Person", "name": "Rizwan Zafar" },
     "about": [
       { "@type": "Thing", "name": "SWIFT" },
       { "@type": "Thing", "name": "Cross-border payments" }
     ],
     "wordCount": 2400,
-    "mainEntityOfPage": "https://rizwan-pay-architect.lovable.app/blog/how-swift-payment-works"
+    "mainEntityOfPage": "https://rzifi.com/blog/how-swift-payment-works"
   }
 </script>
 ```
