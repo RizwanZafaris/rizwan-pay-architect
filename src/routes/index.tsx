@@ -123,80 +123,79 @@ function HomePage() {
           }}
         />
 
-        <div className="relative mx-auto max-w-7xl px-5 sm:px-6 pt-6 md:pt-10 pb-8 md:pb-12 grid lg:grid-cols-12 gap-6 lg:gap-10 items-center">
+        <div className="relative mx-auto max-w-7xl px-5 sm:px-6 pt-4 md:pt-7 pb-6 md:pb-10 grid lg:grid-cols-12 gap-5 lg:gap-8 items-center">
           {/* LEFT — 58% (7/12). Narrative + proof. */}
           <div className="lg:col-span-7 order-1 relative z-10 min-w-0">
-            <div className="inline-flex items-center gap-4 mb-4 md:mb-6">
+            <div className="inline-flex items-center gap-4 mb-3 md:mb-4">
               <span className="h-px w-10 bg-[var(--brand)]" />
               <span className="text-[10px] uppercase tracking-[0.32em] text-[var(--brand)] font-mono-tech font-semibold">
                 ◆ Introduction · I'm Rizwan
               </span>
             </div>
 
-            <h1 className="font-instrument tracking-tight leading-[1.06] text-[30px] sm:text-[38px] md:text-[48px] lg:text-[56px] xl:text-[62px] text-ink">
+            <h1 className="font-instrument tracking-tight leading-[1.05] text-[28px] sm:text-[36px] md:text-[42px] lg:text-[50px] text-ink">
               Product &amp; Program Executive Scaling{" "}
               <span className="italic text-[var(--brand)]">Fintech Infrastructure</span> in Complex
               Markets
             </h1>
 
-            <p className="mt-5 md:mt-6 max-w-2xl text-base md:text-lg text-ink-soft leading-relaxed">
+            <p className="mt-3.5 md:mt-4 max-w-xl text-[15px] md:text-base text-ink-soft leading-relaxed">
               I build payment rails where market complexity and scale collide. As CPO at Simpaisa in
               Dubai, I helped scale infrastructure across{" "}
               <span className="text-ink font-medium">7 markets</span>,{" "}
               <span className="text-ink font-medium">$1B+ GTV</span>,{" "}
               <span className="text-ink font-medium">25M+ monthly transactions</span> and{" "}
-              <span className="text-ink font-medium">
-                50+ bank, wallet and financial institution
-              </span>{" "}
-              partners.
+              <span className="text-ink font-medium">50+ bank, wallet &amp; FI</span> partners.
             </p>
 
-            {/* Proof row — 4 compact tiles. Mobile: 2×2, desktop: 1×4. */}
-            <div className="mt-6 md:mt-7 grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-2xl">
+            {/* Proof row — compact tiles. Mobile: 2×2, desktop: 1×4. */}
+            <div className="mt-4 md:mt-5 grid grid-cols-2 sm:grid-cols-4 gap-2.5 max-w-xl">
               {(
                 [
                   { value: "$1B+", label: "GTV" },
-                  { value: "25M+", label: "Monthly transactions" },
+                  { value: "25M+", label: "Monthly tx" },
                   { value: "7", label: "Markets" },
-                  { value: "50+", label: "Bank & wallet partners" },
+                  { value: "50+", label: "Bank & wallet" },
                 ] as const
               ).map((m) => (
                 <div
                   key={m.label}
-                  className="rounded-xl border border-rule bg-card/70 backdrop-blur-sm px-3 py-2.5 sm:px-4 sm:py-3"
+                  className="rounded-lg border border-rule bg-card/70 backdrop-blur-sm px-2.5 py-2"
                 >
-                  <div className="font-instrument text-xl md:text-2xl text-ink leading-none">
+                  <div className="font-instrument text-lg md:text-xl text-ink leading-none">
                     <AnimatedMetric value={m.value} />
                   </div>
-                  <div className="text-[9px] uppercase tracking-[0.16em] text-ink-soft mt-1.5 font-mono-tech leading-tight">
+                  <div className="text-[9px] uppercase tracking-[0.14em] text-ink-soft mt-1 font-mono-tech leading-tight">
                     {m.label}
                   </div>
                 </div>
               ))}
             </div>
 
-            {/* Certification trust line. */}
-            <p className="mt-4 text-[10px] sm:text-[11px] uppercase tracking-[0.22em] text-ink-soft font-mono-tech">
-              <span className="text-ink-soft/70">Certified:</span>{" "}
-              <span className="text-ink">PMP</span>
-              <span className="opacity-40 mx-1.5">·</span>
+            {/* Certification trust line — small mono-caps. */}
+            <p className="mt-3 text-[10px] uppercase tracking-[0.18em] text-ink-soft font-mono-tech">
+              <span className="opacity-70">Certified:</span> <span className="text-ink">PMP</span>
+              <span className="opacity-40 mx-1">·</span>
               <span className="text-ink">PMI-ACP</span>
-              <span className="opacity-40 mx-1.5">·</span>
+              <span className="opacity-40 mx-1">·</span>
               <span className="text-ink">CSPO</span>
-              <span className="opacity-40 mx-1.5">·</span>
+              <span className="opacity-40 mx-1">·</span>
               <span className="text-ink">CSM</span>
-              <span className="opacity-40 mx-1.5">·</span>
+              <span className="opacity-40 mx-1">·</span>
               <span className="text-ink">COBIT 5</span>
-              <span className="opacity-40 mx-1.5">·</span>
+              <span className="opacity-40 mx-1">·</span>
               <span className="text-ink">ITIL</span>
             </p>
 
-            {/* CTAs — visible in first viewport. */}
-            <div className="mt-5 md:mt-6 flex flex-col sm:flex-row sm:items-center gap-3">
+            {/* CTAs — visible in first viewport. Primary uses text-background
+                (cream/white) on bg-ink so contrast is unambiguous. The earlier
+                text-[var(--brand-foreground)] resolved to the SAME dark colour
+                as bg-ink in light mode, making the label invisible. */}
+            <div className="mt-4 md:mt-5 flex flex-col sm:flex-row sm:items-center gap-2.5">
               <Link
                 to="/product-work"
                 onClick={() => ctaClick("see_case_studies", "hero", "/product-work")}
-                className="group inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-[11px] uppercase tracking-[0.18em] font-semibold text-[var(--brand-foreground)] bg-ink hover:bg-[var(--brand)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background transition-colors"
+                className="group inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-[11px] uppercase tracking-[0.18em] font-semibold text-background bg-ink hover:bg-[var(--brand)] hover:text-[var(--brand-foreground)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background transition-colors"
               >
                 See case studies
                 <span className="transition-transform group-hover:translate-x-1" aria-hidden>
@@ -210,39 +209,39 @@ function HomePage() {
                   ctaClick("download_resume", "hero", profile.resumeHref);
                   resumeDownload("hero");
                 }}
-                className="inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-[11px] uppercase tracking-[0.18em] font-semibold text-ink border border-ink/20 hover:border-ink/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background transition-colors"
+                className="inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-[11px] uppercase tracking-[0.18em] font-semibold text-ink border border-ink/25 hover:border-ink/60 hover:bg-ink/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background transition-colors"
               >
                 Download resume
               </a>
               <a
                 href={`mailto:${profile.email}`}
                 onClick={() => ctaClick("email_me", "hero", `mailto:${profile.email}`)}
-                className="inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-[11px] uppercase tracking-[0.18em] font-semibold text-ink border border-ink/20 hover:border-ink/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background transition-colors"
+                className="inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-[11px] uppercase tracking-[0.18em] font-semibold text-ink border border-ink/25 hover:border-ink/60 hover:bg-ink/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background transition-colors"
               >
                 Email me
               </a>
             </div>
 
-            {/* Used-by — secondary credibility, smaller. */}
-            <p className="mt-4 text-[10px] sm:text-[11px] text-ink-soft font-mono-tech uppercase tracking-[0.18em] leading-relaxed">
+            {/* Used-by — small trust strip directly under the CTAs. */}
+            <p className="mt-3 text-[10px] text-ink-soft font-mono-tech uppercase tracking-[0.18em] leading-relaxed">
               <span className="opacity-70">Used in production by</span>{" "}
               <span className="text-ink">TikTok</span>
-              <span className="opacity-40 mx-1.5">·</span>
+              <span className="opacity-40 mx-1">·</span>
               <span className="text-ink">Uber</span>
-              <span className="opacity-40 mx-1.5">·</span>
+              <span className="opacity-40 mx-1">·</span>
               <span className="text-ink">Temu</span>
-              <span className="opacity-40 mx-1.5">·</span>
+              <span className="opacity-40 mx-1">·</span>
               <span className="text-ink">MoneyGram</span>
-              <span className="opacity-40 mx-1.5">·</span>
+              <span className="opacity-40 mx-1">·</span>
               <span className="text-ink">InDrive</span>
-              <span className="opacity-40 mx-1.5">·</span>
+              <span className="opacity-40 mx-1">·</span>
               <span className="text-ink">PUBG</span>
             </p>
           </div>
 
           {/* RIGHT — 42% (5/12). Portrait + premium depth backdrop. */}
           <div className="lg:col-span-5 order-2 relative min-w-0">
-            <div className="relative mx-auto w-full max-w-[280px] sm:max-w-[360px] lg:max-w-[440px] aspect-[4/5]">
+            <div className="relative mx-auto w-full max-w-[260px] sm:max-w-[330px] lg:max-w-[400px] aspect-[4/5]">
               {/* Subtle depth: soft radial wash behind the portrait. Inset so
                   it can't touch the column edges and clip awkwardly. */}
               <div

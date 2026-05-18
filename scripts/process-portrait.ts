@@ -36,7 +36,9 @@ console.log(`Source trimmed: ${tw}×${th}`);
 const targetW = Math.round(CANVAS_W * TARGET_SUBJECT_PCT);
 const scale = targetW / tw;
 const scaledH = Math.round(th * scale);
-const scaled = await sharp(trimmed.data).resize(targetW, scaledH, { kernel: "lanczos3" }).toBuffer();
+const scaled = await sharp(trimmed.data)
+  .resize(targetW, scaledH, { kernel: "lanczos3" })
+  .toBuffer();
 console.log(`Subject scaled: ${targetW}×${scaledH}`);
 
 // 3. Composite into a 928×1152 transparent canvas, anchored to the bottom.
@@ -61,9 +63,7 @@ const canvas = await sharp({
 console.log(`Canvas composed: ${CANVAS_W}×${CANVAS_H}`);
 
 // 4. Emit the three files.
-await sharp(canvas)
-  .png({ compressionLevel: 9 })
-  .toFile(`${OUT}/rizwan-zafar-cutout.png`);
+await sharp(canvas).png({ compressionLevel: 9 }).toFile(`${OUT}/rizwan-zafar-cutout.png`);
 await sharp(canvas)
   .resize(920, null, { withoutEnlargement: true })
   .webp({ quality: 85, effort: 6, alphaQuality: 90 })
