@@ -65,6 +65,13 @@ export const Route = createFileRoute("/blog/$slug")({
       inLanguage: "en",
       mainEntityOfPage: { "@type": "WebPage", "@id": url },
       url,
+      // Speakable: tells Google Assistant / AI Overviews / voice answer
+      // engines which parts of the page to read aloud. We mark the H1 and
+      // the first paragraph of body (`.prose-editorial > p:first-of-type`).
+      speakable: {
+        "@type": "SpeakableSpecification",
+        cssSelector: ["h1", ".prose-editorial > p:first-of-type"],
+      },
     };
     const crumbs = {
       "@context": "https://schema.org",

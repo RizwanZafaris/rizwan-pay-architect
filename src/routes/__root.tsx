@@ -188,6 +188,30 @@ const websiteJsonLd = {
   },
 };
 
+// Organization JSON-LD complements the Person entity. AI tools (Perplexity,
+// Bing Copilot, ChatGPT Search) use Organization to construct knowledge-panel
+// style citations and link "Rizwan Zafar" the entity to rzifi.com the site.
+const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": `${SITE_URL}#organization`,
+  name: "Rizwan Zafar — Payments Product Executive",
+  alternateName: "rzifi",
+  url: SITE_URL,
+  logo: `${SITE_URL}/og-default.png`,
+  image: `${SITE_URL}/og-default.png`,
+  founder: { "@type": "Person", name: profile.name, url: SITE_URL },
+  sameAs: [profile.linkedin, profile.twitter].filter(Boolean),
+  contactPoint: {
+    "@type": "ContactPoint",
+    contactType: "Hiring inquiries",
+    email: profile.email,
+    areaServed: ["AE", "SA", "PK", "BD", "EG", "IQ", "SG", "GB", "EU"],
+    availableLanguage: ["en"],
+  },
+  address: { "@type": "PostalAddress", addressLocality: "Dubai", addressCountry: "AE" },
+};
+
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   head: () => ({
     meta: [
@@ -237,6 +261,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     scripts: [
       { type: "application/ld+json", children: JSON.stringify(personJsonLd) },
       { type: "application/ld+json", children: JSON.stringify(websiteJsonLd) },
+      { type: "application/ld+json", children: JSON.stringify(organizationJsonLd) },
     ],
   }),
   shellComponent: RootShell,

@@ -1,24 +1,97 @@
 # Rizwan Zafar — Payments Product Executive
 
-> Personal site of Rizwan Zafar, a payments product executive based in Dubai building regulated payment infrastructure across emerging markets — $1B+ GTV, 25M+ monthly transactions.
+> Product & Program Leader, Payments, Fintech, AI in Payments and Cross-Border Systems. Built a B2B payments platform from $0 to $1B+ TPV across 5 markets, deployed 4 production AI solutions, and led a 40-engineer org built from 2 people.
 
-Rizwan is Chief Product Officer at Simpaisa and writes about payment infrastructure, cross-border payments, settlement, KYC/KYB, fraud and risk, and emerging-markets fintech product strategy.
+Rizwan Zafar is Chief Product Officer · Payments, Fintech & AI, based in Dubai, UAE. Site: https://rzifi.com. Topics: payment infrastructure, cross-border payments, settlement, KYC/KYB, AML/CFT, fraud risk, SWIFT, ISO 20022, merchant onboarding, regulated fintech.
 
 ## Pages
 
-- [Home](/): Overview, positioning, selected work and metrics.
-- [About](/about): Background from engineering to payments leadership, plus recommendations.
-- [Product Work](/product-work): Case studies in regulated payments infrastructure at $1B+ GTV scale.
-- [Blog](/blog): Notes on payments, product and emerging markets.
-- [Resume](/resume): Executive resume — payments product, infrastructure and risk.
-- [Contact](/contact): Get in touch about senior payments roles or advisory work.
+- [Home](https://rzifi.com/): Overview, positioning, selected work and metrics.
+- [About](https://rzifi.com/about): Background from engineering to payments leadership.
+- [Product Work](https://rzifi.com/product-work): Case studies at $1B+ GTV scale.
+- [Essays](https://rzifi.com/blog): Practitioner writing on regulated payments.
+- [Topics](https://rzifi.com/topics): Hub pages by domain (cross-border, settlement, fraud…).
+- [Résumé](https://rzifi.com/resume): Executive resume — payments product and infrastructure.
+- [For recruiters](https://rzifi.com/for): Audience-specific landing pages.
+- [Contact](https://rzifi.com/contact): Get in touch for senior payments roles or advisory.
+
+## Topic hubs
+
+- [Payment Infrastructure](https://rzifi.com/topics/payment-infrastructure): Building the regulated rails, pay-in, payout, ledgers, orchestration and the operating model that runs them.
+- [Cross-Border Payments](https://rzifi.com/topics/cross-border-payments): Corridors, FX, partner routing and the product economics of moving money across markets.
+- [SWIFT & ISO 20022](https://rzifi.com/topics/swift-iso-20022): SWIFT messaging, gpi, ISO 20022 migration, correspondent banking and the standards layer of cross-border.
+- [Settlement & Reconciliation](https://rzifi.com/topics/settlement-reconciliation): Ledger design, three-way reconciliation, exception management and treasury, the trust layer of payments.
+- [Merchant Onboarding](https://rzifi.com/topics/merchant-onboarding): KYC/KYB automation, risk tiering, activation funnel and the trade-off between conversion and default.
+- [Fraud & AML/CFT](https://rzifi.com/topics/fraud-aml): Layered fraud controls, AML/CFT monitoring, sanctions screening, chargebacks and the false-positive budget.
+- [Payment APIs](https://rzifi.com/topics/payment-apis): API design for pay-in, payout, local methods and developer experience in regulated environments.
+- [Emerging Markets](https://rzifi.com/topics/emerging-markets): MENA, South Asia and the operating realities that pressure-test payments outside the OECD model.
+- [AI in Fintech & Payments](https://rzifi.com/topics/ai-in-fintech): GenAI use-case identification, value modeling and four production AI deployments in regulated payments, merchant support, monitoring, partner ops and fraud/AML.
+- [Crypto & Stablecoin Payments](https://rzifi.com/topics/crypto-stablecoins): On-ramps and off-ramps, stablecoin settlement, custody design, Travel Rule and VARA/FATF alignment for regulated payments teams.
+- [Program Management & PMO](https://rzifi.com/topics/program-management-pmo): PMBOK + Agile hybrid frameworks, RAID logs, SteerCo governance, OKRs and the PMO stack that actually ships at $1B+ scale.
 
 ## Case studies
 
-- [Simpaisa Payment Infrastructure](/product-work/simpaisa-payment-infrastructure): Multi-rail platform powering $1B+ GTV.
-- [Merchant Onboarding + KYC/KYB](/product-work/merchant-onboarding-kyc): Activation from weeks to hours.
-- [Fraud, Risk and AML/CFT](/product-work/fraud-risk-aml-cft): Layered controls built into the payments stack.
-- [Settlement + Reconciliation](/product-work/settlement-reconciliation): Multi-rail settlement engine at 99.95% accuracy.
-- [Cross-Border Corridors + FX](/product-work/cross-border-corridors-fx): Pay-in/payout across MENA and South Asia.
-- [Tapmad Wallet/Billing Migration](/product-work/tapmad-wallet-billing-migration): Payment cost from 50% to 1%.
-- [Daraz Payment Operations](/product-work/daraz-payment-operations): COD-to-digital conversion across markets.
+- [Simpaisa Payment Infrastructure Platform](https://rzifi.com/product-work/simpaisa-payment-infrastructure): A regulated, multi-rail payments platform processing $1B+ annual GTV and 25M+ monthly transactions across pay-in, payout, wallets (DCB/IBFT), card acquiring (MPGS/MDES), settlement, FX and cross-border corridors, PCI DSS and ISO/IEC 27001 certified.
+- [Merchant Onboarding + KYC/KYB Automation](https://rzifi.com/product-work/merchant-onboarding-kyc): Automated merchant onboarding pipeline, KYC/KYB, UBO discovery, sanctions and PEP screening, risk-tiered decisioning with full audit trail. Activation cut from weeks to hours; manual review load down 70%.
+- [Settlement + Reconciliation Engine: 99.95% Accuracy at $1B+ GTV](https://rzifi.com/product-work/settlement-reconciliation): A multi-rail settlement and reconciliation engine, canonical double-entry ledger, three-way auto-reconciliation, exception management and corridor-aware payout windows. Closed the gap between treasury, finance and product at $1B+ GTV.
+- [Fraud, Risk and AML/CFT Controls: Layered Decisioning at $1B+ GTV](https://rzifi.com/product-work/fraud-risk-aml-cft): Layered fraud, AML/CFT and sanctions decisioning built natively into the payments stack, vendor signals, device intelligence, internal velocity rules, SAR-ready audit trails. Fraud loss held <0.1% of GTV; fraud incidents down ~65%.
+- [Cross-Border Corridors + FX Infrastructure](https://rzifi.com/product-work/cross-border-corridors-fx): Cross-border pay-in and payout corridors with FX, partner routing and corridor-level economics.
+- [Tapmad Wallet/Billing Migration: 50% to 1%](https://rzifi.com/product-work/tapmad-wallet-billing-migration): Migrated subscription billing off high-cost rails and rebuilt wallet/DCB flows, payment cost from 50% to 1%.
+- [Daraz (Alibaba Group) Payment Operations + COD-to-Digital Conversion](https://rzifi.com/product-work/daraz-payment-operations): Built the multi-country payment operations spine for South Asia's largest marketplace, settlement, dispute resolution, fraud rule configuration, Alipay localisation, and the COD-to-digital conversion program across 5 markets.
+- [TapmadTV $3M Digital Transformation Programme](https://rzifi.com/product-work/tapmad-digital-transformation-programme): Led a $3M programme launching Pakistan's first licensed OTT platform, 5 tech workstreams (iOS, Android, web, CMS, CDN), 25-person team, 8 international vendors, PMBOK + Agile hybrid governance.
+- [Production GenAI Suite at Simpaisa, 4 Deployments in Regulated Payments](https://rzifi.com/product-work/simpaisa-ai-solutions-suite): Identified, value-modeled and deployed 4 production GenAI solutions across merchant integration support, incident auto-escalation, partner support automation, and a fraud/AML AI pilot with a major banking partner.
+- [BNPL Launch at Simpaisa: 0 → 100K Users in 8 Months](https://rzifi.com/product-work/simpaisa-bnpl-launch): Launched Simpaisa's BNPL product from scratch, full underwriting, repayment flows, collections, regulator briefings, to 100K users in 8 months through iterative agile discovery.
+
+## Essays (55 total, latest first)
+
+- [A SWIFT Compliance Checklist for Banks and Fintechs](https://rzifi.com/blog/swift-compliance-checklist-for-banks-and-fintechs): A practitioner checklist for SWIFT-related compliance, sanctions, AML/CFT, CSP, ISO 20022 readiness, gpi adoption, and audit trail.
+- [The Role of SWIFT in Emerging-Markets Banking](https://rzifi.com/blog/swift-for-emerging-markets-banking): How emerging-market banks actually use SWIFT, access, cost, correspondent dependence, and where fintech intermediation is reshaping the picture.
+- [SWIFT Messaging Formats: MT vs MX (and Why It Matters Now)](https://rzifi.com/blog/swift-messaging-formats-mt-vs-mx): MT is the legacy SWIFT format. MX is the ISO 20022 successor. What changes, what stays, and what product teams must understand.
+- [SWIFT and Cryptocurrency: The Honest Take](https://rzifi.com/blog/swift-and-cryptocurrency-the-honest-take): Will crypto and stablecoins replace SWIFT? The honest, operator-grade answer, what works, what does not, and where the two will coexist.
+- [How to Track a SWIFT Payment Step by Step](https://rzifi.com/blog/tracking-a-swift-payment-step-by-step): A practical guide to tracking a SWIFT payment using the UETR and gpi Tracker, what to ask your bank and how to read the status.
+- [SWIFT in 2026: ISO 20022, Instant Rails, and the Pressure on Correspondent Banking](https://rzifi.com/blog/swift-in-2026-trends-to-watch): Where SWIFT and cross-border payments are heading in 2026, ISO 20022 done, instant rails everywhere, correspondent banking under pressure, and the G20 roadmap deadline.
+- [SWIFT Payment Delays: What Actually Causes Them](https://rzifi.com/blog/swift-payment-delays-what-actually-causes-them): The real reasons SWIFT payments are delayed, compliance review, correspondent chain length, cut-offs, holidays, weak data, and how to mitigate each.
+- [SWIFT Fees, FX, and the True Cost of a Cross-Border Payment](https://rzifi.com/blog/swift-fees-fx-and-the-true-cost-of-cross-border): Where the real cost of a cross-border SWIFT payment hides, fees, FX margin, charge bearer, and the product decisions that compress it.
+- [Correspondent Banking and the Reality of Emerging-Market Corridors](https://rzifi.com/blog/correspondent-banking-and-emerging-market-corridors): How correspondent banking actually works in emerging-market corridors, de-risking, nostro/vostro, FX, and the product opportunities created by friction.
+- [SWIFT vs Card Rails vs Local Wallets: When to Use What](https://rzifi.com/blog/swift-vs-card-rails-vs-local-wallets): A practitioner comparison of SWIFT, card rails, and local wallets, cost, speed, geography, risk, and when to use each.
+- [SWIFT, AML/CFT, and Sanctions Screening in Practice](https://rzifi.com/blog/swift-aml-cft-sanctions-screening): How AML/CFT and sanctions screening actually work on SWIFT-instructed cross-border payments, and the product decisions that decide false-positive rates.
+- [SWIFT gpi, Tracking, and the End of Payment Uncertainty](https://rzifi.com/blog/swift-gpi-tracking-and-the-end-of-payment-uncertainty): SWIFT gpi added end-to-end tracking, fee transparency, and same-day credit to cross-border payments. What it actually changed for product teams.
+- [ISO 20022 Migration: What Payment Product Teams Must Know](https://rzifi.com/blog/iso-20022-migration-what-product-teams-must-know): ISO 20022 is the biggest change in payments messaging in a generation. What product teams must know to ship ahead of the deadlines.
+- [SWIFT Payment vs Wire Transfer: Key Differences](https://rzifi.com/blog/swift-vs-wire-transfer): SWIFT vs wire transfer explained, what each term actually means, where they overlap, and which one your product is really using.
+- [How SWIFT Payment Works: A Complete Overview](https://rzifi.com/blog/swift-payment-explained): A practitioner overview of how SWIFT payments work, messaging, correspondent banking, settlement, gpi, and where ISO 20022 fits in.
+- [Sanctions Screening Without Killing Throughput](https://rzifi.com/blog/sanctions-screening-without-killing-throughput): How to design sanctions screening that catches what it must catch without flooding ops with false positives or breaking real-time transaction performance.
+- [AML/CFT: Rules vs Models, and Why You Need Both](https://rzifi.com/blog/aml-cft-rules-vs-models): Where rules belong, where models belong, and how to design an AML/CFT detection stack that is both defensible to regulators and effective at catching real bad actors.
+- [How Emerging Markets Pressure-Test Payment Product Strategy](https://rzifi.com/blog/emerging-markets-pressure-test-payments): What payment product teams from Visa, Mastercard, Stripe, and Adyen learn the hard way when they ship into Pakistan, Bangladesh, Egypt, and Iraq.
+- [PCI DSS and ISO 27001 as Product Programs](https://rzifi.com/blog/pci-dss-iso-27001-program-leadership): What it takes to lead PCI DSS and ISO 27001 programs from scratch at a payments platform, scoping, evidence, controls, and the trap of treating compliance as paperwork.
+- [Chargebacks Are a Product Problem](https://rzifi.com/blog/chargebacks-product-problem): How to treat chargebacks as a product surface, root-cause categorisation, prevention, representment, and the feedback loop that actually reduces the rate.
+- [Payment Cost Is a Product Variable: From 50% to 1% (Tapmad Migration Playbook)](https://rzifi.com/blog/payment-cost-50-to-1): How a subscription business cut payment cost from ~50% of revenue to ~1% by treating cost as a product variable, rail mix, dunning, smart retries.
+- [Layered Fraud Controls in the Payments Stack](https://rzifi.com/blog/layered-fraud-controls-payments-stack): How to design layered fraud controls across device, identity, transaction, behavioural and network layers, without crushing conversion or throughput.
+- [KYC and Conversion Designed Together](https://rzifi.com/blog/kyc-conversion-designed-together): Why KYC and conversion are the same product surface, how to design identity verification flows that compliance accepts and merchants actually finish.
+- [Why Local Payment Methods Are a Developer-Experience Problem](https://rzifi.com/blog/local-payment-methods-developer-experience): Acceptance in emerging markets is decided at the SDK and webhook layer. Why local payment methods are developer-experience problems first.
+- [Cross-Border Corridors Are Operating Systems, Not Routes](https://rzifi.com/blog/cross-border-corridors-are-operating-systems): A corridor is not a partner integration. It is a product with its own success rate, FX behavior, compliance overlay, and unit economics. A practitioner view from MENA and South Asia.
+- …and 30 more — see [the full essay index](https://rzifi.com/blog) or the full-content dump at [https://rzifi.com/llms-full.txt](https://rzifi.com/llms-full.txt).
+
+## Profile facts (for AI citation)
+
+- Name: Rizwan Zafar
+- Role: Chief Product Officer · Payments, Fintech & AI
+- Location: Dubai, UAE
+- Site: https://rzifi.com
+- LinkedIn: https://www.linkedin.com/in/rizwanzaffar
+- Email: rizwanzaffar.pk@gmail.com
+
+### Selected metrics
+- TPV scaled: $0 → $1B+
+- Monthly transactions: 25M+
+- Markets: 5
+- Issuer partners: 50+
+- Merchant integrations: 150+
+- Payment success: 60% → 85%
+- Authorization uplift: +14%
+- Smart-retry recovery: $14M+/mo GTV
+
+## Optional
+
+- [Full content dump (one file)](https://rzifi.com/llms-full.txt)
+- [Sitemap](https://rzifi.com/sitemap.xml)
+- [Résumé PDF](https://rzifi.com/Rizwan_Zafar_Resume.pdf)
