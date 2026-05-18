@@ -23,32 +23,37 @@ export function Reveal({
   className?: string;
 }) {
   const ref = useRef<HTMLDivElement | null>(null);
-  const [visible, setVisible] = useState(false);
+  // CRITICAL: default to `true` so the prerendered HTML is always visible.
+  // The Hostinger static deploy ships zero client JS bundles (only GTM + the
+  // JSON-LD scripts) — React never hydrates there, so any opacity-0 initial
+  // state would freeze the content invisible forever. Default-visible means:
+  //   - Static-HTML viewers always see the content (no JS dependency).
+  //   - If hydration ever runs (Lovable, dev server, future SPA host), the
+  //     useEffect below temporarily flips visibility off and back on to play
+  //     the fade-up animation. That's a progressive enhancement, not a gate.
+  const [visible, setVisible] = useState(true);
+  const [hydrated, setHydrated] = useState(false);
 
   useEffect(() => {
-    // Honour reduced-motion: show immediately, no animation.
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setVisible(true);
-      return;
-    }
+    // Hydration has happened — we can now play the animation if appropriate.
+    setHydrated(true);
+
+    // Honour reduced-motion: stay visible, no animation.
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
     const el = ref.current;
     if (!el) return;
 
-    // Synchronous in-viewport check on mount.
-    // IntersectionObserver does fire its initial callback when observe() is
-    // called, but that callback is async and may not flush in time when the
-    // user lands mid-page (refresh + scroll restore, deep anchor link, or
-    // programmatic scroll). Without this, Reveal-wrapped sections below the
-    // initial fold can stay stuck at opacity:0 indefinitely.
+    // If the element is already in viewport at hydration time, don't animate
+    // — the user already saw it. Animating would be a distracting flash.
     const rect = el.getBoundingClientRect();
     const vh = window.innerHeight || document.documentElement.clientHeight;
     const vw = window.innerWidth || document.documentElement.clientWidth;
     const initiallyInView = rect.top < vh && rect.bottom > 0 && rect.left < vw && rect.right > 0;
-    if (initiallyInView) {
-      setVisible(true);
-      return;
-    }
+    if (initiallyInView) return;
 
+    // Below the fold — hide, then animate up on intersection.
+    setVisible(false);
     const io = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
@@ -63,9 +68,8 @@ export function Reveal({
     );
     io.observe(el);
 
-    // Belt-and-braces fallback: if the observer hasn't fired after 2s
-    // (e.g. fast scroll fling, edge-case browser), force-reveal so content
-    // never stays invisible. Cheap and idempotent.
+    // Fallback: if observer never fires (rare browser edge cases, scroll
+    // restore quirks), force-reveal after 2s so content can never get stuck.
     const fallback = window.setTimeout(() => setVisible(true), 2000);
 
     return () => {
@@ -74,19 +78,21 @@ export function Reveal({
     };
   }, []);
 
-  // Render via React.createElement so polymorphic tag stays typed.
-  const Tag = Component as unknown as "div";
-  return (
-    <Tag
-      ref={ref as unknown as React.Ref<HTMLDivElement>}
-      className={className}
-      style={{
+  // Pre-hydration: render fully visible with no transition.
+  // Post-hydration: apply transition + below-fold-hide-and-animate-in.
+  const style: React.CSSProperties = hydrated
+    ? {
         opacity: visible ? 1 : 0,
         transform: visible ? "translateY(0)" : "translateY(16px)",
         transition: `opacity 700ms cubic-bezier(0.16,1,0.3,1) ${delay}ms, transform 700ms cubic-bezier(0.16,1,0.3,1) ${delay}ms`,
         willChange: visible ? "auto" : "opacity, transform",
-      }}
-    >
+      }
+    : {};
+
+  // Render via React.createElement so polymorphic tag stays typed.
+  const Tag = Component as unknown as "div";
+  return (
+    <Tag ref={ref as unknown as React.Ref<HTMLDivElement>} className={className} style={style}>
       {children}
     </Tag>
   );
