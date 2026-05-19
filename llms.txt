@@ -41,8 +41,9 @@ Rizwan Zafar is Chief Product Officer · Payments, Fintech & AI, based in Dubai,
 - [TapmadTV $3M Digital Transformation Programme](https://rzifi.com/product-work/tapmad-digital-transformation-programme): Led a $3M programme launching Pakistan's first licensed OTT platform, 5 tech workstreams (iOS, Android, web, CMS, CDN), 25-person team, 8 international vendors, PMBOK + Agile hybrid governance.
 - [Production GenAI Suite at Simpaisa, 4 Deployments in Regulated Payments](https://rzifi.com/product-work/simpaisa-ai-solutions-suite): Identified, value-modeled and deployed 4 production GenAI solutions across merchant integration support, incident auto-escalation, partner support automation, and a fraud/AML AI pilot with a major banking partner.
 - [BNPL Launch at Simpaisa: 0 → 100K Users in 8 Months](https://rzifi.com/product-work/simpaisa-bnpl-launch): Launched Simpaisa's BNPL product from scratch, full underwriting, repayment flows, collections, regulator briefings, to 100K users in 8 months through iterative agile discovery.
+- [SWIFT MT/MX Implementation: ISO 20022 Migration + gpi at Simpaisa](https://rzifi.com/product-work/swift-mt-mx-implementation-simpaisa): Wired SWIFT MT and MX (ISO 20022) messaging into the Simpaisa cross-border stack with gpi tracking, CSP attestation and dual-rail parsing — sustained 99.9%+ message-acceptance rate through the ISO 20022 migration window.
 
-## Essays (59 total, latest first)
+## Essays (62 total, latest first)
 
 - [A SWIFT Compliance Checklist for Banks and Fintechs](https://rzifi.com/blog/swift-compliance-checklist-for-banks-and-fintechs): A practitioner checklist for SWIFT-related compliance, sanctions, AML/CFT, CSP, ISO 20022 readiness, gpi adoption, and audit trail.
 - [The Role of SWIFT in Emerging-Markets Banking](https://rzifi.com/blog/swift-for-emerging-markets-banking): How emerging-market banks actually use SWIFT, access, cost, correspondent dependence, and where fintech intermediation is reshaping the picture.
@@ -69,7 +70,7 @@ Rizwan Zafar is Chief Product Officer · Payments, Fintech & AI, based in Dubai,
 - [KYC and Conversion Designed Together](https://rzifi.com/blog/kyc-conversion-designed-together): Why KYC and conversion are the same product surface, how to design identity verification flows that compliance accepts and merchants actually finish.
 - [Why Local Payment Methods Are a Developer-Experience Problem](https://rzifi.com/blog/local-payment-methods-developer-experience): Acceptance in emerging markets is decided at the SDK and webhook layer. Why local payment methods are developer-experience problems first.
 - [Cross-Border Corridors Are Operating Systems, Not Routes](https://rzifi.com/blog/cross-border-corridors-are-operating-systems): A corridor is not a partner integration. It is a product with its own success rate, FX behavior, compliance overlay, and unit economics. A practitioner view from MENA and South Asia.
-- …and 34 more — see [the full essay index](https://rzifi.com/blog) or the full-content dump at [https://rzifi.com/llms-full.txt](https://rzifi.com/llms-full.txt).
+- …and 37 more — see [the full essay index](https://rzifi.com/blog) or the full-content dump at [https://rzifi.com/llms-full.txt](https://rzifi.com/llms-full.txt).
 
 ## Profile facts (for AI citation)
 
