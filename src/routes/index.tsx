@@ -182,14 +182,11 @@ function HomePage() {
                   { value: "50+", label: "Bank & wallet" },
                 ] as const
               ).map((m) => (
-                <div
-                  key={m.label}
-                  className="rounded-lg border border-rule bg-card/70 backdrop-blur-sm px-2.5 py-2"
-                >
-                  <div className="font-instrument text-lg md:text-xl text-ink leading-none">
+                <div key={m.label} className="rounded-lg border border-rule bg-card px-2.5 py-2">
+                  <div className="font-mono-tech text-xl text-ink leading-none">
                     <AnimatedMetric value={m.value} />
                   </div>
-                  <div className="text-[9px] uppercase tracking-[0.14em] text-ink-soft mt-1 font-mono-tech leading-tight">
+                  <div className="text-[10px] uppercase tracking-[0.22em] text-ink-soft mt-1 font-mono-tech leading-tight">
                     {m.label}
                   </div>
                 </div>
@@ -219,7 +216,7 @@ function HomePage() {
               <Link
                 to="/product-work"
                 onClick={() => ctaClick("see_case_studies", "hero", "/product-work")}
-                className="group inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-[11px] uppercase tracking-[0.18em] font-semibold text-background bg-ink hover:bg-[var(--brand)] hover:text-[var(--brand-foreground)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background transition-colors"
+                className="group inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-base text-background bg-ink hover:bg-[var(--brand)] hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background transition-colors"
               >
                 See case studies
                 <span className="transition-transform group-hover:translate-x-1" aria-hidden>
@@ -233,14 +230,14 @@ function HomePage() {
                   ctaClick("download_resume", "hero", profile.resumeHref);
                   resumeDownload("hero");
                 }}
-                className="inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-[11px] uppercase tracking-[0.18em] font-semibold text-ink border border-ink/25 hover:border-ink/60 hover:bg-ink/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background transition-colors"
+                className="inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-base text-ink border border-ink/20 hover:border-ink/50 hover:bg-ink/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background transition-colors"
               >
                 Download resume
               </a>
               <a
                 href={`mailto:${profile.email}`}
                 onClick={() => ctaClick("email_me", "hero", `mailto:${profile.email}`)}
-                className="inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-[11px] uppercase tracking-[0.18em] font-semibold text-ink border border-ink/25 hover:border-ink/60 hover:bg-ink/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background transition-colors"
+                className="inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-base text-ink border border-ink/20 hover:border-ink/50 hover:bg-ink/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background transition-colors"
               >
                 Email me
               </a>
@@ -310,7 +307,7 @@ function HomePage() {
 
               {/* Dubai tag — anchored to the top-right of the portrait box,
                   inset so it doesn't float off the column edge. */}
-              <div className="absolute top-2 right-2 z-20 bg-card/95 backdrop-blur-sm border border-rule px-2.5 py-1 text-[10px] tracking-[0.22em] font-bold uppercase text-ink font-mono-tech shadow-sm">
+              <div className="absolute top-2 right-2 z-20 bg-card border border-rule px-2.5 py-1 text-[10px] tracking-[0.22em] font-bold uppercase text-ink font-mono-tech shadow-sm">
                 Dubai · UAE
               </div>
 
@@ -388,7 +385,7 @@ function HomePage() {
 
         {/* ============ HOT TOPICS, horizontal cards ============ */}
         <div className="relative mx-auto max-w-6xl px-6 pb-16">
-          <div className="rounded-3xl border border-rule bg-card/70 backdrop-blur p-6 md:p-8 grid md:grid-cols-12 gap-6 items-start">
+          <div className="rounded-3xl border border-rule bg-card p-6 md:p-8 grid md:grid-cols-12 gap-6 items-start">
             <div className="md:col-span-3">
               <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
                 ◆ Hot topics
@@ -467,56 +464,56 @@ function HomePage() {
             {products
               .filter((p) => p.status === "shipped-scaled")
               .map((p) => {
-              const isInternal = p.link.startsWith("/");
-              const CardInner = (
-                <>
-                  <div className="flex items-center justify-between gap-3">
-                    <div className="font-instrument text-2xl text-ink">{p.name}</div>
-                    <span
-                      className={`text-[10px] uppercase tracking-[0.18em] font-mono-tech px-2.5 py-1 rounded-full border ${
-                        p.status === "coming-soon"
-                          ? "border-rule text-ink-soft"
-                          : "border-[var(--accent-emerald)]/30 text-[var(--accent-emerald)]"
-                      }`}
-                    >
-                      {p.statusLabel}
-                    </span>
-                  </div>
-                  <p className="mt-3 text-ink-soft leading-relaxed">{p.oneLiner}</p>
-                  {p.metrics && p.metrics.length > 0 && (
-                    <div className="mt-5 flex flex-wrap gap-x-6 gap-y-2 text-xs text-ink-soft font-mono-tech">
-                      {p.metrics.slice(0, 3).map((m) => (
-                        <span key={m.label}>
-                          <span className="text-ink font-semibold">{m.value}</span>{" "}
-                          <span className="uppercase tracking-[0.12em]">{m.label}</span>
-                        </span>
-                      ))}
+                const isInternal = p.link.startsWith("/");
+                const CardInner = (
+                  <>
+                    <div className="flex items-center justify-between gap-3">
+                      <div className="font-instrument text-2xl text-ink">{p.name}</div>
+                      <span
+                        className={`text-[10px] uppercase tracking-[0.18em] font-mono-tech px-2.5 py-1 rounded-full border ${
+                          p.status === "coming-soon"
+                            ? "border-rule text-ink-soft"
+                            : "border-[var(--accent-emerald)]/30 text-[var(--accent-emerald)]"
+                        }`}
+                      >
+                        {p.statusLabel}
+                      </span>
                     </div>
-                  )}
-                  <div className="mt-5 text-sm text-ink group-hover:text-[var(--brand)] inline-flex items-center gap-1.5 transition-colors">
-                    {p.ctaLabel ?? "Learn more"}
-                    <span className="transition-transform group-hover:translate-x-1">→</span>
-                  </div>
-                </>
-              );
-              return isInternal ? (
-                <Link
-                  key={p.slug}
-                  to={p.link}
-                  className="group block bg-surface border border-rule rounded-2xl p-7 hover:border-ink/30 transition-colors"
-                >
-                  {CardInner}
-                </Link>
-              ) : (
-                <a
-                  key={p.slug}
-                  href={p.link}
-                  className="group block bg-surface border border-rule rounded-2xl p-7 hover:border-ink/30 transition-colors"
-                >
-                  {CardInner}
-                </a>
-              );
-            })}
+                    <p className="mt-3 text-ink-soft leading-relaxed">{p.oneLiner}</p>
+                    {p.metrics && p.metrics.length > 0 && (
+                      <div className="mt-5 flex flex-wrap gap-x-6 gap-y-2 text-xs text-ink-soft font-mono-tech">
+                        {p.metrics.slice(0, 3).map((m) => (
+                          <span key={m.label}>
+                            <span className="text-ink font-semibold">{m.value}</span>{" "}
+                            <span className="uppercase tracking-[0.12em]">{m.label}</span>
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                    <div className="mt-5 text-sm text-ink group-hover:text-[var(--brand)] inline-flex items-center gap-1.5 transition-colors">
+                      {p.ctaLabel ?? "Learn more"}
+                      <span className="transition-transform group-hover:translate-x-1">→</span>
+                    </div>
+                  </>
+                );
+                return isInternal ? (
+                  <Link
+                    key={p.slug}
+                    to={p.link}
+                    className="group block bg-surface border border-rule rounded-2xl p-7 hover:border-ink/30 transition-colors"
+                  >
+                    {CardInner}
+                  </Link>
+                ) : (
+                  <a
+                    key={p.slug}
+                    href={p.link}
+                    className="group block bg-surface border border-rule rounded-2xl p-7 hover:border-ink/30 transition-colors"
+                  >
+                    {CardInner}
+                  </a>
+                );
+              })}
           </div>
         </div>
       </section>
@@ -562,7 +559,7 @@ function HomePage() {
                   aria-hidden
                 />
                 {/* Top-left category chip */}
-                <div className="absolute top-5 left-5 text-[10px] font-mono-tech uppercase tracking-[0.22em] text-background/95 bg-background/10 backdrop-blur rounded-full px-3 py-1 border border-background/15">
+                <div className="absolute top-5 left-5 text-[10px] font-mono-tech uppercase tracking-[0.22em] text-background/95 bg-background/20 rounded-full px-3 py-1 border border-background/15">
                   ◆ Featured · {featuredPost.category}
                 </div>
                 {/* Bottom-left: oversized issue numeral as second-read moment */}
@@ -661,7 +658,7 @@ function HomePage() {
                     <div className="font-mono-tech text-xl text-ink">
                       <AnimatedMetric value={m.value} />
                     </div>
-                    <div className="text-[10px] uppercase tracking-[0.18em] text-ink-soft mt-1 font-mono-tech">
+                    <div className="text-[10px] uppercase tracking-[0.22em] text-ink-soft mt-1 font-mono-tech">
                       {m.label}
                     </div>
                   </div>
@@ -785,7 +782,7 @@ function HomePage() {
             Mastercard, Stripe, Wise, Adyen, Thunes, DLocal, Checkout.com, Rapyd and regional
             fintechs. Replies within 24 hours, Sun–Thu (GST).
           </p>
-          <div className="mt-9 mx-auto max-w-md rounded-2xl sm:rounded-full border border-rule bg-card p-2 sm:p-1.5 sm:pl-5 flex flex-col sm:flex-row sm:items-center gap-3 shadow-[0_15px_40px_-20px_color-mix(in_oklab,var(--brand)_60%,transparent)]">
+          <div className="mt-9 mx-auto max-w-md rounded-2xl sm:rounded-full border border-rule bg-card p-2 sm:p-1.5 sm:pl-5 flex flex-col sm:flex-row sm:items-center gap-3">
             <span className="text-sm text-ink-soft font-mono-tech truncate min-w-0 px-2 sm:px-0">
               {profile.email}
             </span>
