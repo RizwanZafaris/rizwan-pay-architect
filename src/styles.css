@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap");
 @import "tailwindcss" source(none);
 @source "../src";
 @import "tw-animate-css";
@@ -224,8 +225,6 @@
   }
 }
 
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap");
-
 @layer utilities {
   .font-instrument {
     font-family: "Instrument Serif", "Source Serif 4", Georgia, serif;
@@ -376,12 +375,133 @@
     transform-origin: center;
     will-change: transform, opacity;
   }
+
+  .resume-page,
+  .recruiter-page {
+    isolation: isolate;
+  }
+
+  .resume-proof-card,
+  .recruiter-proof-card,
+  .resume-skill-chip,
+  .resume-timeline-card,
+  .recruiter-card {
+    transition:
+      transform 180ms ease,
+      border-color 180ms ease,
+      box-shadow 180ms ease,
+      background-color 180ms ease;
+  }
+
+  .resume-proof-card:hover,
+  .recruiter-proof-card:hover,
+  .recruiter-card:hover {
+    transform: translateY(-2px);
+    border-color: color-mix(in oklab, var(--ink) 22%, var(--rule));
+    box-shadow: 0 14px 34px color-mix(in oklab, var(--ink) 8%, transparent);
+  }
+
+  .resume-skill-chip:hover {
+    transform: translateY(-1px);
+    border-color: color-mix(in oklab, var(--accent-emerald) 40%, var(--rule));
+  }
+
+  .resume-divider {
+    position: relative;
+  }
+
+  @keyframes rz-soft-reveal {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+      filter: blur(4px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0);
+    }
+  }
+
+  @keyframes rz-line-draw {
+    from {
+      transform: scaleY(0);
+    }
+    to {
+      transform: scaleY(1);
+    }
+  }
+
+  @keyframes rz-panel-breathe {
+    0%,
+    100% {
+      box-shadow: 0 0 0 color-mix(in oklab, var(--accent-emerald) 0%, transparent);
+    }
+    50% {
+      box-shadow: 0 18px 50px color-mix(in oklab, var(--accent-emerald) 9%, transparent);
+    }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .resume-soft-reveal,
+    .recruiter-soft-reveal,
+    .resume-proof-card,
+    .recruiter-proof-card,
+    .resume-skill-chip,
+    .resume-timeline-card,
+    .recruiter-card {
+      opacity: 0;
+      animation: rz-soft-reveal 620ms cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+      animation-delay: var(--motion-delay, 0ms);
+      will-change: transform, opacity, filter;
+    }
+
+    .resume-divider::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto 0 -1px;
+      width: 1px;
+      transform: scaleY(0);
+      transform-origin: top;
+      background: linear-gradient(
+        to bottom,
+        transparent,
+        color-mix(in oklab, var(--accent-emerald) 70%, var(--rule)),
+        transparent
+      );
+      animation: rz-line-draw 900ms cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+      animation-delay: var(--motion-delay, 0ms);
+    }
+
+    .resume-cta-panel:not(.resume-soft-reveal),
+    .recruiter-cta-panel:not(.recruiter-soft-reveal) {
+      animation: rz-panel-breathe 8s ease-in-out infinite;
+    }
+
+    .resume-soft-reveal.resume-cta-panel,
+    .recruiter-soft-reveal.recruiter-cta-panel {
+      animation:
+        rz-soft-reveal 620ms cubic-bezier(0.2, 0.8, 0.2, 1) forwards,
+        rz-panel-breathe 8s ease-in-out infinite;
+      animation-delay: var(--motion-delay, 0ms), 760ms;
+    }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .hero-float-a,
     .hero-float-b,
     .hero-glow-a,
     .hero-glow-b,
-    .hero-ring-breathe {
+    .hero-ring-breathe,
+    .resume-soft-reveal,
+    .recruiter-soft-reveal,
+    .resume-proof-card,
+    .recruiter-proof-card,
+    .resume-skill-chip,
+    .resume-timeline-card,
+    .recruiter-card,
+    .resume-cta-panel,
+    .recruiter-cta-panel {
       animation: none;
     }
   }

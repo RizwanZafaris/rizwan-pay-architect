@@ -1,27 +1,33 @@
+import type { CSSProperties } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { audiences, getHub, postsForHub, caseStudiesForHub, type Audience } from "@/data/hubs";
 import { profile } from "@/data/profile";
 import { absUrl, SITE_URL } from "@/lib/seo";
-import { AnimatedMetric } from "@/components/motion/AnimatedMetric";
-import { Reveal } from "@/components/motion/Reveal";
 
 export const Route = createFileRoute("/for/")({
   head: () => ({
     meta: [
-      { title: "For Recruiters, Rizwan Zafar | Payments" },
+      { title: "Recruiter Brief | Rizwan Zafar, Product & Program Executive" },
       {
         name: "description",
         content:
-          "Recruiter view by lens: Visa/Mastercard, Stripe/Adyen/Wise/Thunes, banks and regulated fintechs. Target roles, proof metrics, top case studies and essays.",
+          "Recruiter-ready brief for Rizwan Zafar: senior product and program leader in payments infrastructure, $1B+ GTV, 25M+ transactions and 7 markets.",
       },
-      { property: "og:title", content: "For Recruiters, Rizwan Zafar" },
-      { property: "og:description", content: "Recruiter lenses, proof and resume in one page." },
+      {
+        property: "og:title",
+        content: "Recruiter Brief | Rizwan Zafar, Product & Program Executive",
+      },
+      {
+        property: "og:description",
+        content:
+          "Senior product and program leadership proof for payments infrastructure, regulated fintech, PMO and complex-market roles.",
+      },
       { property: "og:url", content: absUrl("/for") },
-      { name: "twitter:title", content: "For Recruiters, Rizwan Zafar" },
+      { name: "twitter:title", content: "Recruiter Brief | Rizwan Zafar" },
       {
         name: "twitter:description",
         content:
-          "Lensed view for Visa/MC, Stripe/Adyen/Wise/Thunes, and banks. Target roles, proof, case studies.",
+          "Recruiter brief for senior payments product, program, fintech infrastructure and digital transformation roles.",
       },
     ],
     links: [{ rel: "canonical", href: absUrl("/for") }],
@@ -31,8 +37,27 @@ export const Route = createFileRoute("/for/")({
         children: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "ProfilePage",
+          name: "Recruiter Brief, Rizwan Zafar",
           url: absUrl("/for"),
-          mainEntity: { "@type": "Person", name: profile.name, url: SITE_URL },
+          mainEntity: {
+            "@type": "Person",
+            name: profile.name,
+            jobTitle: "Product & Program Executive, Fintech Infrastructure",
+            url: SITE_URL,
+            email: `mailto:${profile.email}`,
+            address: { "@type": "PostalAddress", addressLocality: "Dubai", addressCountry: "AE" },
+            sameAs: [profile.linkedin, profile.twitter].filter(Boolean),
+            knowsAbout: [
+              "Payments infrastructure",
+              "Product management",
+              "Program management",
+              "Fintech",
+              "Cross-border payments",
+              "Settlement and reconciliation",
+              "Fraud and AML",
+              "Merchant onboarding",
+            ],
+          },
         }),
       },
     ],
@@ -40,368 +65,490 @@ export const Route = createFileRoute("/for/")({
   component: ForIndex,
 });
 
-// Recruiter-facing target roles per audience
-const TARGET_ROLES: Record<Audience["slug"], string[]> = {
+const delayStyle = (ms: number) => ({ "--motion-delay": `${ms}ms` }) as CSSProperties;
+
+const proofMetrics = [
+  { value: "$1B+", label: "GTV / TPV scaled" },
+  { value: "25M+", label: "Monthly transactions" },
+  { value: "7", label: "Markets" },
+  { value: "50+", label: "Bank, wallet & FI partners" },
+  { value: "40+", label: "Engineers led" },
+  { value: "4", label: "Production AI deployments" },
+] as const;
+
+const roleLanes = [
+  {
+    title: "Product Leadership",
+    fit: "VP Product, Head of Product, Director Product, Product Lead for payments or fintech infrastructure.",
+    proof: [
+      "Scaled multi-rail pay-in, payout, wallet, DCB, IBFT, card acquiring and cross-border products.",
+      "Owned product strategy, roadmap, partner coverage, authorization, activation and platform economics.",
+      "Built infrastructure used by enterprise platforms including TikTok, Uber, Temu and MoneyGram.",
+    ],
+  },
+  {
+    title: "Program / PMO Leadership",
+    fit: "Program Director, Head of PMO, Technical Program Manager or transformation leader.",
+    proof: [
+      "Led 12 squads, 40+ engineers, $5M+ technology budget and 15+ vendor relationships.",
+      "Built governance across product, engineering, risk, compliance, operations and executive reporting.",
+      "Delivered PCI DSS and ISO/IEC 27001 certification programs from scratch.",
+    ],
+  },
+  {
+    title: "Payments Infrastructure",
+    fit: "Payment infrastructure, payment orchestration, cross-border corridors, settlement and reconciliation.",
+    proof: [
+      "Built regulated rails across local methods, cards, wallets, payout flows, FX and partner routing.",
+      "Improved payment failure from ~8% to ~1.2% and held settlement SLA at 99.95%.",
+      "Worked where compliance, risk, bank partnerships and market operations are part of the product.",
+    ],
+  },
+  {
+    title: "AI In Fintech Operations",
+    fit: "AI-enabled product operations, support automation, fraud/AML decisioning and incident response.",
+    proof: [
+      "Shipped 4 production AI/GenAI deployments inside payment operations.",
+      "Reduced merchant support time, incident response time and partner support load with practical AI systems.",
+      "Can separate production value from AI theater, especially in regulated environments.",
+    ],
+  },
+] as const;
+
+const recruiterChecklist = [
+  "Does the role need product judgment plus delivery governance?",
+  "Does it involve regulated rails, bank/wallet partners or payment networks?",
+  "Does the team need someone comfortable with complex markets and local rails?",
+  "Will the person need to speak with product, engineering, compliance, risk and executives?",
+  "Is the mandate closer to scaling infrastructure than only launching front-end features?",
+] as const;
+
+const screeningSignals = [
+  "Ask about reducing payment failure from ~8% to ~1.2%.",
+  "Ask how merchant KYC/KYB moved from weeks to hours for low-risk tiers.",
+  "Ask how settlement and reconciliation were made reliable at $1B+ GTV scale.",
+  "Ask where AI improved payment operations without creating compliance risk.",
+] as const;
+
+const targetRoles: Record<Audience["slug"], string[]> = {
   "visa-mastercard": [
-    "Director / Sr Director, Acceptance Product",
+    "Director / Senior Director, Acceptance Product",
     "Head of Cross-Border Product",
-    "Tokenization & Scheme Settlement PM",
-    "Emerging-Markets Product Lead",
+    "Tokenization, settlement or scheme-readiness product lead",
+    "Emerging-market payment infrastructure lead",
   ],
   "stripe-adyen-wise-thunes": [
     "Product Lead, Payment Orchestration",
     "Head of Local Payment Methods",
-    "Director, Payouts & Cross-Border",
-    "Product Manager, Developer Experience",
+    "Director, Payouts / Cross-Border",
+    "Product Manager, Developer Experience for payments",
   ],
   "banks-fintechs": [
-    "Head of Payments Product (Sponsor bank)",
-    "Director, Compliance & Risk Product",
-    "Head of SWIFT / ISO 20022 Programme",
-    "Head of Regulated Onboarding (KYC/KYB)",
+    "Head of Payments Product",
+    "Director, Compliance / Risk Product",
+    "Program Director, SWIFT / ISO 20022 / payments modernization",
+    "Head of Regulated Merchant Onboarding",
   ],
 };
 
-// Tailored proof per audience, avoids repeating the same metrics
-const PROOF: Record<Audience["slug"], { label: string; value: string }[]> = {
+const audienceProof: Record<Audience["slug"], { label: string; value: string }[]> = {
   "visa-mastercard": [
-    { label: "Annual GTV cleared", value: "$1B+" },
-    { label: "Card acceptance markets", value: "5" },
-    { label: "Scheme settlement SLA", value: "99.95%" },
-    { label: "Tokenization & 3DS rollout", value: "MPGS · MDES" },
-    { label: "Cross-border corridors", value: "MENA · S. Asia" },
-    { label: "Fraud loss", value: "<0.1% GTV" },
+    { label: "Acceptance & acquiring", value: "MPGS · MDES · 3DS" },
+    { label: "Scale", value: "$1B+ GTV" },
+    { label: "Controls", value: "<0.1% fraud loss" },
+    { label: "Markets", value: "MENA · South Asia" },
   ],
   "stripe-adyen-wise-thunes": [
-    { label: "Unified pay-in / payout API", value: "1 contract" },
-    { label: "Local payment methods", value: "Cards · Wallets · DCB · IBFT" },
-    { label: "Corridor partners integrated", value: "DLocal · Thunes · Boku · Coda" },
-    { label: "Payment cost (OTT migration)", value: "~50% → ~1%" },
-    { label: "Monthly transactions", value: "25M+" },
-    { label: "Developer surface", value: "Idempotent · webhook-first" },
+    { label: "Rails", value: "Cards · wallets · DCB · IBFT" },
+    { label: "Coverage", value: "50+ partners" },
+    { label: "Transactions", value: "25M+ / month" },
+    { label: "Developer surface", value: "APIs · webhooks · routing" },
   ],
   "banks-fintechs": [
-    { label: "AML/CFT monitoring", value: "Rules + models in prod" },
-    { label: "Sanctions screening", value: "Real-time + batch re-screen" },
-    { label: "PCI DSS", value: "Programme-led" },
-    { label: "ISO 27001", value: "Programme-led" },
-    { label: "SWIFT CSP attestation", value: "Annual" },
-    { label: "ISO 20022 readiness", value: "MX-shaped data model" },
+    { label: "Compliance programs", value: "PCI DSS · ISO 27001" },
+    { label: "Risk domain", value: "AML/CFT · sanctions · fraud" },
+    { label: "Governance", value: "PMO · SteerCo · audit trail" },
+    { label: "Data standards", value: "SWIFT · ISO 20022" },
   ],
 };
 
 function ForIndex() {
   return (
-    <div className="mx-auto max-w-6xl px-5 sm:px-6 py-16 sm:py-20">
-      <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--accent-emerald)] font-mono-tech">
-        ◆ For recruiters
-      </div>
-      <h1 className="font-instrument text-4xl md:text-6xl text-ink mt-3 max-w-3xl leading-[1.05]">
-        Pick your lens. Read the work in your language.
-      </h1>
-      <p className="mt-5 max-w-2xl text-lg text-ink-soft">
-        Three recruiter paths through the same body of work, networks, orchestrators, and regulated
-        fintechs. Each section lists target roles, proof you can verify, the most relevant case
-        studies and essays, and a way to start a conversation.
-      </p>
-
-      {/* Quick anchor tabs */}
-      <div className="mt-8 flex flex-wrap gap-2">
-        {audiences.map((a) => (
-          <a
-            key={a.slug}
-            href={`#${a.slug}`}
-            className="text-xs px-3 py-1.5 rounded-full border border-rule text-ink-soft hover:text-ink hover:border-ink/40 transition-colors font-mono-tech uppercase tracking-[0.12em]"
-          >
-            {a.shortTitle}
-          </a>
-        ))}
-        <a
-          href={profile.resumeHref}
-          download
-          className="ml-auto text-xs px-3 py-1.5 rounded-full bg-ink text-background hover:bg-brand transition-colors font-mono-tech uppercase tracking-[0.12em]"
-        >
-          Download résumé (PDF)
-        </a>
-      </div>
-
-      {/* ============ RESUME PREVIEW STRIP ============ */}
-      <section
-        id="resume-preview"
-        className="mt-12 rounded-3xl border border-rule bg-surface p-6 md:p-8"
-        aria-labelledby="resume-preview-heading"
-      >
-        <div className="flex flex-wrap items-start justify-between gap-4">
-          <div className="min-w-0">
-            <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--accent-emerald)] font-mono-tech">
-              ◆ Résumé · 30-second view
-            </div>
-            <h2
-              id="resume-preview-heading"
-              className="font-instrument text-2xl md:text-3xl text-ink mt-2 leading-tight"
-            >
-              Rizwan Zafar, Product &amp; Program Leader · Payments · Fintech · AI
-            </h2>
-            <p className="mt-2 text-sm text-ink-soft max-w-2xl">
-              CPO at Simpaisa · $0 → $1B+ TPV · 7 markets · 50+ bank & wallet partners · 40-engineer
-              org built from 2 · 4 production GenAI deployments · PMP / PMI-ACP / CSPO / CSM / COBIT
-              5 / ITIL v3.
-            </p>
+    <div className="recruiter-page mx-auto max-w-6xl px-5 sm:px-6 py-10 md:py-14">
+      <section className="grid lg:grid-cols-[1fr_340px] gap-8 lg:gap-12 items-start border-b border-rule pb-10 md:pb-12">
+        <div className="min-w-0 recruiter-soft-reveal" style={delayStyle(0)}>
+          <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--accent-emerald)] font-mono-tech">
+            Recruiter brief
           </div>
-          <div className="flex flex-wrap gap-2 shrink-0">
+          <h1 className="mt-3 max-w-4xl font-instrument text-3xl sm:text-4xl md:text-6xl text-ink leading-[1.02] text-wrap">
+            Product &amp; Program Executive for Payments Infrastructure
+          </h1>
+          <p className="mt-4 max-w-3xl text-lg md:text-xl text-ink-soft leading-relaxed">
+            A 5-minute view of Rizwan Zafar's fit for senior product, program and fintech
+            infrastructure roles: regulated payment rails, complex markets, bank and wallet
+            partnerships, risk/compliance and execution at scale.
+          </p>
+          <div className="mt-6 flex flex-wrap gap-2.5 max-w-full">
             <a
               href={profile.resumeHref}
               download
-              className="inline-flex items-center gap-1.5 rounded-full bg-ink text-background px-4 py-2 text-xs font-mono-tech uppercase tracking-[0.12em] hover:bg-brand transition-colors"
+              className="inline-flex items-center justify-center rounded-full bg-ink text-background px-5 py-2.5 text-sm font-medium hover:bg-brand hover:text-[var(--brand-foreground)] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2"
             >
-              Download PDF
+              Download resume
             </a>
             <Link
               to="/resume"
-              className="inline-flex items-center gap-1.5 rounded-full border border-ink/20 px-4 py-2 text-xs font-mono-tech uppercase tracking-[0.12em] text-ink hover:border-ink/50 transition-colors"
+              className="inline-flex items-center justify-center rounded-full border border-ink/20 px-5 py-2.5 text-sm font-medium text-ink hover:bg-ink/5 transition-colors"
             >
-              Full résumé →
+              View resume
             </Link>
             <Link
               to="/contact"
-              className="inline-flex items-center gap-1.5 rounded-full border border-ink/20 px-4 py-2 text-xs font-mono-tech uppercase tracking-[0.12em] text-ink hover:border-ink/50 transition-colors"
+              className="inline-flex items-center justify-center rounded-full border border-ink/20 px-5 py-2.5 text-sm font-medium text-ink hover:bg-ink/5 transition-colors"
             >
-              Discuss a role
+              Contact
             </Link>
           </div>
+          <div className="mt-6 text-[10px] uppercase tracking-[0.18em] text-ink-soft font-mono-tech leading-relaxed">
+            Certified: PMP · PMI-ACP · CSPO · CSM · COBIT 5 · ITIL
+          </div>
         </div>
 
-        <div className="mt-6 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3">
-          {profile.metrics.slice(0, 12).map((m, i) => (
-            <Reveal key={m.label} delay={i * 40}>
-              <div className="rounded-xl border border-rule bg-background p-3 h-full">
-                <div className="font-mono-tech text-sm text-ink leading-tight">
-                  <AnimatedMetric value={m.value} />
-                </div>
-                <div className="text-[9px] uppercase tracking-[0.14em] text-ink-soft mt-1 font-mono-tech leading-tight">
-                  {m.label}
-                </div>
-              </div>
-            </Reveal>
+        <aside
+          className="recruiter-soft-reveal recruiter-cta-panel rounded-2xl border border-rule bg-card/85 p-5 shadow-sm"
+          style={delayStyle(90)}
+          aria-label="Recruiter summary"
+        >
+          <div className="text-[10px] uppercase tracking-[0.18em] text-ink-soft font-mono-tech">
+            Best used for
+          </div>
+          <ul className="mt-4 space-y-2 text-sm text-ink">
+            {[
+              "VP / Head / Director Product, Payments",
+              "Product Lead, Fintech Infrastructure",
+              "Program Director / Head of PMO",
+              "Technical Program Manager, Payments",
+              "Digital transformation leadership",
+            ].map((item) => (
+              <li key={item} className="flex gap-2.5">
+                <span className="mt-2 h-1.5 w-1.5 rounded-full bg-[var(--accent-emerald)] shrink-0" />
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+          <div className="mt-5 border-t border-rule pt-4 text-xs text-ink-soft leading-relaxed">
+            Based in {profile.location}. Relevant for UAE, KSA, Singapore, MENA, Europe and global
+            fintech roles.
+          </div>
+        </aside>
+      </section>
+
+      <section
+        className="recruiter-soft-reveal grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4 border-b border-rule py-6"
+        style={delayStyle(140)}
+        aria-label="Proof points"
+      >
+        {proofMetrics.map((metric, index) => (
+          <div
+            key={metric.label}
+            className="recruiter-proof-card rounded-xl border border-rule bg-surface px-4 py-3"
+            style={delayStyle(180 + index * 45)}
+          >
+            <div className="font-instrument text-2xl text-ink leading-none">{metric.value}</div>
+            <div className="mt-1.5 text-[10px] uppercase tracking-[0.14em] text-ink-soft font-mono-tech leading-tight">
+              {metric.label}
+            </div>
+          </div>
+        ))}
+      </section>
+
+      <section className="grid md:grid-cols-12 gap-8 border-b border-rule py-10 md:py-12">
+        <div className="md:col-span-3 recruiter-soft-reveal" style={delayStyle(0)}>
+          <h2 className="font-instrument text-2xl text-ink">Where The Fit Is Strongest</h2>
+          <p className="mt-3 text-sm text-ink-soft leading-relaxed">
+            This page is built for fast recruiter scanning, not biography browsing.
+          </p>
+        </div>
+        <div className="md:col-span-9 grid sm:grid-cols-2 gap-4">
+          {roleLanes.map((lane, index) => (
+            <article
+              key={lane.title}
+              className="recruiter-soft-reveal recruiter-card rounded-2xl border border-rule bg-surface p-5"
+              style={delayStyle(80 + index * 60)}
+            >
+              <h3 className="font-instrument text-xl text-ink leading-snug">{lane.title}</h3>
+              <p className="mt-2 text-sm text-ink-soft leading-relaxed">{lane.fit}</p>
+              <ul className="mt-4 space-y-2">
+                {lane.proof.map((item) => (
+                  <li key={item} className="relative pl-5 text-sm text-ink-soft leading-relaxed">
+                    <span className="absolute left-0 top-2.5 h-1.5 w-1.5 rounded-full bg-[var(--accent-emerald)]" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </article>
           ))}
         </div>
+      </section>
 
-        <div className="mt-6 grid sm:grid-cols-3 gap-4 text-xs text-ink-soft">
-          <div>
-            <div className="text-[10px] uppercase tracking-[0.18em] text-ink-soft mb-1 font-mono-tech">
-              Now
-            </div>
-            <div>CPO · Simpaisa · Dubai · Aug 2020, Present</div>
+      <section className="grid lg:grid-cols-12 gap-8 border-b border-rule py-10 md:py-12">
+        <div className="lg:col-span-4 recruiter-soft-reveal" style={delayStyle(0)}>
+          <h2 className="font-instrument text-2xl text-ink">First-Screen Validation</h2>
+          <p className="mt-3 text-sm text-ink-soft leading-relaxed">
+            A quick way to decide whether the profile belongs in the shortlist.
+          </p>
+        </div>
+        <div className="lg:col-span-8 grid md:grid-cols-2 gap-5">
+          <div
+            className="recruiter-soft-reveal rounded-2xl border border-rule bg-card p-5"
+            style={delayStyle(80)}
+          >
+            <h3 className="font-instrument text-xl text-ink">Shortlist if the mandate includes</h3>
+            <ul className="mt-4 space-y-3">
+              {recruiterChecklist.map((item) => (
+                <li key={item} className="flex gap-3 text-sm text-ink-soft leading-relaxed">
+                  <span className="mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-[var(--accent-emerald)] text-[10px] text-[var(--accent-emerald)]">
+                    OK
+                  </span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
           </div>
-          <div>
-            <div className="text-[10px] uppercase tracking-[0.18em] text-ink-soft mb-1 font-mono-tech">
-              Open to
-            </div>
-            <div>Director / VP / Head of Product · PMO Director · Director AI in Payments</div>
-          </div>
-          <div>
-            <div className="text-[10px] uppercase tracking-[0.18em] text-ink-soft mb-1 font-mono-tech">
-              Locations
-            </div>
-            <div>UAE · KSA · Singapore · MENA · Europe · Global fintech (remote)</div>
+          <div
+            className="recruiter-soft-reveal rounded-2xl border border-rule bg-card p-5"
+            style={delayStyle(140)}
+          >
+            <h3 className="font-instrument text-xl text-ink">Screening prompts</h3>
+            <ul className="mt-4 space-y-3">
+              {screeningSignals.map((item) => (
+                <li key={item} className="relative pl-5 text-sm text-ink-soft leading-relaxed">
+                  <span className="absolute left-0 top-2.5 h-1.5 w-1.5 rounded-full bg-ink/60" />
+                  {item}
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </section>
 
-      {audiences.map((a) => {
-        const studies = a.hubs
-          .flatMap((h) => caseStudiesForHub(h))
-          .filter((c, i, arr) => arr.findIndex((x) => x.slug === c.slug) === i)
-          .slice(0, 3);
-        const essays = a.hubs
-          .flatMap((h) => postsForHub(h))
-          .filter((p, i, arr) => arr.findIndex((x) => x.slug === p.slug) === i)
-          .slice(0, 3);
-
-        return (
-          <section
-            key={a.slug}
-            id={a.slug}
-            className="mt-16 scroll-mt-24 border-t border-rule pt-12"
-          >
-            <div className="flex flex-wrap items-end justify-between gap-4">
-              <div>
-                <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--accent-emerald)] font-mono-tech">
-                  ◆ {a.shortTitle}
-                </div>
-                <h2 className="font-instrument text-3xl md:text-4xl text-ink mt-2 leading-tight max-w-2xl">
-                  {a.title}
-                </h2>
-                <p className="mt-3 text-ink-soft max-w-2xl">{a.intro}</p>
-              </div>
-            </div>
-
-            {/* Target companies */}
-            <div className="mt-6">
-              <div className="text-[10px] uppercase tracking-[0.18em] text-ink-soft font-mono-tech mb-2">
-                Target companies
-              </div>
-              <div className="flex flex-wrap gap-2">
-                {a.companies.map((c) => (
-                  <span
-                    key={c}
-                    className="text-[10px] px-2.5 py-1 border border-rule rounded-full text-ink-soft bg-surface font-mono-tech uppercase tracking-[0.1em]"
-                  >
-                    {c}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            <div className="mt-8 grid md:grid-cols-2 gap-6">
-              {/* Target roles */}
-              <div className="rounded-2xl border border-rule bg-surface p-6">
-                <div className="text-[10px] uppercase tracking-[0.18em] text-ink-soft font-mono-tech">
-                  Target roles
-                </div>
-                <ul className="mt-3 space-y-2">
-                  {TARGET_ROLES[a.slug].map((r) => (
-                    <li key={r} className="text-sm text-ink leading-snug flex gap-2">
-                      <span className="text-[var(--brand)] mt-1.5 h-1 w-1 rounded-full bg-current shrink-0" />
-                      {r}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Tailored proof */}
-              <div className="rounded-2xl border border-rule bg-surface p-6">
-                <div className="text-[10px] uppercase tracking-[0.18em] text-ink-soft font-mono-tech">
-                  Proof tailored to this lens
-                </div>
-                <dl className="mt-3 grid grid-cols-2 gap-x-4 gap-y-3">
-                  {PROOF[a.slug].map((m) => (
-                    <div key={m.label}>
-                      <dt className="text-[10px] uppercase tracking-[0.12em] text-ink-soft font-mono-tech">
-                        {m.label}
-                      </dt>
-                      <dd className="font-instrument text-base text-ink mt-0.5 leading-tight">
-                        {m.value}
-                      </dd>
-                    </div>
-                  ))}
-                </dl>
-              </div>
-            </div>
-
-            {/* Top case studies */}
-            {studies.length > 0 && (
-              <div className="mt-8">
-                <div className="text-[10px] uppercase tracking-[0.18em] text-ink-soft font-mono-tech mb-3">
-                  Top 3 case studies for this lens
-                </div>
-                <div className="grid md:grid-cols-3 gap-4">
-                  {studies.map((c) => (
-                    <Link
-                      key={c.slug}
-                      to="/product-work/$slug"
-                      params={{ slug: c.slug }}
-                      className="group block bg-surface border border-rule rounded-2xl p-5 hover:border-ink/30 transition-colors"
-                    >
-                      <div className="text-[10px] uppercase tracking-[0.16em] text-[var(--accent-emerald)] font-mono-tech">
-                        {c.category}
-                      </div>
-                      <div className="font-instrument text-base text-ink mt-2 leading-snug group-hover:text-[var(--brand)] transition-colors">
-                        {c.title}
-                      </div>
-                      <p className="text-xs text-ink-soft mt-2 leading-relaxed">{c.tagline}</p>
-                    </Link>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* Top essays */}
-            {essays.length > 0 && (
-              <div className="mt-8">
-                <div className="text-[10px] uppercase tracking-[0.18em] text-ink-soft font-mono-tech mb-3">
-                  Top 3 essays for this lens
-                </div>
-                <ul className="divide-y divide-rule border-y border-rule">
-                  {essays.map((p) => (
-                    <li key={p.slug}>
-                      <Link
-                        to="/blog/$slug"
-                        params={{ slug: p.slug }}
-                        className="group flex items-center justify-between py-3 gap-4"
-                      >
-                        <span className="font-instrument text-base text-ink group-hover:text-[var(--brand)] transition-colors">
-                          {p.title}
-                        </span>
-                        <span className="text-xs text-ink-soft font-mono-tech whitespace-nowrap">
-                          {p.readingTime}
-                        </span>
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
-
-            {/* CTAs */}
-            <div className="mt-8 flex flex-wrap gap-3">
+      <section className="py-10 md:py-12">
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+          <div className="recruiter-soft-reveal" style={delayStyle(0)}>
+            <h2 className="font-instrument text-3xl md:text-4xl text-ink leading-tight">
+              Hiring Lenses
+            </h2>
+            <p className="mt-3 max-w-2xl text-ink-soft leading-relaxed">
+              Same track record, three recruiter views. Use the lens closest to the search mandate.
+            </p>
+          </div>
+          <div className="recruiter-soft-reveal flex flex-wrap gap-2" style={delayStyle(80)}>
+            {audiences.map((audience) => (
               <a
-                href={profile.resumeHref}
-                download
-                className="inline-flex rounded-md bg-ink text-background px-5 py-2.5 text-sm font-medium hover:bg-brand transition-colors"
+                key={audience.slug}
+                href={`#${audience.slug}`}
+                className="rounded-full border border-rule bg-surface px-3 py-1.5 text-[10px] uppercase tracking-[0.14em] text-ink-soft font-mono-tech hover:border-ink/30 hover:text-ink transition-colors"
               >
-                Download résumé (PDF)
+                {audience.shortTitle}
               </a>
-              <Link
-                to="/contact"
-                className="inline-flex rounded-md border border-ink/20 px-5 py-2.5 text-sm font-medium text-ink hover:border-ink/40"
-              >
-                Discuss a role
-              </Link>
-              {a.hubs.slice(0, 2).map((slug) => {
-                const h = getHub(slug);
-                if (!h) return null;
-                return (
-                  <Link
-                    key={slug}
-                    to="/blog"
-                    search={{ q: "", hub: slug, reader: "", company: "" }}
-                    className="inline-flex items-center text-sm text-ink-soft hover:text-ink underline underline-offset-4"
-                  >
-                    Filter essays, {h.shortTitle}
-                  </Link>
-                );
-              })}
-            </div>
-          </section>
-        );
-      })}
+            ))}
+          </div>
+        </div>
 
-      {/* Closing CTA */}
-      <div className="mt-20 rounded-3xl border border-ink/10 bg-surface p-8 md:p-12">
-        <h2 className="font-instrument text-2xl md:text-3xl text-ink leading-tight">
-          Open to senior payments product roles.
-        </h2>
-        <p className="mt-3 text-ink-soft max-w-2xl">
-          Based in {profile.location}. Reference-available. Most useful to networks, orchestrators,
-          and regulated fintechs operating across MENA, South Asia, and global cross-border.
-        </p>
-        <div className="mt-5 flex flex-wrap gap-3">
+        <div className="mt-8 space-y-6">
+          {audiences.map((audience, index) => {
+            const studies = uniqueBySlug(
+              audience.hubs.flatMap((hub) => caseStudiesForHub(hub)),
+            ).slice(0, 3);
+            const essays = uniqueBySlug(audience.hubs.flatMap((hub) => postsForHub(hub))).slice(
+              0,
+              2,
+            );
+            const hubLinks = audience.hubs
+              .map((slug) => getHub(slug))
+              .filter((hub): hub is NonNullable<typeof hub> => Boolean(hub))
+              .slice(0, 4);
+
+            return (
+              <article
+                key={audience.slug}
+                id={audience.slug}
+                className="recruiter-soft-reveal recruiter-card scroll-mt-24 rounded-2xl border border-rule bg-surface p-5 md:p-6"
+                style={delayStyle(80 + index * 70)}
+              >
+                <div className="grid lg:grid-cols-12 gap-6">
+                  <div className="lg:col-span-5">
+                    <div className="text-[10px] uppercase tracking-[0.18em] text-[var(--accent-emerald)] font-mono-tech">
+                      {audience.shortTitle}
+                    </div>
+                    <h3 className="mt-2 font-instrument text-2xl md:text-3xl text-ink leading-tight">
+                      {audience.title}
+                    </h3>
+                    <p className="mt-3 text-sm md:text-base text-ink-soft leading-relaxed">
+                      {audience.description}
+                    </p>
+                    <div className="mt-4 flex flex-wrap gap-2">
+                      {audience.companies.map((company) => (
+                        <span
+                          key={company}
+                          className="rounded-full border border-rule bg-background px-2.5 py-1 text-[10px] uppercase tracking-[0.12em] text-ink-soft font-mono-tech"
+                        >
+                          {company}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="lg:col-span-7 grid md:grid-cols-2 gap-5">
+                    <div>
+                      <div className="text-[10px] uppercase tracking-[0.16em] text-ink-soft font-mono-tech">
+                        Target roles
+                      </div>
+                      <ul className="mt-3 space-y-2">
+                        {targetRoles[audience.slug].map((role) => (
+                          <li
+                            key={role}
+                            className="relative pl-5 text-sm text-ink-soft leading-relaxed"
+                          >
+                            <span className="absolute left-0 top-2.5 h-1.5 w-1.5 rounded-full bg-[var(--accent-emerald)]" />
+                            {role}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div>
+                      <div className="text-[10px] uppercase tracking-[0.16em] text-ink-soft font-mono-tech">
+                        Proof signals
+                      </div>
+                      <dl className="mt-3 grid grid-cols-2 gap-3">
+                        {audienceProof[audience.slug].map((item) => (
+                          <div key={item.label}>
+                            <dt className="text-[10px] uppercase tracking-[0.12em] text-ink-soft font-mono-tech leading-tight">
+                              {item.label}
+                            </dt>
+                            <dd className="mt-1 font-instrument text-base text-ink leading-tight">
+                              {item.value}
+                            </dd>
+                          </div>
+                        ))}
+                      </dl>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-6 grid lg:grid-cols-3 gap-5 border-t border-rule pt-5">
+                  <div className="lg:col-span-2">
+                    <div className="text-[10px] uppercase tracking-[0.16em] text-ink-soft font-mono-tech">
+                      Best case studies
+                    </div>
+                    <div className="mt-3 divide-y divide-rule border-y border-rule">
+                      {studies.map((study) => (
+                        <Link
+                          key={study.slug}
+                          to="/product-work/$slug"
+                          params={{ slug: study.slug }}
+                          className="group flex items-start justify-between gap-4 py-3"
+                        >
+                          <span>
+                            <span className="block font-instrument text-base text-ink group-hover:text-[var(--brand)] transition-colors leading-snug">
+                              {study.title}
+                            </span>
+                            <span className="mt-1 block text-xs text-ink-soft leading-relaxed">
+                              {study.category}
+                            </span>
+                          </span>
+                          <span className="mt-1 text-sm text-ink-soft transition-transform group-hover:translate-x-1">
+                            →
+                          </span>
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div>
+                    <div className="text-[10px] uppercase tracking-[0.16em] text-ink-soft font-mono-tech">
+                      Supporting topics
+                    </div>
+                    <div className="mt-3 flex flex-wrap gap-2">
+                      {hubLinks.map((hub) => (
+                        <Link
+                          key={hub.slug}
+                          to="/topics/$hub"
+                          params={{ hub: hub.slug }}
+                          className="rounded-full border border-rule bg-background px-2.5 py-1 text-[10px] uppercase tracking-[0.12em] text-ink-soft font-mono-tech hover:border-ink/30 hover:text-ink transition-colors"
+                        >
+                          {hub.shortTitle}
+                        </Link>
+                      ))}
+                    </div>
+                    {essays.length > 0 && (
+                      <div className="mt-5">
+                        <div className="text-[10px] uppercase tracking-[0.16em] text-ink-soft font-mono-tech">
+                          Useful essays
+                        </div>
+                        <ul className="mt-2 space-y-2">
+                          {essays.map((essay) => (
+                            <li key={essay.slug}>
+                              <Link
+                                to="/blog/$slug"
+                                params={{ slug: essay.slug }}
+                                className="text-sm text-ink underline underline-offset-4 hover:text-[var(--brand)]"
+                              >
+                                {essay.title}
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                    <Link
+                      to="/for/$audience"
+                      params={{ audience: audience.slug }}
+                      className="mt-5 inline-flex rounded-full border border-ink/20 px-4 py-2 text-xs font-mono-tech uppercase tracking-[0.12em] text-ink hover:border-ink/50 transition-colors"
+                    >
+                      Open full lens
+                    </Link>
+                  </div>
+                </div>
+              </article>
+            );
+          })}
+        </div>
+      </section>
+
+      <section className="recruiter-soft-reveal recruiter-cta-panel rounded-2xl border border-rule bg-ink text-background p-6 md:p-8 flex flex-col md:flex-row md:items-center md:justify-between gap-5">
+        <div>
+          <h2 className="font-instrument text-2xl md:text-3xl leading-tight">
+            Shortlist for serious payments, product and program mandates.
+          </h2>
+          <p className="mt-2 max-w-2xl text-sm text-background/70 leading-relaxed">
+            Best fit: fintech infrastructure, payment networks, PSPs, banks, OTT/ecommerce platforms
+            and transformation programs where product strategy and delivery discipline must work
+            together.
+          </p>
+        </div>
+        <div className="flex flex-wrap gap-2.5 shrink-0">
           <a
             href={profile.resumeHref}
             download
-            className="inline-flex rounded-md bg-ink text-background px-5 py-2.5 text-sm font-medium hover:bg-brand transition-colors"
+            className="inline-flex items-center justify-center rounded-full bg-background text-ink px-5 py-2.5 text-sm font-medium hover:bg-[var(--brand)] transition-colors"
           >
-            Download résumé (PDF)
+            Download resume
           </a>
           <Link
             to="/contact"
-            className="inline-flex rounded-md border border-ink/20 px-5 py-2.5 text-sm font-medium text-ink hover:border-ink/40"
+            className="inline-flex items-center justify-center rounded-full border border-background/25 px-5 py-2.5 text-sm font-medium text-background hover:bg-background/10 transition-colors"
           >
             Contact
           </Link>
         </div>
-      </div>
+      </section>
     </div>
+  );
+}
+
+function uniqueBySlug<T extends { slug: string }>(items: T[]): T[] {
+  return items.filter(
+    (item, index, array) => array.findIndex((candidate) => candidate.slug === item.slug) === index,
   );
 }

@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { profile } from "@/data/profile";
 import { absUrl } from "@/lib/seo";
@@ -132,6 +133,8 @@ const prioritySkills = [
   "Complex-market execution",
 ] as const;
 
+const delayStyle = (ms: number) => ({ "--motion-delay": `${ms}ms` }) as CSSProperties;
+
 export const Route = createFileRoute("/resume")({
   head: () => ({
     meta: [
@@ -175,13 +178,13 @@ function ResumePage() {
   const programCredentials = profile.certifications.filter((c) => c.startsWith("Led "));
 
   return (
-    <div className="mx-auto max-w-6xl px-5 sm:px-6 py-10 md:py-14">
+    <div className="resume-page mx-auto max-w-6xl px-5 sm:px-6 py-10 md:py-14">
       <section className="grid lg:grid-cols-[1fr_320px] gap-8 lg:gap-12 items-start border-b border-rule pb-10 md:pb-12">
-        <div className="min-w-0">
+        <div className="resume-soft-reveal min-w-0" style={delayStyle(0)}>
           <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--accent-emerald)] font-mono-tech">
             Executive resume
           </div>
-          <h1 className="font-instrument text-4xl md:text-6xl text-ink mt-3 leading-[1.02] max-w-4xl">
+          <h1 className="font-instrument text-3xl sm:text-4xl md:text-6xl text-ink mt-3 leading-[1.02] max-w-4xl text-wrap">
             Rizwan Zafar, Product &amp; Program Executive
           </h1>
           <p className="mt-4 text-lg md:text-xl text-ink-soft leading-relaxed max-w-3xl">
@@ -189,7 +192,7 @@ function ResumePage() {
             complex markets: payment rails, merchant onboarding, settlement, reconciliation,
             risk/AML controls, partner ecosystems and AI-enabled operations.
           </p>
-          <div className="mt-6 flex flex-wrap gap-2.5">
+          <div className="mt-6 flex flex-wrap gap-2.5 max-w-full">
             <a
               href={profile.resumeHref}
               download
@@ -209,7 +212,7 @@ function ResumePage() {
             </a>
             <a
               href={`mailto:${profile.email}`}
-              className="inline-flex items-center justify-center rounded-full border border-ink/20 px-5 py-2.5 text-sm font-medium text-ink hover:bg-ink/5 transition-colors"
+              className="inline-flex min-w-0 max-w-full items-center justify-center rounded-full border border-ink/20 px-4 sm:px-5 py-2.5 text-center text-sm font-medium leading-tight text-ink break-all hover:bg-ink/5 transition-colors"
             >
               {profile.email}
             </a>
@@ -224,7 +227,10 @@ function ResumePage() {
           </div>
         </div>
 
-        <aside className="rounded-2xl border border-rule bg-card/80 p-5 shadow-sm">
+        <aside
+          className="resume-soft-reveal rounded-2xl border border-rule bg-card/80 p-5 shadow-sm"
+          style={delayStyle(90)}
+        >
           <div className="text-[10px] uppercase tracking-[0.18em] text-ink-soft font-mono-tech">
             Best fit
           </div>
@@ -248,9 +254,16 @@ function ResumePage() {
         </aside>
       </section>
 
-      <section className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4 border-b border-rule py-6">
-        {proofMetrics.map((m) => (
-          <div key={m.label} className="rounded-xl border border-rule bg-surface px-4 py-3">
+      <section
+        className="resume-soft-reveal grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4 border-b border-rule py-6"
+        style={delayStyle(140)}
+      >
+        {proofMetrics.map((m, index) => (
+          <div
+            key={m.label}
+            className="resume-proof-card rounded-xl border border-rule bg-surface px-4 py-3"
+            style={delayStyle(180 + index * 45)}
+          >
             <div className="font-instrument text-2xl text-ink leading-none">{m.value}</div>
             <div className="mt-1.5 text-[10px] uppercase tracking-[0.14em] text-ink-soft font-mono-tech leading-tight">
               {m.label}
@@ -260,23 +273,33 @@ function ResumePage() {
       </section>
 
       <section className="grid md:grid-cols-12 gap-8 border-b border-rule py-10">
-        <div className="md:col-span-3">
+        <div className="resume-soft-reveal md:col-span-3" style={delayStyle(0)}>
           <h2 className="font-instrument text-2xl text-ink">Executive Summary</h2>
         </div>
         <div className="md:col-span-9 space-y-5">
-          <p className="font-instrument text-2xl md:text-3xl text-ink leading-snug">
+          <p
+            className="resume-soft-reveal font-instrument text-2xl md:text-3xl text-ink leading-snug"
+            style={delayStyle(80)}
+          >
             Product &amp; Program Executive with 14+ years across payments, fintech, OTT, ecommerce
             operations and digital transformation.
           </p>
-          <p className="text-base text-ink-soft leading-relaxed max-w-3xl">
+          <p
+            className="resume-soft-reveal text-base text-ink-soft leading-relaxed max-w-3xl"
+            style={delayStyle(120)}
+          >
             Currently CPO at Simpaisa, where I helped scale regulated payment infrastructure to $1B+
             GTV, 25M+ monthly transactions and 50+ bank, wallet and FI partners. My operating lane
             sits between product strategy, program delivery, compliance, risk, engineering
             leadership, partner ecosystems and market expansion.
           </p>
           <div className="grid md:grid-cols-3 gap-3">
-            {roleFit.map((item) => (
-              <div key={item.title} className="rounded-xl border border-rule bg-card p-4">
+            {roleFit.map((item, index) => (
+              <div
+                key={item.title}
+                className="resume-soft-reveal rounded-xl border border-rule bg-card p-4"
+                style={delayStyle(160 + index * 55)}
+              >
                 <h3 className="font-instrument text-lg text-ink">{item.title}</h3>
                 <p className="mt-2 text-sm text-ink-soft leading-relaxed">{item.body}</p>
               </div>
@@ -286,15 +309,16 @@ function ResumePage() {
       </section>
 
       <section className="grid md:grid-cols-12 gap-8 border-b border-rule py-10">
-        <div className="md:col-span-3">
+        <div className="resume-soft-reveal md:col-span-3" style={delayStyle(0)}>
           <h2 className="font-instrument text-2xl text-ink">Priority Skills</h2>
         </div>
         <div className="md:col-span-9">
           <div className="flex flex-wrap gap-2">
-            {prioritySkills.map((skill) => (
+            {prioritySkills.map((skill, index) => (
               <span
                 key={skill}
-                className="rounded-full border border-rule bg-surface px-3 py-1.5 text-sm text-ink"
+                className="resume-skill-chip rounded-full border border-rule bg-surface px-3 py-1.5 text-sm text-ink"
+                style={delayStyle(index * 35)}
               >
                 {skill}
               </span>
@@ -311,15 +335,19 @@ function ResumePage() {
           </div>
         </div>
         <div className="space-y-9">
-          {resumeExperience.map((job) => (
-            <article key={`${job.company}-${job.role}`} className="grid md:grid-cols-12 gap-5">
+          {resumeExperience.map((job, index) => (
+            <article
+              key={`${job.company}-${job.role}`}
+              className="resume-timeline-card grid md:grid-cols-12 gap-5"
+              style={delayStyle(index * 65)}
+            >
               <div className="md:col-span-3 text-sm text-ink-soft">
                 <div className="font-mono-tech text-ink">{job.period}</div>
                 <div className="mt-1 text-[10px] uppercase tracking-[0.14em] font-mono-tech">
                   {job.location}
                 </div>
               </div>
-              <div className="md:col-span-9 border-l border-rule pl-5 md:pl-6">
+              <div className="resume-divider md:col-span-9 border-l border-rule pl-5 md:pl-6">
                 <h3 className="font-instrument text-xl text-ink leading-snug">
                   {job.role}
                   <span className="text-ink-soft"> · {job.company}</span>
@@ -349,10 +377,11 @@ function ResumePage() {
                 {group.group}
               </h3>
               <div className="flex flex-wrap gap-2">
-                {group.items.map((item) => (
+                {group.items.map((item, index) => (
                   <span
                     key={item}
-                    className="text-xs px-2.5 py-1 border border-rule rounded-full text-ink bg-surface"
+                    className="resume-skill-chip text-xs px-2.5 py-1 border border-rule rounded-full text-ink bg-surface"
+                    style={delayStyle(index * 25)}
                   >
                     {item}
                   </span>
@@ -424,7 +453,7 @@ function ResumePage() {
         </div>
       </section>
 
-      <section className="rounded-2xl border border-rule bg-ink text-background p-6 md:p-8 flex flex-col md:flex-row md:items-center md:justify-between gap-5">
+      <section className="resume-cta-panel rounded-2xl border border-rule bg-ink text-background p-6 md:p-8 flex flex-col md:flex-row md:items-center md:justify-between gap-5">
         <div>
           <h2 className="font-instrument text-2xl md:text-3xl leading-tight">
             Ready for senior product, payments and program leadership roles.
