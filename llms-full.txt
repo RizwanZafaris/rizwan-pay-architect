@@ -520,6 +520,55 @@ Owned the SWIFT product surface end-to-end: integration architecture, gpi adopti
 
 ---
 
+## MPGS Acquirer Integration Programme: Hosted Session, 3DS2, Tokenisation and the Recurring Stack
+
+URL: https://rzifi.com/product-work/mpgs-acquirer-integration-programme
+Category: Payment Infrastructure
+
+**Tagline**: Took a regional acquirer-processor from a single Hosted Checkout flow to a full MPGS surface — Hosted Session, EMV 3DS2 step-up, scheme tokenisation, recurring billing and dispute ingestion — across 1,200+ merchants in three primary markets without a 24-hour outage.
+
+### Executive summary
+
+Designed and shipped the full MPGS surface for a regional acquirer-processor — moving from a single Hosted Checkout integration into Hosted Session (for branded checkouts), Direct API (for recurring and merchant-of-record flows), EMV 3DS2 step-up tuning, scheme tokenisation, recurring billing, dispute ingestion and merchant-facing settlement reconciliation. Migrated 1,200+ merchants in three primary markets across an 18-month rollout with no 24-hour outage and a +3.4-point portfolio-wide authorisation-rate uplift.
+
+### Problem
+
+The acquirer had launched on MPGS via the standard Hosted Checkout flow and stayed there. The integration was stable, but the platform was locked out of every flow that mattered for premium merchants: branded checkouts, recurring billing, scheme tokenisation, merchant-of-record marketplaces, MIT/CIT differentiation, and structured 3DS2 exemption logic. Authorisation rates lagged the regional benchmark by 3–4 points. Disputes were handled by ops staff opening the scheme portal merchant-by-merchant. Settlement reconciliation was a daily fire drill. The next-quarter scheme mandate on network tokenisation made the gap untenable.
+
+### Role
+
+Owned the MPGS programme end-to-end as Product & Program lead — integration architecture, merchant-rollout sequencing, scheme-certification path, auth-rate optimisation programme, tokenisation rollout, dispute-product surface, settlement-reconciliation product, and the per-merchant migration governance. Direct accountability for portfolio auth rate, dispute cycle time, settlement break rate and scheme-certification posture.
+
+### What we built
+
+- Hosted Session integration: kept MPGS PCI scope while letting merchants brand the checkout (own CSS, own form, own redirect-free experience)
+- Direct API integration for recurring (RECURRING / INITIAL CIT / SUBSEQUENT MIT) and marketplace flows that needed payer-not-present orchestration
+- EMV 3DS2 step-up logic with explicit handling of all five PSD2 exemptions (TRA, low-value, recurring, trusted beneficiary, MIT) and per-issuer step-up scoring
+- Network tokenisation via MDES (Mastercard) and VTS (Visa) — replacing PAN-on-file with scheme tokens for 92% of card-on-file merchants
+- Recurring billing engine: token-backed subscriptions, retry ladder driven by decline-reason taxonomy, dunning sequences per market
+- Dispute ingestion: scheme webhook + Notification Service consumer into the internal case-management system; evidence-upload portal for merchants
+- Settlement reconciliation: MPGS settlement file + scheme report + bank statement triple-match with per-merchant break detection
+- Per-merchant migration tooling: feature-flag rollout, dry-run mode for new flows, instant rollback to Hosted Checkout if a merchant tripped a guard-rail
+
+### Impact
+
+- Lifted portfolio-wide authorisation rate by +3.4 points across the 18-month programme, driven by 3DS2 exemption tuning, BIN-routing optimisation, and tokenisation lift
+- Migrated 1,200+ merchants from Hosted Checkout to the appropriate MPGS integration mode without a single 24-hour outage
+- Reached 92% network-tokenisation coverage on card-on-file merchants ahead of the regional scheme deadline
+- Compressed median dispute cycle time from 21 days to 12 days through ingestion + merchant evidence-upload portal
+- Held settlement break rate below 0.04% throughout the rollout, including across the tokenisation migration window
+- Established the auth-rate optimisation programme as a permanent operating cadence rather than a one-time project
+
+### Lessons
+
+- MPGS Hosted Checkout is the right starting integration; staying on it past $200M TPV is a strategic mistake, not a stability win
+- Auth-rate optimisation is a permanent programme, not a project. The first 2 points come from 3DS2; the next 1–2 points come from BIN routing and tokenisation; the last 0.5 point comes from per-issuer experiments
+- Network tokenisation is the highest-leverage migration on the MPGS surface. The PCI-scope reduction, the auth-rate lift, and the lifecycle automation each justify it on their own; together they pay back the migration cost inside two quarters
+- Dispute product matters at portfolio scale. Once the platform crosses ~10k disputes/year, ingesting the scheme portal into the internal case manager removes more ops cost than any other single move
+- Migration governance is the actual product. A per-merchant flag, a dry-run mode, a rollback, and a named ops owner per merchant tier — these are the artefacts that decided whether the programme shipped clean or shipped incidents
+
+---
+
 # Essays
 
 ## A SWIFT Compliance Checklist for Banks and Fintechs
@@ -4013,6 +4062,7 @@ Apple Pay and Google Pay are wallet brands. The consumer experiences "I pay with
 Click to Pay reverses the framing. The consumer experiences "I pay with my Visa card via Click to Pay." The scheme brand is the visible brand. The scheme runs the identity layer. The scheme orchestrates the auth flow.
 
 What it's competing with:
+
 - **Apple Pay / Google Pay** — device-wallet checkout, dominant in mobile
 - **Browser autofill** — Chrome, Safari, Firefox card autofill (varies by region)
 - **Merchant card-on-file checkouts** — the merchant remembers the consumer's card
@@ -4155,6 +4205,196 @@ For a recruiter scanning a payments product PM's portfolio, "shipped Click to Pa
 **Is enrolment opt-in?** Yes. Consumers have to enrol their card via their issuer or merchant flow. Some issuers have started "soft enrolling" cards (eligible to use, requires consumer confirmation on first use).
 
 **The single biggest reason teams under-adopt Click to Pay?** Because the integration is a few-week engineering job and the lift is gradual rather than dramatic. Teams chasing big visible wins skip it. The teams that ship it absorb the small lift compounded over years.
+
+---
+
+## CSPO + RICE in Practice: A Real Payments Roadmap Walkthrough
+
+URL: https://rzifi.com/blog/cspo-rice-payments-roadmap-walkthrough
+Published: 2026-05-20
+Category: Product Strategy
+Tags: product management, RICE prioritisation, CSPO, payments roadmap, product strategy, risk-adjusted backlog, fintech PM, product operating model
+
+**How a CSPO-trained payments PM actually uses RICE on a live quarter. The eight roadmap items, real reach and confidence inputs, the risk-adjusted overlay payments demands, and the four moves the framework gets wrong on its own.**
+
+Every payments PM I have hired in the last five years walked in with two artifacts on their CV: a CSPO certification and a RICE template. Almost none of them could explain how the two tools talk to each other on a live quarter. CSPO trains a product mindset; RICE supplies a ranking formula; neither one tells you what to do when the highest-RICE item on the board would torch a scheme audit if it shipped on schedule.
+
+This is the walkthrough that closes that gap. One quarter. Eight roadmap items. Real reach, impact, confidence, and effort inputs. A risk-adjusted overlay because payments demands one. The four places the framework is incomplete on its own — and what the senior PM does at each of those places that the framework cannot do for them.
+
+## The CSPO mindset, briefly
+
+The Certified Scrum Product Owner curriculum gives the PM five disciplines worth keeping:
+
+1. **Vision before backlog.** Every story descends from a stated product vision. The vision is the appeal layer when prioritisation gets ugly.
+2. **Ordered backlog, not a wishlist.** Stories are ranked top to bottom. Two items cannot share a slot.
+3. **Value-driven sequencing.** What ships next is what produces the most customer or business value, not what is easiest or what the loudest stakeholder requested.
+4. **Acceptance criteria are the contract.** "Done" is defined before work starts, in writing, by the PO.
+5. **Inspect and adapt every sprint.** The backlog is rewritten when the world changes; the world changes every sprint in payments.
+
+CSPO is silent on how you decide what is most valuable. That is where RICE comes in.
+
+## RICE, briefly
+
+RICE scores each backlog item against four inputs:
+
+- **Reach**: how many users or transactions the change touches per quarter
+- **Impact**: how much it moves the metric on the users it touches (typically scored 0.25 / 0.5 / 1 / 2 / 3)
+- **Confidence**: how much of the impact estimate you actually believe (scored 50% / 80% / 100%)
+- **Effort**: person-months to ship
+
+`RICE score = (Reach × Impact × Confidence) / Effort`
+
+Higher is better. Items are ranked by score. Then they ship in order.
+
+That is the entire framework. In a SaaS product it works as written. In payments it does not — for reasons we will get to.
+
+## The quarter
+
+Imagine a regulated acquirer-processor in the Gulf, $2B annualised TPV, 1,200 active merchants, six rails (MPGS card acquiring, Mada local debit, Apple Pay, a regional wallet, an account-to-account rail, and SWIFT cross-border outbound). The PM owns the merchant-facing surface and the orchestration logic underneath.
+
+The PM walks into Q1 planning with eight serious candidates on the board.
+
+### The eight backlog items
+
+| # | Item | One-line description |
+|---|------|----------------------|
+| A | Network tokenisation rollout (MDES + VTS) | Replace PAN-on-file with scheme tokens for all 1,200 merchants |
+| B | Apple Pay enablement | Activate Apple Pay on the existing hosted checkout |
+| C | EMV 3DS2 step-up optimisation | Tune the exemption logic + add TRA scoring |
+| D | A2A "Pay by Bank" rail | New rail integration with the local instant-payment scheme |
+| E | Settlement T+1 → same-day for premium merchants | Faster funding for top-tier accounts |
+| F | Dispute portal v2 | Self-serve evidence upload + status |
+| G | Merchant onboarding KYB automation | Document extraction + sanctions check + UBO graph |
+| H | Sub-merchant model for marketplaces | One PSP licence covering many small sellers |
+
+All eight are reasonable. Some quarter, every one of them ships. This quarter, the team has three senior engineering pods and one risk-and-compliance engineer. Capacity for the quarter is ~25 person-months of build, plus ~5 person-months of integration and certification.
+
+### Scoring round 1: clean RICE
+
+The PM walks the board and scores each item against the RICE inputs. Numbers in brackets are illustrative but realistic.
+
+| # | Item | Reach (txns / quarter) | Impact | Confidence | Effort (PM) | RICE |
+|---|------|------------------------|--------|------------|-------------|------|
+| A | Network tokenisation | 18M | 2.0 | 0.8 | 6 | **4,800** |
+| B | Apple Pay | 6M | 1.0 | 1.0 | 2 | 3,000 |
+| C | 3DS2 step-up optimisation | 14M | 2.0 | 0.8 | 3 | **7,467** |
+| D | A2A rail | 1M | 3.0 | 0.5 | 8 | 188 |
+| E | Same-day settlement (top tier) | 4M | 1.0 | 0.8 | 4 | 800 |
+| F | Dispute portal v2 | 0.05M | 3.0 | 1.0 | 3 | 50 |
+| G | KYB automation | 0.002M (merchants/qtr) | 3.0 | 0.8 | 5 | 0.96 |
+| H | Sub-merchant model | 0.001M | 3.0 | 0.5 | 6 | 0.25 |
+
+A pure RICE read tells the PM to ship C (3DS2 optimisation), then A (tokenisation), then B (Apple Pay), then E (same-day settlement), and stop there because the engineering pods are full.
+
+Apple Pay, tokenisation, and 3DS2 optimisation cover ~25 person-months. The plan is tidy. The PM is also about to ship a backlog that misses every strategic thing the company actually needs to do.
+
+## Where RICE breaks in payments
+
+Five things RICE does not see.
+
+**Reach is not always users or transactions.** Item G (KYB automation) reaches 0.002M things — that is "two thousand merchants per quarter onboarded". But every one of those merchants is a multi-year revenue stream and a risk surface. Counting them at the same denominator as 18M transactions makes KYB look like a rounding error when it is in fact a frontier-of-the-business problem. Reach in payments is sometimes per-merchant, sometimes per-transaction, sometimes per-regulator-question.
+
+**Impact is not single-dimensional.** 3DS2 optimisation improves auth rate. Tokenisation improves auth rate AND reduces dispute exposure AND lowers PCI scope. RICE collapses those into one impact number. The senior PM has to either run three RICE scores per item (one per outcome) or carry the multi-dimensional impact in a separate column.
+
+**Confidence is the wrong shape.** RICE uses 50 / 80 / 100. In payments, the spread between "this depends on a scheme certification that has a six-week SLA" and "this depends on a scheme certification that has a six-month SLA with one approver in the region" is the entire difference between shipping and not shipping. Confidence in payments is partly probability, partly external dependency latency.
+
+**Effort excludes compliance + certification + audit.** RICE's "effort" is build effort. The actual ship effort for tokenisation includes EMVCo certification, scheme attestation, PCI re-attestation, and a merchant rollout sequence. Build effort might be 6 person-months. Ship effort is 9. The PM who books only the 6 ships nothing for the last quarter.
+
+**The framework does not see regulatory deadlines.** Nowhere in `(Reach × Impact × Confidence) / Effort` does the word "regulator" appear. In our quarter, the central bank has set a hard date for mandatory network tokenisation on all card-on-file merchants. That is not a backlog item with a RICE score. That is a constraint that overrides RICE.
+
+## The risk-adjusted overlay
+
+The senior PM keeps RICE — it is still the cleanest ranking machine for the items the framework can handle — and adds a second pass: a risk-adjusted overlay.
+
+For each item the PM scores three risk dimensions on a 1–5 scale:
+
+- **Regulatory deadline pressure**: 5 = mandated by date X, 1 = no external clock
+- **Audit / compliance exposure**: 5 = item is the audit finding, 1 = no compliance touch
+- **Reputational / contractual risk**: 5 = if we miss this we lose merchants or licence, 1 = no external visibility
+
+Items scoring 4 or 5 on any axis are pulled above the RICE ranking. Items scoring 3 are reviewed in-line with RICE. Items scoring 1–2 stay where RICE put them.
+
+In our quarter, the overlay looks like this.
+
+| # | Item | Reg pressure | Audit exposure | Reputational | Override? |
+|---|------|--------------|----------------|--------------|-----------|
+| A | Network tokenisation | 5 (CBUAE date) | 4 | 3 | **Yes — promote to top** |
+| B | Apple Pay | 1 | 1 | 2 | No |
+| C | 3DS2 step-up | 3 | 3 | 3 | In-line with RICE |
+| D | A2A rail | 2 | 2 | 3 | No |
+| E | Same-day settlement | 1 | 2 | 4 | Watch (large merchant pressure) |
+| F | Dispute portal v2 | 2 | 3 | 4 | Promote one notch |
+| G | KYB automation | 4 (sanctions findings) | 5 | 4 | **Yes — promote into top half** |
+| H | Sub-merchant model | 3 | 4 | 3 | Watch (depends on legal) |
+
+The roadmap after the overlay reorders.
+
+| Order | Item | Driver |
+|-------|------|--------|
+| 1 | A — Network tokenisation | Regulatory deadline + RICE-high |
+| 2 | G — KYB automation | Audit findings — non-negotiable |
+| 3 | C — 3DS2 optimisation | High RICE, fits remaining capacity |
+| 4 | F — Dispute portal v2 | Reputational pressure + technically small |
+| 5 (overflow) | B — Apple Pay | If capacity opens, easy win |
+| Deferred | D, E, H | Important; not this quarter |
+
+Now look at the difference. Pure RICE shipped C, A, B, E — three improvements and a cosmetic settlement bump. The risk-adjusted overlay ships A, G, C, F — the regulatory mandate, the audit finding, the auth-rate optimisation, and the merchant pain reducer. Same team, same capacity, a fundamentally different quarter.
+
+## Where the senior PM still has to think
+
+Even after the overlay, four decisions remain that the framework cannot make.
+
+**Sequencing within the quarter.** Tokenisation cannot ship in Sprint 1 because scheme certification has a 4-week clock that starts only after technical readiness. Sprint 1 should ship the readiness milestone; Sprint 2 launches certification; Sprints 3–6 do the merchant rollout. KYB automation can start in Sprint 1 in parallel because it has no scheme dependency. The PM owns this sequencing call; RICE does not see it.
+
+**The cut line.** Apple Pay sits in overflow. If tokenisation finishes a sprint early, the PM has to decide between accelerating dispute portal v2, starting Apple Pay, or pulling a Q2 item forward. Each option has different signalling effects (Apple Pay is a marketing moment; portal v2 is an ops moment; Q2 pull-forward is a velocity moment). RICE cannot make that call.
+
+**The contract with engineering.** "Effort" is a PM estimate that engineering owns. The senior PM does not show up to planning with RICE scores frozen; they show up with a draft, and the effort numbers move once engineering reviews them. If KYB ends up costing 8 person-months instead of 5, the RICE score halves and the overlay still keeps it because the audit-finding driver is unchanged. The framework needs to bend to live data.
+
+**The stakeholder math.** The largest merchant on the platform has been asking for same-day settlement for nine months. They represent 18% of TPV. The risk-adjusted overlay deprioritised it. The PM owes that merchant a conversation — what is shipping this quarter, why, when E gets attention, what the interim mitigation is. RICE produces the ranking. The PM produces the relationship.
+
+## What a CSPO actually does in this quarter
+
+Strip the framework back and look at where the CSPO disciplines show up in practice:
+
+- **Vision.** The roadmap is in service of the product vision ("the most reliable acquirer-processor in the region by audit posture and uptime"). When the regulator deadline forces tokenisation to the top, vision is the appeal layer that makes the trade-off explainable to engineering and to the largest merchant.
+- **Ordered backlog.** Items A, G, C, F are now in a single ordered queue. No item is "in parallel" with another at the same priority; sequencing decisions are explicit.
+- **Value-driven.** Value here is multi-axis: regulatory exposure averted, audit findings closed, auth-rate basis points, dispute-cycle time. Value never collapses to a single number, but it does collapse to a single ordering.
+- **Acceptance criteria.** Tokenisation does not ship when the code is written. It ships when ten reference merchants are migrated, the BIN-routing logic respects the token preference, and the dispute team can pull tokenised PANs from the gateway dashboard. Those acceptance criteria are written before sprint 1.
+- **Inspect and adapt.** If the scheme certification slips, the PM does not stick to the plan; they re-rank. Sprint reviews are also re-prioritisation moments.
+
+CSPO is the operating discipline. RICE is the maths. The risk-adjusted overlay is the payments-specific bit nobody puts on a certificate.
+
+## The senior-PM tell
+
+The interview question that separates senior payments PMs from juniors is not "do you use RICE?" It is some variant of: "RICE puts item X at the top. The regulator has a mandatory deadline on item Y. Engineering says item Z is the cheapest. How do you decide?"
+
+The junior answer rationalises the RICE score. The mid-level answer talks about stakeholder management. The senior answer rebuilds the framework on the spot — adds the risk overlay, sequences the dependencies, names the trade-off in writing, and walks out with an ordered backlog the engineering lead can start on Monday.
+
+That answer is not on a slide. It is the operating posture the rest of the org borrows when the quarter gets messy.
+
+## FAQ
+
+**Is RICE still useful in payments?**
+Yes. It is still the cleanest ranking machine for items the framework can handle. Where it fails is the items the framework cannot see — regulatory deadlines, audit findings, compliance effort, multi-dimensional impact. The fix is to keep RICE and add the overlay, not to throw RICE out.
+
+**What is the difference between RICE and ICE?**
+ICE drops Reach. In payments, Reach is the input that most often misleads the score (per-merchant vs per-transaction confusion), so dropping it does not help; what helps is being explicit about which Reach denominator each item is measured in.
+
+**Why not WSJF?**
+Weighted Shortest Job First is a closer fit for payments because "cost of delay" maps cleanly to regulatory deadlines. Many senior payments PMs use a RICE / WSJF hybrid: WSJF for the deadline-bound items, RICE for the discretionary ones. The risk-adjusted overlay does roughly the same thing.
+
+**How often should the backlog re-rank?**
+At minimum at sprint review. In practice, whenever scheme certification dates change, regulators publish a new directive, or a large merchant escalates. In payments, "monthly re-rank" is too slow.
+
+**Do you keep one backlog or split it?**
+One ordered backlog per product surface. Splitting backlogs by "compliance vs commercial" is the most common mistake — it lets the team pretend the two streams are independent, which they are not. Compliance items consume the same engineering capacity as commercial ones.
+
+**What about discovery work?**
+Discovery items get their own RICE pass against discovery-specific impact (decision quality, risk reduction). They do not share a backlog with build items because the effort units are different. The senior PM owns both backlogs.
+
+---
+
+If this resonated, you might also want to read [Product Management for Payments Platforms: What's Different, and What's Not](/blog/product-management-for-payments-platforms), [Program Management vs Product Management in Fintech](/blog/program-vs-product-management-fintech), or [Where ML Beats AI: Six Payment Problems an LLM Cannot Touch](/blog/where-ml-beats-ai-payment-problems-llm-cant-touch).
 
 ---
 
@@ -4389,6 +4629,7 @@ This is the part most teams miss. They assume 3DS2 is the issuer's product. It's
 The default goal. The issuer reviews the 150 data elements, decides the transaction is low-risk, returns an authentication signal that the merchant can present to the acquirer for full liability shift. Consumer never sees a popup, an OTP screen, anything.
 
 For a well-configured merchant in 2026, **frictionless flow is the outcome for 60–85% of transactions**. The exact percentage depends on:
+
 - The richness of the data elements the merchant sends (device fingerprint, IP, cardholder behavioural history, transaction context)
 - The exemption flags requested (TRA, low-value, recurring, trusted beneficiary)
 - The issuer's risk-decisioning maturity (US / EU / UK issuers are typically more frictionless-favourable than emerging-markets issuers)
@@ -4397,6 +4638,7 @@ For a well-configured merchant in 2026, **frictionless flow is the outcome for 6
 ### Attempt
 
 The issuer can't fully authenticate but allows the transaction to proceed. Common reasons:
+
 - The card BIN's issuer doesn't support 3DS2
 - The 3DS2 server is down
 - Some regional regulatory mode
@@ -4406,6 +4648,7 @@ Attempt flow returns a signal that the acquirer treats as partial liability shif
 ### Challenge
 
 The issuer requires the consumer to step up. Biometric on a banking app, OTP via SMS, password, or push notification. Conversion drops materially — typical drop-off ranges:
+
 - **App-based biometric:** 5–12% abandonment
 - **OTP SMS:** 15–25% abandonment
 - **Password:** 20–35% abandonment
@@ -4554,6 +4797,183 @@ The candidate who treats 3DS2 as "we integrated it, the gateway handles it" gets
 
 ---
 
+## OKRs at $1B+ TPV: How Payment Goals Differ From SaaS Goals
+
+URL: https://rzifi.com/blog/okrs-billion-tpv-payment-goals-vs-saas
+Published: 2026-05-20
+Category: Product Strategy
+Tags: OKRs, payments product, product strategy, fintech leadership, TPV, payments KPIs, product operating model, executive goals
+
+**What OKRs actually look like at a payments business clearing $1B+ in TPV. Six differences from SaaS goals, the metric families that matter, the guard-rails that protect the licence, and the worked quarterly example.**
+
+There is a moment in every payments business, somewhere around the third year, when annualised total payment volume crosses a billion and the OKRs the team has been writing for five quarters quietly stop making sense.
+
+The phrasing is still right ("Increase X by Y by date Z"). The cadence is still right (quarterly with monthly check-ins). The cascading still works (company → product → squad). What breaks is what the goals are measuring. The SaaS OKR playbook the team learned in the early years rewards growth, activation, retention, and revenue. The payments operating reality at $1B+ TPV rewards stability, audit posture, settlement reliability, and risk-adjusted throughput.
+
+A team that does not re-write its OKRs at this scale spends the next two years optimising the wrong thing.
+
+This is what the rewrite looks like.
+
+## Six differences from SaaS OKRs
+
+**1. The numerator is money, not users.**
+
+SaaS OKRs measure user-side metrics (MAU, retention, NPS, conversion). Payments OKRs at scale measure money-side metrics (TPV, settled volume, authorised volume, dispute volume, recovery rate). A SaaS team that grows MAU 30% wins. A payments team that grows TPV 30% wins only if dispute volume, fraud rate, settlement breaks, and licence-risk indicators have not grown faster.
+
+**2. Guard-rails are first-class OKRs, not just dashboards.**
+
+In SaaS, "do not break things" is implicit. In payments, "do not break things" is half the OKR list, written as numeric guard-rails with hard floors. "Maintain authorisation rate at 92%+" is an OKR. "Keep fraud rate under 12 bps" is an OKR. Guard-rails are not nice-to-have; they are the boundary inside which growth OKRs are allowed to run.
+
+**3. Time horizons stretch.**
+
+SaaS OKRs run quarterly with bias. Payments OKRs run quarterly because the cadence is shared with the rest of the org, but many of the metrics they touch (scheme certification, regulator engagement, settlement-engine refactor, dispute-cycle optimisation) do not move on a quarter-by-quarter rhythm. The senior payments leader writes the quarterly OKR in the context of an 18-month roadmap and accepts that some quarters move 30% of the journey and some quarters move 5%.
+
+**4. External counterparties get veto.**
+
+A SaaS OKR is something the team can deliver if it builds and ships well. A payments OKR depends on scheme certification timelines, regulator approvals, sponsor-bank decisions, and correspondent-bank readiness. Half the OKRs the team writes have an external dependency that can move outside the quarter window. The grading system has to allow for "we did the work, the external dependency moved." Teams that punish themselves for external slippage stop writing ambitious OKRs by the second quarter.
+
+**5. "Done" is a five-month tail.**
+
+A SaaS feature is done when it ships and is used. A payments feature is done when it has run a full settlement cycle, been through a month-end reconciliation, survived an audit pass, and weathered the first dispute. The OKR cycle that books "completed" at launch books incomplete work as complete. Senior payments OKRs distinguish between "shipped" and "stabilised", and reward only the latter.
+
+**6. Adverse goals exist.**
+
+SaaS rarely has metrics the team wants to drive down. Payments has many: dispute rate, refund rate, fraud rate, reconciliation breaks, support contacts, regulator findings, audit observations. A payments OKR list that is not 30–40% adverse-direction metrics is missing half the work.
+
+## The metric families that matter at $1B+ TPV
+
+A working frame for senior payments OKRs uses five metric families. Every quarter, the OKR slate touches all five.
+
+**Volume and growth.** TPV, authorised TPV, settled TPV, merchant count, transaction count, new-rail share. These are the SaaS-shaped metrics. They look familiar.
+
+**Quality of throughput.** Authorisation rate by network, decline-reason mix, 3DS2 step-up rate, frictionless rate, recurring success rate. These are the metrics where the SaaS playbook is least at home, because the levers are part product, part scheme, part fraud model, part issuer relationship.
+
+**Money-handling reliability.** Settlement timing adherence, reconciliation break rate, ledger-to-statement match rate, refund completion time, dispute cycle time. These are the metrics that the SaaS OKR playbook simply does not have.
+
+**Risk and licence posture.** Fraud loss rate, AML alert closure time, regulator finding count, sanctions screening false-positive rate, CSP attestation status, audit observation count. These are licence-protecting metrics; they belong on the OKR slate at every level, not in a separate compliance scorecard.
+
+**Operating capacity.** Time-to-onboard a new merchant, KYB cycle time, gateway uptime, support contact rate per 1000 transactions, ops headcount per $100M settled. These are the metrics that decide whether the platform scales or buckles in the next year.
+
+A senior payments OKR slate has at least one objective per family. A slate that has four growth objectives and no risk objectives is the slate of a team that has not yet been through an audit.
+
+## A worked example: one quarter at $2.5B annualised TPV
+
+Imagine a regional acquirer-processor, annualised TPV $2.5B, operating in three primary markets, 1,800 active merchants. The senior leader writes the Q-N OKR slate.
+
+### Objective 1 — Lift quality of throughput without lifting risk
+
+**Why this objective.** Authorisation rate on the iOS Safari + cross-border combination is 4 points below the rest of the portfolio. Closing the gap is worth roughly $90M of incremental successful TPV per quarter.
+
+| Key Result | Direction | Target |
+|------------|-----------|--------|
+| Increase iOS Safari + cross-border auth rate from 88% to 92% | Up | +4 pts |
+| Hold overall fraud rate below 12 bps | Floor | < 12 bps |
+| Hold 3DS2 step-up rate below 22% on the affected traffic | Floor | < 22% |
+
+Two of the three KRs are guard-rails. They are written as KRs, not footnotes, because they are first-class.
+
+### Objective 2 — Compress dispute cycle time without lifting loss rate
+
+**Why this objective.** Dispute cycle time is currently 21 days median; merchant escalations on the dispute portal are at an all-time high; large merchants are threatening to multi-source.
+
+| Key Result | Direction | Target |
+|------------|-----------|--------|
+| Reduce median dispute cycle time from 21 to 12 days | Down | -9 days |
+| Hold dispute loss rate (lost / total disputed) at or below current 38% | Floor | ≤ 38% |
+| Reach 95% merchant adoption of the new evidence-upload flow | Up | ≥ 95% |
+
+### Objective 3 — Get the network-tokenisation rollout to GA across the portfolio
+
+**Why this objective.** Central-bank deadline; scheme push; PCI scope reduction; foundation for several next-quarter features.
+
+| Key Result | Direction | Target |
+|------------|-----------|--------|
+| Tokenise card-on-file for 90% of active merchants | Up | ≥ 90% |
+| Maintain post-tokenisation auth rate within 0.5pt of pre-tokenisation baseline | Floor | ± 0.5 pt |
+| Pass EMVCo / scheme certifications with zero outstanding findings | Binary | 0 findings |
+
+### Objective 4 — Bring CSP attestation back onto cadence and close all audit observations
+
+**Why this objective.** Past attestation slipped two cycles; current audit has 7 open observations; correspondent banks are starting to ask.
+
+| Key Result | Direction | Target |
+|------------|-----------|--------|
+| Submit CSP attestation by the scheme-set deadline with no late evidence | Binary | On-time submission |
+| Close all 7 open audit observations | Down | 0 open |
+| Establish quarterly evidence-collection cadence with named owner per control | Binary | Adopted |
+
+### Objective 5 — Reduce ops cost per $100M of settled volume
+
+**Why this objective.** Ops headcount has grown linearly with TPV for three quarters. The internal target is to flatten that curve.
+
+| Key Result | Direction | Target |
+|------------|-----------|--------|
+| Cut manual reconciliation break-handling hours by 40% | Down | -40% |
+| Hold settlement break rate at or below current 0.04% | Floor | ≤ 0.04% |
+| Bring KYB median cycle time from 9 days to 4 days | Down | -5 days |
+
+Five objectives. Eighteen key results. Six of them are guard-rails. Three are adverse-direction. Two are binary. Every metric family is represented.
+
+A SaaS OKR slate for the same business would have had four KRs about TPV growth and merchant count, and not noticed that disputes were eating margin, attestation was slipping, or ops cost was scaling linearly.
+
+## How the slate is graded
+
+Senior payments OKRs are not graded on a single number. The slate has three grades, scored separately.
+
+**Growth grade.** The Volume / Growth and Quality-of-Throughput KRs. Scored against ambition: 0.7 is on target for stretch goals; 0.5 is acceptable for cautious quarters; below 0.5 prompts a strategy review.
+
+**Reliability grade.** The Money-Handling, Risk, and Operating KRs. Scored against the floors and binary commitments: any breach of a floor is a 0.0 on that KR regardless of growth elsewhere. Reliability KRs do not have stretch grades; they are pass-fail.
+
+**Externalities grade.** A note (not a number) per KR that was affected by scheme, regulator, sponsor-bank, or correspondent-bank decisions outside the team's control. The next-quarter slate is adjusted by what the externalities grade revealed.
+
+The slate as a whole is "delivered" only if reliability is 1.0 and growth is at least 0.5. A slate that hits 0.9 on growth but breaks one reliability floor is not a delivered slate; it is a near-miss the leadership team must explain to the board.
+
+## What the OKRs do not say
+
+Three categories of work are deliberately not on the OKR slate.
+
+**Hygiene work.** Bug fixes, dependency upgrades, small UX improvements. These are tracked in the engineering backlog and reported as throughput, not as goals.
+
+**Internal projects without external evidence.** Refactors that have no observable customer or audit consequence belong on the engineering plan, not the company OKR slate.
+
+**Aspirational themes.** "Be best-in-class on disputes" is a theme, not an OKR. If it cannot be expressed as a numeric or binary KR, it does not belong on the slate.
+
+The reason the slate is disciplined about exclusion is that payments OKRs at scale are read by the board, by the regulator (sometimes), and by the next round of investors. Vague themes signal a leadership team that does not yet know what it is measuring.
+
+## The senior-leader tell
+
+The interview question that separates senior payments leaders from middle-management ones is: "Show me an OKR slate you wrote at $1B+ TPV and walk me through why each objective made the slate."
+
+The middle-management answer reads the slate. The senior answer narrates the trade-offs: why this growth objective was sized at +4 points and not +6, why the floor on fraud was set at 12 bps and not 10, why the CSP attestation made the slate as its own objective rather than rolling under "operating capacity", and what was deliberately not on the slate.
+
+That conversation is the operating posture the rest of the team learns from. It is also the conversation the best CPOs in payments can have unprompted. If a payments leader cannot have it, they are not yet writing the OKRs at the scale their title claims.
+
+## FAQ
+
+**How does this differ from a SaaS OKR slate?**
+SaaS OKRs are mostly upward-direction growth metrics. Payments OKRs at scale are 30–40% adverse-direction or floor-style guard-rails, because protecting the money-handling and licence is a first-class outcome, not a hygiene assumption.
+
+**Are guard-rails really OKRs, or are they a separate scorecard?**
+Both views work; the senior posture is that they are KRs. Treating them as a separate scorecard lets the team rationalise growth-at-risk decisions. Putting them on the OKR slate forces the trade-off to be visible in the same review meeting.
+
+**What about engineering team OKRs vs product team OKRs?**
+At $1B+ TPV, the line blurs. Settlement timing is owned by engineering operationally but tracked by product because it is a customer-visible metric. The slate is set jointly. Splitting product and engineering slates by function rather than by outcome creates the silos the OKR ritual is supposed to dissolve.
+
+**How long should objectives be written for?**
+A typical senior payments objective is one short sentence, three to four KRs. If the objective needs a paragraph to explain, it is a strategy, not an objective.
+
+**What if the regulator changes the deadline mid-quarter?**
+The slate adjusts mid-quarter, with a documented amendment. Treating the slate as frozen for three months in a regulated business is theatre; the rituals exist to align the team, not to ignore reality.
+
+**Does the same slate work at $10B+ TPV?**
+The structure scales. The metric families stay the same; the targets get harder and more granular (e.g., guard-rails per rail, not portfolio-wide; fraud floors per merchant category). The five-family discipline holds.
+
+---
+
+If this resonated, you might also want to read [CSPO + RICE in Practice: A Real Payments Roadmap Walkthrough](/blog/cspo-rice-payments-roadmap-walkthrough), [Payments PRD Template: The Nine Sections Every Senior PM Writes](/blog/payments-prd-template-nine-sections-senior-pm), or [Product Management for Payments Platforms](/blog/product-management-for-payments-platforms).
+
+---
+
 ## Payment Infrastructure Is Not Just APIs, It Is State, Trust and Failure Handling
 
 URL: https://rzifi.com/blog/payment-infrastructure-state-trust-failure
@@ -4682,6 +5102,213 @@ Within two quarters the merchant-reported "where is my money" tickets dropped by
 > A payment API is the receptionist. The product is the building behind it: state machines, idempotency, failure handling, trust between five parties.
 >
 > A note from running multi-rail payment infrastructure at $1B+ GTV.
+
+---
+
+## Payments PRD Template: The Nine Sections Every Senior PM Writes
+
+URL: https://rzifi.com/blog/payments-prd-template-nine-sections-senior-pm
+Published: 2026-05-20
+Category: Product Strategy
+Tags: product management, PRD template, payments PM, product requirements, fintech PM, product writing, payments product, product operating model
+
+**A working payments PRD template. The nine sections a senior payments PM puts in every PRD — money movement, regulator and scheme posture, reconciliation, failure modes, rollout — with the prompts that force the writer to think about each one.**
+
+The SaaS PRD survived a decade of changing tools because its structure was almost universal: problem, goal, users, stories, scope, success metric, open questions. Eight headings, one page in good cases, three pages in long ones. The shape worked because the failure modes of a SaaS feature are mostly UX failures and the maths is mostly conversion.
+
+A payments PRD shaped like that ships incidents.
+
+The reason is not that payments PMs need to be more rigorous than SaaS PMs. It is that the failure modes of a payments feature live in places a SaaS PRD has no section for. Money movement timing. Scheme rules. Reconciliation symmetry. Audit posture. The PRD has to force the writer to think about each of those before code starts, because they are not catchable in QA.
+
+This is the template that holds, after writing or reviewing more than a hundred payments PRDs across acquirer, processor, wallet, BNPL, cross-border, and KYB products. Nine sections. The shape is not negotiable. The depth of each section flexes with the size of the change.
+
+## Section 1 — Problem and context
+
+Half a page. Two paragraphs.
+
+The first paragraph names the problem in operator language, not feature language. "We want to add Apple Pay" is feature language; not a problem. "Mobile auth rate on iOS Safari is 6 points below desktop, and merchant ops attribute most of the lost authorisations to manual card-entry abandonment" is the problem. The PRD lives or dies in how this paragraph is written, because every later decision derives from it.
+
+The second paragraph is the strategic context. Why now, not last quarter, not next. What changed externally (regulator deadline, scheme mandate, large merchant pressure, competitor move) or internally (capacity, prior work landed, telemetry signal). If the answer to "why now" is "we have time", deprioritise the PRD; it is not yet a problem worth shipping.
+
+**Prompt that forces clarity:** "If I do not ship this in the next two quarters, what specifically gets worse?"
+
+## Section 2 — Goal and non-goals
+
+One short paragraph plus two bullet lists.
+
+The goal is a single sentence in product-outcome language, not feature language. "Add a 3DS2 step-up exemption flow" is feature; not a goal. "Lift iOS Safari auth rate to within 2 points of desktop without increasing the fraud rate" is a goal. The goal has a numeric target and a guard-rail.
+
+Non-goals are equally important. The reason most payments PRDs spawn rework is that the engineering team interpreted scope wider than the PM intended. List the things this PRD is explicitly not solving — even when the team might want to. Non-goals are the future PRDs in the queue.
+
+**Prompt that forces clarity:** "What is the simplest possible thing that would close this problem, and what am I explicitly choosing not to do beyond that?"
+
+## Section 3 — Money movement and timing
+
+This is the section that does not exist in SaaS PRDs and where most payments PRDs fail.
+
+For every flow the feature touches, the PRD walks through the money path:
+
+- **Who pays whom.** Cardholder → issuer → scheme → acquirer → merchant settlement bank → merchant. Name each leg even if it is obvious.
+- **When the money moves.** Authorisation hold (T+0), capture (T+0 or T+n), settlement (T+1 / T+2 / same-day), refund timing, chargeback timing.
+- **What the failure recovery looks like.** If the issuer auth succeeds but the capture fails, what happens? If the scheme settles but the merchant bank rejects, what happens? Name the recovery path for each.
+- **Who carries the float.** During the gap between authorisation and settlement, whose balance sheet is the money on?
+- **What is reversible and what is not.** Authorisations can be voided; captures cannot be voided after settlement; settled funds reverse only through dispute or refund. The PRD says which states the feature touches.
+
+If this section is empty in your PRD, the feature has not been designed yet, regardless of how complete the rest of the document looks.
+
+**Prompt that forces clarity:** "Draw the money path on a whiteboard with timing labels. If you cannot draw it from memory, you do not understand the feature yet."
+
+## Section 4 — Regulator and scheme posture
+
+Every payments feature lives inside a regulatory and scheme envelope. The PRD names which licences and which scheme rulebooks the feature touches, and what each requires.
+
+For regulator posture:
+
+- Which licence(s) cover this activity in which markets
+- Which articles or directives apply (PSD2 SCA, AMLD6, GDPR, market-specific central-bank circulars)
+- What customer disclosures are required
+- What records must be kept and for how long
+- What audit evidence must be produced and where it lives
+
+For scheme posture:
+
+- Which scheme rules apply (Visa Core Rules, Mastercard Standards, scheme-equivalents for local rails)
+- Whether certification is required and what the certification path is
+- Whether the feature changes the BIN-routing logic, interchange category, or merchant category code
+- Whether the feature triggers a scheme attestation event
+
+This section is the artefact that the legal and compliance review uses. If it is missing or thin, the review takes three rounds instead of one. If it is complete, the review is often a one-pass approval.
+
+**Prompt that forces clarity:** "If a regulator or scheme auditor walked in tomorrow and asked 'show me your design evidence for this control', could you hand them this section as-is?"
+
+## Section 5 — Reconciliation and ledger impact
+
+For every state transition the feature introduces, the PRD names the ledger entries and the reconciliation pairings.
+
+- **Internal ledger entries.** What account is debited, what is credited, with what reference, at what timestamp.
+- **External statement pairings.** Which scheme settlement file row, which bank statement entry, which correspondent message, will this transaction land in. The PRD names the field the matching engine will key on (UETR, ARN, scheme transaction ID, reference).
+- **Reconciliation breaks.** Which states could leave a ledger entry without a paired external row and how the ops team detects and resolves the break.
+- **End-of-day posture.** What the daily reconciliation report shows for this flow. Whether a break in this flow blocks settlement or is logged for next-day review.
+
+Most payments incidents are ledger incidents discovered hours or days after the bad transaction. The PRD that names the reconciliation pairings before code prevents the incident; the PRD that does not, ships it.
+
+**Prompt that forces clarity:** "If a regional finance team called at 9pm asking 'why is the ledger ten thousand dirhams off today,' can the on-call engineer trace the answer through the artefacts this PRD names?"
+
+## Section 6 — Failure modes and edge cases
+
+Every payments PRD has a section listing what can go wrong and what the product does when it does.
+
+Group failures into four categories:
+
+**Upstream failures.** Scheme timeouts, issuer declines, gateway errors, network partitions. For each, the PRD specifies the retry policy, the merchant-facing error message, and the consumer-facing message.
+
+**Downstream failures.** Settlement bank rejection, sponsor bank delays, correspondent issues, payout file failure. For each, the PRD specifies what state the transaction is left in and how the merchant is notified.
+
+**Adversarial cases.** Fraud-triggered declines, scheme risk holds, regulator-mandated freezes, AML alerts. For each, the PRD specifies the customer experience, the case-management workflow, and the SLA for resolution.
+
+**Race conditions.** Concurrent capture and refund, dispute opened while still settling, void after partial capture, refund before settlement. For each, the PRD specifies the precedence and the resulting ledger state.
+
+If the team cannot fill this section, the team has not yet thought through what they are building. Edge cases are the substance of payments product work; the happy path is the easy half.
+
+**Prompt that forces clarity:** "What is the worst outcome a customer can experience because of this feature, and what specifically prevents it?"
+
+## Section 7 — Telemetry, KPIs, and acceptance criteria
+
+The metric the goal is written in is in here. So is every metric the team will watch on the way to that goal, and the acceptance criteria that mark the work as "done".
+
+Three layers:
+
+**Primary KPIs.** The numeric targets the PRD commits to. Authorisation rate at X%, settlement timing at Y, dispute cycle time at Z. Each KPI has a baseline reading, a target, and a measurement window.
+
+**Guard-rail KPIs.** The metrics that must not move adversely. Fraud rate, refund-to-payment ratio, support contact rate, reconciliation break count. Each guard-rail has a threshold beyond which the rollout is paused.
+
+**Telemetry events.** The instrumentation the engineering team builds to observe the feature in production. Event names, properties, downstream queries. The PRD names these so the engineering team does not invent them later from memory.
+
+Acceptance criteria are written in past tense, observable, and checkable by the PO (per the CSPO discipline):
+
+- "The 3DS2 step-up flow has been tested with the four most common issuer combinations and has produced a successful auth in each."
+- "The new dispute portal has surfaced at least 95% of in-flight cases with correct status to ten reference merchants."
+- "The settlement reconciliation engine has zero breaks on the first three days of the new flow."
+
+**Prompt that forces clarity:** "Could a junior PM, given only this section, decide whether the feature has shipped or has not?"
+
+## Section 8 — Rollout plan and reversibility
+
+Payments features do not ship by feature flag flip. The PRD specifies the rollout shape.
+
+- **Stage 1: internal traffic.** Synthetic transactions, dogfood accounts, sandbox merchants.
+- **Stage 2: reference merchants.** Three to ten merchants chosen for their willingness to absorb early bugs and their representativeness of the broader portfolio.
+- **Stage 3: progressive rollout.** Percentage of merchants or percentage of traffic, with explicit gates between stages (KPI thresholds met, guard-rails not tripped, reconciliation clean).
+- **Stage 4: GA.** The point at which the legacy flow is deprecated, with a timeline for deprecation.
+
+Reversibility is the part most teams forget. For every stage, the PRD names what "rollback" looks like and at which point rollback stops being possible without merchant-facing consequences. If the feature changes settlement timing, the rollback after settlement has occurred is not a rollback — it is a remediation, with its own runbook.
+
+**Prompt that forces clarity:** "At each stage, what does it look like to stop, and what does it look like to undo what has already happened?"
+
+## Section 9 — Open questions and decisions
+
+Every payments PRD has an open-questions section because at the moment of writing, not everything is known.
+
+Each open question has:
+
+- A clear question
+- A decision owner
+- A decision deadline (date, not "ASAP")
+- The constraint the answer must satisfy
+
+Each decided question — the ones already closed before the PRD ships to engineering — has:
+
+- The decision in one sentence
+- Who made it
+- Why it was made (the relevant constraint)
+- What the alternatives were
+
+The "decisions log" is the most-read section of a payments PRD six months after launch. It is the artefact the next PM (or the audit team, or the post-incident review) uses to understand why the system behaves the way it does. Write it as if the next reader knows nothing about the room you were in when you wrote it.
+
+**Prompt that forces clarity:** "If the writer of this PRD left the company tomorrow, could the next PM continue without a verbal handover?"
+
+## What is not in the template
+
+A few sections that other PRD templates carry, that this one does not:
+
+- **User personas.** Payments products have constituencies (Section 2 of the [Product Management for Payments Platforms](/blog/product-management-for-payments-platforms) essay), not personas. Personas leak SaaS habits into payments thinking.
+- **Wireframes.** Wireframes belong in design artefacts, linked from Section 7, not pasted into the PRD. The PRD is a decision document, not a design surface.
+- **Engineering implementation.** Implementation choices belong in engineering design docs that descend from the PRD. The PRD names the constraints, not the design.
+- **Pricing model.** Pricing lives in a separate commercial PRD, even when the product change has revenue implications. Mixing them produces document-shaped compromises.
+
+## How long should a payments PRD be?
+
+A working answer: long enough that the nine sections are each substantive, and short enough that the engineering lead reads it without skipping. In practice, four to nine pages for a meaningful payments feature; one to two pages for a small change that still touches money or audit. If a PRD is over fifteen pages, it is either a strategy document pretending to be a PRD, or it should be split into two PRDs.
+
+## The senior-PM tell
+
+The interview question that catches juniors out is not "do you write PRDs?" It is "what is in a payments PRD that is not in a SaaS PRD, and why?". The junior answer adds compliance bullets to a SaaS template. The senior answer reaches for the money-movement section, the reconciliation section, the scheme-posture section, and the open-decisions log — and explains why the SaaS template is structurally incomplete, not just under-detailed.
+
+That answer is the difference between a PM who will ship working payment features and one who will ship incidents.
+
+## FAQ
+
+**Is this template too heavy for small changes?**
+For very small changes (one config flip, one copy change, one telemetry-event addition), use a one-page mini-PRD that still has the nine section headings but with most of them written as one sentence. The discipline is in the section structure; the depth flexes.
+
+**Does this template work for non-card payment products?**
+Yes. The nine sections were designed for any product that moves money — card acquiring, A2A rails, cross-border, BNPL, wallets, virtual accounts. The "scheme posture" section is generalised to "rule envelope" for products without a card scheme.
+
+**Should the PRD live in Confluence, Notion, Google Docs, or a markdown file in the repo?**
+Whichever the engineering team reads. The platform matters less than the convention that the PRD is the single source of truth and that decisions land in the PRD rather than in chat.
+
+**Who writes each section?**
+The PM owns the PRD. Sections 4 (regulator and scheme) and 5 (reconciliation) usually require input from compliance and finance respectively, but the PM still owns the final wording. Owning the wording is the test of whether the PM understands the constraint.
+
+**When does the PRD freeze?**
+Never fully. The acceptance criteria and goal freeze before engineering starts; the open-questions section keeps changing; the decisions log keeps growing. A PRD is alive for the lifetime of the feature, not just the build.
+
+**How is the PRD different from a design doc?**
+The PRD is the product decision; the design doc is the engineering choice. The PRD names the constraints; the design doc names the implementation. One PRD typically maps to one or more design docs.
+
+---
+
+If this resonated, you might also want to read [CSPO + RICE in Practice: A Real Payments Roadmap Walkthrough](/blog/cspo-rice-payments-roadmap-walkthrough), [Product Management for Payments Platforms](/blog/product-management-for-payments-platforms), or [Program Management vs Product Management in Fintech](/blog/program-vs-product-management-fintech).
 
 ---
 
