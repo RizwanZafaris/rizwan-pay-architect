@@ -4158,6 +4158,415 @@ Related: [Reconciliation Is Product Infrastructure](/blog/reconciliation-is-prod
 
 ---
 
+## MDES + Network Tokenisation: How It Actually Works (and Why You Should Default to It)
+
+URL: https://rzifi.com/blog/mdes-network-tokenisation-how-it-actually-works
+Published: 2026-05-19
+Category: Payment Infrastructure
+Tags: MDES, VTS, network tokenisation, tokenisation, card on file, Apple Pay, Google Pay, payment infrastructure, MasterCard, Visa
+
+**MDES, Visa Token Service, network tokens vs gateway tokens, the lifecycle the schemes own, Apple/Google Pay plumbing, and why every new card-on-file integration should default to network tokens.**
+
+Network tokens are the most under-explained product in payments. They are the difference between a 60% authorisation rate and a 90% authorisation rate on stored cards. They are the reason Apple Pay actually works at scale. They are the migration most card-on-file businesses keep postponing and then regret.
+
+This is the operator-grade map: what MDES is, what its Visa counterpart VTS is, what changes when a network token replaces a PAN, the lifecycle the scheme owns instead of you, and the integration patterns that ship.
+
+## The primitives
+
+There are three kinds of card credential. Treat them as architecturally different from day one.
+
+### 1. PAN (Primary Account Number)
+
+The 16-digit number on the front of the physical card. Tied to a specific plastic. Compromised if the plastic is lost. Issuer reissues the card → PAN changes → every saved-card integration breaks until the cardholder re-enters details.
+
+PAN should not exist in your architecture after 2026 except inside the schemes' own systems. If you're storing PANs, your PCI scope is Level 1, your audit cost is high, and your authorisation rate on stored cards is at the mercy of issuer reissue events.
+
+### 2. Gateway token
+
+A reference issued by a payment gateway (Stripe, MPGS, Adyen, etc.). Opaque to everyone except that gateway. Works only inside that gateway's ecosystem.
+
+Cheap to use, fast to issue, narrow PCI scope. The big limitation: it's tied to the gateway. You change gateway → you lose the token estate. You add a second gateway → the cards aren't portable.
+
+### 3. Network token
+
+A credential issued by the scheme itself (MasterCard MDES, Visa Token Service, AmEx, Discover) that **replaces the PAN** on file. It looks like a PAN, behaves like a PAN, but:
+
+- The scheme owns its lifecycle
+- It's bound to a specific merchant / use case / device
+- When the underlying card is reissued, the network token continues working with the new PAN underneath — invisible to the merchant
+- It's portable across gateways that support network tokens
+- Network rules treat it as lower risk → authorisation rate is meaningfully higher
+
+This third primitive is the one that changes the economics of card-on-file. The first two are well-understood. The third is the one most teams under-invest in.
+
+## What MDES actually is
+
+MDES (MasterCard Digital Enablement Service) is MasterCard's network-token issuance service.
+
+What MDES does:
+- Takes a real PAN from an authorised requester (your gateway, an OEM Pay wallet, a merchant)
+- Issues a network token bound to:
+  - The requester (your merchant ID or wallet ID)
+  - The use case (card-on-file, OEM wallet, e-commerce, in-app)
+  - Optional device binding (for OEM wallets)
+- Stores the PAN-to-token mapping in MasterCard's vault
+- Forwards authorisation requests using the token, with the issuer ultimately seeing the original PAN
+- Manages the lifecycle: if the cardholder's physical card is reissued, the token continues to work seamlessly
+
+MDES is the plumbing under Apple Pay, Google Pay, Samsung Pay, Click to Pay, and every modern card-on-file integration on MasterCard rails.
+
+VTS (Visa Token Service) is the Visa equivalent. Same primitives, different control plane.
+
+## The lifecycle the scheme owns
+
+This is the part that sells network tokenisation when teams understand it.
+
+In the PAN / gateway-token world:
+
+1. Customer's physical card is lost / reissued / expires
+2. Issuer issues a new PAN
+3. Every saved-card integration that used the old PAN now fails authorisation
+4. Customer has to re-enter card details on every site, app, subscription
+5. Some subset of customers churn; the rest just stop paying for the subscription
+
+In the network-token world:
+
+1. Customer's physical card is lost / reissued / expires
+2. Issuer issues a new PAN, registers it with MDES / VTS
+3. MDES / VTS updates the PAN-to-token mapping invisibly
+4. The merchant's saved network token continues to work
+5. The customer does nothing; the subscription keeps charging
+
+Estimates vary by region and segment but in the markets I've worked, the gap is roughly:
+
+- **Card reissue events per year:** 12–25% of all active cards
+- **Recovery rate on PAN-based card-on-file after reissue:** ~40–60% (everyone else churns or has to manually update)
+- **Recovery rate on network-token card-on-file:** ~95–99% (transparent to the merchant)
+
+For a subscription business, that delta compounds. If your churn is 10% / month and 3% of that is card-related, fixing the card path drops churn meaningfully. The financial case for network tokens is rarely about the cost-per-token; it's about the recovered revenue.
+
+## How issuance actually flows
+
+The integration shape is consistent across MDES, VTS and the other schemes' equivalents.
+
+1. **PAN capture.** The merchant or wallet captures the PAN through PCI-compliant channels (Hosted Session iframe, Apple Pay token request, etc.).
+2. **Provisioning request.** The merchant's gateway sends a "tokenise this PAN for this use case" request to MDES / VTS.
+3. **Issuer authorisation.** The issuer is consulted (some issuers auto-approve, some do step-up via the issuer app, some decline).
+4. **Token issuance.** If approved, MDES / VTS returns the network token.
+5. **Token storage.** The merchant stores the network token in its card-on-file vault (not the PAN).
+6. **Subsequent transactions.** Every future transaction uses the token; MDES / VTS handles the translation back to the underlying PAN at authorisation time.
+
+The merchant's PCI scope after this is narrower than a gateway-token estate because the token is scheme-controlled and explicitly out of PCI scope when stored with the right marker.
+
+## The integration patterns that ship
+
+There are four common integration shapes. Pick based on your role in the stack.
+
+### Pattern A: Gateway-mediated (most common)
+
+You integrate with MPGS, Stripe, Adyen, etc. The gateway integrates with MDES / VTS on your behalf. You see tokens and lifecycle events through the gateway API.
+
+**Pros:** Easy. The gateway absorbs MDES contracts, certification, lifecycle management.
+
+**Cons:** You're locked to that gateway for token operations. The token doesn't move with you if you switch gateways. (Some gateways now offer "portable" network tokens that they manage but expose by network reference — verify before relying on it.)
+
+**Use when:** You're a merchant or a small acquirer. 90% of integrations are here.
+
+### Pattern B: Direct as Token Requestor (advanced)
+
+You contract directly with MasterCard / Visa as a registered Token Requestor (TR). You hold the certification, you hit MDES / VTS APIs directly.
+
+**Pros:** Tokens are yours, portable across any gateway.
+
+**Cons:** Significant compliance overhead — scheme certification, ongoing audit, vault security obligations. Engineering load is substantial.
+
+**Use when:** You're a large acquirer, a major PSP, or a wallet platform. Stripe, Adyen, Apple, Google all operate as Token Requestors directly.
+
+### Pattern C: OEM Wallet (Apple Pay / Google Pay)
+
+The device wallet handles tokenisation. Apple Pay's "Add card to Wallet" flow registers a device-bound MDES token. The merchant never sees a PAN; the merchant sees a Device-PAN (DPAN) that only works on that specific device.
+
+**Pros:** Lowest-friction consumer flow. Biometric auth. PSD2 SCA automatically satisfied.
+
+**Cons:** The token is device-bound. Useless for true card-on-file (where you want to charge later without the device present).
+
+**Use when:** In-store / in-app one-time payments. Not for subscriptions.
+
+### Pattern D: Click to Pay (VCTP / MCTP)
+
+Scheme-level Click to Pay services run on MDES / VTS underneath. The consumer's browser-stored network token is used at checkout. The merchant doesn't manage tokenisation; the scheme does.
+
+**Pros:** Highest auth rate (network token + scheme orchestration). Cross-merchant identity.
+
+**Cons:** Coverage still patchy by region in 2026. Best-in-class for MasterCard / Visa cards; outside that, doesn't apply.
+
+**Use when:** Consumer-facing e-commerce checkouts targeting card-heavy markets (US, UK, EU).
+
+## The failure modes
+
+Six patterns that ruin network-token rollouts:
+
+### 1. Gateway tokens "for now", network tokens "later"
+
+Already named in [MPGS Architecture](/blog/mpges-mastercard-payment-gateway-services-architecture). Migration is brutal. Default to network tokens from day one.
+
+### 2. Storing the PAN alongside the network token "for fallback"
+
+Defeats the entire purpose. PCI scope blows up. Auth rate doesn't improve. Storage cost grows. **Don't do this.** If you need a fallback, the gateway's vault is the fallback, not yours.
+
+### 3. Treating token issuance as synchronous
+
+Issuance can fail (issuer declines, MDES timeout, network glitch). Building synchronous-only flows means the first transaction in a saved-card flow either succeeds with a brand-new token or fails entirely. Better pattern: tokenise async after a successful first transaction; until the token lands, charge against the gateway token.
+
+### 4. No re-tokenisation on lifecycle events
+
+MDES sends lifecycle webhooks: token suspended, token resumed, token deleted (cardholder removed the card from a wallet). Most teams set up the issuance webhook and skip the others. Result: charging tokens that the cardholder revoked, generating disputes.
+
+### 5. Single-Token-Requestor lock-in
+
+If you go direct as a Token Requestor, the tokens are bound to your TRID (Token Requestor ID). If you sell the business, transfer the merchant book, or change schemes, those tokens are stuck.
+
+The middle path: use multiple gateways that operate as Token Requestors, and design your card-on-file vault to reference whichever gateway holds the token. Add an abstraction layer.
+
+### 6. Treating Apple Pay / Google Pay as "tokenisation done"
+
+OEM wallet DPANs are device-bound. They are not card-on-file tokens. A customer who adds a card to Apple Pay still needs a separate card-on-file network token for subscription billing. Most teams discover this when their first wave of Apple Pay subscribers hit renewal and the charge fails.
+
+## Why this matters
+
+Card-on-file is the largest single revenue surface in modern payments. Subscriptions, marketplaces, ride-share, OTT, BNPL, recurring B2B — every one of them lives or dies on card-on-file authorisation rate.
+
+The teams that ship card-on-file well treat network tokens as **the default credential**, not a future optimisation. They build their card-on-file vault around network tokens. They wire lifecycle webhooks day one. They monitor token-vs-PAN authorisation rate as a primary KPI.
+
+The teams that don't treat tokenisation seriously hit a 70%-ish authorisation ceiling and never understand why their subscription churn is what it is.
+
+## FAQ
+
+**MDES or VTS — which one?** Both. Your card mix decides which gets more volume. You'll integrate with both via the gateway (or directly, if you're a TR).
+
+**Is MDES expensive?** Per-call cost is meaningful but small. Per-saved-card cost is essentially zero. The economics swing on recovered authorisations against the cost of churn from PAN-reissue events.
+
+**Does Apple Pay use MDES?** Yes — Apple is a registered Token Requestor; the DPANs in Apple Wallet are MDES / VTS tokens.
+
+**Can I use a network token in-store?** Yes (via contactless NFC), but the token form factor is device-bound in that case. Online card-on-file network tokens are a different shape.
+
+**What's Click to Pay's relationship to MDES?** Click to Pay is the consumer-facing brand. MDES (for MasterCard cards) and VTS (for Visa cards) are the underlying tokenisation services. Click to Pay sits on top.
+
+**How long does network-token migration take?** For an existing card-on-file estate of 1M+ cards: 4–8 months realistic. The pattern: tokenise on next charge attempt, fall back to gateway token if MDES declines, monitor coverage daily.
+
+**The single biggest reason teams under-adopt network tokens?** Because the immediate cost (per-call, integration effort) is visible and the benefit (lifted authorisation rate on a small subset of transactions) is invisible until you measure it. Measure first. The numbers usually decide.
+
+---
+
+## MPGS Architecture: How MasterCard Payment Gateway Services Actually Works (and Where It Breaks)
+
+URL: https://rzifi.com/blog/mpges-mastercard-payment-gateway-services-architecture
+Published: 2026-05-19
+Category: Payment Infrastructure
+Tags: MPGS, MasterCard, payment gateway, 3DS2, tokenisation, hosted checkout, card acquiring, payment infrastructure, scheme products
+
+**An operator's guide to MPGS — Hosted Checkout vs. Hosted Session, 3DS2 step-up, tokenisation, recurring, the integration patterns that scale, and the failure modes nobody warns you about.**
+
+MPGS is a payment gateway the way SAP is an ERP — vast, powerful, and indifferent to whether you understand it. The integration choices you make in the first sprint decide whether the platform scales for five years or rots for five.
+
+This is the operator-grade map of what MPGS actually is, the integration patterns that work, the patterns that don't, and the eight specific failure modes that show up in every MPGS rollout I've watched.
+
+## What MPGS is, and what it is not
+
+MPGS (MasterCard Payment Gateway Services) is the white-labelled payment gateway acquirers buy from MasterCard. It is **not** consumer-facing — your customers will never see a "MasterCard Payment Gateway" logo. They see your acquirer's brand. The gateway sits invisibly behind it.
+
+What MPGS gives you:
+- A payment-orchestration layer (card acquiring, 3DS2 step-up, tokenisation, recurring, refunds, disputes hooks)
+- Scheme certification done — your acquirer inherits MPGS's PCI DSS, EMV, 3DS2 certifications
+- Multi-acquirer routing (you can connect MPGS to multiple sponsor banks)
+- An out-of-the-box hosted UI that you can use or override
+
+What MPGS does **not** give you:
+- A merchant-facing portal (you build that — onboarding, KYB, dispute UI, settlement reports)
+- Risk and fraud beyond network rules (no behavioural ML, no per-merchant velocity, no compelling-evidence workflows)
+- Ledger, payouts to sub-merchants, multi-currency settlement, reconciliation against acquirer files
+- Local payment methods outside the card schemes (no IBFT, no DCB, no wallet rails)
+
+This is the first place teams misunderstand MPGS. They buy it expecting an off-the-shelf payment platform; they get a sophisticated card-rails toolkit that requires a real product team around it.
+
+## The three integration modes
+
+MPGS exposes the same primitives through three integration patterns. Picking the wrong one is the most expensive mistake in an MPGS rollout — it's expensive to undo because every downstream surface (refunds, recurring, tokens) inherits the choice.
+
+### Hosted Checkout
+
+MPGS renders the full payment page. The merchant redirects the customer to MPGS, the customer enters card details, MPGS handles 3DS2 step-up, MPGS redirects back with a result.
+
+**Pros:**
+- Lowest PCI scope. You never see the PAN.
+- Scheme certification inherited end-to-end.
+- 3DS2 challenge UX maintained by MasterCard.
+
+**Cons:**
+- Merchant brand interruption — full page redirect.
+- Limited UX control. You theme it; you don't redesign it.
+- Conversion is what MPGS's UX team decides it is.
+
+**Use when:** You're a small-to-mid acquirer onboarding merchants who care more about PCI scope than checkout UX. SME e-commerce. Most acquiring banks start here.
+
+### Hosted Session (also called Lightbox / Session-based)
+
+MPGS hosts only the **fields**, not the page. The merchant builds its own checkout; MPGS renders an iframe over the card-number field; PAN never touches the merchant's server. Tokenisation, 3DS2 step-up, recurring all happen via API calls keyed off a session ID.
+
+**Pros:**
+- Merchant owns the checkout UX entirely.
+- PCI scope stays SAQ A (very narrow) because MPGS's iframe still holds the PAN.
+- Best conversion ceiling — you can A/B test layout, copy, friction.
+
+**Cons:**
+- Engineering load is real. You manage session lifecycle, retries, error states.
+- Some browsers / wallets behave badly with cross-origin iframes.
+- 3DS2 step-up is a redirect anyway, so the "no redirect" benefit partially disappears for high-risk transactions.
+
+**Use when:** You're a mid-to-large acquirer or PSP with a real engineering team and a merchant base that demands branded checkout. This is what Stripe-clones look like under the hood.
+
+### Direct API (server-to-server)
+
+The merchant sends card data directly to MPGS via API. No browser involvement on the card-data leg.
+
+**Pros:**
+- Full programmatic control. Required for some merchant-initiated flows.
+
+**Cons:**
+- PCI scope blows up — the merchant is in scope for full SAQ D / Level 1 audits.
+- 3DS2 has to be orchestrated by the merchant.
+- Almost no greenfield acquirer should be here.
+
+**Use when:** Migrating a legacy MOTO (mail-order/telephone-order) flow, or you have a specific recurring-billing pattern where the iframe lifecycle is the wrong shape. Rare.
+
+## The architecture decisions that compound
+
+Five architectural choices in the first integration sprint determine MPGS lifetime cost. Get them right and the platform scales. Get them wrong and you'll rebuild within 18 months.
+
+### 1. Order-ID design
+
+MPGS keys every transaction off an order ID you assign. Once an order ID is used, it's used forever — you can never replay or reuse. If you make the order ID equal to your internal order PK, retries become impossible and you get duplicate-order errors at the worst moments.
+
+The right pattern: **order_id = `{internal_order}-{attempt_n}`**, generated per attempt. Your internal order PK stays clean; MPGS sees a fresh ID per retry. Reconciliation joins on the prefix.
+
+### 2. Transaction-ID design
+
+Same trap, one level deeper. Every authorisation, capture, refund and void inside an order needs its own transaction ID. MPGS forces you to invent these. Most teams pick something stateless ("auth", "capture") and discover too late that partial captures or split refunds break.
+
+The right pattern: **txn_id = `{op}-{ulid}`**, where `op` is `auth/cap/ref/void`. Cheap, unique, sortable.
+
+### 3. Tokenisation strategy
+
+MPGS supports two distinct tokens, and they are not interchangeable:
+
+- **Gateway tokens** — opaque references usable only against MPGS. Cheap, fast, scope-narrow.
+- **Network tokens (via MDES)** — actual MasterCard-issued tokens, portable across any MDES-enabled gateway, with lifecycle managed by the network. More expensive per call, much higher long-term value.
+
+A common mistake: start with gateway tokens "for now", build everything around them, then realise that migrating card-on-file to network tokens means revoking and re-collecting every card. **Default to network tokens from day one**, even if cost looks higher early. The migration cost later is 10× the saving today.
+
+(I wrote a dedicated deep-dive: see [MDES + Network Tokenisation — How It Actually Works](/blog/mdes-network-tokenisation-how-it-actually-works).)
+
+### 4. 3DS2 routing logic
+
+MPGS will run 3DS2 step-up for you, but the routing decision (challenge vs. frictionless) sits in three places:
+
+- **Issuer behaviour** (out of your control)
+- **MPGS risk rules** (configurable)
+- **Your acquirer-level fraud signals** (your product, plugged in via MPGS exemptions API)
+
+Teams that ignore the third leg accept whatever 3DS2 friction MPGS defaults to. The auth rate ceiling is meaningfully higher when you wire in your own exemption logic — recurring, low-value, trusted merchant, TRA (Transaction Risk Analysis) under PSD2.
+
+### 5. Webhook handling
+
+MPGS emits webhooks for transaction lifecycle events. They will arrive out of order. They will retry. They will sometimes drop entirely.
+
+The right pattern:
+- **Idempotency keys on every webhook handler** — same event ID arriving twice is a no-op
+- **State machine on the merchant order** — only valid state transitions accepted, others logged and ignored
+- **Reconciliation against settlement files** as ground truth — never trust webhooks alone
+
+## The eight failure modes that show up in every MPGS rollout
+
+After working through several MPGS integrations and watching others, these are the patterns that recur:
+
+### 1. Hosted Checkout chosen for vanity, then ripped out for conversion
+
+Team picks Hosted Checkout in sprint 1 (faster to integrate, narrower PCI). Six months later, the conversion ceiling is hit. The team rebuilds on Hosted Session — at the cost of every downstream integration that assumed redirect-based UX.
+
+**Fix:** if your merchant base will ever care about checkout UX, start on Hosted Session. The engineering load is real but the migration cost from Hosted Checkout to Hosted Session is 3–4× building it right the first time.
+
+### 2. Gateway tokens, then migrate later
+
+Already covered above. The fix is: use MDES network tokens from day one.
+
+### 3. No idempotency on the merchant side
+
+MPGS retries webhooks. The merchant double-charges, double-refunds, or double-fulfils. Always idempotent.
+
+### 4. Order ID = internal PK
+
+Already covered. Retries die, partial captures die, finance reconciliation dies.
+
+### 5. 3DS2 default-on for every transaction
+
+The MasterCard default risk-rule set is conservative — it errs on the side of step-up. Without merchant-side exemption logic, every recurring transaction prompts the customer for OTP. Customers churn.
+
+**Fix:** wire your own TRA logic via the MPGS exemptions API. Recurring and low-value flows should be frictionless by default.
+
+### 6. Single sponsor bank
+
+MPGS supports multi-acquirer routing. Most teams plug in one sponsor bank, treat it as a fixed assumption, and discover too late that the sponsor bank's regulatory posture or pricing changes the platform's economics. Adding a second acquirer post-hoc costs 6 months.
+
+**Fix:** wire two sponsor banks from day one even if you route 100% to the primary. The routing abstraction is the asset.
+
+### 7. Reconciliation built last
+
+The settlement file from MPGS lands in batch. Reconciliation against it is the actual source of truth. Teams build it last; the first month of go-live becomes a frantic Excel exercise.
+
+**Fix:** build the reconciliation pipeline before launch. The data model is well-known; there's no excuse for retrofit.
+
+### 8. Disputes treated as out-of-scope
+
+MPGS surfaces dispute notifications but does not run the compelling-evidence workflow. Most teams treat disputes as the acquirer's problem. The acquirer hands them back. Eventually someone builds a dispute portal in a panic.
+
+**Fix:** build the compelling-evidence workflow inside the merchant product from the start. Two weeks of engineering saves a year of dispute backlog.
+
+## What MPGS does well
+
+After the failure-mode list, it's fair to balance: MPGS is a serious piece of infrastructure. It does the unglamorous things correctly:
+
+- **EMV 3DS certification** — passing without MPGS is a multi-month nightmare; with MPGS it's table stakes
+- **PCI DSS posture** — MPGS-provided integration paths inherit the gateway's PCI scope; your audit surface stays narrow
+- **Scheme readiness** — when MasterCard changes a rule (and they do, often), MPGS absorbs it; your product team doesn't have to
+- **Reliability** — MPGS uptime is in the four-nines range; that's not free to replicate
+- **Multi-region** — MPGS instances across geographies; latency-sensitive deployments work
+
+This is what you're paying for. The mistake is expecting MPGS to also be a merchant-facing product, a risk engine, and a reconciliation system.
+
+## Why this matters
+
+If you're a product lead at a card-issuing bank, an acquiring bank, a payment orchestrator, a card network or a regulated fintech, you will work with MPGS or its peers (CyberSource for Visa, Adyen-internal, Stripe-internal). The architecture of these gateways is the architecture of card payments.
+
+The teams that ship card acquiring well treat MPGS as a **toolkit, not a product**. They wrap it in a thoughtful merchant product, a real reconciliation pipeline, a serious fraud engine, a programmable risk layer. The teams that treat MPGS as an off-the-shelf platform are the teams that get stuck rebuilding.
+
+## FAQ
+
+**MPGS or CyberSource?** Functionally similar; one is MasterCard-owned, the other Visa-owned. Both are gateway-class products. Most large acquirers use both behind the scenes, routing per scheme. Choose based on your scheme mix, the sponsor bank's existing certifications, and your operational team's familiarity.
+
+**MPGS or Adyen?** Different category. Adyen is a full PSP — gateway plus acquirer plus product. MPGS is a gateway you wrap in your own acquiring product. If you're building the acquirer, MPGS; if you're a merchant buying acquiring, Adyen.
+
+**Is MPGS sufficient for marketplace platforms?** No. You need split settlement, sub-merchant onboarding, KYB at scale, and per-sub-merchant compliance. MPGS gives you none of these. Layer Stripe Connect / Adyen for Platforms patterns above MPGS, or buy them.
+
+**Network tokens vs. gateway tokens vs. PAN-on-file?** Network tokens always, where available. Gateway tokens as fallback for non-MDES BINs. PAN-on-file should not exist in your architecture after 2026.
+
+**Does MPGS handle PSD2 SCA?** It handles the orchestration. The exemption logic (TRA, low-value, trusted beneficiary, recurring) is yours to configure. If you leave it on defaults, you'll over-step-up.
+
+**How long does an MPGS integration take?** Realistic ranges: Hosted Checkout: 4–8 weeks. Hosted Session: 12–20 weeks. Direct API: don't. Add 8 weeks for scheme certification if you're a new acquirer.
+
+**The single biggest mistake new MPGS teams make?** Treating MPGS as a finished product. It's a sophisticated toolkit. The team that builds the merchant product, risk layer, reconciliation pipeline and dispute workflow around it is the team that ships card acquiring at scale.
+
+---
+
 ## Reconciliation Is Product Infrastructure, Not Back Office
 
 URL: https://rzifi.com/blog/reconciliation-is-product-infrastructure
@@ -4376,6 +4785,311 @@ A product owner, one or two engineers, an accounting partner, and a clear charte
 > What survives scale is a canonical ledger, a typed exception engine, and a feedback loop back into product.
 >
 > A note from running multi-rail reconciliation at $1B+ GTV.
+
+---
+
+## Where ML Beats AI: Six Payment Problems an LLM Cannot Touch
+
+URL: https://rzifi.com/blog/where-ml-beats-ai-payment-problems-llm-cant-touch
+Published: 2026-05-19
+Category: AI in Fintech
+Tags: machine learning, AI in fintech, fraud detection, credit scoring, payment ML, gradient boosting, LLM limitations, production ML
+
+**An operator's argument for picking classical ML over LLMs in payments. Six problems where a gradient-boosted model still wins, and why throwing a transformer at them is the wrong move.**
+
+There is a quiet mistake teams keep making in fintech: reaching for an LLM the moment the word "AI" shows up on the roadmap. The trade press has trained everyone to equate AI with transformers, and a generation of product reviews now ask "could we use GPT here?" before they ask "what's the actual problem shape?"
+
+Most of the time, the answer is no.
+
+Classical machine learning — gradient-boosted trees, logistic regression, isolation forests, simple anomaly detectors — still beats LLMs on the six highest-value payment problems I can name. By a lot. Not "comparable performance at lower cost." Actually beats. The LLM doesn't even compete.
+
+This is the operator's argument for the boring choice. Six problems, why ML wins, what the typical mistake looks like, and the test that tells you which side of the line you're on.
+
+## The shape of problems LLMs solve
+
+Before the six counterexamples, the fair version: LLMs are extraordinary at problems that are linguistic, generative, ambiguous, and recoverable. Drafting an email a human will edit. Summarising a 50-page dispute file. Extracting structured fields from an unstructured PDF. Answering merchant-support questions where "almost right" is fine and a human is in the loop to fix the 5% it gets wrong.
+
+These problems share a shape:
+- The input is text (or can be cleanly tokenised)
+- The output is text (or close to it)
+- The cost of a wrong answer is **low** (a human catches it, a retry is cheap)
+- The correct answer is **fuzzy** — there's no single right output, multiple acceptable ones exist
+- The data is **rich per example** — each row carries enough context to reason about
+
+Now look at the six problems below. None of them fit that shape.
+
+## 1. Real-time card fraud scoring
+
+**The problem.** A transaction arrives. You have ~200ms to decide approve / decline / step-up. Inputs: PAN history (tokenised), merchant ID, geography, amount, time-of-day, device fingerprint, velocity counters.
+
+**Why ML wins.** A gradient-boosted tree (XGBoost / LightGBM) trained on hundreds of millions of historical transactions, with engineered features (merchant velocity, PAN velocity, geo-shift, amount-band z-score), returns a probability score in <10ms. The features are numeric and bounded. The label (chargeback in 60 days) is unambiguous and well-supplied. False-positive rate is the optimisation target and the constraint is hard.
+
+**Why LLM loses.** Latency budget is 200ms; LLM inference is 500–2000ms. Cost per call is 100× a tree. The input isn't text — it's structured numerical features. Asking GPT-4 "is this transaction fraudulent?" with a JSON blob in the prompt is throwing away every advantage the boosted tree has.
+
+**The mistake teams make.** "LLM-assisted fraud" demos that show the LLM "reasoning about" a transaction. Looks impressive in slides; the production fraud team still ships the gradient-boosted model because the boosted tree decisions in 8ms and the LLM doesn't.
+
+**Verdict.** Use ML. The LLM is for the analyst's case notes after the fact, not the scoring.
+
+## 2. Authorisation routing decisions
+
+**The problem.** A transaction can be routed through one of three acquirers. Each has a different cost, success rate, latency profile, fraud sensitivity at this PAN/merchant/amount combination. Pick the route that maximises approval rate × margin.
+
+**Why ML wins.** Contextual bandits (or, simpler, a logistic regression with explore-exploit on top) handle this beautifully. The state space is small (route × merchant × amount band × time-of-day × scheme). Reward signal is fast (approve/decline within seconds). Online learning lets the model adapt as acquirers' approval rates shift.
+
+**Why LLM loses.** LLMs don't have a memory of recent acquirer performance. They can't be retrained per merchant. The decision is a pure exploration / exploitation problem with structured inputs and a numeric reward. This is the textbook shape ML was built for.
+
+**The mistake.** "AI-powered smart routing" pitches that involve an LLM scoring routes. The LLM has no situated memory; it's just guessing.
+
+**Verdict.** ML wins by a wide margin.
+
+## 3. Settlement-file reconciliation matching
+
+**The problem.** Two files arrive daily: your platform's transaction log and the acquirer's settlement file. A million rows each. Match them. Surface unmatched lines for ops review.
+
+**Why ML wins.** Most matches are deterministic — transaction ID + amount + date is unique. The interesting cases are the ~1% with small discrepancies (timezone shifts, refund split into two settlement lines, currency rounding). A logistic regression or simple rule-based scorer on the candidate pairs gets you to 99.9% match rate with explainable confidence.
+
+**Why LLM loses.** The cost-per-row is prohibitive. The structure is tabular, not textual. Reconciliation requires deterministic, auditable matches — you have to be able to defend each match to finance. An LLM cannot produce an audit trail that a regulator will accept.
+
+**The mistake.** "GenAI-powered reconciliation" demos that paste settlement rows into a prompt. Looks magical for 10 rows; collapses at 100K.
+
+**Verdict.** ML or pure rule-based. The LLM has no role in the matching step. (It might help an analyst write the explanation memo afterwards — different problem.)
+
+## 4. Credit decisioning at scale
+
+**The problem.** A consumer applies for BNPL / a card / a microloan. Decide approve / decline / refer in <2 seconds based on bureau data, transaction history (if accessible), employer signals, device signals, application metadata.
+
+**Why ML wins.** Credit scoring is the canonical ML problem. The label (default in 12 months) is clear. The features are largely numeric. The regulatory landscape (Equal Credit Opportunity, FCRA in the US; PSD2 + GDPR in the EU; similar regimes in MENA) demands **explainability**. Boosted trees with SHAP values give you per-decision explanations. Black-box LLMs do not.
+
+**Why LLM loses.** Auditability. A credit decision has to be defensible to the regulator, to the customer (under "adverse action notice" laws), and to internal compliance. "The LLM said no" is not an auditable answer. SHAP per feature is.
+
+**The mistake.** "AI-driven credit underwriting" branding that masks a perfectly conventional boosted-tree model behind LLM-themed marketing. Or, worse, an actual LLM doing the underwriting — which will fail the first regulator audit.
+
+**Verdict.** Boosted tree + SHAP every time. The LLM has zero role.
+
+## 5. Velocity- and behaviour-anomaly detection
+
+**The problem.** A customer's spending behaviour shifts suddenly. Spike in transaction volume. New merchant category. Geographic jump. Flag it for review.
+
+**Why ML wins.** Isolation forests, one-class SVMs, exponentially weighted moving averages, simple statistical control charts — these solve velocity anomaly perfectly. They train on the customer's own history and trigger when behaviour deviates by N standard deviations. Cheap, fast, explainable.
+
+**Why LLM loses.** No memory of per-customer baseline. No mechanism for personalised thresholds at scale. The LLM has to be re-prompted with the customer history every call — at 1B+ transactions/month that's economically unviable.
+
+**The mistake.** "AI behavioural fraud" products that secretly run boosted trees underneath with an LLM-themed UI on top.
+
+**Verdict.** Classical statistics + lightweight ML wins outright.
+
+## 6. Risk-tier assignment for merchants
+
+**The problem.** A new merchant applies. Based on business type, geography, expected volume, expected average ticket, public reputation signals, KYB data — assign one of five risk tiers (which determines pricing, payout speed, reserve requirements, monitoring intensity).
+
+**Why ML wins.** Random forests or gradient-boosted trees on the structured KYB features land at 90%+ accuracy versus a human risk team. The decision is auditable. New data shifts the model easily.
+
+**Why LLM loses.** Some of the input is unstructured (the merchant's website, social presence, bank statements) — the LLM is genuinely better at extracting from those documents. But the **final risk-tier decision** is a tabular classification problem. Use the LLM as a feature-extraction step (parse PDFs, summarise documents), then feed structured features into the ML model.
+
+**The mistake.** End-to-end LLM-driven risk tiering. The decision step is the wrong tool for LLM.
+
+**Verdict.** Hybrid — LLM for unstructured extraction, ML for the decision.
+
+## The simple test
+
+Before you commit to an LLM for a payments problem, run it through these five questions. If you can't answer "yes, definitively LLM" to most of them, default to classical ML.
+
+1. **Is the input primarily text or unstructured?** If your inputs are 30 numeric features in a JSON, the answer is no.
+2. **Is the output text or freeform?** If the output is approve / decline / a probability, the answer is no.
+3. **Is "almost right" acceptable?** In fraud or credit, it's not. Each wrong decision has a defined dollar cost.
+4. **Is the per-call cost economically tolerable?** At 25M+ transactions/month, even $0.001/call is $25K/month. At LLM rates ($0.01–$0.10 per call), the math collapses.
+5. **Can you afford 500ms+ of latency?** Most payment decisions can't.
+
+If you said "no" to two or more, you have a classical ML problem. Build it that way.
+
+## Where the LLM genuinely earns its place
+
+In the same payments stack, here's where an LLM actually shines:
+
+- **Merchant support deflection** — answering merchant integration questions from documentation. Recoverable wrong answers. Text in, text out.
+- **Compelling-evidence drafting** — assembling the dispute response narrative from transaction context + customer communications. Long-form, narrative, human-reviewed.
+- **Auto-escalation of incidents** — reading PagerDuty + Slack threads to classify severity and suggest runbooks.
+- **KYB document extraction** — pulling structured fields from articles of incorporation, utility bills, bank statements.
+- **Internal knowledge retrieval** — RAG over the company's compliance documentation.
+
+These are the four I've shipped in production (described in [AI in Payments: Four Production Use Cases](/blog/ai-in-payments-four-production-use-cases)). None of them sit in a hot path. None of them are scoring transactions. All of them have a human in the loop or a tolerance for occasional misses.
+
+## The deeper point
+
+The "AI gold rush" in fintech is producing a lot of solutions in search of problems. Boards want to see "AI" on the roadmap. Vendors are happy to oblige.
+
+But the operator's job is to pick the right tool. Boosted trees, anomaly detection, contextual bandits, and well-tuned statistical baselines have been winning payment problems for a decade and will continue to win them. The arrival of LLMs is additive — they unlock new problems that were intractable before — but they don't displace the classical-ML wins.
+
+A senior product leader at Visa or Stripe or Adyen who pitches "let's replace our fraud scoring with an LLM" is going to be politely shown the door. A senior product leader who can articulate **where** ML wins, **where** LLMs win, and **where** the hybrid pattern is right — that person gets the job.
+
+The hard skill in 2026 isn't being excited about AI. It's being clear-eyed about when not to use it.
+
+## FAQ
+
+**Aren't LLMs getting cheaper and faster?** Yes. The economics improve every year. But the ceiling for cost and latency is still well above what real-time payments allows. Even at 10× efficiency gains, a tree-based model is still 50–100× cheaper at scale.
+
+**What about hybrid LLM+ML?** The right pattern, as in §6 above. Use LLMs where they're strongest (unstructured extraction, narrative generation), feed structured outputs into ML for the actual decision.
+
+**Could a future LLM replace these models?** Maybe. The economics and latency would have to change by ~100×. Not impossible on a 5-year horizon. But you don't bet a production fraud team on that.
+
+**Why does this matter for personal branding as a payments PM?** Because the AI hype in 2026 is so loud that the operator who can hold a defensible line on **when not to use it** stands out. Hiring committees are tired of "AI roadmaps" with no engineering reality underneath.
+
+**The single biggest sign you're picking the wrong tool?** If your "AI strategy" diagrams all start with "the LLM scores the transaction" and your fraud team is silent. They've already done the math.
+
+---
+
+## Where PMOs Fail: Six Patterns I've Watched in Fintech Programmes
+
+URL: https://rzifi.com/blog/where-pmos-fail-six-patterns-fintech-programmes
+Published: 2026-05-19
+Category: Program Management
+Tags: PMO, program management, PMO failures, fintech operations, delivery governance, SteerCo, RAID, org design
+
+**After standing up PMOs from scratch twice and reviewing others, the six failure patterns that show up most often. What they look like, why they happen, how to fix them.**
+
+PMOs don't fail because the PMs are bad. They fail because the function gets miscast — set up as governance theatre instead of decision-making infrastructure, then quietly routed around by everyone who has actual work to do.
+
+After standing up PMOs from scratch twice (Wing Logic, $12M portfolio; Simpaisa, $1B+ TPV across 12 squads) and observing others across the fintech market, six failure patterns recur. They're not stages — a PMO can be in two or three of them at once. They're shapes. If you recognise the shape, you know what to do.
+
+## 1. The "Coordinator" PMO
+
+**What it looks like.** The PMO produces RAG (Red / Amber / Green) status reports, runs weekly stand-ups, maintains a single Confluence page of "all initiatives". The PMs are senior in title but operate as schedulers. Decisions are made elsewhere — usually in the CEO's office, often informally — and the PMO is informed after the fact.
+
+**Symptom.** Ask the PMO lead "what was the most consequential decision the PMO drove last month?" If the answer is a date change or a meeting agenda, you have this PMO.
+
+**Why it happens.** The PMO is set up to remove burden from product and engineering — "tell us the status, we'll roll it up." That's the wrong framing. The PMO that adds value isn't reporting on decisions; it's forcing them.
+
+**Why it's expensive.** This PMO scales linearly with company size. Every new squad means a new status reporter. The PMO becomes a cost centre instead of a leverage point.
+
+**Fix.** Re-charter every PMO meeting around decisions, not status. Every agenda item ends with a documented decision and a named owner. Status updates take 30 seconds, not 5 minutes. The room asks "what changed since last week?" not "what's red?"
+
+## 2. The "RAID Register" PMO
+
+**What it looks like.** There's a beautiful RAID (Risks, Assumptions, Issues, Dependencies) register. 80+ entries. Updated weekly. Owners assigned. Target dates filled in.
+
+The same 60 of those entries are open today as were open six months ago.
+
+**Symptom.** Pull the RAID register. Sort by "open since". If 30%+ of entries are older than 90 days, this is the PMO you're looking at.
+
+**Why it happens.** The PMO is treating RAID as a log instead of a register. A log records — a register forces action. The discipline that turns one into the other is missing: weekly review with the owner sitting in the room, and a hard escalation rule (any entry open past 30 days without movement gets escalated to SteerCo).
+
+**Why it's expensive.** Stale RAID destroys the credibility of the artefact. Eventually nobody bothers updating it because nobody acts on what's there. The PMO has built a graveyard.
+
+**Fix.** Three rules:
+- Every entry has an owner who is **a person**, not a team
+- Every entry has a target close date, and missed dates trigger an escalation
+- Every weekly RAID review is a closing exercise, not a reading exercise — the goal is to remove items, not document them
+
+## 3. The "SteerCo Theatre" PMO
+
+**What it looks like.** SteerCo runs monthly. 90 minutes. 12 attendees. Beautiful slides. Polite questions. Decisions deferred to "we'll take it offline" or "let's get more data."
+
+A year later, the same workstreams are still labelled as "in progress" with no consequential decisions made.
+
+**Symptom.** Pull the last 6 SteerCo decision logs. Count the binding decisions made (escalation closed, scope changed, budget reallocated, programme killed). If the number per meeting is <2, you have SteerCo Theatre.
+
+**Why it happens. **Two reasons. First, escalations arrive at SteerCo without a recommendation — the PMO surfaces problems but doesn't propose decisions. Second, the room has too many people for accountability to land on anyone.
+
+**Why it's expensive.** SteerCo is the most expensive hour in the company calendar — 12 senior people × 90 minutes = ~18 person-hours per session. If it's not driving binding decisions, that's pure waste.
+
+**Fix.**
+- Every escalation arrives with a **proposed decision**. The PMO drafts the recommendation; SteerCo accepts, amends or rejects.
+- Document the decision in the meeting, not after. If the decision can't land in the meeting, the item is back at the next SteerCo with the same recommendation.
+- Trim the attendee list. The directly accountable people only. Observers attend the readout, not the meeting.
+
+## 4. The "Tool-First" PMO
+
+**What it looks like.** The PMO has been live for 4 months. Half the budget has gone into Jira customisations, a custom dashboarding layer, and three integrations between Confluence and a project portfolio management tool nobody asked for.
+
+The squads still don't update their statuses. The dashboards are technically working but read by nobody.
+
+**Symptom.** Walk into the PMO area. If the loudest conversations are about tooling, integration projects, or "next quarter we'll roll out the new dashboard," this is the PMO.
+
+**Why it happens.** PMO leads who came from operational PM backgrounds (rather than from product / engineering leadership) reach for tools first because tooling feels like progress. It is not progress. Adoption is progress.
+
+**Why it's expensive.** Tools without adoption are sunk cost. The first 6 months of tool investment that didn't get used has to be junked, and the team that fought to deploy it resents the rollback.
+
+**Fix.**
+- Start with Jira + Confluence stock. No customisation in the first 90 days.
+- Add a tool only after the manual practice has been adopted by at least three squads voluntarily.
+- The rule of thumb: ritual before tool. Once the ritual exists, the tool encodes it. Without the ritual, the tool is decoration.
+
+## 5. The "Above-the-Line" PMO
+
+**What it looks like.** The PMO reports to the CEO. It has a strong relationship with the board. It produces excellent quarterly programme reviews. The CEO is happy.
+
+The squads doing the actual work are barely aware the PMO exists. They route around it. Their Jira boards are different from the PMO's portfolio view. Their weekly rituals don't include anyone from the PMO.
+
+**Symptom.** Ask a senior IC engineer or a squad PM: "what does the PMO do for you?" If the answer is a shrug, this is the PMO.
+
+**Why it happens.** Most often, the PMO was set up by the CEO or board to give them visibility, and the staffing optimised for executive reporting rather than squad-level value. The PMs are good at slides; they're not in the trenches.
+
+**Why it's expensive.** Two parallel realities — the PMO's reality and the squads' reality — diverge. Decisions made at SteerCo don't propagate down. Squads keep shipping; PMO keeps reporting; the gap grows.
+
+**Fix.** Pull the PMO down into the work. Two changes:
+- Every PMO PM owns specific squads, not abstract initiatives. Their job is to make those squads ship better.
+- The PMO meets the squads where they are — in the squad's rituals, not in PMO-mandated meetings.
+
+## 6. The "First Hire Was Wrong" PMO
+
+**What it looks like.** The first PMO lead was the most available, not the most right. Usually a senior PM from a non-payments / non-fintech background, hired during a delivery crisis. They built the PMO around their previous company's playbook, which doesn't match the regulated-payments cadence.
+
+Six months in, the PMO is functional but never lands. Squads complain about the rituals. Compliance and risk don't trust the governance artefacts. The CEO is starting to wonder whether the PMO function is even needed.
+
+**Symptom.** Compare the PMO's rituals to the operating realities of regulated payments. If the PMO doesn't have an audit-evidence layer, doesn't know what a stage gate looks like, can't speak to PCI / ISO programme management, the wrong person is leading it.
+
+**Why it happens.** The CEO under-specifies the role. The job description says "Head of PMO." It doesn't say "must have run capital workstreams under regulator-facing audit deadlines in regulated payments." Without that specificity, the hiring funnel converges on generalists.
+
+**Why it's expensive.** Replacing a PMO lead is a 3-month exercise of unwinding and rebuilding. The credibility damage to the function takes longer.
+
+**Fix.** Two things, depending on timing:
+- If you're hiring now: write a job spec that names the specific failures you want avoided. "Has run RAID governance through a regulator-facing capital workstream" is a real requirement; "has PMO experience" is not.
+- If you've hired the wrong person already: be honest fast. The fix is replacement, not coaching. The damage of dragging it out is greater than the damage of the change.
+
+## The pattern underneath the patterns
+
+All six failure modes share a single root cause: **the PMO has been miscast as an oversight function rather than a decision-making function.**
+
+Oversight asks "are we on plan?" Decision-making asks "what should we do next?" An oversight PMO reports. A decision-making PMO drives.
+
+If you find your PMO drifting into any of these six patterns, the recovery move is the same: re-anchor every PMO ritual around decisions. Every meeting ends with a documented decision. Every register entry has an action and a date. Every escalation arrives with a recommendation. Every status update earns its place by surfacing what changed.
+
+When the PMO drives decisions, the value is obvious within a quarter. The squads feel it (their blockers move faster). The CEO feels it (the agenda items in 1:1s shrink because PMO is closing them). The board feels it (programme reviews show movement, not motion).
+
+When the PMO drifts back to oversight, the symptoms return within two quarters. This is the only function in the company that requires constant re-anchoring. The drift gravity is strong because oversight is genuinely useful — just not the highest use of the function.
+
+## What good looks like at 12 months
+
+A working PMO at 12 months has these signs:
+
+- A senior person outside the PMO can name three specific decisions the PMO drove this quarter
+- RAID has fewer than 20 open entries, with median age under 60 days
+- SteerCo lands at least 3 documented decisions per session
+- New squads ask the PMO for support before being assigned; they're not avoiding the function
+- The PMO lead is invited to the executive team's most consequential planning sessions; they don't have to fight for the seat
+- When the PMO is on holiday, things break. (This is the bluntest test. If nothing breaks, the PMO isn't doing anything.)
+
+## Why this matters
+
+Boards have learned to ask about PMOs because they've seen well-run ones make a 10× difference to portfolio outcomes. They've also seen badly-run ones become a permanent cost line with no measurable output.
+
+The discriminator isn't the org chart. It isn't the tool stack. It isn't the headcount. It's whether the function has been chartered to make decisions or to oversee them.
+
+If you're being hired into a PMO leadership role, this is the question to ask in the interview: "Show me the last three decisions the PMO has driven." If the answer is a long pause, you're being hired into a turnaround. That's a real job — but it's a different job than the one being advertised, and the salary should reflect it.
+
+## FAQ
+
+**How big should a PMO be?** For a 200-person fintech with 12 squads: 3–5 PMs, 1 PMO lead, 1 portfolio analyst. More than that and the function starts staffing itself. Less than that and a single illness collapses the operating rhythm.
+
+**Where should the PMO report?** COO or CPO, ideally. Reporting to CEO is fine in early-stage but tends to skew the PMO toward "above the line" failure mode.
+
+**Should the PMO own product roadmap decisions?** No. Roadmap decisions sit with product. The PMO owns delivery governance — making sure the product team's commitments translate into shippable work and that the dependencies between squads are managed.
+
+**Is RACI useful?** Yes, but only if used sparingly. A RACI for every decision drowns the function in bureaucracy. A RACI for the 5 highest-risk decisions per quarter is exactly the right discipline.
+
+**Should the PMO own AI / GenAI rollouts?** It depends on shape. Process automation (RAG, document extraction, support deflection) — yes. Product features that ship to merchants — no, that's product. The line is whether the AI is operational or customer-facing.
+
+**The single biggest sign a PMO is failing?** When senior ICs and squad leads start scheduling parallel meetings to "actually get things done." That's the company telling you the PMO has become a tax.
 
 ---
 
