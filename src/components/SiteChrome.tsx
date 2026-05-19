@@ -2,6 +2,7 @@ import { Link, useRouterState } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { profile } from "@/data/profile";
 import { ctaClick, outboundClick, resumeDownload } from "@/lib/analytics";
+import { SocialIconRow } from "@/components/SocialIcons";
 
 // Recruiter-first nav. 6 tabs ordered along the executive scan path:
 // Home → proof → case studies → fit (recruiters) → resume → contact.
@@ -321,18 +322,13 @@ export function SiteFooter() {
                 {profile.email}
               </a>
             </li>
-            <li>
-              <a
-                href={profile.linkedin}
-                target="_blank"
-                rel="noreferrer"
-                onClick={() => outboundClick(profile.linkedin, "footer")}
-                className="hover:text-ink text-ink-soft"
-              >
-                LinkedIn
-              </a>
-            </li>
           </ul>
+          <div className="mt-5">
+            <div className="text-[10px] uppercase tracking-[0.22em] text-ink-soft font-mono-tech mb-3">
+              Follow
+            </div>
+            <SocialIconRow source="footer" />
+          </div>
         </div>
       </div>
       <div className="border-t border-rule">

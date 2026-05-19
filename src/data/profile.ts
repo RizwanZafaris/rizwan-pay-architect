@@ -7,6 +7,29 @@ export const profile = {
   linkedin: "https://www.linkedin.com/in/rizwanzaffar",
   twitter: "https://twitter.com/rizwan_zafar",
   personalSite: "https://rzifi.com",
+  // Structured social list — single source of truth for the footer icon
+  // row, the contact-page social cards, and the JSON-LD `sameAs`.
+  // Add new entries here; UI components pick them up automatically.
+  socials: [
+    {
+      platform: "linkedin",
+      label: "LinkedIn",
+      handle: "/in/rizwanzaffar",
+      url: "https://www.linkedin.com/in/rizwanzaffar",
+    },
+    {
+      platform: "x",
+      label: "X (Twitter)",
+      handle: "@rizwan_zafar",
+      url: "https://twitter.com/rizwan_zafar",
+    },
+    {
+      platform: "github",
+      label: "GitHub",
+      handle: "@RizwanZafaris",
+      url: "https://github.com/RizwanZafaris",
+    },
+  ] as const,
   resumeHref: "/Rizwan_Zafar_Resume.pdf",
   headline:
     "Product & Program Executive Scaling Fintech Infrastructure in Complex Markets. As CPO at Simpaisa in Dubai, I helped scale payment infrastructure across 7 markets, $1B+ GTV, 25M+ monthly transactions and 50+ bank, wallet and financial institution partners.",

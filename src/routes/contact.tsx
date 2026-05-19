@@ -3,6 +3,7 @@ import { useState } from "react";
 import { profile } from "@/data/profile";
 import { absUrl, SITE_URL } from "@/lib/seo";
 import { ctaClick, outboundClick, trackEvent } from "@/lib/analytics";
+import { SocialCardList } from "@/components/SocialIcons";
 
 // Web3Forms-compatible endpoint. Set VITE_CONTACT_ACCESS_KEY in your environment
 // to enable server-side submission. When unset the form falls back to mailto:.
@@ -266,19 +267,9 @@ function ContactPage() {
             </div>
             <span className="text-ink-soft group-hover:text-ink">→</span>
           </a>
-          <a
-            href={profile.linkedin}
-            target="_blank"
-            rel="noreferrer"
-            onClick={() => outboundClick(profile.linkedin, "contact_page")}
-            className="flex items-center justify-between border border-rule rounded-lg px-5 py-4 hover:border-ink focus:outline-none focus:ring-2 focus:ring-ink/30 transition-colors group"
-          >
-            <div>
-              <div className="text-xs uppercase tracking-[0.14em] text-ink-soft">LinkedIn</div>
-              <div className="font-display text-lg text-ink">/in/rizwanzaffar</div>
-            </div>
-            <span className="text-ink-soft group-hover:text-ink">→</span>
-          </a>
+          {/* Social cards — LinkedIn, X (Twitter), GitHub. Driven by
+              profile.socials so adding a platform here is a one-line edit. */}
+          <SocialCardList source="contact_page" />
           <div className="border border-rule rounded-lg px-5 py-4">
             <div className="text-xs uppercase tracking-[0.14em] text-ink-soft">
               Location · time zone

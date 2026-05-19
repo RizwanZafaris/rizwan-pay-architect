@@ -139,7 +139,7 @@ const personJsonLd = {
   url: SITE_URL,
   image: `${SITE_URL}/og-default.png`,
   address: { "@type": "PostalAddress", addressLocality: "Dubai", addressCountry: "AE" },
-  sameAs: [profile.linkedin, profile.twitter].filter(Boolean),
+  sameAs: profile.socials.map((s) => s.url),
   alumniOf: [
     { "@type": "EducationalOrganization", name: "MIT Sloan School of Management" },
     { "@type": "EducationalOrganization", name: "University of Karachi" },
@@ -201,7 +201,7 @@ const organizationJsonLd = {
   logo: `${SITE_URL}/og-default.png`,
   image: `${SITE_URL}/og-default.png`,
   founder: { "@type": "Person", name: profile.name, url: SITE_URL },
-  sameAs: [profile.linkedin, profile.twitter].filter(Boolean),
+  sameAs: profile.socials.map((s) => s.url),
   contactPoint: {
     "@type": "ContactPoint",
     contactType: "Hiring inquiries",
