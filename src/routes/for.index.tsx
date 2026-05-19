@@ -115,21 +115,6 @@ const roleLanes = [
   },
 ] as const;
 
-const recruiterChecklist = [
-  "Does the role need product judgment plus delivery governance?",
-  "Does it involve regulated rails, bank/wallet partners or payment networks?",
-  "Does the team need someone comfortable with complex markets and local rails?",
-  "Will the person need to speak with product, engineering, compliance, risk and executives?",
-  "Is the mandate closer to scaling infrastructure than only launching front-end features?",
-] as const;
-
-const screeningSignals = [
-  "Ask about reducing payment failure from ~8% to ~1.2%.",
-  "Ask how merchant KYC/KYB moved from weeks to hours for low-risk tiers.",
-  "Ask how settlement and reconciliation were made reliable at $1B+ GTV scale.",
-  "Ask where AI improved payment operations without creating compliance risk.",
-] as const;
-
 const targetRoles: Record<Audience["slug"], string[]> = {
   "visa-mastercard": [
     "Director / Senior Director, Acceptance Product",
@@ -288,47 +273,6 @@ function ForIndex() {
               </ul>
             </article>
           ))}
-        </div>
-      </section>
-
-      <section className="grid lg:grid-cols-12 gap-8 border-b border-rule py-10 md:py-12">
-        <div className="lg:col-span-4 recruiter-soft-reveal" style={delayStyle(0)}>
-          <h2 className="font-instrument text-2xl text-ink">First-Screen Validation</h2>
-          <p className="mt-3 text-sm text-ink-soft leading-relaxed">
-            A quick way to decide whether the profile belongs in the shortlist.
-          </p>
-        </div>
-        <div className="lg:col-span-8 grid md:grid-cols-2 gap-5">
-          <div
-            className="recruiter-soft-reveal rounded-2xl border border-rule bg-card p-5"
-            style={delayStyle(80)}
-          >
-            <h3 className="font-instrument text-xl text-ink">Shortlist if the mandate includes</h3>
-            <ul className="mt-4 space-y-3">
-              {recruiterChecklist.map((item) => (
-                <li key={item} className="flex gap-3 text-sm text-ink-soft leading-relaxed">
-                  <span className="mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-[var(--accent-emerald)] text-[10px] text-[var(--accent-emerald)]">
-                    OK
-                  </span>
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div
-            className="recruiter-soft-reveal rounded-2xl border border-rule bg-card p-5"
-            style={delayStyle(140)}
-          >
-            <h3 className="font-instrument text-xl text-ink">Screening prompts</h3>
-            <ul className="mt-4 space-y-3">
-              {screeningSignals.map((item) => (
-                <li key={item} className="relative pl-5 text-sm text-ink-soft leading-relaxed">
-                  <span className="absolute left-0 top-2.5 h-1.5 w-1.5 rounded-full bg-ink/60" />
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
         </div>
       </section>
 
