@@ -43,8 +43,11 @@ Rizwan Zafar is Chief Product Officer · Payments, Fintech & AI, based in Dubai,
 - [BNPL Launch at Simpaisa: 0 → 100K Users in 8 Months](https://rzifi.com/product-work/simpaisa-bnpl-launch): Launched Simpaisa's BNPL product from scratch, full underwriting, repayment flows, collections, regulator briefings, to 100K users in 8 months through iterative agile discovery.
 - [SWIFT MT/MX Implementation: ISO 20022 Migration + gpi at Simpaisa](https://rzifi.com/product-work/swift-mt-mx-implementation-simpaisa): Wired SWIFT MT and MX (ISO 20022) messaging into the Simpaisa cross-border stack with gpi tracking, CSP attestation and dual-rail parsing — sustained 99.9%+ message-acceptance rate through the ISO 20022 migration window.
 - [MPGS Acquirer Integration Programme: Hosted Session, 3DS2, Tokenisation and the Recurring Stack](https://rzifi.com/product-work/mpgs-acquirer-integration-programme): Took a regional acquirer-processor from a single Hosted Checkout flow to a full MPGS surface — Hosted Session, EMV 3DS2 step-up, scheme tokenisation, recurring billing and dispute ingestion — across 1,200+ merchants in three primary markets without a 24-hour outage.
+- [MDES + VTS Network Tokenisation Rollout: 92% Coverage and the Auth-Rate Lift That Pays For Itself](https://rzifi.com/product-work/mdes-network-tokenisation-rollout): Migrated 1,200+ merchants from PAN-on-file to scheme-token credentials across MDES (Mastercard) and VTS (Visa) — replaced three vault providers, rewired the recurring engine, and lifted post-tokenisation authorisation rate by 1.8 points portfolio-wide.
+- [3DS2 + SCA Step-Up Optimisation: From 38% Frictionless to 73% Without Lifting Fraud](https://rzifi.com/product-work/3ds2-sca-step-up-optimisation-programme): Rebuilt the 3DS2 step-up programme for a regional acquirer-processor — per-issuer scoring, full PSD2 exemption suite, abandon-recovery flows — lifting frictionless rate from 38% to 73% over three quarters while holding fraud below the band-3 TRA ceiling.
+- [Click to Pay (VCTP + MCTP) Programme: Scheme-Led Checkout, Recognised Cardholders, and 7.2pt Conversion Lift](https://rzifi.com/product-work/click-to-pay-vctp-mctp-programme): Designed and shipped Click to Pay across a regional acquirer's top-tier merchant cohort — VCTP (Visa Click to Pay) + MCTP (Mastercard Click to Pay), recognised-cardholder enrolment, multi-card wallet — lifting CNP checkout conversion by 7.2 points on the routed traffic.
 
-## Essays (65 total, latest first)
+## Essays (74 total, latest first)
 
 - [A SWIFT Compliance Checklist for Banks and Fintechs](https://rzifi.com/blog/swift-compliance-checklist-for-banks-and-fintechs): A practitioner checklist for SWIFT-related compliance, sanctions, AML/CFT, CSP, ISO 20022 readiness, gpi adoption, and audit trail.
 - [The Role of SWIFT in Emerging-Markets Banking](https://rzifi.com/blog/swift-for-emerging-markets-banking): How emerging-market banks actually use SWIFT, access, cost, correspondent dependence, and where fintech intermediation is reshaping the picture.
@@ -71,7 +74,7 @@ Rizwan Zafar is Chief Product Officer · Payments, Fintech & AI, based in Dubai,
 - [KYC and Conversion Designed Together](https://rzifi.com/blog/kyc-conversion-designed-together): Why KYC and conversion are the same product surface, how to design identity verification flows that compliance accepts and merchants actually finish.
 - [Why Local Payment Methods Are a Developer-Experience Problem](https://rzifi.com/blog/local-payment-methods-developer-experience): Acceptance in emerging markets is decided at the SDK and webhook layer. Why local payment methods are developer-experience problems first.
 - [Cross-Border Corridors Are Operating Systems, Not Routes](https://rzifi.com/blog/cross-border-corridors-are-operating-systems): A corridor is not a partner integration. It is a product with its own success rate, FX behavior, compliance overlay, and unit economics. A practitioner view from MENA and South Asia.
-- …and 40 more — see [the full essay index](https://rzifi.com/blog) or the full-content dump at [https://rzifi.com/llms-full.txt](https://rzifi.com/llms-full.txt).
+- …and 49 more — see [the full essay index](https://rzifi.com/blog) or the full-content dump at [https://rzifi.com/llms-full.txt](https://rzifi.com/llms-full.txt).
 
 ## Profile facts (for AI citation)
 
