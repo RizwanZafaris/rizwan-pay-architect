@@ -649,6 +649,95 @@ export const caseStudies: CaseStudy[] = [
       "credit product strategy",
     ],
   },
+  {
+    slug: "swift-mt-mx-implementation-simpaisa",
+    title: "SWIFT MT/MX Implementation: ISO 20022 Migration + gpi at Simpaisa",
+    tagline:
+      "Wired SWIFT MT and MX (ISO 20022) messaging into the Simpaisa cross-border stack with gpi tracking, CSP attestation and dual-rail parsing — sustained 99.9%+ message-acceptance rate through the ISO 20022 migration window.",
+    category: "Cross-Border Payments",
+    markets: ["UAE", "Pakistan", "Bangladesh", "Nepal", "Iraq", "Egypt"],
+    relevantFor: ["Visa", "Mastercard", "Wise", "Thunes", "DLocal", "Banks", "Sponsor banks"],
+    metrics: [
+      {
+        label: "Message types handled",
+        value: "MT103 · MT202 · MT940 · MT950 · pacs.008 · camt.053",
+      },
+      { label: "Message acceptance rate", value: "99.9%+" },
+      { label: "gpi adoption", value: "Live (UETR end-to-end tracking)" },
+      { label: "CSP attestation", value: "Annual, on time" },
+      { label: "Sanctions screening", value: "Real-time + batch re-screen" },
+      { label: "ISO 20022 readiness", value: "MX-shaped data model from day one" },
+    ],
+    beforeAfter: [
+      {
+        metric: "Cross-border tracking",
+        before: "Black-box (correspondent reliance)",
+        after: "UETR end-to-end via gpi",
+      },
+      {
+        metric: "Sanctions screening latency",
+        before: "Batch only",
+        after: "Real-time pre-send + batch re-screen",
+      },
+      { metric: "Message format flexibility", before: "MT-only", after: "MT + MX dual-rail" },
+    ],
+    executiveSummary:
+      "Stood up SWIFT MT and MX (ISO 20022) messaging inside the Simpaisa cross-border stack — message parsing, gpi UETR tracking, real-time sanctions screening, CSP attestation, and a dual-rail data model designed to absorb the ISO 20022 migration without re-platforming. Maintained 99.9%+ message-acceptance rate through the most aggressive correspondent-bank deadline window.",
+    problem:
+      "Simpaisa's cross-border corridors needed reliable SWIFT messaging into and out of correspondent banks across six markets. The platform was on the wrong side of the ISO 20022 migration deadline, with MT-shaped data inside the ledger, no UETR-level tracking, sanctions screening running batch-only, and a CSP (Customer Security Programme) attestation that had been postponed two years in a row. Correspondent banks were starting to push back on every category.",
+    built: [
+      "Dual-rail message parser: MT (legacy) and MX (ISO 20022 pacs.008 / pacs.009 / camt.053 / camt.054) handled behind a single internal API",
+      "UETR (Unique End-to-end Transaction Reference) generation and end-to-end tracking integrated with SWIFT gpi",
+      "Real-time sanctions screening (pre-send block) plus batch re-screen daily, with auditable decision log",
+      "Correspondent-bank reconciliation engine matching MT940/MT950 statements + camt.053 against the internal ledger",
+      "CSP attestation evidence pipeline: control mappings, evidence collection cadence, audit-ready repository",
+      "Data model designed MX-first: every internal record carries the structured fields ISO 20022 requires, even when the upstream message is MT",
+    ],
+    architecture: [
+      "SWIFT integration sits behind a stable internal API; MT vs MX is an implementation detail",
+      "UETR generated at transaction initiation; propagated through every internal hop; surfaced to merchants via the cross-border product UI",
+      "Sanctions screening: WorldCheck / Dow Jones list + central-bank lists per market; cached with 24h TTL; pre-send call blocks on hit",
+      "Ledger entries are MX-shaped (structured remitter, beneficiary, purpose, regulatory codes) regardless of upstream message format",
+      "CSP control mappings tracked in a register with quarterly attestation cadence",
+    ],
+    operatingModel: [
+      "Weekly SWIFT health review: message acceptance, gpi tracking coverage, sanctions screening hit rate, correspondent bank issues",
+      "Quarterly CSP attestation prep with internal audit + external advisor",
+      "Monthly correspondent-bank scorecard (uptime, response time, dispute resolution)",
+      "Real-time alerting on message-format rejection rate > 0.1%",
+    ],
+    role: "Owned the SWIFT product surface end-to-end: integration architecture, gpi adoption, CSP attestation, sanctions-screening product design, correspondent-bank governance, and the ISO 20022 migration roadmap. Direct accountability for SWIFT operational KPIs and audit posture.",
+    impact: [
+      "Held 99.9%+ message-acceptance rate through the ISO 20022 migration deadline window — when many regional acquirers saw rejection-rate spikes",
+      "Cut sanctions-screening false-positive rate by ~60% via per-corridor tuning, without lowering true-positive coverage",
+      "Brought CSP attestation back onto annual cadence after two missed years",
+      "Delivered gpi UETR end-to-end tracking, removing the 'black box' merchant complaint about cross-border transfers",
+      "Established the MX-shaped data model that absorbed the ISO 20022 migration without a platform re-write",
+    ],
+    tradeoffs: [
+      "Built MX-shaped data model before market demanded it — extra engineering cost in 2022/23, paid back the moment regulators set hard MX dates",
+      "Chose real-time sanctions screening over async; added 200-400ms to send latency in exchange for the audit posture banks demanded",
+      "Maintained MT parsing alongside MX — duplicate code paths during the migration window, accepted because correspondent banks moved at different paces",
+    ],
+    lessons: [
+      "ISO 20022 is a data-model migration, not a message-format one. Teams that treat it as 'change the parser' rebuild in 18 months.",
+      "gpi is the single highest-leverage merchant-facing feature on SWIFT. Surfacing UETR tracking removes more support tickets than every other improvement combined.",
+      "CSP attestation is not a yearly audit event. It's a quarterly operating discipline that produces evidence as a by-product.",
+      "Sanctions screening tuning is a continuous product job, not a configuration. Per-corridor false-positive rates diverge fast.",
+    ],
+    whyItMatters:
+      "Every bank, regulated fintech, payment orchestrator and remittance platform that touches SWIFT is in some stage of this exact migration. The teams that ship it well — dual-rail parsing, MX-shaped data, real-time sanctions, gpi adoption, CSP attestation as operating discipline — keep their correspondent relationships intact. The teams that ship it badly lose correspondents one at a time, until the cross-border product becomes a liability. This is the playbook.",
+    keywords: [
+      "SWIFT MT MX implementation",
+      "ISO 20022 migration",
+      "SWIFT gpi UETR",
+      "CSP attestation",
+      "sanctions screening real-time",
+      "correspondent banking",
+      "cross-border payments infrastructure",
+      "MENA fintech SWIFT",
+    ],
+  },
 ];
 
 export const getCaseStudy = (slug: string) => caseStudies.find((c) => c.slug === slug);

@@ -506,6 +506,76 @@ export const posts: Post[] = [
     tags: ["settlement", "merchant trust", "cashflow", "payment infrastructure"],
   },
   {
+    slug: "click-to-pay-vctp-mctp-scheme-led-checkout",
+    title: "Click to Pay (VCTP / MCTP): The Scheme-Led Checkout Standard, How It Actually Works",
+    metaTitle: "Click to Pay (VCTP / MCTP): A Product Guide | Rizwan Zafar",
+    date: "2026-05-20",
+    category: "Payment Infrastructure",
+    readingTime: "11 min read",
+    description:
+      "Click to Pay explained from the operator's lens — what VCTP and MCTP actually are, the merchant + issuer + consumer surface, why it shipped, where it works, where it's still patchy.",
+    thesis:
+      "Click to Pay is the schemes' answer to Apple Pay and Google Pay — a scheme-owned consumer checkout standard that lifts authorisation rate and removes card-number entry. It works. It's just under-marketed. This is the operator-grade map.",
+    tags: [
+      "Click to Pay",
+      "VCTP",
+      "MCTP",
+      "scheme checkout",
+      "card networks",
+      "network tokenisation",
+      "EMVCo SRC",
+      "payment infrastructure",
+      "Visa",
+      "Mastercard",
+    ],
+  },
+  {
+    slug: "cybersource-architecture-visa-payment-gateway",
+    title: "CyberSource Architecture: The Visa-Owned Payment Gateway, How It Differs From MPGS",
+    metaTitle: "CyberSource Architecture: How Visa's Payment Gateway Works | Rizwan Zafar",
+    date: "2026-05-20",
+    category: "Payment Infrastructure",
+    readingTime: "12 min read",
+    description:
+      "An operator's guide to CyberSource — Decision Manager, Token Management Service, Flex Microform, Payouts, and where the architecture differs meaningfully from MPGS.",
+    thesis:
+      "CyberSource is the gateway Visa wants you to standardise on. The product surface is broader than MPGS — Decision Manager and Flex Microform have no Mastercard equivalents — but the integration patterns and lifecycle traps are different in important ways.",
+    tags: [
+      "CyberSource",
+      "Visa",
+      "payment gateway",
+      "Decision Manager",
+      "Flex Microform",
+      "Token Management Service",
+      "VTS",
+      "payment infrastructure",
+      "scheme products",
+    ],
+  },
+  {
+    slug: "emv-3ds2-step-up-frictionless-optimisation",
+    title:
+      "EMV 3DS2: Step-Up Logic, Frictionless Flow and the Auth-Rate Optimisation Nobody Explains",
+    metaTitle: "EMV 3DS2: Step-Up Logic + Frictionless Flow Optimisation | Rizwan Zafar",
+    date: "2026-05-20",
+    category: "Payment Infrastructure",
+    readingTime: "11 min read",
+    description:
+      "An operator's guide to EMV 3DS2 — the three flows (frictionless, attempt, challenge), the exemption logic that decides which flow fires, and how to lift auth rate without breaking PSD2 SCA.",
+    thesis:
+      "3DS2 is the most consequential auth-rate lever most merchants don't touch. Default config gives you maximum step-up and minimum conversion. This is the operator's guide to the exemption logic that lifts auth rate without breaking compliance.",
+    tags: [
+      "EMV 3DS",
+      "3DS2",
+      "PSD2 SCA",
+      "frictionless flow",
+      "step-up authentication",
+      "card acquiring",
+      "payment infrastructure",
+      "auth rate optimisation",
+    ],
+  },
+  {
     slug: "payment-infrastructure-state-trust-failure",
     title: "Payment Infrastructure Is Not Just APIs, It Is State, Trust and Failure Handling",
     metaTitle: "Payment Infrastructure: State, Trust, Failure Handling | Rizwan Zafar",
