@@ -3708,9 +3708,9 @@ An open banking product team is shipping well when:
 
 **What is VRP, and why is it the most important UK story?** Variable Recurring Payments let a PISP initiate a series of payments under a one-time consent, with defined limits. It is the technical primitive that makes A2A subscription, bill pay, and merchant-initiated A2A actually work at consumer-payment scale. The product surface is real and just maturing.
 
-**Where does AI fit?** Two places. First, in workflow on top (categorisation, cashflow prediction, affordability). Second, in agent-initiated payments via PISP, with consent enforcement at initiation. The second is early but credible.`,"product-management-for-payments-platforms":`There is a quiet myth in fintech that payments product management is just SaaS product management with regulators bolted on. It is not. The regulators are real, but they are the easy part. The harder part is that a payments PM has to serve five constituencies simultaneously, with conflicting incentives, and ship at the same cadence as a consumer product.
+**Where does AI fit?** Two places. First, in workflow on top (categorisation, cashflow prediction, affordability). Second, in agent-initiated payments via PISP, with consent enforcement at initiation. The second is early but credible.`,"product-management-for-payments-platforms":`Most SaaS PMs who move into payments hit the same wall in their first month: the user research playbook still works, the discovery rituals still work, the prioritisation frameworks still work — and yet shipping anything takes three times longer than it used to. The framework hasn't broken. What's changed is that the room they're shipping into now has five chairs instead of two, and the people in those chairs don't agree on what "good" looks like.
 
-This is the operating model that actually works.
+The regulators are the cliché, but they're the easy part. The harder part is the five-constituency problem — merchants, consumers, schemes, regulators, internal ops — that the SaaS PM playbook never had to solve. This is the operating model that handles it.
 
 ## The five constituencies
 
@@ -3928,9 +3928,9 @@ Most banks and PSPs in 2026 are running variations of this exact play. The quest
 
 **Which use case had the biggest ROI?** Partner support automation (90% resolution) had the cleanest payback. Auto-escalation (−70% MTTR) had the biggest morale impact on the on-call team.
 
-**What about the fraud/AML pilot ROI?** Projected at 40% manual-review reduction. We will publish the actual number after the pilot validates.`,"project-management-fintech-regulatory-programmes":`A regulatory programme is not a compliance exercise. It is a project with an immovable deadline (the audit), an external grader (the auditor), and a delivery cost (remediation) that gets paid up front or many times over.
+**What about the fraud/AML pilot ROI?** Projected at 40% manual-review reduction. We will publish the actual number after the pilot validates.`,"project-management-fintech-regulatory-programmes":`Six weeks before the audit, every regulatory programme in trouble starts to look identical. The same Confluence pages everyone forgot about. The same evidence requests sitting in inboxes. The same "we'll get to that" gaps in the policy hierarchy. A PMO scrambling to backfill twelve months of work into six weeks of theatre.
 
-Project managers who treat regulatory work as a slow-moving checklist generate the same outcome every time: a frantic six-week sprint before the audit, a list of findings, a remediation period, and the same fire drill twelve months later. Project managers who treat it as a project with engineering rigour generate certifications that compound year over year and an audit that becomes a routine business event.
+The teams that ship regulatory work cleanly have done one thing differently: they stopped treating it as a compliance exercise and started treating it as a project — with an immovable deadline (the audit), an external grader (the auditor), and a delivery cost (remediation) that gets paid up front or many times over. The frantic-sprint shape is what compliance-as-a-checklist looks like. The compound-certification shape is what project-managed regulatory work looks like.
 
 This is the playbook from running PCI DSS, ISO 27001, SOC 2, and AML/CFT programmes inside regulated payments organisations.
 
@@ -4833,7 +4833,9 @@ The wrong assumption is that stablecoins are unregulated. The right assumption i
 
 **What's the biggest risk?** Regulatory volatility per market. Build for the assumption that posture will change in 12 months.
 
-**Does this affect my existing fiat payments architecture?** Minimally if you treat the stablecoin path as a parallel rail. Heavily if you try to make stables the canonical ledger currency.`,"building-pmo-from-scratch-fintech":`A fintech PMO is not a governance overlay. It is the operating system that lets product, engineering, risk and compliance ship together at regulated-payments cadence. Done well, it is invisible. Done badly, it is a meeting-generation machine.
+**Does this affect my existing fiat payments architecture?** Minimally if you treat the stablecoin path as a parallel rail. Heavily if you try to make stables the canonical ledger currency.`,"building-pmo-from-scratch-fintech":`The first PMO meeting at a fintech tells you everything. If the room is talking about Jira columns and burn-down charts, the PMO is broken. If the room is talking about which licence application is at risk and which bank partner is about to ask for evidence, the PMO is doing its job.
+
+Done well, a fintech PMO is invisible — the operating system that lets product, engineering, risk and compliance ship together at regulated-payments cadence. Done badly, it becomes a meeting-generation machine that everyone learns to route around.
 
 I have stood up PMOs from scratch twice, once at Wing Logic (a Dubai project portfolio firm) and once at Simpaisa (B2B payments, $0 → $1B+ TPV). This is the 90-day playbook.
 
