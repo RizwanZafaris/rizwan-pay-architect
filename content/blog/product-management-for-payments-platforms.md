@@ -38,9 +38,9 @@ relatedArticles:
 
 # Product Management for Payments Platforms: What's Different, and What's Not
 
-There is a quiet myth in fintech that payments product management is just SaaS product management with regulators bolted on. It is not. The regulators are real, but they are the easy part. The harder part is that a payments PM has to serve five constituencies simultaneously, with conflicting incentives, and ship at the same cadence as a consumer product.
+Most SaaS PMs who move into payments hit the same wall in their first month: the user research playbook still works, the discovery rituals still work, the prioritisation frameworks still work — and yet shipping anything takes three times longer than it used to. The framework hasn't broken. What's changed is that the room they're shipping into now has five chairs instead of two, and the people in those chairs don't agree on what "good" looks like.
 
-This is the operating model that actually works.
+The regulators are the cliché, but they're the easy part. The harder part is the five-constituency problem — merchants, consumers, schemes, regulators, internal ops — that the SaaS PM playbook never had to solve. This is the operating model that handles it.
 
 ## The five constituencies
 

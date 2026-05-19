@@ -39,9 +39,9 @@ relatedArticles:
 
 # Project Management for Fintech Regulatory Programmes: PCI DSS, ISO 27001, SOC 2, AML/CFT
 
-A regulatory programme is not a compliance exercise. It is a project with an immovable deadline (the audit), an external grader (the auditor), and a delivery cost (remediation) that gets paid up front or many times over.
+Six weeks before the audit, every regulatory programme in trouble starts to look identical. The same Confluence pages everyone forgot about. The same evidence requests sitting in inboxes. The same "we'll get to that" gaps in the policy hierarchy. A PMO scrambling to backfill twelve months of work into six weeks of theatre.
 
-Project managers who treat regulatory work as a slow-moving checklist generate the same outcome every time: a frantic six-week sprint before the audit, a list of findings, a remediation period, and the same fire drill twelve months later. Project managers who treat it as a project with engineering rigour generate certifications that compound year over year and an audit that becomes a routine business event.
+The teams that ship regulatory work cleanly have done one thing differently: they stopped treating it as a compliance exercise and started treating it as a project — with an immovable deadline (the audit), an external grader (the auditor), and a delivery cost (remediation) that gets paid up front or many times over. The frantic-sprint shape is what compliance-as-a-checklist looks like. The compound-certification shape is what project-managed regulatory work looks like.
 
 This is the playbook from running PCI DSS, ISO 27001, SOC 2, and AML/CFT programmes inside regulated payments organisations.
 

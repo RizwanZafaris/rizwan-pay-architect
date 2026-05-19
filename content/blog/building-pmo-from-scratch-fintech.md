@@ -33,7 +33,9 @@ relatedArticles:
 
 # Building a PMO from Scratch in a Fintech: A 90-Day Playbook
 
-A fintech PMO is not a governance overlay. It is the operating system that lets product, engineering, risk and compliance ship together at regulated-payments cadence. Done well, it is invisible. Done badly, it is a meeting-generation machine.
+The first PMO meeting at a fintech tells you everything. If the room is talking about Jira columns and burn-down charts, the PMO is broken. If the room is talking about which licence application is at risk and which bank partner is about to ask for evidence, the PMO is doing its job.
+
+Done well, a fintech PMO is invisible — the operating system that lets product, engineering, risk and compliance ship together at regulated-payments cadence. Done badly, it becomes a meeting-generation machine that everyone learns to route around.
 
 I have stood up PMOs from scratch twice, once at Wing Logic (a Dubai project portfolio firm) and once at Simpaisa (B2B payments, $0 → $1B+ TPV). This is the 90-day playbook.
 
