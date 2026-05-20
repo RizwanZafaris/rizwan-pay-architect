@@ -382,10 +382,98 @@
     will-change: transform, opacity;
   }
 
+  .home-page,
+  .blog-page,
   .resume-page,
   .recruiter-page,
   .contact-page {
     isolation: isolate;
+  }
+
+  .home-signal-field {
+    background:
+      linear-gradient(
+        135deg,
+        color-mix(in oklab, var(--signal) 8%, transparent) 0%,
+        transparent 38%,
+        color-mix(in oklab, var(--rule) 70%, transparent) 100%
+      ),
+      linear-gradient(180deg, var(--paper) 0%, var(--paper-2) 100%);
+  }
+
+  .home-signal-field::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.38;
+    background-image:
+      linear-gradient(to right, color-mix(in oklab, var(--signal) 18%, transparent) 1px, transparent 1px),
+      linear-gradient(to bottom, color-mix(in oklab, var(--ink) 6%, transparent) 1px, transparent 1px);
+    background-size: 72px 72px;
+    mask-image: linear-gradient(90deg, transparent 0%, black 18%, black 72%, transparent 100%);
+  }
+
+  .home-signal-field::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.48;
+    background:
+      linear-gradient(110deg, transparent 0 30%, color-mix(in oklab, var(--signal) 20%, transparent) 30.2% 30.45%, transparent 30.7% 100%),
+      linear-gradient(150deg, transparent 0 67%, color-mix(in oklab, var(--rule) 90%, transparent) 67.2% 67.5%, transparent 67.8% 100%);
+  }
+
+  .home-portrait-frame {
+    filter: drop-shadow(0 22px 38px color-mix(in oklab, var(--ink) 12%, transparent));
+  }
+
+  .home-card,
+  .home-topic-card,
+  .home-search-panel,
+  .blog-search-panel,
+  .blog-result-card {
+    transition:
+      transform 180ms ease,
+      border-color 180ms ease,
+      box-shadow 180ms ease,
+      background-color 180ms ease;
+  }
+
+  .home-card:hover,
+  .home-topic-card:hover,
+  .blog-result-card:hover {
+    transform: translateY(-2px);
+    border-color: color-mix(in oklab, var(--ink) 22%, var(--rule));
+    box-shadow: 0 14px 34px color-mix(in oklab, var(--ink) 8%, transparent);
+  }
+
+  .home-search-panel:focus-within,
+  .blog-search-panel:focus-within {
+    border-color: color-mix(in oklab, var(--signal) 45%, var(--rule));
+    box-shadow: 0 0 0 4px color-mix(in oklab, var(--signal) 10%, transparent);
+  }
+
+  @keyframes rz-field-drift {
+    from {
+      background-position: 0 0, 0 0;
+    }
+    to {
+      background-position: 72px 36px, 36px 72px;
+    }
+  }
+
+  @keyframes rz-signal-rule {
+    0%,
+    100% {
+      transform: scaleX(0.38);
+      opacity: 0.45;
+    }
+    50% {
+      transform: scaleX(1);
+      opacity: 0.95;
+    }
   }
 
   .resume-proof-card,
@@ -454,6 +542,28 @@
   }
 
   @media (prefers-reduced-motion: no-preference) {
+    .home-signal-field::before {
+      animation: rz-field-drift 28s linear infinite;
+    }
+
+    .home-rule-animate {
+      transform-origin: left;
+      animation: rz-signal-rule 5.5s ease-in-out infinite;
+    }
+
+    .home-soft-reveal,
+    .blog-soft-reveal,
+    .home-card,
+    .home-topic-card,
+    .home-search-panel,
+    .blog-search-panel,
+    .blog-result-card {
+      opacity: 0;
+      animation: rz-soft-reveal 620ms cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+      animation-delay: var(--motion-delay, 0ms);
+      will-change: transform, opacity, filter;
+    }
+
     .resume-soft-reveal,
     .recruiter-soft-reveal,
     .contact-soft-reveal,
@@ -509,6 +619,15 @@
     .hero-glow-a,
     .hero-glow-b,
     .hero-ring-breathe,
+    .home-signal-field::before,
+    .home-rule-animate,
+    .home-soft-reveal,
+    .blog-soft-reveal,
+    .home-card,
+    .home-topic-card,
+    .home-search-panel,
+    .blog-search-panel,
+    .blog-result-card,
     .resume-soft-reveal,
     .recruiter-soft-reveal,
     .contact-soft-reveal,

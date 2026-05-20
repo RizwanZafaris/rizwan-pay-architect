@@ -1,4 +1,5 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import type { CSSProperties } from "react";
 import { zodValidator, fallback } from "@tanstack/zod-adapter";
 import { z } from "zod";
 import { posts } from "@/data/posts";
@@ -86,6 +87,97 @@ function postReaders(p: { category: string; tags: string[] }): string[] {
   return [...out];
 }
 
+function blogFilterAttrs(p: (typeof posts)[number], featured = false) {
+  return {
+    "data-blog-result": "",
+    "data-blog-featured": featured ? "true" : "false",
+    "data-search": `${p.title} ${p.description} ${p.tags.join(" ")}`.toLowerCase(),
+    "data-hub": hubForPost(p)?.slug ?? "",
+    "data-readers": postReaders(p).join("|"),
+    "data-companies": postRelevantFor(p).join("|"),
+  };
+}
+
+const BLOG_FILTER_SCRIPT = `
+(() => {
+  if (window.__rzBlogFilterBound) return;
+  window.__rzBlogFilterBound = true;
+
+  const qInput = document.querySelector('#blog-q');
+  const hubSelect = document.querySelector('#blog-hub');
+  const readerSelect = document.querySelector('#blog-reader');
+  const companySelect = document.querySelector('#blog-company');
+  const status = document.querySelector('[data-blog-filter-status]');
+  const countEl = document.querySelector('[data-blog-match-count]');
+  const emptyEl = document.querySelector('[data-blog-empty]');
+  const clearEl = document.querySelector('[data-blog-clear]');
+  const results = Array.from(document.querySelectorAll('[data-blog-result]'));
+  if (!qInput || !hubSelect || !readerSelect || !companySelect || results.length === 0) return;
+
+  const params = new URLSearchParams(window.location.search);
+  qInput.value = params.get('q') || '';
+  hubSelect.value = params.get('hub') || '';
+  readerSelect.value = params.get('reader') || '';
+  companySelect.value = params.get('company') || '';
+
+  const hasToken = (value, selected) => {
+    if (!selected) return true;
+    return (value || '').split('|').includes(selected);
+  };
+
+  const updateUrl = () => {
+    const next = new URLSearchParams();
+    if (qInput.value.trim()) next.set('q', qInput.value.trim());
+    if (hubSelect.value) next.set('hub', hubSelect.value);
+    if (readerSelect.value) next.set('reader', readerSelect.value);
+    if (companySelect.value) next.set('company', companySelect.value);
+    const qs = next.toString();
+    const nextUrl = qs ? '/blog/?' + qs : '/blog/';
+    window.history.replaceState(null, '', nextUrl);
+  };
+
+  const apply = () => {
+    const q = qInput.value.trim().toLowerCase();
+    const hub = hubSelect.value;
+    const reader = readerSelect.value;
+    const company = companySelect.value;
+    const active = Boolean(q || hub || reader || company);
+    let count = 0;
+
+    for (const el of results) {
+      const matches =
+        (!q || (el.getAttribute('data-search') || '').includes(q)) &&
+        (!hub || el.getAttribute('data-hub') === hub) &&
+        hasToken(el.getAttribute('data-readers'), reader) &&
+        hasToken(el.getAttribute('data-companies'), company);
+
+      el.hidden = !matches;
+      if (matches) count++;
+    }
+
+    if (status) status.classList.toggle('hidden', !active);
+    if (countEl) countEl.textContent = count + ' match' + (count === 1 ? '' : 'es');
+    if (emptyEl) emptyEl.classList.toggle('hidden', count !== 0);
+    updateUrl();
+  };
+
+  qInput.addEventListener('input', apply);
+  hubSelect.addEventListener('change', apply);
+  readerSelect.addEventListener('change', apply);
+  companySelect.addEventListener('change', apply);
+  clearEl?.addEventListener('click', (event) => {
+    event.preventDefault();
+    qInput.value = '';
+    hubSelect.value = '';
+    readerSelect.value = '';
+    companySelect.value = '';
+    apply();
+  });
+
+  apply();
+})();
+`;
+
 function BlogIndex() {
   const { q, hub, reader, company } = Route.useSearch();
   const navigate = useNavigate({ from: "/blog" });
@@ -115,15 +207,21 @@ function BlogIndex() {
   const activeHub = hub ? hubs.find((h) => h.slug === hub) : null;
 
   return (
-    <div className="mx-auto max-w-6xl px-6 py-20">
-      <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--accent-emerald)] font-mono-tech">
+    <div className="blog-page mx-auto max-w-6xl px-6 py-20">
+      <div className="blog-soft-reveal text-[10px] uppercase tracking-[0.22em] text-[var(--accent-emerald)] font-mono-tech">
         ◆ Payments essays
       </div>
-      <h1 className="font-instrument text-4xl md:text-6xl text-ink mt-3 max-w-3xl leading-[1.05]">
+      <h1
+        className="blog-soft-reveal font-instrument text-4xl md:text-6xl text-ink mt-3 max-w-3xl leading-[1.05]"
+        style={{ "--motion-delay": "60ms" } as CSSProperties}
+      >
         A working knowledge base on{" "}
         <span className="italic text-ink-soft">regulated payments.</span>
       </h1>
-      <p className="mt-5 max-w-2xl text-lg text-ink-soft">
+      <p
+        className="blog-soft-reveal mt-5 max-w-2xl text-lg text-ink-soft"
+        style={{ "--motion-delay": "120ms" } as CSSProperties}
+      >
         Practical writing from inside payments product, infrastructure, cross-border, settlement,
         risk, onboarding and the product decisions that shape them.
       </p>
@@ -133,7 +231,9 @@ function BlogIndex() {
         <Link
           to="/blog/$slug"
           params={{ slug: featured.slug }}
-          className="group mt-12 block rounded-3xl border border-ink/10 bg-surface p-8 md:p-12 hover:border-ink/30 transition-colors"
+          {...blogFilterAttrs(featured, true)}
+          className="blog-result-card group mt-12 block rounded-lg border border-ink/10 bg-surface p-8 md:p-12"
+          style={{ "--motion-delay": "180ms" } as CSSProperties}
         >
           <div className="flex items-center gap-3">
             <span className="text-[10px] font-mono-tech uppercase tracking-[0.22em] text-[var(--accent-emerald)]">
@@ -155,7 +255,10 @@ function BlogIndex() {
       )}
 
       {/* Search + filters */}
-      <div className="mt-12 rounded-2xl border border-rule bg-surface/60 p-5 md:p-6">
+      <div
+        className="blog-search-panel mt-12 rounded-lg border border-rule bg-surface/60 p-5 md:p-6"
+        style={{ "--motion-delay": "220ms" } as CSSProperties}
+      >
         <div className="grid md:grid-cols-12 gap-3">
           <div className="md:col-span-5">
             <label
@@ -170,7 +273,7 @@ function BlogIndex() {
               value={q}
               onChange={(e) => setParam("q", e.target.value)}
               placeholder="SWIFT, reconciliation, onboarding…"
-              className="mt-1 w-full border border-rule bg-background px-3 py-2 rounded-md text-ink focus:outline-none focus:ring-2 focus:ring-ink/20 focus:border-ink"
+              className="mt-1 w-full border border-rule bg-background px-3 py-2 rounded-md text-ink focus:outline-none focus:ring-2 focus:ring-[var(--brand)]/20 focus:border-[var(--brand)]"
             />
           </div>
           <Select
@@ -198,33 +301,43 @@ function BlogIndex() {
             options={[["", "Any"], ...COMPANIES.map((c): [string, string] => [c, c])]}
           />
         </div>
-        {(q || hub || reader || company) && (
-          <div className="mt-3 flex items-center justify-between text-xs text-ink-soft">
-            <span>
-              {list.length} match{list.length === 1 ? "" : "es"}
-              {activeHub && ` · ${activeHub.title}`}
-            </span>
-            <button
-              onClick={() => navigate({ search: { q: "", hub: "", reader: "", company: "" } })}
-              className="underline hover:text-ink"
-            >
-              Clear filters
-            </button>
-          </div>
-        )}
+        <div
+          data-blog-filter-status
+          className={`mt-3 flex items-center justify-between gap-4 text-xs text-ink-soft ${
+            q || hub || reader || company ? "" : "hidden"
+          }`}
+        >
+          <span data-blog-match-count>
+            {list.length} match{list.length === 1 ? "" : "es"}
+            {activeHub && ` · ${activeHub.title}`}
+          </span>
+          <button
+            type="button"
+            data-blog-clear
+            onClick={() => navigate({ search: { q: "", hub: "", reader: "", company: "" } })}
+            className="underline underline-offset-4 hover:text-ink"
+          >
+            Clear filters
+          </button>
+        </div>
       </div>
 
       {/* List */}
       <div className="mt-8 divide-y divide-rule border-y border-rule">
-        {list.length === 0 ? (
-          <div className="py-12 text-center text-ink-soft">No essays match these filters.</div>
-        ) : (
+        <div
+          data-blog-empty
+          className={`py-12 text-center text-ink-soft ${list.length === 0 ? "" : "hidden"}`}
+        >
+          No essays match these filters.
+        </div>
+        {list.length > 0 &&
           list.map((p) => (
             <Link
               key={p.slug}
               to="/blog/$slug"
               params={{ slug: p.slug }}
-              className="group grid md:grid-cols-12 gap-6 py-7 hover:bg-surface-2 px-2 -mx-2 rounded transition-colors"
+              {...blogFilterAttrs(p)}
+              className="blog-result-card group grid md:grid-cols-12 gap-6 py-7 hover:bg-surface-2 px-2 -mx-2 rounded-lg transition-colors"
             >
               <div className="md:col-span-3 text-xs text-ink-soft font-mono-tech">
                 <div>
@@ -260,8 +373,7 @@ function BlogIndex() {
                 </div>
               </div>
             </Link>
-          ))
-        )}
+          ))}
       </div>
 
       {/* Topic hub links */}
@@ -282,6 +394,7 @@ function BlogIndex() {
           ))}
         </div>
       </div>
+      <script dangerouslySetInnerHTML={{ __html: BLOG_FILTER_SCRIPT }} />
     </div>
   );
 }
@@ -307,7 +420,7 @@ function Select({ id, label, value, onChange, options }: SelectProps) {
         id={id}
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="mt-1 w-full border border-rule bg-background px-3 py-2 rounded-md text-ink focus:outline-none focus:ring-2 focus:ring-ink/20 focus:border-ink"
+        className="mt-1 w-full border border-rule bg-background px-3 py-2 rounded-md text-ink focus:outline-none focus:ring-2 focus:ring-[var(--brand)]/20 focus:border-[var(--brand)]"
       >
         {options.map(([v, label]) => (
           <option key={v} value={v}>

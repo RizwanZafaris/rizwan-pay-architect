@@ -226,7 +226,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { name: "author", content: profile.name },
       { name: "keywords", content: SITE_KEYWORDS },
-      { name: "theme-color", content: "#0f1115" },
+      { name: "theme-color", content: "#0e4f4f" },
       // Open Graph
       { property: "og:site_name", content: `${profile.name}, Payments Product Executive` },
       { property: "og:type", content: "website" },

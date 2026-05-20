@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import type { CSSProperties } from "react";
 import { profile } from "@/data/profile";
 import { caseStudies, caseStudyThumb } from "@/data/caseStudies";
 import { posts, categories } from "@/data/posts";
@@ -102,56 +103,14 @@ function HomePage() {
     }));
 
   return (
-    <div>
+    <div className="home-page">
       {/* ============ HERO ============ */}
-      <section className="relative overflow-hidden">
-        {/* Higgsfield-generated brand backdrop — flowing cyan network mesh on
-            deep charcoal. Sits behind everything, low opacity so it never
-            competes with the portrait or text. */}
-        <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
-          <img
-            src="/hero-bg.webp"
-            alt=""
-            aria-hidden="true"
-            width={2400}
-            height={1350}
-            loading="eager"
-            decoding="async"
-            className="h-full w-full object-cover opacity-50"
-          />
-          {/* Light tint over the backdrop so the page background colour shows
-              through. Keeps the hero feeling like the rest of the site. */}
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                "linear-gradient(180deg, color-mix(in oklab, var(--background) 60%, transparent) 0%, color-mix(in oklab, var(--background) 90%, transparent) 100%)",
-            }}
-          />
-        </div>
-        {/* Brand-cyan accent glows — kept on top of the backdrop for depth. */}
-        <div
-          aria-hidden
-          className="pointer-events-none absolute -top-32 -left-32 h-[520px] w-[520px] rounded-full opacity-50 blur-[140px]"
-          style={{
-            background:
-              "radial-gradient(circle, color-mix(in oklab, var(--brand) 26%, transparent), transparent 70%)",
-          }}
-        />
-        <div
-          aria-hidden
-          className="pointer-events-none absolute top-1/4 right-[-140px] h-[460px] w-[460px] rounded-full opacity-35 blur-[120px]"
-          style={{
-            background:
-              "radial-gradient(circle, color-mix(in oklab, var(--brand) 20%, transparent), transparent 70%)",
-          }}
-        />
-
-        <div className="relative mx-auto max-w-7xl px-5 sm:px-6 pt-4 md:pt-7 pb-6 md:pb-10 grid lg:grid-cols-12 gap-5 lg:gap-8 items-center">
+      <section className="home-signal-field relative overflow-hidden border-b border-rule">
+        <div className="relative mx-auto max-w-7xl px-5 sm:px-6 pt-7 md:pt-9 pb-8 md:pb-12 grid lg:grid-cols-12 gap-6 lg:gap-10 items-center">
           {/* LEFT — 58% (7/12). Narrative + proof. */}
-          <div className="lg:col-span-7 order-1 relative z-10 min-w-0">
+          <div className="home-soft-reveal lg:col-span-7 order-1 relative z-10 min-w-0">
             <div className="inline-flex items-center gap-4 mb-3 md:mb-4">
-              <span className="h-px w-10 bg-[var(--brand)]" />
+              <span className="home-rule-animate h-px w-10 bg-[var(--brand)]" />
               <span className="text-[10px] uppercase tracking-[0.32em] text-[var(--brand)] font-mono-tech font-semibold">
                 ◆ Introduction · I'm Rizwan
               </span>
@@ -182,7 +141,10 @@ function HomePage() {
                   { value: "50+", label: "Bank & wallet" },
                 ] as const
               ).map((m) => (
-                <div key={m.label} className="rounded-lg border border-rule bg-card px-2.5 py-2">
+                <div
+                  key={m.label}
+                  className="home-card rounded-lg border border-rule bg-card px-2.5 py-2"
+                >
                   <div className="font-mono-tech text-xl text-ink leading-none">
                     <AnimatedMetric value={m.value} />
                   </div>
@@ -259,11 +221,39 @@ function HomePage() {
               <span className="opacity-40 mx-1">·</span>
               <span className="text-ink">InDrive</span>
             </p>
+
+            <form
+              action="/blog/"
+              method="get"
+              role="search"
+              className="home-search-panel mt-3 max-w-xl rounded-lg border border-rule bg-card/90 p-2 flex flex-col sm:flex-row gap-2"
+              style={{ "--motion-delay": "180ms" } as CSSProperties}
+            >
+              <label htmlFor="home-blog-search" className="sr-only">
+                Search payments essays
+              </label>
+              <input
+                id="home-blog-search"
+                name="q"
+                type="search"
+                placeholder="Search SWIFT, reconciliation, KYB..."
+                className="min-w-0 flex-1 rounded-md border border-transparent bg-surface px-3 py-2.5 text-sm text-ink placeholder:text-ink-soft focus:outline-none focus:border-[var(--brand)]"
+              />
+              <button
+                type="submit"
+                className="rounded-md bg-ink px-4 py-2.5 text-sm font-medium text-background hover:bg-[var(--brand)] transition-colors"
+              >
+                Search essays
+              </button>
+            </form>
           </div>
 
           {/* RIGHT — 42% (5/12). Portrait + premium depth backdrop. */}
-          <div className="lg:col-span-5 order-2 relative min-w-0">
-            <div className="relative mx-auto w-full max-w-[260px] sm:max-w-[330px] lg:max-w-[400px] aspect-[4/5]">
+          <div
+            className="home-soft-reveal lg:col-span-5 order-2 relative min-w-0"
+            style={{ "--motion-delay": "120ms" } as CSSProperties}
+          >
+            <div className="home-portrait-frame relative mx-auto w-full max-w-[260px] sm:max-w-[330px] lg:max-w-[400px] aspect-[4/5]">
               {/* Subtle depth: soft radial wash behind the portrait. Inset so
                   it can't touch the column edges and clip awkwardly. */}
               <div
@@ -342,20 +332,20 @@ function HomePage() {
                     color: "text-[var(--brand)]",
                     anim: "hero-float-a",
                   },
-                  // 2 dots for rhythm
+                  // Thin ticks for rhythm, avoiding decorative blobs.
                   {
-                    type: "dot",
+                    type: "tick",
                     top: "14%",
                     left: "-3%",
-                    size: "h-2.5 w-2.5",
+                    size: "h-px w-10",
                     color: "bg-[var(--brand)]",
                     anim: "hero-glow-a",
                   },
                   {
-                    type: "dot",
+                    type: "tick",
                     top: "92%",
                     left: "44%",
-                    size: "h-3 w-3",
+                    size: "h-px w-12",
                     color: "bg-[var(--brand)]",
                     anim: "hero-glow-b",
                   },
@@ -374,7 +364,7 @@ function HomePage() {
                   <span
                     key={i}
                     aria-hidden
-                    className={`absolute z-20 rounded-full ${g.size} ${g.color} ${g.anim}`}
+                    className={`absolute z-20 ${g.size} ${g.color} ${g.anim}`}
                     style={{ top: g.top, left: g.left }}
                   />
                 ),
@@ -384,48 +374,44 @@ function HomePage() {
         </div>
 
         {/* ============ HOT TOPICS, horizontal cards ============ */}
-        <div className="relative mx-auto max-w-6xl px-6 pb-16">
-          <div className="rounded-3xl border border-rule bg-card p-6 md:p-8 grid md:grid-cols-12 gap-6 items-start">
-            <div className="md:col-span-3">
+        <div className="relative mx-auto max-w-6xl px-6 pb-14">
+          <div className="grid md:grid-cols-12 gap-6 items-start">
+            <div
+              className="home-soft-reveal md:col-span-4"
+              style={{ "--motion-delay": "180ms" } as CSSProperties}
+            >
               <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
                 ◆ Hot topics
               </div>
               <h2 className="font-instrument text-2xl md:text-3xl text-ink mt-3 leading-tight">
-                Where I write the most.
+                Search the payments knowledge base.
               </h2>
               <p className="text-xs text-ink-soft mt-2">
-                Categories spanning payments infrastructure, settlement, risk and emerging markets.
+                Essays across payment infrastructure, settlement, risk, SWIFT, onboarding and
+                complex-market execution.
               </p>
             </div>
-            <div className="md:col-span-9 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+            <div className="md:col-span-8 grid grid-cols-2 sm:grid-cols-3 gap-3">
               {hotTopics.map((t, i) => (
                 <Link
                   key={t.name}
                   to="/blog"
                   search={{ q: "", hub: t.hub, reader: "", company: "" }}
-                  className="group relative overflow-hidden rounded-2xl aspect-square sm:aspect-[5/4] lg:aspect-[4/5] p-3 sm:p-4 flex flex-col justify-end text-background border border-rule bg-ink hover:-translate-y-1 transition-all duration-300"
-                  style={{
-                    backgroundImage: `radial-gradient(${80 + (i % 3) * 30}% 70% at ${(i * 30) % 100}% ${(i * 40) % 100}%, color-mix(in oklab, var(--brand) ${20 + (i % 3) * 8}%, transparent), transparent 65%)`,
-                  }}
+                  className="home-topic-card group relative overflow-hidden rounded-lg min-h-[132px] p-4 flex flex-col justify-between border border-rule bg-card text-ink"
+                  style={{ "--motion-delay": `${220 + i * 45}ms` } as CSSProperties}
                 >
-                  <div
-                    className="absolute inset-0 bg-noise opacity-25 mix-blend-overlay"
-                    aria-hidden
-                  />
-                  {/* Oversized post-count numeral as second-read art (different
-                      per card) — gives the row visual variance instead of
-                      6 identical gradient rectangles. */}
+                  <div className="absolute inset-y-0 left-0 w-1 bg-[var(--brand)]" aria-hidden />
                   <div
                     aria-hidden
-                    className="absolute -top-4 -right-2 font-instrument italic text-background/12 text-[110px] sm:text-[140px] leading-none select-none pointer-events-none tabular-nums"
+                    className="absolute -top-5 -right-2 font-instrument italic text-[var(--brand)]/10 text-[110px] leading-none select-none pointer-events-none tabular-nums"
                   >
                     {String(t.count).padStart(2, "0")}
                   </div>
                   <div className="relative">
-                    <div className="font-instrument text-base sm:text-lg leading-tight">
+                    <div className="font-instrument text-lg leading-tight group-hover:text-[var(--brand)] transition-colors">
                       {t.name}
                     </div>
-                    <div className="text-[10px] font-mono-tech uppercase tracking-[0.18em] mt-1 opacity-80">
+                    <div className="text-[10px] font-mono-tech uppercase tracking-[0.18em] mt-1 text-ink-soft">
                       {t.count} {t.count === 1 ? "article" : "articles"} · Filter →
                     </div>
                   </div>
@@ -500,7 +486,7 @@ function HomePage() {
                   <Link
                     key={p.slug}
                     to={p.link}
-                    className="group block bg-surface border border-rule rounded-2xl p-7 hover:border-ink/30 transition-colors"
+                    className="home-card group block bg-surface border border-rule rounded-lg p-7"
                   >
                     {CardInner}
                   </Link>
@@ -508,7 +494,7 @@ function HomePage() {
                   <a
                     key={p.slug}
                     href={p.link}
-                    className="group block bg-surface border border-rule rounded-2xl p-7 hover:border-ink/30 transition-colors"
+                    className="home-card group block bg-surface border border-rule rounded-lg p-7"
                   >
                     {CardInner}
                   </a>
@@ -548,10 +534,10 @@ function HomePage() {
               {/* Magazine cover treatment — uses the post's own title at hero
                   scale as the artwork, not a generic gradient placeholder. */}
               <div
-                className="aspect-[16/10] rounded-3xl border border-rule mb-5 relative overflow-hidden bg-ink"
+                className="aspect-[16/10] rounded-lg border border-rule mb-5 relative overflow-hidden bg-ink"
                 style={{
                   backgroundImage:
-                    "radial-gradient(120% 80% at 100% 0%, color-mix(in oklab, var(--brand) 45%, transparent), transparent 60%), radial-gradient(80% 60% at 0% 100%, color-mix(in oklab, var(--brand) 18%, transparent), transparent 60%)",
+                    "linear-gradient(135deg, color-mix(in oklab, var(--brand) 68%, var(--ink)) 0%, var(--ink) 46%, color-mix(in oklab, var(--rule) 12%, var(--ink)) 100%)",
                 }}
               >
                 <div
@@ -623,7 +609,7 @@ function HomePage() {
         <div className="mx-auto max-w-6xl px-6 py-20 grid md:grid-cols-12 gap-10 items-center">
           <div className="md:col-span-4">
             <div
-              className="rounded-3xl p-8 text-background relative overflow-hidden"
+              className="home-card rounded-lg p-8 text-background relative overflow-hidden"
               style={{
                 background:
                   "linear-gradient(135deg, color-mix(in oklab, var(--brand) 80%, var(--ink)), color-mix(in oklab, var(--ink) 90%, var(--brand)))",
@@ -654,7 +640,7 @@ function HomePage() {
             <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4">
               {profile.metrics.slice(0, 4).map((m, i) => (
                 <Reveal key={m.label} delay={i * 80}>
-                  <div className="rounded-2xl border border-rule bg-card p-4 h-full">
+                  <div className="home-card rounded-lg border border-rule bg-card p-4 h-full">
                     <div className="font-mono-tech text-xl text-ink">
                       <AnimatedMetric value={m.value} />
                     </div>
@@ -698,11 +684,11 @@ function HomePage() {
                   <Link
                     to="/product-work/$slug"
                     params={{ slug: c.slug }}
-                    className="group relative rounded-3xl border border-rule bg-card p-6 hover:-translate-y-1 transition-all duration-300 hover:shadow-[0_25px_50px_-25px_color-mix(in_oklab,var(--brand)_50%,transparent)] flex flex-col h-full"
+                    className="home-card group relative rounded-lg border border-rule bg-card p-6 flex flex-col h-full"
                   >
                     {/* Card hero: Higgsfield-generated brand-coherent thumb
                         with the strongest metric overlaid in display serif. */}
-                    <div className="aspect-[5/3] rounded-2xl mb-5 relative overflow-hidden bg-ink">
+                    <div className="aspect-[5/3] rounded-md mb-5 relative overflow-hidden bg-ink">
                       <img
                         src={caseStudyThumb(c.slug)}
                         alt={c.imageAlt ?? `${c.title} — abstract editorial illustration`}
@@ -782,7 +768,7 @@ function HomePage() {
             Mastercard, Stripe, Wise, Adyen, Thunes, DLocal, Checkout.com, Rapyd and regional
             fintechs. Replies within 24 hours, Sun–Thu (GST).
           </p>
-          <div className="mt-9 mx-auto max-w-md rounded-2xl sm:rounded-full border border-rule bg-card p-2 sm:p-1.5 sm:pl-5 flex flex-col sm:flex-row sm:items-center gap-3">
+          <div className="home-search-panel mt-9 mx-auto max-w-md rounded-lg sm:rounded-full border border-rule bg-card p-2 sm:p-1.5 sm:pl-5 flex flex-col sm:flex-row sm:items-center gap-3">
             <span className="text-sm text-ink-soft font-mono-tech truncate min-w-0 px-2 sm:px-0">
               {profile.email}
             </span>
