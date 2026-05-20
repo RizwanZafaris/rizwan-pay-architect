@@ -55,8 +55,8 @@ echo "─── 3/4  Replacing $BRANCH contents with dist-static/ ───"
   if git diff --cached --quiet; then
     echo "(no changes — branch already up to date)"
   else
-    SRC_SHA=$(cd "$REPO_DIR" && git rev-parse --short main)
-    git commit -m "Static build from main@$SRC_SHA
+    SRC_SHA=$(cd "$REPO_DIR" && git rev-parse --short HEAD)
+    git commit -m "Static build from HEAD@$SRC_SHA
 
 Auto-generated. Do not edit directly.
 Regenerate with: bun run deploy:git-static

@@ -162,7 +162,7 @@ marked.use({
   renderer: {
     heading({ tokens, depth }) {
       const text = this.parser.parseInline(tokens);
-      const id = slugify(tokens.map((t: any) => t.raw ?? "").join(""));
+      const id = slugify(tokens.map((t) => t.raw ?? "").join(""));
       return `<h${depth} id="${id}">${text}</h${depth}>\n`;
     },
   },

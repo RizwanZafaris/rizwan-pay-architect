@@ -162,10 +162,15 @@ function ForIndex() {
     <div className="recruiter-page mx-auto max-w-6xl px-5 sm:px-6 py-10 md:py-14">
       <section className="grid lg:grid-cols-[1fr_340px] gap-8 lg:gap-12 items-start border-b border-rule pb-10 md:pb-12">
         <div className="min-w-0 recruiter-soft-reveal" style={delayStyle(0)}>
-          <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--accent-emerald)] font-mono-tech">
-            Recruiter brief
+          <div className="flex items-center gap-4">
+            <span className="grid h-9 w-9 place-items-center bg-ink text-background text-sm font-semibold">
+              02
+            </span>
+            <span className="text-[11px] uppercase tracking-[0.22em] text-ink font-mono-tech">
+              Recruiter brief
+            </span>
           </div>
-          <h1 className="mt-3 max-w-4xl font-instrument text-3xl sm:text-4xl md:text-6xl text-ink leading-[1.02] text-wrap">
+          <h1 className="mt-7 max-w-4xl font-instrument text-3xl sm:text-4xl md:text-6xl text-ink leading-[1.02] text-wrap">
             Product &amp; Program Executive for Payments Infrastructure
           </h1>
           <p className="mt-4 max-w-3xl text-lg md:text-xl text-ink-soft leading-relaxed">
@@ -200,7 +205,7 @@ function ForIndex() {
         </div>
 
         <aside
-          className="recruiter-soft-reveal recruiter-cta-panel rounded-2xl border border-rule bg-card/85 p-5 shadow-sm"
+          className="recruiter-soft-reveal recruiter-cta-panel rounded-lg border border-rule bg-surface p-5"
           style={delayStyle(90)}
           aria-label="Recruiter summary"
         >
@@ -236,7 +241,7 @@ function ForIndex() {
         {proofMetrics.map((metric, index) => (
           <div
             key={metric.label}
-            className="recruiter-proof-card rounded-xl border border-rule bg-surface px-4 py-3"
+            className="recruiter-proof-card rounded-lg border border-rule bg-surface px-4 py-3"
             style={delayStyle(180 + index * 45)}
           >
             <div className="font-instrument text-2xl text-ink leading-none">{metric.value}</div>
@@ -258,7 +263,7 @@ function ForIndex() {
           {roleLanes.map((lane, index) => (
             <article
               key={lane.title}
-              className="recruiter-soft-reveal recruiter-card rounded-2xl border border-rule bg-surface p-5"
+              className="recruiter-soft-reveal recruiter-card rounded-lg border border-rule bg-surface p-5"
               style={delayStyle(80 + index * 60)}
             >
               <h3 className="font-instrument text-xl text-ink leading-snug">{lane.title}</h3>
@@ -317,7 +322,7 @@ function ForIndex() {
               <article
                 key={audience.slug}
                 id={audience.slug}
-                className="recruiter-soft-reveal recruiter-card scroll-mt-24 rounded-2xl border border-rule bg-surface p-5 md:p-6"
+                className="recruiter-soft-reveal recruiter-card scroll-mt-24 rounded-lg border border-rule bg-surface p-5 md:p-6"
                 style={delayStyle(80 + index * 70)}
               >
                 <div className="grid lg:grid-cols-12 gap-6">
@@ -460,7 +465,7 @@ function ForIndex() {
         </div>
       </section>
 
-      <section className="recruiter-soft-reveal recruiter-cta-panel rounded-2xl border border-rule bg-ink text-background p-6 md:p-8 flex flex-col md:flex-row md:items-center md:justify-between gap-5">
+      <section className="recruiter-soft-reveal recruiter-cta-panel rounded-lg border border-[var(--brand)] bg-[var(--brand)] text-background p-6 md:p-8 flex flex-col md:flex-row md:items-center md:justify-between gap-5">
         <div>
           <h2 className="font-instrument text-2xl md:text-3xl leading-tight">
             Shortlist for serious payments, product and program mandates.
@@ -475,7 +480,7 @@ function ForIndex() {
           <a
             href={profile.resumeHref}
             download
-            className="inline-flex items-center justify-center rounded-full bg-background text-ink px-5 py-2.5 text-sm font-medium hover:bg-[var(--brand)] transition-colors"
+            className="inline-flex items-center justify-center rounded-full bg-background text-ink px-5 py-2.5 text-sm font-medium hover:bg-[var(--brand)] hover:text-background transition-colors"
           >
             Download resume
           </a>

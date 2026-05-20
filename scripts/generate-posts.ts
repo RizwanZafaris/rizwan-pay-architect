@@ -5,10 +5,13 @@ import { join } from "path";
 const BLOG_DIR = "content/blog";
 const OUT = "src/data/posts.ts";
 
+type FrontmatterValue = string | string[] | boolean;
+type FrontmatterData = Record<string, FrontmatterValue>;
+
 function parseFrontmatter(raw: string) {
   const m = raw.match(/^---\n([\s\S]*?)\n---\n?([\s\S]*)$/);
-  if (!m) return { data: {} as Record<string, any>, body: raw };
-  const data: Record<string, any> = {};
+  if (!m) return { data: {} as FrontmatterData, body: raw };
+  const data: FrontmatterData = {};
   const lines = m[1].split("\n");
   let i = 0;
   while (i < lines.length) {
@@ -48,6 +51,10 @@ function parseFrontmatter(raw: string) {
   return { data, body: m[2] };
 }
 
+function textValue(value: FrontmatterValue | undefined, fallback = "") {
+  return typeof value === "string" ? value : fallback;
+}
+
 // Strip the first H1 (essay title) since the page already renders title
 function stripLeadingH1(md: string) {
   return md.replace(/^\s*#\s+[^\n]+\n+/, "");
@@ -85,18 +92,18 @@ const categoryAlias: Record<string, string> = {
 const posts: Post[] = files.map((f) => {
   const raw = readFileSync(join(BLOG_DIR, f), "utf-8");
   const { data, body } = parseFrontmatter(raw);
-  const rawCat = data.category || "Product Strategy";
+  const rawCat = textValue(data.category, "Product Strategy");
   return {
-    slug: data.slug || f.replace(/\.md$/, ""),
-    title: data.title || "Untitled",
-    metaTitle: data.metaTitle || undefined,
-    date: data.publishDate || data.date || "2026-01-01",
+    slug: textValue(data.slug, f.replace(/\.md$/, "")),
+    title: textValue(data.title, "Untitled"),
+    metaTitle: textValue(data.metaTitle) || undefined,
+    date: textValue(data.publishDate) || textValue(data.date, "2026-01-01"),
     category: categoryAlias[rawCat] || rawCat,
-    readingTime: data.readingTime || "8 min read",
-    description: data.metaDescription || data.excerpt || "",
-    thesis: data.excerpt || undefined,
+    readingTime: textValue(data.readingTime, "8 min read"),
+    description: textValue(data.metaDescription) || textValue(data.excerpt),
+    thesis: textValue(data.excerpt) || undefined,
     featured: data.featured === "true" || data.featured === true || undefined,
-    tags: Array.isArray(data.tags) ? data.tags : [],
+    tags: Array.isArray(data.tags) ? data.tags.filter((tag) => typeof tag === "string") : [],
     content: stripLeadingH1(body).trim(),
   };
 });

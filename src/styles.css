@@ -44,51 +44,56 @@
 }
 
 :root {
-  --radius: 1rem;
+  --radius: 0.75rem;
 
-  /* Genz light — airy white canvas, cyan accent */
-  --background: oklch(0.995 0.003 220);
-  --foreground: oklch(0.22 0.02 250);
-  --ink: oklch(0.22 0.02 250);
-  --ink-soft: oklch(0.52 0.015 250);
-  --rule: oklch(0.92 0.01 220);
-  --surface: oklch(0.985 0.006 220);
-  --surface-2: oklch(0.96 0.012 220);
+  /* RZ editorial palette: six colors, mostly white. */
+  --paper: #ffffff;
+  --paper-2: #fafaf8;
+  --paper-3: #f2f0ea;
+  --ink: #111111;
+  --signal: #0e4f4f;
+  --rule: #e0ddd5;
 
-  --card: oklch(1 0 0);
+  --background: var(--paper);
+  --foreground: var(--ink);
+  --ink-soft: color-mix(in oklab, var(--ink) 58%, var(--paper));
+  --surface: var(--paper-2);
+  --surface-2: var(--paper-3);
+
+  --card: var(--paper);
   --card-foreground: var(--ink);
-  --popover: oklch(1 0 0);
+  --popover: var(--paper);
   --popover-foreground: var(--ink);
 
-  --primary: oklch(0.22 0.02 250);
-  --primary-foreground: oklch(0.995 0 0);
-  --brand: oklch(0.78 0.12 215); /* cyan */
-  --brand-foreground: oklch(0.22 0.02 250);
-  --accent-emerald: oklch(0.78 0.12 215); /* same cyan */
+  --primary: var(--ink);
+  --primary-foreground: var(--paper);
+  --brand: var(--signal);
+  --brand-foreground: var(--paper);
+  --accent-emerald: var(--signal);
 
-  --secondary: oklch(0.95 0.012 220);
+  --secondary: var(--paper-3);
   --secondary-foreground: var(--ink);
-  --muted: oklch(0.95 0.012 220);
-  --muted-foreground: oklch(0.42 0.014 250);
-  --accent: oklch(0.95 0.012 220);
+  --muted: var(--paper-3);
+  --muted-foreground: color-mix(in oklab, var(--ink) 54%, var(--paper));
+  --accent: var(--paper-3);
   --accent-foreground: var(--ink);
   --destructive: oklch(0.65 0.22 27.325);
-  --destructive-foreground: oklch(0.99 0 0);
+  --destructive-foreground: var(--paper);
   --border: var(--rule);
   --input: var(--rule);
   --ring: var(--brand);
 
-  --chart-1: oklch(0.78 0.12 215);
-  --chart-2: oklch(0.72 0.18 320);
-  --chart-3: oklch(0.82 0.15 90);
-  --chart-4: oklch(0.7 0.16 25);
-  --chart-5: oklch(0.6 0.04 250);
+  --chart-1: var(--signal);
+  --chart-2: color-mix(in oklab, var(--signal) 70%, var(--ink));
+  --chart-3: color-mix(in oklab, var(--signal) 45%, var(--paper-3));
+  --chart-4: color-mix(in oklab, var(--ink) 72%, var(--paper));
+  --chart-5: var(--paper-3);
 
-  --sidebar: oklch(0.995 0.003 220);
+  --sidebar: var(--paper);
   --sidebar-foreground: var(--ink);
   --sidebar-primary: var(--brand);
-  --sidebar-primary-foreground: oklch(0.22 0.02 250);
-  --sidebar-accent: oklch(0.95 0.012 220);
+  --sidebar-primary-foreground: var(--paper);
+  --sidebar-accent: var(--paper-3);
   --sidebar-accent-foreground: var(--ink);
   --sidebar-border: var(--rule);
   --sidebar-ring: var(--brand);
@@ -135,18 +140,19 @@
     color: var(--color-foreground);
     font-family: var(--font-sans);
     font-feature-settings: "ss01", "cv11";
+    letter-spacing: 0;
   }
   h1,
   h2,
   h3,
   h4 {
     font-family: var(--font-serif);
-    letter-spacing: -0.02em;
+    letter-spacing: 0;
     font-weight: 500;
   }
   .font-display {
     font-family: var(--font-serif);
-    letter-spacing: -0.025em;
+    letter-spacing: 0;
   }
   .prose-editorial {
     font-family: var(--font-serif);
@@ -228,7 +234,7 @@
 @layer utilities {
   .font-instrument {
     font-family: "Instrument Serif", "Source Serif 4", Georgia, serif;
-    letter-spacing: -0.02em;
+    letter-spacing: 0;
   }
   .font-mono-tech {
     font-family: "JetBrains Mono", ui-monospace, monospace;
@@ -377,15 +383,18 @@
   }
 
   .resume-page,
-  .recruiter-page {
+  .recruiter-page,
+  .contact-page {
     isolation: isolate;
   }
 
   .resume-proof-card,
   .recruiter-proof-card,
+  .contact-proof-card,
   .resume-skill-chip,
   .resume-timeline-card,
-  .recruiter-card {
+  .recruiter-card,
+  .contact-card {
     transition:
       transform 180ms ease,
       border-color 180ms ease,
@@ -395,7 +404,9 @@
 
   .resume-proof-card:hover,
   .recruiter-proof-card:hover,
-  .recruiter-card:hover {
+  .contact-proof-card:hover,
+  .recruiter-card:hover,
+  .contact-card:hover {
     transform: translateY(-2px);
     border-color: color-mix(in oklab, var(--ink) 22%, var(--rule));
     box-shadow: 0 14px 34px color-mix(in oklab, var(--ink) 8%, transparent);
@@ -445,11 +456,14 @@
   @media (prefers-reduced-motion: no-preference) {
     .resume-soft-reveal,
     .recruiter-soft-reveal,
+    .contact-soft-reveal,
     .resume-proof-card,
     .recruiter-proof-card,
+    .contact-proof-card,
     .resume-skill-chip,
     .resume-timeline-card,
-    .recruiter-card {
+    .recruiter-card,
+    .contact-card {
       opacity: 0;
       animation: rz-soft-reveal 620ms cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
       animation-delay: var(--motion-delay, 0ms);
@@ -474,12 +488,14 @@
     }
 
     .resume-cta-panel:not(.resume-soft-reveal),
-    .recruiter-cta-panel:not(.recruiter-soft-reveal) {
+    .recruiter-cta-panel:not(.recruiter-soft-reveal),
+    .contact-cta-panel:not(.contact-soft-reveal) {
       animation: rz-panel-breathe 8s ease-in-out infinite;
     }
 
     .resume-soft-reveal.resume-cta-panel,
-    .recruiter-soft-reveal.recruiter-cta-panel {
+    .recruiter-soft-reveal.recruiter-cta-panel,
+    .contact-soft-reveal.contact-cta-panel {
       animation:
         rz-soft-reveal 620ms cubic-bezier(0.2, 0.8, 0.2, 1) forwards,
         rz-panel-breathe 8s ease-in-out infinite;
@@ -495,13 +511,17 @@
     .hero-ring-breathe,
     .resume-soft-reveal,
     .recruiter-soft-reveal,
+    .contact-soft-reveal,
     .resume-proof-card,
     .recruiter-proof-card,
+    .contact-proof-card,
     .resume-skill-chip,
     .resume-timeline-card,
     .recruiter-card,
+    .contact-card,
     .resume-cta-panel,
-    .recruiter-cta-panel {
+    .recruiter-cta-panel,
+    .contact-cta-panel {
       animation: none;
     }
   }

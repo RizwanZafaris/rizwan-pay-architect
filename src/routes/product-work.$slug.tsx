@@ -141,7 +141,7 @@ function CaseStudyPage() {
             height={900}
             loading="eager"
             decoding="async"
-            {...({ fetchpriority: "high" } as any)}
+            fetchPriority="high"
             className="h-full w-full object-cover opacity-60"
           />
           {/* Gradient overlay: heavier on the bottom-left where the H1 sits,

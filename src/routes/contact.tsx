@@ -1,5 +1,5 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { useState, type CSSProperties, type FormEvent } from "react";
 import { profile } from "@/data/profile";
 import { absUrl, SITE_URL } from "@/lib/seo";
 import { ctaClick, outboundClick, trackEvent } from "@/lib/analytics";
@@ -51,7 +51,36 @@ export const Route = createFileRoute("/contact")({
             "@type": "ContactPage",
             url,
             name: "Contact Rizwan Zafar, Payments Product Executive",
-            mainEntity: { "@type": "Person", name: "Rizwan Zafar", url: SITE_URL },
+            mainEntity: {
+              "@type": "Person",
+              name: profile.name,
+              url: SITE_URL,
+              email: `mailto:${profile.email}`,
+              jobTitle: "Product & Program Executive, Fintech Infrastructure",
+              address: {
+                "@type": "PostalAddress",
+                addressLocality: "Dubai",
+                addressCountry: "AE",
+              },
+              sameAs: profile.socials.map((social) => social.url),
+              contactPoint: {
+                "@type": "ContactPoint",
+                email: profile.email,
+                contactType: "Hiring inquiries",
+                areaServed: ["AE", "SA", "SG", "PK", "GB", "EU", "MENA"],
+                availableLanguage: ["English"],
+              },
+              knowsAbout: [
+                "Payments infrastructure",
+                "Product management",
+                "Program management",
+                "Fintech infrastructure",
+                "Payment networks",
+                "Cross-border payments",
+                "Settlement and reconciliation",
+                "Risk and compliance",
+              ],
+            },
           }),
         },
         {
@@ -73,6 +102,12 @@ export const Route = createFileRoute("/contact")({
 
 type Errors = Partial<Record<"name" | "email" | "message", string>>;
 type SubmitState = "idle" | "sending" | "sent" | "mailto" | "error";
+
+const contactProof = [
+  { value: "Dubai", label: "GST / UTC+4" },
+  { value: "24h", label: "Typical reply" },
+  { value: "Senior", label: "Product & program roles" },
+] as const;
 
 function ContactPage() {
   const [state, setState] = useState<SubmitState>("idle");
@@ -134,7 +169,7 @@ function ContactPage() {
     trackEvent("contact_form_start", {});
   }
 
-  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const errs = validate(values);
     setErrors(errs);
@@ -202,7 +237,7 @@ function ContactPage() {
   }
 
   const field =
-    "mt-1 w-full border border-rule bg-background px-3 py-2 rounded-md text-ink focus:outline-none focus:ring-2 focus:ring-ink/20 focus:border-ink";
+    "mt-1 w-full border border-rule bg-card px-3 py-2 rounded-md text-ink focus:outline-none focus:ring-2 focus:ring-[var(--brand)] focus:ring-offset-1 focus:ring-offset-background focus:border-[var(--brand)]";
 
   const isSent = state === "sent";
   const isSending = state === "sending";
@@ -214,27 +249,88 @@ function ContactPage() {
       : "Open email app";
 
   return (
-    <div className="mx-auto max-w-5xl px-6 py-20 grid md:grid-cols-2 gap-16">
-      <div>
-        <div className="text-xs uppercase tracking-[0.18em] text-ink-soft">Contact</div>
-        <h1 className="font-display text-4xl md:text-5xl text-ink mt-3 leading-tight">
-          Contact Rizwan Zafar, Payments Product Executive in Dubai
-        </h1>
-        <p className="mt-4 text-ink font-instrument text-2xl italic">Let's talk payments.</p>
-        <p className="mt-5 text-ink-soft text-lg">
-          Based in {profile.location}. Open to senior product and payment infrastructure roles in
-          UAE, KSA, Singapore, MENA, Europe and global fintech.
-        </p>
-        <p className="mt-3 text-sm text-ink-soft">
-          I reply within 24 hours, Sun–Thu (GST / UTC+4).
-        </p>
-
-        <div className="mt-8">
-          <div className="text-[10px] uppercase tracking-[0.18em] text-ink-soft font-mono-tech mb-3">
-            Best ways to reach me
+    <div className="contact-page mx-auto max-w-6xl px-5 sm:px-6 py-10 md:py-14">
+      <section className="grid lg:grid-cols-[1fr_360px] gap-8 lg:gap-12 border-b border-rule pb-10 md:pb-12">
+        <div className="contact-soft-reveal min-w-0">
+          <div className="flex items-center gap-4">
+            <span className="grid h-9 w-9 place-items-center bg-ink text-background text-sm font-semibold">
+              03
+            </span>
+            <span className="text-[11px] uppercase tracking-[0.22em] text-ink font-mono-tech">
+              Contact
+            </span>
           </div>
+          <h1 className="mt-7 max-w-4xl font-instrument text-4xl sm:text-5xl md:text-6xl text-ink leading-[1.03] text-wrap">
+            Contact Rizwan Zafar, Payments Product Executive in Dubai
+          </h1>
+          <p className="mt-5 max-w-3xl text-lg md:text-xl text-ink-soft leading-relaxed">
+            Open to senior Product, Program, Payments, Fintech Infrastructure, PMO and Digital
+            Transformation roles across UAE, KSA, Singapore, MENA, Europe and global fintech.
+          </p>
+          <div className="mt-7 grid grid-cols-3 gap-3 max-w-2xl" aria-label="Contact proof points">
+            {contactProof.map((item, index) => (
+              <div
+                key={item.label}
+                className="contact-proof-card border border-rule bg-surface px-3 py-3"
+                style={{ "--motion-delay": `${120 + index * 45}ms` } as CSSProperties}
+              >
+                <div className="font-instrument text-2xl text-ink leading-none">{item.value}</div>
+                <div className="mt-1.5 text-[10px] uppercase tracking-[0.12em] text-ink-soft font-mono-tech leading-tight">
+                  {item.label}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <aside
+          className="contact-soft-reveal contact-cta-panel border border-rule bg-surface p-5"
+          style={{ "--motion-delay": "90ms" } as CSSProperties}
+        >
+          <div className="text-[10px] uppercase tracking-[0.18em] text-ink-soft font-mono-tech">
+            For recruiters
+          </div>
+          <p className="mt-3 text-sm text-ink-soft leading-relaxed">
+            Best for serious roles in payments product leadership, payment infrastructure, regulated
+            fintech, cross-border corridors, PMO and executive transformation programs.
+          </p>
+          <div className="mt-5 grid gap-2">
+            <Link
+              to="/resume"
+              className="contact-card flex items-center justify-between border border-rule bg-background px-4 py-3 text-sm text-ink hover:border-ink/30"
+            >
+              <span>View resume</span>
+              <span aria-hidden="true">→</span>
+            </Link>
+            <Link
+              to="/for"
+              className="contact-card flex items-center justify-between border border-rule bg-background px-4 py-3 text-sm text-ink hover:border-ink/30"
+            >
+              <span>Recruiter brief</span>
+              <span aria-hidden="true">→</span>
+            </Link>
+            <Link
+              to="/product-work"
+              className="contact-card flex items-center justify-between border border-rule bg-background px-4 py-3 text-sm text-ink hover:border-ink/30"
+            >
+              <span>Case studies</span>
+              <span aria-hidden="true">→</span>
+            </Link>
+          </div>
+          <div className="mt-5 border-t border-rule pt-4 text-xs text-ink-soft leading-relaxed">
+            Typical reply: within 24 hours, Sunday to Thursday, GST / UTC+4.
+          </div>
+        </aside>
+      </section>
+
+      <section className="grid lg:grid-cols-12 gap-8 lg:gap-12 py-10 md:py-12">
+        <div
+          className="lg:col-span-5 contact-soft-reveal"
+          style={{ "--motion-delay": "120ms" } as CSSProperties}
+        >
+          <h2 className="font-instrument text-2xl md:text-3xl text-ink">Best ways to reach me</h2>
           <ol
-            className="space-y-3 text-sm text-ink-soft"
+            className="mt-5 space-y-3 text-sm text-ink-soft"
             aria-label="Preferred contact channels in order"
           >
             <li>
@@ -246,295 +342,304 @@ function ContactPage() {
               referrals.
             </li>
             <li>
-              <span className="text-ink font-medium">3. The form</span>, pre-formats your message so
-              I can triage faster.
+              <span className="text-ink font-medium">3. The form</span>, to pre-format the
+              conversation with company, role and context.
             </li>
           </ol>
-        </div>
 
-        <div className="mt-8 space-y-4">
-          <a
-            href={`mailto:${profile.email}`}
-            onClick={() => {
-              ctaClick("email_me", "contact_page", `mailto:${profile.email}`);
-              outboundClick(`mailto:${profile.email}`, "contact_page");
-            }}
-            className="flex items-center justify-between border border-rule rounded-lg px-5 py-4 hover:border-ink focus:outline-none focus:ring-2 focus:ring-ink/30 transition-colors group"
-          >
-            <div>
-              <div className="text-xs uppercase tracking-[0.14em] text-ink-soft">Email</div>
-              <div className="font-display text-lg text-ink break-all">{profile.email}</div>
-            </div>
-            <span className="text-ink-soft group-hover:text-ink">→</span>
-          </a>
-          {/* Social cards — LinkedIn, X (Twitter), GitHub. Driven by
-              profile.socials so adding a platform here is a one-line edit. */}
-          <SocialCardList source="contact_page" />
-          <div className="border border-rule rounded-lg px-5 py-4">
-            <div className="text-xs uppercase tracking-[0.14em] text-ink-soft">
-              Location · time zone
-            </div>
-            <div className="font-display text-lg text-ink">{profile.location} · GST (UTC+4)</div>
-          </div>
-        </div>
-      </div>
-
-      <div className="bg-surface border border-rule rounded-lg p-6 md:p-8 min-w-0">
-        <h2 className="font-display text-xl text-ink">Send a message</h2>
-        <p className="mt-2 text-xs text-ink-soft">
-          {usesServerSubmission
-            ? "Submissions go straight to my inbox. I reply within 24 hours."
-            : "This form opens your email app with your message pre-filled. Nothing is sent from this site."}
-        </p>
-        {isSent ? (
-          <div className="mt-6 space-y-3" role="status" aria-live="polite">
-            <div className="text-ink font-medium">
-              Message sent. I'll reply within 24 hours, Sun–Thu GST.
-            </div>
-            <p className="text-sm text-ink-soft">
-              In the meantime, you can also reach me via the channels on the left.
-            </p>
-            <button
-              type="button"
+          <div className="mt-7 space-y-4">
+            <a
+              href={`mailto:${profile.email}`}
               onClick={() => {
-                setState("idle");
-                setValues({
-                  name: "",
-                  email: "",
-                  company: "",
-                  role: "",
-                  message: "",
-                  referral: "",
-                  website: "",
-                });
+                ctaClick("email_me", "contact_page", `mailto:${profile.email}`);
+                outboundClick(`mailto:${profile.email}`, "contact_page");
               }}
-              className="mt-2 text-sm text-ink-soft hover:text-ink underline"
+              className="contact-card flex items-center justify-between border border-rule bg-background px-5 py-4 hover:border-ink/30 focus:outline-none focus:ring-2 focus:ring-[var(--brand)] transition-colors group"
             >
-              Send another
-            </button>
-          </div>
-        ) : state === "mailto" ? (
-          <div className="mt-6 space-y-3" role="status" aria-live="polite">
-            <div className="text-ink font-medium">
-              If your email app did not open, copy the address below.
+              <div>
+                <div className="text-xs uppercase tracking-[0.14em] text-ink-soft">Email</div>
+                <div className="font-display text-lg text-ink break-all">{profile.email}</div>
+              </div>
+              <span className="text-ink-soft group-hover:text-ink">→</span>
+            </a>
+            <SocialCardList source="contact_page" />
+            <div className="contact-card border border-rule bg-surface px-5 py-4">
+              <div className="text-xs uppercase tracking-[0.14em] text-ink-soft">
+                Location · time zone
+              </div>
+              <div className="font-display text-lg text-ink">{profile.location} · GST (UTC+4)</div>
             </div>
-            <div className="flex flex-wrap items-center gap-2 rounded-md border border-rule bg-background px-3 py-2">
-              <span className="text-sm text-ink font-mono-tech break-all min-w-0">
-                {profile.email}
-              </span>
+          </div>
+        </div>
+
+        <div
+          className="lg:col-span-7 contact-soft-reveal bg-surface border border-rule p-6 md:p-8 min-w-0"
+          style={{ "--motion-delay": "180ms" } as CSSProperties}
+        >
+          <h2 className="font-display text-xl text-ink">
+            Send a message about senior product or program roles
+          </h2>
+          <p className="mt-2 text-xs text-ink-soft">
+            {usesServerSubmission
+              ? "Submissions go straight to my inbox. I reply within 24 hours."
+              : "This form opens your email app with your message pre-filled. Nothing is sent from this site."}
+          </p>
+          {isSent ? (
+            <div className="mt-6 space-y-3" role="status" aria-live="polite">
+              <div className="text-ink font-medium">
+                Message sent. I'll reply within 24 hours, Sun–Thu GST.
+              </div>
+              <p className="text-sm text-ink-soft">
+                In the meantime, you can also reach me via the channels on the left.
+              </p>
               <button
                 type="button"
-                onClick={copyEmail}
-                className="ml-auto text-xs uppercase tracking-[0.14em] rounded-md border border-ink/20 px-3 py-1.5 hover:border-ink/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-ink/40"
+                onClick={() => {
+                  setState("idle");
+                  setValues({
+                    name: "",
+                    email: "",
+                    company: "",
+                    role: "",
+                    message: "",
+                    referral: "",
+                    website: "",
+                  });
+                }}
+                className="mt-2 text-sm text-ink-soft hover:text-ink underline"
               >
-                {copied ? "Copied" : "Copy email"}
+                Send another
               </button>
             </div>
-            <button
-              type="button"
-              onClick={() => {
-                setState("idle");
-                setValues({
-                  name: "",
-                  email: "",
-                  company: "",
-                  role: "",
-                  message: "",
-                  referral: "",
-                  website: "",
-                });
-              }}
-              className="mt-2 text-sm text-ink-soft hover:text-ink underline"
-            >
-              Send another
-            </button>
-          </div>
-        ) : (
-          <form onSubmit={onSubmit} onFocus={markStart} className="mt-6 space-y-4" noValidate>
-            {/* Honeypot, visually hidden from sighted users + screen readers */}
-            <div
-              aria-hidden="true"
-              style={{
-                position: "absolute",
-                left: "-10000px",
-                width: "1px",
-                height: "1px",
-                overflow: "hidden",
-              }}
-            >
-              <label htmlFor="website">Leave this field empty</label>
-              <input
-                id="website"
-                name="website"
-                type="text"
-                tabIndex={-1}
-                autoComplete="off"
-                value={values.website}
-                onChange={(e) => setValues({ ...values, website: e.target.value })}
-              />
+          ) : state === "mailto" ? (
+            <div className="mt-6 space-y-3" role="status" aria-live="polite">
+              <div className="text-ink font-medium">
+                If your email app did not open, copy the address below.
+              </div>
+              <div className="flex flex-wrap items-center gap-2 rounded-md border border-rule bg-background px-3 py-2">
+                <span className="text-sm text-ink font-mono-tech break-all min-w-0">
+                  {profile.email}
+                </span>
+                <button
+                  type="button"
+                  onClick={copyEmail}
+                  className="ml-auto text-xs uppercase tracking-[0.14em] rounded-md border border-ink/20 px-3 py-1.5 hover:border-ink/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-ink/40"
+                >
+                  {copied ? "Copied" : "Copy email"}
+                </button>
+              </div>
+              <button
+                type="button"
+                onClick={() => {
+                  setState("idle");
+                  setValues({
+                    name: "",
+                    email: "",
+                    company: "",
+                    role: "",
+                    message: "",
+                    referral: "",
+                    website: "",
+                  });
+                }}
+                className="mt-2 text-sm text-ink-soft hover:text-ink underline"
+              >
+                Send another
+              </button>
             </div>
+          ) : (
+            <form onSubmit={onSubmit} onFocus={markStart} className="mt-6 space-y-4" noValidate>
+              {/* Honeypot, visually hidden from sighted users + screen readers */}
+              <div
+                aria-hidden="true"
+                style={{
+                  position: "absolute",
+                  left: "-10000px",
+                  width: "1px",
+                  height: "1px",
+                  overflow: "hidden",
+                }}
+              >
+                <label htmlFor="website">Leave this field empty</label>
+                <input
+                  id="website"
+                  name="website"
+                  type="text"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  value={values.website}
+                  onChange={(e) => setValues({ ...values, website: e.target.value })}
+                />
+              </div>
 
-            <div>
-              <label className="text-xs uppercase tracking-[0.12em] text-ink-soft" htmlFor="name">
-                Name *
-              </label>
-              <input
-                id="name"
-                name="name"
-                required
-                autoComplete="name"
-                value={values.name}
-                onChange={(e) => setValues({ ...values, name: e.target.value })}
-                aria-invalid={!!errors.name}
-                aria-describedby={errors.name ? "name-err" : undefined}
-                className={field}
-              />
-              {errors.name && (
-                <p id="name-err" className="mt-1 text-xs text-red-600">
-                  {errors.name}
-                </p>
-              )}
-            </div>
-            <div>
-              <label className="text-xs uppercase tracking-[0.12em] text-ink-soft" htmlFor="email">
-                Email *
-              </label>
-              <input
-                id="email"
-                name="email"
-                type="email"
-                required
-                autoComplete="email"
-                value={values.email}
-                onChange={(e) => setValues({ ...values, email: e.target.value })}
-                aria-invalid={!!errors.email}
-                aria-describedby={errors.email ? "email-err" : undefined}
-                className={field}
-              />
-              {errors.email && (
-                <p id="email-err" className="mt-1 text-xs text-red-600">
-                  {errors.email}
-                </p>
-              )}
-            </div>
-            <div className="grid sm:grid-cols-2 gap-4">
+              <div>
+                <label className="text-xs uppercase tracking-[0.12em] text-ink-soft" htmlFor="name">
+                  Name *
+                </label>
+                <input
+                  id="name"
+                  name="name"
+                  required
+                  autoComplete="name"
+                  value={values.name}
+                  onChange={(e) => setValues({ ...values, name: e.target.value })}
+                  aria-invalid={!!errors.name}
+                  aria-describedby={errors.name ? "name-err" : undefined}
+                  className={field}
+                />
+                {errors.name && (
+                  <p id="name-err" className="mt-1 text-xs text-red-600">
+                    {errors.name}
+                  </p>
+                )}
+              </div>
               <div>
                 <label
                   className="text-xs uppercase tracking-[0.12em] text-ink-soft"
-                  htmlFor="company"
+                  htmlFor="email"
                 >
-                  Company
+                  Email *
                 </label>
                 <input
-                  id="company"
-                  name="company"
-                  autoComplete="organization"
-                  value={values.company}
-                  onChange={(e) => setValues({ ...values, company: e.target.value })}
+                  id="email"
+                  name="email"
+                  type="email"
+                  required
+                  autoComplete="email"
+                  value={values.email}
+                  onChange={(e) => setValues({ ...values, email: e.target.value })}
+                  aria-invalid={!!errors.email}
+                  aria-describedby={errors.email ? "email-err" : undefined}
                   className={field}
                 />
+                {errors.email && (
+                  <p id="email-err" className="mt-1 text-xs text-red-600">
+                    {errors.email}
+                  </p>
+                )}
+              </div>
+              <div className="grid sm:grid-cols-2 gap-4">
+                <div>
+                  <label
+                    className="text-xs uppercase tracking-[0.12em] text-ink-soft"
+                    htmlFor="company"
+                  >
+                    Company
+                  </label>
+                  <input
+                    id="company"
+                    name="company"
+                    autoComplete="organization"
+                    value={values.company}
+                    onChange={(e) => setValues({ ...values, company: e.target.value })}
+                    className={field}
+                  />
+                </div>
+                <div>
+                  <label
+                    className="text-xs uppercase tracking-[0.12em] text-ink-soft"
+                    htmlFor="role"
+                  >
+                    Role you're hiring for
+                  </label>
+                  <input
+                    id="role"
+                    name="role"
+                    placeholder="e.g. Director, Acceptance Product"
+                    value={values.role}
+                    onChange={(e) => setValues({ ...values, role: e.target.value })}
+                    className={field}
+                  />
+                </div>
               </div>
               <div>
-                <label className="text-xs uppercase tracking-[0.12em] text-ink-soft" htmlFor="role">
-                  Role you're hiring for
+                <label
+                  className="text-xs uppercase tracking-[0.12em] text-ink-soft"
+                  htmlFor="message"
+                >
+                  Message *
                 </label>
-                <input
-                  id="role"
-                  name="role"
-                  placeholder="e.g. Director, Acceptance Product"
-                  value={values.role}
-                  onChange={(e) => setValues({ ...values, role: e.target.value })}
+                <p id="message-help" className="mt-1 text-[11px] text-ink-soft">
+                  Helpful to include: company, location, contractor or full-time, target start.
+                </p>
+                <textarea
+                  id="message"
+                  name="message"
+                  required
+                  rows={5}
+                  value={values.message}
+                  onChange={(e) => setValues({ ...values, message: e.target.value })}
+                  aria-invalid={!!errors.message}
+                  aria-describedby={errors.message ? "message-err message-help" : "message-help"}
                   className={field}
                 />
+                {errors.message && (
+                  <p id="message-err" className="mt-1 text-xs text-red-600">
+                    {errors.message}
+                  </p>
+                )}
               </div>
-            </div>
-            <div>
-              <label
-                className="text-xs uppercase tracking-[0.12em] text-ink-soft"
-                htmlFor="message"
-              >
-                Message *
-              </label>
-              <p id="message-help" className="mt-1 text-[11px] text-ink-soft">
-                Helpful to include: company, location, contractor or full-time, target start.
-              </p>
-              <textarea
-                id="message"
-                name="message"
-                required
-                rows={5}
-                value={values.message}
-                onChange={(e) => setValues({ ...values, message: e.target.value })}
-                aria-invalid={!!errors.message}
-                aria-describedby={errors.message ? "message-err message-help" : "message-help"}
-                className={field}
-              />
-              {errors.message && (
-                <p id="message-err" className="mt-1 text-xs text-red-600">
-                  {errors.message}
-                </p>
-              )}
-            </div>
-            <div>
-              <label
-                className="text-xs uppercase tracking-[0.12em] text-ink-soft"
-                htmlFor="referral"
-              >
-                How did you hear about me?
-              </label>
-              <select
-                id="referral"
-                name="referral"
-                value={values.referral}
-                onChange={(e) => setValues({ ...values, referral: e.target.value })}
-                className={field}
-              >
-                <option value="">,</option>
-                <option value="LinkedIn">LinkedIn</option>
-                <option value="Google search">Google search</option>
-                <option value="Referral">Referral</option>
-                <option value="Blog/essay">A blog or essay I wrote</option>
-                <option value="Conference/event">Conference / event</option>
-                <option value="Other">Other</option>
-              </select>
-            </div>
+              <div>
+                <label
+                  className="text-xs uppercase tracking-[0.12em] text-ink-soft"
+                  htmlFor="referral"
+                >
+                  How did you hear about me?
+                </label>
+                <select
+                  id="referral"
+                  name="referral"
+                  value={values.referral}
+                  onChange={(e) => setValues({ ...values, referral: e.target.value })}
+                  className={field}
+                >
+                  <option value="">,</option>
+                  <option value="LinkedIn">LinkedIn</option>
+                  <option value="Google search">Google search</option>
+                  <option value="Referral">Referral</option>
+                  <option value="Blog/essay">A blog or essay I wrote</option>
+                  <option value="Conference/event">Conference / event</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
 
-            <div className="flex flex-wrap gap-3 pt-1">
-              <button
-                type="submit"
-                disabled={isSending}
-                className="inline-flex items-center rounded-md bg-ink text-background px-5 py-2.5 text-sm font-medium hover:bg-brand focus:outline-none focus:ring-2 focus:ring-ink/40 transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
-              >
-                {submitLabel}
-              </button>
-              <button
-                type="button"
-                onClick={copyEmail}
-                className="inline-flex items-center rounded-md border border-ink/20 px-5 py-2.5 text-sm font-medium text-ink hover:border-ink/50 focus:outline-none focus:ring-2 focus:ring-ink/30 transition-colors"
-              >
-                {copied ? "Email copied ✓" : "Copy email"}
-              </button>
-            </div>
-            <p role="status" aria-live="polite" className="min-h-[1.25rem] text-xs">
-              {state === "error" ? (
-                <span className="text-red-600 font-medium">
-                  {errorMsg || "Something went wrong. Use the email link on the left."}
-                </span>
-              ) : copied ? (
-                <span className="text-[var(--accent-emerald)] font-medium">
-                  Email address copied to clipboard.
-                </span>
-              ) : (
-                <span className="text-ink-soft">
-                  {usesServerSubmission
-                    ? "Submissions are protected with a spam filter and sent straight to my inbox."
-                    : "This opens your email app with the message pre-filled, it does not send from this site."}
-                </span>
-              )}
-            </p>
-          </form>
-        )}
-      </div>
+              <div className="flex flex-wrap gap-3 pt-1">
+                <button
+                  type="submit"
+                  disabled={isSending}
+                  className="inline-flex items-center rounded-md bg-ink text-background px-5 py-2.5 text-sm font-medium hover:bg-brand focus:outline-none focus:ring-2 focus:ring-ink/40 transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+                >
+                  {submitLabel}
+                </button>
+                <button
+                  type="button"
+                  onClick={copyEmail}
+                  className="inline-flex items-center rounded-md border border-ink/20 px-5 py-2.5 text-sm font-medium text-ink hover:border-ink/50 focus:outline-none focus:ring-2 focus:ring-ink/30 transition-colors"
+                >
+                  {copied ? "Email copied ✓" : "Copy email"}
+                </button>
+              </div>
+              <p role="status" aria-live="polite" className="min-h-[1.25rem] text-xs">
+                {state === "error" ? (
+                  <span className="text-red-600 font-medium">
+                    {errorMsg || "Something went wrong. Use the email link on the left."}
+                  </span>
+                ) : copied ? (
+                  <span className="text-[var(--accent-emerald)] font-medium">
+                    Email address copied to clipboard.
+                  </span>
+                ) : (
+                  <span className="text-ink-soft">
+                    {usesServerSubmission
+                      ? "Submissions are protected with a spam filter and sent straight to my inbox."
+                      : "This opens your email app with the message pre-filled, it does not send from this site."}
+                  </span>
+                )}
+              </p>
+            </form>
+          )}
+        </div>
+      </section>
     </div>
   );
 }

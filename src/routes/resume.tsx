@@ -181,10 +181,15 @@ function ResumePage() {
     <div className="resume-page mx-auto max-w-6xl px-5 sm:px-6 py-10 md:py-14">
       <section className="grid lg:grid-cols-[1fr_320px] gap-8 lg:gap-12 items-start border-b border-rule pb-10 md:pb-12">
         <div className="resume-soft-reveal min-w-0" style={delayStyle(0)}>
-          <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--accent-emerald)] font-mono-tech">
-            Executive resume
+          <div className="flex items-center gap-4">
+            <span className="grid h-9 w-9 place-items-center bg-ink text-background text-sm font-semibold">
+              01
+            </span>
+            <span className="text-[11px] uppercase tracking-[0.22em] text-ink font-mono-tech">
+              Executive resume
+            </span>
           </div>
-          <h1 className="font-instrument text-3xl sm:text-4xl md:text-6xl text-ink mt-3 leading-[1.02] max-w-4xl text-wrap">
+          <h1 className="font-instrument text-3xl sm:text-4xl md:text-6xl text-ink mt-7 leading-[1.02] max-w-4xl text-wrap">
             Rizwan Zafar, Product &amp; Program Executive
           </h1>
           <p className="mt-4 text-lg md:text-xl text-ink-soft leading-relaxed max-w-3xl">
@@ -228,7 +233,7 @@ function ResumePage() {
         </div>
 
         <aside
-          className="resume-soft-reveal rounded-2xl border border-rule bg-card/80 p-5 shadow-sm"
+          className="resume-soft-reveal rounded-lg border border-rule bg-surface p-5"
           style={delayStyle(90)}
         >
           <div className="text-[10px] uppercase tracking-[0.18em] text-ink-soft font-mono-tech">
@@ -261,7 +266,7 @@ function ResumePage() {
         {proofMetrics.map((m, index) => (
           <div
             key={m.label}
-            className="resume-proof-card rounded-xl border border-rule bg-surface px-4 py-3"
+            className="resume-proof-card rounded-lg border border-rule bg-surface px-4 py-3"
             style={delayStyle(180 + index * 45)}
           >
             <div className="font-instrument text-2xl text-ink leading-none">{m.value}</div>
@@ -297,7 +302,7 @@ function ResumePage() {
             {roleFit.map((item, index) => (
               <div
                 key={item.title}
-                className="resume-soft-reveal rounded-xl border border-rule bg-card p-4"
+                className="resume-soft-reveal rounded-lg border border-rule bg-card p-4"
                 style={delayStyle(160 + index * 55)}
               >
                 <h3 className="font-instrument text-lg text-ink">{item.title}</h3>
@@ -317,7 +322,7 @@ function ResumePage() {
             {prioritySkills.map((skill, index) => (
               <span
                 key={skill}
-                className="resume-skill-chip rounded-full border border-rule bg-surface px-3 py-1.5 text-sm text-ink"
+                className="resume-skill-chip rounded-md border border-rule bg-surface px-3 py-1.5 text-sm text-ink"
                 style={delayStyle(index * 35)}
               >
                 {skill}
@@ -380,7 +385,7 @@ function ResumePage() {
                 {group.items.map((item, index) => (
                   <span
                     key={item}
-                    className="resume-skill-chip text-xs px-2.5 py-1 border border-rule rounded-full text-ink bg-surface"
+                    className="resume-skill-chip text-xs px-2.5 py-1 border border-rule rounded-md text-ink bg-surface"
                     style={delayStyle(index * 25)}
                   >
                     {item}
@@ -453,7 +458,7 @@ function ResumePage() {
         </div>
       </section>
 
-      <section className="resume-cta-panel rounded-2xl border border-rule bg-ink text-background p-6 md:p-8 flex flex-col md:flex-row md:items-center md:justify-between gap-5">
+      <section className="resume-cta-panel rounded-lg border border-[var(--brand)] bg-[var(--brand)] text-background p-6 md:p-8 flex flex-col md:flex-row md:items-center md:justify-between gap-5">
         <div>
           <h2 className="font-instrument text-2xl md:text-3xl leading-tight">
             Ready for senior product, payments and program leadership roles.
@@ -467,7 +472,7 @@ function ResumePage() {
           <a
             href={profile.resumeHref}
             download
-            className="inline-flex items-center justify-center rounded-full bg-background text-ink px-5 py-2.5 text-sm font-medium hover:bg-[var(--brand)] transition-colors"
+            className="inline-flex items-center justify-center rounded-full bg-background text-ink px-5 py-2.5 text-sm font-medium hover:bg-[var(--brand)] hover:text-background transition-colors"
           >
             Download PDF
           </a>

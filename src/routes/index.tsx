@@ -216,7 +216,7 @@ function HomePage() {
               <Link
                 to="/product-work"
                 onClick={() => ctaClick("see_case_studies", "hero", "/product-work")}
-                className="group inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-base text-background bg-ink hover:bg-[var(--brand)] hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background transition-colors"
+                className="group inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-base text-background bg-ink hover:bg-[var(--brand)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background transition-colors"
               >
                 See case studies
                 <span className="transition-transform group-hover:translate-x-1" aria-hidden>
@@ -300,7 +300,7 @@ function HomePage() {
                   height={1150}
                   loading="eager"
                   decoding="async"
-                  {...({ fetchpriority: "high" } as any)}
+                  fetchPriority="high"
                   className="relative z-10 h-full w-full object-contain object-bottom"
                 />
               </picture>
