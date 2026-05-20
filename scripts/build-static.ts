@@ -19,12 +19,12 @@
  *                          unless your code reads it (we don't).
  */
 
-import { mkdir, writeFile, cp, rm, copyFile, readdir } from "node:fs/promises";
+import { mkdir, writeFile, cp, rm, copyFile, readdir, rename } from "node:fs/promises";
 import { existsSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { caseStudies } from "../src/data/caseStudies";
 import { posts } from "../src/data/posts";
-import { audiences } from "../src/data/hubs";
+import { audiences, hubs } from "../src/data/hubs";
 import { products } from "../src/data/products";
 import { absUrl } from "../src/lib/seo";
 
@@ -56,12 +56,20 @@ function collectRoutes(): string[] {
     .map((p) => p.link)
     .filter((href) => href.startsWith("/products/"));
   const audiencePaths = audiences.map((a) => `/for/${a.slug}`);
+  const topicPaths = hubs.map((h) => `/topics/${h.slug}`);
   const caseStudyPaths = caseStudies.map((c) => `/product-work/${c.slug}`);
   // Prerender every post regardless of publishDate. Static-only deploys (Hostinger)
   // need physical HTML for every post the blog index links to, otherwise links 404.
   // "Scheduling" via future dates does not work for a manually-uploaded static build.
   const blogPaths = posts.map((p) => `/blog/${p.slug}`);
-  return [...staticPaths, ...productPaths, ...audiencePaths, ...caseStudyPaths, ...blogPaths];
+  return [
+    ...staticPaths,
+    ...productPaths,
+    ...audiencePaths,
+    ...topicPaths,
+    ...caseStudyPaths,
+    ...blogPaths,
+  ];
 }
 
 function pathToFile(path: string): string {
@@ -224,30 +232,77 @@ async function copyHtaccess() {
   }
 }
 
-async function removeMacConflictCopies(dir = OUT_DIR): Promise<number> {
-  let removed = 0;
+function conflictOriginalName(name: string): string | null {
+  const withExtension = name.match(/^(.*) \d+(\.[^.]+)$/);
+  if (withExtension) return `${withExtension[1]}${withExtension[2]}`;
+
+  const directory = name.match(/^(.*) \d+$/);
+  return directory ? directory[1] : null;
+}
+
+async function mergeDirectoryContents(sourceDir: string, targetDir: string) {
+  await mkdir(targetDir, { recursive: true });
+  const entries = await readdir(sourceDir, { withFileTypes: true });
+
+  for (const entry of entries) {
+    const sourcePath = join(sourceDir, entry.name);
+    const targetPath = join(targetDir, entry.name);
+
+    if (!existsSync(targetPath)) {
+      await rename(sourcePath, targetPath);
+      continue;
+    }
+
+    if (entry.isDirectory()) {
+      await mergeDirectoryContents(sourcePath, targetPath);
+      await rm(sourcePath, { recursive: true, force: true });
+    } else {
+      await rm(sourcePath, { force: true });
+    }
+  }
+}
+
+async function resolveMacConflictCopies(dir = OUT_DIR): Promise<number> {
+  let resolved = 0;
   const entries = await readdir(dir, { withFileTypes: true });
 
   for (const entry of entries) {
     if (entry.name.startsWith(".")) continue;
 
     const fullPath = join(dir, entry.name);
-    const originalName = entry.name.replace(/ \d+$/, "");
-    const hasConflictSuffix = originalName !== entry.name;
-    const originalPath = join(dir, originalName);
+    const originalName = conflictOriginalName(entry.name);
 
-    if (hasConflictSuffix && existsSync(originalPath)) {
-      await rm(fullPath, { recursive: true, force: true });
-      removed++;
+    if (originalName) {
+      const originalPath = join(dir, originalName);
+      if (!existsSync(originalPath)) {
+        await rename(fullPath, originalPath);
+      } else if (entry.isDirectory()) {
+        await mergeDirectoryContents(fullPath, originalPath);
+        await rm(fullPath, { recursive: true, force: true });
+      } else {
+        await rm(fullPath, { force: true });
+      }
+      resolved++;
       continue;
     }
 
     if (entry.isDirectory()) {
-      removed += await removeMacConflictCopies(fullPath);
+      resolved += await resolveMacConflictCopies(fullPath);
     }
   }
 
-  return removed;
+  return resolved;
+}
+
+function assertPrerenderedRoutesExist(routes: string[]) {
+  const missing = routes.filter((route) => !existsSync(pathToFile(route)));
+  if (missing.length > 0) {
+    throw new Error(
+      `Static export missing ${missing.length} route file(s): ${missing
+        .slice(0, 12)
+        .join(", ")}${missing.length > 12 ? "..." : ""}`,
+    );
+  }
 }
 
 async function main() {
@@ -290,12 +345,12 @@ async function main() {
   // .htaccess for Apache (Hostinger)
   await copyHtaccess();
 
-  const conflictCopiesRemoved = await removeMacConflictCopies();
-  if (conflictCopiesRemoved > 0) {
-    console.log(
-      `✓ Removed ${conflictCopiesRemoved} macOS conflict-copy folder(s) from ${OUT_DIR}/`,
-    );
+  const conflictCopiesResolved = await resolveMacConflictCopies();
+  if (conflictCopiesResolved > 0) {
+    console.log(`✓ Resolved ${conflictCopiesResolved} macOS conflict-copy item(s) in ${OUT_DIR}/`);
   }
+
+  assertPrerenderedRoutesExist(routes);
 
   console.log(`\nDone: ${ok} routes prerendered, ${fail} failed.`);
   console.log(`Output: ./${OUT_DIR}/  (upload contents to public_html/ on Hostinger)\n`);

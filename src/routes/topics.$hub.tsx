@@ -18,12 +18,12 @@ export const Route = createFileRoute("/topics/$hub")({
     const h = loaderData?.hub;
     if (!h) return { meta: [{ title: "Topic" }, { name: "robots", content: "noindex" }] };
     const url = absUrl(`/topics/${params.hub}`);
-    const canonical = absUrl("/topics");
+    const canonical = url;
     return {
       meta: [
-        { title: `${h.title}, Payments Knowledge Base | Rizwan Zafar` },
+        { title: `${h.title} | Rizwan Zafar` },
         { name: "description", content: h.description },
-        // Thin until unique content, canonicalize to /topics and noindex.
+        // Thin until unique content; keep discoverable paths but noindex them.
         { name: "robots", content: "noindex, follow" },
         { property: "og:title", content: `${h.title}, Rizwan Zafar` },
         { property: "og:description", content: h.description },

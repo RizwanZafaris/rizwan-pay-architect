@@ -28,8 +28,11 @@ export type CaseStudy = {
 
 // Hero image paths follow a strict convention so routes don't need to look
 // up the path from data — same slug, two sizes. See public/cs/.
-export const caseStudyHero = (slug: string) => `/cs/${slug}.webp`;
-export const caseStudyThumb = (slug: string) => `/cs/${slug}-thumb.webp`;
+const caseStudyImageSlug = (slug: string) =>
+  slug === "swift-mt-mx-implementation-simpaisa" ? "cross-border-corridors-fx" : slug;
+
+export const caseStudyHero = (slug: string) => `/cs/${caseStudyImageSlug(slug)}.webp`;
+export const caseStudyThumb = (slug: string) => `/cs/${caseStudyImageSlug(slug)}-thumb.webp`;
 
 export const caseStudies: CaseStudy[] = [
   {

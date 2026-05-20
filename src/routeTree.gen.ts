@@ -17,6 +17,7 @@ import { Route as MediaRouteImport } from './routes/media'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as TopicsIndexRouteImport } from './routes/topics.index'
 import { Route as ProductWorkIndexRouteImport } from './routes/product-work.index'
 import { Route as ForIndexRouteImport } from './routes/for.index'
 import { Route as BlogIndexRouteImport } from './routes/blog.index'
@@ -65,6 +66,11 @@ const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
+} as any)
+const TopicsIndexRoute = TopicsIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => TopicsRoute,
 } as any)
 const ProductWorkIndexRoute = ProductWorkIndexRouteImport.update({
   id: '/product-work/',
@@ -124,6 +130,7 @@ export interface FileRoutesByFullPath {
   '/blog/': typeof BlogIndexRoute
   '/for/': typeof ForIndexRoute
   '/product-work/': typeof ProductWorkIndexRoute
+  '/topics/': typeof TopicsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -133,7 +140,6 @@ export interface FileRoutesByTo {
   '/products': typeof ProductsRouteWithChildren
   '/resume': typeof ResumeRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
-  '/topics': typeof TopicsRouteWithChildren
   '/blog/$slug': typeof BlogSlugRoute
   '/for/$audience': typeof ForAudienceRoute
   '/product-work/$slug': typeof ProductWorkSlugRoute
@@ -142,6 +148,7 @@ export interface FileRoutesByTo {
   '/blog': typeof BlogIndexRoute
   '/for': typeof ForIndexRoute
   '/product-work': typeof ProductWorkIndexRoute
+  '/topics': typeof TopicsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -161,6 +168,7 @@ export interface FileRoutesById {
   '/blog/': typeof BlogIndexRoute
   '/for/': typeof ForIndexRoute
   '/product-work/': typeof ProductWorkIndexRoute
+  '/topics/': typeof TopicsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -181,6 +189,7 @@ export interface FileRouteTypes {
     | '/blog/'
     | '/for/'
     | '/product-work/'
+    | '/topics/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -190,7 +199,6 @@ export interface FileRouteTypes {
     | '/products'
     | '/resume'
     | '/sitemap.xml'
-    | '/topics'
     | '/blog/$slug'
     | '/for/$audience'
     | '/product-work/$slug'
@@ -199,6 +207,7 @@ export interface FileRouteTypes {
     | '/blog'
     | '/for'
     | '/product-work'
+    | '/topics'
   id:
     | '__root__'
     | '/'
@@ -217,6 +226,7 @@ export interface FileRouteTypes {
     | '/blog/'
     | '/for/'
     | '/product-work/'
+    | '/topics/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -294,6 +304,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/topics/': {
+      id: '/topics/'
+      path: '/'
+      fullPath: '/topics/'
+      preLoaderRoute: typeof TopicsIndexRouteImport
+      parentRoute: typeof TopicsRoute
+    }
     '/product-work/': {
       id: '/product-work/'
       path: '/product-work'
@@ -367,10 +384,12 @@ const ProductsRouteWithChildren = ProductsRoute._addFileChildren(
 
 interface TopicsRouteChildren {
   TopicsHubRoute: typeof TopicsHubRoute
+  TopicsIndexRoute: typeof TopicsIndexRoute
 }
 
 const TopicsRouteChildren: TopicsRouteChildren = {
   TopicsHubRoute: TopicsHubRoute,
+  TopicsIndexRoute: TopicsIndexRoute,
 }
 
 const TopicsRouteWithChildren =
@@ -395,3 +414,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
