@@ -19,9 +19,9 @@
  *                          unless your code reads it (we don't).
  */
 
-import { mkdir, writeFile, cp, rm, copyFile } from "node:fs/promises";
+import { mkdir, writeFile, cp, rm, copyFile, readdir } from "node:fs/promises";
 import { existsSync } from "node:fs";
-import { dirname } from "node:path";
+import { dirname, join } from "node:path";
 import { caseStudies } from "../src/data/caseStudies";
 import { posts } from "../src/data/posts";
 import { audiences } from "../src/data/hubs";
@@ -224,6 +224,32 @@ async function copyHtaccess() {
   }
 }
 
+async function removeMacConflictCopies(dir = OUT_DIR): Promise<number> {
+  let removed = 0;
+  const entries = await readdir(dir, { withFileTypes: true });
+
+  for (const entry of entries) {
+    if (entry.name.startsWith(".")) continue;
+
+    const fullPath = join(dir, entry.name);
+    const originalName = entry.name.replace(/ \d+$/, "");
+    const hasConflictSuffix = originalName !== entry.name;
+    const originalPath = join(dir, originalName);
+
+    if (hasConflictSuffix && existsSync(originalPath)) {
+      await rm(fullPath, { recursive: true, force: true });
+      removed++;
+      continue;
+    }
+
+    if (entry.isDirectory()) {
+      removed += await removeMacConflictCopies(fullPath);
+    }
+  }
+
+  return removed;
+}
+
 async function main() {
   // Fresh output dir
   if (existsSync(OUT_DIR)) {
@@ -263,6 +289,13 @@ async function main() {
 
   // .htaccess for Apache (Hostinger)
   await copyHtaccess();
+
+  const conflictCopiesRemoved = await removeMacConflictCopies();
+  if (conflictCopiesRemoved > 0) {
+    console.log(
+      `✓ Removed ${conflictCopiesRemoved} macOS conflict-copy folder(s) from ${OUT_DIR}/`,
+    );
+  }
 
   console.log(`\nDone: ${ok} routes prerendered, ${fail} failed.`);
   console.log(`Output: ./${OUT_DIR}/  (upload contents to public_html/ on Hostinger)\n`);
