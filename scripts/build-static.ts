@@ -141,24 +141,23 @@ async function prerender(worker: Worker, routes: string[]) {
 /**
  * Strip dev-only TanStack Start / Vite scripts from the prerendered HTML.
  *
- * TanStack Start emits a placeholder `<script type="module">import("/@id/
- * virtual:tanstack-start-client-entry")</script>` for the client hydration
- * entry. In the SSR-on-Cloudflare-Worker output we consume here, that path
- * never gets resolved to a real hashed bundle — it's the Vite dev-server
- * module syntax. Production browsers fetch it, get a 404, and the site
- * still works because every animation we use is CSS-only and every link is
- * a real `<a>` that loads the prerendered HTML of the next route.
+ * TanStack Start can emit a placeholder module import for the client
+ * hydration entry. In the SSR-on-Cloudflare-Worker output we consume here,
+ * that path never gets resolved to a real hashed bundle. Production browsers
+ * fetch it, get a 404, and the site still works because every animation we
+ * use is CSS-only and every link is a real `<a>` that loads the prerendered
+ * HTML of the next route.
  *
  * Also strips any TanStack `$_TSR` / `$R` stream barriers that depend on
  * client-side hydration. Without the hydration runtime they're inert noise.
  *
  * Net effect: the static export becomes pure server-rendered HTML with CSS
- * animations and standard MPA navigation — no broken /@id/virtual fetches,
- * no failed dynamic import, no 404 in DevTools.
+ * animations and standard MPA navigation — no broken development-only
+ * module fetches, no failed dynamic import, no 404 in DevTools.
  */
 function stripDevServerScripts(html: string): string {
   let out = html;
-  // 1. The hydration entry script (the `/@id/virtual:` import).
+  // 1. The hydration entry script.
   out = out.replace(
     /<script[^>]*type=["']module["'][^>]*>\s*import\(["']\/@id\/virtual:[^"']+["']\)\s*<\/script>/gi,
     "",
@@ -168,8 +167,8 @@ function stripDevServerScripts(html: string): string {
     /<script class=["']\$tsr["'][\s\S]*?document\.currentScript\.remove\(\)<\/script>/gi,
     "",
   );
-  // 3. Any other lingering /@id/virtual: reference embedded in the stream
-  //    barrier payload (the TanStack manifest can include them inline).
+  // 3. Any other lingering dev-only reference embedded in the stream barrier
+  //    payload (the TanStack manifest can include them inline).
   out = out.replace(/<script[^>]*>\s*\(self\.\$R=self\.\$R[\s\S]*?<\/script>/g, "");
   return out;
 }
@@ -267,8 +266,6 @@ async function resolveMacConflictCopies(dir = OUT_DIR): Promise<number> {
   const entries = await readdir(dir, { withFileTypes: true });
 
   for (const entry of entries) {
-    if (entry.name.startsWith(".")) continue;
-
     const fullPath = join(dir, entry.name);
     const originalName = conflictOriginalName(entry.name);
 

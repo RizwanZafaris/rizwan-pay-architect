@@ -1,0 +1,3502 @@
+[
+  {
+    "id": "CB-001",
+    "cluster": "Cross-Border Payments, SWIFT, ISO 20022 and Emerging Markets",
+    "title": "SWIFT gpi tracking: operator playbook for complex-market fintech teams",
+    "slug": "swift-gpi-tracking-operator-playbook-for-complex-market-fintech-teams",
+    "searchIntent": "Operator playbook",
+    "primaryKeyword": "SWIFT gpi tracking operator playbook",
+    "secondaryKeywords": [
+      "SWIFT gpi tracking",
+      "operator playbook",
+      "cross-border payments",
+      "SWIFT",
+      "ISO 20022",
+      "emerging markets"
+    ],
+    "targetReader": "Cross-border PMs, bank digital leaders, corridor operators and MENA/South Asia fintech teams",
+    "whyRizwanCanWin": "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+    "outline": [
+      "Define SWIFT gpi tracking and the decision context",
+      "Show where it sits in the payment/product/program stack",
+      "Explain the product, risk, compliance and operating trade-offs",
+      "Name failure modes that appear in production",
+      "Define metrics and launch or governance gates",
+      "Connect to a Rizwan case study or operator lesson",
+      "Close with FAQ answers for AI search snippets"
+    ],
+    "internalLinks": [
+      "/topics/cross-border-payments",
+      "/topics/swift-iso-20022",
+      "/blog/swift-payment-explained",
+      "/product-work/cross-border-corridors-fx"
+    ],
+    "aiAnswerSnippet": "SWIFT gpi tracking should be treated as an operating-system decision, not a standalone feature. The useful answer connects product design, partner dependency, risk controls, metrics and production operations.",
+    "publishPriority": 5
+  },
+  {
+    "id": "CB-002",
+    "cluster": "Cross-Border Payments, SWIFT, ISO 20022 and Emerging Markets",
+    "title": "SWIFT gpi tracking: corridor design for complex-market fintech teams",
+    "slug": "swift-gpi-tracking-corridor-design-for-complex-market-fintech-teams",
+    "searchIntent": "Technical education",
+    "primaryKeyword": "SWIFT gpi tracking corridor design",
+    "secondaryKeywords": [
+      "SWIFT gpi tracking",
+      "corridor design",
+      "cross-border payments",
+      "SWIFT",
+      "ISO 20022",
+      "emerging markets"
+    ],
+    "targetReader": "Cross-border PMs, bank digital leaders, corridor operators and MENA/South Asia fintech teams",
+    "whyRizwanCanWin": "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+    "outline": [
+      "Define SWIFT gpi tracking and the decision context",
+      "Show where it sits in the payment/product/program stack",
+      "Explain the product, risk, compliance and operating trade-offs",
+      "Name failure modes that appear in production",
+      "Define metrics and launch or governance gates",
+      "Connect to a Rizwan case study or operator lesson",
+      "Close with FAQ answers for AI search snippets"
+    ],
+    "internalLinks": [
+      "/topics/cross-border-payments",
+      "/topics/swift-iso-20022",
+      "/blog/swift-payment-explained",
+      "/product-work/cross-border-corridors-fx"
+    ],
+    "aiAnswerSnippet": "SWIFT gpi tracking should be treated as an operating-system decision, not a standalone feature. The useful answer connects product design, partner dependency, risk controls, metrics and production operations.",
+    "publishPriority": 5
+  },
+  {
+    "id": "CB-003",
+    "cluster": "Cross-Border Payments, SWIFT, ISO 20022 and Emerging Markets",
+    "title": "SWIFT gpi tracking: market-entry checklist for complex-market fintech teams",
+    "slug": "swift-gpi-tracking-market-entry-checklist-for-complex-market-fintech-teams",
+    "searchIntent": "Practical checklist",
+    "primaryKeyword": "SWIFT gpi tracking market-entry checklist",
+    "secondaryKeywords": [
+      "SWIFT gpi tracking",
+      "market-entry checklist",
+      "cross-border payments",
+      "SWIFT",
+      "ISO 20022",
+      "emerging markets"
+    ],
+    "targetReader": "Cross-border PMs, bank digital leaders, corridor operators and MENA/South Asia fintech teams",
+    "whyRizwanCanWin": "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+    "outline": [
+      "Define SWIFT gpi tracking and the decision context",
+      "Show where it sits in the payment/product/program stack",
+      "Explain the product, risk, compliance and operating trade-offs",
+      "Name failure modes that appear in production",
+      "Define metrics and launch or governance gates",
+      "Connect to a Rizwan case study or operator lesson",
+      "Close with FAQ answers for AI search snippets"
+    ],
+    "internalLinks": [
+      "/topics/cross-border-payments",
+      "/topics/swift-iso-20022",
+      "/blog/swift-payment-explained",
+      "/product-work/cross-border-corridors-fx"
+    ],
+    "aiAnswerSnippet": "SWIFT gpi tracking should be treated as an operating-system decision, not a standalone feature. The useful answer connects product design, partner dependency, risk controls, metrics and production operations.",
+    "publishPriority": 5
+  },
+  {
+    "id": "CB-004",
+    "cluster": "Cross-Border Payments, SWIFT, ISO 20022 and Emerging Markets",
+    "title": "SWIFT gpi tracking: cost model for complex-market fintech teams",
+    "slug": "swift-gpi-tracking-cost-model-for-complex-market-fintech-teams",
+    "searchIntent": "Operator playbook",
+    "primaryKeyword": "SWIFT gpi tracking cost model",
+    "secondaryKeywords": [
+      "SWIFT gpi tracking",
+      "cost model",
+      "cross-border payments",
+      "SWIFT",
+      "ISO 20022",
+      "emerging markets"
+    ],
+    "targetReader": "Cross-border PMs, bank digital leaders, corridor operators and MENA/South Asia fintech teams",
+    "whyRizwanCanWin": "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+    "outline": [
+      "Define SWIFT gpi tracking and the decision context",
+      "Show where it sits in the payment/product/program stack",
+      "Explain the product, risk, compliance and operating trade-offs",
+      "Name failure modes that appear in production",
+      "Define metrics and launch or governance gates",
+      "Connect to a Rizwan case study or operator lesson",
+      "Close with FAQ answers for AI search snippets"
+    ],
+    "internalLinks": [
+      "/topics/cross-border-payments",
+      "/topics/swift-iso-20022",
+      "/blog/swift-payment-explained",
+      "/product-work/cross-border-corridors-fx"
+    ],
+    "aiAnswerSnippet": "SWIFT gpi tracking should be treated as an operating-system decision, not a standalone feature. The useful answer connects product design, partner dependency, risk controls, metrics and production operations.",
+    "publishPriority": 5
+  },
+  {
+    "id": "CB-005",
+    "cluster": "Cross-Border Payments, SWIFT, ISO 20022 and Emerging Markets",
+    "title": "SWIFT gpi tracking: risk and compliance guide for complex-market fintech teams",
+    "slug": "swift-gpi-tracking-risk-and-compliance-guide-for-complex-market-fintech-teams",
+    "searchIntent": "Operator playbook",
+    "primaryKeyword": "SWIFT gpi tracking risk and compliance guide",
+    "secondaryKeywords": [
+      "SWIFT gpi tracking",
+      "risk and compliance guide",
+      "cross-border payments",
+      "SWIFT",
+      "ISO 20022",
+      "emerging markets"
+    ],
+    "targetReader": "Cross-border PMs, bank digital leaders, corridor operators and MENA/South Asia fintech teams",
+    "whyRizwanCanWin": "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+    "outline": [
+      "Define SWIFT gpi tracking and the decision context",
+      "Show where it sits in the payment/product/program stack",
+      "Explain the product, risk, compliance and operating trade-offs",
+      "Name failure modes that appear in production",
+      "Define metrics and launch or governance gates",
+      "Connect to a Rizwan case study or operator lesson",
+      "Close with FAQ answers for AI search snippets"
+    ],
+    "internalLinks": [
+      "/topics/cross-border-payments",
+      "/topics/swift-iso-20022",
+      "/blog/swift-payment-explained",
+      "/product-work/cross-border-corridors-fx"
+    ],
+    "aiAnswerSnippet": "SWIFT gpi tracking should be treated as an operating-system decision, not a standalone feature. The useful answer connects product design, partner dependency, risk controls, metrics and production operations.",
+    "publishPriority": 5
+  },
+  {
+    "id": "CB-006",
+    "cluster": "Cross-Border Payments, SWIFT, ISO 20022 and Emerging Markets",
+    "title": "ISO 20022 migration: operator playbook for complex-market fintech teams",
+    "slug": "iso-20022-migration-operator-playbook-for-complex-market-fintech-teams",
+    "searchIntent": "Operator playbook",
+    "primaryKeyword": "ISO 20022 migration operator playbook",
+    "secondaryKeywords": [
+      "ISO 20022 migration",
+      "operator playbook",
+      "cross-border payments",
+      "SWIFT",
+      "ISO 20022",
+      "emerging markets"
+    ],
+    "targetReader": "Cross-border PMs, bank digital leaders, corridor operators and MENA/South Asia fintech teams",
+    "whyRizwanCanWin": "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+    "outline": [
+      "Define ISO 20022 migration and the decision context",
+      "Show where it sits in the payment/product/program stack",
+      "Explain the product, risk, compliance and operating trade-offs",
+      "Name failure modes that appear in production",
+      "Define metrics and launch or governance gates",
+      "Connect to a Rizwan case study or operator lesson",
+      "Close with FAQ answers for AI search snippets"
+    ],
+    "internalLinks": [
+      "/topics/cross-border-payments",
+      "/topics/swift-iso-20022",
+      "/blog/swift-payment-explained",
+      "/product-work/cross-border-corridors-fx"
+    ],
+    "aiAnswerSnippet": "ISO 20022 migration should be treated as an operating-system decision, not a standalone feature. The useful answer connects product design, partner dependency, risk controls, metrics and production operations.",
+    "publishPriority": 5
+  },
+  {
+    "id": "CB-007",
+    "cluster": "Cross-Border Payments, SWIFT, ISO 20022 and Emerging Markets",
+    "title": "ISO 20022 migration: corridor design for complex-market fintech teams",
+    "slug": "iso-20022-migration-corridor-design-for-complex-market-fintech-teams",
+    "searchIntent": "Technical education",
+    "primaryKeyword": "ISO 20022 migration corridor design",
+    "secondaryKeywords": [
+      "ISO 20022 migration",
+      "corridor design",
+      "cross-border payments",
+      "SWIFT",
+      "ISO 20022",
+      "emerging markets"
+    ],
+    "targetReader": "Cross-border PMs, bank digital leaders, corridor operators and MENA/South Asia fintech teams",
+    "whyRizwanCanWin": "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+    "outline": [
+      "Define ISO 20022 migration and the decision context",
+      "Show where it sits in the payment/product/program stack",
+      "Explain the product, risk, compliance and operating trade-offs",
+      "Name failure modes that appear in production",
+      "Define metrics and launch or governance gates",
+      "Connect to a Rizwan case study or operator lesson",
+      "Close with FAQ answers for AI search snippets"
+    ],
+    "internalLinks": [
+      "/topics/cross-border-payments",
+      "/topics/swift-iso-20022",
+      "/blog/swift-payment-explained",
+      "/product-work/cross-border-corridors-fx"
+    ],
+    "aiAnswerSnippet": "ISO 20022 migration should be treated as an operating-system decision, not a standalone feature. The useful answer connects product design, partner dependency, risk controls, metrics and production operations.",
+    "publishPriority": 5
+  },
+  {
+    "id": "CB-008",
+    "cluster": "Cross-Border Payments, SWIFT, ISO 20022 and Emerging Markets",
+    "title": "ISO 20022 migration: market-entry checklist for complex-market fintech teams",
+    "slug": "iso-20022-migration-market-entry-checklist-for-complex-market-fintech-teams",
+    "searchIntent": "Practical checklist",
+    "primaryKeyword": "ISO 20022 migration market-entry checklist",
+    "secondaryKeywords": [
+      "ISO 20022 migration",
+      "market-entry checklist",
+      "cross-border payments",
+      "SWIFT",
+      "ISO 20022",
+      "emerging markets"
+    ],
+    "targetReader": "Cross-border PMs, bank digital leaders, corridor operators and MENA/South Asia fintech teams",
+    "whyRizwanCanWin": "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+    "outline": [
+      "Define ISO 20022 migration and the decision context",
+      "Show where it sits in the payment/product/program stack",
+      "Explain the product, risk, compliance and operating trade-offs",
+      "Name failure modes that appear in production",
+      "Define metrics and launch or governance gates",
+      "Connect to a Rizwan case study or operator lesson",
+      "Close with FAQ answers for AI search snippets"
+    ],
+    "internalLinks": [
+      "/topics/cross-border-payments",
+      "/topics/swift-iso-20022",
+      "/blog/swift-payment-explained",
+      "/product-work/cross-border-corridors-fx"
+    ],
+    "aiAnswerSnippet": "ISO 20022 migration should be treated as an operating-system decision, not a standalone feature. The useful answer connects product design, partner dependency, risk controls, metrics and production operations.",
+    "publishPriority": 5
+  },
+  {
+    "id": "CB-009",
+    "cluster": "Cross-Border Payments, SWIFT, ISO 20022 and Emerging Markets",
+    "title": "ISO 20022 migration: cost model for complex-market fintech teams",
+    "slug": "iso-20022-migration-cost-model-for-complex-market-fintech-teams",
+    "searchIntent": "Operator playbook",
+    "primaryKeyword": "ISO 20022 migration cost model",
+    "secondaryKeywords": [
+      "ISO 20022 migration",
+      "cost model",
+      "cross-border payments",
+      "SWIFT",
+      "ISO 20022",
+      "emerging markets"
+    ],
+    "targetReader": "Cross-border PMs, bank digital leaders, corridor operators and MENA/South Asia fintech teams",
+    "whyRizwanCanWin": "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+    "outline": [
+      "Define ISO 20022 migration and the decision context",
+      "Show where it sits in the payment/product/program stack",
+      "Explain the product, risk, compliance and operating trade-offs",
+      "Name failure modes that appear in production",
+      "Define metrics and launch or governance gates",
+      "Connect to a Rizwan case study or operator lesson",
+      "Close with FAQ answers for AI search snippets"
+    ],
+    "internalLinks": [
+      "/topics/cross-border-payments",
+      "/topics/swift-iso-20022",
+      "/blog/swift-payment-explained",
+      "/product-work/cross-border-corridors-fx"
+    ],
+    "aiAnswerSnippet": "ISO 20022 migration should be treated as an operating-system decision, not a standalone feature. The useful answer connects product design, partner dependency, risk controls, metrics and production operations.",
+    "publishPriority": 5
+  },
+  {
+    "id": "CB-010",
+    "cluster": "Cross-Border Payments, SWIFT, ISO 20022 and Emerging Markets",
+    "title": "ISO 20022 migration: risk and compliance guide for complex-market fintech teams",
+    "slug": "iso-20022-migration-risk-and-compliance-guide-for-complex-market-fintech-teams",
+    "searchIntent": "Operator playbook",
+    "primaryKeyword": "ISO 20022 migration risk and compliance guide",
+    "secondaryKeywords": [
+      "ISO 20022 migration",
+      "risk and compliance guide",
+      "cross-border payments",
+      "SWIFT",
+      "ISO 20022",
+      "emerging markets"
+    ],
+    "targetReader": "Cross-border PMs, bank digital leaders, corridor operators and MENA/South Asia fintech teams",
+    "whyRizwanCanWin": "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+    "outline": [
+      "Define ISO 20022 migration and the decision context",
+      "Show where it sits in the payment/product/program stack",
+      "Explain the product, risk, compliance and operating trade-offs",
+      "Name failure modes that appear in production",
+      "Define metrics and launch or governance gates",
+      "Connect to a Rizwan case study or operator lesson",
+      "Close with FAQ answers for AI search snippets"
+    ],
+    "internalLinks": [
+      "/topics/cross-border-payments",
+      "/topics/swift-iso-20022",
+      "/blog/swift-payment-explained",
+      "/product-work/cross-border-corridors-fx"
+    ],
+    "aiAnswerSnippet": "ISO 20022 migration should be treated as an operating-system decision, not a standalone feature. The useful answer connects product design, partner dependency, risk controls, metrics and production operations.",
+    "publishPriority": 5
+  },
+  {
+    "id": "CB-011",
+    "cluster": "Cross-Border Payments, SWIFT, ISO 20022 and Emerging Markets",
+    "title": "MT to MX coexistence: operator playbook for complex-market fintech teams",
+    "slug": "mt-to-mx-coexistence-operator-playbook-for-complex-market-fintech-teams",
+    "searchIntent": "Operator playbook",
+    "primaryKeyword": "MT to MX coexistence operator playbook",
+    "secondaryKeywords": [
+      "MT to MX coexistence",
+      "operator playbook",
+      "cross-border payments",
+      "SWIFT",
+      "ISO 20022",
+      "emerging markets"
+    ],
+    "targetReader": "Cross-border PMs, bank digital leaders, corridor operators and MENA/South Asia fintech teams",
+    "whyRizwanCanWin": "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+    "outline": [
+      "Define MT to MX coexistence and the decision context",
+      "Show where it sits in the payment/product/program stack",
+      "Explain the product, risk, compliance and operating trade-offs",
+      "Name failure modes that appear in production",
+      "Define metrics and launch or governance gates",
+      "Connect to a Rizwan case study or operator lesson",
+      "Close with FAQ answers for AI search snippets"
+    ],
+    "internalLinks": [
+      "/topics/cross-border-payments",
+      "/topics/swift-iso-20022",
+      "/blog/swift-payment-explained",
+      "/product-work/cross-border-corridors-fx"
+    ],
+    "aiAnswerSnippet": "MT to MX coexistence should be treated as an operating-system decision, not a standalone feature. The useful answer connects product design, partner dependency, risk controls, metrics and production operations.",
+    "publishPriority": 5
+  },
+  {
+    "id": "CB-012",
+    "cluster": "Cross-Border Payments, SWIFT, ISO 20022 and Emerging Markets",
+    "title": "MT to MX coexistence: corridor design for complex-market fintech teams",
+    "slug": "mt-to-mx-coexistence-corridor-design-for-complex-market-fintech-teams",
+    "searchIntent": "Technical education",
+    "primaryKeyword": "MT to MX coexistence corridor design",
+    "secondaryKeywords": [
+      "MT to MX coexistence",
+      "corridor design",
+      "cross-border payments",
+      "SWIFT",
+      "ISO 20022",
+      "emerging markets"
+    ],
+    "targetReader": "Cross-border PMs, bank digital leaders, corridor operators and MENA/South Asia fintech teams",
+    "whyRizwanCanWin": "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+    "outline": [
+      "Define MT to MX coexistence and the decision context",
+      "Show where it sits in the payment/product/program stack",
+      "Explain the product, risk, compliance and operating trade-offs",
+      "Name failure modes that appear in production",
+      "Define metrics and launch or governance gates",
+      "Connect to a Rizwan case study or operator lesson",
+      "Close with FAQ answers for AI search snippets"
+    ],
+    "internalLinks": [
+      "/topics/cross-border-payments",
+      "/topics/swift-iso-20022",
+      "/blog/swift-payment-explained",
+      "/product-work/cross-border-corridors-fx"
+    ],
+    "aiAnswerSnippet": "MT to MX coexistence should be treated as an operating-system decision, not a standalone feature. The useful answer connects product design, partner dependency, risk controls, metrics and production operations.",
+    "publishPriority": 5
+  },
+  {
+    "id": "CB-013",
+    "cluster": "Cross-Border Payments, SWIFT, ISO 20022 and Emerging Markets",
+    "title": "MT to MX coexistence: market-entry checklist for complex-market fintech teams",
+    "slug": "mt-to-mx-coexistence-market-entry-checklist-for-complex-market-fintech-teams",
+    "searchIntent": "Practical checklist",
+    "primaryKeyword": "MT to MX coexistence market-entry checklist",
+    "secondaryKeywords": [
+      "MT to MX coexistence",
+      "market-entry checklist",
+      "cross-border payments",
+      "SWIFT",
+      "ISO 20022",
+      "emerging markets"
+    ],
+    "targetReader": "Cross-border PMs, bank digital leaders, corridor operators and MENA/South Asia fintech teams",
+    "whyRizwanCanWin": "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+    "outline": [
+      "Define MT to MX coexistence and the decision context",
+      "Show where it sits in the payment/product/program stack",
+      "Explain the product, risk, compliance and operating trade-offs",
+      "Name failure modes that appear in production",
+      "Define metrics and launch or governance gates",
+      "Connect to a Rizwan case study or operator lesson",
+      "Close with FAQ answers for AI search snippets"
+    ],
+    "internalLinks": [
+      "/topics/cross-border-payments",
+      "/topics/swift-iso-20022",
+      "/blog/swift-payment-explained",
+      "/product-work/cross-border-corridors-fx"
+    ],
+    "aiAnswerSnippet": "MT to MX coexistence should be treated as an operating-system decision, not a standalone feature. The useful answer connects product design, partner dependency, risk controls, metrics and production operations.",
+    "publishPriority": 5
+  },
+  {
+    "id": "CB-014",
+    "cluster": "Cross-Border Payments, SWIFT, ISO 20022 and Emerging Markets",
+    "title": "MT to MX coexistence: cost model for complex-market fintech teams",
+    "slug": "mt-to-mx-coexistence-cost-model-for-complex-market-fintech-teams",
+    "searchIntent": "Operator playbook",
+    "primaryKeyword": "MT to MX coexistence cost model",
+    "secondaryKeywords": [
+      "MT to MX coexistence",
+      "cost model",
+      "cross-border payments",
+      "SWIFT",
+      "ISO 20022",
+      "emerging markets"
+    ],
+    "targetReader": "Cross-border PMs, bank digital leaders, corridor operators and MENA/South Asia fintech teams",
+    "whyRizwanCanWin": "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+    "outline": [
+      "Define MT to MX coexistence and the decision context",
+      "Show where it sits in the payment/product/program stack",
+      "Explain the product, risk, compliance and operating trade-offs",
+      "Name failure modes that appear in production",
+      "Define metrics and launch or governance gates",
+      "Connect to a Rizwan case study or operator lesson",
+      "Close with FAQ answers for AI search snippets"
+    ],
+    "internalLinks": [
+      "/topics/cross-border-payments",
+      "/topics/swift-iso-20022",
+      "/blog/swift-payment-explained",
+      "/product-work/cross-border-corridors-fx"
+    ],
+    "aiAnswerSnippet": "MT to MX coexistence should be treated as an operating-system decision, not a standalone feature. The useful answer connects product design, partner dependency, risk controls, metrics and production operations.",
+    "publishPriority": 5
+  },
+  {
+    "id": "CB-015",
+    "cluster": "Cross-Border Payments, SWIFT, ISO 20022 and Emerging Markets",
+    "title": "MT to MX coexistence: risk and compliance guide for complex-market fintech teams",
+    "slug": "mt-to-mx-coexistence-risk-and-compliance-guide-for-complex-market-fintech-teams",
+    "searchIntent": "Operator playbook",
+    "primaryKeyword": "MT to MX coexistence risk and compliance guide",
+    "secondaryKeywords": [
+      "MT to MX coexistence",
+      "risk and compliance guide",
+      "cross-border payments",
+      "SWIFT",
+      "ISO 20022",
+      "emerging markets"
+    ],
+    "targetReader": "Cross-border PMs, bank digital leaders, corridor operators and MENA/South Asia fintech teams",
+    "whyRizwanCanWin": "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+    "outline": [
+      "Define MT to MX coexistence and the decision context",
+      "Show where it sits in the payment/product/program stack",
+      "Explain the product, risk, compliance and operating trade-offs",
+      "Name failure modes that appear in production",
+      "Define metrics and launch or governance gates",
+      "Connect to a Rizwan case study or operator lesson",
+      "Close with FAQ answers for AI search snippets"
+    ],
+    "internalLinks": [
+      "/topics/cross-border-payments",
+      "/topics/swift-iso-20022",
+      "/blog/swift-payment-explained",
+      "/product-work/cross-border-corridors-fx"
+    ],
+    "aiAnswerSnippet": "MT to MX coexistence should be treated as an operating-system decision, not a standalone feature. The useful answer connects product design, partner dependency, risk controls, metrics and production operations.",
+    "publishPriority": 5
+  },
+  {
+    "id": "CB-016",
+    "cluster": "Cross-Border Payments, SWIFT, ISO 20022 and Emerging Markets",
+    "title": "correspondent banking: operator playbook for complex-market fintech teams",
+    "slug": "correspondent-banking-operator-playbook-for-complex-market-fintech-teams",
+    "searchIntent": "Operator playbook",
+    "primaryKeyword": "correspondent banking operator playbook",
+    "secondaryKeywords": [
+      "correspondent banking",
+      "operator playbook",
+      "cross-border payments",
+      "SWIFT",
+      "ISO 20022",
+      "emerging markets"
+    ],
+    "targetReader": "Cross-border PMs, bank digital leaders, corridor operators and MENA/South Asia fintech teams",
+    "whyRizwanCanWin": "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+    "outline": [
+      "Define correspondent banking and the decision context",
+      "Show where it sits in the payment/product/program stack",
+      "Explain the product, risk, compliance and operating trade-offs",
+      "Name failure modes that appear in production",
+      "Define metrics and launch or governance gates",
+      "Connect to a Rizwan case study or operator lesson",
+      "Close with FAQ answers for AI search snippets"
+    ],
+    "internalLinks": [
+      "/topics/cross-border-payments",
+      "/topics/swift-iso-20022",
+      "/blog/swift-payment-explained",
+      "/product-work/cross-border-corridors-fx"
+    ],
+    "aiAnswerSnippet": "correspondent banking should be treated as an operating-system decision, not a standalone feature. The useful answer connects product design, partner dependency, risk controls, metrics and production operations.",
+    "publishPriority": 5
+  },
+  {
+    "id": "CB-017",
+    "cluster": "Cross-Border Payments, SWIFT, ISO 20022 and Emerging Markets",
+    "title": "correspondent banking: corridor design for complex-market fintech teams",
+    "slug": "correspondent-banking-corridor-design-for-complex-market-fintech-teams",
+    "searchIntent": "Technical education",
+    "primaryKeyword": "correspondent banking corridor design",
+    "secondaryKeywords": [
+      "correspondent banking",
+      "corridor design",
+      "cross-border payments",
+      "SWIFT",
+      "ISO 20022",
+      "emerging markets"
+    ],
+    "targetReader": "Cross-border PMs, bank digital leaders, corridor operators and MENA/South Asia fintech teams",
+    "whyRizwanCanWin": "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+    "outline": [
+      "Define correspondent banking and the decision context",
+      "Show where it sits in the payment/product/program stack",
+      "Explain the product, risk, compliance and operating trade-offs",
+      "Name failure modes that appear in production",
+      "Define metrics and launch or governance gates",
+      "Connect to a Rizwan case study or operator lesson",
+      "Close with FAQ answers for AI search snippets"
+    ],
+    "internalLinks": [
+      "/topics/cross-border-payments",
+      "/topics/swift-iso-20022",
+      "/blog/swift-payment-explained",
+      "/product-work/cross-border-corridors-fx"
+    ],
+    "aiAnswerSnippet": "correspondent banking should be treated as an operating-system decision, not a standalone feature. The useful answer connects product design, partner dependency, risk controls, metrics and production operations.",
+    "publishPriority": 5
+  },
+  {
+    "id": "CB-018",
+    "cluster": "Cross-Border Payments, SWIFT, ISO 20022 and Emerging Markets",
+    "title": "correspondent banking: market-entry checklist for complex-market fintech teams",
+    "slug": "correspondent-banking-market-entry-checklist-for-complex-market-fintech-teams",
+    "searchIntent": "Practical checklist",
+    "primaryKeyword": "correspondent banking market-entry checklist",
+    "secondaryKeywords": [
+      "correspondent banking",
+      "market-entry checklist",
+      "cross-border payments",
+      "SWIFT",
+      "ISO 20022",
+      "emerging markets"
+    ],
+    "targetReader": "Cross-border PMs, bank digital leaders, corridor operators and MENA/South Asia fintech teams",
+    "whyRizwanCanWin": "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+    "outline": [
+      "Define correspondent banking and the decision context",
+      "Show where it sits in the payment/product/program stack",
+      "Explain the product, risk, compliance and operating trade-offs",
+      "Name failure modes that appear in production",
+      "Define metrics and launch or governance gates",
+      "Connect to a Rizwan case study or operator lesson",
+      "Close with FAQ answers for AI search snippets"
+    ],
+    "internalLinks": [
+      "/topics/cross-border-payments",
+      "/topics/swift-iso-20022",
+      "/blog/swift-payment-explained",
+      "/product-work/cross-border-corridors-fx"
+    ],
+    "aiAnswerSnippet": "correspondent banking should be treated as an operating-system decision, not a standalone feature. The useful answer connects product design, partner dependency, risk controls, metrics and production operations.",
+    "publishPriority": 5
+  },
+  {
+    "id": "CB-019",
+    "cluster": "Cross-Border Payments, SWIFT, ISO 20022 and Emerging Markets",
+    "title": "correspondent banking: cost model for complex-market fintech teams",
+    "slug": "correspondent-banking-cost-model-for-complex-market-fintech-teams",
+    "searchIntent": "Operator playbook",
+    "primaryKeyword": "correspondent banking cost model",
+    "secondaryKeywords": [
+      "correspondent banking",
+      "cost model",
+      "cross-border payments",
+      "SWIFT",
+      "ISO 20022",
+      "emerging markets"
+    ],
+    "targetReader": "Cross-border PMs, bank digital leaders, corridor operators and MENA/South Asia fintech teams",
+    "whyRizwanCanWin": "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+    "outline": [
+      "Define correspondent banking and the decision context",
+      "Show where it sits in the payment/product/program stack",
+      "Explain the product, risk, compliance and operating trade-offs",
+      "Name failure modes that appear in production",
+      "Define metrics and launch or governance gates",
+      "Connect to a Rizwan case study or operator lesson",
+      "Close with FAQ answers for AI search snippets"
+    ],
+    "internalLinks": [
+      "/topics/cross-border-payments",
+      "/topics/swift-iso-20022",
+      "/blog/swift-payment-explained",
+      "/product-work/cross-border-corridors-fx"
+    ],
+    "aiAnswerSnippet": "correspondent banking should be treated as an operating-system decision, not a standalone feature. The useful answer connects product design, partner dependency, risk controls, metrics and production operations.",
+    "publishPriority": 5
+  },
+  {
+    "id": "CB-020",
+    "cluster": "Cross-Border Payments, SWIFT, ISO 20022 and Emerging Markets",
+    "title": "correspondent banking: risk and compliance guide for complex-market fintech teams",
+    "slug": "correspondent-banking-risk-and-compliance-guide-for-complex-market-fintech-teams",
+    "searchIntent": "Operator playbook",
+    "primaryKeyword": "correspondent banking risk and compliance guide",
+    "secondaryKeywords": [
+      "correspondent banking",
+      "risk and compliance guide",
+      "cross-border payments",
+      "SWIFT",
+      "ISO 20022",
+      "emerging markets"
+    ],
+    "targetReader": "Cross-border PMs, bank digital leaders, corridor operators and MENA/South Asia fintech teams",
+    "whyRizwanCanWin": "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+    "outline": [
+      "Define correspondent banking and the decision context",
+      "Show where it sits in the payment/product/program stack",
+      "Explain the product, risk, compliance and operating trade-offs",
+      "Name failure modes that appear in production",
+      "Define metrics and launch or governance gates",
+      "Connect to a Rizwan case study or operator lesson",
+      "Close with FAQ answers for AI search snippets"
+    ],
+    "internalLinks": [
+      "/topics/cross-border-payments",
+      "/topics/swift-iso-20022",
+      "/blog/swift-payment-explained",
+      "/product-work/cross-border-corridors-fx"
+    ],
+    "aiAnswerSnippet": "correspondent banking should be treated as an operating-system decision, not a standalone feature. The useful answer connects product design, partner dependency, risk controls, metrics and production operations.",
+    "publishPriority": 5
+  },
+  {
+    "id": "CB-021",
+    "cluster": "Cross-Border Payments, SWIFT, ISO 20022 and Emerging Markets",
+    "title": "nostro vostro operations: operator playbook for complex-market fintech teams",
+    "slug": "nostro-vostro-operations-operator-playbook-for-complex-market-fintech-teams",
+    "searchIntent": "Operator playbook",
+    "primaryKeyword": "nostro vostro operations operator playbook",
+    "secondaryKeywords": [
+      "nostro vostro operations",
+      "operator playbook",
+      "cross-border payments",
+      "SWIFT",
+      "ISO 20022",
+      "emerging markets"
+    ],
+    "targetReader": "Cross-border PMs, bank digital leaders, corridor operators and MENA/South Asia fintech teams",
+    "whyRizwanCanWin": "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+    "outline": [
+      "Define nostro vostro operations and the decision context",
+      "Show where it sits in the payment/product/program stack",
+      "Explain the product, risk, compliance and operating trade-offs",
+      "Name failure modes that appear in production",
+      "Define metrics and launch or governance gates",
+      "Connect to a Rizwan case study or operator lesson",
+      "Close with FAQ answers for AI search snippets"
+    ],
+    "internalLinks": [
+      "/topics/cross-border-payments",
+      "/topics/swift-iso-20022",
+      "/blog/swift-payment-explained",
+      "/product-work/cross-border-corridors-fx"
+    ],
+    "aiAnswerSnippet": "nostro vostro operations should be treated as an operating-system decision, not a standalone feature. The useful answer connects product design, partner dependency, risk controls, metrics and production operations.",
+    "publishPriority": 4
+  },
+  {
+    "id": "CB-022",
+    "cluster": "Cross-Border Payments, SWIFT, ISO 20022 and Emerging Markets",
+    "title": "nostro vostro operations: corridor design for complex-market fintech teams",
+    "slug": "nostro-vostro-operations-corridor-design-for-complex-market-fintech-teams",
+    "searchIntent": "Technical education",
+    "primaryKeyword": "nostro vostro operations corridor design",
+    "secondaryKeywords": [
+      "nostro vostro operations",
+      "corridor design",
+      "cross-border payments",
+      "SWIFT",
+      "ISO 20022",
+      "emerging markets"
+    ],
+    "targetReader": "Cross-border PMs, bank digital leaders, corridor operators and MENA/South Asia fintech teams",
+    "whyRizwanCanWin": "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+    "outline": [
+      "Define nostro vostro operations and the decision context",
+      "Show where it sits in the payment/product/program stack",
+      "Explain the product, risk, compliance and operating trade-offs",
+      "Name failure modes that appear in production",
+      "Define metrics and launch or governance gates",
+      "Connect to a Rizwan case study or operator lesson",
+      "Close with FAQ answers for AI search snippets"
+    ],
+    "internalLinks": [
+      "/topics/cross-border-payments",
+      "/topics/swift-iso-20022",
+      "/blog/swift-payment-explained",
+      "/product-work/cross-border-corridors-fx"
+    ],
+    "aiAnswerSnippet": "nostro vostro operations should be treated as an operating-system decision, not a standalone feature. The useful answer connects product design, partner dependency, risk controls, metrics and production operations.",
+    "publishPriority": 4
+  },
+  {
+    "id": "CB-023",
+    "cluster": "Cross-Border Payments, SWIFT, ISO 20022 and Emerging Markets",
+    "title": "nostro vostro operations: market-entry checklist for complex-market fintech teams",
+    "slug": "nostro-vostro-operations-market-entry-checklist-for-complex-market-fintech-teams",
+    "searchIntent": "Practical checklist",
+    "primaryKeyword": "nostro vostro operations market-entry checklist",
+    "secondaryKeywords": [
+      "nostro vostro operations",
+      "market-entry checklist",
+      "cross-border payments",
+      "SWIFT",
+      "ISO 20022",
+      "emerging markets"
+    ],
+    "targetReader": "Cross-border PMs, bank digital leaders, corridor operators and MENA/South Asia fintech teams",
+    "whyRizwanCanWin": "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+    "outline": [
+      "Define nostro vostro operations and the decision context",
+      "Show where it sits in the payment/product/program stack",
+      "Explain the product, risk, compliance and operating trade-offs",
+      "Name failure modes that appear in production",
+      "Define metrics and launch or governance gates",
+      "Connect to a Rizwan case study or operator lesson",
+      "Close with FAQ answers for AI search snippets"
+    ],
+    "internalLinks": [
+      "/topics/cross-border-payments",
+      "/topics/swift-iso-20022",
+      "/blog/swift-payment-explained",
+      "/product-work/cross-border-corridors-fx"
+    ],
+    "aiAnswerSnippet": "nostro vostro operations should be treated as an operating-system decision, not a standalone feature. The useful answer connects product design, partner dependency, risk controls, metrics and production operations.",
+    "publishPriority": 4
+  },
+  {
+    "id": "CB-024",
+    "cluster": "Cross-Border Payments, SWIFT, ISO 20022 and Emerging Markets",
+    "title": "nostro vostro operations: cost model for complex-market fintech teams",
+    "slug": "nostro-vostro-operations-cost-model-for-complex-market-fintech-teams",
+    "searchIntent": "Operator playbook",
+    "primaryKeyword": "nostro vostro operations cost model",
+    "secondaryKeywords": [
+      "nostro vostro operations",
+      "cost model",
+      "cross-border payments",
+      "SWIFT",
+      "ISO 20022",
+      "emerging markets"
+    ],
+    "targetReader": "Cross-border PMs, bank digital leaders, corridor operators and MENA/South Asia fintech teams",
+    "whyRizwanCanWin": "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+    "outline": [
+      "Define nostro vostro operations and the decision context",
+      "Show where it sits in the payment/product/program stack",
+      "Explain the product, risk, compliance and operating trade-offs",
+      "Name failure modes that appear in production",
+      "Define metrics and launch or governance gates",
+      "Connect to a Rizwan case study or operator lesson",
+      "Close with FAQ answers for AI search snippets"
+    ],
+    "internalLinks": [
+      "/topics/cross-border-payments",
+      "/topics/swift-iso-20022",
+      "/blog/swift-payment-explained",
+      "/product-work/cross-border-corridors-fx"
+    ],
+    "aiAnswerSnippet": "nostro vostro operations should be treated as an operating-system decision, not a standalone feature. The useful answer connects product design, partner dependency, risk controls, metrics and production operations.",
+    "publishPriority": 4
+  },
+  {
+    "id": "CB-025",
+    "cluster": "Cross-Border Payments, SWIFT, ISO 20022 and Emerging Markets",
+    "title": "nostro vostro operations: risk and compliance guide for complex-market fintech teams",
+    "slug": "nostro-vostro-operations-risk-and-compliance-guide-for-complex-market-fintech-teams",
+    "searchIntent": "Operator playbook",
+    "primaryKeyword": "nostro vostro operations risk and compliance guide",
+    "secondaryKeywords": [
+      "nostro vostro operations",
+      "risk and compliance guide",
+      "cross-border payments",
+      "SWIFT",
+      "ISO 20022",
+      "emerging markets"
+    ],
+    "targetReader": "Cross-border PMs, bank digital leaders, corridor operators and MENA/South Asia fintech teams",
+    "whyRizwanCanWin": "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+    "outline": [
+      "Define nostro vostro operations and the decision context",
+      "Show where it sits in the payment/product/program stack",
+      "Explain the product, risk, compliance and operating trade-offs",
+      "Name failure modes that appear in production",
+      "Define metrics and launch or governance gates",
+      "Connect to a Rizwan case study or operator lesson",
+      "Close with FAQ answers for AI search snippets"
+    ],
+    "internalLinks": [
+      "/topics/cross-border-payments",
+      "/topics/swift-iso-20022",
+      "/blog/swift-payment-explained",
+      "/product-work/cross-border-corridors-fx"
+    ],
+    "aiAnswerSnippet": "nostro vostro operations should be treated as an operating-system decision, not a standalone feature. The useful answer connects product design, partner dependency, risk controls, metrics and production operations.",
+    "publishPriority": 4
+  },
+  {
+    "id": "CB-026",
+    "cluster": "Cross-Border Payments, SWIFT, ISO 20022 and Emerging Markets",
+    "title": "FX margin transparency: operator playbook for complex-market fintech teams",
+    "slug": "fx-margin-transparency-operator-playbook-for-complex-market-fintech-teams",
+    "searchIntent": "Operator playbook",
+    "primaryKeyword": "FX margin transparency operator playbook",
+    "secondaryKeywords": [
+      "FX margin transparency",
+      "operator playbook",
+      "cross-border payments",
+      "SWIFT",
+      "ISO 20022",
+      "emerging markets"
+    ],
+    "targetReader": "Cross-border PMs, bank digital leaders, corridor operators and MENA/South Asia fintech teams",
+    "whyRizwanCanWin": "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+    "outline": [
+      "Define FX margin transparency and the decision context",
+      "Show where it sits in the payment/product/program stack",
+      "Explain the product, risk, compliance and operating trade-offs",
+      "Name failure modes that appear in production",
+      "Define metrics and launch or governance gates",
+      "Connect to a Rizwan case study or operator lesson",
+      "Close with FAQ answers for AI search snippets"
+    ],
+    "internalLinks": [
+      "/topics/cross-border-payments",
+      "/topics/swift-iso-20022",
+      "/blog/swift-payment-explained",
+      "/product-work/cross-border-corridors-fx"
+    ],
+    "aiAnswerSnippet": "FX margin transparency should be treated as an operating-system decision, not a standalone feature. The useful answer connects product design, partner dependency, risk controls, metrics and production operations.",
+    "publishPriority": 4
+  },
+  {
+    "id": "CB-027",
+    "cluster": "Cross-Border Payments, SWIFT, ISO 20022 and Emerging Markets",
+    "title": "FX margin transparency: corridor design for complex-market fintech teams",
+    "slug": "fx-margin-transparency-corridor-design-for-complex-market-fintech-teams",
+    "searchIntent": "Technical education",
+    "primaryKeyword": "FX margin transparency corridor design",
+    "secondaryKeywords": [
+      "FX margin transparency",
+      "corridor design",
+      "cross-border payments",
+      "SWIFT",
+      "ISO 20022",
+      "emerging markets"
+    ],
+    "targetReader": "Cross-border PMs, bank digital leaders, corridor operators and MENA/South Asia fintech teams",
+    "whyRizwanCanWin": "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+    "outline": [
+      "Define FX margin transparency and the decision context",
+      "Show where it sits in the payment/product/program stack",
+      "Explain the product, risk, compliance and operating trade-offs",
+      "Name failure modes that appear in production",
+      "Define metrics and launch or governance gates",
+      "Connect to a Rizwan case study or operator lesson",
+      "Close with FAQ answers for AI search snippets"
+    ],
+    "internalLinks": [
+      "/topics/cross-border-payments",
+      "/topics/swift-iso-20022",
+      "/blog/swift-payment-explained",
+      "/product-work/cross-border-corridors-fx"
+    ],
+    "aiAnswerSnippet": "FX margin transparency should be treated as an operating-system decision, not a standalone feature. The useful answer connects product design, partner dependency, risk controls, metrics and production operations.",
+    "publishPriority": 4
+  },
+  {
+    "id": "CB-028",
+    "cluster": "Cross-Border Payments, SWIFT, ISO 20022 and Emerging Markets",
+    "title": "FX margin transparency: market-entry checklist for complex-market fintech teams",
+    "slug": "fx-margin-transparency-market-entry-checklist-for-complex-market-fintech-teams",
+    "searchIntent": "Practical checklist",
+    "primaryKeyword": "FX margin transparency market-entry checklist",
+    "secondaryKeywords": [
+      "FX margin transparency",
+      "market-entry checklist",
+      "cross-border payments",
+      "SWIFT",
+      "ISO 20022",
+      "emerging markets"
+    ],
+    "targetReader": "Cross-border PMs, bank digital leaders, corridor operators and MENA/South Asia fintech teams",
+    "whyRizwanCanWin": "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+    "outline": [
+      "Define FX margin transparency and the decision context",
+      "Show where it sits in the payment/product/program stack",
+      "Explain the product, risk, compliance and operating trade-offs",
+      "Name failure modes that appear in production",
+      "Define metrics and launch or governance gates",
+      "Connect to a Rizwan case study or operator lesson",
+      "Close with FAQ answers for AI search snippets"
+    ],
+    "internalLinks": [
+      "/topics/cross-border-payments",
+      "/topics/swift-iso-20022",
+      "/blog/swift-payment-explained",
+      "/product-work/cross-border-corridors-fx"
+    ],
+    "aiAnswerSnippet": "FX margin transparency should be treated as an operating-system decision, not a standalone feature. The useful answer connects product design, partner dependency, risk controls, metrics and production operations.",
+    "publishPriority": 4
+  },
+  {
+    "id": "CB-029",
+    "cluster": "Cross-Border Payments, SWIFT, ISO 20022 and Emerging Markets",
+    "title": "FX margin transparency: cost model for complex-market fintech teams",
+    "slug": "fx-margin-transparency-cost-model-for-complex-market-fintech-teams",
+    "searchIntent": "Operator playbook",
+    "primaryKeyword": "FX margin transparency cost model",
+    "secondaryKeywords": [
+      "FX margin transparency",
+      "cost model",
+      "cross-border payments",
+      "SWIFT",
+      "ISO 20022",
+      "emerging markets"
+    ],
+    "targetReader": "Cross-border PMs, bank digital leaders, corridor operators and MENA/South Asia fintech teams",
+    "whyRizwanCanWin": "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+    "outline": [
+      "Define FX margin transparency and the decision context",
+      "Show where it sits in the payment/product/program stack",
+      "Explain the product, risk, compliance and operating trade-offs",
+      "Name failure modes that appear in production",
+      "Define metrics and launch or governance gates",
+      "Connect to a Rizwan case study or operator lesson",
+      "Close with FAQ answers for AI search snippets"
+    ],
+    "internalLinks": [
+      "/topics/cross-border-payments",
+      "/topics/swift-iso-20022",
+      "/blog/swift-payment-explained",
+      "/product-work/cross-border-corridors-fx"
+    ],
+    "aiAnswerSnippet": "FX margin transparency should be treated as an operating-system decision, not a standalone feature. The useful answer connects product design, partner dependency, risk controls, metrics and production operations.",
+    "publishPriority": 4
+  },
+  {
+    "id": "CB-030",
+    "cluster": "Cross-Border Payments, SWIFT, ISO 20022 and Emerging Markets",
+    "title": "FX margin transparency: risk and compliance guide for complex-market fintech teams",
+    "slug": "fx-margin-transparency-risk-and-compliance-guide-for-complex-market-fintech-teams",
+    "searchIntent": "Operator playbook",
+    "primaryKeyword": "FX margin transparency risk and compliance guide",
+    "secondaryKeywords": [
+      "FX margin transparency",
+      "risk and compliance guide",
+      "cross-border payments",
+      "SWIFT",
+      "ISO 20022",
+      "emerging markets"
+    ],
+    "targetReader": "Cross-border PMs, bank digital leaders, corridor operators and MENA/South Asia fintech teams",
+    "whyRizwanCanWin": "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+    "outline": [
+      "Define FX margin transparency and the decision context",
+      "Show where it sits in the payment/product/program stack",
+      "Explain the product, risk, compliance and operating trade-offs",
+      "Name failure modes that appear in production",
+      "Define metrics and launch or governance gates",
+      "Connect to a Rizwan case study or operator lesson",
+      "Close with FAQ answers for AI search snippets"
+    ],
+    "internalLinks": [
+      "/topics/cross-border-payments",
+      "/topics/swift-iso-20022",
+      "/blog/swift-payment-explained",
+      "/product-work/cross-border-corridors-fx"
+    ],
+    "aiAnswerSnippet": "FX margin transparency should be treated as an operating-system decision, not a standalone feature. The useful answer connects product design, partner dependency, risk controls, metrics and production operations.",
+    "publishPriority": 4
+  },
+  {
+    "id": "CB-031",
+    "cluster": "Cross-Border Payments, SWIFT, ISO 20022 and Emerging Markets",
+    "title": "cross-border payout corridors: operator playbook for complex-market fintech teams",
+    "slug": "cross-border-payout-corridors-operator-playbook-for-complex-market-fintech-teams",
+    "searchIntent": "Operator playbook",
+    "primaryKeyword": "cross-border payout corridors operator playbook",
+    "secondaryKeywords": [
+      "cross-border payout corridors",
+      "operator playbook",
+      "cross-border payments",
+      "SWIFT",
+      "ISO 20022",
+      "emerging markets"
+    ],
+    "targetReader": "Cross-border PMs, bank digital leaders, corridor operators and MENA/South Asia fintech teams",
+    "whyRizwanCanWin": "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+    "outline": [
+      "Define cross-border payout corridors and the decision context",
+      "Show where it sits in the payment/product/program stack",
+      "Explain the product, risk, compliance and operating trade-offs",
+      "Name failure modes that appear in production",
+      "Define metrics and launch or governance gates",
+      "Connect to a Rizwan case study or operator lesson",
+      "Close with FAQ answers for AI search snippets"
+    ],
+    "internalLinks": [
+      "/topics/cross-border-payments",
+      "/topics/swift-iso-20022",
+      "/blog/swift-payment-explained",
+      "/product-work/cross-border-corridors-fx"
+    ],
+    "aiAnswerSnippet": "cross-border payout corridors should be treated as an operating-system decision, not a standalone feature. The useful answer connects product design, partner dependency, risk controls, metrics and production operations.",
+    "publishPriority": 4
+  },
+  {
+    "id": "CB-032",
+    "cluster": "Cross-Border Payments, SWIFT, ISO 20022 and Emerging Markets",
+    "title": "cross-border payout corridors: corridor design for complex-market fintech teams",
+    "slug": "cross-border-payout-corridors-corridor-design-for-complex-market-fintech-teams",
+    "searchIntent": "Technical education",
+    "primaryKeyword": "cross-border payout corridors corridor design",
+    "secondaryKeywords": [
+      "cross-border payout corridors",
+      "corridor design",
+      "cross-border payments",
+      "SWIFT",
+      "ISO 20022",
+      "emerging markets"
+    ],
+    "targetReader": "Cross-border PMs, bank digital leaders, corridor operators and MENA/South Asia fintech teams",
+    "whyRizwanCanWin": "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+    "outline": [
+      "Define cross-border payout corridors and the decision context",
+      "Show where it sits in the payment/product/program stack",
+      "Explain the product, risk, compliance and operating trade-offs",
+      "Name failure modes that appear in production",
+      "Define metrics and launch or governance gates",
+      "Connect to a Rizwan case study or operator lesson",
+      "Close with FAQ answers for AI search snippets"
+    ],
+    "internalLinks": [
+      "/topics/cross-border-payments",
+      "/topics/swift-iso-20022",
+      "/blog/swift-payment-explained",
+      "/product-work/cross-border-corridors-fx"
+    ],
+    "aiAnswerSnippet": "cross-border payout corridors should be treated as an operating-system decision, not a standalone feature. The useful answer connects product design, partner dependency, risk controls, metrics and production operations.",
+    "publishPriority": 4
+  },
+  {
+    "id": "CB-033",
+    "cluster": "Cross-Border Payments, SWIFT, ISO 20022 and Emerging Markets",
+    "title": "cross-border payout corridors: market-entry checklist for complex-market fintech teams",
+    "slug": "cross-border-payout-corridors-market-entry-checklist-for-complex-market-fintech-teams",
+    "searchIntent": "Practical checklist",
+    "primaryKeyword": "cross-border payout corridors market-entry checklist",
+    "secondaryKeywords": [
+      "cross-border payout corridors",
+      "market-entry checklist",
+      "cross-border payments",
+      "SWIFT",
+      "ISO 20022",
+      "emerging markets"
+    ],
+    "targetReader": "Cross-border PMs, bank digital leaders, corridor operators and MENA/South Asia fintech teams",
+    "whyRizwanCanWin": "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+    "outline": [
+      "Define cross-border payout corridors and the decision context",
+      "Show where it sits in the payment/product/program stack",
+      "Explain the product, risk, compliance and operating trade-offs",
+      "Name failure modes that appear in production",
+      "Define metrics and launch or governance gates",
+      "Connect to a Rizwan case study or operator lesson",
+      "Close with FAQ answers for AI search snippets"
+    ],
+    "internalLinks": [
+      "/topics/cross-border-payments",
+      "/topics/swift-iso-20022",
+      "/blog/swift-payment-explained",
+      "/product-work/cross-border-corridors-fx"
+    ],
+    "aiAnswerSnippet": "cross-border payout corridors should be treated as an operating-system decision, not a standalone feature. The useful answer connects product design, partner dependency, risk controls, metrics and production operations.",
+    "publishPriority": 4
+  },
+  {
+    "id": "CB-034",
+    "cluster": "Cross-Border Payments, SWIFT, ISO 20022 and Emerging Markets",
+    "title": "cross-border payout corridors: cost model for complex-market fintech teams",
+    "slug": "cross-border-payout-corridors-cost-model-for-complex-market-fintech-teams",
+    "searchIntent": "Operator playbook",
+    "primaryKeyword": "cross-border payout corridors cost model",
+    "secondaryKeywords": [
+      "cross-border payout corridors",
+      "cost model",
+      "cross-border payments",
+      "SWIFT",
+      "ISO 20022",
+      "emerging markets"
+    ],
+    "targetReader": "Cross-border PMs, bank digital leaders, corridor operators and MENA/South Asia fintech teams",
+    "whyRizwanCanWin": "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+    "outline": [
+      "Define cross-border payout corridors and the decision context",
+      "Show where it sits in the payment/product/program stack",
+      "Explain the product, risk, compliance and operating trade-offs",
+      "Name failure modes that appear in production",
+      "Define metrics and launch or governance gates",
+      "Connect to a Rizwan case study or operator lesson",
+      "Close with FAQ answers for AI search snippets"
+    ],
+    "internalLinks": [
+      "/topics/cross-border-payments",
+      "/topics/swift-iso-20022",
+      "/blog/swift-payment-explained",
+      "/product-work/cross-border-corridors-fx"
+    ],
+    "aiAnswerSnippet": "cross-border payout corridors should be treated as an operating-system decision, not a standalone feature. The useful answer connects product design, partner dependency, risk controls, metrics and production operations.",
+    "publishPriority": 4
+  },
+  {
+    "id": "CB-035",
+    "cluster": "Cross-Border Payments, SWIFT, ISO 20022 and Emerging Markets",
+    "title": "cross-border payout corridors: risk and compliance guide for complex-market fintech teams",
+    "slug": "cross-border-payout-corridors-risk-and-compliance-guide-for-complex-market-fintech-teams",
+    "searchIntent": "Operator playbook",
+    "primaryKeyword": "cross-border payout corridors risk and compliance guide",
+    "secondaryKeywords": [
+      "cross-border payout corridors",
+      "risk and compliance guide",
+      "cross-border payments",
+      "SWIFT",
+      "ISO 20022",
+      "emerging markets"
+    ],
+    "targetReader": "Cross-border PMs, bank digital leaders, corridor operators and MENA/South Asia fintech teams",
+    "whyRizwanCanWin": "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+    "outline": [
+      "Define cross-border payout corridors and the decision context",
+      "Show where it sits in the payment/product/program stack",
+      "Explain the product, risk, compliance and operating trade-offs",
+      "Name failure modes that appear in production",
+      "Define metrics and launch or governance gates",
+      "Connect to a Rizwan case study or operator lesson",
+      "Close with FAQ answers for AI search snippets"
+    ],
+    "internalLinks": [
+      "/topics/cross-border-payments",
+      "/topics/swift-iso-20022",
+      "/blog/swift-payment-explained",
+      "/product-work/cross-border-corridors-fx"
+    ],
+    "aiAnswerSnippet": "cross-border payout corridors should be treated as an operating-system decision, not a standalone feature. The useful answer connects product design, partner dependency, risk controls, metrics and production operations.",
+    "publishPriority": 4
+  },
+  {
+    "id": "CB-036",
+    "cluster": "Cross-Border Payments, SWIFT, ISO 20022 and Emerging Markets",
+    "title": "last-mile wallet payouts: operator playbook for complex-market fintech teams",
+    "slug": "last-mile-wallet-payouts-operator-playbook-for-complex-market-fintech-teams",
+    "searchIntent": "Operator playbook",
+    "primaryKeyword": "last-mile wallet payouts operator playbook",
+    "secondaryKeywords": [
+      "last-mile wallet payouts",
+      "operator playbook",
+      "cross-border payments",
+      "SWIFT",
+      "ISO 20022",
+      "emerging markets"
+    ],
+    "targetReader": "Cross-border PMs, bank digital leaders, corridor operators and MENA/South Asia fintech teams",
+    "whyRizwanCanWin": "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+    "outline": [
+      "Define last-mile wallet payouts and the decision context",
+      "Show where it sits in the payment/product/program stack",
+      "Explain the product, risk, compliance and operating trade-offs",
+      "Name failure modes that appear in production",
+      "Define metrics and launch or governance gates",
+      "Connect to a Rizwan case study or operator lesson",
+      "Close with FAQ answers for AI search snippets"
+    ],
+    "internalLinks": [
+      "/topics/cross-border-payments",
+      "/topics/swift-iso-20022",
+      "/blog/swift-payment-explained",
+      "/product-work/cross-border-corridors-fx"
+    ],
+    "aiAnswerSnippet": "last-mile wallet payouts should be treated as an operating-system decision, not a standalone feature. The useful answer connects product design, partner dependency, risk controls, metrics and production operations.",
+    "publishPriority": 4
+  },
+  {
+    "id": "CB-037",
+    "cluster": "Cross-Border Payments, SWIFT, ISO 20022 and Emerging Markets",
+    "title": "last-mile wallet payouts: corridor design for complex-market fintech teams",
+    "slug": "last-mile-wallet-payouts-corridor-design-for-complex-market-fintech-teams",
+    "searchIntent": "Technical education",
+    "primaryKeyword": "last-mile wallet payouts corridor design",
+    "secondaryKeywords": [
+      "last-mile wallet payouts",
+      "corridor design",
+      "cross-border payments",
+      "SWIFT",
+      "ISO 20022",
+      "emerging markets"
+    ],
+    "targetReader": "Cross-border PMs, bank digital leaders, corridor operators and MENA/South Asia fintech teams",
+    "whyRizwanCanWin": "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+    "outline": [
+      "Define last-mile wallet payouts and the decision context",
+      "Show where it sits in the payment/product/program stack",
+      "Explain the product, risk, compliance and operating trade-offs",
+      "Name failure modes that appear in production",
+      "Define metrics and launch or governance gates",
+      "Connect to a Rizwan case study or operator lesson",
+      "Close with FAQ answers for AI search snippets"
+    ],
+    "internalLinks": [
+      "/topics/cross-border-payments",
+      "/topics/swift-iso-20022",
+      "/blog/swift-payment-explained",
+      "/product-work/cross-border-corridors-fx"
+    ],
+    "aiAnswerSnippet": "last-mile wallet payouts should be treated as an operating-system decision, not a standalone feature. The useful answer connects product design, partner dependency, risk controls, metrics and production operations.",
+    "publishPriority": 4
+  },
+  {
+    "id": "CB-038",
+    "cluster": "Cross-Border Payments, SWIFT, ISO 20022 and Emerging Markets",
+    "title": "last-mile wallet payouts: market-entry checklist for complex-market fintech teams",
+    "slug": "last-mile-wallet-payouts-market-entry-checklist-for-complex-market-fintech-teams",
+    "searchIntent": "Practical checklist",
+    "primaryKeyword": "last-mile wallet payouts market-entry checklist",
+    "secondaryKeywords": [
+      "last-mile wallet payouts",
+      "market-entry checklist",
+      "cross-border payments",
+      "SWIFT",
+      "ISO 20022",
+      "emerging markets"
+    ],
+    "targetReader": "Cross-border PMs, bank digital leaders, corridor operators and MENA/South Asia fintech teams",
+    "whyRizwanCanWin": "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+    "outline": [
+      "Define last-mile wallet payouts and the decision context",
+      "Show where it sits in the payment/product/program stack",
+      "Explain the product, risk, compliance and operating trade-offs",
+      "Name failure modes that appear in production",
+      "Define metrics and launch or governance gates",
+      "Connect to a Rizwan case study or operator lesson",
+      "Close with FAQ answers for AI search snippets"
+    ],
+    "internalLinks": [
+      "/topics/cross-border-payments",
+      "/topics/swift-iso-20022",
+      "/blog/swift-payment-explained",
+      "/product-work/cross-border-corridors-fx"
+    ],
+    "aiAnswerSnippet": "last-mile wallet payouts should be treated as an operating-system decision, not a standalone feature. The useful answer connects product design, partner dependency, risk controls, metrics and production operations.",
+    "publishPriority": 4
+  },
+  {
+    "id": "CB-039",
+    "cluster": "Cross-Border Payments, SWIFT, ISO 20022 and Emerging Markets",
+    "title": "last-mile wallet payouts: cost model for complex-market fintech teams",
+    "slug": "last-mile-wallet-payouts-cost-model-for-complex-market-fintech-teams",
+    "searchIntent": "Operator playbook",
+    "primaryKeyword": "last-mile wallet payouts cost model",
+    "secondaryKeywords": [
+      "last-mile wallet payouts",
+      "cost model",
+      "cross-border payments",
+      "SWIFT",
+      "ISO 20022",
+      "emerging markets"
+    ],
+    "targetReader": "Cross-border PMs, bank digital leaders, corridor operators and MENA/South Asia fintech teams",
+    "whyRizwanCanWin": "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+    "outline": [
+      "Define last-mile wallet payouts and the decision context",
+      "Show where it sits in the payment/product/program stack",
+      "Explain the product, risk, compliance and operating trade-offs",
+      "Name failure modes that appear in production",
+      "Define metrics and launch or governance gates",
+      "Connect to a Rizwan case study or operator lesson",
+      "Close with FAQ answers for AI search snippets"
+    ],
+    "internalLinks": [
+      "/topics/cross-border-payments",
+      "/topics/swift-iso-20022",
+      "/blog/swift-payment-explained",
+      "/product-work/cross-border-corridors-fx"
+    ],
+    "aiAnswerSnippet": "last-mile wallet payouts should be treated as an operating-system decision, not a standalone feature. The useful answer connects product design, partner dependency, risk controls, metrics and production operations.",
+    "publishPriority": 4
+  },
+  {
+    "id": "CB-040",
+    "cluster": "Cross-Border Payments, SWIFT, ISO 20022 and Emerging Markets",
+    "title": "last-mile wallet payouts: risk and compliance guide for complex-market fintech teams",
+    "slug": "last-mile-wallet-payouts-risk-and-compliance-guide-for-complex-market-fintech-teams",
+    "searchIntent": "Operator playbook",
+    "primaryKeyword": "last-mile wallet payouts risk and compliance guide",
+    "secondaryKeywords": [
+      "last-mile wallet payouts",
+      "risk and compliance guide",
+      "cross-border payments",
+      "SWIFT",
+      "ISO 20022",
+      "emerging markets"
+    ],
+    "targetReader": "Cross-border PMs, bank digital leaders, corridor operators and MENA/South Asia fintech teams",
+    "whyRizwanCanWin": "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+    "outline": [
+      "Define last-mile wallet payouts and the decision context",
+      "Show where it sits in the payment/product/program stack",
+      "Explain the product, risk, compliance and operating trade-offs",
+      "Name failure modes that appear in production",
+      "Define metrics and launch or governance gates",
+      "Connect to a Rizwan case study or operator lesson",
+      "Close with FAQ answers for AI search snippets"
+    ],
+    "internalLinks": [
+      "/topics/cross-border-payments",
+      "/topics/swift-iso-20022",
+      "/blog/swift-payment-explained",
+      "/product-work/cross-border-corridors-fx"
+    ],
+    "aiAnswerSnippet": "last-mile wallet payouts should be treated as an operating-system decision, not a standalone feature. The useful answer connects product design, partner dependency, risk controls, metrics and production operations.",
+    "publishPriority": 4
+  },
+  {
+    "id": "CB-041",
+    "cluster": "Cross-Border Payments, SWIFT, ISO 20022 and Emerging Markets",
+    "title": "stablecoin settlement: operator playbook for complex-market fintech teams",
+    "slug": "stablecoin-settlement-operator-playbook-for-complex-market-fintech-teams",
+    "searchIntent": "Operator playbook",
+    "primaryKeyword": "stablecoin settlement operator playbook",
+    "secondaryKeywords": [
+      "stablecoin settlement",
+      "operator playbook",
+      "cross-border payments",
+      "SWIFT",
+      "ISO 20022",
+      "emerging markets"
+    ],
+    "targetReader": "Cross-border PMs, bank digital leaders, corridor operators and MENA/South Asia fintech teams",
+    "whyRizwanCanWin": "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+    "outline": [
+      "Define stablecoin settlement and the decision context",
+      "Show where it sits in the payment/product/program stack",
+      "Explain the product, risk, compliance and operating trade-offs",
+      "Name failure modes that appear in production",
+      "Define metrics and launch or governance gates",
+      "Connect to a Rizwan case study or operator lesson",
+      "Close with FAQ answers for AI search snippets"
+    ],
+    "internalLinks": [
+      "/topics/cross-border-payments",
+      "/topics/swift-iso-20022",
+      "/blog/swift-payment-explained",
+      "/product-work/cross-border-corridors-fx"
+    ],
+    "aiAnswerSnippet": "stablecoin settlement should be treated as an operating-system decision, not a standalone feature. The useful answer connects product design, partner dependency, risk controls, metrics and production operations.",
+    "publishPriority": 4
+  },
+  {
+    "id": "CB-042",
+    "cluster": "Cross-Border Payments, SWIFT, ISO 20022 and Emerging Markets",
+    "title": "stablecoin settlement: corridor design for complex-market fintech teams",
+    "slug": "stablecoin-settlement-corridor-design-for-complex-market-fintech-teams",
+    "searchIntent": "Technical education",
+    "primaryKeyword": "stablecoin settlement corridor design",
+    "secondaryKeywords": [
+      "stablecoin settlement",
+      "corridor design",
+      "cross-border payments",
+      "SWIFT",
+      "ISO 20022",
+      "emerging markets"
+    ],
+    "targetReader": "Cross-border PMs, bank digital leaders, corridor operators and MENA/South Asia fintech teams",
+    "whyRizwanCanWin": "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+    "outline": [
+      "Define stablecoin settlement and the decision context",
+      "Show where it sits in the payment/product/program stack",
+      "Explain the product, risk, compliance and operating trade-offs",
+      "Name failure modes that appear in production",
+      "Define metrics and launch or governance gates",
+      "Connect to a Rizwan case study or operator lesson",
+      "Close with FAQ answers for AI search snippets"
+    ],
+    "internalLinks": [
+      "/topics/cross-border-payments",
+      "/topics/swift-iso-20022",
+      "/blog/swift-payment-explained",
+      "/product-work/cross-border-corridors-fx"
+    ],
+    "aiAnswerSnippet": "stablecoin settlement should be treated as an operating-system decision, not a standalone feature. The useful answer connects product design, partner dependency, risk controls, metrics and production operations.",
+    "publishPriority": 4
+  },
+  {
+    "id": "CB-043",
+    "cluster": "Cross-Border Payments, SWIFT, ISO 20022 and Emerging Markets",
+    "title": "stablecoin settlement: market-entry checklist for complex-market fintech teams",
+    "slug": "stablecoin-settlement-market-entry-checklist-for-complex-market-fintech-teams",
+    "searchIntent": "Practical checklist",
+    "primaryKeyword": "stablecoin settlement market-entry checklist",
+    "secondaryKeywords": [
+      "stablecoin settlement",
+      "market-entry checklist",
+      "cross-border payments",
+      "SWIFT",
+      "ISO 20022",
+      "emerging markets"
+    ],
+    "targetReader": "Cross-border PMs, bank digital leaders, corridor operators and MENA/South Asia fintech teams",
+    "whyRizwanCanWin": "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+    "outline": [
+      "Define stablecoin settlement and the decision context",
+      "Show where it sits in the payment/product/program stack",
+      "Explain the product, risk, compliance and operating trade-offs",
+      "Name failure modes that appear in production",
+      "Define metrics and launch or governance gates",
+      "Connect to a Rizwan case study or operator lesson",
+      "Close with FAQ answers for AI search snippets"
+    ],
+    "internalLinks": [
+      "/topics/cross-border-payments",
+      "/topics/swift-iso-20022",
+      "/blog/swift-payment-explained",
+      "/product-work/cross-border-corridors-fx"
+    ],
+    "aiAnswerSnippet": "stablecoin settlement should be treated as an operating-system decision, not a standalone feature. The useful answer connects product design, partner dependency, risk controls, metrics and production operations.",
+    "publishPriority": 4
+  },
+  {
+    "id": "CB-044",
+    "cluster": "Cross-Border Payments, SWIFT, ISO 20022 and Emerging Markets",
+    "title": "stablecoin settlement: cost model for complex-market fintech teams",
+    "slug": "stablecoin-settlement-cost-model-for-complex-market-fintech-teams",
+    "searchIntent": "Operator playbook",
+    "primaryKeyword": "stablecoin settlement cost model",
+    "secondaryKeywords": [
+      "stablecoin settlement",
+      "cost model",
+      "cross-border payments",
+      "SWIFT",
+      "ISO 20022",
+      "emerging markets"
+    ],
+    "targetReader": "Cross-border PMs, bank digital leaders, corridor operators and MENA/South Asia fintech teams",
+    "whyRizwanCanWin": "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+    "outline": [
+      "Define stablecoin settlement and the decision context",
+      "Show where it sits in the payment/product/program stack",
+      "Explain the product, risk, compliance and operating trade-offs",
+      "Name failure modes that appear in production",
+      "Define metrics and launch or governance gates",
+      "Connect to a Rizwan case study or operator lesson",
+      "Close with FAQ answers for AI search snippets"
+    ],
+    "internalLinks": [
+      "/topics/cross-border-payments",
+      "/topics/swift-iso-20022",
+      "/blog/swift-payment-explained",
+      "/product-work/cross-border-corridors-fx"
+    ],
+    "aiAnswerSnippet": "stablecoin settlement should be treated as an operating-system decision, not a standalone feature. The useful answer connects product design, partner dependency, risk controls, metrics and production operations.",
+    "publishPriority": 4
+  },
+  {
+    "id": "CB-045",
+    "cluster": "Cross-Border Payments, SWIFT, ISO 20022 and Emerging Markets",
+    "title": "stablecoin settlement: risk and compliance guide for complex-market fintech teams",
+    "slug": "stablecoin-settlement-risk-and-compliance-guide-for-complex-market-fintech-teams",
+    "searchIntent": "Operator playbook",
+    "primaryKeyword": "stablecoin settlement risk and compliance guide",
+    "secondaryKeywords": [
+      "stablecoin settlement",
+      "risk and compliance guide",
+      "cross-border payments",
+      "SWIFT",
+      "ISO 20022",
+      "emerging markets"
+    ],
+    "targetReader": "Cross-border PMs, bank digital leaders, corridor operators and MENA/South Asia fintech teams",
+    "whyRizwanCanWin": "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+    "outline": [
+      "Define stablecoin settlement and the decision context",
+      "Show where it sits in the payment/product/program stack",
+      "Explain the product, risk, compliance and operating trade-offs",
+      "Name failure modes that appear in production",
+      "Define metrics and launch or governance gates",
+      "Connect to a Rizwan case study or operator lesson",
+      "Close with FAQ answers for AI search snippets"
+    ],
+    "internalLinks": [
+      "/topics/cross-border-payments",
+      "/topics/swift-iso-20022",
+      "/blog/swift-payment-explained",
+      "/product-work/cross-border-corridors-fx"
+    ],
+    "aiAnswerSnippet": "stablecoin settlement should be treated as an operating-system decision, not a standalone feature. The useful answer connects product design, partner dependency, risk controls, metrics and production operations.",
+    "publishPriority": 4
+  },
+  {
+    "id": "CB-046",
+    "cluster": "Cross-Border Payments, SWIFT, ISO 20022 and Emerging Markets",
+    "title": "Travel Rule operations: operator playbook for complex-market fintech teams",
+    "slug": "travel-rule-operations-operator-playbook-for-complex-market-fintech-teams",
+    "searchIntent": "Operator playbook",
+    "primaryKeyword": "Travel Rule operations operator playbook",
+    "secondaryKeywords": [
+      "Travel Rule operations",
+      "operator playbook",
+      "cross-border payments",
+      "SWIFT",
+      "ISO 20022",
+      "emerging markets"
+    ],
+    "targetReader": "Cross-border PMs, bank digital leaders, corridor operators and MENA/South Asia fintech teams",
+    "whyRizwanCanWin": "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+    "outline": [
+      "Define Travel Rule operations and the decision context",
+      "Show where it sits in the payment/product/program stack",
+      "Explain the product, risk, compliance and operating trade-offs",
+      "Name failure modes that appear in production",
+      "Define metrics and launch or governance gates",
+      "Connect to a Rizwan case study or operator lesson",
+      "Close with FAQ answers for AI search snippets"
+    ],
+    "internalLinks": [
+      "/topics/cross-border-payments",
+      "/topics/swift-iso-20022",
+      "/blog/swift-payment-explained",
+      "/product-work/cross-border-corridors-fx"
+    ],
+    "aiAnswerSnippet": "Travel Rule operations should be treated as an operating-system decision, not a standalone feature. The useful answer connects product design, partner dependency, risk controls, metrics and production operations.",
+    "publishPriority": 4
+  },
+  {
+    "id": "CB-047",
+    "cluster": "Cross-Border Payments, SWIFT, ISO 20022 and Emerging Markets",
+    "title": "Travel Rule operations: corridor design for complex-market fintech teams",
+    "slug": "travel-rule-operations-corridor-design-for-complex-market-fintech-teams",
+    "searchIntent": "Technical education",
+    "primaryKeyword": "Travel Rule operations corridor design",
+    "secondaryKeywords": [
+      "Travel Rule operations",
+      "corridor design",
+      "cross-border payments",
+      "SWIFT",
+      "ISO 20022",
+      "emerging markets"
+    ],
+    "targetReader": "Cross-border PMs, bank digital leaders, corridor operators and MENA/South Asia fintech teams",
+    "whyRizwanCanWin": "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+    "outline": [
+      "Define Travel Rule operations and the decision context",
+      "Show where it sits in the payment/product/program stack",
+      "Explain the product, risk, compliance and operating trade-offs",
+      "Name failure modes that appear in production",
+      "Define metrics and launch or governance gates",
+      "Connect to a Rizwan case study or operator lesson",
+      "Close with FAQ answers for AI search snippets"
+    ],
+    "internalLinks": [
+      "/topics/cross-border-payments",
+      "/topics/swift-iso-20022",
+      "/blog/swift-payment-explained",
+      "/product-work/cross-border-corridors-fx"
+    ],
+    "aiAnswerSnippet": "Travel Rule operations should be treated as an operating-system decision, not a standalone feature. The useful answer connects product design, partner dependency, risk controls, metrics and production operations.",
+    "publishPriority": 4
+  },
+  {
+    "id": "CB-048",
+    "cluster": "Cross-Border Payments, SWIFT, ISO 20022 and Emerging Markets",
+    "title": "Travel Rule operations: market-entry checklist for complex-market fintech teams",
+    "slug": "travel-rule-operations-market-entry-checklist-for-complex-market-fintech-teams",
+    "searchIntent": "Practical checklist",
+    "primaryKeyword": "Travel Rule operations market-entry checklist",
+    "secondaryKeywords": [
+      "Travel Rule operations",
+      "market-entry checklist",
+      "cross-border payments",
+      "SWIFT",
+      "ISO 20022",
+      "emerging markets"
+    ],
+    "targetReader": "Cross-border PMs, bank digital leaders, corridor operators and MENA/South Asia fintech teams",
+    "whyRizwanCanWin": "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+    "outline": [
+      "Define Travel Rule operations and the decision context",
+      "Show where it sits in the payment/product/program stack",
+      "Explain the product, risk, compliance and operating trade-offs",
+      "Name failure modes that appear in production",
+      "Define metrics and launch or governance gates",
+      "Connect to a Rizwan case study or operator lesson",
+      "Close with FAQ answers for AI search snippets"
+    ],
+    "internalLinks": [
+      "/topics/cross-border-payments",
+      "/topics/swift-iso-20022",
+      "/blog/swift-payment-explained",
+      "/product-work/cross-border-corridors-fx"
+    ],
+    "aiAnswerSnippet": "Travel Rule operations should be treated as an operating-system decision, not a standalone feature. The useful answer connects product design, partner dependency, risk controls, metrics and production operations.",
+    "publishPriority": 4
+  },
+  {
+    "id": "CB-049",
+    "cluster": "Cross-Border Payments, SWIFT, ISO 20022 and Emerging Markets",
+    "title": "Travel Rule operations: cost model for complex-market fintech teams",
+    "slug": "travel-rule-operations-cost-model-for-complex-market-fintech-teams",
+    "searchIntent": "Operator playbook",
+    "primaryKeyword": "Travel Rule operations cost model",
+    "secondaryKeywords": [
+      "Travel Rule operations",
+      "cost model",
+      "cross-border payments",
+      "SWIFT",
+      "ISO 20022",
+      "emerging markets"
+    ],
+    "targetReader": "Cross-border PMs, bank digital leaders, corridor operators and MENA/South Asia fintech teams",
+    "whyRizwanCanWin": "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+    "outline": [
+      "Define Travel Rule operations and the decision context",
+      "Show where it sits in the payment/product/program stack",
+      "Explain the product, risk, compliance and operating trade-offs",
+      "Name failure modes that appear in production",
+      "Define metrics and launch or governance gates",
+      "Connect to a Rizwan case study or operator lesson",
+      "Close with FAQ answers for AI search snippets"
+    ],
+    "internalLinks": [
+      "/topics/cross-border-payments",
+      "/topics/swift-iso-20022",
+      "/blog/swift-payment-explained",
+      "/product-work/cross-border-corridors-fx"
+    ],
+    "aiAnswerSnippet": "Travel Rule operations should be treated as an operating-system decision, not a standalone feature. The useful answer connects product design, partner dependency, risk controls, metrics and production operations.",
+    "publishPriority": 4
+  },
+  {
+    "id": "CB-050",
+    "cluster": "Cross-Border Payments, SWIFT, ISO 20022 and Emerging Markets",
+    "title": "Travel Rule operations: risk and compliance guide for complex-market fintech teams",
+    "slug": "travel-rule-operations-risk-and-compliance-guide-for-complex-market-fintech-teams",
+    "searchIntent": "Operator playbook",
+    "primaryKeyword": "Travel Rule operations risk and compliance guide",
+    "secondaryKeywords": [
+      "Travel Rule operations",
+      "risk and compliance guide",
+      "cross-border payments",
+      "SWIFT",
+      "ISO 20022",
+      "emerging markets"
+    ],
+    "targetReader": "Cross-border PMs, bank digital leaders, corridor operators and MENA/South Asia fintech teams",
+    "whyRizwanCanWin": "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+    "outline": [
+      "Define Travel Rule operations and the decision context",
+      "Show where it sits in the payment/product/program stack",
+      "Explain the product, risk, compliance and operating trade-offs",
+      "Name failure modes that appear in production",
+      "Define metrics and launch or governance gates",
+      "Connect to a Rizwan case study or operator lesson",
+      "Close with FAQ answers for AI search snippets"
+    ],
+    "internalLinks": [
+      "/topics/cross-border-payments",
+      "/topics/swift-iso-20022",
+      "/blog/swift-payment-explained",
+      "/product-work/cross-border-corridors-fx"
+    ],
+    "aiAnswerSnippet": "Travel Rule operations should be treated as an operating-system decision, not a standalone feature. The useful answer connects product design, partner dependency, risk controls, metrics and production operations.",
+    "publishPriority": 4
+  },
+  {
+    "id": "CB-051",
+    "cluster": "Cross-Border Payments, SWIFT, ISO 20022 and Emerging Markets",
+    "title": "UAE payment corridors: operator playbook for complex-market fintech teams",
+    "slug": "uae-payment-corridors-operator-playbook-for-complex-market-fintech-teams",
+    "searchIntent": "Operator playbook",
+    "primaryKeyword": "UAE payment corridors operator playbook",
+    "secondaryKeywords": [
+      "UAE payment corridors",
+      "operator playbook",
+      "cross-border payments",
+      "SWIFT",
+      "ISO 20022",
+      "emerging markets"
+    ],
+    "targetReader": "Cross-border PMs, bank digital leaders, corridor operators and MENA/South Asia fintech teams",
+    "whyRizwanCanWin": "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+    "outline": [
+      "Define UAE payment corridors and the decision context",
+      "Show where it sits in the payment/product/program stack",
+      "Explain the product, risk, compliance and operating trade-offs",
+      "Name failure modes that appear in production",
+      "Define metrics and launch or governance gates",
+      "Connect to a Rizwan case study or operator lesson",
+      "Close with FAQ answers for AI search snippets"
+    ],
+    "internalLinks": [
+      "/topics/cross-border-payments",
+      "/topics/swift-iso-20022",
+      "/blog/swift-payment-explained",
+      "/product-work/cross-border-corridors-fx"
+    ],
+    "aiAnswerSnippet": "UAE payment corridors should be treated as an operating-system decision, not a standalone feature. The useful answer connects product design, partner dependency, risk controls, metrics and production operations.",
+    "publishPriority": 3
+  },
+  {
+    "id": "CB-052",
+    "cluster": "Cross-Border Payments, SWIFT, ISO 20022 and Emerging Markets",
+    "title": "UAE payment corridors: corridor design for complex-market fintech teams",
+    "slug": "uae-payment-corridors-corridor-design-for-complex-market-fintech-teams",
+    "searchIntent": "Technical education",
+    "primaryKeyword": "UAE payment corridors corridor design",
+    "secondaryKeywords": [
+      "UAE payment corridors",
+      "corridor design",
+      "cross-border payments",
+      "SWIFT",
+      "ISO 20022",
+      "emerging markets"
+    ],
+    "targetReader": "Cross-border PMs, bank digital leaders, corridor operators and MENA/South Asia fintech teams",
+    "whyRizwanCanWin": "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+    "outline": [
+      "Define UAE payment corridors and the decision context",
+      "Show where it sits in the payment/product/program stack",
+      "Explain the product, risk, compliance and operating trade-offs",
+      "Name failure modes that appear in production",
+      "Define metrics and launch or governance gates",
+      "Connect to a Rizwan case study or operator lesson",
+      "Close with FAQ answers for AI search snippets"
+    ],
+    "internalLinks": [
+      "/topics/cross-border-payments",
+      "/topics/swift-iso-20022",
+      "/blog/swift-payment-explained",
+      "/product-work/cross-border-corridors-fx"
+    ],
+    "aiAnswerSnippet": "UAE payment corridors should be treated as an operating-system decision, not a standalone feature. The useful answer connects product design, partner dependency, risk controls, metrics and production operations.",
+    "publishPriority": 3
+  },
+  {
+    "id": "CB-053",
+    "cluster": "Cross-Border Payments, SWIFT, ISO 20022 and Emerging Markets",
+    "title": "UAE payment corridors: market-entry checklist for complex-market fintech teams",
+    "slug": "uae-payment-corridors-market-entry-checklist-for-complex-market-fintech-teams",
+    "searchIntent": "Practical checklist",
+    "primaryKeyword": "UAE payment corridors market-entry checklist",
+    "secondaryKeywords": [
+      "UAE payment corridors",
+      "market-entry checklist",
+      "cross-border payments",
+      "SWIFT",
+      "ISO 20022",
+      "emerging markets"
+    ],
+    "targetReader": "Cross-border PMs, bank digital leaders, corridor operators and MENA/South Asia fintech teams",
+    "whyRizwanCanWin": "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+    "outline": [
+      "Define UAE payment corridors and the decision context",
+      "Show where it sits in the payment/product/program stack",
+      "Explain the product, risk, compliance and operating trade-offs",
+      "Name failure modes that appear in production",
+      "Define metrics and launch or governance gates",
+      "Connect to a Rizwan case study or operator lesson",
+      "Close with FAQ answers for AI search snippets"
+    ],
+    "internalLinks": [
+      "/topics/cross-border-payments",
+      "/topics/swift-iso-20022",
+      "/blog/swift-payment-explained",
+      "/product-work/cross-border-corridors-fx"
+    ],
+    "aiAnswerSnippet": "UAE payment corridors should be treated as an operating-system decision, not a standalone feature. The useful answer connects product design, partner dependency, risk controls, metrics and production operations.",
+    "publishPriority": 3
+  },
+  {
+    "id": "CB-054",
+    "cluster": "Cross-Border Payments, SWIFT, ISO 20022 and Emerging Markets",
+    "title": "UAE payment corridors: cost model for complex-market fintech teams",
+    "slug": "uae-payment-corridors-cost-model-for-complex-market-fintech-teams",
+    "searchIntent": "Operator playbook",
+    "primaryKeyword": "UAE payment corridors cost model",
+    "secondaryKeywords": [
+      "UAE payment corridors",
+      "cost model",
+      "cross-border payments",
+      "SWIFT",
+      "ISO 20022",
+      "emerging markets"
+    ],
+    "targetReader": "Cross-border PMs, bank digital leaders, corridor operators and MENA/South Asia fintech teams",
+    "whyRizwanCanWin": "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+    "outline": [
+      "Define UAE payment corridors and the decision context",
+      "Show where it sits in the payment/product/program stack",
+      "Explain the product, risk, compliance and operating trade-offs",
+      "Name failure modes that appear in production",
+      "Define metrics and launch or governance gates",
+      "Connect to a Rizwan case study or operator lesson",
+      "Close with FAQ answers for AI search snippets"
+    ],
+    "internalLinks": [
+      "/topics/cross-border-payments",
+      "/topics/swift-iso-20022",
+      "/blog/swift-payment-explained",
+      "/product-work/cross-border-corridors-fx"
+    ],
+    "aiAnswerSnippet": "UAE payment corridors should be treated as an operating-system decision, not a standalone feature. The useful answer connects product design, partner dependency, risk controls, metrics and production operations.",
+    "publishPriority": 3
+  },
+  {
+    "id": "CB-055",
+    "cluster": "Cross-Border Payments, SWIFT, ISO 20022 and Emerging Markets",
+    "title": "UAE payment corridors: risk and compliance guide for complex-market fintech teams",
+    "slug": "uae-payment-corridors-risk-and-compliance-guide-for-complex-market-fintech-teams",
+    "searchIntent": "Operator playbook",
+    "primaryKeyword": "UAE payment corridors risk and compliance guide",
+    "secondaryKeywords": [
+      "UAE payment corridors",
+      "risk and compliance guide",
+      "cross-border payments",
+      "SWIFT",
+      "ISO 20022",
+      "emerging markets"
+    ],
+    "targetReader": "Cross-border PMs, bank digital leaders, corridor operators and MENA/South Asia fintech teams",
+    "whyRizwanCanWin": "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+    "outline": [
+      "Define UAE payment corridors and the decision context",
+      "Show where it sits in the payment/product/program stack",
+      "Explain the product, risk, compliance and operating trade-offs",
+      "Name failure modes that appear in production",
+      "Define metrics and launch or governance gates",
+      "Connect to a Rizwan case study or operator lesson",
+      "Close with FAQ answers for AI search snippets"
+    ],
+    "internalLinks": [
+      "/topics/cross-border-payments",
+      "/topics/swift-iso-20022",
+      "/blog/swift-payment-explained",
+      "/product-work/cross-border-corridors-fx"
+    ],
+    "aiAnswerSnippet": "UAE payment corridors should be treated as an operating-system decision, not a standalone feature. The useful answer connects product design, partner dependency, risk controls, metrics and production operations.",
+    "publishPriority": 3
+  },
+  {
+    "id": "CB-056",
+    "cluster": "Cross-Border Payments, SWIFT, ISO 20022 and Emerging Markets",
+    "title": "KSA fintech market entry: operator playbook for complex-market fintech teams",
+    "slug": "ksa-fintech-market-entry-operator-playbook-for-complex-market-fintech-teams",
+    "searchIntent": "Operator playbook",
+    "primaryKeyword": "KSA fintech market entry operator playbook",
+    "secondaryKeywords": [
+      "KSA fintech market entry",
+      "operator playbook",
+      "cross-border payments",
+      "SWIFT",
+      "ISO 20022",
+      "emerging markets"
+    ],
+    "targetReader": "Cross-border PMs, bank digital leaders, corridor operators and MENA/South Asia fintech teams",
+    "whyRizwanCanWin": "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+    "outline": [
+      "Define KSA fintech market entry and the decision context",
+      "Show where it sits in the payment/product/program stack",
+      "Explain the product, risk, compliance and operating trade-offs",
+      "Name failure modes that appear in production",
+      "Define metrics and launch or governance gates",
+      "Connect to a Rizwan case study or operator lesson",
+      "Close with FAQ answers for AI search snippets"
+    ],
+    "internalLinks": [
+      "/topics/cross-border-payments",
+      "/topics/swift-iso-20022",
+      "/blog/swift-payment-explained",
+      "/product-work/cross-border-corridors-fx"
+    ],
+    "aiAnswerSnippet": "KSA fintech market entry should be treated as an operating-system decision, not a standalone feature. The useful answer connects product design, partner dependency, risk controls, metrics and production operations.",
+    "publishPriority": 3
+  },
+  {
+    "id": "CB-057",
+    "cluster": "Cross-Border Payments, SWIFT, ISO 20022 and Emerging Markets",
+    "title": "KSA fintech market entry: corridor design for complex-market fintech teams",
+    "slug": "ksa-fintech-market-entry-corridor-design-for-complex-market-fintech-teams",
+    "searchIntent": "Technical education",
+    "primaryKeyword": "KSA fintech market entry corridor design",
+    "secondaryKeywords": [
+      "KSA fintech market entry",
+      "corridor design",
+      "cross-border payments",
+      "SWIFT",
+      "ISO 20022",
+      "emerging markets"
+    ],
+    "targetReader": "Cross-border PMs, bank digital leaders, corridor operators and MENA/South Asia fintech teams",
+    "whyRizwanCanWin": "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+    "outline": [
+      "Define KSA fintech market entry and the decision context",
+      "Show where it sits in the payment/product/program stack",
+      "Explain the product, risk, compliance and operating trade-offs",
+      "Name failure modes that appear in production",
+      "Define metrics and launch or governance gates",
+      "Connect to a Rizwan case study or operator lesson",
+      "Close with FAQ answers for AI search snippets"
+    ],
+    "internalLinks": [
+      "/topics/cross-border-payments",
+      "/topics/swift-iso-20022",
+      "/blog/swift-payment-explained",
+      "/product-work/cross-border-corridors-fx"
+    ],
+    "aiAnswerSnippet": "KSA fintech market entry should be treated as an operating-system decision, not a standalone feature. The useful answer connects product design, partner dependency, risk controls, metrics and production operations.",
+    "publishPriority": 3
+  },
+  {
+    "id": "CB-058",
+    "cluster": "Cross-Border Payments, SWIFT, ISO 20022 and Emerging Markets",
+    "title": "KSA fintech market entry: market-entry checklist for complex-market fintech teams",
+    "slug": "ksa-fintech-market-entry-market-entry-checklist-for-complex-market-fintech-teams",
+    "searchIntent": "Practical checklist",
+    "primaryKeyword": "KSA fintech market entry market-entry checklist",
+    "secondaryKeywords": [
+      "KSA fintech market entry",
+      "market-entry checklist",
+      "cross-border payments",
+      "SWIFT",
+      "ISO 20022",
+      "emerging markets"
+    ],
+    "targetReader": "Cross-border PMs, bank digital leaders, corridor operators and MENA/South Asia fintech teams",
+    "whyRizwanCanWin": "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+    "outline": [
+      "Define KSA fintech market entry and the decision context",
+      "Show where it sits in the payment/product/program stack",
+      "Explain the product, risk, compliance and operating trade-offs",
+      "Name failure modes that appear in production",
+      "Define metrics and launch or governance gates",
+      "Connect to a Rizwan case study or operator lesson",
+      "Close with FAQ answers for AI search snippets"
+    ],
+    "internalLinks": [
+      "/topics/cross-border-payments",
+      "/topics/swift-iso-20022",
+      "/blog/swift-payment-explained",
+      "/product-work/cross-border-corridors-fx"
+    ],
+    "aiAnswerSnippet": "KSA fintech market entry should be treated as an operating-system decision, not a standalone feature. The useful answer connects product design, partner dependency, risk controls, metrics and production operations.",
+    "publishPriority": 3
+  },
+  {
+    "id": "CB-059",
+    "cluster": "Cross-Border Payments, SWIFT, ISO 20022 and Emerging Markets",
+    "title": "KSA fintech market entry: cost model for complex-market fintech teams",
+    "slug": "ksa-fintech-market-entry-cost-model-for-complex-market-fintech-teams",
+    "searchIntent": "Operator playbook",
+    "primaryKeyword": "KSA fintech market entry cost model",
+    "secondaryKeywords": [
+      "KSA fintech market entry",
+      "cost model",
+      "cross-border payments",
+      "SWIFT",
+      "ISO 20022",
+      "emerging markets"
+    ],
+    "targetReader": "Cross-border PMs, bank digital leaders, corridor operators and MENA/South Asia fintech teams",
+    "whyRizwanCanWin": "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+    "outline": [
+      "Define KSA fintech market entry and the decision context",
+      "Show where it sits in the payment/product/program stack",
+      "Explain the product, risk, compliance and operating trade-offs",
+      "Name failure modes that appear in production",
+      "Define metrics and launch or governance gates",
+      "Connect to a Rizwan case study or operator lesson",
+      "Close with FAQ answers for AI search snippets"
+    ],
+    "internalLinks": [
+      "/topics/cross-border-payments",
+      "/topics/swift-iso-20022",
+      "/blog/swift-payment-explained",
+      "/product-work/cross-border-corridors-fx"
+    ],
+    "aiAnswerSnippet": "KSA fintech market entry should be treated as an operating-system decision, not a standalone feature. The useful answer connects product design, partner dependency, risk controls, metrics and production operations.",
+    "publishPriority": 3
+  },
+  {
+    "id": "CB-060",
+    "cluster": "Cross-Border Payments, SWIFT, ISO 20022 and Emerging Markets",
+    "title": "KSA fintech market entry: risk and compliance guide for complex-market fintech teams",
+    "slug": "ksa-fintech-market-entry-risk-and-compliance-guide-for-complex-market-fintech-teams",
+    "searchIntent": "Operator playbook",
+    "primaryKeyword": "KSA fintech market entry risk and compliance guide",
+    "secondaryKeywords": [
+      "KSA fintech market entry",
+      "risk and compliance guide",
+      "cross-border payments",
+      "SWIFT",
+      "ISO 20022",
+      "emerging markets"
+    ],
+    "targetReader": "Cross-border PMs, bank digital leaders, corridor operators and MENA/South Asia fintech teams",
+    "whyRizwanCanWin": "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+    "outline": [
+      "Define KSA fintech market entry and the decision context",
+      "Show where it sits in the payment/product/program stack",
+      "Explain the product, risk, compliance and operating trade-offs",
+      "Name failure modes that appear in production",
+      "Define metrics and launch or governance gates",
+      "Connect to a Rizwan case study or operator lesson",
+      "Close with FAQ answers for AI search snippets"
+    ],
+    "internalLinks": [
+      "/topics/cross-border-payments",
+      "/topics/swift-iso-20022",
+      "/blog/swift-payment-explained",
+      "/product-work/cross-border-corridors-fx"
+    ],
+    "aiAnswerSnippet": "KSA fintech market entry should be treated as an operating-system decision, not a standalone feature. The useful answer connects product design, partner dependency, risk controls, metrics and production operations.",
+    "publishPriority": 3
+  },
+  {
+    "id": "CB-061",
+    "cluster": "Cross-Border Payments, SWIFT, ISO 20022 and Emerging Markets",
+    "title": "Pakistan payment rails: operator playbook for complex-market fintech teams",
+    "slug": "pakistan-payment-rails-operator-playbook-for-complex-market-fintech-teams",
+    "searchIntent": "Operator playbook",
+    "primaryKeyword": "Pakistan payment rails operator playbook",
+    "secondaryKeywords": [
+      "Pakistan payment rails",
+      "operator playbook",
+      "cross-border payments",
+      "SWIFT",
+      "ISO 20022",
+      "emerging markets"
+    ],
+    "targetReader": "Cross-border PMs, bank digital leaders, corridor operators and MENA/South Asia fintech teams",
+    "whyRizwanCanWin": "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+    "outline": [
+      "Define Pakistan payment rails and the decision context",
+      "Show where it sits in the payment/product/program stack",
+      "Explain the product, risk, compliance and operating trade-offs",
+      "Name failure modes that appear in production",
+      "Define metrics and launch or governance gates",
+      "Connect to a Rizwan case study or operator lesson",
+      "Close with FAQ answers for AI search snippets"
+    ],
+    "internalLinks": [
+      "/topics/cross-border-payments",
+      "/topics/swift-iso-20022",
+      "/blog/swift-payment-explained",
+      "/product-work/cross-border-corridors-fx"
+    ],
+    "aiAnswerSnippet": "Pakistan payment rails should be treated as an operating-system decision, not a standalone feature. The useful answer connects product design, partner dependency, risk controls, metrics and production operations.",
+    "publishPriority": 3
+  },
+  {
+    "id": "CB-062",
+    "cluster": "Cross-Border Payments, SWIFT, ISO 20022 and Emerging Markets",
+    "title": "Pakistan payment rails: corridor design for complex-market fintech teams",
+    "slug": "pakistan-payment-rails-corridor-design-for-complex-market-fintech-teams",
+    "searchIntent": "Technical education",
+    "primaryKeyword": "Pakistan payment rails corridor design",
+    "secondaryKeywords": [
+      "Pakistan payment rails",
+      "corridor design",
+      "cross-border payments",
+      "SWIFT",
+      "ISO 20022",
+      "emerging markets"
+    ],
+    "targetReader": "Cross-border PMs, bank digital leaders, corridor operators and MENA/South Asia fintech teams",
+    "whyRizwanCanWin": "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+    "outline": [
+      "Define Pakistan payment rails and the decision context",
+      "Show where it sits in the payment/product/program stack",
+      "Explain the product, risk, compliance and operating trade-offs",
+      "Name failure modes that appear in production",
+      "Define metrics and launch or governance gates",
+      "Connect to a Rizwan case study or operator lesson",
+      "Close with FAQ answers for AI search snippets"
+    ],
+    "internalLinks": [
+      "/topics/cross-border-payments",
+      "/topics/swift-iso-20022",
+      "/blog/swift-payment-explained",
+      "/product-work/cross-border-corridors-fx"
+    ],
+    "aiAnswerSnippet": "Pakistan payment rails should be treated as an operating-system decision, not a standalone feature. The useful answer connects product design, partner dependency, risk controls, metrics and production operations.",
+    "publishPriority": 3
+  },
+  {
+    "id": "CB-063",
+    "cluster": "Cross-Border Payments, SWIFT, ISO 20022 and Emerging Markets",
+    "title": "Pakistan payment rails: market-entry checklist for complex-market fintech teams",
+    "slug": "pakistan-payment-rails-market-entry-checklist-for-complex-market-fintech-teams",
+    "searchIntent": "Practical checklist",
+    "primaryKeyword": "Pakistan payment rails market-entry checklist",
+    "secondaryKeywords": [
+      "Pakistan payment rails",
+      "market-entry checklist",
+      "cross-border payments",
+      "SWIFT",
+      "ISO 20022",
+      "emerging markets"
+    ],
+    "targetReader": "Cross-border PMs, bank digital leaders, corridor operators and MENA/South Asia fintech teams",
+    "whyRizwanCanWin": "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+    "outline": [
+      "Define Pakistan payment rails and the decision context",
+      "Show where it sits in the payment/product/program stack",
+      "Explain the product, risk, compliance and operating trade-offs",
+      "Name failure modes that appear in production",
+      "Define metrics and launch or governance gates",
+      "Connect to a Rizwan case study or operator lesson",
+      "Close with FAQ answers for AI search snippets"
+    ],
+    "internalLinks": [
+      "/topics/cross-border-payments",
+      "/topics/swift-iso-20022",
+      "/blog/swift-payment-explained",
+      "/product-work/cross-border-corridors-fx"
+    ],
+    "aiAnswerSnippet": "Pakistan payment rails should be treated as an operating-system decision, not a standalone feature. The useful answer connects product design, partner dependency, risk controls, metrics and production operations.",
+    "publishPriority": 3
+  },
+  {
+    "id": "CB-064",
+    "cluster": "Cross-Border Payments, SWIFT, ISO 20022 and Emerging Markets",
+    "title": "Pakistan payment rails: cost model for complex-market fintech teams",
+    "slug": "pakistan-payment-rails-cost-model-for-complex-market-fintech-teams",
+    "searchIntent": "Operator playbook",
+    "primaryKeyword": "Pakistan payment rails cost model",
+    "secondaryKeywords": [
+      "Pakistan payment rails",
+      "cost model",
+      "cross-border payments",
+      "SWIFT",
+      "ISO 20022",
+      "emerging markets"
+    ],
+    "targetReader": "Cross-border PMs, bank digital leaders, corridor operators and MENA/South Asia fintech teams",
+    "whyRizwanCanWin": "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+    "outline": [
+      "Define Pakistan payment rails and the decision context",
+      "Show where it sits in the payment/product/program stack",
+      "Explain the product, risk, compliance and operating trade-offs",
+      "Name failure modes that appear in production",
+      "Define metrics and launch or governance gates",
+      "Connect to a Rizwan case study or operator lesson",
+      "Close with FAQ answers for AI search snippets"
+    ],
+    "internalLinks": [
+      "/topics/cross-border-payments",
+      "/topics/swift-iso-20022",
+      "/blog/swift-payment-explained",
+      "/product-work/cross-border-corridors-fx"
+    ],
+    "aiAnswerSnippet": "Pakistan payment rails should be treated as an operating-system decision, not a standalone feature. The useful answer connects product design, partner dependency, risk controls, metrics and production operations.",
+    "publishPriority": 3
+  },
+  {
+    "id": "CB-065",
+    "cluster": "Cross-Border Payments, SWIFT, ISO 20022 and Emerging Markets",
+    "title": "Pakistan payment rails: risk and compliance guide for complex-market fintech teams",
+    "slug": "pakistan-payment-rails-risk-and-compliance-guide-for-complex-market-fintech-teams",
+    "searchIntent": "Operator playbook",
+    "primaryKeyword": "Pakistan payment rails risk and compliance guide",
+    "secondaryKeywords": [
+      "Pakistan payment rails",
+      "risk and compliance guide",
+      "cross-border payments",
+      "SWIFT",
+      "ISO 20022",
+      "emerging markets"
+    ],
+    "targetReader": "Cross-border PMs, bank digital leaders, corridor operators and MENA/South Asia fintech teams",
+    "whyRizwanCanWin": "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+    "outline": [
+      "Define Pakistan payment rails and the decision context",
+      "Show where it sits in the payment/product/program stack",
+      "Explain the product, risk, compliance and operating trade-offs",
+      "Name failure modes that appear in production",
+      "Define metrics and launch or governance gates",
+      "Connect to a Rizwan case study or operator lesson",
+      "Close with FAQ answers for AI search snippets"
+    ],
+    "internalLinks": [
+      "/topics/cross-border-payments",
+      "/topics/swift-iso-20022",
+      "/blog/swift-payment-explained",
+      "/product-work/cross-border-corridors-fx"
+    ],
+    "aiAnswerSnippet": "Pakistan payment rails should be treated as an operating-system decision, not a standalone feature. The useful answer connects product design, partner dependency, risk controls, metrics and production operations.",
+    "publishPriority": 3
+  },
+  {
+    "id": "CB-066",
+    "cluster": "Cross-Border Payments, SWIFT, ISO 20022 and Emerging Markets",
+    "title": "Bangladesh wallet rails: operator playbook for complex-market fintech teams",
+    "slug": "bangladesh-wallet-rails-operator-playbook-for-complex-market-fintech-teams",
+    "searchIntent": "Operator playbook",
+    "primaryKeyword": "Bangladesh wallet rails operator playbook",
+    "secondaryKeywords": [
+      "Bangladesh wallet rails",
+      "operator playbook",
+      "cross-border payments",
+      "SWIFT",
+      "ISO 20022",
+      "emerging markets"
+    ],
+    "targetReader": "Cross-border PMs, bank digital leaders, corridor operators and MENA/South Asia fintech teams",
+    "whyRizwanCanWin": "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+    "outline": [
+      "Define Bangladesh wallet rails and the decision context",
+      "Show where it sits in the payment/product/program stack",
+      "Explain the product, risk, compliance and operating trade-offs",
+      "Name failure modes that appear in production",
+      "Define metrics and launch or governance gates",
+      "Connect to a Rizwan case study or operator lesson",
+      "Close with FAQ answers for AI search snippets"
+    ],
+    "internalLinks": [
+      "/topics/cross-border-payments",
+      "/topics/swift-iso-20022",
+      "/blog/swift-payment-explained",
+      "/product-work/cross-border-corridors-fx"
+    ],
+    "aiAnswerSnippet": "Bangladesh wallet rails should be treated as an operating-system decision, not a standalone feature. The useful answer connects product design, partner dependency, risk controls, metrics and production operations.",
+    "publishPriority": 3
+  },
+  {
+    "id": "CB-067",
+    "cluster": "Cross-Border Payments, SWIFT, ISO 20022 and Emerging Markets",
+    "title": "Bangladesh wallet rails: corridor design for complex-market fintech teams",
+    "slug": "bangladesh-wallet-rails-corridor-design-for-complex-market-fintech-teams",
+    "searchIntent": "Technical education",
+    "primaryKeyword": "Bangladesh wallet rails corridor design",
+    "secondaryKeywords": [
+      "Bangladesh wallet rails",
+      "corridor design",
+      "cross-border payments",
+      "SWIFT",
+      "ISO 20022",
+      "emerging markets"
+    ],
+    "targetReader": "Cross-border PMs, bank digital leaders, corridor operators and MENA/South Asia fintech teams",
+    "whyRizwanCanWin": "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+    "outline": [
+      "Define Bangladesh wallet rails and the decision context",
+      "Show where it sits in the payment/product/program stack",
+      "Explain the product, risk, compliance and operating trade-offs",
+      "Name failure modes that appear in production",
+      "Define metrics and launch or governance gates",
+      "Connect to a Rizwan case study or operator lesson",
+      "Close with FAQ answers for AI search snippets"
+    ],
+    "internalLinks": [
+      "/topics/cross-border-payments",
+      "/topics/swift-iso-20022",
+      "/blog/swift-payment-explained",
+      "/product-work/cross-border-corridors-fx"
+    ],
+    "aiAnswerSnippet": "Bangladesh wallet rails should be treated as an operating-system decision, not a standalone feature. The useful answer connects product design, partner dependency, risk controls, metrics and production operations.",
+    "publishPriority": 3
+  },
+  {
+    "id": "CB-068",
+    "cluster": "Cross-Border Payments, SWIFT, ISO 20022 and Emerging Markets",
+    "title": "Bangladesh wallet rails: market-entry checklist for complex-market fintech teams",
+    "slug": "bangladesh-wallet-rails-market-entry-checklist-for-complex-market-fintech-teams",
+    "searchIntent": "Practical checklist",
+    "primaryKeyword": "Bangladesh wallet rails market-entry checklist",
+    "secondaryKeywords": [
+      "Bangladesh wallet rails",
+      "market-entry checklist",
+      "cross-border payments",
+      "SWIFT",
+      "ISO 20022",
+      "emerging markets"
+    ],
+    "targetReader": "Cross-border PMs, bank digital leaders, corridor operators and MENA/South Asia fintech teams",
+    "whyRizwanCanWin": "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+    "outline": [
+      "Define Bangladesh wallet rails and the decision context",
+      "Show where it sits in the payment/product/program stack",
+      "Explain the product, risk, compliance and operating trade-offs",
+      "Name failure modes that appear in production",
+      "Define metrics and launch or governance gates",
+      "Connect to a Rizwan case study or operator lesson",
+      "Close with FAQ answers for AI search snippets"
+    ],
+    "internalLinks": [
+      "/topics/cross-border-payments",
+      "/topics/swift-iso-20022",
+      "/blog/swift-payment-explained",
+      "/product-work/cross-border-corridors-fx"
+    ],
+    "aiAnswerSnippet": "Bangladesh wallet rails should be treated as an operating-system decision, not a standalone feature. The useful answer connects product design, partner dependency, risk controls, metrics and production operations.",
+    "publishPriority": 3
+  },
+  {
+    "id": "CB-069",
+    "cluster": "Cross-Border Payments, SWIFT, ISO 20022 and Emerging Markets",
+    "title": "Bangladesh wallet rails: cost model for complex-market fintech teams",
+    "slug": "bangladesh-wallet-rails-cost-model-for-complex-market-fintech-teams",
+    "searchIntent": "Operator playbook",
+    "primaryKeyword": "Bangladesh wallet rails cost model",
+    "secondaryKeywords": [
+      "Bangladesh wallet rails",
+      "cost model",
+      "cross-border payments",
+      "SWIFT",
+      "ISO 20022",
+      "emerging markets"
+    ],
+    "targetReader": "Cross-border PMs, bank digital leaders, corridor operators and MENA/South Asia fintech teams",
+    "whyRizwanCanWin": "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+    "outline": [
+      "Define Bangladesh wallet rails and the decision context",
+      "Show where it sits in the payment/product/program stack",
+      "Explain the product, risk, compliance and operating trade-offs",
+      "Name failure modes that appear in production",
+      "Define metrics and launch or governance gates",
+      "Connect to a Rizwan case study or operator lesson",
+      "Close with FAQ answers for AI search snippets"
+    ],
+    "internalLinks": [
+      "/topics/cross-border-payments",
+      "/topics/swift-iso-20022",
+      "/blog/swift-payment-explained",
+      "/product-work/cross-border-corridors-fx"
+    ],
+    "aiAnswerSnippet": "Bangladesh wallet rails should be treated as an operating-system decision, not a standalone feature. The useful answer connects product design, partner dependency, risk controls, metrics and production operations.",
+    "publishPriority": 3
+  },
+  {
+    "id": "CB-070",
+    "cluster": "Cross-Border Payments, SWIFT, ISO 20022 and Emerging Markets",
+    "title": "Bangladesh wallet rails: risk and compliance guide for complex-market fintech teams",
+    "slug": "bangladesh-wallet-rails-risk-and-compliance-guide-for-complex-market-fintech-teams",
+    "searchIntent": "Operator playbook",
+    "primaryKeyword": "Bangladesh wallet rails risk and compliance guide",
+    "secondaryKeywords": [
+      "Bangladesh wallet rails",
+      "risk and compliance guide",
+      "cross-border payments",
+      "SWIFT",
+      "ISO 20022",
+      "emerging markets"
+    ],
+    "targetReader": "Cross-border PMs, bank digital leaders, corridor operators and MENA/South Asia fintech teams",
+    "whyRizwanCanWin": "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+    "outline": [
+      "Define Bangladesh wallet rails and the decision context",
+      "Show where it sits in the payment/product/program stack",
+      "Explain the product, risk, compliance and operating trade-offs",
+      "Name failure modes that appear in production",
+      "Define metrics and launch or governance gates",
+      "Connect to a Rizwan case study or operator lesson",
+      "Close with FAQ answers for AI search snippets"
+    ],
+    "internalLinks": [
+      "/topics/cross-border-payments",
+      "/topics/swift-iso-20022",
+      "/blog/swift-payment-explained",
+      "/product-work/cross-border-corridors-fx"
+    ],
+    "aiAnswerSnippet": "Bangladesh wallet rails should be treated as an operating-system decision, not a standalone feature. The useful answer connects product design, partner dependency, risk controls, metrics and production operations.",
+    "publishPriority": 3
+  },
+  {
+    "id": "CB-071",
+    "cluster": "Cross-Border Payments, SWIFT, ISO 20022 and Emerging Markets",
+    "title": "Egypt payment ecosystem: operator playbook for complex-market fintech teams",
+    "slug": "egypt-payment-ecosystem-operator-playbook-for-complex-market-fintech-teams",
+    "searchIntent": "Operator playbook",
+    "primaryKeyword": "Egypt payment ecosystem operator playbook",
+    "secondaryKeywords": [
+      "Egypt payment ecosystem",
+      "operator playbook",
+      "cross-border payments",
+      "SWIFT",
+      "ISO 20022",
+      "emerging markets"
+    ],
+    "targetReader": "Cross-border PMs, bank digital leaders, corridor operators and MENA/South Asia fintech teams",
+    "whyRizwanCanWin": "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+    "outline": [
+      "Define Egypt payment ecosystem and the decision context",
+      "Show where it sits in the payment/product/program stack",
+      "Explain the product, risk, compliance and operating trade-offs",
+      "Name failure modes that appear in production",
+      "Define metrics and launch or governance gates",
+      "Connect to a Rizwan case study or operator lesson",
+      "Close with FAQ answers for AI search snippets"
+    ],
+    "internalLinks": [
+      "/topics/cross-border-payments",
+      "/topics/swift-iso-20022",
+      "/blog/swift-payment-explained",
+      "/product-work/cross-border-corridors-fx"
+    ],
+    "aiAnswerSnippet": "Egypt payment ecosystem should be treated as an operating-system decision, not a standalone feature. The useful answer connects product design, partner dependency, risk controls, metrics and production operations.",
+    "publishPriority": 3
+  },
+  {
+    "id": "CB-072",
+    "cluster": "Cross-Border Payments, SWIFT, ISO 20022 and Emerging Markets",
+    "title": "Egypt payment ecosystem: corridor design for complex-market fintech teams",
+    "slug": "egypt-payment-ecosystem-corridor-design-for-complex-market-fintech-teams",
+    "searchIntent": "Technical education",
+    "primaryKeyword": "Egypt payment ecosystem corridor design",
+    "secondaryKeywords": [
+      "Egypt payment ecosystem",
+      "corridor design",
+      "cross-border payments",
+      "SWIFT",
+      "ISO 20022",
+      "emerging markets"
+    ],
+    "targetReader": "Cross-border PMs, bank digital leaders, corridor operators and MENA/South Asia fintech teams",
+    "whyRizwanCanWin": "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+    "outline": [
+      "Define Egypt payment ecosystem and the decision context",
+      "Show where it sits in the payment/product/program stack",
+      "Explain the product, risk, compliance and operating trade-offs",
+      "Name failure modes that appear in production",
+      "Define metrics and launch or governance gates",
+      "Connect to a Rizwan case study or operator lesson",
+      "Close with FAQ answers for AI search snippets"
+    ],
+    "internalLinks": [
+      "/topics/cross-border-payments",
+      "/topics/swift-iso-20022",
+      "/blog/swift-payment-explained",
+      "/product-work/cross-border-corridors-fx"
+    ],
+    "aiAnswerSnippet": "Egypt payment ecosystem should be treated as an operating-system decision, not a standalone feature. The useful answer connects product design, partner dependency, risk controls, metrics and production operations.",
+    "publishPriority": 3
+  },
+  {
+    "id": "CB-073",
+    "cluster": "Cross-Border Payments, SWIFT, ISO 20022 and Emerging Markets",
+    "title": "Egypt payment ecosystem: market-entry checklist for complex-market fintech teams",
+    "slug": "egypt-payment-ecosystem-market-entry-checklist-for-complex-market-fintech-teams",
+    "searchIntent": "Practical checklist",
+    "primaryKeyword": "Egypt payment ecosystem market-entry checklist",
+    "secondaryKeywords": [
+      "Egypt payment ecosystem",
+      "market-entry checklist",
+      "cross-border payments",
+      "SWIFT",
+      "ISO 20022",
+      "emerging markets"
+    ],
+    "targetReader": "Cross-border PMs, bank digital leaders, corridor operators and MENA/South Asia fintech teams",
+    "whyRizwanCanWin": "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+    "outline": [
+      "Define Egypt payment ecosystem and the decision context",
+      "Show where it sits in the payment/product/program stack",
+      "Explain the product, risk, compliance and operating trade-offs",
+      "Name failure modes that appear in production",
+      "Define metrics and launch or governance gates",
+      "Connect to a Rizwan case study or operator lesson",
+      "Close with FAQ answers for AI search snippets"
+    ],
+    "internalLinks": [
+      "/topics/cross-border-payments",
+      "/topics/swift-iso-20022",
+      "/blog/swift-payment-explained",
+      "/product-work/cross-border-corridors-fx"
+    ],
+    "aiAnswerSnippet": "Egypt payment ecosystem should be treated as an operating-system decision, not a standalone feature. The useful answer connects product design, partner dependency, risk controls, metrics and production operations.",
+    "publishPriority": 3
+  },
+  {
+    "id": "CB-074",
+    "cluster": "Cross-Border Payments, SWIFT, ISO 20022 and Emerging Markets",
+    "title": "Egypt payment ecosystem: cost model for complex-market fintech teams",
+    "slug": "egypt-payment-ecosystem-cost-model-for-complex-market-fintech-teams",
+    "searchIntent": "Operator playbook",
+    "primaryKeyword": "Egypt payment ecosystem cost model",
+    "secondaryKeywords": [
+      "Egypt payment ecosystem",
+      "cost model",
+      "cross-border payments",
+      "SWIFT",
+      "ISO 20022",
+      "emerging markets"
+    ],
+    "targetReader": "Cross-border PMs, bank digital leaders, corridor operators and MENA/South Asia fintech teams",
+    "whyRizwanCanWin": "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+    "outline": [
+      "Define Egypt payment ecosystem and the decision context",
+      "Show where it sits in the payment/product/program stack",
+      "Explain the product, risk, compliance and operating trade-offs",
+      "Name failure modes that appear in production",
+      "Define metrics and launch or governance gates",
+      "Connect to a Rizwan case study or operator lesson",
+      "Close with FAQ answers for AI search snippets"
+    ],
+    "internalLinks": [
+      "/topics/cross-border-payments",
+      "/topics/swift-iso-20022",
+      "/blog/swift-payment-explained",
+      "/product-work/cross-border-corridors-fx"
+    ],
+    "aiAnswerSnippet": "Egypt payment ecosystem should be treated as an operating-system decision, not a standalone feature. The useful answer connects product design, partner dependency, risk controls, metrics and production operations.",
+    "publishPriority": 3
+  },
+  {
+    "id": "CB-075",
+    "cluster": "Cross-Border Payments, SWIFT, ISO 20022 and Emerging Markets",
+    "title": "Egypt payment ecosystem: risk and compliance guide for complex-market fintech teams",
+    "slug": "egypt-payment-ecosystem-risk-and-compliance-guide-for-complex-market-fintech-teams",
+    "searchIntent": "Operator playbook",
+    "primaryKeyword": "Egypt payment ecosystem risk and compliance guide",
+    "secondaryKeywords": [
+      "Egypt payment ecosystem",
+      "risk and compliance guide",
+      "cross-border payments",
+      "SWIFT",
+      "ISO 20022",
+      "emerging markets"
+    ],
+    "targetReader": "Cross-border PMs, bank digital leaders, corridor operators and MENA/South Asia fintech teams",
+    "whyRizwanCanWin": "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+    "outline": [
+      "Define Egypt payment ecosystem and the decision context",
+      "Show where it sits in the payment/product/program stack",
+      "Explain the product, risk, compliance and operating trade-offs",
+      "Name failure modes that appear in production",
+      "Define metrics and launch or governance gates",
+      "Connect to a Rizwan case study or operator lesson",
+      "Close with FAQ answers for AI search snippets"
+    ],
+    "internalLinks": [
+      "/topics/cross-border-payments",
+      "/topics/swift-iso-20022",
+      "/blog/swift-payment-explained",
+      "/product-work/cross-border-corridors-fx"
+    ],
+    "aiAnswerSnippet": "Egypt payment ecosystem should be treated as an operating-system decision, not a standalone feature. The useful answer connects product design, partner dependency, risk controls, metrics and production operations.",
+    "publishPriority": 3
+  },
+  {
+    "id": "CB-076",
+    "cluster": "Cross-Border Payments, SWIFT, ISO 20022 and Emerging Markets",
+    "title": "Iraq payment infrastructure: operator playbook for complex-market fintech teams",
+    "slug": "iraq-payment-infrastructure-operator-playbook-for-complex-market-fintech-teams",
+    "searchIntent": "Operator playbook",
+    "primaryKeyword": "Iraq payment infrastructure operator playbook",
+    "secondaryKeywords": [
+      "Iraq payment infrastructure",
+      "operator playbook",
+      "cross-border payments",
+      "SWIFT",
+      "ISO 20022",
+      "emerging markets"
+    ],
+    "targetReader": "Cross-border PMs, bank digital leaders, corridor operators and MENA/South Asia fintech teams",
+    "whyRizwanCanWin": "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+    "outline": [
+      "Define Iraq payment infrastructure and the decision context",
+      "Show where it sits in the payment/product/program stack",
+      "Explain the product, risk, compliance and operating trade-offs",
+      "Name failure modes that appear in production",
+      "Define metrics and launch or governance gates",
+      "Connect to a Rizwan case study or operator lesson",
+      "Close with FAQ answers for AI search snippets"
+    ],
+    "internalLinks": [
+      "/topics/cross-border-payments",
+      "/topics/swift-iso-20022",
+      "/blog/swift-payment-explained",
+      "/product-work/cross-border-corridors-fx"
+    ],
+    "aiAnswerSnippet": "Iraq payment infrastructure should be treated as an operating-system decision, not a standalone feature. The useful answer connects product design, partner dependency, risk controls, metrics and production operations.",
+    "publishPriority": 3
+  },
+  {
+    "id": "CB-077",
+    "cluster": "Cross-Border Payments, SWIFT, ISO 20022 and Emerging Markets",
+    "title": "Iraq payment infrastructure: corridor design for complex-market fintech teams",
+    "slug": "iraq-payment-infrastructure-corridor-design-for-complex-market-fintech-teams",
+    "searchIntent": "Technical education",
+    "primaryKeyword": "Iraq payment infrastructure corridor design",
+    "secondaryKeywords": [
+      "Iraq payment infrastructure",
+      "corridor design",
+      "cross-border payments",
+      "SWIFT",
+      "ISO 20022",
+      "emerging markets"
+    ],
+    "targetReader": "Cross-border PMs, bank digital leaders, corridor operators and MENA/South Asia fintech teams",
+    "whyRizwanCanWin": "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+    "outline": [
+      "Define Iraq payment infrastructure and the decision context",
+      "Show where it sits in the payment/product/program stack",
+      "Explain the product, risk, compliance and operating trade-offs",
+      "Name failure modes that appear in production",
+      "Define metrics and launch or governance gates",
+      "Connect to a Rizwan case study or operator lesson",
+      "Close with FAQ answers for AI search snippets"
+    ],
+    "internalLinks": [
+      "/topics/cross-border-payments",
+      "/topics/swift-iso-20022",
+      "/blog/swift-payment-explained",
+      "/product-work/cross-border-corridors-fx"
+    ],
+    "aiAnswerSnippet": "Iraq payment infrastructure should be treated as an operating-system decision, not a standalone feature. The useful answer connects product design, partner dependency, risk controls, metrics and production operations.",
+    "publishPriority": 3
+  },
+  {
+    "id": "CB-078",
+    "cluster": "Cross-Border Payments, SWIFT, ISO 20022 and Emerging Markets",
+    "title": "Iraq payment infrastructure: market-entry checklist for complex-market fintech teams",
+    "slug": "iraq-payment-infrastructure-market-entry-checklist-for-complex-market-fintech-teams",
+    "searchIntent": "Practical checklist",
+    "primaryKeyword": "Iraq payment infrastructure market-entry checklist",
+    "secondaryKeywords": [
+      "Iraq payment infrastructure",
+      "market-entry checklist",
+      "cross-border payments",
+      "SWIFT",
+      "ISO 20022",
+      "emerging markets"
+    ],
+    "targetReader": "Cross-border PMs, bank digital leaders, corridor operators and MENA/South Asia fintech teams",
+    "whyRizwanCanWin": "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+    "outline": [
+      "Define Iraq payment infrastructure and the decision context",
+      "Show where it sits in the payment/product/program stack",
+      "Explain the product, risk, compliance and operating trade-offs",
+      "Name failure modes that appear in production",
+      "Define metrics and launch or governance gates",
+      "Connect to a Rizwan case study or operator lesson",
+      "Close with FAQ answers for AI search snippets"
+    ],
+    "internalLinks": [
+      "/topics/cross-border-payments",
+      "/topics/swift-iso-20022",
+      "/blog/swift-payment-explained",
+      "/product-work/cross-border-corridors-fx"
+    ],
+    "aiAnswerSnippet": "Iraq payment infrastructure should be treated as an operating-system decision, not a standalone feature. The useful answer connects product design, partner dependency, risk controls, metrics and production operations.",
+    "publishPriority": 3
+  },
+  {
+    "id": "CB-079",
+    "cluster": "Cross-Border Payments, SWIFT, ISO 20022 and Emerging Markets",
+    "title": "Iraq payment infrastructure: cost model for complex-market fintech teams",
+    "slug": "iraq-payment-infrastructure-cost-model-for-complex-market-fintech-teams",
+    "searchIntent": "Operator playbook",
+    "primaryKeyword": "Iraq payment infrastructure cost model",
+    "secondaryKeywords": [
+      "Iraq payment infrastructure",
+      "cost model",
+      "cross-border payments",
+      "SWIFT",
+      "ISO 20022",
+      "emerging markets"
+    ],
+    "targetReader": "Cross-border PMs, bank digital leaders, corridor operators and MENA/South Asia fintech teams",
+    "whyRizwanCanWin": "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+    "outline": [
+      "Define Iraq payment infrastructure and the decision context",
+      "Show where it sits in the payment/product/program stack",
+      "Explain the product, risk, compliance and operating trade-offs",
+      "Name failure modes that appear in production",
+      "Define metrics and launch or governance gates",
+      "Connect to a Rizwan case study or operator lesson",
+      "Close with FAQ answers for AI search snippets"
+    ],
+    "internalLinks": [
+      "/topics/cross-border-payments",
+      "/topics/swift-iso-20022",
+      "/blog/swift-payment-explained",
+      "/product-work/cross-border-corridors-fx"
+    ],
+    "aiAnswerSnippet": "Iraq payment infrastructure should be treated as an operating-system decision, not a standalone feature. The useful answer connects product design, partner dependency, risk controls, metrics and production operations.",
+    "publishPriority": 3
+  },
+  {
+    "id": "CB-080",
+    "cluster": "Cross-Border Payments, SWIFT, ISO 20022 and Emerging Markets",
+    "title": "Iraq payment infrastructure: risk and compliance guide for complex-market fintech teams",
+    "slug": "iraq-payment-infrastructure-risk-and-compliance-guide-for-complex-market-fintech-teams",
+    "searchIntent": "Operator playbook",
+    "primaryKeyword": "Iraq payment infrastructure risk and compliance guide",
+    "secondaryKeywords": [
+      "Iraq payment infrastructure",
+      "risk and compliance guide",
+      "cross-border payments",
+      "SWIFT",
+      "ISO 20022",
+      "emerging markets"
+    ],
+    "targetReader": "Cross-border PMs, bank digital leaders, corridor operators and MENA/South Asia fintech teams",
+    "whyRizwanCanWin": "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+    "outline": [
+      "Define Iraq payment infrastructure and the decision context",
+      "Show where it sits in the payment/product/program stack",
+      "Explain the product, risk, compliance and operating trade-offs",
+      "Name failure modes that appear in production",
+      "Define metrics and launch or governance gates",
+      "Connect to a Rizwan case study or operator lesson",
+      "Close with FAQ answers for AI search snippets"
+    ],
+    "internalLinks": [
+      "/topics/cross-border-payments",
+      "/topics/swift-iso-20022",
+      "/blog/swift-payment-explained",
+      "/product-work/cross-border-corridors-fx"
+    ],
+    "aiAnswerSnippet": "Iraq payment infrastructure should be treated as an operating-system decision, not a standalone feature. The useful answer connects product design, partner dependency, risk controls, metrics and production operations.",
+    "publishPriority": 3
+  },
+  {
+    "id": "CB-081",
+    "cluster": "Cross-Border Payments, SWIFT, ISO 20022 and Emerging Markets",
+    "title": "G20 cross-border roadmap: operator playbook for complex-market fintech teams",
+    "slug": "g20-cross-border-roadmap-operator-playbook-for-complex-market-fintech-teams",
+    "searchIntent": "Operator playbook",
+    "primaryKeyword": "G20 cross-border roadmap operator playbook",
+    "secondaryKeywords": [
+      "G20 cross-border roadmap",
+      "operator playbook",
+      "cross-border payments",
+      "SWIFT",
+      "ISO 20022",
+      "emerging markets"
+    ],
+    "targetReader": "Cross-border PMs, bank digital leaders, corridor operators and MENA/South Asia fintech teams",
+    "whyRizwanCanWin": "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+    "outline": [
+      "Define G20 cross-border roadmap and the decision context",
+      "Show where it sits in the payment/product/program stack",
+      "Explain the product, risk, compliance and operating trade-offs",
+      "Name failure modes that appear in production",
+      "Define metrics and launch or governance gates",
+      "Connect to a Rizwan case study or operator lesson",
+      "Close with FAQ answers for AI search snippets"
+    ],
+    "internalLinks": [
+      "/topics/cross-border-payments",
+      "/topics/swift-iso-20022",
+      "/blog/swift-payment-explained",
+      "/product-work/cross-border-corridors-fx"
+    ],
+    "aiAnswerSnippet": "G20 cross-border roadmap should be treated as an operating-system decision, not a standalone feature. The useful answer connects product design, partner dependency, risk controls, metrics and production operations.",
+    "publishPriority": 2
+  },
+  {
+    "id": "CB-082",
+    "cluster": "Cross-Border Payments, SWIFT, ISO 20022 and Emerging Markets",
+    "title": "G20 cross-border roadmap: corridor design for complex-market fintech teams",
+    "slug": "g20-cross-border-roadmap-corridor-design-for-complex-market-fintech-teams",
+    "searchIntent": "Technical education",
+    "primaryKeyword": "G20 cross-border roadmap corridor design",
+    "secondaryKeywords": [
+      "G20 cross-border roadmap",
+      "corridor design",
+      "cross-border payments",
+      "SWIFT",
+      "ISO 20022",
+      "emerging markets"
+    ],
+    "targetReader": "Cross-border PMs, bank digital leaders, corridor operators and MENA/South Asia fintech teams",
+    "whyRizwanCanWin": "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+    "outline": [
+      "Define G20 cross-border roadmap and the decision context",
+      "Show where it sits in the payment/product/program stack",
+      "Explain the product, risk, compliance and operating trade-offs",
+      "Name failure modes that appear in production",
+      "Define metrics and launch or governance gates",
+      "Connect to a Rizwan case study or operator lesson",
+      "Close with FAQ answers for AI search snippets"
+    ],
+    "internalLinks": [
+      "/topics/cross-border-payments",
+      "/topics/swift-iso-20022",
+      "/blog/swift-payment-explained",
+      "/product-work/cross-border-corridors-fx"
+    ],
+    "aiAnswerSnippet": "G20 cross-border roadmap should be treated as an operating-system decision, not a standalone feature. The useful answer connects product design, partner dependency, risk controls, metrics and production operations.",
+    "publishPriority": 2
+  },
+  {
+    "id": "CB-083",
+    "cluster": "Cross-Border Payments, SWIFT, ISO 20022 and Emerging Markets",
+    "title": "G20 cross-border roadmap: market-entry checklist for complex-market fintech teams",
+    "slug": "g20-cross-border-roadmap-market-entry-checklist-for-complex-market-fintech-teams",
+    "searchIntent": "Practical checklist",
+    "primaryKeyword": "G20 cross-border roadmap market-entry checklist",
+    "secondaryKeywords": [
+      "G20 cross-border roadmap",
+      "market-entry checklist",
+      "cross-border payments",
+      "SWIFT",
+      "ISO 20022",
+      "emerging markets"
+    ],
+    "targetReader": "Cross-border PMs, bank digital leaders, corridor operators and MENA/South Asia fintech teams",
+    "whyRizwanCanWin": "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+    "outline": [
+      "Define G20 cross-border roadmap and the decision context",
+      "Show where it sits in the payment/product/program stack",
+      "Explain the product, risk, compliance and operating trade-offs",
+      "Name failure modes that appear in production",
+      "Define metrics and launch or governance gates",
+      "Connect to a Rizwan case study or operator lesson",
+      "Close with FAQ answers for AI search snippets"
+    ],
+    "internalLinks": [
+      "/topics/cross-border-payments",
+      "/topics/swift-iso-20022",
+      "/blog/swift-payment-explained",
+      "/product-work/cross-border-corridors-fx"
+    ],
+    "aiAnswerSnippet": "G20 cross-border roadmap should be treated as an operating-system decision, not a standalone feature. The useful answer connects product design, partner dependency, risk controls, metrics and production operations.",
+    "publishPriority": 2
+  },
+  {
+    "id": "CB-084",
+    "cluster": "Cross-Border Payments, SWIFT, ISO 20022 and Emerging Markets",
+    "title": "G20 cross-border roadmap: cost model for complex-market fintech teams",
+    "slug": "g20-cross-border-roadmap-cost-model-for-complex-market-fintech-teams",
+    "searchIntent": "Operator playbook",
+    "primaryKeyword": "G20 cross-border roadmap cost model",
+    "secondaryKeywords": [
+      "G20 cross-border roadmap",
+      "cost model",
+      "cross-border payments",
+      "SWIFT",
+      "ISO 20022",
+      "emerging markets"
+    ],
+    "targetReader": "Cross-border PMs, bank digital leaders, corridor operators and MENA/South Asia fintech teams",
+    "whyRizwanCanWin": "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+    "outline": [
+      "Define G20 cross-border roadmap and the decision context",
+      "Show where it sits in the payment/product/program stack",
+      "Explain the product, risk, compliance and operating trade-offs",
+      "Name failure modes that appear in production",
+      "Define metrics and launch or governance gates",
+      "Connect to a Rizwan case study or operator lesson",
+      "Close with FAQ answers for AI search snippets"
+    ],
+    "internalLinks": [
+      "/topics/cross-border-payments",
+      "/topics/swift-iso-20022",
+      "/blog/swift-payment-explained",
+      "/product-work/cross-border-corridors-fx"
+    ],
+    "aiAnswerSnippet": "G20 cross-border roadmap should be treated as an operating-system decision, not a standalone feature. The useful answer connects product design, partner dependency, risk controls, metrics and production operations.",
+    "publishPriority": 2
+  },
+  {
+    "id": "CB-085",
+    "cluster": "Cross-Border Payments, SWIFT, ISO 20022 and Emerging Markets",
+    "title": "G20 cross-border roadmap: risk and compliance guide for complex-market fintech teams",
+    "slug": "g20-cross-border-roadmap-risk-and-compliance-guide-for-complex-market-fintech-teams",
+    "searchIntent": "Operator playbook",
+    "primaryKeyword": "G20 cross-border roadmap risk and compliance guide",
+    "secondaryKeywords": [
+      "G20 cross-border roadmap",
+      "risk and compliance guide",
+      "cross-border payments",
+      "SWIFT",
+      "ISO 20022",
+      "emerging markets"
+    ],
+    "targetReader": "Cross-border PMs, bank digital leaders, corridor operators and MENA/South Asia fintech teams",
+    "whyRizwanCanWin": "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+    "outline": [
+      "Define G20 cross-border roadmap and the decision context",
+      "Show where it sits in the payment/product/program stack",
+      "Explain the product, risk, compliance and operating trade-offs",
+      "Name failure modes that appear in production",
+      "Define metrics and launch or governance gates",
+      "Connect to a Rizwan case study or operator lesson",
+      "Close with FAQ answers for AI search snippets"
+    ],
+    "internalLinks": [
+      "/topics/cross-border-payments",
+      "/topics/swift-iso-20022",
+      "/blog/swift-payment-explained",
+      "/product-work/cross-border-corridors-fx"
+    ],
+    "aiAnswerSnippet": "G20 cross-border roadmap should be treated as an operating-system decision, not a standalone feature. The useful answer connects product design, partner dependency, risk controls, metrics and production operations.",
+    "publishPriority": 2
+  },
+  {
+    "id": "CB-086",
+    "cluster": "Cross-Border Payments, SWIFT, ISO 20022 and Emerging Markets",
+    "title": "instant rail interoperability: operator playbook for complex-market fintech teams",
+    "slug": "instant-rail-interoperability-operator-playbook-for-complex-market-fintech-teams",
+    "searchIntent": "Operator playbook",
+    "primaryKeyword": "instant rail interoperability operator playbook",
+    "secondaryKeywords": [
+      "instant rail interoperability",
+      "operator playbook",
+      "cross-border payments",
+      "SWIFT",
+      "ISO 20022",
+      "emerging markets"
+    ],
+    "targetReader": "Cross-border PMs, bank digital leaders, corridor operators and MENA/South Asia fintech teams",
+    "whyRizwanCanWin": "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+    "outline": [
+      "Define instant rail interoperability and the decision context",
+      "Show where it sits in the payment/product/program stack",
+      "Explain the product, risk, compliance and operating trade-offs",
+      "Name failure modes that appear in production",
+      "Define metrics and launch or governance gates",
+      "Connect to a Rizwan case study or operator lesson",
+      "Close with FAQ answers for AI search snippets"
+    ],
+    "internalLinks": [
+      "/topics/cross-border-payments",
+      "/topics/swift-iso-20022",
+      "/blog/swift-payment-explained",
+      "/product-work/cross-border-corridors-fx"
+    ],
+    "aiAnswerSnippet": "instant rail interoperability should be treated as an operating-system decision, not a standalone feature. The useful answer connects product design, partner dependency, risk controls, metrics and production operations.",
+    "publishPriority": 2
+  },
+  {
+    "id": "CB-087",
+    "cluster": "Cross-Border Payments, SWIFT, ISO 20022 and Emerging Markets",
+    "title": "instant rail interoperability: corridor design for complex-market fintech teams",
+    "slug": "instant-rail-interoperability-corridor-design-for-complex-market-fintech-teams",
+    "searchIntent": "Technical education",
+    "primaryKeyword": "instant rail interoperability corridor design",
+    "secondaryKeywords": [
+      "instant rail interoperability",
+      "corridor design",
+      "cross-border payments",
+      "SWIFT",
+      "ISO 20022",
+      "emerging markets"
+    ],
+    "targetReader": "Cross-border PMs, bank digital leaders, corridor operators and MENA/South Asia fintech teams",
+    "whyRizwanCanWin": "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+    "outline": [
+      "Define instant rail interoperability and the decision context",
+      "Show where it sits in the payment/product/program stack",
+      "Explain the product, risk, compliance and operating trade-offs",
+      "Name failure modes that appear in production",
+      "Define metrics and launch or governance gates",
+      "Connect to a Rizwan case study or operator lesson",
+      "Close with FAQ answers for AI search snippets"
+    ],
+    "internalLinks": [
+      "/topics/cross-border-payments",
+      "/topics/swift-iso-20022",
+      "/blog/swift-payment-explained",
+      "/product-work/cross-border-corridors-fx"
+    ],
+    "aiAnswerSnippet": "instant rail interoperability should be treated as an operating-system decision, not a standalone feature. The useful answer connects product design, partner dependency, risk controls, metrics and production operations.",
+    "publishPriority": 2
+  },
+  {
+    "id": "CB-088",
+    "cluster": "Cross-Border Payments, SWIFT, ISO 20022 and Emerging Markets",
+    "title": "instant rail interoperability: market-entry checklist for complex-market fintech teams",
+    "slug": "instant-rail-interoperability-market-entry-checklist-for-complex-market-fintech-teams",
+    "searchIntent": "Practical checklist",
+    "primaryKeyword": "instant rail interoperability market-entry checklist",
+    "secondaryKeywords": [
+      "instant rail interoperability",
+      "market-entry checklist",
+      "cross-border payments",
+      "SWIFT",
+      "ISO 20022",
+      "emerging markets"
+    ],
+    "targetReader": "Cross-border PMs, bank digital leaders, corridor operators and MENA/South Asia fintech teams",
+    "whyRizwanCanWin": "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+    "outline": [
+      "Define instant rail interoperability and the decision context",
+      "Show where it sits in the payment/product/program stack",
+      "Explain the product, risk, compliance and operating trade-offs",
+      "Name failure modes that appear in production",
+      "Define metrics and launch or governance gates",
+      "Connect to a Rizwan case study or operator lesson",
+      "Close with FAQ answers for AI search snippets"
+    ],
+    "internalLinks": [
+      "/topics/cross-border-payments",
+      "/topics/swift-iso-20022",
+      "/blog/swift-payment-explained",
+      "/product-work/cross-border-corridors-fx"
+    ],
+    "aiAnswerSnippet": "instant rail interoperability should be treated as an operating-system decision, not a standalone feature. The useful answer connects product design, partner dependency, risk controls, metrics and production operations.",
+    "publishPriority": 2
+  },
+  {
+    "id": "CB-089",
+    "cluster": "Cross-Border Payments, SWIFT, ISO 20022 and Emerging Markets",
+    "title": "instant rail interoperability: cost model for complex-market fintech teams",
+    "slug": "instant-rail-interoperability-cost-model-for-complex-market-fintech-teams",
+    "searchIntent": "Operator playbook",
+    "primaryKeyword": "instant rail interoperability cost model",
+    "secondaryKeywords": [
+      "instant rail interoperability",
+      "cost model",
+      "cross-border payments",
+      "SWIFT",
+      "ISO 20022",
+      "emerging markets"
+    ],
+    "targetReader": "Cross-border PMs, bank digital leaders, corridor operators and MENA/South Asia fintech teams",
+    "whyRizwanCanWin": "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+    "outline": [
+      "Define instant rail interoperability and the decision context",
+      "Show where it sits in the payment/product/program stack",
+      "Explain the product, risk, compliance and operating trade-offs",
+      "Name failure modes that appear in production",
+      "Define metrics and launch or governance gates",
+      "Connect to a Rizwan case study or operator lesson",
+      "Close with FAQ answers for AI search snippets"
+    ],
+    "internalLinks": [
+      "/topics/cross-border-payments",
+      "/topics/swift-iso-20022",
+      "/blog/swift-payment-explained",
+      "/product-work/cross-border-corridors-fx"
+    ],
+    "aiAnswerSnippet": "instant rail interoperability should be treated as an operating-system decision, not a standalone feature. The useful answer connects product design, partner dependency, risk controls, metrics and production operations.",
+    "publishPriority": 2
+  },
+  {
+    "id": "CB-090",
+    "cluster": "Cross-Border Payments, SWIFT, ISO 20022 and Emerging Markets",
+    "title": "instant rail interoperability: risk and compliance guide for complex-market fintech teams",
+    "slug": "instant-rail-interoperability-risk-and-compliance-guide-for-complex-market-fintech-teams",
+    "searchIntent": "Operator playbook",
+    "primaryKeyword": "instant rail interoperability risk and compliance guide",
+    "secondaryKeywords": [
+      "instant rail interoperability",
+      "risk and compliance guide",
+      "cross-border payments",
+      "SWIFT",
+      "ISO 20022",
+      "emerging markets"
+    ],
+    "targetReader": "Cross-border PMs, bank digital leaders, corridor operators and MENA/South Asia fintech teams",
+    "whyRizwanCanWin": "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+    "outline": [
+      "Define instant rail interoperability and the decision context",
+      "Show where it sits in the payment/product/program stack",
+      "Explain the product, risk, compliance and operating trade-offs",
+      "Name failure modes that appear in production",
+      "Define metrics and launch or governance gates",
+      "Connect to a Rizwan case study or operator lesson",
+      "Close with FAQ answers for AI search snippets"
+    ],
+    "internalLinks": [
+      "/topics/cross-border-payments",
+      "/topics/swift-iso-20022",
+      "/blog/swift-payment-explained",
+      "/product-work/cross-border-corridors-fx"
+    ],
+    "aiAnswerSnippet": "instant rail interoperability should be treated as an operating-system decision, not a standalone feature. The useful answer connects product design, partner dependency, risk controls, metrics and production operations.",
+    "publishPriority": 2
+  },
+  {
+    "id": "CB-091",
+    "cluster": "Cross-Border Payments, SWIFT, ISO 20022 and Emerging Markets",
+    "title": "de-risking: operator playbook for complex-market fintech teams",
+    "slug": "de-risking-operator-playbook-for-complex-market-fintech-teams",
+    "searchIntent": "Operator playbook",
+    "primaryKeyword": "de-risking operator playbook",
+    "secondaryKeywords": [
+      "de-risking",
+      "operator playbook",
+      "cross-border payments",
+      "SWIFT",
+      "ISO 20022",
+      "emerging markets"
+    ],
+    "targetReader": "Cross-border PMs, bank digital leaders, corridor operators and MENA/South Asia fintech teams",
+    "whyRizwanCanWin": "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+    "outline": [
+      "Define de-risking and the decision context",
+      "Show where it sits in the payment/product/program stack",
+      "Explain the product, risk, compliance and operating trade-offs",
+      "Name failure modes that appear in production",
+      "Define metrics and launch or governance gates",
+      "Connect to a Rizwan case study or operator lesson",
+      "Close with FAQ answers for AI search snippets"
+    ],
+    "internalLinks": [
+      "/topics/cross-border-payments",
+      "/topics/swift-iso-20022",
+      "/blog/swift-payment-explained",
+      "/product-work/cross-border-corridors-fx"
+    ],
+    "aiAnswerSnippet": "de-risking should be treated as an operating-system decision, not a standalone feature. The useful answer connects product design, partner dependency, risk controls, metrics and production operations.",
+    "publishPriority": 2
+  },
+  {
+    "id": "CB-092",
+    "cluster": "Cross-Border Payments, SWIFT, ISO 20022 and Emerging Markets",
+    "title": "de-risking: corridor design for complex-market fintech teams",
+    "slug": "de-risking-corridor-design-for-complex-market-fintech-teams",
+    "searchIntent": "Technical education",
+    "primaryKeyword": "de-risking corridor design",
+    "secondaryKeywords": [
+      "de-risking",
+      "corridor design",
+      "cross-border payments",
+      "SWIFT",
+      "ISO 20022",
+      "emerging markets"
+    ],
+    "targetReader": "Cross-border PMs, bank digital leaders, corridor operators and MENA/South Asia fintech teams",
+    "whyRizwanCanWin": "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+    "outline": [
+      "Define de-risking and the decision context",
+      "Show where it sits in the payment/product/program stack",
+      "Explain the product, risk, compliance and operating trade-offs",
+      "Name failure modes that appear in production",
+      "Define metrics and launch or governance gates",
+      "Connect to a Rizwan case study or operator lesson",
+      "Close with FAQ answers for AI search snippets"
+    ],
+    "internalLinks": [
+      "/topics/cross-border-payments",
+      "/topics/swift-iso-20022",
+      "/blog/swift-payment-explained",
+      "/product-work/cross-border-corridors-fx"
+    ],
+    "aiAnswerSnippet": "de-risking should be treated as an operating-system decision, not a standalone feature. The useful answer connects product design, partner dependency, risk controls, metrics and production operations.",
+    "publishPriority": 2
+  },
+  {
+    "id": "CB-093",
+    "cluster": "Cross-Border Payments, SWIFT, ISO 20022 and Emerging Markets",
+    "title": "de-risking: market-entry checklist for complex-market fintech teams",
+    "slug": "de-risking-market-entry-checklist-for-complex-market-fintech-teams",
+    "searchIntent": "Practical checklist",
+    "primaryKeyword": "de-risking market-entry checklist",
+    "secondaryKeywords": [
+      "de-risking",
+      "market-entry checklist",
+      "cross-border payments",
+      "SWIFT",
+      "ISO 20022",
+      "emerging markets"
+    ],
+    "targetReader": "Cross-border PMs, bank digital leaders, corridor operators and MENA/South Asia fintech teams",
+    "whyRizwanCanWin": "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+    "outline": [
+      "Define de-risking and the decision context",
+      "Show where it sits in the payment/product/program stack",
+      "Explain the product, risk, compliance and operating trade-offs",
+      "Name failure modes that appear in production",
+      "Define metrics and launch or governance gates",
+      "Connect to a Rizwan case study or operator lesson",
+      "Close with FAQ answers for AI search snippets"
+    ],
+    "internalLinks": [
+      "/topics/cross-border-payments",
+      "/topics/swift-iso-20022",
+      "/blog/swift-payment-explained",
+      "/product-work/cross-border-corridors-fx"
+    ],
+    "aiAnswerSnippet": "de-risking should be treated as an operating-system decision, not a standalone feature. The useful answer connects product design, partner dependency, risk controls, metrics and production operations.",
+    "publishPriority": 2
+  },
+  {
+    "id": "CB-094",
+    "cluster": "Cross-Border Payments, SWIFT, ISO 20022 and Emerging Markets",
+    "title": "de-risking: cost model for complex-market fintech teams",
+    "slug": "de-risking-cost-model-for-complex-market-fintech-teams",
+    "searchIntent": "Operator playbook",
+    "primaryKeyword": "de-risking cost model",
+    "secondaryKeywords": [
+      "de-risking",
+      "cost model",
+      "cross-border payments",
+      "SWIFT",
+      "ISO 20022",
+      "emerging markets"
+    ],
+    "targetReader": "Cross-border PMs, bank digital leaders, corridor operators and MENA/South Asia fintech teams",
+    "whyRizwanCanWin": "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+    "outline": [
+      "Define de-risking and the decision context",
+      "Show where it sits in the payment/product/program stack",
+      "Explain the product, risk, compliance and operating trade-offs",
+      "Name failure modes that appear in production",
+      "Define metrics and launch or governance gates",
+      "Connect to a Rizwan case study or operator lesson",
+      "Close with FAQ answers for AI search snippets"
+    ],
+    "internalLinks": [
+      "/topics/cross-border-payments",
+      "/topics/swift-iso-20022",
+      "/blog/swift-payment-explained",
+      "/product-work/cross-border-corridors-fx"
+    ],
+    "aiAnswerSnippet": "de-risking should be treated as an operating-system decision, not a standalone feature. The useful answer connects product design, partner dependency, risk controls, metrics and production operations.",
+    "publishPriority": 2
+  },
+  {
+    "id": "CB-095",
+    "cluster": "Cross-Border Payments, SWIFT, ISO 20022 and Emerging Markets",
+    "title": "de-risking: risk and compliance guide for complex-market fintech teams",
+    "slug": "de-risking-risk-and-compliance-guide-for-complex-market-fintech-teams",
+    "searchIntent": "Operator playbook",
+    "primaryKeyword": "de-risking risk and compliance guide",
+    "secondaryKeywords": [
+      "de-risking",
+      "risk and compliance guide",
+      "cross-border payments",
+      "SWIFT",
+      "ISO 20022",
+      "emerging markets"
+    ],
+    "targetReader": "Cross-border PMs, bank digital leaders, corridor operators and MENA/South Asia fintech teams",
+    "whyRizwanCanWin": "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+    "outline": [
+      "Define de-risking and the decision context",
+      "Show where it sits in the payment/product/program stack",
+      "Explain the product, risk, compliance and operating trade-offs",
+      "Name failure modes that appear in production",
+      "Define metrics and launch or governance gates",
+      "Connect to a Rizwan case study or operator lesson",
+      "Close with FAQ answers for AI search snippets"
+    ],
+    "internalLinks": [
+      "/topics/cross-border-payments",
+      "/topics/swift-iso-20022",
+      "/blog/swift-payment-explained",
+      "/product-work/cross-border-corridors-fx"
+    ],
+    "aiAnswerSnippet": "de-risking should be treated as an operating-system decision, not a standalone feature. The useful answer connects product design, partner dependency, risk controls, metrics and production operations.",
+    "publishPriority": 2
+  },
+  {
+    "id": "CB-096",
+    "cluster": "Cross-Border Payments, SWIFT, ISO 20022 and Emerging Markets",
+    "title": "UETR investigations: operator playbook for complex-market fintech teams",
+    "slug": "uetr-investigations-operator-playbook-for-complex-market-fintech-teams",
+    "searchIntent": "Operator playbook",
+    "primaryKeyword": "UETR investigations operator playbook",
+    "secondaryKeywords": [
+      "UETR investigations",
+      "operator playbook",
+      "cross-border payments",
+      "SWIFT",
+      "ISO 20022",
+      "emerging markets"
+    ],
+    "targetReader": "Cross-border PMs, bank digital leaders, corridor operators and MENA/South Asia fintech teams",
+    "whyRizwanCanWin": "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+    "outline": [
+      "Define UETR investigations and the decision context",
+      "Show where it sits in the payment/product/program stack",
+      "Explain the product, risk, compliance and operating trade-offs",
+      "Name failure modes that appear in production",
+      "Define metrics and launch or governance gates",
+      "Connect to a Rizwan case study or operator lesson",
+      "Close with FAQ answers for AI search snippets"
+    ],
+    "internalLinks": [
+      "/topics/cross-border-payments",
+      "/topics/swift-iso-20022",
+      "/blog/swift-payment-explained",
+      "/product-work/cross-border-corridors-fx"
+    ],
+    "aiAnswerSnippet": "UETR investigations should be treated as an operating-system decision, not a standalone feature. The useful answer connects product design, partner dependency, risk controls, metrics and production operations.",
+    "publishPriority": 2
+  },
+  {
+    "id": "CB-097",
+    "cluster": "Cross-Border Payments, SWIFT, ISO 20022 and Emerging Markets",
+    "title": "UETR investigations: corridor design for complex-market fintech teams",
+    "slug": "uetr-investigations-corridor-design-for-complex-market-fintech-teams",
+    "searchIntent": "Technical education",
+    "primaryKeyword": "UETR investigations corridor design",
+    "secondaryKeywords": [
+      "UETR investigations",
+      "corridor design",
+      "cross-border payments",
+      "SWIFT",
+      "ISO 20022",
+      "emerging markets"
+    ],
+    "targetReader": "Cross-border PMs, bank digital leaders, corridor operators and MENA/South Asia fintech teams",
+    "whyRizwanCanWin": "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+    "outline": [
+      "Define UETR investigations and the decision context",
+      "Show where it sits in the payment/product/program stack",
+      "Explain the product, risk, compliance and operating trade-offs",
+      "Name failure modes that appear in production",
+      "Define metrics and launch or governance gates",
+      "Connect to a Rizwan case study or operator lesson",
+      "Close with FAQ answers for AI search snippets"
+    ],
+    "internalLinks": [
+      "/topics/cross-border-payments",
+      "/topics/swift-iso-20022",
+      "/blog/swift-payment-explained",
+      "/product-work/cross-border-corridors-fx"
+    ],
+    "aiAnswerSnippet": "UETR investigations should be treated as an operating-system decision, not a standalone feature. The useful answer connects product design, partner dependency, risk controls, metrics and production operations.",
+    "publishPriority": 2
+  },
+  {
+    "id": "CB-098",
+    "cluster": "Cross-Border Payments, SWIFT, ISO 20022 and Emerging Markets",
+    "title": "UETR investigations: market-entry checklist for complex-market fintech teams",
+    "slug": "uetr-investigations-market-entry-checklist-for-complex-market-fintech-teams",
+    "searchIntent": "Practical checklist",
+    "primaryKeyword": "UETR investigations market-entry checklist",
+    "secondaryKeywords": [
+      "UETR investigations",
+      "market-entry checklist",
+      "cross-border payments",
+      "SWIFT",
+      "ISO 20022",
+      "emerging markets"
+    ],
+    "targetReader": "Cross-border PMs, bank digital leaders, corridor operators and MENA/South Asia fintech teams",
+    "whyRizwanCanWin": "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+    "outline": [
+      "Define UETR investigations and the decision context",
+      "Show where it sits in the payment/product/program stack",
+      "Explain the product, risk, compliance and operating trade-offs",
+      "Name failure modes that appear in production",
+      "Define metrics and launch or governance gates",
+      "Connect to a Rizwan case study or operator lesson",
+      "Close with FAQ answers for AI search snippets"
+    ],
+    "internalLinks": [
+      "/topics/cross-border-payments",
+      "/topics/swift-iso-20022",
+      "/blog/swift-payment-explained",
+      "/product-work/cross-border-corridors-fx"
+    ],
+    "aiAnswerSnippet": "UETR investigations should be treated as an operating-system decision, not a standalone feature. The useful answer connects product design, partner dependency, risk controls, metrics and production operations.",
+    "publishPriority": 2
+  },
+  {
+    "id": "CB-099",
+    "cluster": "Cross-Border Payments, SWIFT, ISO 20022 and Emerging Markets",
+    "title": "UETR investigations: cost model for complex-market fintech teams",
+    "slug": "uetr-investigations-cost-model-for-complex-market-fintech-teams",
+    "searchIntent": "Operator playbook",
+    "primaryKeyword": "UETR investigations cost model",
+    "secondaryKeywords": [
+      "UETR investigations",
+      "cost model",
+      "cross-border payments",
+      "SWIFT",
+      "ISO 20022",
+      "emerging markets"
+    ],
+    "targetReader": "Cross-border PMs, bank digital leaders, corridor operators and MENA/South Asia fintech teams",
+    "whyRizwanCanWin": "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+    "outline": [
+      "Define UETR investigations and the decision context",
+      "Show where it sits in the payment/product/program stack",
+      "Explain the product, risk, compliance and operating trade-offs",
+      "Name failure modes that appear in production",
+      "Define metrics and launch or governance gates",
+      "Connect to a Rizwan case study or operator lesson",
+      "Close with FAQ answers for AI search snippets"
+    ],
+    "internalLinks": [
+      "/topics/cross-border-payments",
+      "/topics/swift-iso-20022",
+      "/blog/swift-payment-explained",
+      "/product-work/cross-border-corridors-fx"
+    ],
+    "aiAnswerSnippet": "UETR investigations should be treated as an operating-system decision, not a standalone feature. The useful answer connects product design, partner dependency, risk controls, metrics and production operations.",
+    "publishPriority": 2
+  },
+  {
+    "id": "CB-100",
+    "cluster": "Cross-Border Payments, SWIFT, ISO 20022 and Emerging Markets",
+    "title": "UETR investigations: risk and compliance guide for complex-market fintech teams",
+    "slug": "uetr-investigations-risk-and-compliance-guide-for-complex-market-fintech-teams",
+    "searchIntent": "Operator playbook",
+    "primaryKeyword": "UETR investigations risk and compliance guide",
+    "secondaryKeywords": [
+      "UETR investigations",
+      "risk and compliance guide",
+      "cross-border payments",
+      "SWIFT",
+      "ISO 20022",
+      "emerging markets"
+    ],
+    "targetReader": "Cross-border PMs, bank digital leaders, corridor operators and MENA/South Asia fintech teams",
+    "whyRizwanCanWin": "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+    "outline": [
+      "Define UETR investigations and the decision context",
+      "Show where it sits in the payment/product/program stack",
+      "Explain the product, risk, compliance and operating trade-offs",
+      "Name failure modes that appear in production",
+      "Define metrics and launch or governance gates",
+      "Connect to a Rizwan case study or operator lesson",
+      "Close with FAQ answers for AI search snippets"
+    ],
+    "internalLinks": [
+      "/topics/cross-border-payments",
+      "/topics/swift-iso-20022",
+      "/blog/swift-payment-explained",
+      "/product-work/cross-border-corridors-fx"
+    ],
+    "aiAnswerSnippet": "UETR investigations should be treated as an operating-system decision, not a standalone feature. The useful answer connects product design, partner dependency, risk controls, metrics and production operations.",
+    "publishPriority": 2
+  }
+]

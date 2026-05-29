@@ -28,7 +28,7 @@ export function Reveal({
   // JSON-LD scripts) — React never hydrates there, so any opacity-0 initial
   // state would freeze the content invisible forever. Default-visible means:
   //   - Static-HTML viewers always see the content (no JS dependency).
-  //   - If hydration ever runs (Lovable, dev server, future SPA host), the
+  //   - If hydration ever runs (dev server, future SPA host), the
   //     useEffect below temporarily flips visibility off and back on to play
   //     the fade-up animation. That's a progressive enhancement, not a gate.
   const [visible, setVisible] = useState(true);

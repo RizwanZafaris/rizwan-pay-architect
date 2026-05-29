@@ -55,6 +55,12 @@ function textValue(value: FrontmatterValue | undefined, fallback = "") {
   return typeof value === "string" ? value : fallback;
 }
 
+function boolValue(value: FrontmatterValue | undefined) {
+  if (typeof value === "boolean") return value;
+  if (typeof value === "string") return value.toLowerCase() === "true";
+  return false;
+}
+
 // Strip the first H1 (essay title) since the page already renders title
 function stripLeadingH1(md: string) {
   return md.replace(/^\s*#\s+[^\n]+\n+/, "");
@@ -81,6 +87,7 @@ type Post = {
   thesis?: string;
   featured?: boolean;
   tags: string[];
+  relatedArticles?: string[];
   content: string;
 };
 
@@ -89,24 +96,31 @@ const categoryAlias: Record<string, string> = {
   "SWIFT & Cross-Border Payments": "Cross-Border Payments",
 };
 
-const posts: Post[] = files.map((f) => {
-  const raw = readFileSync(join(BLOG_DIR, f), "utf-8");
-  const { data, body } = parseFrontmatter(raw);
-  const rawCat = textValue(data.category, "Product Strategy");
-  return {
-    slug: textValue(data.slug, f.replace(/\.md$/, "")),
-    title: textValue(data.title, "Untitled"),
-    metaTitle: textValue(data.metaTitle) || undefined,
-    date: textValue(data.publishDate) || textValue(data.date, "2026-01-01"),
-    category: categoryAlias[rawCat] || rawCat,
-    readingTime: textValue(data.readingTime, "8 min read"),
-    description: textValue(data.metaDescription) || textValue(data.excerpt),
-    thesis: textValue(data.excerpt) || undefined,
-    featured: data.featured === "true" || data.featured === true || undefined,
-    tags: Array.isArray(data.tags) ? data.tags.filter((tag) => typeof tag === "string") : [],
-    content: stripLeadingH1(body).trim(),
-  };
-});
+const posts: Post[] = files
+  .map((f) => {
+    const raw = readFileSync(join(BLOG_DIR, f), "utf-8");
+    const { data, body } = parseFrontmatter(raw);
+    const rawCat = textValue(data.category, "Product Strategy");
+    return {
+      slug: textValue(data.slug, f.replace(/\.md$/, "")),
+      title: textValue(data.title, "Untitled"),
+      metaTitle: textValue(data.metaTitle) || undefined,
+      date: textValue(data.publishDate) || textValue(data.date, "2026-01-01"),
+      category: categoryAlias[rawCat] || rawCat,
+      readingTime: textValue(data.readingTime, "8 min read"),
+      description: textValue(data.metaDescription) || textValue(data.excerpt),
+      thesis: textValue(data.excerpt) || undefined,
+      featured: data.featured === "true" || data.featured === true || undefined,
+      tags: Array.isArray(data.tags) ? data.tags.filter((tag) => typeof tag === "string") : [],
+      relatedArticles: Array.isArray(data.relatedArticles)
+        ? data.relatedArticles.filter((href) => typeof href === "string")
+        : undefined,
+      content: stripLeadingH1(body).trim(),
+      draft: boolValue(data.draft) || textValue(data.status).toLowerCase() === "draft",
+    };
+  })
+  .filter((p) => !p.draft)
+  .map(({ draft: _draft, ...p }) => p);
 
 // Sort newest first
 posts.sort((a, b) => b.date.localeCompare(a.date));
@@ -147,6 +161,7 @@ export type Post = {
   thesis?: string;
   featured?: boolean;
   tags: string[];
+  relatedArticles?: string[];
 };
 
 export const categories = ${JSON.stringify(categories, null, 2)};
@@ -157,9 +172,21 @@ export const getPost = (slug: string) => posts.find((p) => p.slug === slug);
 export const getRelated = (slug: string) => {
   const p = getPost(slug);
   if (!p) return [];
-  return posts
-    .filter((x) => x.slug !== slug && (x.category === p.category || x.tags.some((t) => p.tags.includes(t))))
-    .slice(0, 3);
+  const explicit = (p.relatedArticles ?? [])
+    .map((href) => href.match(/\\/blog\\/([^/#?]+)/)?.[1])
+    .filter((x): x is string => Boolean(x))
+    .map((relatedSlug) => getPost(relatedSlug))
+    .filter((x): x is Post => Boolean(x));
+  const explicitSlugs = new Set(explicit.map((x) => x.slug));
+  const fallback = posts
+    .filter(
+      (x) =>
+        x.slug !== slug &&
+        !explicitSlugs.has(x.slug) &&
+        (x.category === p.category || x.tags.some((t) => p.tags.includes(t))),
+    )
+    .slice(0, Math.max(0, 3 - explicit.length));
+  return [...explicit, ...fallback].slice(0, 3);
 };
 `;
 

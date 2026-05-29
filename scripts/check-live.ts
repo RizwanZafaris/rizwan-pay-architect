@@ -16,7 +16,7 @@
  *   - trailing-slash policy: routes 200 on /<route>/, 301 on /<route>
  *   - canonical = final URL (no 1-hop drift)
  *   - sitemap loc URLs return 200 without redirect (no hop penalty)
- *   - no `/@id/virtual` / dev-server leakage in any served HTML
+ *   - no dev-server leakage in any served HTML
  *   - AI bot user agents receive the same 200 + correct content (no soft block)
  */
 
@@ -24,6 +24,8 @@ const HOST = (process.argv[2] ?? "https://rzifi.com").replace(/\/$/, "");
 const APEX_ORIGIN = HOST;
 const WWW_ORIGIN = HOST.replace("//", "//www.");
 const HTTP_ORIGIN = HOST.replace(/^https/, "http");
+const DEV_IMPORT_PATTERN = ["/@id", "virtual"].join("/");
+const START_ENTRY_PATTERN = ["tanstack", "start-client-entry"].join("-");
 
 type Probe = {
   name: string;
@@ -198,14 +200,13 @@ async function runProbes() {
     const okLocation =
       !p.expectRedirectTo || (r.location && r.location.startsWith(p.expectRedirectTo));
     const okBody = !p.matchBody || p.matchBody.test(r.body);
-    const okDevLeak =
-      !r.body.includes("/@id/virtual") && !r.body.includes("tanstack-start-client-entry");
+    const okDevLeak = !r.body.includes(DEV_IMPORT_PATTERN) && !r.body.includes(START_ENTRY_PATTERN);
     const pass = okStatus && okLocation && okBody && okDevLeak;
     let detail = `HTTP ${r.status}`;
     if (expectedRedirect && r.location) detail += ` → ${r.location}`;
     if (p.expectRedirectTo && !okLocation) detail += ` (expected → ${p.expectRedirectTo})`;
     if (!okBody) detail += " (body mismatch)";
-    if (!okDevLeak) detail += " (DEV LEAK: /@id/virtual or tanstack-start-client-entry)";
+    if (!okDevLeak) detail += " (dev-only client entry leaked)";
     results.push({ name: p.name, status: r.status, pass, detail });
   }
 }

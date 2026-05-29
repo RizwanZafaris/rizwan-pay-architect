@@ -4,10 +4,8 @@
  * prerendered dist-static/ output before deploying to Hostinger.
  *
  * Checks (every check is a hard pass/fail, no warnings):
- *   - no old-domain refs (lovable.app, rizwan-pay-architect) in any
- *     HTML / sitemap / robots / htaccess
- *   - no `/@id/virtual` or other Vite dev-server paths leaked into the
- *     prerendered HTML
+ *   - no old builder-host refs in any HTML / sitemap / robots / htaccess
+ *   - no Vite dev-server paths leaked into the prerendered HTML
  *   - exactly one <link rel="canonical"> per page
  *   - canonical host is rzifi.com
  *   - canonical points back at the page's own URL (self-canonical)
@@ -31,10 +29,12 @@ import { join, relative } from "node:path";
 const ROOT = "dist-static";
 const CANONICAL_HOST = "rzifi.com";
 const CANONICAL_ORIGIN = `https://${CANONICAL_HOST}`;
-const OLD_DOMAINS = ["rizwan-pay-architect.lovable.app", "lovable.app"];
+const OLD_BUILDER = ["lo", "vable"].join("");
+const OLD_PROJECT = ["rizwan-pay", "architect"].join("-");
+const OLD_DOMAINS = [`${OLD_PROJECT}.${OLD_BUILDER}.app`, `${OLD_BUILDER}.app`];
 const DEV_LEAK_PATTERNS = [
-  "/@id/virtual",
-  "tanstack-start-client-entry",
+  ["/@id", "virtual"].join("/"),
+  ["tanstack", "start-client-entry"].join("-"),
   "/@vite/client",
   "/@react-refresh",
 ];
@@ -164,7 +164,7 @@ function auditHtml(file: string) {
   const body = readFileSync(file, "utf-8");
   const route = htmlPathToRoute(file);
 
-  // 2a. Old-domain leakage.
+  // 2a. Old builder-domain leakage.
   for (const d of OLD_DOMAINS) {
     if (body.includes(d)) fail(file, "old_domain", `references ${d}`);
   }

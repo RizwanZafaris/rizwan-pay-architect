@@ -14,6 +14,7 @@ export type Post = {
   thesis?: string;
   featured?: boolean;
   tags: string[];
+  relatedArticles?: string[];
 };
 
 export const categories = [
@@ -42,6 +43,11 @@ export const posts: Post[] = [
     thesis:
       "A working checklist of the SWIFT compliance items that audits, sponsors, and regulators actually ask about.",
     tags: ["SWIFT compliance", "CSP", "AML CFT", "sanctions", "checklist"],
+    relatedArticles: [
+      "/blog/swift-aml-cft-sanctions-screening",
+      "/blog/iso-20022-migration-what-product-teams-must-know",
+      "/blog/financial-controls-are-product-requirements",
+    ],
   },
   {
     slug: "swift-for-emerging-markets-banking",
@@ -55,6 +61,11 @@ export const posts: Post[] = [
     thesis:
       "For emerging-market banks, SWIFT is not optional. The fragility is in the correspondents on either end of the message.",
     tags: ["SWIFT", "emerging markets", "banking", "correspondent banking"],
+    relatedArticles: [
+      "/blog/correspondent-banking-and-emerging-market-corridors",
+      "/blog/cross-border-corridors-are-operating-systems",
+      "/blog/emerging-markets-pressure-test-payments",
+    ],
   },
   {
     slug: "swift-messaging-formats-mt-vs-mx",
@@ -68,6 +79,10 @@ export const posts: Post[] = [
     thesis:
       "MT was a printer-line format. MX is structured data. The difference is the entire next decade of cross-border product.",
     tags: ["SWIFT MT", "SWIFT MX", "ISO 20022", "messaging formats"],
+    relatedArticles: [
+      "/blog/iso-20022-migration-what-product-teams-must-know",
+      "/blog/swift-payment-explained",
+    ],
   },
   {
     slug: "swift-and-cryptocurrency-the-honest-take",
@@ -81,6 +96,10 @@ export const posts: Post[] = [
     thesis:
       "Stablecoins solve a real cross-border problem in specific corridors. They do not solve every cross-border problem in every corridor.",
     tags: ["SWIFT", "cryptocurrency", "stablecoins", "cross-border", "blockchain"],
+    relatedArticles: [
+      "/blog/swift-in-2026-trends-to-watch",
+      "/blog/correspondent-banking-and-emerging-market-corridors",
+    ],
   },
   {
     slug: "tracking-a-swift-payment-step-by-step",
@@ -94,6 +113,10 @@ export const posts: Post[] = [
     thesis:
       "If your bank cannot tell you where the payment is, the bank does not have the system. The system exists.",
     tags: ["SWIFT tracking", "UETR", "gpi tracker"],
+    relatedArticles: [
+      "/blog/swift-gpi-tracking-and-the-end-of-payment-uncertainty",
+      "/blog/swift-payment-delays-what-actually-causes-them",
+    ],
   },
   {
     slug: "swift-in-2026-trends-to-watch",
@@ -107,6 +130,11 @@ export const posts: Post[] = [
     thesis:
       "ISO 20022 is the past-tense story by 2026. The future-tense story is interoperability with instant domestic rails.",
     tags: ["SWIFT", "2026 trends", "ISO 20022", "instant payments", "G20 roadmap"],
+    relatedArticles: [
+      "/blog/iso-20022-migration-what-product-teams-must-know",
+      "/blog/correspondent-banking-and-emerging-market-corridors",
+      "/blog/swift-and-cryptocurrency-the-honest-take",
+    ],
   },
   {
     slug: "swift-payment-delays-what-actually-causes-them",
@@ -120,6 +148,10 @@ export const posts: Post[] = [
     thesis:
       "Most SWIFT 'delays' are not network delays. They are compliance reviews, cut-offs, or bad data.",
     tags: ["SWIFT", "payment delays", "cross-border", "compliance"],
+    relatedArticles: [
+      "/blog/swift-gpi-tracking-and-the-end-of-payment-uncertainty",
+      "/blog/swift-aml-cft-sanctions-screening",
+    ],
   },
   {
     slug: "swift-fees-fx-and-the-true-cost-of-cross-border",
@@ -133,6 +165,10 @@ export const posts: Post[] = [
     thesis:
       "The sticker fee is the smallest part of the cost. The FX margin is most of it. The product decisions decide both.",
     tags: ["SWIFT fees", "cross-border cost", "FX margin", "charge bearer"],
+    relatedArticles: [
+      "/blog/swift-payment-explained",
+      "/blog/correspondent-banking-and-emerging-market-corridors",
+    ],
   },
   {
     slug: "correspondent-banking-and-emerging-market-corridors",
@@ -152,6 +188,10 @@ export const posts: Post[] = [
       "de-risking",
       "nostro vostro",
     ],
+    relatedArticles: [
+      "/blog/cross-border-corridors-are-operating-systems",
+      "/blog/swift-for-emerging-markets-banking",
+    ],
   },
   {
     slug: "swift-vs-card-rails-vs-local-wallets",
@@ -165,6 +205,10 @@ export const posts: Post[] = [
     thesis:
       "There is no universal best rail. There is the best rail for this corridor, this amount, this customer, this use case.",
     tags: ["SWIFT", "card rails", "wallets", "rail comparison", "cross-border"],
+    relatedArticles: [
+      "/blog/local-payment-methods-developer-experience",
+      "/blog/cross-border-corridors-are-operating-systems",
+    ],
   },
   {
     slug: "swift-aml-cft-sanctions-screening",
@@ -178,6 +222,11 @@ export const posts: Post[] = [
     thesis:
       "Sanctions screening is where compliance theory meets throughput reality. The product decisions live in the list overlay, the matcher, and the review queue.",
     tags: ["AML", "CFT", "sanctions screening", "SWIFT", "compliance"],
+    relatedArticles: [
+      "/blog/swift-compliance-checklist-for-banks-and-fintechs",
+      "/blog/sanctions-screening-without-killing-throughput",
+      "/blog/aml-cft-rules-vs-models",
+    ],
   },
   {
     slug: "swift-gpi-tracking-and-the-end-of-payment-uncertainty",
@@ -191,6 +240,11 @@ export const posts: Post[] = [
     thesis:
       "Before gpi, a cross-border payment was send-and-hope. After gpi, it is send-and-track.",
     tags: ["SWIFT gpi", "payment tracking", "cross-border", "UETR"],
+    relatedArticles: [
+      "/blog/swift-payment-explained",
+      "/blog/swift-payment-delays-what-actually-causes-them",
+      "/blog/tracking-a-swift-payment-step-by-step",
+    ],
   },
   {
     slug: "iso-20022-migration-what-product-teams-must-know",
@@ -204,6 +258,11 @@ export const posts: Post[] = [
     thesis:
       "MT messages truncated reality to fit a 1980s field length. MX (ISO 20022) finally gives payments room to be structured.",
     tags: ["ISO 20022", "MX messages", "SWIFT", "structured data", "compliance"],
+    relatedArticles: [
+      "/blog/swift-payment-explained",
+      "/blog/swift-messaging-formats-mt-vs-mx",
+      "/blog/swift-aml-cft-sanctions-screening",
+    ],
   },
   {
     slug: "swift-vs-wire-transfer",
@@ -217,6 +276,10 @@ export const posts: Post[] = [
     thesis:
       "'Wire transfer' is the outcome. 'SWIFT' is one way to instruct it. The two are not the same thing.",
     tags: ["SWIFT", "wire transfer", "cross-border", "Fedwire", "TARGET2"],
+    relatedArticles: [
+      "/blog/swift-payment-explained",
+      "/blog/swift-fees-fx-and-the-true-cost-of-cross-border",
+    ],
   },
   {
     slug: "swift-payment-explained",
@@ -231,6 +294,12 @@ export const posts: Post[] = [
       "SWIFT is messaging, not movement. Understand the difference and most cross-border problems become legible.",
     featured: true,
     tags: ["SWIFT", "cross-border", "correspondent banking", "ISO 20022", "gpi"],
+    relatedArticles: [
+      "/blog/swift-vs-wire-transfer",
+      "/blog/iso-20022-migration-what-product-teams-must-know",
+      "/blog/swift-gpi-tracking-and-the-end-of-payment-uncertainty",
+      "/blog/cross-border-corridors-are-operating-systems",
+    ],
   },
   {
     slug: "sanctions-screening-without-killing-throughput",
@@ -244,6 +313,11 @@ export const posts: Post[] = [
     thesis:
       "Sanctions screening is a latency problem and a false-positive problem dressed up as a compliance problem.",
     tags: ["sanctions", "screening", "compliance", "AML"],
+    relatedArticles: [
+      "/blog/aml-cft-rules-vs-models",
+      "/blog/swift-aml-cft-sanctions-screening",
+      "/blog/kyb-automation-without-blowing-up-risk",
+    ],
   },
   {
     slug: "aml-cft-rules-vs-models",
@@ -257,6 +331,11 @@ export const posts: Post[] = [
     thesis:
       "Rules are explainable and weak. Models are powerful and unexplainable. Production AML needs both, layered.",
     tags: ["AML", "CFT", "compliance", "fraud", "risk"],
+    relatedArticles: [
+      "/blog/layered-fraud-controls-payments-stack",
+      "/blog/sanctions-screening-without-killing-throughput",
+      "/blog/swift-aml-cft-sanctions-screening",
+    ],
   },
   {
     slug: "emerging-markets-pressure-test-payments",
@@ -270,6 +349,11 @@ export const posts: Post[] = [
     thesis:
       "Cards-first thinking, monthly settlement assumptions, and English-only UX do not survive contact with the markets that will define the next decade of payment volume.",
     tags: ["emerging markets", "cross-border", "Pakistan", "MENA", "South Asia", "wallets", "DCB"],
+    relatedArticles: [
+      "/blog/cross-border-corridors-are-operating-systems",
+      "/blog/local-payment-methods-developer-experience",
+      "/blog/correspondent-banking-and-emerging-market-corridors",
+    ],
   },
   {
     slug: "pci-dss-iso-27001-program-leadership",
@@ -283,6 +367,11 @@ export const posts: Post[] = [
     thesis:
       "PCI DSS and ISO 27001 are not paperwork projects. Run as product programs, they make the platform measurably stronger.",
     tags: ["PCI DSS", "ISO 27001", "compliance", "security", "program management"],
+    relatedArticles: [
+      "/blog/financial-controls-are-product-requirements",
+      "/blog/regulatory-ux-name-on-payment-screen",
+      "/blog/cybersecurity-in-fintech-product-perspective",
+    ],
   },
   {
     slug: "chargebacks-product-problem",
@@ -295,6 +384,11 @@ export const posts: Post[] = [
       "How to treat chargebacks as a product surface, root-cause categorisation, prevention, representment, and the feedback loop that actually reduces the rate.",
     thesis: "A rising chargeback line is product debt that finance is paying. The fix is upstream.",
     tags: ["chargebacks", "disputes", "fraud", "product strategy"],
+    relatedArticles: [
+      "/blog/layered-fraud-controls-payments-stack",
+      "/blog/financial-controls-are-product-requirements",
+      "/blog/payment-infrastructure-state-trust-failure",
+    ],
   },
   {
     slug: "payment-cost-50-to-1",
@@ -309,6 +403,35 @@ export const posts: Post[] = [
       "Payment cost is not procurement. It is product architecture. Here is the rail-mix playbook that pulled a subscription business from 50% to 1% cost-of-revenue.",
     featured: true,
     tags: ["billing", "DCB", "wallets", "unit economics", "subscription", "OTT", "dunning"],
+    relatedArticles: [
+      "/blog/dcb-vs-wallet-vs-card-ott",
+      "/blog/subscription-retention-payment-recovery",
+      "/blog/local-payment-methods-developer-experience",
+    ],
+  },
+  {
+    slug: "payments-prd-template-nine-sections",
+    title: "Payments PRD Template: The 9 Sections Every Senior PM Should Write",
+    metaTitle: "Payments PRD Template for Senior PMs | Rizwan Zafar",
+    date: "2026-05-29",
+    category: "Product Strategy",
+    readingTime: "9 min read",
+    description:
+      "A practical payments PRD template for senior product managers covering rail choice, risk, settlement, compliance, operations and launch gates.",
+    thesis:
+      "A payments PRD is not a SaaS feature brief with a money movement appendix. It has to explain state, risk, settlement, compliance and operational failure before engineering starts.",
+    tags: [
+      "payments PRD",
+      "product management",
+      "payment infrastructure",
+      "fintech product",
+      "launch gates",
+    ],
+    relatedArticles: [
+      "/blog/product-management-for-payments-platforms",
+      "/blog/payment-infrastructure-state-trust-failure",
+      "/product-work/simpaisa-payment-infrastructure",
+    ],
   },
   {
     slug: "layered-fraud-controls-payments-stack",
@@ -322,6 +445,29 @@ export const posts: Post[] = [
     thesis:
       "No single fraud control survives a determined attacker. Layered controls do, and they do it without crushing conversion.",
     tags: ["fraud", "risk", "payment infrastructure", "controls"],
+    relatedArticles: [
+      "/blog/chargebacks-product-problem",
+      "/blog/aml-cft-rules-vs-models",
+      "/blog/regulatory-ux-name-on-payment-screen",
+    ],
+  },
+  {
+    slug: "risk-adjusted-backlog-payments",
+    title: "The Risk-Adjusted Backlog: Prioritising Payment Products When Failure Costs Real Money",
+    metaTitle: "Risk-Adjusted Backlog for Payment Product Teams | Rizwan Zafar",
+    date: "2026-05-28",
+    category: "Product Strategy",
+    readingTime: "9 min read",
+    description:
+      "How senior payment product teams prioritise roadmaps when revenue, compliance, fraud, settlement risk and reliability all compete.",
+    thesis:
+      "A payment roadmap cannot be ranked by revenue alone. The backlog has to price the cost of failure, the cost of delay and the cost of operating complexity.",
+    tags: ["roadmap prioritisation", "payments product", "risk management", "RICE", "fintech PM"],
+    relatedArticles: [
+      "/blog/product-management-for-payments-platforms",
+      "/blog/financial-controls-are-product-requirements",
+      "/product-work/fraud-risk-aml-cft",
+    ],
   },
   {
     slug: "kyc-conversion-designed-together",
@@ -335,6 +481,11 @@ export const posts: Post[] = [
     thesis:
       "Splitting KYC from conversion produces the worst of both: friction that does not reduce risk, and risk that does not justify the friction.",
     tags: ["KYC", "onboarding", "conversion", "design thinking"],
+    relatedArticles: [
+      "/blog/merchant-onboarding-growth-risk-compliance",
+      "/blog/onboarding-conversion-vs-default-rate-tradeoff",
+      "/blog/regulatory-ux-name-on-payment-screen",
+    ],
   },
   {
     slug: "local-payment-methods-developer-experience",
@@ -348,6 +499,29 @@ export const posts: Post[] = [
     thesis:
       "A merchant adopts a local payment method only if integrating it is as easy as integrating cards. Most LPM integrations fail that test.",
     tags: [],
+    relatedArticles: [
+      "/blog/hosted-checkout-vs-direct-card-processing",
+      "/blog/payment-infrastructure-state-trust-failure",
+      "/blog/dcb-vs-wallet-vs-card-ott",
+    ],
+  },
+  {
+    slug: "pmo-maturity-model-fintech",
+    title: "PMO Maturity Model for Fintech: Five Stages and How to Know Yours",
+    metaTitle: "PMO Maturity Model for Fintech Teams | Rizwan Zafar",
+    date: "2026-05-27",
+    category: "Program Management",
+    readingTime: "9 min read",
+    description:
+      "A practical five-stage PMO maturity model for fintech and payments teams, from delivery tracking to regulated execution system.",
+    thesis:
+      "A fintech PMO matures from reporting office to operating system. The test is whether it improves decisions, risk control and delivery throughput.",
+    tags: ["PMO", "fintech program management", "delivery governance", "SteerCo", "RAID"],
+    relatedArticles: [
+      "/blog/building-pmo-from-scratch-fintech",
+      "/blog/raid-steerco-pmo-stack-that-ships",
+      "/product-work/tapmad-digital-transformation-programme",
+    ],
   },
   {
     slug: "cross-border-corridors-are-operating-systems",
@@ -362,6 +536,11 @@ export const posts: Post[] = [
       "Cards-first thinking breaks at the border. Owning the corridor abstraction is owning the margin in cross-border payments.",
     featured: true,
     tags: [],
+    relatedArticles: [
+      "/blog/swift-payment-explained",
+      "/blog/correspondent-banking-and-emerging-market-corridors",
+      "/blog/iso-20022-migration-what-product-teams-must-know",
+    ],
   },
   {
     slug: "financial-controls-are-product-requirements",
@@ -382,6 +561,10 @@ export const posts: Post[] = [
       "ledger",
       "compliance",
     ],
+    relatedArticles: [
+      "/blog/reconciliation-is-product-infrastructure",
+      "/blog/three-way-reconciliation-at-scale",
+    ],
   },
   {
     slug: "onboarding-conversion-vs-default-rate-tradeoff",
@@ -395,6 +578,53 @@ export const posts: Post[] = [
     thesis:
       "Conversion and default rate are not enemies. They are two sides of the same product surface.",
     tags: ["merchant onboarding", "conversion", "risk", "product strategy"],
+    relatedArticles: [
+      "/blog/merchant-onboarding-growth-risk-compliance",
+      "/blog/kyc-conversion-designed-together",
+      "/blog/risk-tiering-merchants-product-decision",
+    ],
+  },
+  {
+    slug: "vendor-governance-fintech-pmo",
+    title: "Vendor Governance in Fintech: The PMO Surface Most Teams Underestimate",
+    metaTitle: "Vendor Governance in Fintech Programs | Rizwan Zafar",
+    date: "2026-05-26",
+    category: "Program Management",
+    readingTime: "8 min read",
+    description:
+      "How fintech PMOs should govern vendors across payments, OTT, banking and regulated transformation programs without slowing delivery.",
+    thesis:
+      "Vendor governance is not procurement hygiene. In fintech programs, vendors often own critical path risk, certification evidence, uptime, support and launch readiness.",
+    tags: [
+      "vendor governance",
+      "PMO",
+      "fintech delivery",
+      "program management",
+      "regulated transformation",
+    ],
+    relatedArticles: [
+      "/blog/where-pmos-fail-six-patterns-fintech-programmes",
+      "/blog/raid-steerco-pmo-stack-that-ships",
+      "/product-work/tapmad-digital-transformation-programme",
+    ],
+  },
+  {
+    slug: "kyb-document-extraction-llm-use-case",
+    title: "KYB Document Extraction: A Realistic LLM Use Case in Regulated Payments",
+    metaTitle: "KYB Document Extraction With LLMs in Payments | Rizwan Zafar",
+    date: "2026-05-25",
+    category: "AI in Fintech",
+    readingTime: "9 min read",
+    description:
+      "A realistic architecture for using LLMs in KYB document extraction while keeping risk decisions auditable and compliance-controlled.",
+    thesis:
+      "LLMs can help extract KYB facts from messy documents, but they should not be the final risk decision engine. The right pattern is extraction, validation, rules and human review.",
+    tags: ["KYB", "LLM", "AI in fintech", "merchant onboarding", "compliance automation"],
+    relatedArticles: [
+      "/blog/rag-for-merchant-integration-support",
+      "/blog/kyb-automation-without-blowing-up-risk",
+      "/product-work/merchant-onboarding-kyc",
+    ],
   },
   {
     slug: "risk-tiering-merchants-product-decision",
@@ -408,6 +638,35 @@ export const posts: Post[] = [
     thesis:
       "Tiering is the single most leveraged product decision in a payments platform. Most teams hand it to risk and never recover.",
     tags: ["risk tiering", "merchant onboarding", "product strategy"],
+    relatedArticles: [
+      "/blog/merchant-onboarding-growth-risk-compliance",
+      "/blog/kyb-automation-without-blowing-up-risk",
+      "/blog/layered-fraud-controls-payments-stack",
+    ],
+  },
+  {
+    slug: "agentic-payments-operations-what-works",
+    title: "Agentic Payments Operations: What Works, What Is Theatre",
+    metaTitle: "Agentic Payments Operations: What Works | Rizwan Zafar",
+    date: "2026-05-24",
+    category: "AI in Fintech",
+    readingTime: "9 min read",
+    description:
+      "A practical view of agentic AI in payments operations: where agents help, where deterministic workflows win, and how to control production risk.",
+    thesis:
+      "Agentic AI can help payments operations when the task is bounded, observable and reversible. It becomes theatre when teams let agents improvise inside money movement.",
+    tags: [
+      "agentic AI",
+      "payments operations",
+      "AI in fintech",
+      "incident automation",
+      "risk controls",
+    ],
+    relatedArticles: [
+      "/blog/ai-auto-escalation-payment-ops",
+      "/blog/where-ml-beats-ai-payment-problems-llm-cant-touch",
+      "/product-work/simpaisa-ai-solutions-suite",
+    ],
   },
   {
     slug: "kyb-automation-without-blowing-up-risk",
@@ -421,6 +680,11 @@ export const posts: Post[] = [
     thesis:
       "Automated KYB is not about removing humans. It is about putting them where they actually add risk-adjusted value.",
     tags: ["KYB", "merchant onboarding", "compliance", "automation"],
+    relatedArticles: [
+      "/blog/merchant-onboarding-growth-risk-compliance",
+      "/blog/risk-tiering-merchants-product-decision",
+      "/blog/kyc-conversion-designed-together",
+    ],
   },
   {
     slug: "ledger-design-for-multi-rail-payments",
@@ -434,6 +698,11 @@ export const posts: Post[] = [
     thesis:
       "The ledger is the source of truth for the entire platform. Most teams discover this after they have shipped the wrong one.",
     tags: ["ledger", "double-entry", "reconciliation", "payment infrastructure"],
+    relatedArticles: [
+      "/blog/three-way-reconciliation-at-scale",
+      "/blog/reconciliation-is-product-infrastructure",
+      "/blog/financial-controls-are-product-requirements",
+    ],
   },
   {
     slug: "regulatory-ux-name-on-payment-screen",
@@ -452,6 +721,11 @@ export const posts: Post[] = [
       "payment screen design",
       "disclosures",
     ],
+    relatedArticles: [
+      "/blog/merchant-onboarding-growth-risk-compliance",
+      "/blog/financial-controls-are-product-requirements",
+      "/blog/launching-a-fintech-in-a-regulated-market",
+    ],
   },
   {
     slug: "exception-management-reconciliation",
@@ -465,6 +739,11 @@ export const posts: Post[] = [
     thesis:
       "Exception management is where reconciliation either becomes a product or becomes a permanent ops queue.",
     tags: ["reconciliation", "operations", "exception management", "controls"],
+    relatedArticles: [
+      "/blog/three-way-reconciliation-at-scale",
+      "/blog/reconciliation-is-product-infrastructure",
+      "/blog/ledger-design-for-multi-rail-payments",
+    ],
   },
   {
     slug: "merchant-onboarding-growth-risk-compliance",
@@ -478,6 +757,11 @@ export const posts: Post[] = [
     thesis:
       "Three teams own onboarding. The merchant only sees one experience. That gap is the product.",
     tags: ["merchant onboarding", "KYB", "KYC", "risk", "compliance", "growth"],
+    relatedArticles: [
+      "/blog/kyc-conversion-designed-together",
+      "/blog/kyb-automation-without-blowing-up-risk",
+      "/blog/risk-tiering-merchants-product-decision",
+    ],
   },
   {
     slug: "hosted-checkout-vs-direct-card-processing",
@@ -492,6 +776,11 @@ export const posts: Post[] = [
       "Why hosted checkout is the right first step and the wrong last step, and what direct card processing actually demands from a product team.",
     featured: true,
     tags: [],
+    relatedArticles: [
+      "/blog/payment-infrastructure-state-trust-failure",
+      "/blog/local-payment-methods-developer-experience",
+      "/blog/pci-dss-iso-27001-program-leadership",
+    ],
   },
   {
     slug: "settlement-windows-and-merchant-trust",
@@ -504,6 +793,11 @@ export const posts: Post[] = [
       "Settlement timing is the most underrated product surface in payments. How T+0, T+1 and T+n settlement windows shape merchant trust, cashflow, and churn.",
     thesis: "Merchants do not churn because of fees. They churn because of settlement uncertainty.",
     tags: ["settlement", "merchant trust", "cashflow", "payment infrastructure"],
+    relatedArticles: [
+      "/blog/reconciliation-is-product-infrastructure",
+      "/blog/three-way-reconciliation-at-scale",
+      "/blog/financial-controls-are-product-requirements",
+    ],
   },
   {
     slug: "click-to-pay-vctp-mctp-scheme-led-checkout",
@@ -528,6 +822,11 @@ export const posts: Post[] = [
       "Visa",
       "Mastercard",
     ],
+    relatedArticles: [
+      "/blog/mdes-network-tokenisation-how-it-actually-works",
+      "/blog/mpges-mastercard-payment-gateway-services-architecture",
+      "/blog/cybersource-architecture-visa-payment-gateway",
+    ],
   },
   {
     slug: "cybersource-architecture-visa-payment-gateway",
@@ -550,6 +849,11 @@ export const posts: Post[] = [
       "VTS",
       "payment infrastructure",
       "scheme products",
+    ],
+    relatedArticles: [
+      "/blog/mpges-mastercard-payment-gateway-services-architecture",
+      "/blog/mdes-network-tokenisation-how-it-actually-works",
+      "/blog/hosted-checkout-vs-direct-card-processing",
     ],
   },
   {
@@ -574,6 +878,11 @@ export const posts: Post[] = [
       "payment infrastructure",
       "auth rate optimisation",
     ],
+    relatedArticles: [
+      "/blog/mpges-mastercard-payment-gateway-services-architecture",
+      "/blog/cybersource-architecture-visa-payment-gateway",
+      "/blog/click-to-pay-vctp-mctp-scheme-led-checkout",
+    ],
   },
   {
     slug: "payment-infrastructure-state-trust-failure",
@@ -587,6 +896,11 @@ export const posts: Post[] = [
     thesis:
       "APIs are the easy part. The hard part is what happens between the auth response and the bank statement.",
     tags: [],
+    relatedArticles: [
+      "/blog/reconciliation-is-product-infrastructure",
+      "/blog/hosted-checkout-vs-direct-card-processing",
+      "/blog/local-payment-methods-developer-experience",
+    ],
   },
   {
     slug: "three-way-reconciliation-at-scale",
@@ -600,6 +914,11 @@ export const posts: Post[] = [
     thesis:
       "Three-way reconciliation is the only model that survives multi-rail growth. Here is how to actually build it.",
     tags: ["reconciliation", "settlement", "ledger", "controls", "payment infrastructure"],
+    relatedArticles: [
+      "/blog/reconciliation-is-product-infrastructure",
+      "/blog/exception-management-reconciliation",
+      "/blog/ledger-design-for-multi-rail-payments",
+    ],
   },
   {
     slug: "mdes-network-tokenisation-how-it-actually-works",
@@ -624,6 +943,11 @@ export const posts: Post[] = [
       "payment infrastructure",
       "MasterCard",
       "Visa",
+    ],
+    relatedArticles: [
+      "/blog/mpges-mastercard-payment-gateway-services-architecture",
+      "/blog/hosted-checkout-vs-direct-card-processing",
+      "/blog/virtual-card-accounts-product-guide",
     ],
   },
   {
@@ -650,6 +974,11 @@ export const posts: Post[] = [
       "payment infrastructure",
       "scheme products",
     ],
+    relatedArticles: [
+      "/blog/hosted-checkout-vs-direct-card-processing",
+      "/blog/payment-infrastructure-state-trust-failure",
+      "/blog/ledger-design-for-multi-rail-payments",
+    ],
   },
   {
     slug: "reconciliation-is-product-infrastructure",
@@ -670,6 +999,11 @@ export const posts: Post[] = [
       "finance",
       "payment infrastructure",
       "controls",
+    ],
+    relatedArticles: [
+      "/blog/three-way-reconciliation-at-scale",
+      "/blog/financial-controls-are-product-requirements",
+      "/blog/payment-infrastructure-state-trust-failure",
     ],
   },
   {
@@ -694,6 +1028,11 @@ export const posts: Post[] = [
       "LLM limitations",
       "production ML",
     ],
+    relatedArticles: [
+      "/blog/ai-in-payments-four-production-use-cases",
+      "/blog/ai-fraud-detection-vs-rule-engines",
+      "/blog/value-modeling-genai-use-cases-fintech",
+    ],
   },
   {
     slug: "where-pmos-fail-six-patterns-fintech-programmes",
@@ -716,6 +1055,11 @@ export const posts: Post[] = [
       "SteerCo",
       "RAID",
       "org design",
+    ],
+    relatedArticles: [
+      "/blog/building-pmo-from-scratch-fintech",
+      "/blog/raid-steerco-pmo-stack-that-ships",
+      "/blog/program-vs-product-management-fintech",
     ],
   },
   {
@@ -741,6 +1085,11 @@ export const posts: Post[] = [
       "issuing",
       "Visa",
       "Mastercard",
+    ],
+    relatedArticles: [
+      "/blog/open-banking-product-architecture",
+      "/blog/product-management-for-payments-platforms",
+      "/blog/hosted-checkout-vs-direct-card-processing",
     ],
   },
   {
@@ -768,6 +1117,11 @@ export const posts: Post[] = [
       "variable recurring payments",
       "VRP",
     ],
+    relatedArticles: [
+      "/blog/virtual-card-accounts-product-guide",
+      "/blog/product-management-for-payments-platforms",
+      "/blog/hosted-checkout-vs-direct-card-processing",
+    ],
   },
   {
     slug: "product-management-for-payments-platforms",
@@ -791,6 +1145,11 @@ export const posts: Post[] = [
       "risk-adjusted backlog",
       "product KPIs",
     ],
+    relatedArticles: [
+      "/blog/program-vs-product-management-fintech",
+      "/blog/virtual-card-accounts-product-guide",
+      "/blog/open-banking-product-architecture",
+    ],
   },
   {
     slug: "ai-in-payments-four-production-use-cases",
@@ -812,6 +1171,11 @@ export const posts: Post[] = [
       "fraud detection",
       "AML",
       "production AI",
+    ],
+    relatedArticles: [
+      "/blog/rag-for-merchant-integration-support",
+      "/blog/value-modeling-genai-use-cases-fintech",
+      "/blog/ai-fraud-detection-vs-rule-engines",
     ],
   },
   {
@@ -839,6 +1203,11 @@ export const posts: Post[] = [
       "evidence management",
       "remediation",
     ],
+    relatedArticles: [
+      "/blog/building-pmo-from-scratch-fintech",
+      "/blog/pmbok-plus-agile-hybrid-frameworks",
+      "/blog/program-vs-product-management-fintech",
+    ],
   },
   {
     slug: "program-vs-product-management-fintech",
@@ -861,6 +1230,11 @@ export const posts: Post[] = [
       "decision rights",
       "delivery",
     ],
+    relatedArticles: [
+      "/blog/product-management-for-payments-platforms",
+      "/blog/building-pmo-from-scratch-fintech",
+      "/blog/raid-steerco-pmo-stack-that-ships",
+    ],
   },
   {
     slug: "rag-for-merchant-integration-support",
@@ -882,6 +1256,10 @@ export const posts: Post[] = [
       "integration",
       "developer experience",
     ],
+    relatedArticles: [
+      "/blog/ai-in-payments-four-production-use-cases",
+      "/blog/value-modeling-genai-use-cases-fintech",
+    ],
   },
   {
     slug: "ai-auto-escalation-payment-ops",
@@ -902,6 +1280,10 @@ export const posts: Post[] = [
       "MTTR",
       "SRE",
       "GenAI",
+    ],
+    relatedArticles: [
+      "/blog/ai-in-payments-four-production-use-cases",
+      "/blog/payment-infrastructure-state-trust-failure",
     ],
   },
   {
@@ -925,6 +1307,10 @@ export const posts: Post[] = [
       "regulatory",
       "data readiness",
     ],
+    relatedArticles: [
+      "/blog/ai-in-payments-four-production-use-cases",
+      "/blog/ai-fraud-detection-vs-rule-engines",
+    ],
   },
   {
     slug: "ai-fraud-detection-vs-rule-engines",
@@ -946,6 +1332,11 @@ export const posts: Post[] = [
       "machine learning",
       "false positives",
       "regulator",
+    ],
+    relatedArticles: [
+      "/blog/layered-fraud-controls-payments-stack",
+      "/blog/aml-cft-rules-vs-models",
+      "/blog/value-modeling-genai-use-cases-fintech",
     ],
   },
   {
@@ -969,6 +1360,7 @@ export const posts: Post[] = [
       "KYC",
       "regulated crypto",
     ],
+    relatedArticles: ["/blog/crypto-off-ramps-emerging-markets", "/blog/stablecoin-payments-2026"],
   },
   {
     slug: "crypto-off-ramps-emerging-markets",
@@ -990,6 +1382,11 @@ export const posts: Post[] = [
       "crypto",
       "remittance",
       "VARA",
+    ],
+    relatedArticles: [
+      "/blog/crypto-on-ramps-product-guide",
+      "/blog/stablecoin-payments-2026",
+      "/blog/cross-border-corridors-are-operating-systems",
     ],
   },
   {
@@ -1013,6 +1410,11 @@ export const posts: Post[] = [
       "treasury",
       "merchant acceptance",
     ],
+    relatedArticles: [
+      "/blog/crypto-on-ramps-product-guide",
+      "/blog/crypto-off-ramps-emerging-markets",
+      "/blog/cross-border-corridors-are-operating-systems",
+    ],
   },
   {
     slug: "building-pmo-from-scratch-fintech",
@@ -1034,6 +1436,11 @@ export const posts: Post[] = [
       "Agile",
       "hybrid frameworks",
       "org design",
+    ],
+    relatedArticles: [
+      "/blog/pmbok-plus-agile-hybrid-frameworks",
+      "/blog/raid-steerco-pmo-stack-that-ships",
+      "/blog/three-million-dollar-transformation-postmortem",
     ],
   },
   {
@@ -1057,6 +1464,10 @@ export const posts: Post[] = [
       "stage gates",
       "Scrum",
     ],
+    relatedArticles: [
+      "/blog/building-pmo-from-scratch-fintech",
+      "/blog/raid-steerco-pmo-stack-that-ships",
+    ],
   },
   {
     slug: "three-million-dollar-transformation-postmortem",
@@ -1078,6 +1489,11 @@ export const posts: Post[] = [
       "PMBOK",
       "SteerCo",
       "case study",
+    ],
+    relatedArticles: [
+      "/blog/building-pmo-from-scratch-fintech",
+      "/blog/pmbok-plus-agile-hybrid-frameworks",
+      "/blog/raid-steerco-pmo-stack-that-ships",
     ],
   },
   {
@@ -1101,6 +1517,11 @@ export const posts: Post[] = [
       "delivery",
       "fintech operations",
     ],
+    relatedArticles: [
+      "/blog/building-pmo-from-scratch-fintech",
+      "/blog/pmbok-plus-agile-hybrid-frameworks",
+      "/blog/three-million-dollar-transformation-postmortem",
+    ],
   },
 ];
 
@@ -1108,10 +1529,19 @@ export const getPost = (slug: string) => posts.find((p) => p.slug === slug);
 export const getRelated = (slug: string) => {
   const p = getPost(slug);
   if (!p) return [];
-  return posts
+  const explicit = (p.relatedArticles ?? [])
+    .map((href) => href.match(/\/blog\/([^/#?]+)/)?.[1])
+    .filter((x): x is string => Boolean(x))
+    .map((relatedSlug) => getPost(relatedSlug))
+    .filter((x): x is Post => Boolean(x));
+  const explicitSlugs = new Set(explicit.map((x) => x.slug));
+  const fallback = posts
     .filter(
       (x) =>
-        x.slug !== slug && (x.category === p.category || x.tags.some((t) => p.tags.includes(t))),
+        x.slug !== slug &&
+        !explicitSlugs.has(x.slug) &&
+        (x.category === p.category || x.tags.some((t) => p.tags.includes(t))),
     )
-    .slice(0, 3);
+    .slice(0, Math.max(0, 3 - explicit.length));
+  return [...explicit, ...fallback].slice(0, 3);
 };

@@ -132,6 +132,7 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
 const personJsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
+  "@id": `${SITE_URL}#person`,
   name: profile.name,
   jobTitle: "Chief Product Officer, Payments",
   description: profile.bio,
@@ -172,12 +173,13 @@ const personJsonLd = {
 const websiteJsonLd = {
   "@context": "https://schema.org",
   "@type": "WebSite",
+  "@id": `${SITE_URL}#website`,
   name: `${profile.name}, Payments Product Executive`,
   alternateName: "rzifi.com",
   url: SITE_URL,
   inLanguage: "en",
-  author: { "@type": "Person", name: profile.name, url: SITE_URL },
-  publisher: { "@type": "Person", name: profile.name, url: SITE_URL },
+  author: { "@type": "Person", "@id": `${SITE_URL}#person`, name: profile.name, url: SITE_URL },
+  publisher: { "@type": "Person", "@id": `${SITE_URL}#person`, name: profile.name, url: SITE_URL },
   potentialAction: {
     "@type": "SearchAction",
     target: {
@@ -200,7 +202,7 @@ const organizationJsonLd = {
   url: SITE_URL,
   logo: `${SITE_URL}/og-default.png`,
   image: `${SITE_URL}/og-default.png`,
-  founder: { "@type": "Person", name: profile.name, url: SITE_URL },
+  founder: { "@type": "Person", "@id": `${SITE_URL}#person`, name: profile.name, url: SITE_URL },
   sameAs: profile.socials.map((s) => s.url),
   contactPoint: {
     "@type": "ContactPoint",
