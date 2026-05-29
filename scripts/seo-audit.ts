@@ -58,6 +58,7 @@ const REQUIRED_INDEXABLE: string[] = [
   "/product-work",
   "/products",
   "/resume",
+  "/sitemap",
   "/topics",
 ];
 
@@ -132,6 +133,19 @@ function auditSitemap() {
 
   const locs = matchAll(body, /<loc>([^<]+)<\/loc>/g).map((s) => s.replace(/^<loc>|<\/loc>$/g, ""));
   if (locs.length === 0) return fail(path, "has_urls", "no <loc> entries");
+  const today = new Intl.DateTimeFormat("en-CA", {
+    timeZone: "Asia/Karachi",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).format(new Date());
+  const urlBlocks = matchAll(body, /<url>[\s\S]*?<\/url>/g);
+  for (const block of urlBlocks) {
+    const lastmod = block.match(/<lastmod>([^<]+)<\/lastmod>/)?.[1];
+    if (lastmod && lastmod > today) {
+      fail(path, "future_lastmod", `${lastmod} is in the future`);
+    }
+  }
 
   for (const loc of locs) {
     if (!loc.startsWith(CANONICAL_ORIGIN)) {
@@ -156,6 +170,20 @@ function auditSitemap() {
     } catch {
       fail(path, "loc_invalid", `${loc} is not a valid URL`);
     }
+  }
+}
+
+function auditFeed() {
+  const path = join(ROOT, "feed.xml");
+  if (!existsSync(path)) return fail(path, "exists", "feed.xml missing");
+  const body = readFileSync(path, "utf-8");
+  if (!body.startsWith("<?xml")) fail(path, "xml_body", "missing <?xml prolog");
+  if (!/<rss[\s>]/.test(body)) fail(path, "xml_body", "missing <rss> element");
+  if (!/<item>[\s\S]*?<link>https:\/\/rzifi\.com\/blog\//.test(body)) {
+    fail(path, "has_urls", "feed.xml has no blog item links");
+  }
+  for (const d of OLD_DOMAINS) {
+    if (body.includes(d)) fail(path, "old_domain", `references ${d}`);
   }
 }
 
@@ -246,6 +274,7 @@ if (!existsSync(ROOT)) {
 
 auditRobots();
 auditSitemap();
+auditFeed();
 
 const htmlFiles = walk(ROOT).filter((f) => f.endsWith(".html"));
 for (const file of htmlFiles) auditHtml(file);
@@ -273,6 +302,7 @@ const checks = [
   "loc_host",
   "loc_redirect_hop",
   "loc_invalid",
+  "future_lastmod",
   "xml_body",
   "exists",
   "has_urls",

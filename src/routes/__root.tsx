@@ -35,7 +35,7 @@ function GtmRouteTracker() {
 import appCss from "../styles.css?url";
 import { SiteHeader, SiteFooter } from "@/components/SiteChrome";
 import { profile } from "@/data/profile";
-import { SITE_URL, OG_IMAGE_URL, SITE_KEYWORDS, GTM_ID } from "@/lib/seo";
+import { absUrl, SITE_URL, OG_IMAGE_URL, SITE_KEYWORDS, GTM_ID } from "@/lib/seo";
 
 // Google Tag Manager bootstrap, runs as early as possible. Mirrors Google's
 // official snippet. Skipped when GTM_ID is empty (e.g. local dev).
@@ -259,7 +259,15 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     // Note: no root-level <link rel="canonical">. Every route sets its own
     // self-canonical via absUrl(path); a root canonical pointing at SITE_URL
     // would duplicate (and conflict with) the page-level one on every subpage.
-    links: [{ rel: "stylesheet", href: appCss }],
+    links: [
+      { rel: "stylesheet", href: appCss },
+      {
+        rel: "alternate",
+        type: "application/rss+xml",
+        title: "Rizwan Zafar Payments Essays",
+        href: absUrl("/feed.xml"),
+      },
+    ],
     scripts: [
       { type: "application/ld+json", children: JSON.stringify(personJsonLd) },
       { type: "application/ld+json", children: JSON.stringify(websiteJsonLd) },

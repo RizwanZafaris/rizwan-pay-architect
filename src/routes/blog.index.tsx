@@ -2,7 +2,7 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import type { CSSProperties } from "react";
 import { zodValidator, fallback } from "@tanstack/zod-adapter";
 import { z } from "zod";
-import { posts } from "@/data/posts";
+import { publishedPosts as posts } from "@/data/posts";
 import { hubs, hubForPost, type HubSlug } from "@/data/hubs";
 import { absUrl } from "@/lib/seo";
 

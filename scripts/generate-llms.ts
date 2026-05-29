@@ -22,12 +22,19 @@
 
 import { writeFileSync, readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
-import { posts } from "../src/data/posts";
+import { publishedPosts as posts } from "../src/data/posts";
 import { caseStudies } from "../src/data/caseStudies";
 import { profile } from "../src/data/profile";
 import { hubs } from "../src/data/hubs";
 
 const SITE = "https://rzifi.com";
+const publishedSlugs = new Set(posts.map((p) => p.slug));
+
+function stripUnpublishedBlogLinks(md: string) {
+  return md.replace(/\[([^\]]+)\]\(\/blog\/([^/#?)]+)\/?\)/g, (match, label, slug) =>
+    publishedSlugs.has(slug) ? match : label,
+  );
+}
 
 // ─── llms.txt — short index ──────────────────────────────────────────────
 const lines: string[] = [];
@@ -248,7 +255,7 @@ for (const p of posts) {
   full.push("");
   full.push(`**${p.description}**`);
   full.push("");
-  full.push(body);
+  full.push(stripUnpublishedBlogLinks(body));
   full.push("");
   full.push("---");
   full.push("");

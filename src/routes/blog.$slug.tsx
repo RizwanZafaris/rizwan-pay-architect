@@ -1,6 +1,6 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { useEffect } from "react";
-import { getPost, getRelated, type Post } from "@/data/posts";
+import { getPost, getRelated, isPostPublished, publishedPosts, type Post } from "@/data/posts";
 import { profile } from "@/data/profile";
 import { absUrl, SITE_URL, OG_IMAGE_URL, titleFor, trimToMax } from "@/lib/seo";
 import { DiagramFigure, postDiagrams } from "@/components/diagrams/Diagrams";
@@ -122,11 +122,13 @@ export const Route = createFileRoute("/blog/$slug")({
     // Many frontmatter `metaDescription`s exceed that — smart-trim here so
     // we don't have to hand-edit 55 markdown files.
     const metaDescription = trimToMax(p.description, 160);
+    const published = isPostPublished(p);
 
     return {
       meta: [
         { title: titleTag },
         { name: "description", content: metaDescription },
+        ...(!published ? [{ name: "robots", content: "noindex, follow" }] : []),
         { name: "keywords", content: p.tags.join(", ") },
         { property: "og:title", content: p.title },
         { property: "og:description", content: p.description },
@@ -180,8 +182,16 @@ marked.use({
 });
 
 function renderContent(md: string) {
-  const html = marked.parse(md, { async: false }) as string;
+  const html = marked.parse(stripUnpublishedBlogLinks(md), { async: false }) as string;
   return <div dangerouslySetInnerHTML={{ __html: html }} />;
+}
+
+const publishedSlugs = new Set(publishedPosts.map((p) => p.slug));
+
+function stripUnpublishedBlogLinks(md: string) {
+  return md.replace(/\[([^\]]+)\]\(\/blog\/([^/#?)]+)\/?\)/g, (match, label, slug) =>
+    publishedSlugs.has(slug) ? match : label,
+  );
 }
 
 function extractTOC(md: string) {

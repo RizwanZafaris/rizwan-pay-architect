@@ -169,6 +169,15 @@ export const categories = ${JSON.stringify(categories, null, 2)};
 export const posts: Post[] = ${JSON.stringify(postsMeta, null, 2)};
 
 export const getPost = (slug: string) => posts.find((p) => p.slug === slug);
+const todayIso = new Intl.DateTimeFormat("en-CA", {
+  timeZone: "Asia/Karachi",
+  year: "numeric",
+  month: "2-digit",
+  day: "2-digit",
+}).format(new Date());
+export const isPostPublished = (p: Pick<Post, "date">) => p.date <= todayIso;
+export const publishedPosts = posts.filter(isPostPublished);
+
 export const getRelated = (slug: string) => {
   const p = getPost(slug);
   if (!p) return [];
@@ -176,9 +185,9 @@ export const getRelated = (slug: string) => {
     .map((href) => href.match(/\\/blog\\/([^/#?]+)/)?.[1])
     .filter((x): x is string => Boolean(x))
     .map((relatedSlug) => getPost(relatedSlug))
-    .filter((x): x is Post => Boolean(x));
+    .filter((x): x is Post => Boolean(x) && isPostPublished(x));
   const explicitSlugs = new Set(explicit.map((x) => x.slug));
-  const fallback = posts
+  const fallback = publishedPosts
     .filter(
       (x) =>
         x.slug !== slug &&

@@ -22,10 +22,9 @@
 import { mkdir, writeFile, cp, rm, copyFile, readdir, rename } from "node:fs/promises";
 import { existsSync } from "node:fs";
 import { dirname, join } from "node:path";
-import { caseStudies } from "../src/data/caseStudies";
-import { posts } from "../src/data/posts";
-import { audiences, hubs } from "../src/data/hubs";
-import { products } from "../src/data/products";
+import { publishedPosts } from "../src/data/posts";
+import { profile } from "../src/data/profile";
+import { routesToPrerender, sitemapEntries } from "../src/lib/sitemap-data";
 import { absUrl } from "../src/lib/seo";
 
 const OUT_DIR = "dist-static";
@@ -39,37 +38,7 @@ type Worker = {
 };
 
 function collectRoutes(): string[] {
-  const staticPaths = [
-    "/",
-    "/about",
-    "/products",
-    "/product-work",
-    "/blog",
-    "/media",
-    "/topics",
-    "/for",
-    "/resume",
-    "/contact",
-  ];
-  const productPaths = products
-    .filter((p) => p.status !== "coming-soon")
-    .map((p) => p.link)
-    .filter((href) => href.startsWith("/products/"));
-  const audiencePaths = audiences.map((a) => `/for/${a.slug}`);
-  const topicPaths = hubs.map((h) => `/topics/${h.slug}`);
-  const caseStudyPaths = caseStudies.map((c) => `/product-work/${c.slug}`);
-  // Prerender every post regardless of publishDate. Static-only deploys (Hostinger)
-  // need physical HTML for every post the blog index links to, otherwise links 404.
-  // "Scheduling" via future dates does not work for a manually-uploaded static build.
-  const blogPaths = posts.map((p) => `/blog/${p.slug}`);
-  return [
-    ...staticPaths,
-    ...productPaths,
-    ...audiencePaths,
-    ...topicPaths,
-    ...caseStudyPaths,
-    ...blogPaths,
-  ];
+  return routesToPrerender;
 }
 
 function pathToFile(path: string): string {
@@ -204,14 +173,22 @@ function staticMainFallback(route: string): string | null {
   return null;
 }
 
-async function writeSitemap(routes: string[]) {
-  const today = new Date().toISOString().slice(0, 10);
-  const urls = routes
+function escapeXml(value: string) {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&apos;");
+}
+
+async function writeSitemap() {
+  const urls = sitemapEntries
     .map(
-      (r) =>
+      (entry) =>
         // absUrl() adds the trailing slash for non-file routes so each loc
         // matches the Apache-301 canonical form (no redirect hops).
-        `  <url><loc>${absUrl(r)}</loc><lastmod>${today}</lastmod><changefreq>weekly</changefreq></url>`,
+        `  <url><loc>${absUrl(entry.path)}</loc><lastmod>${entry.lastmod}</lastmod><changefreq>${entry.changefreq}</changefreq><priority>${entry.priority.toFixed(1)}</priority></url>`,
     )
     .join("\n");
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
@@ -220,6 +197,35 @@ ${urls}
 </urlset>
 `;
   await writeFile(`${OUT_DIR}/sitemap.xml`, xml);
+}
+
+async function writeFeed() {
+  const items = publishedPosts
+    .slice(0, 30)
+    .map(
+      (p) => `<item>
+    <title>${escapeXml(p.title)}</title>
+    <link>${absUrl(`/blog/${p.slug}`)}</link>
+    <guid isPermaLink="true">${absUrl(`/blog/${p.slug}`)}</guid>
+    <pubDate>${new Date(`${p.date}T00:00:00Z`).toUTCString()}</pubDate>
+    <category>${escapeXml(p.category)}</category>
+    <description>${escapeXml(p.description)}</description>
+  </item>`,
+    )
+    .join("\n");
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+<channel>
+  <title>${escapeXml(profile.name)} — Payments Essays</title>
+  <link>${absUrl("/blog")}</link>
+  <description>${escapeXml("Essays on payment infrastructure, fintech product, risk, settlement, AI and program leadership.")}</description>
+  <language>en</language>
+  <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
+  ${items}
+</channel>
+</rss>
+`;
+  await writeFile(`${OUT_DIR}/feed.xml`, xml);
 }
 
 async function copyHtaccess() {
@@ -336,8 +342,10 @@ async function main() {
   const { ok, fail } = await prerender(worker, routes);
 
   // Static sitemap
-  await writeSitemap(routes);
+  await writeSitemap();
   console.log(`\n✓ Wrote ${OUT_DIR}/sitemap.xml`);
+  await writeFeed();
+  console.log(`✓ Wrote ${OUT_DIR}/feed.xml`);
 
   // .htaccess for Apache (Hostinger)
   await copyHtaccess();

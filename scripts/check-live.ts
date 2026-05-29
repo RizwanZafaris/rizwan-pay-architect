@@ -106,6 +106,12 @@ const probes: Probe[] = [
     expect: 200,
     matchBody: /# Profile/,
   },
+  {
+    name: "feed.xml",
+    url: `${APEX_ORIGIN}/feed.xml`,
+    expect: 200,
+    matchBody: /<rss[\s>]/,
+  },
   { name: "og-default.png", url: `${APEX_ORIGIN}/og-default.png`, expect: 200, required: true },
   {
     name: "security.txt",
@@ -133,6 +139,7 @@ const probes: Probe[] = [
     matchBody: /Contact Rizwan Zafar/,
   },
   { name: "/resume/", url: `${APEX_ORIGIN}/resume/`, expect: 200, required: true },
+  { name: "/sitemap/", url: `${APEX_ORIGIN}/sitemap/`, expect: 200, required: true },
   { name: "/product-work/", url: `${APEX_ORIGIN}/product-work/`, expect: 200, required: true },
   {
     name: "/for/visa-mastercard/",

@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TopicsRouteImport } from './routes/topics'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as SitemapRouteImport } from './routes/sitemap'
 import { Route as ResumeRouteImport } from './routes/resume'
 import { Route as ProductsRouteImport } from './routes/products'
 import { Route as MediaRouteImport } from './routes/media'
@@ -35,6 +36,11 @@ const TopicsRoute = TopicsRouteImport.update({
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapRoute = SitemapRouteImport.update({
+  id: '/sitemap',
+  path: '/sitemap',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ResumeRoute = ResumeRouteImport.update({
@@ -120,6 +126,7 @@ export interface FileRoutesByFullPath {
   '/media': typeof MediaRoute
   '/products': typeof ProductsRouteWithChildren
   '/resume': typeof ResumeRoute
+  '/sitemap': typeof SitemapRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/topics': typeof TopicsRouteWithChildren
   '/blog/$slug': typeof BlogSlugRoute
@@ -139,6 +146,7 @@ export interface FileRoutesByTo {
   '/media': typeof MediaRoute
   '/products': typeof ProductsRouteWithChildren
   '/resume': typeof ResumeRoute
+  '/sitemap': typeof SitemapRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/for/$audience': typeof ForAudienceRoute
@@ -158,6 +166,7 @@ export interface FileRoutesById {
   '/media': typeof MediaRoute
   '/products': typeof ProductsRouteWithChildren
   '/resume': typeof ResumeRoute
+  '/sitemap': typeof SitemapRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/topics': typeof TopicsRouteWithChildren
   '/blog/$slug': typeof BlogSlugRoute
@@ -179,6 +188,7 @@ export interface FileRouteTypes {
     | '/media'
     | '/products'
     | '/resume'
+    | '/sitemap'
     | '/sitemap.xml'
     | '/topics'
     | '/blog/$slug'
@@ -198,6 +208,7 @@ export interface FileRouteTypes {
     | '/media'
     | '/products'
     | '/resume'
+    | '/sitemap'
     | '/sitemap.xml'
     | '/blog/$slug'
     | '/for/$audience'
@@ -216,6 +227,7 @@ export interface FileRouteTypes {
     | '/media'
     | '/products'
     | '/resume'
+    | '/sitemap'
     | '/sitemap.xml'
     | '/topics'
     | '/blog/$slug'
@@ -236,6 +248,7 @@ export interface RootRouteChildren {
   MediaRoute: typeof MediaRoute
   ProductsRoute: typeof ProductsRouteWithChildren
   ResumeRoute: typeof ResumeRoute
+  SitemapRoute: typeof SitemapRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TopicsRoute: typeof TopicsRouteWithChildren
   BlogSlugRoute: typeof BlogSlugRoute
@@ -260,6 +273,13 @@ declare module '@tanstack/react-router' {
       path: '/sitemap.xml'
       fullPath: '/sitemap.xml'
       preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap': {
+      id: '/sitemap'
+      path: '/sitemap'
+      fullPath: '/sitemap'
+      preLoaderRoute: typeof SitemapRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/resume': {
@@ -402,6 +422,7 @@ const rootRouteChildren: RootRouteChildren = {
   MediaRoute: MediaRoute,
   ProductsRoute: ProductsRouteWithChildren,
   ResumeRoute: ResumeRoute,
+  SitemapRoute: SitemapRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   TopicsRoute: TopicsRouteWithChildren,
   BlogSlugRoute: BlogSlugRoute,
@@ -414,13 +435,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}

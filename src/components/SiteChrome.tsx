@@ -292,6 +292,11 @@ export function SiteFooter() {
               </Link>
             </li>
             <li>
+              <Link to="/sitemap" className="hover:text-ink text-ink-soft">
+                Sitemap
+              </Link>
+            </li>
+            <li>
               <Link to="/for" className="hover:text-ink text-ink-soft">
                 For Recruiters
               </Link>

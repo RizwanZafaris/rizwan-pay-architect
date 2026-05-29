@@ -2,7 +2,7 @@
 // Hubs are derived from existing post categories and tag patterns, so we
 // don't need to retag every post by hand.
 
-import { posts, type Post } from "./posts";
+import { publishedPosts as posts, type Post } from "./posts";
 import { caseStudies, type CaseStudy } from "./caseStudies";
 
 export type HubSlug =
