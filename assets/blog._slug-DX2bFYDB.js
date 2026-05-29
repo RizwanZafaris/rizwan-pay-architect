@@ -1,0 +1,2 @@
+import{r as s,n as o}from"./index-DMBCEssV.js";function i(e){return e.toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/(^-|-$)/g,"")}o.use({renderer:{heading({tokens:e,depth:r}){const t=this.parser.parseInline(e),n=i(e.map(a=>a.raw??"").join(""));return`<h${r} id="${n}">${t}</h${r}>
+`}}});const x=({error:e})=>s.jsx("div",{className:"mx-auto max-w-2xl px-6 py-24 text-center",children:s.jsx("p",{className:"text-ink-soft",children:e.message})});export{x as errorComponent};
