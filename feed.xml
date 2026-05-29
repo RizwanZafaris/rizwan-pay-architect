@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+<channel>
+  <title>Rizwan Zafar — Payments Essays</title>
+  <link>https://rzifi.com/blog/</link>
+  <description>Essays on payment infrastructure, fintech product, risk, settlement, AI and program leadership.</description>
+  <language>en</language>
+  <lastBuildDate>Fri, 29 May 2026 22:51:33 GMT</lastBuildDate>
+  <item>
+    <title>PCI DSS and ISO 27001 as Product Programs</title>
+    <link>https://rzifi.com/blog/pci-dss-iso-27001-program-leadership/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/pci-dss-iso-27001-program-leadership/</guid>
+    <pubDate>Sat, 30 May 2026 00:00:00 GMT</pubDate>
+    <category>Fraud &amp; Risk</category>
+    <description>What it takes to lead PCI DSS and ISO 27001 programs from scratch at a payments platform, scoping, evidence, controls, and the trap of treating compliance as paperwork.</description>
+  </item>
+<item>
+    <title>Chargebacks Are a Product Problem</title>
+    <link>https://rzifi.com/blog/chargebacks-product-problem/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/chargebacks-product-problem/</guid>
+    <pubDate>Fri, 29 May 2026 00:00:00 GMT</pubDate>
+    <category>Fraud &amp; Risk</category>
+    <description>How to treat chargebacks as a product surface, root-cause categorisation, prevention, representment, and the feedback loop that actually reduces the rate.</description>
+  </item>
+<item>
+    <title>Payment Cost Is a Product Variable: From 50% to 1% (Tapmad Migration Playbook)</title>
+    <link>https://rzifi.com/blog/payment-cost-50-to-1/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/payment-cost-50-to-1/</guid>
+    <pubDate>Fri, 29 May 2026 00:00:00 GMT</pubDate>
+    <category>Product Strategy</category>
+    <description>How a subscription business cut payment cost from ~50% of revenue to ~1% by treating cost as a product variable, rail mix, dunning, smart retries.</description>
+  </item>
+<item>
+    <title>Payments PRD Template: The 9 Sections Every Senior PM Should Write</title>
+    <link>https://rzifi.com/blog/payments-prd-template-nine-sections/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/payments-prd-template-nine-sections/</guid>
+    <pubDate>Fri, 29 May 2026 00:00:00 GMT</pubDate>
+    <category>Product Strategy</category>
+    <description>A practical payments PRD template for senior product managers covering rail choice, risk, settlement, compliance, operations and launch gates.</description>
+  </item>
+<item>
+    <title>Layered Fraud Controls in the Payments Stack</title>
+    <link>https://rzifi.com/blog/layered-fraud-controls-payments-stack/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/layered-fraud-controls-payments-stack/</guid>
+    <pubDate>Thu, 28 May 2026 00:00:00 GMT</pubDate>
+    <category>Fraud &amp; Risk</category>
+    <description>How to design layered fraud controls across device, identity, transaction, behavioural and network layers, without crushing conversion or throughput.</description>
+  </item>
+<item>
+    <title>The Risk-Adjusted Backlog: Prioritising Payment Products When Failure Costs Real Money</title>
+    <link>https://rzifi.com/blog/risk-adjusted-backlog-payments/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/risk-adjusted-backlog-payments/</guid>
+    <pubDate>Thu, 28 May 2026 00:00:00 GMT</pubDate>
+    <category>Product Strategy</category>
+    <description>How senior payment product teams prioritise roadmaps when revenue, compliance, fraud, settlement risk and reliability all compete.</description>
+  </item>
+<item>
+    <title>KYC and Conversion Designed Together</title>
+    <link>https://rzifi.com/blog/kyc-conversion-designed-together/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/kyc-conversion-designed-together/</guid>
+    <pubDate>Wed, 27 May 2026 00:00:00 GMT</pubDate>
+    <category>Merchant Onboarding</category>
+    <description>Why KYC and conversion are the same product surface, how to design identity verification flows that compliance accepts and merchants actually finish.</description>
+  </item>
+<item>
+    <title>Why Local Payment Methods Are a Developer-Experience Problem</title>
+    <link>https://rzifi.com/blog/local-payment-methods-developer-experience/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/local-payment-methods-developer-experience/</guid>
+    <pubDate>Wed, 27 May 2026 00:00:00 GMT</pubDate>
+    <category>Payment Infrastructure</category>
+    <description>Acceptance in emerging markets is decided at the SDK and webhook layer. Why local payment methods are developer-experience problems first.</description>
+  </item>
+<item>
+    <title>PMO Maturity Model for Fintech: Five Stages and How to Know Yours</title>
+    <link>https://rzifi.com/blog/pmo-maturity-model-fintech/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/pmo-maturity-model-fintech/</guid>
+    <pubDate>Wed, 27 May 2026 00:00:00 GMT</pubDate>
+    <category>Program Management</category>
+    <description>A practical five-stage PMO maturity model for fintech and payments teams, from delivery tracking to regulated execution system.</description>
+  </item>
+<item>
+    <title>Cross-Border Corridors Are Operating Systems, Not Routes</title>
+    <link>https://rzifi.com/blog/cross-border-corridors-are-operating-systems/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/cross-border-corridors-are-operating-systems/</guid>
+    <pubDate>Tue, 26 May 2026 00:00:00 GMT</pubDate>
+    <category>Cross-Border Payments</category>
+    <description>A corridor is not a partner integration. It is a product with its own success rate, FX behavior, compliance overlay, and unit economics. A practitioner view from MENA and South Asia.</description>
+  </item>
+<item>
+    <title>Financial Controls Are Product Requirements, Not Compliance Afterthoughts</title>
+    <link>https://rzifi.com/blog/financial-controls-are-product-requirements/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/financial-controls-are-product-requirements/</guid>
+    <pubDate>Tue, 26 May 2026 00:00:00 GMT</pubDate>
+    <category>Settlement &amp; Reconciliation</category>
+    <description>Why financial controls, segregation of duties, audit trails, maker-checker, reversals, are product requirements, not compliance afterthoughts.</description>
+  </item>
+<item>
+    <title>Onboarding Conversion vs. Default Rate: The Real Tradeoff</title>
+    <link>https://rzifi.com/blog/onboarding-conversion-vs-default-rate-tradeoff/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/onboarding-conversion-vs-default-rate-tradeoff/</guid>
+    <pubDate>Tue, 26 May 2026 00:00:00 GMT</pubDate>
+    <category>Merchant Onboarding</category>
+    <description>How to manage the real tradeoff between onboarding conversion and downstream default, fraud, and chargeback rates without picking a side.</description>
+  </item>
+<item>
+    <title>Vendor Governance in Fintech: The PMO Surface Most Teams Underestimate</title>
+    <link>https://rzifi.com/blog/vendor-governance-fintech-pmo/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/vendor-governance-fintech-pmo/</guid>
+    <pubDate>Tue, 26 May 2026 00:00:00 GMT</pubDate>
+    <category>Program Management</category>
+    <description>How fintech PMOs should govern vendors across payments, OTT, banking and regulated transformation programs without slowing delivery.</description>
+  </item>
+<item>
+    <title>KYB Document Extraction: A Realistic LLM Use Case in Regulated Payments</title>
+    <link>https://rzifi.com/blog/kyb-document-extraction-llm-use-case/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/kyb-document-extraction-llm-use-case/</guid>
+    <pubDate>Mon, 25 May 2026 00:00:00 GMT</pubDate>
+    <category>AI in Fintech</category>
+    <description>A realistic architecture for using LLMs in KYB document extraction while keeping risk decisions auditable and compliance-controlled.</description>
+  </item>
+<item>
+    <title>Risk Tiering Merchants Is a Product Decision</title>
+    <link>https://rzifi.com/blog/risk-tiering-merchants-product-decision/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/risk-tiering-merchants-product-decision/</guid>
+    <pubDate>Mon, 25 May 2026 00:00:00 GMT</pubDate>
+    <category>Merchant Onboarding</category>
+    <description>Why merchant risk tiering belongs to product, not just risk, how tiers shape onboarding, limits, settlement, fees, and the entire merchant lifecycle.</description>
+  </item>
+<item>
+    <title>Agentic Payments Operations: What Works, What Is Theatre</title>
+    <link>https://rzifi.com/blog/agentic-payments-operations-what-works/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/agentic-payments-operations-what-works/</guid>
+    <pubDate>Sun, 24 May 2026 00:00:00 GMT</pubDate>
+    <category>AI in Fintech</category>
+    <description>A practical view of agentic AI in payments operations: where agents help, where deterministic workflows win, and how to control production risk.</description>
+  </item>
+<item>
+    <title>KYB Automation Without Blowing Up Risk</title>
+    <link>https://rzifi.com/blog/kyb-automation-without-blowing-up-risk/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/kyb-automation-without-blowing-up-risk/</guid>
+    <pubDate>Sun, 24 May 2026 00:00:00 GMT</pubDate>
+    <category>Merchant Onboarding</category>
+    <description>How to automate KYB onboarding for merchants without inflating fraud, sanctions, or default rates, tiering, data sources, and the review queue that scales.</description>
+  </item>
+<item>
+    <title>Ledger Design for Multi-Rail Payments</title>
+    <link>https://rzifi.com/blog/ledger-design-for-multi-rail-payments/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/ledger-design-for-multi-rail-payments/</guid>
+    <pubDate>Sat, 23 May 2026 00:00:00 GMT</pubDate>
+    <category>Settlement &amp; Reconciliation</category>
+    <description>How to design a double-entry payment ledger that holds across cards, wallets, IBFT, DCB and cross-border rails at $1B+ GTV, entities, postings, and invariants.</description>
+  </item>
+<item>
+    <title>Regulatory UX: Why the Name on a Payment Screen Can Block a Launch</title>
+    <link>https://rzifi.com/blog/regulatory-ux-name-on-payment-screen/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/regulatory-ux-name-on-payment-screen/</guid>
+    <pubDate>Sat, 23 May 2026 00:00:00 GMT</pubDate>
+    <category>Fraud &amp; Risk</category>
+    <description>An operator essay on regulatory UX, why the words, names, and disclosures on a payment screen can be the difference between a launch and a six-month delay.</description>
+  </item>
+<item>
+    <title>Exception Management in Reconciliation</title>
+    <link>https://rzifi.com/blog/exception-management-reconciliation/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/exception-management-reconciliation/</guid>
+    <pubDate>Fri, 22 May 2026 00:00:00 GMT</pubDate>
+    <category>Settlement &amp; Reconciliation</category>
+    <description>How to design exception management for payment reconciliation so finance ops scales sublinearly with GTV, taxonomy, routing, SLAs, and product feedback loops.</description>
+  </item>
+<item>
+    <title>Merchant Onboarding: Where Growth, Risk and Compliance Collide</title>
+    <link>https://rzifi.com/blog/merchant-onboarding-growth-risk-compliance/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/merchant-onboarding-growth-risk-compliance/</guid>
+    <pubDate>Fri, 22 May 2026 00:00:00 GMT</pubDate>
+    <category>Merchant Onboarding</category>
+    <description>Why merchant onboarding is a single product surface where growth, risk, and compliance must be designed together, not by three separate teams.</description>
+  </item>
+<item>
+    <title>Hosted Checkout vs Direct Card Processing: A Product Maturity Guide (MPGS, MDES, 3DS)</title>
+    <link>https://rzifi.com/blog/hosted-checkout-vs-direct-card-processing/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/hosted-checkout-vs-direct-card-processing/</guid>
+    <pubDate>Thu, 21 May 2026 00:00:00 GMT</pubDate>
+    <category>Payment Infrastructure</category>
+    <description>Hosted checkout ships fast. Direct card processing ships maturity. A practitioner walk-through of MPGS, MDES, tokenization, 3DS, and PCI scope decisions.</description>
+  </item>
+<item>
+    <title>Settlement Windows and Merchant Trust</title>
+    <link>https://rzifi.com/blog/settlement-windows-and-merchant-trust/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/settlement-windows-and-merchant-trust/</guid>
+    <pubDate>Thu, 21 May 2026 00:00:00 GMT</pubDate>
+    <category>Settlement &amp; Reconciliation</category>
+    <description>Settlement timing is the most underrated product surface in payments. How T+0, T+1 and T+n settlement windows shape merchant trust, cashflow, and churn.</description>
+  </item>
+<item>
+    <title>Click to Pay (VCTP / MCTP): The Scheme-Led Checkout Standard, How It Actually Works</title>
+    <link>https://rzifi.com/blog/click-to-pay-vctp-mctp-scheme-led-checkout/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/click-to-pay-vctp-mctp-scheme-led-checkout/</guid>
+    <pubDate>Wed, 20 May 2026 00:00:00 GMT</pubDate>
+    <category>Payment Infrastructure</category>
+    <description>Click to Pay explained from the operator&apos;s lens — what VCTP and MCTP actually are, the merchant + issuer + consumer surface, why it shipped, where it works, where it&apos;s still patchy.</description>
+  </item>
+<item>
+    <title>CyberSource Architecture: The Visa-Owned Payment Gateway, How It Differs From MPGS</title>
+    <link>https://rzifi.com/blog/cybersource-architecture-visa-payment-gateway/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/cybersource-architecture-visa-payment-gateway/</guid>
+    <pubDate>Wed, 20 May 2026 00:00:00 GMT</pubDate>
+    <category>Payment Infrastructure</category>
+    <description>An operator&apos;s guide to CyberSource — Decision Manager, Token Management Service, Flex Microform, Payouts, and where the architecture differs meaningfully from MPGS.</description>
+  </item>
+<item>
+    <title>EMV 3DS2: Step-Up Logic, Frictionless Flow and the Auth-Rate Optimisation Nobody Explains</title>
+    <link>https://rzifi.com/blog/emv-3ds2-step-up-frictionless-optimisation/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/emv-3ds2-step-up-frictionless-optimisation/</guid>
+    <pubDate>Wed, 20 May 2026 00:00:00 GMT</pubDate>
+    <category>Payment Infrastructure</category>
+    <description>An operator&apos;s guide to EMV 3DS2 — the three flows (frictionless, attempt, challenge), the exemption logic that decides which flow fires, and how to lift auth rate without breaking PSD2 SCA.</description>
+  </item>
+<item>
+    <title>Payment Infrastructure Is Not Just APIs, It Is State, Trust and Failure Handling</title>
+    <link>https://rzifi.com/blog/payment-infrastructure-state-trust-failure/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/payment-infrastructure-state-trust-failure/</guid>
+    <pubDate>Wed, 20 May 2026 00:00:00 GMT</pubDate>
+    <category>Payment Infrastructure</category>
+    <description>An operator view of payment infrastructure at $1B+ GTV, why state, trust, and failure handling, not APIs, are the real product surface.</description>
+  </item>
+<item>
+    <title>Three-Way Reconciliation at Scale</title>
+    <link>https://rzifi.com/blog/three-way-reconciliation-at-scale/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/three-way-reconciliation-at-scale/</guid>
+    <pubDate>Wed, 20 May 2026 00:00:00 GMT</pubDate>
+    <category>Settlement &amp; Reconciliation</category>
+    <description>How to design three-way reconciliation across PSP, internal ledger and bank statement at $1B+ GTV, match keys, tolerances, exception taxonomy, and SLAs.</description>
+  </item>
+<item>
+    <title>MDES + Network Tokenisation: How It Actually Works (and Why You Should Default to It)</title>
+    <link>https://rzifi.com/blog/mdes-network-tokenisation-how-it-actually-works/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/mdes-network-tokenisation-how-it-actually-works/</guid>
+    <pubDate>Tue, 19 May 2026 00:00:00 GMT</pubDate>
+    <category>Payment Infrastructure</category>
+    <description>MDES, Visa Token Service, network tokens vs gateway tokens, the lifecycle the schemes own, Apple/Google Pay plumbing, and why every new card-on-file integration should default to network tokens.</description>
+  </item>
+<item>
+    <title>MPGS Architecture: How MasterCard Payment Gateway Services Actually Works (and Where It Breaks)</title>
+    <link>https://rzifi.com/blog/mpges-mastercard-payment-gateway-services-architecture/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/mpges-mastercard-payment-gateway-services-architecture/</guid>
+    <pubDate>Tue, 19 May 2026 00:00:00 GMT</pubDate>
+    <category>Payment Infrastructure</category>
+    <description>An operator&apos;s guide to MPGS — Hosted Checkout vs. Hosted Session, 3DS2 step-up, tokenisation, recurring, the integration patterns that scale, and the failure modes nobody warns you about.</description>
+  </item>
+</channel>
+</rss>
