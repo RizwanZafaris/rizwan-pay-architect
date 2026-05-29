@@ -42,9 +42,9 @@ const TITLE_MAX = 65; // tolerant — Google truncates ~60, allow a few char sla
 const DESC_MIN = 50;
 const DESC_MAX = 165;
 
-// Pages that MUST stay indexable (= no robots noindex). Anything outside this
-// list is allowed to be noindex (e.g. /topics/$hub which is a thin filter
-// view by design).
+// Pages that MUST stay indexable (= no robots noindex). The static list covers
+// core routes; sitemap locs are added at runtime so any URL advertised to
+// search engines cannot accidentally ship with noindex.
 const REQUIRED_INDEXABLE: string[] = [
   "/",
   "/about",
@@ -61,6 +61,8 @@ const REQUIRED_INDEXABLE: string[] = [
   "/sitemap",
   "/topics",
 ];
+
+const sitemapIndexableRoutes = new Set<string>();
 
 type Failure = { file: string; check: string; detail: string };
 const failures: Failure[] = [];
@@ -158,6 +160,7 @@ function auditSitemap() {
     // (any segment with a dot) keep their original form.
     try {
       const u = new URL(loc);
+      sitemapIndexableRoutes.add(u.pathname === "/" ? "/" : u.pathname.replace(/\/$/, ""));
       const last = u.pathname.split("/").pop() ?? "";
       const isFile = last.includes(".");
       if (!isFile && !u.pathname.endsWith("/")) {
@@ -246,7 +249,7 @@ function auditHtml(file: string) {
   else if (h1s.length > 1) fail(file, "h1_dup", `found ${h1s.length} <h1> tags`);
 
   // 2f. noindex check — only flag if this page was supposed to stay indexable.
-  if (REQUIRED_INDEXABLE.includes(route)) {
+  if (REQUIRED_INDEXABLE.includes(route) || sitemapIndexableRoutes.has(route)) {
     const robotsMeta = body.match(/<meta[^>]+name=["']robots["'][^>]*content=["']([^"']+)["']/i);
     if (robotsMeta && /noindex/i.test(robotsMeta[1]))
       fail(file, "unexpected_noindex", `robots="${robotsMeta[1]}"`);

@@ -23,8 +23,6 @@ export const Route = createFileRoute("/topics/$hub")({
       meta: [
         { title: `${h.title} | Rizwan Zafar` },
         { name: "description", content: h.description },
-        // Thin until unique content; keep discoverable paths but noindex them.
-        { name: "robots", content: "noindex, follow" },
         { property: "og:title", content: `${h.title}, Rizwan Zafar` },
         { property: "og:description", content: h.description },
         { property: "og:url", content: url },
