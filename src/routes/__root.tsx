@@ -35,12 +35,26 @@ function GtmRouteTracker() {
 import appCss from "../styles.css?url";
 import { SiteHeader, SiteFooter } from "@/components/SiteChrome";
 import { profile } from "@/data/profile";
-import { absUrl, SITE_URL, OG_IMAGE_URL, SITE_KEYWORDS, GTM_ID } from "@/lib/seo";
+import {
+  absUrl,
+  SITE_URL,
+  OG_IMAGE_URL,
+  SITE_KEYWORDS,
+  GTM_ID,
+  BING_SITE_VERIFICATION,
+  MICROSOFT_CLARITY_ID,
+  PLAUSIBLE_DOMAIN,
+  PLAUSIBLE_SRC,
+} from "@/lib/seo";
 
 // Google Tag Manager bootstrap, runs as early as possible. Mirrors Google's
 // official snippet. Skipped when GTM_ID is empty (e.g. local dev).
 const gtmScript = GTM_ID
   ? `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','${GTM_ID}');`
+  : "";
+
+const clarityScript = MICROSOFT_CLARITY_ID
+  ? `(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script",${JSON.stringify(MICROSOFT_CLARITY_ID)});`
   : "";
 
 function NotFoundComponent() {
@@ -220,6 +234,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { name: "google-site-verification", content: "kWHcLbkjB3HB8amvRUoa8gMfThcigOtXteUIZUPu8mc" },
+      ...(BING_SITE_VERIFICATION
+        ? [{ name: "msvalidate.01", content: BING_SITE_VERIFICATION }]
+        : []),
       { title: "Rizwan Zafar, Payments Product Executive | Dubai" },
       {
         name: "description",
@@ -286,6 +303,8 @@ function RootShell({ children }: { children: React.ReactNode }) {
       <head>
         {/* GTM, kept as the first <script> in <head> per Google's spec */}
         {gtmScript && <script dangerouslySetInnerHTML={{ __html: gtmScript }} />}
+        {clarityScript && <script dangerouslySetInnerHTML={{ __html: clarityScript }} />}
+        {PLAUSIBLE_DOMAIN && <script defer data-domain={PLAUSIBLE_DOMAIN} src={PLAUSIBLE_SRC} />}
         <HeadContent />
       </head>
       <body>

@@ -1,15 +1,31 @@
-# Analytics setup — GTM + GA4
+# Analytics setup — GTM, GA4 and optional analytics tools
 
 GTM container ID: **`GTM-TM5BP98G`** (configurable via `VITE_GTM_ID`).
 
 This doc is the canonical reference for:
 
 1. What events the site sends to `dataLayer`
-2. How to wire each one to GA4 (or any other tag) inside the GTM workspace
+2. How to wire each one to GA4, LinkedIn Insight, Meta Pixel, Google Ads or any other tag inside the GTM workspace
 3. Which events to mark as conversions
 4. How to verify the install end-to-end
 
 ---
+
+Recommended architecture: **GTM is the hub**. Keep GA4, Google Ads, LinkedIn Insight, Meta Pixel and TikTok Pixel inside GTM so one workspace owns triggers, consent, preview/debug and publishing. Only direct-install tools that need their own lightweight script or meta verification, such as Microsoft Clarity, Plausible or Bing Webmaster Tools.
+
+## 0 · Analytics stack
+
+| Tool | Status in code | Where to configure | Purpose |
+| --- | --- | --- | --- |
+| Google Tag Manager | Installed | `VITE_GTM_ID` / GTM workspace | Tag orchestration, triggers and debug |
+| Google Analytics 4 | Ready via GTM events | GTM + GA4 Measurement ID | Traffic, funnels, conversions |
+| Google Search Console | Verified in root meta | Google Search Console | Search indexing and query performance |
+| Bing Webmaster Tools | Optional meta ready | `VITE_BING_SITE_VERIFICATION` | Bing/Copilot search visibility |
+| Microsoft Clarity | Optional script ready | `VITE_MICROSOFT_CLARITY_ID` | Heatmaps/session recordings |
+| Plausible | Optional script ready | `VITE_PLAUSIBLE_DOMAIN` | Privacy-friendly traffic analytics |
+| LinkedIn Insight Tag | Use GTM | GTM Custom HTML or LinkedIn template | Recruiter/audience retargeting |
+| Meta/TikTok/Google Ads pixels | Use GTM | GTM templates | Paid campaign tracking only if needed |
+| AI bot analytics | Requires server/CDN logs | Cloudflare/Hostinger logs | GPTBot, ClaudeBot, PerplexityBot do not reliably run client JS |
 
 ## 1 · Event catalogue
 
@@ -25,6 +41,7 @@ All events live in [`src/lib/analytics.ts`](../src/lib/analytics.ts) as a typed 
 | `case_study_view`     | Each `/product-work/<slug>` mount                                                                                                       | `case_study_slug`, `case_study_category`                                                               | **MARK AS CONVERSION** — strongest mid-funnel signal                                           |
 | `contact_form_start`  | First focus on any contact form field                                                                                                   | (none)                                                                                                 | Funnel step: form started                                                                      |
 | `contact_form_submit` | Form submitted (any outcome)                                                                                                            | `submit_method` (`server` / `mailto`), `submit_status` (`sent` / `error`), `submit_error` (when error) | **MARK AS CONVERSION** when `submit_status = sent`                                             |
+| `site_search`         | Homepage search submit or blog search intent                                                                                            | `search_term`, `search_location`, `search_filter`                                                      | Content demand signal; tells you what recruiters/readers look for                              |
 
 ### `cta_id` values (enumerated)
 
@@ -48,7 +65,7 @@ Open <https://tagmanager.google.com> → container **GTM-TM5BP98G** → Workspac
 
 GTM doesn't auto-read dataLayer keys; you have to declare each one.
 
-**Variables → New → Data Layer Variable** — create these 14 variables (Variable Type: `Data Layer Variable`, Version: `Version 2`):
+**Variables → New → Data Layer Variable** — create these variables (Variable Type: `Data Layer Variable`, Version: `Version 2`):
 
 | Variable Name           | Data Layer Variable Name |
 | ----------------------- | ------------------------ |
@@ -65,7 +82,11 @@ GTM doesn't auto-read dataLayer keys; you have to declare each one.
 | DLV — blog_slug         | `blog_slug`              |
 | DLV — blog_category     | `blog_category`          |
 | DLV — case_study_slug   | `case_study_slug`        |
+| DLV — case_study_category | `case_study_category`  |
 | DLV — submit_status     | `submit_status`          |
+| DLV — search_term       | `search_term`            |
+| DLV — search_location   | `search_location`        |
+| DLV — search_filter     | `search_filter`          |
 
 ### Step 2 — Create the Triggers
 
@@ -82,6 +103,7 @@ GTM doesn't auto-read dataLayer keys; you have to declare each one.
 | CE — contact_form_start | `contact_form_start`     | Funnel step                                        |
 | CE — contact_form_sent  | `contact_form_submit`    | Use this regex filter on `submit_status`: `^sent$` |
 | CE — contact_form_error | `contact_form_submit`    | Filter `submit_status` matches regex `^error$`     |
+| CE — site_search        | `site_search`            | Content demand / search intent                     |
 
 For the two filtered `contact_form_*` triggers: under "This trigger fires on" → choose "Some Custom Events" → add the condition.
 
@@ -124,6 +146,7 @@ Repeat the GA4 Event pattern for each event. Compact recipe:
 | GA4 — contact_form_start | `contact_form_start` | (none)                                                                                                        | CE — contact_form_start |
 | GA4 — contact_form_sent  | `contact_form_sent`  | (none)                                                                                                        | CE — contact_form_sent  |
 | GA4 — contact_form_error | `contact_form_error` | (none)                                                                                                        | CE — contact_form_error |
+| GA4 — site_search        | `search`             | `search_term={{DLV — search_term}}`, `search_location={{DLV — search_location}}`, `search_filter={{DLV — search_filter}}` | CE — site_search |
 
 ### Step 6 — Publish the container
 
@@ -161,6 +184,9 @@ These become trackable goals in funnels, audience definitions, and ad attributio
 | Outbound domain     | `outbound_domain`     |
 | Outbound location   | `outbound_location`   |
 | Submit status       | `submit_status`       |
+| Search term         | `search_term`         |
+| Search location     | `search_location`     |
+| Search filter       | `search_filter`       |
 
 Once registered, these show up as filterable columns in Reports → Engagement → Events.
 
@@ -198,6 +224,20 @@ In **Explore → Free form**:
    ```js
    { event: "spa_pageview", page_path: "/about", page_location: "...", page_title: "About — Rizwan Zafar..." }
    ```
+6. Search from the homepage or blog page → look for:
+   ```js
+   { event: "site_search", search_term: "swift", search_location: "home" }
+   ```
+
+### Code/live checks
+
+Run:
+
+```bash
+bun run seo:check-live
+```
+
+This verifies that the live homepage includes Google Tag Manager and Google Search Console verification, alongside the existing search/AI reachability checks.
 
 ### GTM Preview Mode (best while you build triggers)
 
@@ -236,6 +276,19 @@ If you spin up a separate staging container later, set per-environment env vars:
 | Staging / preview deploy | `GTM-XXXXXXXX` (new container for staging) |
 | Production               | `GTM-TM5BP98G`                             |
 
+### Optional direct tools
+
+Set these only if you want the direct install:
+
+```bash
+VITE_BING_SITE_VERIFICATION=<bing-token>
+VITE_MICROSOFT_CLARITY_ID=<clarity-project-id>
+VITE_PLAUSIBLE_DOMAIN=rzifi.com
+VITE_PLAUSIBLE_SRC=https://plausible.io/js/script.js
+```
+
+For LinkedIn Insight, Meta Pixel, TikTok Pixel and Google Ads conversions, use GTM instead of direct code. Create a Custom Event trigger for the events above and fire the vendor tag from GTM.
+
 ### When you add a new CTA / event
 
 1. **Edit `src/lib/analytics.ts`** — add the new variant to the `SiteEvent` union.
@@ -262,7 +315,7 @@ Not needed for personal portfolio + no EU advertising — but worth knowing the 
 
 - [`src/lib/analytics.ts`](../src/lib/analytics.ts) — typed event helper, the source of truth for what fires
 - [`src/lib/seo.ts`](../src/lib/seo.ts) — exports `GTM_ID` (env-driven, defaults to `GTM-TM5BP98G`)
-- [`src/routes/__root.tsx`](../src/routes/__root.tsx) — GTM `<script>` in head, `<noscript>` in body, `GtmRouteTracker` for SPA page views
+- [`src/routes/__root.tsx`](../src/routes/__root.tsx) — GTM `<script>` in head, optional Clarity/Plausible/Bing config, `<noscript>` in body, `GtmRouteTracker` for SPA page views
 - [`src/components/SiteChrome.tsx`](../src/components/SiteChrome.tsx) — header / footer CTA tracking
 - [`src/routes/index.tsx`](../src/routes/index.tsx) — hero CTA tracking
 - [`src/routes/contact.tsx`](../src/routes/contact.tsx) — form lifecycle tracking

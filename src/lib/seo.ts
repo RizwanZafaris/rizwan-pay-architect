@@ -8,6 +8,10 @@ type ViteEnv = {
   VITE_SITE_URL?: string;
   VITE_OG_IMAGE_URL?: string;
   VITE_GTM_ID?: string;
+  VITE_BING_SITE_VERIFICATION?: string;
+  VITE_MICROSOFT_CLARITY_ID?: string;
+  VITE_PLAUSIBLE_DOMAIN?: string;
+  VITE_PLAUSIBLE_SRC?: string;
 };
 const env: ViteEnv =
   typeof import.meta !== "undefined" && (import.meta as ImportMeta & { env?: ViteEnv }).env
@@ -54,6 +58,15 @@ export const OG_IMAGE_URL = env.VITE_OG_IMAGE_URL || DEFAULT_OG_IMAGE;
 // Google Tag Manager. Set VITE_GTM_ID in .env.local (or empty) to opt out for dev.
 // The container live in production is GTM-TM5BP98G.
 export const GTM_ID = env.VITE_GTM_ID ?? "GTM-TM5BP98G";
+
+// Optional analytics / webmaster IDs.
+// Keep GA4, Google Ads, LinkedIn Insight, Meta Pixel and other marketing tags
+// in GTM. These direct toggles are for tools that are useful outside GTM or
+// need a page-level verification meta tag.
+export const BING_SITE_VERIFICATION = env.VITE_BING_SITE_VERIFICATION || "";
+export const MICROSOFT_CLARITY_ID = env.VITE_MICROSOFT_CLARITY_ID || "";
+export const PLAUSIBLE_DOMAIN = env.VITE_PLAUSIBLE_DOMAIN || "";
+export const PLAUSIBLE_SRC = env.VITE_PLAUSIBLE_SRC || "https://plausible.io/js/script.js";
 
 /**
  * Smart-truncate a string at a word / sentence boundary.

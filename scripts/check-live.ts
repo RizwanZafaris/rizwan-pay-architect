@@ -26,6 +26,8 @@ const WWW_ORIGIN = HOST.replace("//", "//www.");
 const HTTP_ORIGIN = HOST.replace(/^https/, "http");
 const DEV_IMPORT_PATTERN = ["/@id", "virtual"].join("/");
 const START_ENTRY_PATTERN = ["tanstack", "start-client-entry"].join("-");
+const EXPECTED_GTM_ID = process.env.VITE_GTM_ID || "GTM-TM5BP98G";
+const EXPECTED_GTM_RE = EXPECTED_GTM_ID.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
 type Probe = {
   name: string;
@@ -46,6 +48,23 @@ const probes: Probe[] = [
     expect: 200,
     required: true,
     matchBody: /<title>/i,
+  },
+  {
+    name: "Google Tag Manager",
+    url: `${APEX_ORIGIN}/`,
+    expect: 200,
+    required: true,
+    matchBody: new RegExp(
+      `googletagmanager\\.com/(?:gtm\\.js|ns\\.html)\\?id=${EXPECTED_GTM_RE}`,
+      "i",
+    ),
+  },
+  {
+    name: "Google Search Console verification",
+    url: `${APEX_ORIGIN}/`,
+    expect: 200,
+    required: true,
+    matchBody: /name="google-site-verification"/i,
   },
 
   // www MUST 301 to apex in a single hop. (This was the bug — Apache's
@@ -179,6 +198,7 @@ async function fetchOne(url: string, ua = "rzifi-check-live/1.0") {
     const res = await fetch(url, {
       method: "GET",
       redirect: "manual",
+      signal: AbortSignal.timeout(12_000),
       headers: { "user-agent": ua, accept: "*/*" },
     });
     const body = res.headers.get("content-type")?.match(/^(?:text|application\/(?:xml|json))/i)

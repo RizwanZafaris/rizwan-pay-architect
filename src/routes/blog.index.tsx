@@ -5,6 +5,7 @@ import { z } from "zod";
 import { publishedPosts as posts } from "@/data/posts";
 import { hubs, hubForPost, type HubSlug } from "@/data/hubs";
 import { absUrl } from "@/lib/seo";
+import { siteSearch } from "@/lib/analytics";
 
 const READERS = [
   "Network product",
@@ -272,6 +273,13 @@ function BlogIndex() {
               type="search"
               value={q}
               onChange={(e) => setParam("q", e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key !== "Enter") return;
+                siteSearch(e.currentTarget.value, "blog", hub || reader || company || undefined);
+              }}
+              onBlur={(e) => {
+                siteSearch(e.currentTarget.value, "blog", hub || reader || company || undefined);
+              }}
               placeholder="SWIFT, reconciliation, onboarding…"
               className="mt-1 w-full border border-rule bg-background px-3 py-2 rounded-md text-ink focus:outline-none focus:ring-2 focus:ring-[var(--brand)]/20 focus:border-[var(--brand)]"
             />

@@ -111,6 +111,14 @@ export type SiteEvent =
       submit_method: "server" | "mailto";
       submit_status: "sent" | "error";
       submit_error?: string;
+    }
+
+  // Site search intent. Does not send PII; only the typed query/filter.
+  | {
+      event: "site_search";
+      search_term: string;
+      search_location: "home" | "blog";
+      search_filter?: string;
     };
 
 // ─── Convenience wrappers ─────────────────────────────────────────────────
@@ -146,3 +154,17 @@ export const outboundClick = (url: string, location: string): void => {
 export const resumeDownload = (
   source: Extract<SiteEvent, { event: "resume_download" }>["source"],
 ): void => trackEvent("resume_download", { source });
+
+export const siteSearch = (
+  search_term: string,
+  search_location: Extract<SiteEvent, { event: "site_search" }>["search_location"],
+  search_filter?: string,
+): void => {
+  const normalized = search_term.trim().slice(0, 120);
+  if (!normalized && !search_filter) return;
+  trackEvent("site_search", {
+    search_term: normalized,
+    search_location,
+    ...(search_filter ? { search_filter: search_filter.slice(0, 120) } : {}),
+  });
+};

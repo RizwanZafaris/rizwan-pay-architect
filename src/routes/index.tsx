@@ -5,7 +5,7 @@ import { caseStudies, caseStudyThumb } from "@/data/caseStudies";
 import { posts, categories } from "@/data/posts";
 import { products } from "@/data/products";
 import { absUrl, SITE_URL } from "@/lib/seo";
-import { ctaClick, resumeDownload } from "@/lib/analytics";
+import { ctaClick, resumeDownload, siteSearch } from "@/lib/analytics";
 import { AnimatedMetric } from "@/components/motion/AnimatedMetric";
 import { Reveal } from "@/components/motion/Reveal";
 import portraitPng from "@/assets/rizwan-zafar-cutout.png";
@@ -226,6 +226,10 @@ function HomePage() {
               action="/blog/"
               method="get"
               role="search"
+              onSubmit={(event) => {
+                const q = new FormData(event.currentTarget).get("q");
+                siteSearch(typeof q === "string" ? q : "", "home");
+              }}
               className="home-search-panel mt-3 max-w-xl rounded-lg border border-rule bg-card/90 p-2 flex flex-col sm:flex-row gap-2"
               style={{ "--motion-delay": "180ms" } as CSSProperties}
             >
