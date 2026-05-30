@@ -73,14 +73,14 @@ The PCI DSS + ISO/IEC 27001 claim already carries the precise qualifier in the c
 - Resume page H1 aligned to "Product & Program Executive" (was the narrower "Payments Product Executive").
 - Homepage meta title compressed to 51 chars + description to 149 chars (Google snippet window).
 - Used-by line reframed to precise wording.
-- Trailing-slash policy + .htaccess ordering + /@id/virtual dev-leak strip all green on `bun scripts/check-live.ts` (26/26).
+- Trailing-slash policy + .htaccess ordering + dev-only module leak strip all green on `bun scripts/check-live.ts` (26/26).
 
 **Out-of-repo actions, ordered by impact:**
 
 | Priority | Action                                                                                                      | Why                                                                                                            |
 | -------- | ----------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
 | **P0**   | Replace the placeholder `Rizwan_Zafar_Resume.pdf` with a real 2-3 page executive resume export              | The single most damaging gap; "Download Resume" is the highest-intent CTA on the site                          |
-| **P0**   | Configure `rizwan-pay-architect.lovable.app` to 301-redirect or noindex+canonical to `https://rzifi.com`    | Old subdomain still ranking; bleeds SEO authority and creates duplicate-content risk                           |
+| **P0**   | Configure any legacy builder subdomain to 301-redirect or noindex+canonical to `https://rzifi.com`          | Old subdomains can bleed SEO authority and create duplicate-content risk                                       |
 | P1       | Replace the Loom placeholders on /media with one real walk-through (Simpaisa infrastructure or BNPL launch) | Adds external-validation signal recruiters look for above Director level                                       |
 | P1       | Verify `www.rzifi.com` SSL covers the apex _and_ www host in the Hostinger SSL panel                        | The redirect works at the Apache level, but a broken SSL on `www.` could still spook crawlers / link unfurlers |
 | P2       | Submit `https://rzifi.com/sitemap.xml` to Google Search Console + Bing Webmaster Tools (if not already)     | Accelerates indexing on the new canonical                                                                      |

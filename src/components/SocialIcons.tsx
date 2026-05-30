@@ -19,6 +19,14 @@ import { outboundClick } from "@/lib/analytics";
 
 type Platform = (typeof profile.socials)[number]["platform"];
 
+function domainFor(url: string) {
+  try {
+    return new URL(url).hostname;
+  } catch {
+    return url.split(":")[0] || "unknown";
+  }
+}
+
 function Icon({ platform, className = "w-4 h-4" }: { platform: Platform; className?: string }) {
   switch (platform) {
     case "linkedin":
@@ -60,6 +68,10 @@ export function SocialIconRow({
             target="_blank"
             rel="noreferrer me"
             onClick={() => outboundClick(s.url, source)}
+            data-analytics-event="outbound_click"
+            data-analytics-outbound-domain={domainFor(s.url)}
+            data-analytics-outbound-url={s.url}
+            data-analytics-outbound-location={source}
             aria-label={`${profile.name} on ${s.label}`}
             title={`${s.label} · ${s.handle}`}
             className="grid place-items-center h-9 w-9 rounded-full border border-rule text-ink-soft hover:text-ink hover:border-ink/40 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)]"
@@ -82,6 +94,10 @@ export function SocialCardList({ source = "contact_page" }: { source?: string })
             target="_blank"
             rel="noreferrer me"
             onClick={() => outboundClick(s.url, source)}
+            data-analytics-event="outbound_click"
+            data-analytics-outbound-domain={domainFor(s.url)}
+            data-analytics-outbound-url={s.url}
+            data-analytics-outbound-location={source}
             className="flex items-center justify-between gap-3 border border-rule rounded-lg px-5 py-4 hover:border-ink focus:outline-none focus:ring-2 focus:ring-ink/30 transition-colors group"
           >
             <div className="flex items-center gap-4 min-w-0">

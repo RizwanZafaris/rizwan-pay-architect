@@ -322,6 +322,11 @@ function CaseStudyPage() {
             <a
               href="/Rizwan_Zafar_Resume.pdf"
               download
+              data-analytics-event="cta_click"
+              data-analytics-cta-id="download_resume"
+              data-analytics-cta-location="case_study_footer"
+              data-analytics-cta-destination="/Rizwan_Zafar_Resume.pdf"
+              data-analytics-source="case_study"
               onClick={() => {
                 ctaClick("download_resume", "case_study_footer", "/Rizwan_Zafar_Resume.pdf");
                 resumeDownload("case_study");
@@ -332,6 +337,10 @@ function CaseStudyPage() {
             </a>
             <Link
               to="/contact"
+              data-analytics-event="cta_click"
+              data-analytics-cta-id="discuss_a_role"
+              data-analytics-cta-location="case_study_footer"
+              data-analytics-cta-destination="/contact"
               onClick={() => ctaClick("discuss_a_role", "case_study_footer", "/contact")}
               className="inline-flex rounded-md border border-ink/20 px-5 py-2.5 text-sm font-medium text-ink hover:border-ink/40"
             >

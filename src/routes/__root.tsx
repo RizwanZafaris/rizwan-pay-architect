@@ -57,6 +57,10 @@ const clarityScript = MICROSOFT_CLARITY_ID
   ? `(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script",${JSON.stringify(MICROSOFT_CLARITY_ID)});`
   : "";
 
+const analyticsBridgeScript = GTM_ID
+  ? `!function(){if(window.__rzifiAnalyticsBridge)return;window.__rzifiAnalyticsBridge=1;function p(e,d){window.dataLayer=window.dataLayer||[];window.dataLayer.push(Object.assign({event:e},d||{}))}function k(s){return s.replace(/^analytics/,"").replace(/[A-Z]/g,function(c){return"_"+c.toLowerCase()}).replace(/^_/,"")}function d(el){var o={};for(var n in el.dataset)if(n.indexOf("analytics")===0&&n!=="analyticsEvent")o[k(n)]=el.dataset[n];return o}function source(){var x=location.pathname;if(x==="/")return"hero";if(x.indexOf("/resume/")===0)return"resume_page";if(x.indexOf("/for/")===0)return"for";if(x.indexOf("/about/")===0)return"about";if(x.indexOf("/product-work/")===0)return"case_study";return"header"}function out(href){if(!href)return null;if(href.indexOf("mailto:")===0||href.indexOf("tel:")===0){var u=new URL(href,location.href);return{outbound_domain:u.hostname||u.protocol.replace(":",""),outbound_url:href,outbound_location:location.pathname}}if(/^https?:\\/\\//i.test(href)){var x=new URL(href,location.href);if(x.hostname!==location.hostname)return{outbound_domain:x.hostname,outbound_url:href,outbound_location:location.pathname}}return null}document.addEventListener("click",function(e){var el=e.target.closest&&e.target.closest("[data-analytics-event],a[href]");if(!el)return;var href=el.getAttribute("href")||"";var ev=el.dataset.analyticsEvent;if(ev)p(ev,d(el));if(/\\.pdf(?:$|[?#])/i.test(href))p("resume_download",{source:el.dataset.analyticsSource||source()});var o=out(href);if(o&&ev!=="outbound_click")p("outbound_click",o)});document.addEventListener("focusin",function(e){var el=e.target.closest&&e.target.closest('form[data-analytics-form="contact"]');if(!el||el.__rzifiContactStarted)return;el.__rzifiContactStarted=1;p("contact_form_start",{})});document.addEventListener("submit",function(e){var f=e.target;if(!f||!f.matches||!f.matches("form"))return;var ev=f.dataset.analyticsEvent;if(!ev&&f.getAttribute("role")==="search")ev="site_search";if(ev==="site_search"){var fd=new FormData(f);p("site_search",{search_term:String(fd.get("q")||"").trim().slice(0,120),search_location:f.dataset.analyticsSearchLocation||"blog",search_filter:f.dataset.analyticsSearchFilter||""})}});document.addEventListener("DOMContentLoaded",function(){var path=location.pathname,slug;if(path.indexOf("/blog/")===0&&path!=="/blog/"){slug=path.split("/").filter(Boolean).pop();p("blog_view",{blog_slug:slug||"",blog_category:(document.querySelector('meta[property="article:section"]')||{}).content||"",blog_reading_time:""})}if(path.indexOf("/product-work/")===0&&path!=="/product-work/"){slug=path.split("/").filter(Boolean).pop();p("case_study_view",{case_study_slug:slug||"",case_study_category:""})}})}();`
+  : "";
+
 function NotFoundComponent() {
   useEffect(() => {
     document.title = "Page Not Found | Rizwan Zafar";
@@ -303,6 +307,9 @@ function RootShell({ children }: { children: React.ReactNode }) {
       <head>
         {/* GTM, kept as the first <script> in <head> per Google's spec */}
         {gtmScript && <script dangerouslySetInnerHTML={{ __html: gtmScript }} />}
+        {analyticsBridgeScript && (
+          <script dangerouslySetInnerHTML={{ __html: analyticsBridgeScript }} />
+        )}
         {clarityScript && <script dangerouslySetInnerHTML={{ __html: clarityScript }} />}
         {PLAUSIBLE_DOMAIN && <script defer data-domain={PLAUSIBLE_DOMAIN} src={PLAUSIBLE_SRC} />}
         <HeadContent />

@@ -297,6 +297,10 @@ function ContactPage() {
           <div className="mt-5 grid gap-2">
             <Link
               to="/resume"
+              data-analytics-event="cta_click"
+              data-analytics-cta-id="full_resume"
+              data-analytics-cta-location="contact_page"
+              data-analytics-cta-destination="/resume"
               className="contact-card flex items-center justify-between border border-rule bg-background px-4 py-3 text-sm text-ink hover:border-ink/30"
             >
               <span>View resume</span>
@@ -304,6 +308,10 @@ function ContactPage() {
             </Link>
             <Link
               to="/for"
+              data-analytics-event="cta_click"
+              data-analytics-cta-id="request_preview"
+              data-analytics-cta-location="contact_page"
+              data-analytics-cta-destination="/for"
               className="contact-card flex items-center justify-between border border-rule bg-background px-4 py-3 text-sm text-ink hover:border-ink/30"
             >
               <span>Recruiter brief</span>
@@ -311,6 +319,10 @@ function ContactPage() {
             </Link>
             <Link
               to="/product-work"
+              data-analytics-event="cta_click"
+              data-analytics-cta-id="see_case_studies"
+              data-analytics-cta-location="contact_page"
+              data-analytics-cta-destination="/product-work"
               className="contact-card flex items-center justify-between border border-rule bg-background px-4 py-3 text-sm text-ink hover:border-ink/30"
             >
               <span>Case studies</span>
@@ -350,6 +362,10 @@ function ContactPage() {
           <div className="mt-7 space-y-4">
             <a
               href={`mailto:${profile.email}`}
+              data-analytics-event="cta_click"
+              data-analytics-cta-id="email_me"
+              data-analytics-cta-location="contact_page"
+              data-analytics-cta-destination={`mailto:${profile.email}`}
               onClick={() => {
                 ctaClick("email_me", "contact_page", `mailto:${profile.email}`);
                 outboundClick(`mailto:${profile.email}`, "contact_page");
@@ -448,7 +464,13 @@ function ContactPage() {
               </button>
             </div>
           ) : (
-            <form onSubmit={onSubmit} onFocus={markStart} className="mt-6 space-y-4" noValidate>
+            <form
+              onSubmit={onSubmit}
+              onFocus={markStart}
+              data-analytics-form="contact"
+              className="mt-6 space-y-4"
+              noValidate
+            >
               {/* Honeypot, visually hidden from sighted users + screen readers */}
               <div
                 aria-hidden="true"
@@ -607,6 +629,12 @@ function ContactPage() {
                 <button
                   type="submit"
                   disabled={isSending}
+                  data-analytics-event="cta_click"
+                  data-analytics-cta-id={usesServerSubmission ? "send_message" : "open_email_app"}
+                  data-analytics-cta-location="contact_page"
+                  data-analytics-cta-destination={
+                    usesServerSubmission ? "contact_form" : `mailto:${profile.email}`
+                  }
                   className="inline-flex items-center rounded-md bg-ink text-background px-5 py-2.5 text-sm font-medium hover:bg-brand focus:outline-none focus:ring-2 focus:ring-ink/40 transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
                 >
                   {submitLabel}
@@ -614,6 +642,10 @@ function ContactPage() {
                 <button
                   type="button"
                   onClick={copyEmail}
+                  data-analytics-event="cta_click"
+                  data-analytics-cta-id="copy_email"
+                  data-analytics-cta-location="contact_page"
+                  data-analytics-cta-destination={profile.email}
                   className="inline-flex items-center rounded-md border border-ink/20 px-5 py-2.5 text-sm font-medium text-ink hover:border-ink/50 focus:outline-none focus:ring-2 focus:ring-ink/30 transition-colors"
                 >
                   {copied ? "Email copied ✓" : "Copy email"}

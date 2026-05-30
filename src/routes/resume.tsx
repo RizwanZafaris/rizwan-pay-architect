@@ -201,6 +201,11 @@ function ResumePage() {
             <a
               href={profile.resumeHref}
               download
+              data-analytics-event="cta_click"
+              data-analytics-cta-id="download_resume"
+              data-analytics-cta-location="resume_page"
+              data-analytics-cta-destination={profile.resumeHref}
+              data-analytics-source="resume_page"
               className="inline-flex items-center justify-center gap-2 rounded-full bg-ink text-background px-5 py-2.5 text-sm font-medium hover:bg-brand hover:text-[var(--brand-foreground)] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2"
             >
               <svg
@@ -472,6 +477,11 @@ function ResumePage() {
           <a
             href={profile.resumeHref}
             download
+            data-analytics-event="cta_click"
+            data-analytics-cta-id="download_resume"
+            data-analytics-cta-location="resume_page"
+            data-analytics-cta-destination={profile.resumeHref}
+            data-analytics-source="resume_page"
             className="inline-flex items-center justify-center rounded-full bg-background text-ink px-5 py-2.5 text-sm font-medium hover:bg-[var(--brand)] hover:text-background transition-colors"
           >
             Download PDF

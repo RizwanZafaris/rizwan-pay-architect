@@ -31,6 +31,8 @@ Recommended architecture: **GTM is the hub**. Keep GA4, Google Ads, LinkedIn Ins
 
 All events live in [`src/lib/analytics.ts`](../src/lib/analytics.ts) as a typed union. Add a new one there first, then wire the matching trigger in GTM.
 
+Production is a prerendered static export, so the site also includes a tiny vanilla analytics bridge in [`src/routes/__root.tsx`](../src/routes/__root.tsx). It listens for `data-analytics-*` attributes, PDF clicks, external clicks, blog views, case-study views and search submits, then pushes the same event names into `dataLayer`. This keeps analytics working even when React hydration is stripped from the Hostinger static build.
+
 | Event name            | Fires when                                                                                                                              | Params (dataLayer keys)                                                                                | Recommended GA4 use                                                                            |
 | --------------------- | --------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------- |
 | `spa_pageview`        | Every client-side route change (TanStack Router navigation) — _not_ the initial server-rendered load (GTM's own `gtm.load` covers that) | `page_path`, `page_location`, `page_title`                                                             | GA4 page_view tag, override `page_location` and `page_title` from the dataLayer                |
@@ -315,7 +317,7 @@ Not needed for personal portfolio + no EU advertising — but worth knowing the 
 
 - [`src/lib/analytics.ts`](../src/lib/analytics.ts) — typed event helper, the source of truth for what fires
 - [`src/lib/seo.ts`](../src/lib/seo.ts) — exports `GTM_ID` (env-driven, defaults to `GTM-TM5BP98G`)
-- [`src/routes/__root.tsx`](../src/routes/__root.tsx) — GTM `<script>` in head, optional Clarity/Plausible/Bing config, `<noscript>` in body, `GtmRouteTracker` for SPA page views
+- [`src/routes/__root.tsx`](../src/routes/__root.tsx) — GTM `<script>` in head, static analytics bridge, optional Clarity/Plausible/Bing config, `<noscript>` in body, `GtmRouteTracker` for SPA page views
 - [`src/components/SiteChrome.tsx`](../src/components/SiteChrome.tsx) — header / footer CTA tracking
 - [`src/routes/index.tsx`](../src/routes/index.tsx) — hero CTA tracking
 - [`src/routes/contact.tsx`](../src/routes/contact.tsx) — form lifecycle tracking

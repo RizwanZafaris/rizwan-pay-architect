@@ -118,6 +118,11 @@ export function SiteHeader() {
               href={profile.resumeHref}
               download
               aria-label="Download resume (PDF)"
+              data-analytics-event="cta_click"
+              data-analytics-cta-id="download_resume"
+              data-analytics-cta-location="header"
+              data-analytics-cta-destination={profile.resumeHref}
+              data-analytics-source="header"
               onClick={() => {
                 ctaClick("download_resume", "header", profile.resumeHref);
                 resumeDownload("header");
@@ -321,6 +326,10 @@ export function SiteFooter() {
             <li>
               <a
                 href={`mailto:${profile.email}`}
+                data-analytics-event="outbound_click"
+                data-analytics-outbound-domain="mailto"
+                data-analytics-outbound-url={`mailto:${profile.email}`}
+                data-analytics-outbound-location="footer"
                 onClick={() => outboundClick(`mailto:${profile.email}`, "footer")}
                 className="hover:text-ink text-ink-soft break-all"
               >

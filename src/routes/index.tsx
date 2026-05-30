@@ -177,6 +177,10 @@ function HomePage() {
             <div className="mt-4 md:mt-5 flex flex-col sm:flex-row sm:items-center gap-2.5">
               <Link
                 to="/product-work"
+                data-analytics-event="cta_click"
+                data-analytics-cta-id="see_case_studies"
+                data-analytics-cta-location="hero"
+                data-analytics-cta-destination="/product-work"
                 onClick={() => ctaClick("see_case_studies", "hero", "/product-work")}
                 className="group inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-base text-background bg-ink hover:bg-[var(--brand)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background transition-colors"
               >
@@ -188,6 +192,11 @@ function HomePage() {
               <a
                 href={profile.resumeHref}
                 download
+                data-analytics-event="cta_click"
+                data-analytics-cta-id="download_resume"
+                data-analytics-cta-location="hero"
+                data-analytics-cta-destination={profile.resumeHref}
+                data-analytics-source="hero"
                 onClick={() => {
                   ctaClick("download_resume", "hero", profile.resumeHref);
                   resumeDownload("hero");
@@ -198,6 +207,10 @@ function HomePage() {
               </a>
               <a
                 href={`mailto:${profile.email}`}
+                data-analytics-event="cta_click"
+                data-analytics-cta-id="email_me"
+                data-analytics-cta-location="hero"
+                data-analytics-cta-destination={`mailto:${profile.email}`}
                 onClick={() => ctaClick("email_me", "hero", `mailto:${profile.email}`)}
                 className="inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-base text-ink border border-ink/20 hover:border-ink/50 hover:bg-ink/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background transition-colors"
               >
@@ -226,6 +239,8 @@ function HomePage() {
               action="/blog/"
               method="get"
               role="search"
+              data-analytics-event="site_search"
+              data-analytics-search-location="home"
               onSubmit={(event) => {
                 const q = new FormData(event.currentTarget).get("q");
                 siteSearch(typeof q === "string" ? q : "", "home");
