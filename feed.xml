@@ -5,8 +5,16 @@
   <link>https://rzifi.com/blog/</link>
   <description>Essays on payment infrastructure, fintech product, risk, settlement, AI and program leadership.</description>
   <language>en</language>
-  <lastBuildDate>Sun, 31 May 2026 10:53:56 GMT</lastBuildDate>
+  <lastBuildDate>Sun, 31 May 2026 22:35:59 GMT</lastBuildDate>
   <item>
+    <title>Sanctions Screening Without Killing Throughput</title>
+    <link>https://rzifi.com/blog/sanctions-screening-without-killing-throughput/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/sanctions-screening-without-killing-throughput/</guid>
+    <pubDate>Mon, 01 Jun 2026 00:00:00 GMT</pubDate>
+    <category>Fraud &amp; Risk</category>
+    <description>How to design sanctions screening that catches what it must catch without flooding ops with false positives or breaking real-time transaction performance.</description>
+  </item>
+<item>
     <title>AML/CFT: Rules vs Models, and Why You Need Both</title>
     <link>https://rzifi.com/blog/aml-cft-rules-vs-models/</link>
     <guid isPermaLink="true">https://rzifi.com/blog/aml-cft-rules-vs-models/</guid>
@@ -237,14 +245,6 @@
     <pubDate>Wed, 20 May 2026 00:00:00 GMT</pubDate>
     <category>Product Strategy</category>
     <description>How a CSPO-trained payments PM actually uses RICE on a live quarter. The eight roadmap items, real reach and confidence inputs, the risk-adjusted overlay payments demands, and the four moves the framework gets wrong on its own.</description>
-  </item>
-<item>
-    <title>CyberSource Architecture: The Visa-Owned Payment Gateway, How It Differs From MPGS</title>
-    <link>https://rzifi.com/blog/cybersource-architecture-visa-payment-gateway/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/cybersource-architecture-visa-payment-gateway/</guid>
-    <pubDate>Wed, 20 May 2026 00:00:00 GMT</pubDate>
-    <category>Payment Infrastructure</category>
-    <description>An operator&apos;s guide to CyberSource — Decision Manager, Token Management Service, Flex Microform, Payouts, and where the architecture differs meaningfully from MPGS.</description>
   </item>
 </channel>
 </rss>
