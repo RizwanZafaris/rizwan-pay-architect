@@ -81,7 +81,6 @@ export function SiteHeader() {
           <Link
             to="/"
             className="flex items-center gap-2.5 min-w-0 group"
-            aria-label="Rizwan Zafar, Home"
           >
             <span className="h-8 w-8 shrink-0 rounded-lg bg-ink text-background grid place-items-center font-display text-[13px] font-semibold tracking-tighter">
               RZ
@@ -117,7 +116,7 @@ export function SiteHeader() {
             <a
               href={profile.resumeHref}
               download
-              aria-label="Download resume (PDF)"
+              aria-label="Download PDF résumé"
               data-analytics-event="cta_click"
               data-analytics-cta-id="download_resume"
               data-analytics-cta-location="header"

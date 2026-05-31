@@ -582,7 +582,7 @@ Designed and shipped the network-tokenisation programme for a regional acquirer-
 
 ### Problem
 
-The acquirer carried PAN-on-file across three separate vault providers accumulated over five years of acquisitions and partnerships. Every reissuance event broke a merchant relationship: subscriptions failed silently, account-updater coverage was patchy, and the dispute team was losing CE3.0-eligible disputes because the cardholder identity link was broken across reissuance. PCI scope across three vaults was tripling the audit cost. The next-quarter scheme push on mandatory tokenisation for card-on-file merchants made the gap untenable. The team needed a complete migration with no merchant-visible failure, on a portfolio crossing 1,200 active merchants and ~14M token-able credentials.
+The acquirer carried PAN-on-file across three separate vault providers accumulated over five years of acquisitions and partnerships. Every reissuance event broke a merchant relationship: subscriptions failed silently, account-updater coverage was patchy, and the dispute team was losing Compelling Evidence 3.0 (CE3.0)-eligible disputes because the cardholder identity link was broken across reissuance. PCI scope across three vaults was tripling the audit cost. The next-quarter scheme push on mandatory tokenisation for card-on-file merchants made the gap untenable. The team needed a complete migration with no merchant-visible failure, on a portfolio crossing 1,200 active merchants and ~14M token-able credentials.
 
 ### Role
 
@@ -605,7 +605,7 @@ Owned the tokenisation programme end-to-end as Product & Program lead, token bro
 - Lifted portfolio-wide authorisation rate by +1.8 points on tokenised traffic, with the largest lift on iOS Safari + cross-border combinations (+3–4 pts)
 - Reduced PCI PAN footprint by 91%, three vault providers retired, single in-house broker stood up
 - Cut recurring-subscription failure rate on the subscriber cohort from 11–14% to 3.6% by leveraging real-time lifecycle webhooks for reissuance and suspension
-- Closed the CE3.0 evidence gap, cardholder-indexed transaction history now persists across reissuance, lifting 10.4 dispute win rate by ~40 pts
+- Closed the CE3.0 evidence gap, cardholder-indexed transaction history now persists across reissuance, lifting the win rate on Visa 10.4 (card-absent fraud) disputes by ~40 pts
 - Zero sev-1 / sev-2 incidents across the 14-month rollout window
 
 ### Lessons
@@ -623,11 +623,11 @@ Owned the tokenisation programme end-to-end as Product & Program lead, token bro
 URL: https://rzifi.com/product-work/3ds2-sca-step-up-optimisation-programme
 Category: Payment Infrastructure
 
-**Tagline**: Rebuilt the 3DS2 step-up programme for a regional acquirer-processor, per-issuer scoring, full PSD2 exemption suite, abandon-recovery flows, lifting frictionless rate from 38% to 73% over three quarters while holding fraud below the band-3 TRA ceiling.
+**Tagline**: Rebuilt the 3DS2 step-up programme for a regional acquirer-processor, per-issuer scoring, full PSD2 exemption suite, abandon-recovery flows, lifting frictionless rate from 38% to 73% over three quarters while holding fraud below the band-2 (6 bps) TRA ceiling.
 
 ### Executive summary
 
-Rebuilt the 3DS2 + SCA exemption programme for a regional acquirer-processor, moved from portfolio-wide TRA flagging to per-issuer, per-merchant, per-amount-band exemption profiles; deployed the full PSD2 exemption suite (TRA, low-value, recurring, trusted beneficiary, MIT); and shipped step-up abandon-recovery flows. Lifted frictionless rate from 38% to 73% over three quarters, while holding the portfolio fraud rate below the band-3 TRA ceiling of 1 bp on routed traffic, preserving the highest scheme TRA band. Delivered +5.4 points portfolio CNP authorisation-rate lift, with the largest gains on iOS Safari + cross-border combinations.
+Rebuilt the 3DS2 + SCA exemption programme for a regional acquirer-processor, moved from portfolio-wide TRA flagging to per-issuer, per-merchant, per-amount-band exemption profiles; deployed the full PSD2 exemption suite (TRA, low-value, recurring, trusted beneficiary, MIT); and shipped step-up abandon-recovery flows. Lifted frictionless rate from 38% to 73% over three quarters, while holding the portfolio fraud rate below the band-2 TRA ceiling (6 bps) on routed traffic, and moving the qualifying merchant cohort into band 3 in the final quarter. Delivered +5.4 points portfolio CNP authorisation-rate lift, with the largest gains on iOS Safari + cross-border combinations.
 
 ### Problem
 
@@ -4010,11 +4010,11 @@ This is the operator's view of BIN routing, what choice actually exists, when ov
 
 Four routing surfaces where the acquirer makes a real decision, not just a forwarding decision.
 
-**1. Co-badged cards.** A physical card that carries two scheme logos (Visa + a local scheme like Cartes Bancaires, Bancontact, Mada, Mir, RuPay, PROS, JCB, Verve, etc.). The merchant or acquirer can choose which rail to route on, transaction by transaction. The default is often the international scheme; the local scheme is usually cheaper and frequently has higher auth rates on domestic traffic.
+**1. Co-badged cards.** A physical card that carries two scheme logos (Visa + a local scheme like Cartes Bancaires, Bancontact, Mada, Mir, RuPay, BancNet, JCB, Verve, etc.). The merchant or acquirer can choose which rail to route on, transaction by transaction. The default is often the international scheme; the local scheme is usually cheaper and frequently has higher auth rates on domestic traffic.
 
 **2. Dual-rail debit (US Durbin world).** US debit cards carry a signature network (Visa / Mastercard) and at least one PIN network (NYCE, STAR, Pulse, Maestro). Post-Durbin, the merchant has the legal right to choose the routing for in-store and (since 2023) card-not-present transactions. The choice has direct interchange implications.
 
-**3. Local-scheme override on domestic traffic.** Many markets have a national debit scheme that _must_ be offered as an option (Mada in Saudi, NPCI/RuPay in India, BCEL/POS in Vietnam, Mir in Russia, PROS in the Philippines, Verve in Nigeria). Even when the cardholder presents a Visa or Mastercard, regulator pressure may push the acquirer to surface a local-rail option.
+**3. Local-scheme override on domestic traffic.** Many markets have a national debit scheme that _must_ be offered as an option (Mada in Saudi, NPCI/RuPay in India, NAPAS in Vietnam, Mir in Russia, BancNet in the Philippines, Verve in Nigeria). Even when the cardholder presents a Visa or Mastercard, regulator pressure may push the acquirer to surface a local-rail option.
 
 **4. Multi-acquirer routing.** Less about scheme choice, more about acquirer choice, but operationally the same logic. Large merchants with two or more acquirers route transactions to the acquirer with the highest expected auth rate per BIN range. This is the same logic engine as scheme routing, applied one layer up.
 
@@ -4086,7 +4086,7 @@ Merchants connected to two or more acquirers use the acquirer's routing logic to
 
 Routing autonomy is moving from "available where regulators allow" to "required where regulators mandate". Three live examples:
 
-- **Saudi Arabia (SAMA).** Mada must be offered as a local-rail option on co-badged cards. Acquirers that route co-badged Saudi cards to Visa/MasterCard by default without surfacing Mada are at scheme-and-regulator risk simultaneously.
+- **Saudi Arabia (SAMA).** Mada must be offered as a local-rail option on co-badged cards. Acquirers that route co-badged Saudi cards to Visa/Mastercard by default without surfacing Mada are at scheme-and-regulator risk simultaneously.
 - **India (NPCI).** RuPay has been pushed as the preferred rail for domestic debit through a series of merchant discount rate (MDR) and government-procurement directives.
 - **Europe (EBA + EC).** The European Commission's Payment Services Regulation (PSR) drafts have proposed stronger rules on choice of brand at the point of sale, particularly for e-commerce, making the default-to-international posture progressively harder to defend.
 
@@ -5056,7 +5056,7 @@ The candidate who treats 3DS2 as "we integrated it, the gateway handles it" gets
 
 ---
 
-## Future of Treasury With Stablecoins: What Changes: What Doesn't, and the 5-Year Map
+## Future of Treasury With Stablecoins: What Changes, What Doesn't, and the 5-Year Map
 
 URL: https://rzifi.com/blog/future-of-treasury-with-stablecoins
 Published: 2026-05-20
@@ -5418,7 +5418,7 @@ Geographic, but as of 2025: senior payments PMs in UAE, KSA, Singapore, London, 
 
 ---
 
-If this resonated, also read [Product Management for Payments Platforms](/blog/product-management-for-payments-platforms), [CSPO + RICE in Practice](/blog/cspo-rice-payments-roadmap-walkthrough), and Payments PRD Template.
+If this resonated, also read [Product Management for Payments Platforms](/blog/product-management-for-payments-platforms), [CSPO + RICE in Practice](/blog/cspo-rice-payments-roadmap-walkthrough), and [Payments PRD Template](/blog/payments-prd-template-nine-sections).
 
 ---
 
@@ -5643,11 +5643,11 @@ Not in the scoring loop. Possibly in adjacent surfaces: drafting adverse-action 
 
 ---
 
-If this resonated, also read [Why AI/ML Solutions Fail in Production Payments](/blog/why-ai-ml-solutions-fail-production-payments), KYB Document Extraction: A Realistic LLM Use Case, and [Where ML Beats AI: Six Payment Problems an LLM Cannot Touch](/blog/where-ml-beats-ai-payment-problems-llm-cant-touch).
+If this resonated, also read [Why AI/ML Solutions Fail in Production Payments](/blog/why-ai-ml-solutions-fail-production-payments), [KYB Document Extraction: A Realistic LLM Use Case](/blog/kyb-document-extraction-llm-use-case), and [Where ML Beats AI: Six Payment Problems an LLM Cannot Touch](/blog/where-ml-beats-ai-payment-problems-llm-cant-touch).
 
 ---
 
-## Mastercard Send + Visa Direct: Push-Payment Architecture: Compared
+## Mastercard Send + Visa Direct: Push-Payment Architecture Compared
 
 URL: https://rzifi.com/blog/mastercard-send-visa-direct-push-payments
 Published: 2026-05-20
@@ -6329,7 +6329,7 @@ The structure scales. The metric families stay the same; the targets get harder 
 
 ---
 
-If this resonated, you might also want to read [CSPO + RICE in Practice: A Real Payments Roadmap Walkthrough](/blog/cspo-rice-payments-roadmap-walkthrough), Payments PRD Template: The Nine Sections Every Senior PM Writes, or [Product Management for Payments Platforms](/blog/product-management-for-payments-platforms).
+If this resonated, you might also want to read [CSPO + RICE in Practice: A Real Payments Roadmap Walkthrough](/blog/cspo-rice-payments-roadmap-walkthrough), [Payments PRD Template: The Nine Sections Every Senior PM Writes](/blog/payments-prd-template-nine-sections), or [Product Management for Payments Platforms](/blog/product-management-for-payments-platforms).
 
 ---
 
@@ -7483,7 +7483,7 @@ If this resonated, also read [Where ML Beats AI: Six Payment Problems an LLM Can
 URL: https://rzifi.com/blog/mdes-network-tokenisation-how-it-actually-works
 Published: 2026-05-19
 Category: Payment Infrastructure
-Tags: MDES, VTS, network tokenisation, tokenisation, card on file, Apple Pay, Google Pay, payment infrastructure, MasterCard, Visa
+Tags: MDES, VTS, network tokenisation, tokenisation, card on file, Apple Pay, Google Pay, payment infrastructure, Mastercard, Visa
 
 **MDES, Visa Token Service, network tokens vs gateway tokens, the lifecycle the schemes own, Apple/Google Pay plumbing, and why every new card-on-file integration should default to network tokens.**
 
@@ -7509,7 +7509,7 @@ Cheap to use, fast to issue, narrow PCI scope. The big limitation: it's tied to 
 
 ### 3. Network token
 
-A credential issued by the scheme itself (MasterCard MDES, Visa Token Service, AmEx, Discover) that **replaces the PAN** on file. It looks like a PAN, behaves like a PAN, but:
+A credential issued by the scheme itself (Mastercard MDES, Visa Token Service, AmEx, Discover) that **replaces the PAN** on file. It looks like a PAN, behaves like a PAN, but:
 
 - The scheme owns its lifecycle
 - It's bound to a specific merchant / use case / device
@@ -7521,7 +7521,7 @@ This third primitive is the one that changes the economics of card-on-file. The 
 
 ## What MDES actually is
 
-MDES (MasterCard Digital Enablement Service) is MasterCard's network-token issuance service.
+MDES (Mastercard Digital Enablement Service) is Mastercard's network-token issuance service.
 
 What MDES does:
 
@@ -7530,11 +7530,11 @@ What MDES does:
   - The requester (your merchant ID or wallet ID)
   - The use case (card-on-file, OEM wallet, e-commerce, in-app)
   - Optional device binding (for OEM wallets)
-- Stores the PAN-to-token mapping in MasterCard's vault
+- Stores the PAN-to-token mapping in Mastercard's vault
 - Forwards authorisation requests using the token, with the issuer ultimately seeing the original PAN
 - Manages the lifecycle: if the cardholder's physical card is reissued, the token continues to work seamlessly
 
-MDES is the plumbing under Apple Pay, Google Pay, Samsung Pay, Click to Pay, and every modern card-on-file integration on MasterCard rails.
+MDES is the plumbing under Apple Pay, Google Pay, Samsung Pay, Click to Pay, and every modern card-on-file integration on Mastercard rails.
 
 VTS (Visa Token Service) is the Visa equivalent. Same primitives, different control plane.
 
@@ -7595,7 +7595,7 @@ You integrate with MPGS, Stripe, Adyen, etc. The gateway integrates with MDES / 
 
 ### Pattern B: Direct as Token Requestor (advanced)
 
-You contract directly with MasterCard / Visa as a registered Token Requestor (TR). You hold the certification, you hit MDES / VTS APIs directly.
+You contract directly with Mastercard / Visa as a registered Token Requestor (TR). You hold the certification, you hit MDES / VTS APIs directly.
 
 **Pros:** Tokens are yours, portable across any gateway.
 
@@ -7619,7 +7619,7 @@ Scheme-level Click to Pay services run on MDES / VTS underneath. The consumer's 
 
 **Pros:** Highest auth rate (network token + scheme orchestration). Cross-merchant identity.
 
-**Cons:** Coverage still patchy by region in 2026. Best-in-class for MasterCard / Visa cards; outside that, doesn't apply.
+**Cons:** Coverage still patchy by region in 2026. Best-in-class for Mastercard / Visa cards; outside that, doesn't apply.
 
 **Use when:** Consumer-facing e-commerce checkouts targeting card-heavy markets (US, UK, EU).
 
@@ -7671,7 +7671,7 @@ The teams that don't treat tokenisation seriously hit a 70%-ish authorisation ce
 
 **Can I use a network token in-store?** Yes (via contactless NFC), but the token form factor is device-bound in that case. Online card-on-file network tokens are a different shape.
 
-**What's Click to Pay's relationship to MDES?** Click to Pay is the consumer-facing brand. MDES (for MasterCard cards) and VTS (for Visa cards) are the underlying tokenisation services. Click to Pay sits on top.
+**What's Click to Pay's relationship to MDES?** Click to Pay is the consumer-facing brand. MDES (for Mastercard cards) and VTS (for Visa cards) are the underlying tokenisation services. Click to Pay sits on top.
 
 **How long does network-token migration take?** For an existing card-on-file estate of 1M+ cards: 4–8 months realistic. The pattern: tokenise on next charge attempt, fall back to gateway token if MDES declines, monitor coverage daily.
 
@@ -7679,12 +7679,12 @@ The teams that don't treat tokenisation seriously hit a 70%-ish authorisation ce
 
 ---
 
-## MPGS Architecture: How MasterCard Payment Gateway Services Actually Works (and Where It Breaks)
+## MPGS Architecture: How Mastercard Payment Gateway Services Actually Works (and Where It Breaks)
 
 URL: https://rzifi.com/blog/mpges-mastercard-payment-gateway-services-architecture
 Published: 2026-05-19
 Category: Payment Infrastructure
-Tags: MPGS, MasterCard, payment gateway, 3DS2, tokenisation, hosted checkout, card acquiring, payment infrastructure, scheme products
+Tags: MPGS, Mastercard, payment gateway, 3DS2, tokenisation, hosted checkout, card acquiring, payment infrastructure, scheme products
 
 **An operator's guide to MPGS — Hosted Checkout vs. Hosted Session, 3DS2 step-up, tokenisation, recurring, the integration patterns that scale, and the failure modes nobody warns you about.**
 
@@ -7694,7 +7694,7 @@ This is the operator-grade map of what MPGS actually is, the integration pattern
 
 ## What MPGS is, and what it is not
 
-MPGS (MasterCard Payment Gateway Services) is the white-labelled payment gateway acquirers buy from MasterCard. It is **not** consumer-facing — your customers will never see a "MasterCard Payment Gateway" logo. They see your acquirer's brand. The gateway sits invisibly behind it.
+MPGS (Mastercard Payment Gateway Services) is the white-labelled payment gateway acquirers buy from Mastercard. It is **not** consumer-facing — your customers will never see a "Mastercard Payment Gateway" logo. They see your acquirer's brand. The gateway sits invisibly behind it.
 
 What MPGS gives you:
 
@@ -7724,7 +7724,7 @@ MPGS renders the full payment page. The merchant redirects the customer to MPGS,
 
 - Lowest PCI scope. You never see the PAN.
 - Scheme certification inherited end-to-end.
-- 3DS2 challenge UX maintained by MasterCard.
+- 3DS2 challenge UX maintained by Mastercard.
 
 **Cons:**
 
@@ -7789,7 +7789,7 @@ The right pattern: **txn_id = `{op}-{ulid}`**, where `op` is `auth/cap/ref/void`
 MPGS supports two distinct tokens, and they are not interchangeable:
 
 - **Gateway tokens** — opaque references usable only against MPGS. Cheap, fast, scope-narrow.
-- **Network tokens (via MDES)** — actual MasterCard-issued tokens, portable across any MDES-enabled gateway, with lifecycle managed by the network. More expensive per call, much higher long-term value.
+- **Network tokens (via MDES)** — actual Mastercard-issued tokens, portable across any MDES-enabled gateway, with lifecycle managed by the network. More expensive per call, much higher long-term value.
 
 A common mistake: start with gateway tokens "for now", build everything around them, then realise that migrating card-on-file to network tokens means revoking and re-collecting every card. **Default to network tokens from day one**, even if cost looks higher early. The migration cost later is 10× the saving today.
 
@@ -7839,7 +7839,7 @@ Already covered. Retries die, partial captures die, finance reconciliation dies.
 
 ### 5. 3DS2 default-on for every transaction
 
-The MasterCard default risk-rule set is conservative — it errs on the side of step-up. Without merchant-side exemption logic, every recurring transaction prompts the customer for OTP. Customers churn.
+The Mastercard default risk-rule set is conservative — it errs on the side of step-up. Without merchant-side exemption logic, every recurring transaction prompts the customer for OTP. Customers churn.
 
 **Fix:** wire your own TRA logic via the MPGS exemptions API. Recurring and low-value flows should be frictionless by default.
 
@@ -7867,7 +7867,7 @@ After the failure-mode list, it's fair to balance: MPGS is a serious piece of in
 
 - **EMV 3DS certification** — passing without MPGS is a multi-month nightmare; with MPGS it's table stakes
 - **PCI DSS posture** — MPGS-provided integration paths inherit the gateway's PCI scope; your audit surface stays narrow
-- **Scheme readiness** — when MasterCard changes a rule (and they do, often), MPGS absorbs it; your product team doesn't have to
+- **Scheme readiness** — when Mastercard changes a rule (and they do, often), MPGS absorbs it; your product team doesn't have to
 - **Reliability** — MPGS uptime is in the four-nines range; that's not free to replicate
 - **Multi-region** — MPGS instances across geographies; latency-sensitive deployments work
 
@@ -7881,7 +7881,7 @@ The teams that ship card acquiring well treat MPGS as a **toolkit, not a product
 
 ## FAQ
 
-**MPGS or CyberSource?** Functionally similar; one is MasterCard-owned, the other Visa-owned. Both are gateway-class products. Most large acquirers use both behind the scenes, routing per scheme. Choose based on your scheme mix, the sponsor bank's existing certifications, and your operational team's familiarity.
+**MPGS or CyberSource?** Functionally similar; one is Mastercard-owned, the other Visa-owned. Both are gateway-class products. Most large acquirers use both behind the scenes, routing per scheme. Choose based on your scheme mix, the sponsor bank's existing certifications, and your operational team's familiarity.
 
 **MPGS or Adyen?** Different category. Adyen is a full PSP — gateway plus acquirer plus product. MPGS is a gateway you wrap in your own acquiring product. If you're building the acquirer, MPGS; if you're a merchant buying acquiring, Adyen.
 

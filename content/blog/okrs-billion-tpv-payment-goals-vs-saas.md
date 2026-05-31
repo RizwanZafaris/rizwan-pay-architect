@@ -33,7 +33,7 @@ targetKeywords:
 relatedArticles:
   - "/blog/product-management-for-payments-platforms"
   - "/blog/cspo-rice-payments-roadmap-walkthrough"
-  - "/blog/payments-prd-template-nine-sections-senior-pm"
+  - "/blog/payments-prd-template-nine-sections"
 ---
 
 # OKRs at $1B+ TPV: How Payment Goals Differ From SaaS Goals
@@ -202,4 +202,4 @@ The structure scales. The metric families stay the same; the targets get harder 
 
 ---
 
-If this resonated, you might also want to read [CSPO + RICE in Practice: A Real Payments Roadmap Walkthrough](/blog/cspo-rice-payments-roadmap-walkthrough), [Payments PRD Template: The Nine Sections Every Senior PM Writes](/blog/payments-prd-template-nine-sections-senior-pm), or [Product Management for Payments Platforms](/blog/product-management-for-payments-platforms).
+If this resonated, you might also want to read [CSPO + RICE in Practice: A Real Payments Roadmap Walkthrough](/blog/cspo-rice-payments-roadmap-walkthrough), [Payments PRD Template: The Nine Sections Every Senior PM Writes](/blog/payments-prd-template-nine-sections), or [Product Management for Payments Platforms](/blog/product-management-for-payments-platforms).

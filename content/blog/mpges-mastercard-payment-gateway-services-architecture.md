@@ -1,8 +1,8 @@
 ---
-title: "MPGS Architecture: How MasterCard Payment Gateway Services Actually Works (and Where It Breaks)"
+title: "MPGS Architecture: How Mastercard Payment Gateway Services Actually Works (and Where It Breaks)"
 slug: "mpges-mastercard-payment-gateway-services-architecture"
 category: "Payment Infrastructure"
-metaTitle: "MPGS Architecture: How MasterCard Payment Gateway Services Works | Rizwan Zafar"
+metaTitle: "MPGS Architecture: How Mastercard Payment Gateway Services Works | Rizwan Zafar"
 metaDescription: "An operator's guide to MPGS — Hosted Checkout vs. Hosted Session, 3DS2 step-up, tokenisation, recurring, the integration patterns that scale, and the failure modes nobody warns you about."
 excerpt: "MPGS is a payment gateway the way SAP is an ERP — vast, powerful, and indifferent to whether you understand it. The integration choices you make in the first sprint decide whether the platform scales for five years or rots for five."
 publishDate: "2026-05-19"
@@ -10,7 +10,7 @@ readingTime: "12 min read"
 featured: true
 tags:
   - MPGS
-  - MasterCard
+  - Mastercard
   - payment gateway
   - 3DS2
   - tokenisation
@@ -26,7 +26,7 @@ targetAudience:
   - Payment orchestration PMs
 targetKeywords:
   - MPGS architecture
-  - MasterCard Payment Gateway Services
+  - Mastercard Payment Gateway Services
   - MPGS Hosted Checkout vs Hosted Session
   - MPGS 3DS2 integration
   - MPGS tokenisation
@@ -37,7 +37,7 @@ relatedArticles:
   - "/blog/ledger-design-for-multi-rail-payments"
 ---
 
-# MPGS Architecture: How MasterCard Payment Gateway Services Actually Works (and Where It Breaks)
+# MPGS Architecture: How Mastercard Payment Gateway Services Actually Works (and Where It Breaks)
 
 MPGS is a payment gateway the way SAP is an ERP — vast, powerful, and indifferent to whether you understand it. The integration choices you make in the first sprint decide whether the platform scales for five years or rots for five.
 
@@ -45,7 +45,7 @@ This is the operator-grade map of what MPGS actually is, the integration pattern
 
 ## What MPGS is, and what it is not
 
-MPGS (MasterCard Payment Gateway Services) is the white-labelled payment gateway acquirers buy from MasterCard. It is **not** consumer-facing — your customers will never see a "MasterCard Payment Gateway" logo. They see your acquirer's brand. The gateway sits invisibly behind it.
+MPGS (Mastercard Payment Gateway Services) is the white-labelled payment gateway acquirers buy from Mastercard. It is **not** consumer-facing — your customers will never see a "Mastercard Payment Gateway" logo. They see your acquirer's brand. The gateway sits invisibly behind it.
 
 What MPGS gives you:
 
@@ -75,7 +75,7 @@ MPGS renders the full payment page. The merchant redirects the customer to MPGS,
 
 - Lowest PCI scope. You never see the PAN.
 - Scheme certification inherited end-to-end.
-- 3DS2 challenge UX maintained by MasterCard.
+- 3DS2 challenge UX maintained by Mastercard.
 
 **Cons:**
 
@@ -140,7 +140,7 @@ The right pattern: **txn_id = `{op}-{ulid}`**, where `op` is `auth/cap/ref/void`
 MPGS supports two distinct tokens, and they are not interchangeable:
 
 - **Gateway tokens** — opaque references usable only against MPGS. Cheap, fast, scope-narrow.
-- **Network tokens (via MDES)** — actual MasterCard-issued tokens, portable across any MDES-enabled gateway, with lifecycle managed by the network. More expensive per call, much higher long-term value.
+- **Network tokens (via MDES)** — actual Mastercard-issued tokens, portable across any MDES-enabled gateway, with lifecycle managed by the network. More expensive per call, much higher long-term value.
 
 A common mistake: start with gateway tokens "for now", build everything around them, then realise that migrating card-on-file to network tokens means revoking and re-collecting every card. **Default to network tokens from day one**, even if cost looks higher early. The migration cost later is 10× the saving today.
 
@@ -190,7 +190,7 @@ Already covered. Retries die, partial captures die, finance reconciliation dies.
 
 ### 5. 3DS2 default-on for every transaction
 
-The MasterCard default risk-rule set is conservative — it errs on the side of step-up. Without merchant-side exemption logic, every recurring transaction prompts the customer for OTP. Customers churn.
+The Mastercard default risk-rule set is conservative — it errs on the side of step-up. Without merchant-side exemption logic, every recurring transaction prompts the customer for OTP. Customers churn.
 
 **Fix:** wire your own TRA logic via the MPGS exemptions API. Recurring and low-value flows should be frictionless by default.
 
@@ -218,7 +218,7 @@ After the failure-mode list, it's fair to balance: MPGS is a serious piece of in
 
 - **EMV 3DS certification** — passing without MPGS is a multi-month nightmare; with MPGS it's table stakes
 - **PCI DSS posture** — MPGS-provided integration paths inherit the gateway's PCI scope; your audit surface stays narrow
-- **Scheme readiness** — when MasterCard changes a rule (and they do, often), MPGS absorbs it; your product team doesn't have to
+- **Scheme readiness** — when Mastercard changes a rule (and they do, often), MPGS absorbs it; your product team doesn't have to
 - **Reliability** — MPGS uptime is in the four-nines range; that's not free to replicate
 - **Multi-region** — MPGS instances across geographies; latency-sensitive deployments work
 
@@ -232,7 +232,7 @@ The teams that ship card acquiring well treat MPGS as a **toolkit, not a product
 
 ## FAQ
 
-**MPGS or CyberSource?** Functionally similar; one is MasterCard-owned, the other Visa-owned. Both are gateway-class products. Most large acquirers use both behind the scenes, routing per scheme. Choose based on your scheme mix, the sponsor bank's existing certifications, and your operational team's familiarity.
+**MPGS or CyberSource?** Functionally similar; one is Mastercard-owned, the other Visa-owned. Both are gateway-class products. Most large acquirers use both behind the scenes, routing per scheme. Choose based on your scheme mix, the sponsor bank's existing certifications, and your operational team's familiarity.
 
 **MPGS or Adyen?** Different category. Adyen is a full PSP — gateway plus acquirer plus product. MPGS is a gateway you wrap in your own acquiring product. If you're building the acquirer, MPGS; if you're a merchant buying acquiring, Adyen.
 

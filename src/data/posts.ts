@@ -1060,7 +1060,7 @@ export const posts: Post[] = [
   },
   {
     "slug": "future-of-treasury-with-stablecoins",
-    "title": "Future of Treasury With Stablecoins: What Changes: What Doesn't, and the 5-Year Map",
+    "title": "Future of Treasury With Stablecoins: What Changes, What Doesn't, and the 5-Year Map",
     "metaTitle": "Future of Treasury With Stablecoins | Rizwan Zafar",
     "date": "2026-05-20",
     "category": "Crypto & Stablecoins",
@@ -1107,7 +1107,7 @@ export const posts: Post[] = [
     "relatedArticles": [
       "/blog/product-management-for-payments-platforms",
       "/blog/cspo-rice-payments-roadmap-walkthrough",
-      "/blog/payments-prd-template-nine-sections-senior-pm"
+      "/blog/payments-prd-template-nine-sections"
     ]
   },
   {
@@ -1132,13 +1132,13 @@ export const posts: Post[] = [
     ],
     "relatedArticles": [
       "/blog/why-ai-ml-solutions-fail-production-payments",
-      "/blog/kyb-document-extraction-realistic-llm-use-case",
+      "/blog/kyb-document-extraction-llm-use-case",
       "/blog/where-ml-beats-ai-payment-problems-llm-cant-touch"
     ]
   },
   {
     "slug": "mastercard-send-visa-direct-push-payments",
-    "title": "Mastercard Send + Visa Direct: Push-Payment Architecture: Compared",
+    "title": "Mastercard Send + Visa Direct: Push-Payment Architecture Compared",
     "metaTitle": "Mastercard Send vs Visa Direct: Push Payment Architecture | Rizwan Zafar",
     "date": "2026-05-20",
     "category": "Payment Infrastructure",
@@ -1159,7 +1159,7 @@ export const posts: Post[] = [
     "relatedArticles": [
       "/blog/cross-border-corridors-are-operating-systems",
       "/blog/mpges-mastercard-payment-gateway-services-architecture",
-      "/blog/swift-vs-domestic-rails-when-to-use-what"
+      "/blog/swift-vs-card-rails-vs-local-wallets"
     ]
   },
   {
@@ -1237,7 +1237,7 @@ export const posts: Post[] = [
     "relatedArticles": [
       "/blog/product-management-for-payments-platforms",
       "/blog/cspo-rice-payments-roadmap-walkthrough",
-      "/blog/payments-prd-template-nine-sections-senior-pm"
+      "/blog/payments-prd-template-nine-sections"
     ]
   },
   {
@@ -1454,7 +1454,7 @@ export const posts: Post[] = [
       "Apple Pay",
       "Google Pay",
       "payment infrastructure",
-      "MasterCard",
+      "Mastercard",
       "Visa"
     ],
     "relatedArticles": [
@@ -1465,8 +1465,8 @@ export const posts: Post[] = [
   },
   {
     "slug": "mpges-mastercard-payment-gateway-services-architecture",
-    "title": "MPGS Architecture: How MasterCard Payment Gateway Services Actually Works (and Where It Breaks)",
-    "metaTitle": "MPGS Architecture: How MasterCard Payment Gateway Services Works | Rizwan Zafar",
+    "title": "MPGS Architecture: How Mastercard Payment Gateway Services Actually Works (and Where It Breaks)",
+    "metaTitle": "MPGS Architecture: How Mastercard Payment Gateway Services Works | Rizwan Zafar",
     "date": "2026-05-19",
     "category": "Payment Infrastructure",
     "readingTime": "12 min read",
@@ -1475,7 +1475,7 @@ export const posts: Post[] = [
     "featured": true,
     "tags": [
       "MPGS",
-      "MasterCard",
+      "Mastercard",
       "payment gateway",
       "3DS2",
       "tokenisation",

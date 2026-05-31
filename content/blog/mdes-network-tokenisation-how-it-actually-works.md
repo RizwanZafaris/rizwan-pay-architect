@@ -17,7 +17,7 @@ tags:
   - Apple Pay
   - Google Pay
   - payment infrastructure
-  - MasterCard
+  - Mastercard
   - Visa
 targetAudience:
   - Acquirer + issuer product teams
@@ -31,7 +31,7 @@ targetKeywords:
   - card on file network tokens
   - Apple Pay tokenisation
   - Visa Token Service
-  - MasterCard Digital Enablement Service
+  - Mastercard Digital Enablement Service
 relatedArticles:
   - "/blog/mpges-mastercard-payment-gateway-services-architecture"
   - "/blog/hosted-checkout-vs-direct-card-processing"
@@ -62,7 +62,7 @@ Cheap to use, fast to issue, narrow PCI scope. The big limitation: it's tied to 
 
 ### 3. Network token
 
-A credential issued by the scheme itself (MasterCard MDES, Visa Token Service, AmEx, Discover) that **replaces the PAN** on file. It looks like a PAN, behaves like a PAN, but:
+A credential issued by the scheme itself (Mastercard MDES, Visa Token Service, AmEx, Discover) that **replaces the PAN** on file. It looks like a PAN, behaves like a PAN, but:
 
 - The scheme owns its lifecycle
 - It's bound to a specific merchant / use case / device
@@ -74,7 +74,7 @@ This third primitive is the one that changes the economics of card-on-file. The 
 
 ## What MDES actually is
 
-MDES (MasterCard Digital Enablement Service) is MasterCard's network-token issuance service.
+MDES (Mastercard Digital Enablement Service) is Mastercard's network-token issuance service.
 
 What MDES does:
 
@@ -83,11 +83,11 @@ What MDES does:
   - The requester (your merchant ID or wallet ID)
   - The use case (card-on-file, OEM wallet, e-commerce, in-app)
   - Optional device binding (for OEM wallets)
-- Stores the PAN-to-token mapping in MasterCard's vault
+- Stores the PAN-to-token mapping in Mastercard's vault
 - Forwards authorisation requests using the token, with the issuer ultimately seeing the original PAN
 - Manages the lifecycle: if the cardholder's physical card is reissued, the token continues to work seamlessly
 
-MDES is the plumbing under Apple Pay, Google Pay, Samsung Pay, Click to Pay, and every modern card-on-file integration on MasterCard rails.
+MDES is the plumbing under Apple Pay, Google Pay, Samsung Pay, Click to Pay, and every modern card-on-file integration on Mastercard rails.
 
 VTS (Visa Token Service) is the Visa equivalent. Same primitives, different control plane.
 
@@ -148,7 +148,7 @@ You integrate with MPGS, Stripe, Adyen, etc. The gateway integrates with MDES / 
 
 ### Pattern B: Direct as Token Requestor (advanced)
 
-You contract directly with MasterCard / Visa as a registered Token Requestor (TR). You hold the certification, you hit MDES / VTS APIs directly.
+You contract directly with Mastercard / Visa as a registered Token Requestor (TR). You hold the certification, you hit MDES / VTS APIs directly.
 
 **Pros:** Tokens are yours, portable across any gateway.
 
@@ -172,7 +172,7 @@ Scheme-level Click to Pay services run on MDES / VTS underneath. The consumer's 
 
 **Pros:** Highest auth rate (network token + scheme orchestration). Cross-merchant identity.
 
-**Cons:** Coverage still patchy by region in 2026. Best-in-class for MasterCard / Visa cards; outside that, doesn't apply.
+**Cons:** Coverage still patchy by region in 2026. Best-in-class for Mastercard / Visa cards; outside that, doesn't apply.
 
 **Use when:** Consumer-facing e-commerce checkouts targeting card-heavy markets (US, UK, EU).
 
@@ -224,7 +224,7 @@ The teams that don't treat tokenisation seriously hit a 70%-ish authorisation ce
 
 **Can I use a network token in-store?** Yes (via contactless NFC), but the token form factor is device-bound in that case. Online card-on-file network tokens are a different shape.
 
-**What's Click to Pay's relationship to MDES?** Click to Pay is the consumer-facing brand. MDES (for MasterCard cards) and VTS (for Visa cards) are the underlying tokenisation services. Click to Pay sits on top.
+**What's Click to Pay's relationship to MDES?** Click to Pay is the consumer-facing brand. MDES (for Mastercard cards) and VTS (for Visa cards) are the underlying tokenisation services. Click to Pay sits on top.
 
 **How long does network-token migration take?** For an existing card-on-file estate of 1M+ cards: 4–8 months realistic. The pattern: tokenise on next charge attempt, fall back to gateway token if MDES declines, monitor coverage daily.
 

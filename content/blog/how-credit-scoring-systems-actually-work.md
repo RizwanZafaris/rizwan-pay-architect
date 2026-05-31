@@ -32,7 +32,7 @@ targetKeywords:
   - credit decision system
 relatedArticles:
   - "/blog/why-ai-ml-solutions-fail-production-payments"
-  - "/blog/kyb-document-extraction-realistic-llm-use-case"
+  - "/blog/kyb-document-extraction-llm-use-case"
   - "/blog/where-ml-beats-ai-payment-problems-llm-cant-touch"
 ---
 
@@ -250,4 +250,4 @@ Not in the scoring loop. Possibly in adjacent surfaces: drafting adverse-action 
 
 ---
 
-If this resonated, also read [Why AI/ML Solutions Fail in Production Payments](/blog/why-ai-ml-solutions-fail-production-payments), [KYB Document Extraction: A Realistic LLM Use Case](/blog/kyb-document-extraction-realistic-llm-use-case), and [Where ML Beats AI: Six Payment Problems an LLM Cannot Touch](/blog/where-ml-beats-ai-payment-problems-llm-cant-touch).
+If this resonated, also read [Why AI/ML Solutions Fail in Production Payments](/blog/why-ai-ml-solutions-fail-production-payments), [KYB Document Extraction: A Realistic LLM Use Case](/blog/kyb-document-extraction-llm-use-case), and [Where ML Beats AI: Six Payment Problems an LLM Cannot Touch](/blog/where-ml-beats-ai-payment-problems-llm-cant-touch).

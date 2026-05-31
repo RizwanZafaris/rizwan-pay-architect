@@ -46,11 +46,11 @@ This is the operator's view of BIN routing, what choice actually exists, when ov
 
 Four routing surfaces where the acquirer makes a real decision, not just a forwarding decision.
 
-**1. Co-badged cards.** A physical card that carries two scheme logos (Visa + a local scheme like Cartes Bancaires, Bancontact, Mada, Mir, RuPay, PROS, JCB, Verve, etc.). The merchant or acquirer can choose which rail to route on, transaction by transaction. The default is often the international scheme; the local scheme is usually cheaper and frequently has higher auth rates on domestic traffic.
+**1. Co-badged cards.** A physical card that carries two scheme logos (Visa + a local scheme like Cartes Bancaires, Bancontact, Mada, Mir, RuPay, BancNet, JCB, Verve, etc.). The merchant or acquirer can choose which rail to route on, transaction by transaction. The default is often the international scheme; the local scheme is usually cheaper and frequently has higher auth rates on domestic traffic.
 
 **2. Dual-rail debit (US Durbin world).** US debit cards carry a signature network (Visa / Mastercard) and at least one PIN network (NYCE, STAR, Pulse, Maestro). Post-Durbin, the merchant has the legal right to choose the routing for in-store and (since 2023) card-not-present transactions. The choice has direct interchange implications.
 
-**3. Local-scheme override on domestic traffic.** Many markets have a national debit scheme that _must_ be offered as an option (Mada in Saudi, NPCI/RuPay in India, BCEL/POS in Vietnam, Mir in Russia, PROS in the Philippines, Verve in Nigeria). Even when the cardholder presents a Visa or Mastercard, regulator pressure may push the acquirer to surface a local-rail option.
+**3. Local-scheme override on domestic traffic.** Many markets have a national debit scheme that _must_ be offered as an option (Mada in Saudi, NPCI/RuPay in India, NAPAS in Vietnam, Mir in Russia, BancNet in the Philippines, Verve in Nigeria). Even when the cardholder presents a Visa or Mastercard, regulator pressure may push the acquirer to surface a local-rail option.
 
 **4. Multi-acquirer routing.** Less about scheme choice, more about acquirer choice, but operationally the same logic. Large merchants with two or more acquirers route transactions to the acquirer with the highest expected auth rate per BIN range. This is the same logic engine as scheme routing, applied one layer up.
 
@@ -122,7 +122,7 @@ Merchants connected to two or more acquirers use the acquirer's routing logic to
 
 Routing autonomy is moving from "available where regulators allow" to "required where regulators mandate". Three live examples:
 
-- **Saudi Arabia (SAMA).** Mada must be offered as a local-rail option on co-badged cards. Acquirers that route co-badged Saudi cards to Visa/MasterCard by default without surfacing Mada are at scheme-and-regulator risk simultaneously.
+- **Saudi Arabia (SAMA).** Mada must be offered as a local-rail option on co-badged cards. Acquirers that route co-badged Saudi cards to Visa/Mastercard by default without surfacing Mada are at scheme-and-regulator risk simultaneously.
 - **India (NPCI).** RuPay has been pushed as the preferred rail for domestic debit through a series of merchant discount rate (MDR) and government-procurement directives.
 - **Europe (EBA + EC).** The European Commission's Payment Services Regulation (PSR) drafts have proposed stronger rules on choice of brand at the point of sale, particularly for e-commerce, making the default-to-international posture progressively harder to defend.
 

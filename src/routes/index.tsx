@@ -414,8 +414,8 @@ function HomePage() {
               {hotTopics.map((t, i) => (
                 <Link
                   key={t.name}
-                  to="/blog"
-                  search={{ q: "", hub: t.hub, reader: "", company: "" }}
+                  to="/topics/$hub"
+                  params={{ hub: t.hub }}
                   className="home-topic-card group relative overflow-hidden rounded-lg min-h-[132px] p-4 flex flex-col justify-between border border-rule bg-card text-ink"
                   style={{ "--motion-delay": `${220 + i * 45}ms` } as CSSProperties}
                 >
@@ -431,7 +431,7 @@ function HomePage() {
                       {t.name}
                     </div>
                     <div className="text-[10px] font-mono-tech uppercase tracking-[0.18em] mt-1 text-ink-soft">
-                      {t.count} {t.count === 1 ? "article" : "articles"} · Filter →
+                      {t.count} {t.count === 1 ? "article" : "articles"} · Explore →
                     </div>
                   </div>
                 </Link>

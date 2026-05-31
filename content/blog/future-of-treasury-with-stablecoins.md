@@ -1,5 +1,5 @@
 ---
-title: "Future of Treasury With Stablecoins: What Changes: What Doesn't, and the 5-Year Map"
+title: "Future of Treasury With Stablecoins: What Changes, What Doesn't, and the 5-Year Map"
 slug: "future-of-treasury-with-stablecoins"
 category: "Crypto & Stablecoins"
 metaTitle: "Future of Treasury With Stablecoins | Rizwan Zafar"
@@ -36,7 +36,7 @@ relatedArticles:
   - "/blog/crypto-off-ramps-emerging-markets"
 ---
 
-# Future of Treasury With Stablecoins: What Changes: What Doesn't, and the 5-Year Map
+# Future of Treasury With Stablecoins: What Changes, What Doesn't, and the 5-Year Map
 
 The conversation about stablecoins-in-consumer-payments has been over for a year. Cards, wallets, and instant bank rails won the consumer surface in every major market. The stablecoin payment-rail thesis, "consumers will pay merchants in USDC", did not survive the 2023-2024 product cycle.
 

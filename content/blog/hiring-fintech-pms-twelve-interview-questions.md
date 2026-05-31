@@ -33,7 +33,7 @@ targetKeywords:
 relatedArticles:
   - "/blog/product-management-for-payments-platforms"
   - "/blog/cspo-rice-payments-roadmap-walkthrough"
-  - "/blog/payments-prd-template-nine-sections-senior-pm"
+  - "/blog/payments-prd-template-nine-sections"
 ---
 
 # Hiring Fintech PMs: Twelve Interview Questions That Actually Separate Senior From Junior
@@ -225,4 +225,4 @@ Geographic, but as of 2025: senior payments PMs in UAE, KSA, Singapore, London, 
 
 ---
 
-If this resonated, also read [Product Management for Payments Platforms](/blog/product-management-for-payments-platforms), [CSPO + RICE in Practice](/blog/cspo-rice-payments-roadmap-walkthrough), and [Payments PRD Template](/blog/payments-prd-template-nine-sections-senior-pm).
+If this resonated, also read [Product Management for Payments Platforms](/blog/product-management-for-payments-platforms), [CSPO + RICE in Practice](/blog/cspo-rice-payments-roadmap-walkthrough), and [Payments PRD Template](/blog/payments-prd-template-nine-sections).

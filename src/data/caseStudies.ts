@@ -1255,7 +1255,7 @@ export const caseStudies: CaseStudy[] = [
       }
     ],
     "executiveSummary": "Designed and shipped the network-tokenisation programme for a regional acquirer-processor, replacing PAN-on-file storage with scheme-issued tokens via MDES (Mastercard Digital Enablement Service) and VTS (Visa Token Service). Migrated 1,200+ card-on-file merchants across three primary markets, retired three legacy vault providers in favour of a single in-house token broker, and rewired the recurring billing engine around token lifecycle. Delivered +1.8 points portfolio-wide authorisation-rate lift and a 91% reduction in PAN footprint without a single sev-1 or sev-2 incident through the cutover window.",
-    "problem": "The acquirer carried PAN-on-file across three separate vault providers accumulated over five years of acquisitions and partnerships. Every reissuance event broke a merchant relationship: subscriptions failed silently, account-updater coverage was patchy, and the dispute team was losing CE3.0-eligible disputes because the cardholder identity link was broken across reissuance. PCI scope across three vaults was tripling the audit cost. The next-quarter scheme push on mandatory tokenisation for card-on-file merchants made the gap untenable. The team needed a complete migration with no merchant-visible failure, on a portfolio crossing 1,200 active merchants and ~14M token-able credentials.",
+    "problem": "The acquirer carried PAN-on-file across three separate vault providers accumulated over five years of acquisitions and partnerships. Every reissuance event broke a merchant relationship: subscriptions failed silently, account-updater coverage was patchy, and the dispute team was losing Compelling Evidence 3.0 (CE3.0)-eligible disputes because the cardholder identity link was broken across reissuance. PCI scope across three vaults was tripling the audit cost. The next-quarter scheme push on mandatory tokenisation for card-on-file merchants made the gap untenable. The team needed a complete migration with no merchant-visible failure, on a portfolio crossing 1,200 active merchants and ~14M token-able credentials.",
     "built": [
       "Single in-house token broker: one service owns MDES + VTS lifecycle, exposes a stable internal API to every merchant integration",
       "Token-state engine: every credential has a state (active, suspended, reissued, deleted) updated from MDES / VTS lifecycle webhooks in real time",
@@ -1286,7 +1286,7 @@ export const caseStudies: CaseStudy[] = [
       "Lifted portfolio-wide authorisation rate by +1.8 points on tokenised traffic, with the largest lift on iOS Safari + cross-border combinations (+3–4 pts)",
       "Reduced PCI PAN footprint by 91%, three vault providers retired, single in-house broker stood up",
       "Cut recurring-subscription failure rate on the subscriber cohort from 11–14% to 3.6% by leveraging real-time lifecycle webhooks for reissuance and suspension",
-      "Closed the CE3.0 evidence gap, cardholder-indexed transaction history now persists across reissuance, lifting 10.4 dispute win rate by ~40 pts",
+      "Closed the CE3.0 evidence gap, cardholder-indexed transaction history now persists across reissuance, lifting the win rate on Visa 10.4 (card-absent fraud) disputes by ~40 pts",
       "Zero sev-1 / sev-2 incidents across the 14-month rollout window"
     ],
     "tradeoffs": [
@@ -1319,7 +1319,7 @@ export const caseStudies: CaseStudy[] = [
   {
     "slug": "3ds2-sca-step-up-optimisation-programme",
     "title": "3DS2 + SCA Step-Up Optimisation: From 38% Frictionless to 73% Without Lifting Fraud",
-    "tagline": "Rebuilt the 3DS2 step-up programme for a regional acquirer-processor, per-issuer scoring, full PSD2 exemption suite, abandon-recovery flows, lifting frictionless rate from 38% to 73% over three quarters while holding fraud below the band-3 TRA ceiling.",
+    "tagline": "Rebuilt the 3DS2 step-up programme for a regional acquirer-processor, per-issuer scoring, full PSD2 exemption suite, abandon-recovery flows, lifting frictionless rate from 38% to 73% over three quarters while holding fraud below the band-2 (6 bps) TRA ceiling.",
     "category": "Payment Infrastructure",
     "markets": [
       "UAE",
@@ -1351,7 +1351,7 @@ export const caseStudies: CaseStudy[] = [
       },
       {
         "label": "Portfolio fraud rate",
-        "value": "Held below 6 bps (band 3 TRA)"
+        "value": "Held below 6 bps (band 2 TRA)"
       },
       {
         "label": "Auth-rate lift on CNP traffic",
@@ -1384,7 +1384,7 @@ export const caseStudies: CaseStudy[] = [
         "after": "180+ issuer-range profiles refreshed monthly"
       }
     ],
-    "executiveSummary": "Rebuilt the 3DS2 + SCA exemption programme for a regional acquirer-processor, moved from portfolio-wide TRA flagging to per-issuer, per-merchant, per-amount-band exemption profiles; deployed the full PSD2 exemption suite (TRA, low-value, recurring, trusted beneficiary, MIT); and shipped step-up abandon-recovery flows. Lifted frictionless rate from 38% to 73% over three quarters, while holding the portfolio fraud rate below the band-3 TRA ceiling of 1 bp on routed traffic, preserving the highest scheme TRA band. Delivered +5.4 points portfolio CNP authorisation-rate lift, with the largest gains on iOS Safari + cross-border combinations.",
+    "executiveSummary": "Rebuilt the 3DS2 + SCA exemption programme for a regional acquirer-processor, moved from portfolio-wide TRA flagging to per-issuer, per-merchant, per-amount-band exemption profiles; deployed the full PSD2 exemption suite (TRA, low-value, recurring, trusted beneficiary, MIT); and shipped step-up abandon-recovery flows. Lifted frictionless rate from 38% to 73% over three quarters, while holding the portfolio fraud rate below the band-2 TRA ceiling (6 bps) on routed traffic, and moving the qualifying merchant cohort into band 3 in the final quarter. Delivered +5.4 points portfolio CNP authorisation-rate lift, with the largest gains on iOS Safari + cross-border combinations.",
     "problem": "The platform was operating in TRA band 2 (€250 ceiling, 6 bps fraud floor) with a portfolio frictionless rate of 38%, well below regional peers. CNP authorisation rate trailed the regional benchmark by 4 points. The step-up flow was either always-on (high friction, high abandonment) or off (no exemption strategy at all) depending on the merchant. Recurring subscriptions stepped up on every charge; MIT flags were inconsistently set; trusted-beneficiary lookups were not in the flow. The scheme account manager had quietly warned that the band-2 status was at risk of slipping to band 1 if fraud trends did not improve. The team needed a complete rebuild of the exemption + step-up surface, with no acceptable trade-off on the fraud rate.",
     "built": [
       "Pre-auth exemption scoring service: scores every CNP transaction against the five PSD2 exemptions and picks the highest-value applicable path",

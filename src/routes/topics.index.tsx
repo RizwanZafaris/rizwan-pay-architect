@@ -64,8 +64,8 @@ function TopicsIndex() {
           return (
             <Link
               key={h.slug}
-              to="/blog"
-              search={{ q: "", hub: h.slug, reader: "", company: "" }}
+              to="/topics/$hub"
+              params={{ hub: h.slug }}
               className="group rounded-2xl border border-ink/10 bg-surface p-7 hover:border-ink/30 transition-colors"
             >
               <div className="text-[10px] uppercase tracking-[0.18em] text-[var(--accent-emerald)] font-mono-tech">
@@ -80,7 +80,7 @@ function TopicsIndex() {
                 <span>·</span>
                 <span>{studies} case studies</span>
                 <span className="ml-auto text-ink group-hover:text-[var(--brand)]">
-                  Filter essays →
+                  Explore hub →
                 </span>
               </div>
             </Link>

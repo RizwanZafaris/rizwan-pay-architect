@@ -1,5 +1,5 @@
 ---
-title: "Mastercard Send + Visa Direct: Push-Payment Architecture: Compared"
+title: "Mastercard Send + Visa Direct: Push-Payment Architecture Compared"
 slug: "mastercard-send-visa-direct-push-payments"
 category: "Payment Infrastructure"
 metaTitle: "Mastercard Send vs Visa Direct: Push Payment Architecture | Rizwan Zafar"
@@ -33,10 +33,10 @@ targetKeywords:
 relatedArticles:
   - "/blog/cross-border-corridors-are-operating-systems"
   - "/blog/mpges-mastercard-payment-gateway-services-architecture"
-  - "/blog/swift-vs-domestic-rails-when-to-use-what"
+  - "/blog/swift-vs-card-rails-vs-local-wallets"
 ---
 
-# Mastercard Send + Visa Direct: Push-Payment Architecture: Compared
+# Mastercard Send + Visa Direct: Push-Payment Architecture Compared
 
 For most of card-rail history, the cards were the receive-only side of the network. Money came in (cardholder pushes funds to merchant); money did not go out. The two scheme push-payment products, Visa Direct and Mastercard Send, are what changed that. Both let a regulated payer push funds _to_ a card credential at the receiving end, in something close to real time, through the same global card network that the cardholder uses for everyday purchases.
 
@@ -181,4 +181,4 @@ For consumer-to-consumer or business-to-consumer disbursements where the payee's
 
 ---
 
-If this resonated, also read [Cross-Border Corridors Are Operating Systems](/blog/cross-border-corridors-are-operating-systems), [SWIFT vs Domestic Rails: When To Use What](/blog/swift-vs-domestic-rails-when-to-use-what), and [MPGS Architecture](/blog/mpges-mastercard-payment-gateway-services-architecture).
+If this resonated, also read [Cross-Border Corridors Are Operating Systems](/blog/cross-border-corridors-are-operating-systems), [SWIFT vs Domestic Rails: When To Use What](/blog/swift-vs-card-rails-vs-local-wallets), and [MPGS Architecture](/blog/mpges-mastercard-payment-gateway-services-architecture).
