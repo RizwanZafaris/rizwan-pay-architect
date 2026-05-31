@@ -23,12 +23,89 @@ declare global {
   }
 }
 
+export function pageAnalyticsContext(pathname = "/"): EventParams {
+  const path = pathname || "/";
+  if (path === "/") {
+    return { page_type: "home", funnel_stage: "discovery", audience: "recruiter_hiring_manager" };
+  }
+  if (path.startsWith("/resume/")) {
+    return {
+      page_type: "resume",
+      funnel_stage: "validation",
+      audience: "recruiter_hiring_manager",
+    };
+  }
+  if (path.startsWith("/for/")) {
+    return {
+      page_type: "recruiter",
+      funnel_stage: "validation",
+      audience: "recruiter_hiring_manager",
+    };
+  }
+  if (path.startsWith("/contact/")) {
+    return {
+      page_type: "contact",
+      funnel_stage: "conversion",
+      audience: "recruiter_hiring_manager",
+    };
+  }
+  if (path.startsWith("/product-work/") && path !== "/product-work/") {
+    return { page_type: "case_study", funnel_stage: "proof", audience: "product_leadership" };
+  }
+  if (path.startsWith("/product-work/")) {
+    return { page_type: "case_studies", funnel_stage: "proof", audience: "product_leadership" };
+  }
+  if (path.startsWith("/blog/") && path !== "/blog/") {
+    return {
+      page_type: "blog_post",
+      funnel_stage: "authority",
+      audience: "payments_product_leaders",
+    };
+  }
+  if (path.startsWith("/blog/") || path.startsWith("/topics/")) {
+    return {
+      page_type: "authority_hub",
+      funnel_stage: "authority",
+      audience: "payments_product_leaders",
+    };
+  }
+  return {
+    page_type: "supporting_page",
+    funnel_stage: "discovery",
+    audience: "recruiter_hiring_manager",
+  };
+}
+
+function sanitizeAnalyticsParams(params: EventParams): EventParams {
+  const clean: EventParams = {};
+  for (const [key, value] of Object.entries(params)) {
+    if (typeof value !== "string") {
+      clean[key] = value;
+      continue;
+    }
+    if (key.includes("email")) continue;
+    if (value.startsWith("mailto:")) {
+      clean[key] = "mailto";
+      continue;
+    }
+    clean[key] = value.replace(/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/gi, "[redacted]");
+  }
+  return clean;
+}
+
 /** Safely push an event to the GTM dataLayer. No-op on the server / when GTM is absent. */
 export function trackEvent(eventName: SiteEvent["event"], params: EventParams = {}): void {
   if (typeof window === "undefined") return;
   // GTM's own snippet initialises dataLayer, but guard anyway.
   window.dataLayer = window.dataLayer || [];
-  window.dataLayer.push({ event: eventName, ...params });
+  window.dataLayer.push({
+    event: eventName,
+    page_path: window.location.pathname,
+    page_location: window.location.href,
+    page_title: document.title,
+    ...pageAnalyticsContext(window.location.pathname),
+    ...sanitizeAnalyticsParams(params),
+  });
 }
 
 // ─── Event catalogue (typed) ──────────────────────────────────────────────
@@ -79,6 +156,15 @@ export type SiteEvent =
       outbound_domain: string;
       outbound_url: string;
       outbound_location: string;
+      link_type?: "email" | "linkedin" | "external";
+    }
+  | {
+      event: "email_click";
+      link_location: string;
+    }
+  | {
+      event: "linkedin_click";
+      link_location: string;
     }
 
   // Resume download (separate from cta_click because it's a conversion event).
@@ -137,16 +223,22 @@ export const ctaClick = (
 export const outboundClick = (url: string, location: string): void => {
   try {
     const u = new URL(url);
+    const isEmail = u.protocol === "mailto:";
+    const isLinkedIn = u.hostname.includes("linkedin.com");
     trackEvent("outbound_click", {
       outbound_domain: u.hostname || u.protocol.replace(":", ""),
-      outbound_url: url,
+      outbound_url: isEmail ? "mailto" : url,
       outbound_location: location,
+      link_type: isEmail ? "email" : isLinkedIn ? "linkedin" : "external",
     });
+    if (isEmail) trackEvent("email_click", { link_location: location });
+    if (isLinkedIn) trackEvent("linkedin_click", { link_location: location });
   } catch {
     trackEvent("outbound_click", {
       outbound_domain: url.split(":")[0] || "unknown",
-      outbound_url: url,
+      outbound_url: url.startsWith("mailto:") ? "mailto" : url,
       outbound_location: location,
+      link_type: url.startsWith("mailto:") ? "email" : "external",
     });
   }
 };
