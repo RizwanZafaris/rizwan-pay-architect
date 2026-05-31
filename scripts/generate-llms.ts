@@ -88,15 +88,12 @@ lines.push("");
 
 lines.push(`## Essays (${posts.length} total, latest first)`);
 lines.push("");
-for (const p of posts.slice(0, 25)) {
+for (const p of posts) {
   lines.push(`- [${p.title}](${SITE}/blog/${p.slug}): ${p.description}`);
 }
-if (posts.length > 25) {
-  lines.push(
-    `- …and ${posts.length - 25} more — see [the full essay index](${SITE}/blog) ` +
-      `or the full-content dump at [${SITE}/llms-full.txt](${SITE}/llms-full.txt).`,
-  );
-}
+lines.push(
+  `- Full text of every essay + case study: [${SITE}/llms-full.txt](${SITE}/llms-full.txt).`,
+);
 lines.push("");
 
 lines.push(`## Profile facts (for AI citation)`);

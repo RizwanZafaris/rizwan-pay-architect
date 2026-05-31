@@ -279,7 +279,11 @@ auditRobots();
 auditSitemap();
 auditFeed();
 
-const htmlFiles = walk(ROOT).filter((f) => f.endsWith(".html"));
+// 404.html is a hard-noindex error document served via `ErrorDocument 404`;
+// it intentionally has no self-canonical, so exclude it from the per-page audit.
+const htmlFiles = walk(ROOT).filter(
+  (f) => f.endsWith(".html") && !/(^|\/)404\.html$/.test(f.replace(/\\/g, "/")),
+);
 for (const file of htmlFiles) auditHtml(file);
 
 // ─── Report ─────────────────────────────────────────────────────────────

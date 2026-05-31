@@ -92,6 +92,7 @@ async function prerender(worker: Worker, routes: string[]) {
       let html = await res.text();
       html = patchEmptyMainFallback(route, html);
       html = stripDevServerScripts(html);
+      html = addTrailingSlashes(html);
       const file = pathToFile(route);
       await mkdir(dirname(file), { recursive: true });
       await writeFile(file, html, "utf-8");
@@ -140,6 +141,23 @@ function stripDevServerScripts(html: string): string {
   //    payload (the TanStack manifest can include them inline).
   out = out.replace(/<script[^>]*>\s*\(self\.\$R=self\.\$R[\s\S]*?<\/script>/g, "");
   return out;
+}
+
+/**
+ * Rewrite internal route links to the trailing-slash canonical form so an
+ * internal crawl never hits a 301 hop. absUrl() already does this for
+ * canonicals / og:url / sitemap; this applies the same discipline to the
+ * <a href> the page emits. Only touches clean internal route paths — skips
+ * the root, anything with a query/hash, and file paths (a dot in the last
+ * segment: /assets/*, *.pdf, *.xml, *.svg, /cs/*.webp, /llms.txt, …).
+ */
+function addTrailingSlashes(html: string): string {
+  return html.replace(/href="(\/[A-Za-z0-9][A-Za-z0-9/_-]*)"/g, (m, path) => {
+    if (path === "/" || path.endsWith("/")) return m;
+    const last = path.split("/").pop() ?? "";
+    if (last.includes(".")) return m;
+    return `href="${path}/"`;
+  });
 }
 
 /**
@@ -226,6 +244,24 @@ async function writeFeed() {
 </rss>
 `;
   await writeFile(`${OUT_DIR}/feed.xml`, xml);
+}
+
+async function writeNotFoundPage(worker: Worker) {
+  // Prerender a real 404 page. The route's noindex is set via a client
+  // useEffect that never runs on the JS-less static export, so inject a hard
+  // server-rendered noindex. Apache serves this via `ErrorDocument 404`.
+  const res = await fetchFollowingRedirects(worker, "/__rzifi_not_found__");
+  let html = await res.text();
+  html = stripDevServerScripts(html);
+  html = addTrailingSlashes(html);
+  if (!/<meta[^>]+name=["']robots["']/i.test(html)) {
+    html = html.replace(
+      /<head(\s[^>]*)?>/i,
+      (m) => `${m}<meta name="robots" content="noindex,follow"/>`,
+    );
+  }
+  await writeFile(`${OUT_DIR}/404.html`, html, "utf-8");
+  console.log(`✓ Wrote ${OUT_DIR}/404.html (hard noindex)`);
 }
 
 async function copyHtaccess() {
@@ -346,6 +382,7 @@ async function main() {
   console.log(`\n✓ Wrote ${OUT_DIR}/sitemap.xml`);
   await writeFeed();
   console.log(`✓ Wrote ${OUT_DIR}/feed.xml`);
+  await writeNotFoundPage(worker);
 
   // .htaccess for Apache (Hostinger)
   await copyHtaccess();

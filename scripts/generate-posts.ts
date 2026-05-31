@@ -81,6 +81,9 @@ type Post = {
    */
   metaTitle?: string;
   date: string;
+  /** ISO date of last substantive revision (frontmatter updated / dateModified).
+   *  Drives BlogPosting.dateModified; bump ONLY on real edits, not cosmetic ones. */
+  updated?: string;
   category: string;
   readingTime: string;
   description: string;
@@ -106,6 +109,7 @@ const posts: Post[] = files
       title: textValue(data.title, "Untitled"),
       metaTitle: textValue(data.metaTitle) || undefined,
       date: textValue(data.publishDate) || textValue(data.date, "2026-01-01"),
+      updated: textValue(data.updated) || textValue(data.dateModified) || undefined,
       category: categoryAlias[rawCat] || rawCat,
       readingTime: textValue(data.readingTime, "8 min read"),
       description: textValue(data.metaDescription) || textValue(data.excerpt),
@@ -155,6 +159,9 @@ export type Post = {
    *  Falls back to \`title\` + brand suffix when undefined. */
   metaTitle?: string;
   date: string;
+  /** ISO date of last substantive revision (frontmatter updated / dateModified).
+   *  Drives BlogPosting.dateModified; bump ONLY on real edits, not cosmetic ones. */
+  updated?: string;
   category: string;
   readingTime: string;
   description: string;

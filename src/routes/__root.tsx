@@ -166,6 +166,16 @@ const personJsonLd = {
   "@id": `${SITE_URL}#person`,
   name: profile.name,
   jobTitle: "Chief Product Officer, Payments",
+  // Employer edge — lets answer engines resolve "who built/leads Simpaisa
+  // payments infrastructure" to this Person entity.
+  worksFor: {
+    "@type": "Organization",
+    "@id": `${SITE_URL}#simpaisa`,
+    name: "Simpaisa",
+    url: "https://simpaisa.com",
+    description:
+      "Payments & fintech infrastructure company (Dubai). Rizwan Zafar is Chief Product Officer.",
+  },
   description: profile.bio,
   email: `mailto:${profile.email}`,
   url: SITE_URL,
@@ -277,6 +287,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:image", content: OG_IMAGE_URL },
       { property: "og:image:width", content: "1200" },
       { property: "og:image:height", content: "630" },
+      { property: "og:image:type", content: "image/png" },
       { property: "og:image:alt", content: `${profile.name}, Payments Product Executive` },
       // Twitter
       { name: "twitter:card", content: "summary_large_image" },
@@ -294,6 +305,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     // self-canonical via absUrl(path); a root canonical pointing at SITE_URL
     // would duplicate (and conflict with) the page-level one on every subpage.
     links: [
+      // Brand favicon (SVG — modern browsers + Google SERP). Replaces the
+      // generic globe shown for a site with no icon.
+      { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
+      { rel: "mask-icon", href: "/favicon.svg", color: "#0e4f4f" },
+      // AI-discovery hint for the curated LLM index.
+      { rel: "alternate", type: "text/markdown", href: "/llms.txt", title: "llms.txt" },
       { rel: "stylesheet", href: appCss },
       {
         rel: "alternate",

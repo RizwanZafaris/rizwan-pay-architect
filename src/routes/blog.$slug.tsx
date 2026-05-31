@@ -2,6 +2,8 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { useEffect } from "react";
 import { getPost, getRelated, isPostPublished, publishedPosts, type Post } from "@/data/posts";
 import { profile } from "@/data/profile";
+import { caseStudies } from "@/data/caseStudies";
+import { hubForPost } from "@/data/hubs";
 import { absUrl, SITE_URL, OG_IMAGE_URL, titleFor, trimToMax } from "@/lib/seo";
 import { DiagramFigure, postDiagrams } from "@/components/diagrams/Diagrams";
 import { trackEvent } from "@/lib/analytics";
@@ -33,6 +35,40 @@ function extractFAQs(md: string): { question: string; answer: string }[] {
   return out;
 }
 
+// Detect a sequential step/checklist structure ("## Step 1: …" or "## 1. …")
+// and emit HowTo JSON-LD — one of the most-lifted formats for AI Overviews &
+// voice answers. Only fires when ≥3 ordered step-headings exist, so ordinary
+// essays don't get mis-tagged.
+function extractHowToSteps(md: string): { name: string; text: string }[] {
+  const lines = md.split("\n");
+  const isStep = (h: string) => /^(step\s+\d+\b|\d+[.):]\s)/i.test(h.trim());
+  const steps: { name: string; buf: string[] }[] = [];
+  let cur: { name: string; buf: string[] } | null = null;
+  for (const line of lines) {
+    const h2 = line.match(/^##\s+(.*)$/);
+    if (h2) {
+      if (cur) steps.push(cur);
+      const heading = h2[1].replace(/\*\*/g, "").trim();
+      cur = isStep(heading) ? { name: heading, buf: [] } : null;
+      continue;
+    }
+    if (cur) cur.buf.push(line);
+  }
+  if (cur) steps.push(cur);
+  return steps
+    .map((s) => ({
+      name: s.name,
+      text: s.buf
+        .join(" ")
+        .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
+        .replace(/[*_`#>]/g, "")
+        .replace(/\s+/g, " ")
+        .trim()
+        .slice(0, 320),
+    }))
+    .filter((s) => s.text);
+}
+
 export const Route = createFileRoute("/blog/$slug")({
   loader: async ({ params }) => {
     const post = getPost(params.slug);
@@ -57,7 +93,7 @@ export const Route = createFileRoute("/blog/$slug")({
       description: p.description,
       image: [OG_IMAGE_URL],
       datePublished: p.date,
-      dateModified: p.date,
+      dateModified: p.updated ?? p.date,
       author: { "@type": "Person", "@id": `${SITE_URL}#person`, name: profile.name, url: SITE_URL },
       publisher: {
         "@type": "Person",
@@ -108,12 +144,31 @@ export const Route = createFileRoute("/blog/$slug")({
           }
         : null;
 
+    const howToSteps = extractHowToSteps(content);
+    const howToJsonLd =
+      howToSteps.length >= 3
+        ? {
+            "@context": "https://schema.org",
+            "@type": "HowTo",
+            name: p.title,
+            description: p.description,
+            step: howToSteps.map((s, i) => ({
+              "@type": "HowToStep",
+              position: i + 1,
+              name: s.name,
+              text: s.text,
+            })),
+          }
+        : null;
+
     const scripts: Array<{ type: string; children: string }> = [
       { type: "application/ld+json", children: JSON.stringify(jsonLd) },
       { type: "application/ld+json", children: JSON.stringify(crumbs) },
     ];
     if (faqJsonLd)
       scripts.push({ type: "application/ld+json", children: JSON.stringify(faqJsonLd) });
+    if (howToJsonLd)
+      scripts.push({ type: "application/ld+json", children: JSON.stringify(howToJsonLd) });
 
     // Use frontmatter `metaTitle` if it fits, else append the brand suffix
     // when the title is short enough, else smart-truncate.
@@ -136,7 +191,7 @@ export const Route = createFileRoute("/blog/$slug")({
         { property: "og:url", content: url },
         { property: "og:image", content: OG_IMAGE_URL },
         { property: "article:published_time", content: p.date },
-        { property: "article:modified_time", content: p.date },
+        { property: "article:modified_time", content: p.updated ?? p.date },
         { property: "article:section", content: p.category },
         { property: "article:author", content: profile.name },
         ...p.tags.map((tag) => ({ property: "article:tag", content: tag })),
@@ -202,6 +257,100 @@ function extractTOC(md: string) {
       const text = l.replace(/^##\s+/, "").trim();
       return { id: slugify(text), text };
     });
+}
+
+// End-of-essay conversion block. Routes the reader (organic or AI-referred)
+// from the most-linked, most-indexed surface (essays) toward the parent topic
+// hub, a relevant case study, and the recruiter actions — the linking the
+// content roadmap mandated but the route never rendered. Plain <a> with
+// trailing slashes (matches canonical form, no 301 hop) + data-analytics-*
+// so the static inline analytics bridge tracks each cta_click without JS.
+function EssayFooterCTA({ post }: { post: Post }) {
+  const hub = hubForPost(post);
+  const caseStudy =
+    caseStudies.find((c) => c.category === post.category) ??
+    caseStudies.find((c) => c.keywords?.some((k) => post.tags.includes(k)));
+  return (
+    <section className="border-t border-rule">
+      <div className="mx-auto max-w-3xl px-6 py-12">
+        {(hub || caseStudy) && (
+          <div className="grid sm:grid-cols-2 gap-4">
+            {hub && (
+              <a
+                href={`/topics/${hub.slug}/`}
+                data-analytics-event="cta_click"
+                data-analytics-source="essay_footer"
+                data-analytics-target="hub"
+                className="group block rounded-2xl border border-rule p-5 hover:border-ink/30 transition-colors"
+              >
+                <div className="text-[10px] uppercase tracking-[0.18em] text-ink-soft font-mono-tech">
+                  Topic hub
+                </div>
+                <div className="font-instrument text-lg text-ink mt-1 group-hover:text-[var(--brand)] transition-colors">
+                  Explore {hub.title} →
+                </div>
+              </a>
+            )}
+            {caseStudy && (
+              <a
+                href={`/product-work/${caseStudy.slug}/`}
+                data-analytics-event="cta_click"
+                data-analytics-source="essay_footer"
+                data-analytics-target="case_study"
+                className="group block rounded-2xl border border-rule p-5 hover:border-ink/30 transition-colors"
+              >
+                <div className="text-[10px] uppercase tracking-[0.18em] text-ink-soft font-mono-tech">
+                  Related case study
+                </div>
+                <div className="font-instrument text-lg text-ink mt-1 group-hover:text-[var(--brand)] transition-colors">
+                  {caseStudy.title} →
+                </div>
+              </a>
+            )}
+          </div>
+        )}
+        <div className="mt-6 rounded-2xl bg-ink text-background p-6 sm:flex sm:items-center sm:justify-between gap-6">
+          <div>
+            <div className="font-instrument text-xl leading-snug">
+              Hiring for a senior payments product role?
+            </div>
+            <p className="text-sm opacity-80 mt-1">
+              {profile.name} — {profile.role}.
+            </p>
+          </div>
+          <div className="mt-4 sm:mt-0 flex flex-wrap gap-2 shrink-0">
+            <a
+              href="/contact/"
+              data-analytics-event="cta_click"
+              data-analytics-source="essay_footer"
+              data-analytics-target="contact"
+              className="rounded-md bg-background text-ink px-4 py-2 text-sm font-medium hover:opacity-90"
+            >
+              Get in touch
+            </a>
+            <a
+              href="/resume/"
+              data-analytics-event="cta_click"
+              data-analytics-source="essay_footer"
+              data-analytics-target="resume"
+              className="rounded-md border border-background/40 px-4 py-2 text-sm hover:bg-background/10"
+            >
+              Résumé
+            </a>
+            <a
+              href="/for/"
+              data-analytics-event="cta_click"
+              data-analytics-source="essay_footer"
+              data-analytics-target="for"
+              className="rounded-md border border-background/40 px-4 py-2 text-sm hover:bg-background/10"
+            >
+              For recruiters
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
 }
 
 function BlogPostPage() {
@@ -305,6 +454,8 @@ function BlogPostPage() {
           </div>
         </div>
       </div>
+
+      <EssayFooterCTA post={p} />
 
       {related.length > 0 && (
         <section className="border-t border-rule bg-surface-2">
