@@ -5,7 +5,7 @@
   <link>https://rzifi.com/blog/</link>
   <description>Essays on payment infrastructure, fintech product, risk, settlement, AI and program leadership.</description>
   <language>en</language>
-  <lastBuildDate>Sun, 31 May 2026 01:00:59 GMT</lastBuildDate>
+  <lastBuildDate>Sun, 31 May 2026 10:53:56 GMT</lastBuildDate>
   <item>
     <title>AML/CFT: Rules vs Models, and Why You Need Both</title>
     <link>https://rzifi.com/blog/aml-cft-rules-vs-models/</link>
@@ -207,6 +207,14 @@
     <description>Settlement timing is the most underrated product surface in payments. How T+0, T+1 and T+n settlement windows shape merchant trust, cashflow, and churn.</description>
   </item>
 <item>
+    <title>BIN Routing and Scheme Selection: When To Override the Card-Brand Default</title>
+    <link>https://rzifi.com/blog/bin-routing-scheme-selection-override-default/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/bin-routing-scheme-selection-override-default/</guid>
+    <pubDate>Wed, 20 May 2026 00:00:00 GMT</pubDate>
+    <category>Payment Infrastructure</category>
+    <description>The operator&apos;s guide to BIN routing, co-badged cards, scheme selection logic, regulator pressure on choice of brand, the four override patterns that move auth rate, and the six failure modes acquirers ship without realising.</description>
+  </item>
+<item>
     <title>Click to Pay (VCTP / MCTP): The Scheme-Led Checkout Standard, How It Actually Works</title>
     <link>https://rzifi.com/blog/click-to-pay-vctp-mctp-scheme-led-checkout/</link>
     <guid isPermaLink="true">https://rzifi.com/blog/click-to-pay-vctp-mctp-scheme-led-checkout/</guid>
@@ -215,36 +223,28 @@
     <description>Click to Pay explained from the operator&apos;s lens — what VCTP and MCTP actually are, the merchant + issuer + consumer surface, why it shipped, where it works, where it&apos;s still patchy.</description>
   </item>
 <item>
+    <title>Compelling Evidence 3.0 (Visa): What Changed, and How To Actually Win Disputes Now</title>
+    <link>https://rzifi.com/blog/compelling-evidence-3-0-visa-disputes/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/compelling-evidence-3-0-visa-disputes/</guid>
+    <pubDate>Wed, 20 May 2026 00:00:00 GMT</pubDate>
+    <category>Payment Infrastructure</category>
+    <description>An operator&apos;s read of Visa Compelling Evidence 3.0, the new evidence rules, the prior-undisputed-transaction lookback, the data fields acquirers must capture, and the seven moves that flip the dispute win rate.</description>
+  </item>
+<item>
+    <title>CSPO + RICE in Practice: A Real Payments Roadmap Walkthrough</title>
+    <link>https://rzifi.com/blog/cspo-rice-payments-roadmap-walkthrough/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/cspo-rice-payments-roadmap-walkthrough/</guid>
+    <pubDate>Wed, 20 May 2026 00:00:00 GMT</pubDate>
+    <category>Product Strategy</category>
+    <description>How a CSPO-trained payments PM actually uses RICE on a live quarter. The eight roadmap items, real reach and confidence inputs, the risk-adjusted overlay payments demands, and the four moves the framework gets wrong on its own.</description>
+  </item>
+<item>
     <title>CyberSource Architecture: The Visa-Owned Payment Gateway, How It Differs From MPGS</title>
     <link>https://rzifi.com/blog/cybersource-architecture-visa-payment-gateway/</link>
     <guid isPermaLink="true">https://rzifi.com/blog/cybersource-architecture-visa-payment-gateway/</guid>
     <pubDate>Wed, 20 May 2026 00:00:00 GMT</pubDate>
     <category>Payment Infrastructure</category>
     <description>An operator&apos;s guide to CyberSource — Decision Manager, Token Management Service, Flex Microform, Payouts, and where the architecture differs meaningfully from MPGS.</description>
-  </item>
-<item>
-    <title>EMV 3DS2: Step-Up Logic, Frictionless Flow and the Auth-Rate Optimisation Nobody Explains</title>
-    <link>https://rzifi.com/blog/emv-3ds2-step-up-frictionless-optimisation/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/emv-3ds2-step-up-frictionless-optimisation/</guid>
-    <pubDate>Wed, 20 May 2026 00:00:00 GMT</pubDate>
-    <category>Payment Infrastructure</category>
-    <description>An operator&apos;s guide to EMV 3DS2 — the three flows (frictionless, attempt, challenge), the exemption logic that decides which flow fires, and how to lift auth rate without breaking PSD2 SCA.</description>
-  </item>
-<item>
-    <title>Payment Infrastructure Is Not Just APIs, It Is State, Trust and Failure Handling</title>
-    <link>https://rzifi.com/blog/payment-infrastructure-state-trust-failure/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/payment-infrastructure-state-trust-failure/</guid>
-    <pubDate>Wed, 20 May 2026 00:00:00 GMT</pubDate>
-    <category>Payment Infrastructure</category>
-    <description>An operator view of payment infrastructure at $1B+ GTV, why state, trust, and failure handling, not APIs, are the real product surface.</description>
-  </item>
-<item>
-    <title>Three-Way Reconciliation at Scale</title>
-    <link>https://rzifi.com/blog/three-way-reconciliation-at-scale/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/three-way-reconciliation-at-scale/</guid>
-    <pubDate>Wed, 20 May 2026 00:00:00 GMT</pubDate>
-    <category>Settlement &amp; Reconciliation</category>
-    <description>How to design three-way reconciliation across PSP, internal ledger and bank statement at $1B+ GTV, match keys, tolerances, exception taxonomy, and SLAs.</description>
   </item>
 </channel>
 </rss>
