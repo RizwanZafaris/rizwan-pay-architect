@@ -178,20 +178,64 @@
     padding-left: 1.4em;
     margin-bottom: 1.25em;
   }
+  .prose-editorial ol {
+    list-style: decimal;
+    padding-left: 1.4em;
+    margin-bottom: 1.25em;
+  }
   .prose-editorial li {
     margin-bottom: 0.4em;
+  }
+  .prose-editorial strong {
+    color: var(--ink);
+    font-weight: 700;
   }
   .prose-editorial a {
     color: var(--brand);
     text-decoration: underline;
     text-underline-offset: 3px;
   }
+  .prose-editorial blockquote {
+    margin: 2em 0;
+    border-left: 3px solid var(--brand);
+    background: var(--surface);
+    padding: 1.25em 1.5em;
+    font-style: italic;
+    color: var(--ink);
+  }
+  .prose-editorial table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2em 0;
+    font-family: var(--font-sans);
+    font-size: 0.92rem;
+  }
+  .prose-editorial th,
+  .prose-editorial td {
+    border-bottom: 1px solid var(--rule);
+    padding: 0.8em 0.75em;
+    text-align: left;
+    vertical-align: top;
+  }
+  .prose-editorial th {
+    color: var(--ink);
+    font-weight: 650;
+    background: var(--surface);
+  }
+  .prose-editorial code {
+    border: 1px solid var(--rule);
+    border-radius: 0.25rem;
+    background: var(--surface);
+    padding: 0.08em 0.32em;
+    font-family: var(--font-mono);
+    font-size: 0.82em;
+  }
 
   /* Magazine drop-cap on the first paragraph of long-form prose.
      Only applies to direct paragraph children, only on screens >= 640px
      (mobile would crowd the small column width). */
   @media (min-width: 640px) {
-    .prose-editorial > p:first-of-type::first-letter {
+    .prose-editorial p:first-of-type::first-letter {
       font-family: "Instrument Serif", "Source Serif 4", Georgia, serif;
       font-style: italic;
       font-weight: 400;
@@ -408,8 +452,16 @@
     pointer-events: none;
     opacity: 0.38;
     background-image:
-      linear-gradient(to right, color-mix(in oklab, var(--signal) 18%, transparent) 1px, transparent 1px),
-      linear-gradient(to bottom, color-mix(in oklab, var(--ink) 6%, transparent) 1px, transparent 1px);
+      linear-gradient(
+        to right,
+        color-mix(in oklab, var(--signal) 18%, transparent) 1px,
+        transparent 1px
+      ),
+      linear-gradient(
+        to bottom,
+        color-mix(in oklab, var(--ink) 6%, transparent) 1px,
+        transparent 1px
+      );
     background-size: 72px 72px;
     mask-image: linear-gradient(90deg, transparent 0%, black 18%, black 72%, transparent 100%);
   }
@@ -421,8 +473,18 @@
     pointer-events: none;
     opacity: 0.48;
     background:
-      linear-gradient(110deg, transparent 0 30%, color-mix(in oklab, var(--signal) 20%, transparent) 30.2% 30.45%, transparent 30.7% 100%),
-      linear-gradient(150deg, transparent 0 67%, color-mix(in oklab, var(--rule) 90%, transparent) 67.2% 67.5%, transparent 67.8% 100%);
+      linear-gradient(
+        110deg,
+        transparent 0 30%,
+        color-mix(in oklab, var(--signal) 20%, transparent) 30.2% 30.45%,
+        transparent 30.7% 100%
+      ),
+      linear-gradient(
+        150deg,
+        transparent 0 67%,
+        color-mix(in oklab, var(--rule) 90%, transparent) 67.2% 67.5%,
+        transparent 67.8% 100%
+      );
   }
 
   .home-portrait-frame {
@@ -441,6 +503,36 @@
       background-color 180ms ease;
   }
 
+  .blog-feature-card {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .blog-feature-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.38;
+    background:
+      linear-gradient(
+        90deg,
+        transparent 0 74%,
+        color-mix(in oklab, var(--signal) 11%, transparent) 74.15% 74.35%,
+        transparent 74.5% 100%
+      ),
+      linear-gradient(
+        180deg,
+        transparent 0 68%,
+        color-mix(in oklab, var(--rule) 78%, transparent) 68.15% 68.35%,
+        transparent 68.5% 100%
+      );
+  }
+
+  .blog-feature-card > * {
+    position: relative;
+  }
+
   .home-card:hover,
   .home-topic-card:hover,
   .blog-result-card:hover {
@@ -457,10 +549,14 @@
 
   @keyframes rz-field-drift {
     from {
-      background-position: 0 0, 0 0;
+      background-position:
+        0 0,
+        0 0;
     }
     to {
-      background-position: 72px 36px, 36px 72px;
+      background-position:
+        72px 36px,
+        36px 72px;
     }
   }
 

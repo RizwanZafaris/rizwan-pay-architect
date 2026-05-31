@@ -226,6 +226,14 @@ function slugify(s: string) {
     .replace(/(^-|-$)/g, "");
 }
 
+function formatArticleDate(date: string) {
+  return new Date(date).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+}
+
 marked.use({
   renderer: {
     heading({ tokens, depth }) {
@@ -365,6 +373,7 @@ function BlogPostPage() {
   };
   const toc = extractTOC(content);
   const diagram = postDiagrams[p.slug];
+  const hub = hubForPost(p);
 
   // Fire blog_view to dataLayer once per post mount (after spa_pageview, with
   // post-specific dims that the generic pageview can't carry).
@@ -377,46 +386,68 @@ function BlogPostPage() {
   }, [p.slug, p.category, p.readingTime]);
 
   return (
-    <article>
-      <header className="border-b border-rule">
-        <div className="mx-auto max-w-3xl px-6 pt-16 pb-10">
+    <article className="blog-article-page">
+      <header className="border-b border-rule bg-surface/45">
+        <div className="mx-auto max-w-6xl px-6 pt-14 pb-12">
           <Link
             to="/blog"
             className="text-[10px] uppercase tracking-[0.18em] text-ink-soft hover:text-ink font-mono-tech"
           >
             ← Essays
           </Link>
-          <div className="mt-6 text-[10px] uppercase tracking-[0.18em] text-[var(--accent-emerald)] font-mono-tech font-medium">
-            {p.category}
-          </div>
-          <h1 className="font-instrument text-4xl md:text-5xl text-ink mt-3 leading-[1.08]">
-            {p.title}
-          </h1>
-          <div className="mt-5 text-sm text-ink-soft flex flex-wrap gap-x-4 gap-y-1 font-mono-tech">
-            <span>
-              {new Date(p.date).toLocaleDateString("en-US", {
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-              })}
-            </span>
-            <span>·</span>
-            <span>{p.readingTime}</span>
-            <span>·</span>
-            <span>By {profile.name}</span>
+          <div className="mt-8 grid gap-8 lg:grid-cols-12 lg:items-end">
+            <div className="lg:col-span-8">
+              <div className="flex flex-wrap items-center gap-2">
+                {hub ? (
+                  <Link
+                    to="/topics/$hub"
+                    params={{ hub: hub.slug }}
+                    className="rounded-full border border-[var(--accent-emerald)]/25 bg-background px-3 py-1 text-[10px] uppercase tracking-[0.16em] text-[var(--accent-emerald)] font-mono-tech font-medium hover:border-[var(--accent-emerald)]"
+                  >
+                    {hub.shortTitle}
+                  </Link>
+                ) : (
+                  <span className="rounded-full border border-[var(--accent-emerald)]/25 bg-background px-3 py-1 text-[10px] uppercase tracking-[0.16em] text-[var(--accent-emerald)] font-mono-tech font-medium">
+                    {p.category}
+                  </span>
+                )}
+                <span className="text-[10px] uppercase tracking-[0.16em] text-ink-soft font-mono-tech">
+                  {p.category}
+                </span>
+              </div>
+              <h1 className="font-instrument text-4xl md:text-6xl text-ink mt-5 leading-[1.03] max-w-4xl">
+                {p.title}
+              </h1>
+              <p className="mt-5 max-w-3xl text-lg leading-relaxed text-ink-soft">
+                {p.thesis ?? p.description}
+              </p>
+              <div className="mt-6 text-sm text-ink-soft flex flex-wrap gap-x-4 gap-y-1 font-mono-tech">
+                <span>{formatArticleDate(p.date)}</span>
+                <span>·</span>
+                <span>{p.readingTime}</span>
+                <span>·</span>
+                <span>By {profile.name}</span>
+              </div>
+            </div>
+            <div className="lg:col-span-4 rounded-lg border border-rule bg-background p-5">
+              <div className="text-[10px] uppercase tracking-[0.18em] text-ink-soft mb-3 font-mono-tech">
+                Why this matters
+              </div>
+              <p className="text-sm leading-relaxed text-ink">{p.description}</p>
+            </div>
           </div>
         </div>
       </header>
 
       <div className="mx-auto max-w-6xl px-6 py-12 grid lg:grid-cols-12 gap-10">
         {/* TOC */}
-        <aside className="lg:col-span-3 order-2 lg:order-1">
+        <aside className="lg:col-span-3 order-1">
           {toc.length > 0 && (
-            <div className="lg:sticky lg:top-24">
+            <div className="lg:sticky lg:top-24 rounded-lg border border-rule bg-surface p-5">
               <div className="text-[10px] uppercase tracking-[0.18em] text-ink-soft mb-3 font-mono-tech">
                 On this page
               </div>
-              <ul className="space-y-2 text-sm">
+              <ul className="space-y-2 text-sm leading-snug">
                 {toc.map((t) => (
                   <li key={t.id}>
                     <a href={`#${t.id}`} className="text-ink-soft hover:text-ink transition-colors">
@@ -430,13 +461,15 @@ function BlogPostPage() {
         </aside>
 
         {/* Body */}
-        <div className="lg:col-span-9 order-1 lg:order-2 prose-editorial">
-          {renderContent(content)}
-          {diagram ? (
-            <DiagramFigure title={diagram.title} caption={diagram.caption}>
-              <diagram.component />
-            </DiagramFigure>
-          ) : null}
+        <div className="lg:col-span-9 order-2">
+          <div className="prose-editorial max-w-3xl">
+            {renderContent(content)}
+            {diagram ? (
+              <DiagramFigure title={diagram.title} caption={diagram.caption}>
+                <diagram.component />
+              </DiagramFigure>
+            ) : null}
+          </div>
           <div className="mt-10 pt-8 border-t border-rule">
             <div className="text-[10px] uppercase tracking-[0.18em] text-ink-soft mb-3 font-mono-tech">
               Tags
@@ -452,30 +485,66 @@ function BlogPostPage() {
               ))}
             </div>
           </div>
+          <div className="mt-12 rounded-lg border border-rule bg-surface p-6 md:p-7">
+            <div className="text-[10px] uppercase tracking-[0.18em] text-ink-soft font-mono-tech">
+              Continue the conversation
+            </div>
+            <div className="mt-3 grid gap-5 md:grid-cols-[1fr_auto] md:items-center">
+              <p className="text-sm leading-relaxed text-ink-soft">
+                This writing is the public version of how I think through product, programme and
+                payment-infrastructure decisions in regulated markets.
+              </p>
+              <Link
+                to="/contact"
+                className="inline-flex justify-center rounded-full bg-ink px-4 py-2 text-sm font-medium text-background hover:bg-brand transition-colors"
+              >
+                Contact Rizwan
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
 
       <EssayFooterCTA post={p} />
 
       {related.length > 0 && (
-        <section className="border-t border-rule bg-surface-2">
+        <section className="border-t border-rule bg-surface-2/70">
           <div className="mx-auto max-w-6xl px-6 py-16">
-            <h2 className="font-instrument text-2xl text-ink mb-8">Related reading</h2>
+            <div className="mb-8 flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
+              <div>
+                <div className="text-[10px] uppercase tracking-[0.18em] text-ink-soft font-mono-tech">
+                  Related reading
+                </div>
+                <h2 className="mt-1 font-instrument text-3xl text-ink">
+                  Essays in the same operating context.
+                </h2>
+              </div>
+              <Link
+                to="/blog"
+                className="text-xs uppercase tracking-[0.14em] text-ink-soft hover:text-ink font-mono-tech"
+              >
+                View all essays →
+              </Link>
+            </div>
             <div className="grid md:grid-cols-3 gap-5">
               {related.map((r) => (
                 <Link
                   key={r.slug}
                   to="/blog/$slug"
                   params={{ slug: r.slug }}
-                  className="group block bg-surface border border-rule rounded-2xl p-6 hover:border-ink/30 transition-colors"
+                  className="blog-result-card group flex min-h-[220px] flex-col rounded-lg bg-surface border border-rule p-6 hover:border-ink/30 transition-colors"
                 >
                   <div className="text-[10px] uppercase tracking-[0.18em] text-[var(--accent-emerald)] font-mono-tech">
                     {r.category}
                   </div>
-                  <div className="font-instrument text-lg text-ink mt-2 leading-snug group-hover:text-[var(--brand)] transition-colors">
+                  <div className="font-instrument text-xl text-ink mt-3 leading-snug group-hover:text-[var(--brand)] transition-colors">
                     {r.title}
                   </div>
                   <p className="text-sm text-ink-soft mt-2">{r.thesis ?? r.description}</p>
+                  <span className="mt-auto pt-5 text-xs text-ink-soft group-hover:text-ink inline-flex items-center gap-1">
+                    Read essay{" "}
+                    <span className="transition-transform group-hover:translate-x-1">→</span>
+                  </span>
                 </Link>
               ))}
             </div>
