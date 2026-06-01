@@ -25,7 +25,20 @@
 </IfModule>
 
 # ────────────────────────────────────────────────────────────────────────────
-# 2. Trailing-slash policy
+# 2. Semantic / legacy redirects
+#    The public navigation labels this body of work as case studies, while the
+#    canonical content lives under /product-work/. Preserve old or intuitive
+#    shared URLs without adding duplicate indexable pages.
+# ────────────────────────────────────────────────────────────────────────────
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  RewriteRule ^case-studies/?$ /product-work/ [L,R=301]
+  RewriteRule ^case-studies/(.+?)/?$ /product-work/$1/ [L,R=301]
+</IfModule>
+
+# ────────────────────────────────────────────────────────────────────────────
+# 3. Trailing-slash policy
 #    Hostinger serves prerendered directories at /<route>/index.html, so the
 #    canonical URL for every non-root route ends with a trailing slash.
 #    /about           → 301 → /about/         (canonical)
@@ -44,7 +57,7 @@
 </IfModule>
 
 # ────────────────────────────────────────────────────────────────────────────
-# 3. Pretty URLs → prerendered HTML  (runs AFTER redirects)
+# 4. Pretty URLs → prerendered HTML  (runs AFTER redirects)
 #    /about/      → /about/index.html
 #    /blog/foo/   → /blog/foo/index.html
 # ────────────────────────────────────────────────────────────────────────────
@@ -72,7 +85,7 @@
 </IfModule>
 
 # ────────────────────────────────────────────────────────────────────────────
-# 4. Compression — Brotli first, gzip fallback
+# 5. Compression — Brotli first, gzip fallback
 # ────────────────────────────────────────────────────────────────────────────
 <IfModule mod_deflate.c>
   AddOutputFilterByType DEFLATE text/html text/css text/javascript application/javascript application/json application/xml image/svg+xml
@@ -83,7 +96,7 @@
 </IfModule>
 
 # ────────────────────────────────────────────────────────────────────────────
-# 5. Cache headers
+# 6. Cache headers
 #    - Hashed asset files (Vite outputs *-[hash].js / *-[hash].css): cache 1 year, immutable
 #    - HTML: short cache, must-revalidate
 #    - PDF, images, fonts: 30 days
@@ -137,7 +150,7 @@
 </IfModule>
 
 # ────────────────────────────────────────────────────────────────────────────
-# 6. Pretty MIME types (Hostinger sometimes mis-types these)
+# 7. Pretty MIME types (Hostinger sometimes mis-types these)
 # ────────────────────────────────────────────────────────────────────────────
 <IfModule mod_mime.c>
   AddType application/javascript .js .mjs
@@ -149,12 +162,12 @@
 </IfModule>
 
 # ────────────────────────────────────────────────────────────────────────────
-# 7. Don't list directories
+# 8. Don't list directories
 # ────────────────────────────────────────────────────────────────────────────
 Options -Indexes
 
 # ────────────────────────────────────────────────────────────────────────────
-# 8. Custom 404 — branded, hard-noindexed page (prerendered to /404.html).
+# 9. Custom 404 — branded, hard-noindexed page (prerendered to /404.html).
 #    Pairs with the §3 final fallback so missing URLs return 404 (not a
 #    soft-404 homepage at 200).
 # ────────────────────────────────────────────────────────────────────────────
