@@ -5,8 +5,16 @@
   <link>https://rzifi.com/blog/</link>
   <description>Essays on payment infrastructure, fintech product, risk, settlement, AI and program leadership.</description>
   <language>en</language>
-  <lastBuildDate>Mon, 01 Jun 2026 13:36:24 GMT</lastBuildDate>
+  <lastBuildDate>Mon, 01 Jun 2026 23:56:00 GMT</lastBuildDate>
   <item>
+    <title>How SWIFT Payment Works: A Complete Overview</title>
+    <link>https://rzifi.com/blog/swift-payment-explained/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/swift-payment-explained/</guid>
+    <pubDate>Tue, 02 Jun 2026 00:00:00 GMT</pubDate>
+    <category>Cross-Border Payments</category>
+    <description>A practitioner overview of how SWIFT payments work, messaging, correspondent banking, settlement, gpi, and where ISO 20022 fits in.</description>
+  </item>
+<item>
     <title>Sanctions Screening Without Killing Throughput</title>
     <link>https://rzifi.com/blog/sanctions-screening-without-killing-throughput/</link>
     <guid isPermaLink="true">https://rzifi.com/blog/sanctions-screening-without-killing-throughput/</guid>
@@ -237,14 +245,6 @@
     <pubDate>Wed, 20 May 2026 00:00:00 GMT</pubDate>
     <category>Payment Infrastructure</category>
     <description>An operator&apos;s read of Visa Compelling Evidence 3.0, the new evidence rules, the prior-undisputed-transaction lookback, the data fields acquirers must capture, and the seven moves that flip the dispute win rate.</description>
-  </item>
-<item>
-    <title>CSPO + RICE in Practice: A Real Payments Roadmap Walkthrough</title>
-    <link>https://rzifi.com/blog/cspo-rice-payments-roadmap-walkthrough/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/cspo-rice-payments-roadmap-walkthrough/</guid>
-    <pubDate>Wed, 20 May 2026 00:00:00 GMT</pubDate>
-    <category>Product Strategy</category>
-    <description>How a CSPO-trained payments PM actually uses RICE on a live quarter. The eight roadmap items, real reach and confidence inputs, the risk-adjusted overlay payments demands, and the four moves the framework gets wrong on its own.</description>
   </item>
 </channel>
 </rss>
