@@ -78,10 +78,7 @@ export function SiteHeader() {
     <header className="sticky top-0 z-40 px-3 sm:px-4 pt-3 sm:pt-4">
       <div className="mx-auto max-w-6xl">
         <div className="flex items-center justify-between gap-3 rounded-full border border-ink/10 bg-background/92 backdrop-blur-xl pl-3 pr-2 py-2 shadow-[0_1px_0_rgba(255,255,255,0.6)_inset,0_8px_30px_-12px_rgba(15,23,42,0.18)]">
-          <Link
-            to="/"
-            className="flex items-center gap-2.5 min-w-0 group"
-          >
+          <Link to="/" className="flex items-center gap-2.5 min-w-0 group">
             <span className="h-8 w-8 shrink-0 rounded-lg bg-ink text-background grid place-items-center font-display text-[13px] font-semibold tracking-tighter">
               RZ
             </span>

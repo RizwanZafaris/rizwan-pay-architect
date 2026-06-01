@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 /**
  * Editorial product diagrams for case studies, blog posts and the home page.
  * Pure SVG, SSR-safe, themed via CSS variables (ink, ink-soft, rule, accent-emerald, surface, surface-2).
