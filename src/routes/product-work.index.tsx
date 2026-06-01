@@ -3,6 +3,7 @@ import { zodValidator, fallback } from "@tanstack/zod-adapter";
 import { z } from "zod";
 import { useMemo } from "react";
 import { caseStudies, caseStudyThumb, type CaseStudy } from "@/data/caseStudies";
+import { compactMetricValue } from "@/lib/case-study-ui";
 import { absUrl } from "@/lib/seo";
 
 const searchSchema = z.object({
@@ -126,21 +127,21 @@ function ProductWorkIndex() {
   const hasFilters = Boolean(company || theme);
 
   return (
-    <div className="mx-auto max-w-6xl px-5 sm:px-6 py-16 sm:py-20">
+    <div className="mx-auto max-w-6xl overflow-x-clip px-4 py-12 sm:px-6 sm:py-20">
       <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--accent-emerald)] font-mono-tech">
         ◆ Product work
       </div>
-      <h1 className="font-instrument text-4xl md:text-6xl text-ink mt-3 max-w-3xl leading-[1.05]">
+      <h1 className="mt-3 max-w-4xl break-words font-instrument text-[clamp(2.15rem,9vw,4.75rem)] leading-[0.98] text-ink [overflow-wrap:anywhere]">
         Case studies in{" "}
         <span className="italic text-ink-soft">regulated payments infrastructure.</span>
       </h1>
-      <p className="mt-5 max-w-2xl text-lg text-ink-soft">
+      <p className="mt-5 max-w-2xl text-base leading-relaxed text-ink-soft sm:text-lg">
         Real systems shipped at $1B+ GTV scale. Filter by the companies this work is most relevant
         to, or by compliance theme.
       </p>
 
       {/* Filters */}
-      <div className="mt-10 grid gap-4 sm:grid-cols-2">
+      <div className="mt-8 grid gap-4 rounded-2xl border border-rule bg-surface p-4 sm:mt-10 sm:grid-cols-2 sm:p-5">
         <FilterSelect
           id="pw-company"
           label="Relevant company"
@@ -161,7 +162,7 @@ function ProductWorkIndex() {
         />
       </div>
 
-      <div className="mt-4 flex items-center justify-between text-xs font-mono-tech text-ink-soft">
+      <div className="mt-4 flex flex-wrap items-center justify-between gap-3 text-xs font-mono-tech text-ink-soft">
         <span aria-live="polite">
           Showing {filtered.length} of {caseStudies.length} case{" "}
           {caseStudies.length === 1 ? "study" : "studies"}
@@ -195,10 +196,10 @@ function ProductWorkIndex() {
             key={c.slug}
             to="/product-work/$slug"
             params={{ slug: c.slug }}
-            className="group min-w-0 rounded-2xl border border-ink/10 bg-surface overflow-hidden hover:border-ink/30 hover:-translate-y-0.5 transition-all duration-200 grid md:grid-cols-12 items-stretch"
+            className="case-study-card group grid min-w-0 items-stretch overflow-hidden rounded-2xl border border-ink/10 bg-surface transition-all duration-200 hover:border-ink/30 lg:grid-cols-12"
           >
             {/* Abstract symbolic thumb — Higgsfield-generated, brand-coherent. */}
-            <div className="md:col-span-4 relative min-w-0 aspect-[16/9] md:aspect-auto overflow-hidden border-b md:border-b-0 md:border-r border-rule">
+            <div className="relative min-w-0 aspect-[16/9] overflow-hidden border-b border-rule lg:col-span-4 lg:aspect-auto lg:border-b-0 lg:border-r">
               <img
                 src={caseStudyThumb(c.slug)}
                 alt={c.imageAlt ?? `${c.title} — abstract editorial illustration`}
@@ -209,37 +210,42 @@ function ProductWorkIndex() {
                 className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
               />
             </div>
-            <div className="md:col-span-8 min-w-0 p-6 sm:p-7 md:p-8 grid md:grid-cols-9 gap-5">
-              <div className="md:col-span-6 min-w-0">
-                <div className="flex items-center gap-3">
-                  <span className="text-[10px] uppercase tracking-[0.18em] text-[var(--accent-emerald)] font-mono-tech font-medium">
+            <div className="grid min-w-0 gap-5 p-5 sm:p-7 lg:col-span-8 lg:grid-cols-10 lg:p-8">
+              <div className="min-w-0 lg:col-span-7">
+                <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+                  <span className="text-[10px] font-medium uppercase tracking-[0.14em] text-[var(--accent-emerald)] font-mono-tech sm:tracking-[0.18em]">
                     {c.category}
                   </span>
                   <span className="font-mono-tech text-xs text-ink-soft">/0{i + 1}</span>
                 </div>
-                <h2 className="mt-2 font-instrument text-2xl text-ink group-hover:text-[var(--brand)] transition-colors leading-snug">
+                <h2 className="mt-2 break-words font-instrument text-[1.6rem] leading-[1.08] text-ink transition-colors group-hover:text-[var(--brand)] sm:text-2xl">
                   {c.title}
                 </h2>
-                <p className="text-sm text-ink-soft mt-2 leading-relaxed">{c.tagline}</p>
+                <p className="mt-3 max-w-2xl text-sm leading-relaxed text-ink-soft">
+                  {cardSummary(c.tagline)}
+                </p>
                 <div className="mt-4 flex flex-wrap gap-2">
                   {c.keywords.slice(0, 4).map((k) => (
                     <span
                       key={k}
-                      className="text-[10px] px-2 py-0.5 border border-rule rounded-full text-ink-soft bg-background font-mono-tech uppercase tracking-[0.1em]"
+                      className="rounded-full border border-rule bg-background px-2 py-0.5 text-[10px] uppercase tracking-[0.08em] text-ink-soft font-mono-tech"
                     >
                       {k}
                     </span>
                   ))}
                 </div>
               </div>
-              <div className="md:col-span-3 flex md:justify-end min-w-0">
-                <div className="flex flex-wrap gap-4 md:gap-6">
+              <div className="min-w-0 lg:col-span-3">
+                <div className="grid grid-cols-2 gap-3 lg:grid-cols-1">
                   {c.metrics.slice(0, 2).map((m) => (
-                    <div key={m.label}>
-                      <div className="font-mono-tech text-base text-ink whitespace-nowrap">
-                        {m.value}
+                    <div
+                      key={m.label}
+                      className="case-metric-card min-w-0 rounded-xl border border-rule bg-background p-3"
+                    >
+                      <div className="break-words font-mono-tech text-sm leading-snug text-ink sm:text-base">
+                        {compactMetricValue(m)}
                       </div>
-                      <div className="text-[10px] uppercase tracking-[0.1em] text-ink-soft font-mono-tech">
+                      <div className="mt-1 text-[9px] uppercase tracking-[0.08em] text-ink-soft font-mono-tech">
                         {m.label}
                       </div>
                     </div>
@@ -255,6 +261,11 @@ function ProductWorkIndex() {
 }
 
 type Option = string | { value: string; label: string };
+
+function cardSummary(text: string) {
+  if (text.length <= 210) return text;
+  return `${text.slice(0, 207).replace(/\s+\S*$/, "")}...`;
+}
 
 function FilterSelect({
   id,

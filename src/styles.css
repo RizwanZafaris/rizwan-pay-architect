@@ -531,7 +531,10 @@
   .home-topic-card,
   .home-search-panel,
   .blog-search-panel,
-  .blog-result-card {
+  .blog-result-card,
+  .case-study-card,
+  .case-soft-card,
+  .case-metric-card {
     transition:
       transform 180ms ease,
       border-color 180ms ease,
@@ -571,10 +574,20 @@
 
   .home-card:hover,
   .home-topic-card:hover,
-  .blog-result-card:hover {
+  .blog-result-card:hover,
+  .case-study-card:hover,
+  .case-soft-card:hover {
     transform: translateY(-2px);
     border-color: color-mix(in oklab, var(--ink) 22%, var(--rule));
     box-shadow: 0 14px 34px color-mix(in oklab, var(--ink) 8%, transparent);
+  }
+
+  .case-metric-card {
+    box-shadow: 0 1px 0 color-mix(in oklab, var(--paper) 82%, transparent) inset;
+  }
+
+  .case-metric-card:hover {
+    border-color: color-mix(in oklab, var(--accent-emerald) 32%, var(--rule));
   }
 
   .home-search-panel:focus-within,
@@ -689,7 +702,10 @@
     .home-topic-card,
     .home-search-panel,
     .blog-search-panel,
-    .blog-result-card {
+    .blog-result-card,
+    .case-study-card,
+    .case-soft-card,
+    .case-metric-card {
       opacity: 0;
       animation: rz-soft-reveal 620ms cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
       animation-delay: var(--motion-delay, 0ms);
@@ -760,6 +776,9 @@
     .home-search-panel,
     .blog-search-panel,
     .blog-result-card,
+    .case-study-card,
+    .case-soft-card,
+    .case-metric-card,
     .resume-soft-reveal,
     .recruiter-soft-reveal,
     .contact-soft-reveal,

@@ -7,12 +7,12 @@ import {
   getCaseStudy,
   type CaseStudy,
 } from "@/data/caseStudies";
+import { compactMetricValue } from "@/lib/case-study-ui";
 import { absUrl, SITE_URL, titleFor, trimToMax } from "@/lib/seo";
 import { DiagramFigure, caseStudyDiagrams } from "@/components/diagrams/Diagrams";
 import { ctaClick, resumeDownload, trackEvent } from "@/lib/analytics";
 import { AnimatedMetric } from "@/components/motion/AnimatedMetric";
 import { Reveal } from "@/components/motion/Reveal";
-import { PullQuote } from "@/components/editorial/PullQuote";
 
 export const Route = createFileRoute("/product-work/$slug")({
   loader: ({ params }) => {
@@ -100,11 +100,13 @@ function Section({
   children: React.ReactNode;
 }) {
   return (
-    <section id={id} className="mt-14 scroll-mt-24">
+    <section id={id} className="mt-12 scroll-mt-24 sm:mt-14">
       <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--accent-emerald)] font-mono-tech">
         ◆ {label}
       </div>
-      <h2 className="font-instrument text-3xl text-ink mt-2 leading-tight">{title}</h2>
+      <h2 className="mt-2 break-words font-instrument text-2xl leading-tight text-ink sm:text-3xl">
+        {title}
+      </h2>
       <div className="mt-5 prose-editorial">{children}</div>
     </section>
   );
@@ -114,6 +116,9 @@ function CaseStudyPage() {
   const { study: s } = Route.useLoaderData() as { study: CaseStudy };
   const others = caseStudies.filter((c) => c.slug !== s.slug).slice(0, 3);
   const diagram = caseStudyDiagrams[s.slug];
+  const heroMetrics = s.metrics.slice(0, 4);
+  const secondaryMetrics = s.metrics.slice(4);
+  const operatorLens = s.pullQuote ?? s.lessons[0] ?? s.executiveSummary;
 
   // Per-case-study dim — fires after spa_pageview so GA4 can attribute the
   // specific study viewed.
@@ -125,8 +130,8 @@ function CaseStudyPage() {
   }, [s.slug, s.category]);
 
   return (
-    <article>
-      <header className="relative border-b border-rule overflow-hidden">
+    <article className="overflow-x-clip">
+      <header className="relative min-w-0 overflow-hidden border-b border-rule">
         {/* Abstract symbolic hero image — Higgsfield-generated, brand-coherent.
             Sits BEHIND the text with a strong dark gradient overlay so the
             headline stays readable. Eagerly loaded (above the fold). */}
@@ -154,30 +159,34 @@ function CaseStudyPage() {
             }}
           />
         </div>
-        <div className="relative mx-auto max-w-4xl px-6 pt-16 pb-12">
+        <div className="relative mx-auto max-w-5xl px-5 pb-10 pt-12 sm:px-6 sm:pb-12 sm:pt-16">
           <Link
             to="/product-work"
             className="text-[10px] uppercase tracking-[0.18em] text-ink-soft hover:text-ink font-mono-tech"
           >
             ← Product Work
           </Link>
-          <div className="mt-6 text-[10px] uppercase tracking-[0.18em] text-[var(--accent-emerald)] font-mono-tech font-medium">
+          <div className="mt-6 text-[10px] font-medium uppercase tracking-[0.16em] text-[var(--accent-emerald)] font-mono-tech sm:tracking-[0.18em]">
             {s.category}
           </div>
-          <h1 className="font-instrument text-4xl md:text-6xl text-ink mt-3 leading-[1.05]">
+          <h1 className="mt-3 max-w-4xl break-words font-instrument text-[clamp(2.15rem,8.6vw,4.7rem)] leading-[0.98] text-ink [overflow-wrap:anywhere]">
             {s.title}
           </h1>
-          <p className="mt-5 text-lg text-ink-soft max-w-2xl">{s.tagline}</p>
+          <p className="mt-5 max-w-3xl break-words text-base leading-relaxed text-ink-soft sm:text-lg">
+            {s.tagline}
+          </p>
         </div>
         <div className="bg-surface-2 border-t border-rule">
-          <div className="mx-auto max-w-4xl px-6 py-6 grid grid-cols-2 md:grid-cols-4 gap-6">
-            {s.metrics.map((m, i) => (
+          <div className="mx-auto grid max-w-5xl grid-cols-1 gap-3 px-5 py-5 sm:grid-cols-2 sm:px-6 md:grid-cols-4 md:gap-4">
+            {heroMetrics.map((m, i) => (
               <Reveal key={m.label} delay={i * 80}>
-                <div className="font-mono-tech text-xl text-ink">
-                  <AnimatedMetric value={m.value} />
-                </div>
-                <div className="text-[10px] uppercase tracking-[0.14em] text-ink-soft mt-1 font-mono-tech">
-                  {m.label}
+                <div className="case-metric-card min-w-0 rounded-xl border border-rule bg-background/70 p-4">
+                  <div className="break-words font-mono-tech text-base leading-snug text-ink sm:text-lg md:text-xl">
+                    <AnimatedMetric value={compactMetricValue(m)} />
+                  </div>
+                  <div className="mt-1 text-[9px] uppercase tracking-[0.08em] text-ink-soft font-mono-tech">
+                    {m.label}
+                  </div>
                 </div>
               </Reveal>
             ))}
@@ -185,33 +194,65 @@ function CaseStudyPage() {
         </div>
       </header>
 
-      <div className="mx-auto max-w-4xl px-6 py-12">
+      <div className="mx-auto max-w-5xl px-5 py-10 sm:px-6 sm:py-12">
         {/* Executive summary */}
         <Section id="summary" label="Executive summary" title="What this is, in one paragraph.">
           <p>{s.executiveSummary}</p>
         </Section>
 
-        {/* Magazine-grade visual breath — uses the case study's own tagline
-            at hero scale, so every CSU has at least one display-type moment. */}
+        {/* Operator lens: concise proof point without repeating the full hero copy. */}
         <Reveal>
-          <PullQuote>{s.tagline}</PullQuote>
+          <aside className="case-soft-card mt-10 rounded-2xl border border-rule bg-surface p-5 sm:mt-12 sm:p-7">
+            <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--accent-emerald)] font-mono-tech">
+              ◆ Operator lens
+            </div>
+            <p className="mt-4 max-w-3xl break-words font-instrument text-2xl leading-[1.08] text-ink sm:text-3xl">
+              {operatorLens}
+            </p>
+          </aside>
         </Reveal>
 
         {s.beforeAfter && s.beforeAfter.length > 0 && (
-          <section className="mt-12 rounded-2xl border border-rule bg-surface p-6 md:p-8">
+          <section className="case-soft-card mt-10 rounded-2xl border border-rule bg-surface p-5 sm:mt-12 sm:p-7 md:p-8">
             <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--accent-emerald)] font-mono-tech">
               ◆ Before / after
             </div>
-            <div className="mt-4 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {s.beforeAfter.map((b) => (
-                <div key={b.metric} className="rounded-xl border border-rule bg-background p-5">
-                  <div className="text-[10px] uppercase tracking-[0.14em] text-ink-soft font-mono-tech">
+                <div
+                  key={b.metric}
+                  className="min-w-0 rounded-xl border border-rule bg-background p-4 sm:p-5"
+                >
+                  <div className="text-[10px] uppercase tracking-[0.1em] text-ink-soft font-mono-tech">
                     {b.metric}
                   </div>
-                  <div className="mt-3 flex items-baseline gap-2 font-mono-tech text-sm">
+                  <div className="mt-3 flex flex-wrap items-baseline gap-2 font-mono-tech text-sm">
                     <span className="text-ink-soft line-through">{b.before}</span>
-                    <span className="text-ink-soft">→</span>
+                    <span className="text-ink-soft">-&gt;</span>
                     <span className="text-ink font-medium">{b.after}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {secondaryMetrics.length > 0 && (
+          <section className="case-soft-card mt-10 rounded-2xl border border-rule bg-surface p-5 sm:p-7 md:p-8">
+            <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--accent-emerald)] font-mono-tech">
+              ◆ Additional proof
+            </div>
+            <div className="mt-4 grid gap-3 sm:grid-cols-2">
+              {secondaryMetrics.map((m) => (
+                <div
+                  key={m.label}
+                  className="case-metric-card min-w-0 rounded-xl border border-rule bg-background p-4"
+                >
+                  <div className="break-words font-mono-tech text-base leading-snug text-ink">
+                    {compactMetricValue(m)}
+                  </div>
+                  <div className="mt-1 text-[9px] uppercase tracking-[0.08em] text-ink-soft font-mono-tech">
+                    {m.label}
                   </div>
                 </div>
               ))}
@@ -295,7 +336,7 @@ function CaseStudyPage() {
           <p>{s.whyItMatters}</p>
         </Section>
 
-        <div className="mt-14 pt-8 border-t border-rule">
+        <div className="mt-14 border-t border-rule pt-8">
           <div className="text-[10px] uppercase tracking-[0.18em] text-ink-soft mb-3 font-mono-tech">
             Keywords
           </div>
@@ -303,7 +344,7 @@ function CaseStudyPage() {
             {s.keywords.map((k) => (
               <span
                 key={k}
-                className="text-xs px-2.5 py-1 border border-rule rounded-full text-ink-soft bg-surface font-sans"
+                className="rounded-full border border-rule bg-surface px-2.5 py-1 text-xs text-ink-soft"
               >
                 {k}
               </span>
@@ -311,8 +352,8 @@ function CaseStudyPage() {
           </div>
         </div>
         {/* CTA strip */}
-        <div className="mt-16 rounded-3xl border border-ink/10 bg-surface p-8 md:p-10">
-          <h2 className="font-instrument text-2xl text-ink leading-tight">
+        <div className="case-soft-card mt-14 rounded-2xl border border-ink/10 bg-surface p-5 sm:mt-16 sm:p-8 md:p-10">
+          <h2 className="break-words font-instrument text-2xl leading-tight text-ink">
             Discussing payment infrastructure / product leadership roles?
           </h2>
           <p className="mt-3 text-ink-soft max-w-2xl">
@@ -331,7 +372,7 @@ function CaseStudyPage() {
                 ctaClick("download_resume", "case_study_footer", "/Rizwan_Zafar_Resume.pdf");
                 resumeDownload("case_study");
               }}
-              className="inline-flex rounded-md bg-ink text-background px-5 py-2.5 text-sm font-medium hover:bg-brand transition-colors"
+              className="inline-flex rounded-md bg-ink px-5 py-2.5 text-sm font-medium text-background transition-colors hover:bg-brand"
             >
               Download résumé (PDF)
             </a>
@@ -351,15 +392,15 @@ function CaseStudyPage() {
       </div>
 
       <section className="border-t border-rule bg-surface-2">
-        <div className="mx-auto max-w-6xl px-6 py-16">
+        <div className="mx-auto max-w-6xl px-5 py-14 sm:px-6 sm:py-16">
           <h2 className="font-instrument text-2xl text-ink mb-8">More case studies</h2>
-          <div className="grid md:grid-cols-3 gap-5">
+          <div className="grid gap-5 md:grid-cols-3">
             {others.map((c) => (
               <Link
                 key={c.slug}
                 to="/product-work/$slug"
                 params={{ slug: c.slug }}
-                className="group block bg-surface border border-rule rounded-2xl overflow-hidden hover:border-ink/30 transition-colors"
+                className="case-study-card group block min-w-0 overflow-hidden rounded-2xl border border-rule bg-surface transition-colors hover:border-ink/30"
               >
                 <div className="relative aspect-[16/9] overflow-hidden border-b border-rule">
                   <img
@@ -372,14 +413,16 @@ function CaseStudyPage() {
                     className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                   />
                 </div>
-                <div className="p-5">
-                  <div className="text-[10px] uppercase tracking-[0.18em] text-[var(--accent-emerald)] font-mono-tech">
+                <div className="min-w-0 p-5">
+                  <div className="text-[10px] uppercase tracking-[0.14em] text-[var(--accent-emerald)] font-mono-tech">
                     {c.category}
                   </div>
-                  <div className="font-instrument text-lg text-ink mt-2 leading-snug group-hover:text-[var(--brand)] transition-colors">
+                  <div className="mt-2 break-words font-instrument text-lg leading-snug text-ink transition-colors group-hover:text-[var(--brand)]">
                     {c.title}
                   </div>
-                  <p className="text-sm text-ink-soft mt-2">{c.tagline}</p>
+                  <p className="mt-2 text-sm leading-relaxed text-ink-soft">
+                    {shortText(c.tagline, 150)}
+                  </p>
                 </div>
               </Link>
             ))}
@@ -388,4 +431,9 @@ function CaseStudyPage() {
       </section>
     </article>
   );
+}
+
+function shortText(text: string, max = 180) {
+  if (text.length <= max) return text;
+  return `${text.slice(0, max - 3).replace(/\s+\S*$/, "")}...`;
 }
