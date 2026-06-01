@@ -8,6 +8,7 @@ type ViteEnv = {
   VITE_SITE_URL?: string;
   VITE_OG_IMAGE_URL?: string;
   VITE_GTM_ID?: string;
+  VITE_GA_MEASUREMENT_ID?: string;
   VITE_BING_SITE_VERIFICATION?: string;
   VITE_MICROSOFT_CLARITY_ID?: string;
   VITE_PLAUSIBLE_DOMAIN?: string;
@@ -58,6 +59,11 @@ export const OG_IMAGE_URL = env.VITE_OG_IMAGE_URL || DEFAULT_OG_IMAGE;
 // Google Tag Manager. Set VITE_GTM_ID in .env.local (or empty) to opt out for dev.
 // The container live in production is GTM-TM5BP98G.
 export const GTM_ID = env.VITE_GTM_ID ?? "GTM-TM5BP98G";
+
+// Direct GA4 fallback. The GTM container can still own richer marketing tags,
+// but a first-party Google tag keeps page views and key events live if GTM is
+// paused, unpublished, or blocked by container quality issues.
+export const GA_MEASUREMENT_ID = env.VITE_GA_MEASUREMENT_ID ?? "G-F1NK5FJYJY";
 
 // Optional analytics / webmaster IDs.
 // Keep GA4, Google Ads, LinkedIn Insight, Meta Pixel and other marketing tags

@@ -17,19 +17,28 @@ import { pageAnalyticsContext } from "@/lib/analytics";
 declare global {
   interface Window {
     dataLayer?: Array<Record<string, unknown>>;
+    gtag?: (...args: unknown[]) => void;
   }
 }
 function GtmRouteTracker() {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   useEffect(() => {
-    if (typeof window === "undefined" || !window.dataLayer) return;
-    window.dataLayer.push({
-      event: "spa_pageview",
+    if (typeof window === "undefined") return;
+    const payload = {
       page_path: pathname,
       page_location: window.location.href,
       page_title: document.title,
       ...pageAnalyticsContext(pathname),
-    });
+    };
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ event: "spa_pageview", ...payload });
+    if (GA_MEASUREMENT_ID && window.gtag) {
+      window.gtag("config", GA_MEASUREMENT_ID, {
+        page_path: payload.page_path,
+        page_location: payload.page_location,
+        page_title: payload.page_title,
+      });
+    }
   }, [pathname]);
   return null;
 }
@@ -43,6 +52,7 @@ import {
   OG_IMAGE_URL,
   SITE_KEYWORDS,
   GTM_ID,
+  GA_MEASUREMENT_ID,
   BING_SITE_VERIFICATION,
   MICROSOFT_CLARITY_ID,
   PLAUSIBLE_DOMAIN,
@@ -55,15 +65,20 @@ const gtmScript = GTM_ID
   ? `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','${GTM_ID}');`
   : "";
 
+const gaBootstrapScript = GA_MEASUREMENT_ID
+  ? `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date());gtag("config","${GA_MEASUREMENT_ID}",{send_page_view:true});`
+  : "";
+
 const clarityScript = MICROSOFT_CLARITY_ID
   ? `(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script",${JSON.stringify(MICROSOFT_CLARITY_ID)});`
   : "";
 
-const analyticsBridgeScript = GTM_ID
-  ? `!function(){if(window.__rzifiAnalyticsBridge)return;window.__rzifiAnalyticsBridge=1;
+const analyticsBridgeScript =
+  GTM_ID || GA_MEASUREMENT_ID
+    ? `!function(){if(window.__rzifiAnalyticsBridge)return;window.__rzifiAnalyticsBridge=1;
 function ctx(){var p=location.pathname,t="supporting_page",s="discovery",a="recruiter_hiring_manager";if(p==="/"){t="home"}else if(p.indexOf("/resume/")===0){t="resume";s="validation"}else if(p.indexOf("/for/")===0){t="recruiter";s="validation"}else if(p.indexOf("/contact/")===0){t="contact";s="conversion"}else if(p.indexOf("/product-work/")===0&&p!=="/product-work/"){t="case_study";s="proof";a="product_leadership"}else if(p.indexOf("/product-work/")===0){t="case_studies";s="proof";a="product_leadership"}else if(p.indexOf("/blog/")===0&&p!=="/blog/"){t="blog_post";s="authority";a="payments_product_leaders"}else if(p.indexOf("/blog/")===0||p.indexOf("/topics/")===0){t="authority_hub";s="authority";a="payments_product_leaders"}return{page_path:p,page_location:location.href,page_title:document.title,page_type:t,funnel_stage:s,audience:a}}
 function scrub(o){var c={},r=/[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,}/gi;for(var k in o){if(!Object.prototype.hasOwnProperty.call(o,k))continue;var v=o[k];if(k.indexOf("email")>-1)continue;if(typeof v==="string"){if(v.indexOf("mailto:")===0)v="mailto";else v=v.replace(r,"[redacted]")}c[k]=v}return c}
-function p(e,d){window.dataLayer=window.dataLayer||[];window.dataLayer.push(Object.assign({event:e},ctx(),scrub(d||{})))}
+function p(e,d){var payload=Object.assign({},ctx(),scrub(d||{}));window.dataLayer=window.dataLayer||[];window.dataLayer.push(Object.assign({event:e},payload));if(window.gtag)window.gtag("event",e,payload)}
 function k(s){return s.replace(/^analytics/,"").replace(/[A-Z]/g,function(c){return"_"+c.toLowerCase()}).replace(/^_/,"")}
 function d(el){var o={};for(var n in el.dataset)if(n.indexOf("analytics")===0&&n!=="analyticsEvent")o[k(n)]=el.dataset[n];return o}
 function source(){var x=location.pathname;if(x==="/")return"hero";if(x.indexOf("/resume/")===0)return"resume_page";if(x.indexOf("/for/")===0)return"for";if(x.indexOf("/about/")===0)return"about";if(x.indexOf("/product-work/")===0)return"case_study";return"header"}
@@ -72,7 +87,7 @@ document.addEventListener("click",function(e){var el=e.target.closest&&e.target.
 document.addEventListener("focusin",function(e){var el=e.target.closest&&e.target.closest('form[data-analytics-form="contact"]');if(!el||el.__rzifiContactStarted)return;el.__rzifiContactStarted=1;p("contact_form_start",{})});
 document.addEventListener("submit",function(e){var f=e.target;if(!f||!f.matches||!f.matches("form"))return;var ev=f.dataset.analyticsEvent;if(!ev&&f.getAttribute("role")==="search")ev="site_search";if(ev==="site_search"){var fd=new FormData(f);p("site_search",{search_term:String(fd.get("q")||"").trim().slice(0,120),search_location:f.dataset.analyticsSearchLocation||"blog",search_filter:f.dataset.analyticsSearchFilter||""})}});
 document.addEventListener("DOMContentLoaded",function(){var path=location.pathname,slug;if(path.indexOf("/blog/")===0&&path!=="/blog/"){slug=path.split("/").filter(Boolean).pop();p("blog_view",{blog_slug:slug||"",blog_category:(document.querySelector('meta[property="article:section"]')||{}).content||"",blog_reading_time:""})}if(path.indexOf("/product-work/")===0&&path!=="/product-work/"){slug=path.split("/").filter(Boolean).pop();p("case_study_view",{case_study_slug:slug||"",case_study_category:""})}})}();`
-  : "";
+    : "";
 
 function NotFoundComponent() {
   useEffect(() => {
@@ -337,6 +352,10 @@ function RootShell({ children }: { children: React.ReactNode }) {
       <head>
         {/* GTM, kept as the first <script> in <head> per Google's spec */}
         {gtmScript && <script dangerouslySetInnerHTML={{ __html: gtmScript }} />}
+        {GA_MEASUREMENT_ID && (
+          <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`} />
+        )}
+        {gaBootstrapScript && <script dangerouslySetInnerHTML={{ __html: gaBootstrapScript }} />}
         {analyticsBridgeScript && (
           <script dangerouslySetInnerHTML={{ __html: analyticsBridgeScript }} />
         )}
@@ -368,7 +387,7 @@ function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   return (
     <QueryClientProvider client={queryClient}>
-      {GTM_ID && <GtmRouteTracker />}
+      {(GTM_ID || GA_MEASUREMENT_ID) && <GtmRouteTracker />}
       <div className="min-h-screen flex flex-col">
         <SiteHeader />
         <main className="flex-1">

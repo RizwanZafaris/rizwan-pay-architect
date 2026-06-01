@@ -20,6 +20,7 @@ type DataLayerEntry = { event: string } & EventParams;
 declare global {
   interface Window {
     dataLayer?: DataLayerEntry[];
+    gtag?: (...args: unknown[]) => void;
   }
 }
 
@@ -96,16 +97,20 @@ function sanitizeAnalyticsParams(params: EventParams): EventParams {
 /** Safely push an event to the GTM dataLayer. No-op on the server / when GTM is absent. */
 export function trackEvent(eventName: SiteEvent["event"], params: EventParams = {}): void {
   if (typeof window === "undefined") return;
-  // GTM's own snippet initialises dataLayer, but guard anyway.
-  window.dataLayer = window.dataLayer || [];
-  window.dataLayer.push({
-    event: eventName,
+  const payload = {
     page_path: window.location.pathname,
     page_location: window.location.href,
     page_title: document.title,
     ...pageAnalyticsContext(window.location.pathname),
     ...sanitizeAnalyticsParams(params),
+  };
+  // GTM's own snippet initialises dataLayer, but guard anyway.
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({
+    event: eventName,
+    ...payload,
   });
+  window.gtag?.("event", eventName, payload);
 }
 
 // ─── Event catalogue (typed) ──────────────────────────────────────────────
