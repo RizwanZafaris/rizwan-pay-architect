@@ -117,9 +117,11 @@ function HomePage() {
             </div>
 
             <h1 className="font-instrument tracking-tight leading-[1.05] text-[28px] sm:text-[36px] md:text-[42px] lg:text-[50px] text-ink">
-              Product &amp; Program Executive Scaling{" "}
-              <span className="italic text-[var(--brand)]">Fintech Infrastructure</span> in Complex
-              Markets
+              <span className="block">Product &amp; Program Executive</span>
+              <span className="block">
+                Scaling <span className="italic text-[var(--brand)]">Fintech Infrastructure</span>
+              </span>
+              <span className="block">in Complex Markets</span>
             </h1>
 
             <p className="mt-3.5 md:mt-4 max-w-xl text-[15px] md:text-base text-ink-soft leading-relaxed">
@@ -156,17 +158,17 @@ function HomePage() {
             </div>
 
             {/* Certification trust line — small mono-caps. */}
-            <p className="mt-3 text-[10px] uppercase tracking-[0.18em] text-ink-soft font-mono-tech">
+            <p className="mt-3 flex flex-wrap items-center gap-x-1.5 gap-y-1 text-[10px] uppercase tracking-[0.16em] text-ink-soft font-mono-tech leading-relaxed">
               <span className="opacity-70">Certified:</span> <span className="text-ink">PMP</span>
-              <span className="opacity-40 mx-1">·</span>
+              <span className="opacity-40">·</span>
               <span className="text-ink">PMI-ACP</span>
-              <span className="opacity-40 mx-1">·</span>
+              <span className="opacity-40">·</span>
               <span className="text-ink">CSPO</span>
-              <span className="opacity-40 mx-1">·</span>
+              <span className="opacity-40">·</span>
               <span className="text-ink">CSM</span>
-              <span className="opacity-40 mx-1">·</span>
+              <span className="opacity-40">·</span>
               <span className="text-ink">COBIT 5</span>
-              <span className="opacity-40 mx-1">·</span>
+              <span className="opacity-40">·</span>
               <span className="text-ink">ITIL</span>
             </p>
 

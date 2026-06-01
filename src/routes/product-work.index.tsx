@@ -195,10 +195,10 @@ function ProductWorkIndex() {
             key={c.slug}
             to="/product-work/$slug"
             params={{ slug: c.slug }}
-            className="group rounded-2xl border border-ink/10 bg-surface overflow-hidden hover:border-ink/30 hover:-translate-y-0.5 transition-all duration-200 grid md:grid-cols-12 items-stretch"
+            className="group min-w-0 rounded-2xl border border-ink/10 bg-surface overflow-hidden hover:border-ink/30 hover:-translate-y-0.5 transition-all duration-200 grid md:grid-cols-12 items-stretch"
           >
             {/* Abstract symbolic thumb — Higgsfield-generated, brand-coherent. */}
-            <div className="md:col-span-4 relative aspect-[16/9] md:aspect-auto overflow-hidden border-b md:border-b-0 md:border-r border-rule">
+            <div className="md:col-span-4 relative min-w-0 aspect-[16/9] md:aspect-auto overflow-hidden border-b md:border-b-0 md:border-r border-rule">
               <img
                 src={caseStudyThumb(c.slug)}
                 alt={c.imageAlt ?? `${c.title} — abstract editorial illustration`}
@@ -209,8 +209,8 @@ function ProductWorkIndex() {
                 className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
               />
             </div>
-            <div className="md:col-span-8 p-7 md:p-8 grid md:grid-cols-9 gap-5">
-              <div className="md:col-span-6">
+            <div className="md:col-span-8 min-w-0 p-6 sm:p-7 md:p-8 grid md:grid-cols-9 gap-5">
+              <div className="md:col-span-6 min-w-0">
                 <div className="flex items-center gap-3">
                   <span className="text-[10px] uppercase tracking-[0.18em] text-[var(--accent-emerald)] font-mono-tech font-medium">
                     {c.category}
@@ -232,8 +232,8 @@ function ProductWorkIndex() {
                   ))}
                 </div>
               </div>
-              <div className="md:col-span-3 flex md:justify-end">
-                <div className="flex gap-5 md:gap-6">
+              <div className="md:col-span-3 flex md:justify-end min-w-0">
+                <div className="flex flex-wrap gap-4 md:gap-6">
                   {c.metrics.slice(0, 2).map((m) => (
                     <div key={m.label}>
                       <div className="font-mono-tech text-base text-ink whitespace-nowrap">

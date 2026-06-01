@@ -99,10 +99,10 @@ function ProductsPage() {
             <p className="mt-3 text-sm text-ink-soft/90 leading-relaxed">{p.description}</p>
 
             {p.metrics && p.metrics.length > 0 && (
-              <dl className="mt-5 grid grid-cols-3 gap-3">
+              <dl className="mt-5 grid grid-cols-[repeat(3,minmax(0,1fr))] gap-2 sm:gap-3">
                 {p.metrics.slice(0, 3).map((m) => (
-                  <div key={m.label} className="border-l border-rule pl-3">
-                    <dt className="text-[10px] uppercase tracking-[0.16em] text-ink-soft font-mono-tech">
+                  <div key={m.label} className="min-w-0 border-l border-rule pl-2.5 sm:pl-3">
+                    <dt className="text-[9px] sm:text-[10px] uppercase tracking-[0.08em] sm:tracking-[0.16em] text-ink-soft font-mono-tech leading-tight">
                       {m.label}
                     </dt>
                     <dd className="font-instrument text-lg text-ink mt-0.5">{m.value}</dd>

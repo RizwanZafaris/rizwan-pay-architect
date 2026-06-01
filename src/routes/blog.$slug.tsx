@@ -386,9 +386,9 @@ function BlogPostPage() {
   }, [p.slug, p.category, p.readingTime]);
 
   return (
-    <article className="blog-article-page">
+    <article className="blog-article-page overflow-x-clip">
       <header className="border-b border-rule bg-surface/45">
-        <div className="mx-auto max-w-6xl px-6 pt-14 pb-12">
+        <div className="mx-auto max-w-6xl px-5 sm:px-6 pt-14 pb-12">
           <Link
             to="/blog"
             className="text-[10px] uppercase tracking-[0.18em] text-ink-soft hover:text-ink font-mono-tech"
@@ -396,7 +396,7 @@ function BlogPostPage() {
             ← Essays
           </Link>
           <div className="mt-8 grid gap-8 lg:grid-cols-12 lg:items-end">
-            <div className="lg:col-span-8">
+            <div className="lg:col-span-8 min-w-0">
               <div className="flex flex-wrap items-center gap-2">
                 {hub ? (
                   <Link
@@ -415,13 +415,13 @@ function BlogPostPage() {
                   {p.category}
                 </span>
               </div>
-              <h1 className="font-instrument text-4xl md:text-6xl text-ink mt-5 leading-[1.03] max-w-4xl">
+              <h1 className="font-instrument text-[2rem] sm:text-4xl md:text-6xl text-ink mt-5 leading-[1.04] max-w-4xl text-wrap">
                 {p.title}
               </h1>
               <p className="mt-5 max-w-3xl text-lg leading-relaxed text-ink-soft">
                 {p.thesis ?? p.description}
               </p>
-              <div className="mt-6 text-sm text-ink-soft flex flex-wrap gap-x-4 gap-y-1 font-mono-tech">
+              <div className="mt-6 text-xs sm:text-sm text-ink-soft flex flex-wrap gap-x-3 sm:gap-x-4 gap-y-1 font-mono-tech">
                 <span>{formatArticleDate(p.date)}</span>
                 <span>·</span>
                 <span>{p.readingTime}</span>
@@ -429,7 +429,7 @@ function BlogPostPage() {
                 <span>By {profile.name}</span>
               </div>
             </div>
-            <div className="lg:col-span-4 rounded-lg border border-rule bg-background p-5">
+            <div className="lg:col-span-4 min-w-0 rounded-lg border border-rule bg-background p-5">
               <div className="text-[10px] uppercase tracking-[0.18em] text-ink-soft mb-3 font-mono-tech">
                 Why this matters
               </div>
@@ -439,7 +439,7 @@ function BlogPostPage() {
         </div>
       </header>
 
-      <div className="mx-auto max-w-6xl px-6 py-12 grid lg:grid-cols-12 gap-10">
+      <div className="mx-auto max-w-6xl px-5 sm:px-6 py-12 grid lg:grid-cols-12 gap-10">
         {/* TOC */}
         <aside className="lg:col-span-3 order-1">
           {toc.length > 0 && (
@@ -461,7 +461,7 @@ function BlogPostPage() {
         </aside>
 
         {/* Body */}
-        <div className="lg:col-span-9 order-2">
+        <div className="lg:col-span-9 order-2 min-w-0">
           <div className="prose-editorial max-w-3xl">
             {renderContent(content)}
             {diagram ? (

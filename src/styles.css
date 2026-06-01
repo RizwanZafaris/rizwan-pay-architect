@@ -134,6 +134,7 @@
   html {
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
+    overflow-x: clip;
   }
   body {
     background-color: var(--color-background);
@@ -141,6 +142,7 @@
     font-family: var(--font-sans);
     font-feature-settings: "ss01", "cv11";
     letter-spacing: 0;
+    overflow-x: clip;
   }
   h1,
   h2,
@@ -149,6 +151,7 @@
     font-family: var(--font-serif);
     letter-spacing: 0;
     font-weight: 500;
+    overflow-wrap: anywhere;
   }
   .font-display {
     font-family: var(--font-serif);
@@ -159,6 +162,19 @@
     font-size: 1.125rem;
     line-height: 1.75;
     color: var(--ink);
+    max-width: 100%;
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+  .prose-editorial > div,
+  .prose-editorial figure,
+  .prose-editorial img,
+  .prose-editorial svg {
+    max-width: 100%;
+  }
+  .prose-editorial img,
+  .prose-editorial svg {
+    height: auto;
   }
   .prose-editorial p {
     margin-bottom: 1.25em;
@@ -204,7 +220,10 @@
     color: var(--ink);
   }
   .prose-editorial table {
+    display: block;
     width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
     border-collapse: collapse;
     margin: 2em 0;
     font-family: var(--font-sans);
@@ -229,6 +248,23 @@
     padding: 0.08em 0.32em;
     font-family: var(--font-mono);
     font-size: 0.82em;
+    overflow-wrap: anywhere;
+    white-space: break-spaces;
+  }
+  .prose-editorial pre {
+    max-width: 100%;
+    overflow-x: auto;
+    border: 1px solid var(--rule);
+    border-radius: 0.5rem;
+    background: var(--surface);
+    padding: 1rem;
+  }
+  .prose-editorial pre code {
+    border: 0;
+    background: transparent;
+    padding: 0;
+    white-space: pre;
+    overflow-wrap: normal;
   }
 
   /* Magazine drop-cap on the first paragraph of long-form prose.

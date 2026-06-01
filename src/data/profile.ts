@@ -4,6 +4,16 @@ export const profile = {
   location: "Dubai, UAE",
   email: "rizwanzaffar.pk@gmail.com",
   phone: "+971-58-9683970",
+  whatsappUrl:
+    "https://wa.me/971589683970?text=Hi%20Rizwan%2C%20I%20found%20your%20portfolio%20and%20would%20like%20to%20discuss%20a%20senior%20product%20or%20program%20opportunity.",
+  // Add the exact Cal.com event URL here when ready, for example:
+  // "https://cal.com/your-handle/intro"
+  calendarUrl: "",
+  newsletter: {
+    name: "Payments Infrastructure Notes",
+    href: "mailto:rizwanzaffar.pk@gmail.com?subject=Subscribe%20me%20to%20Payments%20Infrastructure%20Notes&body=Hi%20Rizwan%2C%0A%0APlease%20add%20me%20to%20your%20payments%20infrastructure%20essay%20updates.%0A%0AName%3A%0ACompany%3A",
+    rssHref: "/feed.xml",
+  },
   linkedin: "https://www.linkedin.com/in/rizwanzaffar",
   twitter: "https://twitter.com/rizwan_zafar",
   personalSite: "https://rzifi.com",

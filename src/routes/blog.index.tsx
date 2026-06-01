@@ -244,22 +244,22 @@ function BlogIndex() {
           <div className="text-[10px] uppercase tracking-[0.18em] text-ink-soft font-mono-tech">
             Authority signals
           </div>
-          <div className="mt-4 grid grid-cols-3 gap-3">
-            <div>
+          <div className="mt-4 grid grid-cols-[repeat(3,minmax(0,1fr))] gap-2 sm:gap-3">
+            <div className="min-w-0">
               <div className="font-mono-tech text-xl text-ink">{posts.length}</div>
-              <div className="mt-1 text-[10px] uppercase tracking-[0.12em] text-ink-soft font-mono-tech">
+              <div className="mt-1 text-[9px] sm:text-[10px] uppercase tracking-[0.08em] sm:tracking-[0.12em] text-ink-soft font-mono-tech leading-tight">
                 Essays
               </div>
             </div>
-            <div>
+            <div className="min-w-0">
               <div className="font-mono-tech text-xl text-ink">{hubs.length}</div>
-              <div className="mt-1 text-[10px] uppercase tracking-[0.12em] text-ink-soft font-mono-tech">
+              <div className="mt-1 text-[9px] sm:text-[10px] uppercase tracking-[0.08em] sm:tracking-[0.12em] text-ink-soft font-mono-tech leading-tight">
                 Hubs
               </div>
             </div>
-            <div>
+            <div className="min-w-0">
               <div className="font-mono-tech text-xl text-ink">$1B+</div>
-              <div className="mt-1 text-[10px] uppercase tracking-[0.12em] text-ink-soft font-mono-tech">
+              <div className="mt-1 text-[9px] sm:text-[10px] uppercase tracking-[0.08em] sm:tracking-[0.12em] text-ink-soft font-mono-tech leading-tight">
                 GTV lens
               </div>
             </div>

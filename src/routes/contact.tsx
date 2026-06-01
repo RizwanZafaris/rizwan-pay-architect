@@ -66,6 +66,7 @@ export const Route = createFileRoute("/contact")({
               contactPoint: {
                 "@type": "ContactPoint",
                 email: profile.email,
+                telephone: profile.phone,
                 contactType: "Hiring inquiries",
                 areaServed: ["AE", "SA", "SG", "PK", "GB", "EU", "MENA"],
                 availableLanguage: ["English"],
@@ -107,6 +108,40 @@ const contactProof = [
   { value: "Dubai", label: "GST / UTC+4" },
   { value: "24h", label: "Typical reply" },
   { value: "Senior", label: "Product & program roles" },
+] as const;
+
+const calendarUrl = profile.calendarUrl.trim();
+const scheduleHref =
+  calendarUrl ||
+  `mailto:${profile.email}?subject=${encodeURIComponent("Intro call availability")}&body=${encodeURIComponent(
+    "Hi Rizwan,\n\nI found your portfolio and would like to schedule an intro call.\n\nCompany:\nRole/context:\nPreferred times:\n",
+  )}`;
+
+const priorityChannels = [
+  {
+    label: calendarUrl ? "Book intro call" : "Ask for availability",
+    detail: calendarUrl ? "Cal.com scheduling" : "Email pre-filled for scheduling",
+    href: scheduleHref,
+    id: calendarUrl ? "book_intro_call" : "ask_availability",
+  },
+  {
+    label: "Email",
+    detail: "Best for role context and serious intros",
+    href: `mailto:${profile.email}`,
+    id: "email_me",
+  },
+  {
+    label: "WhatsApp",
+    detail: "Use for time-sensitive scheduling only",
+    href: profile.whatsappUrl,
+    id: "whatsapp_message",
+  },
+  {
+    label: "LinkedIn",
+    detail: "Good for referrals and quick validation",
+    href: profile.linkedin,
+    id: "linkedin_contact",
+  },
 ] as const;
 
 function ContactPage() {
@@ -260,22 +295,28 @@ function ContactPage() {
               Contact
             </span>
           </div>
-          <h1 className="mt-7 max-w-4xl font-instrument text-4xl sm:text-5xl md:text-6xl text-ink leading-[1.03] text-wrap">
-            Contact Rizwan Zafar, Payments Product Executive in Dubai
+          <h1 className="mt-7 max-w-4xl font-instrument text-[2rem] sm:text-5xl md:text-6xl text-ink leading-[1.04] text-wrap">
+            Contact Rizwan Zafar
           </h1>
           <p className="mt-5 max-w-3xl text-lg md:text-xl text-ink-soft leading-relaxed">
-            Open to senior Product, Program, Payments, Fintech Infrastructure, PMO and Digital
-            Transformation roles across UAE, KSA, Singapore, MENA, Europe and global fintech.
+            Payments Product Executive in Dubai. Open to senior Product, Program, Payments, Fintech
+            Infrastructure, PMO and Digital Transformation roles across UAE, KSA, Singapore, MENA,
+            Europe and global fintech.
           </p>
-          <div className="mt-7 grid grid-cols-3 gap-3 max-w-2xl" aria-label="Contact proof points">
+          <div
+            className="mt-7 grid grid-cols-[repeat(3,minmax(0,1fr))] gap-2 sm:gap-3 max-w-2xl"
+            aria-label="Contact proof points"
+          >
             {contactProof.map((item, index) => (
               <div
                 key={item.label}
-                className="contact-proof-card border border-rule bg-surface px-3 py-3"
+                className="contact-proof-card min-w-0 border border-rule bg-surface px-2.5 sm:px-3 py-3"
                 style={{ "--motion-delay": `${120 + index * 45}ms` } as CSSProperties}
               >
-                <div className="font-instrument text-2xl text-ink leading-none">{item.value}</div>
-                <div className="mt-1.5 text-[10px] uppercase tracking-[0.12em] text-ink-soft font-mono-tech leading-tight">
+                <div className="font-instrument text-xl sm:text-2xl text-ink leading-none truncate">
+                  {item.value}
+                </div>
+                <div className="mt-1.5 text-[9px] sm:text-[10px] uppercase tracking-[0.08em] sm:tracking-[0.12em] text-ink-soft font-mono-tech leading-tight">
                   {item.label}
                 </div>
               </div>
@@ -295,6 +336,27 @@ function ContactPage() {
             fintech, cross-border corridors, PMO and executive transformation programs.
           </p>
           <div className="mt-5 grid gap-2">
+            <a
+              href={scheduleHref}
+              target={calendarUrl ? "_blank" : undefined}
+              rel={calendarUrl ? "noreferrer" : undefined}
+              data-analytics-event="cta_click"
+              data-analytics-cta-id={calendarUrl ? "book_intro_call" : "ask_availability"}
+              data-analytics-cta-location="contact_page"
+              data-analytics-cta-destination={scheduleHref}
+              onClick={() => {
+                ctaClick(
+                  calendarUrl ? "book_intro_call" : "ask_availability",
+                  "contact_page",
+                  scheduleHref,
+                );
+                outboundClick(scheduleHref, "contact_page");
+              }}
+              className="contact-card flex items-center justify-between border border-ink bg-ink px-4 py-3 text-sm text-background hover:bg-[var(--brand)]"
+            >
+              <span>{calendarUrl ? "Book intro call" : "Ask for availability"}</span>
+              <span aria-hidden="true">→</span>
+            </a>
             <Link
               to="/resume"
               data-analytics-event="cta_click"
@@ -346,44 +408,94 @@ function ContactPage() {
             aria-label="Preferred contact channels in order"
           >
             <li>
-              <span className="text-ink font-medium">1. Email</span>, for substantive intros and
+              <span className="text-ink font-medium">1. Scheduled intro</span>, best when the role
+              is serious and timing matters.
+            </li>
+            <li>
+              <span className="text-ink font-medium">2. Email</span>, for substantive intros and
               role discussions.
             </li>
             <li>
-              <span className="text-ink font-medium">2. LinkedIn DM</span>, for quick pings or
-              referrals.
-            </li>
-            <li>
-              <span className="text-ink font-medium">3. The form</span>, to pre-format the
-              conversation with company, role and context.
+              <span className="text-ink font-medium">3. LinkedIn or WhatsApp</span>, for quick
+              validation, referrals or scheduling follow-up.
             </li>
           </ol>
 
           <div className="mt-7 space-y-4">
-            <a
-              href={`mailto:${profile.email}`}
-              data-analytics-event="cta_click"
-              data-analytics-cta-id="email_me"
-              data-analytics-cta-location="contact_page"
-              data-analytics-cta-destination={`mailto:${profile.email}`}
-              onClick={() => {
-                ctaClick("email_me", "contact_page", `mailto:${profile.email}`);
-                outboundClick(`mailto:${profile.email}`, "contact_page");
-              }}
-              className="contact-card flex items-center justify-between border border-rule bg-background px-5 py-4 hover:border-ink/30 focus:outline-none focus:ring-2 focus:ring-[var(--brand)] transition-colors group"
-            >
-              <div>
-                <div className="text-xs uppercase tracking-[0.14em] text-ink-soft">Email</div>
-                <div className="font-display text-lg text-ink break-all">{profile.email}</div>
-              </div>
-              <span className="text-ink-soft group-hover:text-ink">→</span>
-            </a>
+            <div className="grid gap-3">
+              {priorityChannels.map((channel) => {
+                const isExternal =
+                  channel.href.startsWith("http") && !channel.href.startsWith(SITE_URL);
+                return (
+                  <a
+                    key={channel.id}
+                    href={channel.href}
+                    target={isExternal ? "_blank" : undefined}
+                    rel={isExternal ? "noreferrer" : undefined}
+                    data-analytics-event="cta_click"
+                    data-analytics-cta-id={channel.id}
+                    data-analytics-cta-location="contact_page"
+                    data-analytics-cta-destination={channel.href}
+                    onClick={() => {
+                      ctaClick(channel.id, "contact_page", channel.href);
+                      outboundClick(channel.href, "contact_page");
+                    }}
+                    className="contact-card flex items-center justify-between gap-4 border border-rule bg-background px-5 py-4 hover:border-ink/30 focus:outline-none focus:ring-2 focus:ring-[var(--brand)] transition-colors group"
+                  >
+                    <span className="min-w-0">
+                      <span className="block font-display text-lg text-ink">{channel.label}</span>
+                      <span className="mt-0.5 block text-xs text-ink-soft leading-snug">
+                        {channel.detail}
+                      </span>
+                    </span>
+                    <span className="shrink-0 text-ink-soft group-hover:text-ink">→</span>
+                  </a>
+                );
+              })}
+            </div>
             <SocialCardList source="contact_page" />
             <div className="contact-card border border-rule bg-surface px-5 py-4">
               <div className="text-xs uppercase tracking-[0.14em] text-ink-soft">
                 Location · time zone
               </div>
               <div className="font-display text-lg text-ink">{profile.location} · GST (UTC+4)</div>
+            </div>
+            <div className="contact-card border border-rule bg-surface px-5 py-4">
+              <div className="text-xs uppercase tracking-[0.14em] text-ink-soft">Essay updates</div>
+              <div className="font-display text-lg text-ink">{profile.newsletter.name}</div>
+              <p className="mt-1 text-sm text-ink-soft leading-relaxed">
+                A light-touch list for payments infrastructure, fintech product and program
+                leadership notes.
+              </p>
+              <div className="mt-3 flex flex-wrap gap-2">
+                <a
+                  href={profile.newsletter.href}
+                  data-analytics-event="cta_click"
+                  data-analytics-cta-id="newsletter_subscribe_request"
+                  data-analytics-cta-location="contact_page"
+                  data-analytics-cta-destination={profile.newsletter.href}
+                  onClick={() =>
+                    ctaClick(
+                      "newsletter_subscribe_request",
+                      "contact_page",
+                      profile.newsletter.href,
+                    )
+                  }
+                  className="rounded-md bg-ink px-3 py-2 text-xs font-medium text-background hover:bg-[var(--brand)] transition-colors"
+                >
+                  Request updates
+                </a>
+                <a
+                  href={profile.newsletter.rssHref}
+                  data-analytics-event="cta_click"
+                  data-analytics-cta-id="rss_feed"
+                  data-analytics-cta-location="contact_page"
+                  data-analytics-cta-destination={profile.newsletter.rssHref}
+                  className="rounded-md border border-ink/20 px-3 py-2 text-xs font-medium text-ink hover:border-ink/50 transition-colors"
+                >
+                  RSS feed
+                </a>
+              </div>
             </div>
           </div>
         </div>
