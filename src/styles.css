@@ -527,6 +527,19 @@
     filter: drop-shadow(0 22px 38px color-mix(in oklab, var(--ink) 12%, transparent));
   }
 
+  .text-scramble {
+    display: inline-block;
+    min-width: max-content;
+    text-decoration-thickness: 0.06em;
+    text-underline-offset: 0.12em;
+    outline: none;
+  }
+
+  .text-scramble:focus-visible {
+    border-radius: 0.08em;
+    box-shadow: 0 0 0 3px color-mix(in oklab, var(--signal) 18%, transparent);
+  }
+
   .home-card,
   .home-topic-card,
   .home-search-panel,

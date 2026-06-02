@@ -19,6 +19,43 @@ const profilePageJsonLd = {
   mainEntity: { "@type": "Person", name: profile.name, url: SITE_URL },
 };
 
+const heroScrambleScript = `
+(() => {
+  if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789$+";
+  const nodes = document.querySelectorAll("[data-text-scramble]");
+  const scramble = (node, delay = 0) => {
+    const finalText = node.getAttribute("data-text-scramble") || node.textContent || "";
+    const letters = Array.from(finalText);
+    const duration = 560;
+    window.setTimeout(() => {
+      const startedAt = performance.now();
+      const timer = window.setInterval(() => {
+        const progress = Math.min((performance.now() - startedAt) / duration, 1);
+        const revealed = Math.floor(progress * (letters.length + 1));
+        node.textContent = letters
+          .map((char, index) => {
+            if (char === " ") return char;
+            if (index < revealed) return char;
+            return alphabet[Math.floor(Math.random() * alphabet.length)] || char;
+          })
+          .join("");
+        if (progress >= 1) {
+          window.clearInterval(timer);
+          node.textContent = finalText;
+        }
+      }, 38);
+    }, delay);
+  };
+
+  nodes.forEach((node, index) => {
+    scramble(node, 260 + index * 90);
+    node.addEventListener("mouseenter", () => scramble(node));
+    node.addEventListener("focus", () => scramble(node));
+  });
+})();
+`;
+
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
@@ -50,7 +87,10 @@ export const Route = createFileRoute("/")({
       },
     ],
     links: [{ rel: "canonical", href: absUrl("/") }],
-    scripts: [{ type: "application/ld+json", children: JSON.stringify(profilePageJsonLd) }],
+    scripts: [
+      { type: "application/ld+json", children: JSON.stringify(profilePageJsonLd) },
+      { children: heroScrambleScript },
+    ],
   }),
   component: HomePage,
 });
@@ -121,7 +161,12 @@ function HomePage() {
               <span className="block">
                 Scaling <span className="italic text-[var(--brand)]">Fintech Infrastructure</span>
               </span>
-              <span className="block">in Complex Markets</span>
+              <span className="block">
+                in{" "}
+                <span className="text-scramble" data-text-scramble="Complex Markets" tabIndex={0}>
+                  Complex Markets
+                </span>
+              </span>
             </h1>
 
             <p className="mt-3.5 md:mt-4 max-w-xl text-[15px] md:text-base text-ink-soft leading-relaxed">
