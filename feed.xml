@@ -5,8 +5,16 @@
   <link>https://rzifi.com/blog/</link>
   <description>Essays on payment infrastructure, fintech product, risk, settlement, AI and program leadership.</description>
   <language>en</language>
-  <lastBuildDate>Mon, 01 Jun 2026 23:56:00 GMT</lastBuildDate>
+  <lastBuildDate>Tue, 02 Jun 2026 22:27:23 GMT</lastBuildDate>
   <item>
+    <title>SWIFT Payment vs Wire Transfer: Key Differences</title>
+    <link>https://rzifi.com/blog/swift-vs-wire-transfer/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/swift-vs-wire-transfer/</guid>
+    <pubDate>Wed, 03 Jun 2026 00:00:00 GMT</pubDate>
+    <category>Cross-Border Payments</category>
+    <description>SWIFT vs wire transfer explained, what each term actually means, where they overlap, and which one your product is really using.</description>
+  </item>
+<item>
     <title>How SWIFT Payment Works: A Complete Overview</title>
     <link>https://rzifi.com/blog/swift-payment-explained/</link>
     <guid isPermaLink="true">https://rzifi.com/blog/swift-payment-explained/</guid>
@@ -237,14 +245,6 @@
     <pubDate>Wed, 20 May 2026 00:00:00 GMT</pubDate>
     <category>Payment Infrastructure</category>
     <description>Click to Pay explained from the operator&apos;s lens — what VCTP and MCTP actually are, the merchant + issuer + consumer surface, why it shipped, where it works, where it&apos;s still patchy.</description>
-  </item>
-<item>
-    <title>Compelling Evidence 3.0 (Visa): What Changed, and How To Actually Win Disputes Now</title>
-    <link>https://rzifi.com/blog/compelling-evidence-3-0-visa-disputes/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/compelling-evidence-3-0-visa-disputes/</guid>
-    <pubDate>Wed, 20 May 2026 00:00:00 GMT</pubDate>
-    <category>Payment Infrastructure</category>
-    <description>An operator&apos;s read of Visa Compelling Evidence 3.0, the new evidence rules, the prior-undisputed-transaction lookback, the data fields acquirers must capture, and the seven moves that flip the dispute win rate.</description>
   </item>
 </channel>
 </rss>
