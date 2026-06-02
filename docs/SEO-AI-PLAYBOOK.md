@@ -214,15 +214,17 @@ Connect GA4 + GSC as data sources. Schedule a weekly email with the PDF.
 
 These are the levers AI tools weigh heavily when deciding who to cite. None require code changes.
 
-### 4a. LinkedIn + Twitter consistency (30 min, one-time)
+Execution pack: see `docs/off-page-seo/README.md`.
 
-- **LinkedIn**: headline = same as homepage tagline. About section opens with: "Rizwan Zafar — Payments Product Executive in Dubai. $1B+ TPV, 25M+ monthly transactions, 5 regulated markets." (verbatim — keyword consistency across platforms helps AI grounding.) Featured posts: link to 3 best essays.
-- **Twitter/X bio**: "Payments product executive. Dubai. rzifi.com" + pin one tweet that's a thread of your best work. AI tools read Twitter bios for entity disambiguation.
+### 4a. LinkedIn + X consistency (30 min, one-time)
 
-### 4b. Wikipedia / Wikidata (15 min if eligible, 0 if not)
+- **LinkedIn**: headline = same as homepage tagline. About section opens with: "Rizwan Zafar is a Dubai-based Product & Program Executive scaling regulated fintech and payment infrastructure in complex markets. As CPO at Simpaisa, he helped scale payment infrastructure across 7 markets, $1B+ GTV, 25M+ monthly transactions and 50+ bank, wallet and financial institution partners." Use the featured links listed in `docs/off-page-seo/profile-entity-checklist.md`.
+- **X bio**: "Payments product & program executive. CPO at Simpaisa, Dubai. Building regulated fintech infrastructure across complex markets." Pin one post that links to the strongest case study. AI tools read social bios for entity disambiguation.
 
-- **Wikidata** (<https://www.wikidata.org/>) — anyone can add structured entries. Create one for "Rizwan Zafar" with `instance of: human`, `occupation: product manager`, `country: UAE`, `educated at: MIT Sloan / University of Karachi`, plus `official website: rzifi.com`. Wikidata feeds straight into Google's Knowledge Graph and most LLM training corpora.
-- **Wikipedia** — only viable if you've been cited in 3+ independent reputable sources (industry publications, major news, conference talks). Don't write your own page.
+### 4b. Wikipedia / Wikidata (only when eligible)
+
+- **Wikidata** (<https://www.wikidata.org/>) — do not create yet unless there are independent third-party sources that verify the entity. A weak self-created item can be deleted and may look like vanity SEO.
+- **Wikipedia** — only viable if you have been cited in 3+ independent reputable sources (industry publications, major news, conference talks). Do not write your own page.
 
 ### 4c. Crunchbase / industry profiles (20 min)
 
