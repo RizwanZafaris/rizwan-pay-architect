@@ -217,9 +217,11 @@ function BlogIndex() {
 
   return (
     <div className="blog-page mx-auto max-w-6xl px-6 py-16 md:py-20">
-      <section className="grid gap-10 lg:grid-cols-12 lg:items-end">
-        <div className="lg:col-span-8">
-          <div className="blog-soft-reveal text-[10px] uppercase tracking-[0.22em] text-[var(--accent-emerald)] font-mono-tech">
+      <section className="blog-hero-shell relative grid gap-10 overflow-hidden rounded-lg border border-rule bg-surface px-5 py-7 md:px-7 md:py-8 lg:grid-cols-12 lg:items-end">
+        <span aria-hidden="true" className="blog-signal-mark blog-signal-mark-a" />
+        <span aria-hidden="true" className="blog-signal-mark blog-signal-mark-b" />
+        <div className="relative z-10 lg:col-span-8">
+          <div className="blog-soft-reveal blog-eyebrow text-[10px] uppercase tracking-[0.22em] text-[var(--accent-emerald)] font-mono-tech">
             ◆ Payments essays
           </div>
           <h1
@@ -227,7 +229,9 @@ function BlogIndex() {
             style={{ "--motion-delay": "60ms" } as CSSProperties}
           >
             Essays on regulated payments infrastructure{" "}
-            <span className="italic text-ink-soft">from the operator's seat.</span>
+            <span className="blog-title-accent italic text-ink-soft">
+              from the operator's seat.
+            </span>
           </h1>
           <p
             className="blog-soft-reveal mt-5 max-w-2xl text-lg text-ink-soft leading-relaxed"
@@ -238,7 +242,7 @@ function BlogIndex() {
           </p>
         </div>
         <div
-          className="blog-soft-reveal lg:col-span-4 rounded-lg border border-rule bg-surface p-5"
+          className="blog-soft-reveal blog-authority-panel relative z-10 lg:col-span-4 rounded-lg border border-rule bg-background/90 p-5"
           style={{ "--motion-delay": "160ms" } as CSSProperties}
         >
           <div className="text-[10px] uppercase tracking-[0.18em] text-ink-soft font-mono-tech">
@@ -266,6 +270,23 @@ function BlogIndex() {
           </div>
         </div>
       </section>
+
+      <div
+        className="blog-kinetic-strip mt-5 overflow-hidden rounded-lg border border-rule bg-background"
+        aria-label="Key blog topics"
+      >
+        <span className="blog-kinetic-label" aria-hidden="true">
+          Topic radar
+        </span>
+        <div className="blog-kinetic-track flex w-max items-center gap-6 py-3 text-[10px] uppercase tracking-[0.2em] text-ink-soft font-mono-tech">
+          {[...hubs.slice(0, 8), ...hubs.slice(0, 8)].map((h, index) => (
+            <span key={`${h.slug}-${index}`} className="inline-flex items-center gap-6">
+              <span>{h.shortTitle}</span>
+              <span className="text-[var(--accent-emerald)]">◆</span>
+            </span>
+          ))}
+        </div>
+      </div>
 
       {/* Featured */}
       {featured && (
@@ -322,7 +343,7 @@ function BlogIndex() {
               {featured.tags.slice(0, 4).map((t) => (
                 <span
                   key={t}
-                  className="rounded-full border border-rule bg-background px-2.5 py-1 text-[10px] uppercase tracking-[0.1em] text-ink-soft font-mono-tech"
+                  className="blog-tag-chip rounded-full border border-rule bg-background px-2.5 py-1 text-[10px] uppercase tracking-[0.1em] text-ink-soft font-mono-tech"
                 >
                   {t}
                 </span>
@@ -371,7 +392,7 @@ function BlogIndex() {
                 siteSearch(e.currentTarget.value, "blog", hub || reader || company || undefined);
               }}
               placeholder="Reconciliation, onboarding, fraud…"
-              className="mt-1 w-full border border-rule bg-surface px-3 py-2.5 rounded-md text-ink placeholder:text-ink-soft/70 focus:outline-none focus:ring-2 focus:ring-[var(--brand)]/20 focus:border-[var(--brand)]"
+              className="blog-filter-input mt-1 w-full border border-rule bg-surface px-3 py-2.5 rounded-md text-ink placeholder:text-ink-soft/70 focus:outline-none focus:ring-2 focus:ring-[var(--brand)]/20 focus:border-[var(--brand)]"
             />
           </div>
           <Select
@@ -421,7 +442,7 @@ function BlogIndex() {
       </div>
 
       {/* List */}
-      <section className="mt-10">
+      <section className="blog-list-shell mt-10">
         <div className="mb-5 flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
           <div>
             <div className="text-[10px] uppercase tracking-[0.18em] text-ink-soft font-mono-tech">
@@ -471,17 +492,17 @@ function BlogIndex() {
                     {p.tags.slice(0, 3).map((t) => (
                       <span
                         key={t}
-                        className="text-[10px] px-2 py-0.5 border border-rule rounded-full text-ink-soft bg-background font-mono-tech uppercase tracking-[0.1em]"
+                        className="blog-tag-chip text-[10px] px-2 py-0.5 border border-rule rounded-full text-ink-soft bg-background font-mono-tech uppercase tracking-[0.1em]"
                       >
                         {t}
                       </span>
                     ))}
                   </div>
                   <div className="mt-4 flex items-center justify-between gap-4 border-t border-rule pt-4">
-                    <span className="text-xs text-ink-soft font-mono-tech">
+                    <span className="blog-card-number text-xs text-ink-soft font-mono-tech">
                       /{String(index + 1).padStart(2, "0")}
                     </span>
-                    <span className="text-xs text-ink-soft group-hover:text-ink inline-flex items-center gap-1">
+                    <span className="blog-card-arrow text-xs text-ink-soft group-hover:text-ink inline-flex items-center gap-1">
                       Read essay
                       <span className="transition-transform group-hover:translate-x-1">→</span>
                     </span>
