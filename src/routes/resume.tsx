@@ -133,6 +133,13 @@ const prioritySkills = [
   "Complex-market execution",
 ] as const;
 
+const resumeSignals = [
+  "Recruiter scan-ready",
+  "$1B+ scale validated",
+  "PDF resume available",
+  "Dubai / GST",
+] as const;
+
 const delayStyle = (ms: number) => ({ "--motion-delay": `${ms}ms` }) as CSSProperties;
 
 export const Route = createFileRoute("/resume")({
@@ -179,8 +186,10 @@ function ResumePage() {
 
   return (
     <div className="resume-page mx-auto max-w-6xl px-5 sm:px-6 py-10 md:py-14">
-      <section className="grid lg:grid-cols-[1fr_320px] gap-8 lg:gap-12 items-start border-b border-rule pb-10 md:pb-12">
-        <div className="resume-soft-reveal min-w-0" style={delayStyle(0)}>
+      <section className="priority-hero-shell relative overflow-hidden grid lg:grid-cols-[1fr_320px] gap-8 lg:gap-12 items-start border-b border-rule pb-10 md:pb-12">
+        <span aria-hidden="true" className="priority-hero-rule priority-hero-rule-a" />
+        <span aria-hidden="true" className="priority-hero-rule priority-hero-rule-b" />
+        <div className="resume-soft-reveal relative z-10 min-w-0" style={delayStyle(0)}>
           <div className="flex items-center gap-4">
             <span className="grid h-9 w-9 place-items-center bg-ink text-background text-sm font-semibold">
               01
@@ -238,7 +247,7 @@ function ResumePage() {
         </div>
 
         <aside
-          className="resume-soft-reveal rounded-lg border border-rule bg-surface p-5"
+          className="priority-brief-card resume-soft-reveal relative z-10 rounded-lg border border-rule bg-surface p-5"
           style={delayStyle(90)}
         >
           <div className="text-[10px] uppercase tracking-[0.18em] text-ink-soft font-mono-tech">
@@ -260,6 +269,17 @@ function ResumePage() {
           </ul>
           <div className="mt-5 border-t border-rule pt-4 text-xs text-ink-soft">
             {profile.location} · Open to UAE, KSA, Singapore, MENA, Europe and global fintech roles.
+          </div>
+          <div className="mt-5 flex flex-wrap gap-2" aria-label="Resume readiness signals">
+            {resumeSignals.map((signal, index) => (
+              <span
+                key={signal}
+                className="priority-status-badge"
+                style={delayStyle(220 + index * 55)}
+              >
+                {signal}
+              </span>
+            ))}
           </div>
         </aside>
       </section>

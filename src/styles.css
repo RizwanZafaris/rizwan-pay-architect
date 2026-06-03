@@ -905,6 +905,126 @@
     text-transform: uppercase;
   }
 
+  .priority-hero-shell {
+    isolation: isolate;
+  }
+
+  .priority-hero-shell::before {
+    content: "";
+    position: absolute;
+    inset: -0.75rem 0 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.38;
+    background:
+      linear-gradient(
+        90deg,
+        transparent 0 18%,
+        color-mix(in oklab, var(--signal) 14%, transparent) 18.12% 18.28%,
+        transparent 18.45% 100%
+      ),
+      linear-gradient(
+        180deg,
+        transparent 0 72%,
+        color-mix(in oklab, var(--rule) 90%, transparent) 72.12% 72.28%,
+        transparent 72.45% 100%
+      ),
+      radial-gradient(
+        circle at 83% 18%,
+        color-mix(in oklab, var(--signal) 16%, transparent) 0 1px,
+        transparent 2px
+      );
+    background-size:
+      230px 230px,
+      190px 190px,
+      100% 100%;
+    mask-image: linear-gradient(90deg, black 0%, black 80%, transparent 100%);
+  }
+
+  .priority-hero-shell > :not(.priority-hero-rule) {
+    position: relative;
+    z-index: 1;
+  }
+
+  .priority-hero-rule {
+    position: absolute;
+    z-index: 0;
+    pointer-events: none;
+    height: 1px;
+    transform-origin: left;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      color-mix(in oklab, var(--signal) 55%, transparent),
+      transparent
+    );
+  }
+
+  .priority-hero-rule-a {
+    right: 4%;
+    top: 23%;
+    width: min(20rem, 38vw);
+    opacity: 0.72;
+  }
+
+  .priority-hero-rule-b {
+    right: 16%;
+    bottom: 20%;
+    width: min(13rem, 28vw);
+    opacity: 0.48;
+  }
+
+  .priority-brief-card {
+    overflow: hidden;
+    box-shadow: 0 18px 52px color-mix(in oklab, var(--ink) 6%, transparent);
+  }
+
+  .priority-brief-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(
+      135deg,
+      color-mix(in oklab, var(--paper) 62%, transparent),
+      transparent 43%,
+      color-mix(in oklab, var(--signal) 6%, transparent)
+    );
+  }
+
+  .priority-brief-card > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .priority-status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.38rem;
+    max-width: 100%;
+    border: 1px solid color-mix(in oklab, var(--signal) 22%, var(--rule));
+    border-radius: 999px;
+    background: color-mix(in oklab, var(--paper) 84%, var(--signal) 4%);
+    padding: 0.32rem 0.55rem;
+    color: var(--ink);
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    line-height: 1;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .priority-status-badge::before {
+    content: "";
+    width: 0.36rem;
+    height: 0.36rem;
+    flex: 0 0 auto;
+    border-radius: 999px;
+    background: var(--signal);
+    box-shadow: 0 0 0 3px color-mix(in oklab, var(--signal) 13%, transparent);
+  }
+
   @media (max-width: 640px) {
     .blog-kinetic-label {
       display: none;
@@ -916,6 +1036,15 @@
 
     .blog-kinetic-track {
       padding-inline: 1rem;
+    }
+
+    .priority-hero-rule {
+      display: none;
+    }
+
+    .priority-hero-shell::before {
+      opacity: 0.26;
+      mask-image: linear-gradient(180deg, black 0%, black 74%, transparent 100%);
     }
   }
 
@@ -1316,7 +1445,9 @@
   .resume-skill-chip,
   .resume-timeline-card,
   .recruiter-card,
-  .contact-card {
+  .contact-card,
+  .priority-brief-card,
+  .priority-status-badge {
     transition:
       transform 180ms ease,
       border-color 180ms ease,
@@ -1328,7 +1459,8 @@
   .recruiter-proof-card:hover,
   .contact-proof-card:hover,
   .recruiter-card:hover,
-  .contact-card:hover {
+  .contact-card:hover,
+  .priority-brief-card:hover {
     transform: translateY(-2px);
     border-color: color-mix(in oklab, var(--ink) 22%, var(--rule));
     box-shadow: 0 14px 34px color-mix(in oklab, var(--ink) 8%, transparent);
@@ -1425,6 +1557,20 @@
       animation: rz-rail-progress 8s ease-in-out infinite;
     }
 
+    .priority-hero-shell::before {
+      animation: rz-article-field-drift 32s linear infinite;
+    }
+
+    .priority-hero-rule {
+      animation: rz-article-rule-scan 7.2s ease-in-out infinite;
+    }
+
+    .priority-status-badge {
+      opacity: 0;
+      animation: rz-status-rise 520ms cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+      animation-delay: var(--motion-delay, 0ms);
+    }
+
     .home-rule-animate {
       transform-origin: left;
       animation: rz-signal-rule 5.5s ease-in-out infinite;
@@ -1513,6 +1659,9 @@
     .article-hero-rule,
     .article-status-badge,
     .article-rail-progress span,
+    .priority-hero-shell::before,
+    .priority-hero-rule,
+    .priority-status-badge,
     .home-soft-reveal,
     .blog-soft-reveal,
     .home-card,

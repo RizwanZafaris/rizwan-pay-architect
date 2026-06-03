@@ -157,11 +157,20 @@ const audienceProof: Record<Audience["slug"], { label: string; value: string }[]
   ],
 };
 
+const recruiterSignals = [
+  "5-minute screen",
+  "Role-fit mapped",
+  "Proof-linked",
+  "Case-study backed",
+] as const;
+
 function ForIndex() {
   return (
     <div className="recruiter-page mx-auto max-w-6xl px-5 sm:px-6 py-10 md:py-14">
-      <section className="grid lg:grid-cols-[1fr_340px] gap-8 lg:gap-12 items-start border-b border-rule pb-10 md:pb-12">
-        <div className="min-w-0 recruiter-soft-reveal" style={delayStyle(0)}>
+      <section className="priority-hero-shell relative overflow-hidden grid lg:grid-cols-[1fr_340px] gap-8 lg:gap-12 items-start border-b border-rule pb-10 md:pb-12">
+        <span aria-hidden="true" className="priority-hero-rule priority-hero-rule-a" />
+        <span aria-hidden="true" className="priority-hero-rule priority-hero-rule-b" />
+        <div className="relative z-10 min-w-0 recruiter-soft-reveal" style={delayStyle(0)}>
           <div className="flex items-center gap-4">
             <span className="grid h-9 w-9 place-items-center bg-ink text-background text-sm font-semibold">
               02
@@ -210,7 +219,7 @@ function ForIndex() {
         </div>
 
         <aside
-          className="recruiter-soft-reveal recruiter-cta-panel rounded-lg border border-rule bg-surface p-5"
+          className="priority-brief-card recruiter-soft-reveal recruiter-cta-panel relative z-10 rounded-lg border border-rule bg-surface p-5"
           style={delayStyle(90)}
           aria-label="Recruiter summary"
         >
@@ -234,6 +243,17 @@ function ForIndex() {
           <div className="mt-5 border-t border-rule pt-4 text-xs text-ink-soft leading-relaxed">
             Based in {profile.location}. Relevant for UAE, KSA, Singapore, MENA, Europe and global
             fintech roles.
+          </div>
+          <div className="mt-5 flex flex-wrap gap-2" aria-label="Recruiter brief signals">
+            {recruiterSignals.map((signal, index) => (
+              <span
+                key={signal}
+                className="priority-status-badge"
+                style={delayStyle(220 + index * 55)}
+              >
+                {signal}
+              </span>
+            ))}
           </div>
         </aside>
       </section>

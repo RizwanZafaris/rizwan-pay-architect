@@ -144,6 +144,13 @@ const priorityChannels = [
   },
 ] as const;
 
+const contactSignals = [
+  "24h response",
+  "Email scheduling ready",
+  "WhatsApp for scheduling",
+  "Senior mandates",
+] as const;
+
 function ContactPage() {
   const [state, setState] = useState<SubmitState>("idle");
   const [errorMsg, setErrorMsg] = useState<string>("");
@@ -185,9 +192,9 @@ function ContactPage() {
     const body =
       `Name: ${values.name}\n` +
       `Email: ${values.email}\n` +
-      `Company: ${values.company || ","}\n` +
-      `Role you're hiring for: ${values.role || ","}\n` +
-      `How did you hear about me: ${values.referral || ","}\n\n` +
+      `Company: ${values.company || "Not provided"}\n` +
+      `Role you're hiring for: ${values.role || "Not provided"}\n` +
+      `How did you hear about me: ${values.referral || "Not provided"}\n\n` +
       `${values.message}`;
     const href = `mailto:${profile.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     window.location.href = href;
@@ -232,9 +239,9 @@ function ContactPage() {
         subject: `Inbound from ${values.name}${values.company ? ` (${values.company})` : ""}`,
         name: values.name,
         email: values.email,
-        company: values.company || ",",
-        role_hiring_for: values.role || ",",
-        referral_source: values.referral || ",",
+        company: values.company || "Not provided",
+        role_hiring_for: values.role || "Not provided",
+        referral_source: values.referral || "Not provided",
         message: values.message,
         // honeypot for Web3Forms
         botcheck: "",
@@ -285,8 +292,10 @@ function ContactPage() {
 
   return (
     <div className="contact-page mx-auto max-w-6xl px-5 sm:px-6 py-10 md:py-14">
-      <section className="grid lg:grid-cols-[1fr_360px] gap-8 lg:gap-12 border-b border-rule pb-10 md:pb-12">
-        <div className="contact-soft-reveal min-w-0">
+      <section className="priority-hero-shell relative overflow-hidden grid lg:grid-cols-[1fr_360px] gap-8 lg:gap-12 border-b border-rule pb-10 md:pb-12">
+        <span aria-hidden="true" className="priority-hero-rule priority-hero-rule-a" />
+        <span aria-hidden="true" className="priority-hero-rule priority-hero-rule-b" />
+        <div className="contact-soft-reveal relative z-10 min-w-0">
           <div className="flex items-center gap-4">
             <span className="grid h-9 w-9 place-items-center bg-ink text-background text-sm font-semibold">
               03
@@ -296,11 +305,11 @@ function ContactPage() {
             </span>
           </div>
           <h1 className="mt-7 max-w-4xl font-instrument text-[2rem] sm:text-5xl md:text-6xl text-ink leading-[1.04] text-wrap">
-            Contact Rizwan Zafar
+            Contact Rizwan Zafar for Senior Product &amp; Program Roles
           </h1>
           <p className="mt-5 max-w-3xl text-lg md:text-xl text-ink-soft leading-relaxed">
-            Payments Product Executive in Dubai. Open to senior Product, Program, Payments, Fintech
-            Infrastructure, PMO and Digital Transformation roles across UAE, KSA, Singapore, MENA,
+            For roles where payment infrastructure, partner rails, compliance, risk and execution
+            pressure meet. Based in Dubai, open to senior mandates across UAE, KSA, Singapore, MENA,
             Europe and global fintech.
           </p>
           <div
@@ -325,7 +334,7 @@ function ContactPage() {
         </div>
 
         <aside
-          className="contact-soft-reveal contact-cta-panel border border-rule bg-surface p-5"
+          className="priority-brief-card contact-soft-reveal contact-cta-panel relative z-10 border border-rule bg-surface p-5"
           style={{ "--motion-delay": "90ms" } as CSSProperties}
         >
           <div className="text-[10px] uppercase tracking-[0.18em] text-ink-soft font-mono-tech">
@@ -393,6 +402,17 @@ function ContactPage() {
           </div>
           <div className="mt-5 border-t border-rule pt-4 text-xs text-ink-soft leading-relaxed">
             Typical reply: within 24 hours, Sunday to Thursday, GST / UTC+4.
+          </div>
+          <div className="mt-5 flex flex-wrap gap-2" aria-label="Contact signals">
+            {contactSignals.map((signal, index) => (
+              <span
+                key={signal}
+                className="priority-status-badge"
+                style={{ "--motion-delay": `${220 + index * 55}ms` } as CSSProperties}
+              >
+                {signal}
+              </span>
+            ))}
           </div>
         </aside>
       </section>
@@ -504,9 +524,7 @@ function ContactPage() {
           className="lg:col-span-7 contact-soft-reveal bg-surface border border-rule p-6 md:p-8 min-w-0"
           style={{ "--motion-delay": "180ms" } as CSSProperties}
         >
-          <h2 className="font-display text-xl text-ink">
-            Send a message about senior product or program roles
-          </h2>
+          <h2 className="font-display text-xl text-ink">Send a focused hiring note</h2>
           <p className="mt-2 text-xs text-ink-soft">
             {usesServerSubmission
               ? "Submissions go straight to my inbox. I reply within 24 hours."
@@ -727,7 +745,7 @@ function ContactPage() {
                   onChange={(e) => setValues({ ...values, referral: e.target.value })}
                   className={field}
                 >
-                  <option value="">,</option>
+                  <option value="">Select source</option>
                   <option value="LinkedIn">LinkedIn</option>
                   <option value="Google search">Google search</option>
                   <option value="Referral">Referral</option>
