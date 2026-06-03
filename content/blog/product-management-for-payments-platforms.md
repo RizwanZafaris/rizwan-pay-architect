@@ -166,7 +166,7 @@ Not every payments PM owns all of these. But a senior payments PM has shipped me
 
 Each is its own discipline. The PM who claims to own all of them deeply is exaggerating; the PM who has shipped real work in four of them has the breadth to lead a payments product org.
 
-## What good looks like
+## Operating bar
 
 A payments PM is operating well when:
 

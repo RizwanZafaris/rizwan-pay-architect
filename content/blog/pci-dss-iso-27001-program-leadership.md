@@ -39,7 +39,7 @@ That posture also dramatically reduces the cost of the second and third audits, 
 
 ## PCI DSS, scoping is the whole game
 
-The single highest-leverage decision in a PCI DSS program is scope. The smaller the cardholder data environment (CDE), the cheaper, faster, and safer the program. Specific moves that reduce scope:
+In a PCI DSS program, scope is the decision that changes the cost curve. The smaller the cardholder data environment (CDE), the cheaper, faster, and safer the program. Specific moves that reduce scope:
 
 - **Hosted fields and tokenisation at the PSP** so card data never touches your servers
 - **Network tokens** (MDES, VTS) so stored references are not PANs

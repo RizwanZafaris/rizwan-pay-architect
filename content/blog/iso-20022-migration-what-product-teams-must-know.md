@@ -31,7 +31,7 @@ The deadlines are concrete. The benefits are too. Most teams underprepare becaus
 - What changes for product teams
 - The data-richness opportunity
 - Common pitfalls
-- Key takeaways
+- Operator notes
 - FAQ
 
 ## What ISO 20022 actually is
@@ -82,7 +82,7 @@ The richer payload unlocks product capabilities that were impossible under MT:
 - **Ignoring purpose codes.** Purpose codes will become commercially material as banks price and risk-score by purpose.
 - **Skipping the capture-side UX work.** Structured data has to enter the system somehow. If it enters as free text, the rest of the pipeline cannot recover it.
 
-## Key takeaways
+## Operator notes
 
 - ISO 20022 is a data-model change, not a format change.
 - The CBPR+ coexistence ends in late 2025, product teams should already be live or in late testing.

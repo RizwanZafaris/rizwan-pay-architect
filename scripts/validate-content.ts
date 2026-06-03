@@ -13,6 +13,15 @@ const DESC_MIN = 50;
 const DESC_MAX = 165;
 const TITLE_MAX = 70;
 
+const SYNTHETIC_PATTERNS = [
+  { label: "playbook_claim", re: /\bThis is the playbook\b/gi },
+  { label: "highest_leverage", re: /\bsingle highest-(?:leverage|risk)\b/gi },
+  { label: "generic_good_looks_like", re: /^##\s+What good looks like/im },
+  { label: "generic_key_takeaways", re: /^##\s+Key takeaways/im },
+  { label: "exact_problem", re: /\bexact (?:problem|play|migration)\b/gi },
+  { label: "teams_that_ship", re: /\bteams that ship (?:it )?(?:well|badly|cleanly)\b/gi },
+];
+
 type Issue = { file: string; check: string; detail: string };
 const failures: Issue[] = [];
 const warnings: Issue[] = [];
@@ -69,6 +78,16 @@ function warn(file: string, check: string, detail: string) {
   warnings.push({ file, check, detail });
 }
 
+function syntheticHits(text: string) {
+  const hits: string[] = [];
+  for (const pattern of SYNTHETIC_PATTERNS) {
+    pattern.re.lastIndex = 0;
+    const matches = text.match(pattern.re);
+    if (matches?.length) hits.push(`${pattern.label}:${matches.length}`);
+  }
+  return hits;
+}
+
 function auditBlogPosts() {
   const files = readdirSync(BLOG_DIR).filter((f) => f.endsWith(".md") && !f.startsWith("."));
   const slugs = new Map<string, string>();
@@ -111,7 +130,18 @@ function auditBlogPosts() {
     if (!draft && related.length < 2)
       warn(path, "internal_links_low", `${related.length} relatedArticles < 2`);
     if (!/##\s+FAQ/im.test(body)) warn(path, "faq_missing", "FAQ section improves AI answers");
+
+    const phrasingHits = syntheticHits(`${title}\n${description}\n${body}`);
+    if (!draft && phrasingHits.length >= 2)
+      warn(path, "synthetic_phrasing", phrasingHits.join(", "));
   }
+}
+
+function auditCaseStudies() {
+  const path = "src/data/caseStudies.ts";
+  if (!existsSync(path)) return;
+  const hits = syntheticHits(readFileSync(path, "utf-8"));
+  if (hits.length) warn(path, "case_study_synthetic_phrasing", hits.join(", "));
 }
 
 function auditBacklog() {
@@ -150,6 +180,7 @@ function auditBacklog() {
 }
 
 auditBlogPosts();
+auditCaseStudies();
 auditBacklog();
 
 console.log(`Content validation: ${failures.length} failure(s), ${warnings.length} warning(s).`);

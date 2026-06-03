@@ -127,7 +127,7 @@ Leadership reads the joint view. PMO maintains the per-flavour detail. Don't mak
 
 **Capital teams resent Agile teams' chaos.** Symptom: capital workstream leads complain Agile is unpredictable. Fix: capital should not have hard dependencies on Agile mid-sprint; structure dependencies at sprint boundaries.
 
-## What good looks like at 12 months
+## Operating bar at 12 months
 
 - Every workstream classified, no ambiguity
 - Capital workstreams produce regulator-grade evidence as a byproduct of their gates

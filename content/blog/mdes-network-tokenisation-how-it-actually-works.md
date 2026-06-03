@@ -210,7 +210,7 @@ OEM wallet DPANs are device-bound. They are not card-on-file tokens. A customer 
 
 Card-on-file is the largest single revenue surface in modern payments. Subscriptions, marketplaces, ride-share, OTT, BNPL, recurring B2B — every one of them lives or dies on card-on-file authorisation rate.
 
-The teams that ship card-on-file well treat network tokens as **the default credential**, not a future optimisation. They build their card-on-file vault around network tokens. They wire lifecycle webhooks day one. They monitor token-vs-PAN authorisation rate as a primary KPI.
+Strong card-on-file teams treat network tokens as **the default credential**, not a future optimisation. They build their card-on-file vault around network tokens. They wire lifecycle webhooks day one. They monitor token-vs-PAN authorisation rate as a primary KPI.
 
 The teams that don't treat tokenisation seriously hit a 70%-ish authorisation ceiling and never understand why their subscription churn is what it is.
 

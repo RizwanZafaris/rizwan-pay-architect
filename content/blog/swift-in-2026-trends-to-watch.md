@@ -57,7 +57,7 @@ Practical AI/ML applications are gaining traction in screening (false-positive r
 - Quantify against the G20 targets.
 - Pilot stablecoin rails for specific, well-bounded use cases, not as a general replacement.
 
-## Key takeaways
+## Operator notes
 
 - ISO 20022 is no longer a project. It is a baseline.
 - Instant rails plus interoperability are reshaping the last mile.

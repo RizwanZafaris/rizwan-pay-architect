@@ -17,7 +17,9 @@ relatedArticles:
 
 # A SWIFT Compliance Checklist for Banks and Fintechs
 
-A working checklist of the SWIFT-related compliance items that auditors, bank sponsors, and regulators actually ask about. Treat this as a starting point, not a substitute for jurisdiction-specific advice.
+A working checklist of the SWIFT-related compliance items that auditors, bank sponsors, and regulators ask about. Treat this as a starting point, not a substitute for jurisdiction-specific advice.
+
+The items below are the ones I would want visible before a sponsor-bank review or internal audit walkthrough. Missing items are not always fatal; undocumented ownership usually is.
 
 ## 1. SWIFT Customer Security Programme (CSP)
 
@@ -90,7 +92,7 @@ A working checklist of the SWIFT-related compliance items that auditors, bank sp
 - [ ] Compliance training updated to current sanctions regimes and AML typologies.
 - [ ] Engineering training on CSP architectural requirements.
 
-## Key takeaways
+## Operator notes
 
 - Compliance is not a single document; it is the operating condition of the platform.
 - The most expensive findings come from gaps the platform cannot demonstrate at click of a button.

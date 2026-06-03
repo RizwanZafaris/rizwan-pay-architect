@@ -213,4 +213,4 @@ For a recruiter scanning a payments product PM's portfolio, "shipped Click to Pa
 
 **Is enrolment opt-in?** Yes. Consumers have to enrol their card via their issuer or merchant flow. Some issuers have started "soft enrolling" cards (eligible to use, requires consumer confirmation on first use).
 
-**The single biggest reason teams under-adopt Click to Pay?** Because the integration is a few-week engineering job and the lift is gradual rather than dramatic. Teams chasing big visible wins skip it. The teams that ship it absorb the small lift compounded over years.
+**Why do teams under-adopt Click to Pay?** Because the integration is a few-week engineering job and the lift is gradual rather than dramatic. Teams chasing big visible wins skip it. The teams that keep it in the roadmap absorb the small lift compounded over years.

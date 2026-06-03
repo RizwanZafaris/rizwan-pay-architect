@@ -186,7 +186,7 @@ A good PgM is measured by:
 
 The dangerous KPI confusion: measuring PgMs on adoption (they do not own it) or PMs on date adherence (they do not deliver it). The roles drift toward each other and the seams blur.
 
-## What good looks like
+## Operating bar
 
 A fintech is operating well across PM and PgM when:
 

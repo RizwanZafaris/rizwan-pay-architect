@@ -46,7 +46,7 @@ SWIFT has been experimenting with linking traditional rails to tokenized asset p
 - Watch CBDC pilots in the markets where you operate.
 - Resist either of the loud confident positions ("crypto wins everything" / "crypto is a bubble"). Both are wrong.
 
-## Key takeaways
+## Operator notes
 
 - Stablecoins solve specific cross-border problems in specific corridors.
 - SWIFT remains structurally important for high-value bank flows.

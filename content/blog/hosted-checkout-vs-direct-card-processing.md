@@ -56,7 +56,7 @@ This is a practitioner walk-through of what hosted checkout actually gives you, 
 - Why this matters
 - Rizwan's operator lens
 - What product leaders should do next
-- Key takeaways
+- Operator notes
 - FAQ
 
 ## The hosted checkout default
@@ -155,7 +155,7 @@ The same maturity arc applied at Daraz in handling card disputes, owning the dis
 4. **Treat 3DS as a conversion product.** Build the rule engine.
 5. **Build routing on day one of direct.** Single-acquirer direct is most of the cost with little of the upside.
 
-## Key takeaways
+## Operator notes
 
 - Hosted checkout is the right first step and the wrong last step.
 - Five forcing functions push platforms to direct: cost, conversion, tokenization, 3DS, routing.

@@ -228,7 +228,7 @@ This is what you're paying for. The mistake is expecting MPGS to also be a merch
 
 If you're a product lead at a card-issuing bank, an acquiring bank, a payment orchestrator, a card network or a regulated fintech, you will work with MPGS or its peers (CyberSource for Visa, Adyen-internal, Stripe-internal). The architecture of these gateways is the architecture of card payments.
 
-The teams that ship card acquiring well treat MPGS as a **toolkit, not a product**. They wrap it in a thoughtful merchant product, a real reconciliation pipeline, a serious fraud engine, a programmable risk layer. The teams that treat MPGS as an off-the-shelf platform are the teams that get stuck rebuilding.
+Strong card-acquiring teams treat MPGS as a **toolkit, not a product**. They wrap it in a thoughtful merchant product, a real reconciliation pipeline, a serious fraud engine, and a programmable risk layer. Teams that treat MPGS as an off-the-shelf platform are usually the teams forced to rebuild later.
 
 ## FAQ
 

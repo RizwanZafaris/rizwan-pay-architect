@@ -46,7 +46,7 @@ If the payment stalls at a correspondent for more than a business day, contact t
 
 A cancellation request can be initiated by the originating bank. Success depends on where the payment is in the chain and whether downstream correspondents act in time. Refunds, where issued, typically come back with new FX deductions.
 
-## Key takeaways
+## Operator notes
 
 - The UETR is the field that makes tracking possible.
 - Most major banks expose a tracking surface; ask for it.

@@ -154,7 +154,7 @@ When the PMO drives decisions, the value is obvious within a quarter. The squads
 
 When the PMO drifts back to oversight, the symptoms return within two quarters. This is the only function in the company that requires constant re-anchoring. The drift gravity is strong because oversight is genuinely useful — just not the highest use of the function.
 
-## What good looks like at 12 months
+## Operating bar at 12 months
 
 A working PMO at 12 months has these signs:
 

@@ -108,7 +108,7 @@ The PMO is a coordination function. It does not own delivery, workstream leads d
 
 **Tool sprawl returns.** Symptom: people start tracking work in Slack threads, spreadsheets, parallel boards. Fix: this is a recurring battle. Win it again.
 
-## What good looks like at 90 days
+## Operating bar at 90 days
 
 - Every active initiative is in one tool with an owner and a status
 - RAID is alive and weekly-reviewed

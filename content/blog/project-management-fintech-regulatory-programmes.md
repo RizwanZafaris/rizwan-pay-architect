@@ -41,9 +41,9 @@ relatedArticles:
 
 Six weeks before the audit, every regulatory programme in trouble starts to look identical. The same Confluence pages everyone forgot about. The same evidence requests sitting in inboxes. The same "we'll get to that" gaps in the policy hierarchy. A PMO scrambling to backfill twelve months of work into six weeks of theatre.
 
-The teams that ship regulatory work cleanly have done one thing differently: they stopped treating it as a compliance exercise and started treating it as a project — with an immovable deadline (the audit), an external grader (the auditor), and a delivery cost (remediation) that gets paid up front or many times over. The frantic-sprint shape is what compliance-as-a-checklist looks like. The compound-certification shape is what project-managed regulatory work looks like.
+Clean regulatory programmes have one habit in common: they stop treating compliance as a document exercise and start treating it as delivery work, with an immovable deadline, an external grader, and remediation cost that compounds when evidence is late. The frantic-sprint shape is what compliance-as-a-checklist looks like. The compound-certification shape is what project-managed regulatory work looks like.
 
-This is the playbook from running PCI DSS, ISO 27001, SOC 2, and AML/CFT programmes inside regulated payments organisations.
+The notes below come from running PCI DSS, ISO 27001, SOC 2, and AML/CFT programmes inside regulated payments organisations.
 
 ## The four major programmes by shape
 
@@ -191,7 +191,7 @@ Three document-control disciplines that distinguish run-of-the-mill programmes f
 
 This sounds bureaucratic. In practice, it is the difference between a four-week audit and a two-week audit.
 
-## What good looks like
+## Operating bar
 
 A regulatory project is being run well when:
 

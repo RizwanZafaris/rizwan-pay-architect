@@ -45,7 +45,7 @@ Most LPM integrations fail that test. This is the operator argument for why loca
 - The economics of bad DX
 - Why this matters to Stripe, Adyen, Visa, Mastercard
 - Rizwan's operator lens
-- Key takeaways
+- Operator notes
 - FAQ
 
 ## The acceptance gap is a DX gap
@@ -140,7 +140,7 @@ At Simpaisa, the inflection in LPM acceptance came not from new partners but fro
 
 The same lesson carried into the Tapmad billing migration: the speed at which wallets and DCB replaced operator billing was determined by how easily the engineering team could route, retry, and reconcile across rails, which is to say, by the DX of the platform's own internal LPM abstraction.
 
-## Key takeaways
+## Operator notes
 
 - Acceptance in emerging markets is decided at the SDK and webhook layer.
 - LPMs must match cards on API surface, error taxonomy, webhook semantics, and sandbox coverage.

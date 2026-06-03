@@ -137,7 +137,7 @@ The PMO on itself. What's working? What's slowing teams down? Change one thing p
 
 This is the only ritual that improves all the others.
 
-## What good looks like at 12 months
+## Operating bar at 12 months
 
 - RAID is alive; weekly-reviewed; entries don't go stale
 - SteerCo runs in 90 minutes with documented decisions

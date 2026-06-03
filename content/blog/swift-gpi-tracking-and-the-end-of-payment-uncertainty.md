@@ -28,7 +28,7 @@ For decades, cross-border payments were sent into a tunnel. The originator's ban
 - Same-day credit, fee transparency, and traceability
 - The operator view of gpi
 - Limitations and edge cases
-- Key takeaways
+- Operator notes
 - FAQ
 
 ## What gpi changes
@@ -73,7 +73,7 @@ A few practical observations:
 
 None of these are reasons to ignore gpi. They are reasons to combine gpi data with the platform's own observability.
 
-## Key takeaways
+## Operator notes
 
 - gpi closed most of the historical tracking gap in cross-border payments.
 - The UETR is the first true cross-border correlation key.

@@ -48,7 +48,7 @@ After running multi-rail infrastructure at over a billion in annual GTV, cards, 
 - Idempotency, retries, and the cost of getting it wrong
 - Why this matters to Visa, Mastercard, Stripe
 - Rizwan's operator lens
-- Key takeaways
+- Operator notes
 - FAQ
 
 ## The API illusion
@@ -125,7 +125,7 @@ At Simpaisa, the inflection point was not the day we added the fifth rail. It wa
 
 Within two quarters the merchant-reported "where is my money" tickets dropped by more than half, even as GTV grew. The infrastructure had not become faster. It had become legible.
 
-## Key takeaways
+## Operator notes
 
 - Payment infrastructure is a state, trust, and failure problem, the API is a thin facade over it.
 - Every transaction lives in an explicit state machine. Implicit states are operational debt.

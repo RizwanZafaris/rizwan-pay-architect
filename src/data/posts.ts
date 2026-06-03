@@ -1226,7 +1226,7 @@ export const posts: Post[] = [
     description:
       "How the five PSD2 SCA exemptions actually work, TRA, low-value, recurring, trusted beneficiary, MIT, when each one applies, the issuer-side reality, and the auth-rate maths behind exemption strategy.",
     thesis:
-      "PSD2 SCA exemptions are the single highest-leverage card-present-not-present optimisation. The five exemptions are well-documented in the RTS. The mechanics that make them ship, issuer cooperation, fraud-rate maths, scheme step-up logic, abandon-recovery flows, almost never are.",
+      "PSD2 SCA exemptions can materially lift card-not-present conversion. The five exemptions are well-documented in the RTS; the mechanics that make them ship are not.",
     featured: true,
     tags: [
       "PSD2",
@@ -1852,9 +1852,9 @@ export const posts: Post[] = [
     category: "Crypto & Stablecoins",
     readingTime: "10 min read",
     description:
-      "Where stablecoins actually fit in payments product strategy in 2026, B2B settlement, cross-border payouts, treasury, merchant acceptance. What's working, what's not, and the operating model underneath.",
+      "Operator view of where stablecoins fit in payments strategy: B2B settlement, treasury, payouts, merchant acceptance, FX, compliance and reconciliation.",
     thesis:
-      "Stablecoins are quietly winning the B2B cross-border settlement use case. They are still losing consumer acceptance. The interesting product work is at the boundary.",
+      "The useful stablecoin work is less dramatic than the headlines: B2B settlement, treasury movement, and payout corridors where fiat rails still create avoidable delay.",
     tags: [
       "stablecoin",
       "USDC",

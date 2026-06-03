@@ -35,7 +35,7 @@ This essay is the operator view of that reality and the product opportunities it
 - De-risking and what it actually changed
 - The corridor-level product opportunity
 - Where regulation is heading
-- Key takeaways
+- Operator notes
 - FAQ
 
 ## How correspondent banking works
@@ -87,7 +87,7 @@ Several regulatory threads matter:
 
 The direction of travel: more structured data, more transparency, more pressure on the underlying drivers of de-risking. Fintechs that align early benefit twice, operationally and reputationally.
 
-## Key takeaways
+## Operator notes
 
 - Correspondent banking is the most important hidden variable in cross-border payments.
 - De-risking rerouted friction onto the corridors that least could absorb it.

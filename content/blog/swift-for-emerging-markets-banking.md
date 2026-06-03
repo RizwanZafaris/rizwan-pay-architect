@@ -46,7 +46,7 @@ This is reshaping the role of SWIFT in emerging markets, not replacing it, but a
 - Surface **gpi status and FX margin** to customers; opacity is no longer a defensible commercial position.
 - Prepare for **ISO 20022** even where regional adoption is slower than the global timeline.
 
-## Key takeaways
+## Operator notes
 
 - SWIFT is the standard in emerging-market banking, but the friction lives in the correspondent layer.
 - Fintech intermediation is the structural response to de-risking.

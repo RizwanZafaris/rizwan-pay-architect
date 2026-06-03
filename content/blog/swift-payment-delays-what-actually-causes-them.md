@@ -42,7 +42,7 @@ Structured party data, addresses, and purpose codes reduce ambiguity at every do
 - **Corridor selection.** Where a local-rail alternative exists, offer it for time-sensitive payments.
 - **Status surfacing.** Show gpi status to customers, with explanations for known delay causes.
 
-## Key takeaways
+## Operator notes
 
 - The SWIFT network is rarely the cause.
 - Compliance, cut-offs, and weak data dominate.

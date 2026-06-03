@@ -170,7 +170,7 @@ Open banking is national, almost everywhere. Cross-border initiation (EU user pa
 
 Watch SEPA Instant + SCT Inst + the cross-border PISP licences as the real cross-border open banking story matures over the next 24 months.
 
-## What good looks like
+## Operating bar
 
 An open banking product team is shipping well when:
 

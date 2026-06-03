@@ -33,9 +33,9 @@ relatedArticles:
 
 # Crypto On-Ramps: A Product Guide for Banks and Fintechs
 
-A crypto on-ramp is a payments product, not a crypto product. The hard parts are KYC tiering, sponsor liquidity, FX exposure and Travel Rule compliance, not the wallet integration.
+A crypto on-ramp is a payments product with a token leg, not a crypto feature bolted onto checkout. The hard decisions sit in KYC tiering, quote validity, liquidity, Travel Rule handling and what happens when a user hits a limit mid-transaction.
 
-If you are a bank, fintech or PSP thinking about adding fiat-to-crypto inside your existing acceptance stack, this is the operating frame.
+If you are a bank, fintech or PSP thinking about fiat-to-crypto inside an existing acceptance stack, this is the operating frame I would use before any wallet integration work starts.
 
 ## What "on-ramp" actually means
 
@@ -47,7 +47,7 @@ A merchant or consumer pays in fiat (card, bank transfer, wallet) and receives a
 
 Each pattern has different unit economics, compliance posture and conversion characteristics.
 
-## The product stack
+## Product surfaces to design
 
 A minimum-viable on-ramp has six surfaces:
 
@@ -67,7 +67,7 @@ A single-tier KYC kills conversion. A tiered KYC where the friction matches the 
 - **Tier 2**, proof of address + source-of-funds questions. Up to ~$25K monthly. Required by most regulators above a threshold.
 - **Tier 3**, enhanced due diligence for institutional or high-volume. Manual.
 
-Design the upgrade flow so users can move tier when they hit a limit, without losing the transaction in progress. This is the single biggest UX bug on crypto on-ramps.
+Design the upgrade flow so users can move tier when they hit a limit, without losing the transaction in progress. I have seen more conversion lost here than in the wallet handoff itself.
 
 ## Sponsor liquidity and FX exposure
 
@@ -103,7 +103,7 @@ In Dubai, VARA licenses the activity. In the broader region, FATF guidance shape
 
 Plan for a 12–18 month licensing path, not 6 weeks.
 
-## What good looks like at launch
+## Launch bar
 
 - KYC tier auto-recommends based on intended use
 - Quote-to-settle p95 latency under 60 seconds

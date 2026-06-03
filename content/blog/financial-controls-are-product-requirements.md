@@ -39,7 +39,7 @@ I have stood up the financial-control side of a payments platform processing $1B
 - Audit trails that survive scrutiny
 - Why this matters to regulators and partners
 - Rizwan's operator lens
-- Key takeaways
+- Operator notes
 - FAQ
 
 ## The compliance overlay trap
@@ -115,7 +115,7 @@ The opposite, a platform that produces evidence in PDFs the night before an audi
 
 The work at Simpaisa that produced the cleanest audits was not a compliance project. It was a platform project. The team modeled controls as first-class entities, roles, limits, maker-checker pairs, posted entries, and surfaced them in the same admin console the ops team used every day. The auditor's first walkthrough took ninety minutes instead of three days. The cost saved in audit time was real. The cost saved in incident risk was larger.
 
-## Key takeaways
+## Operator notes
 
 - Financial controls are product requirements, not compliance overlays.
 - Segregation of duties and maker-checker must be enforced by the platform, not policy.

@@ -44,7 +44,7 @@ I have run merchant onboarding in regulated payments at scale across South Asia 
 - Document capture is a product, not a form
 - Why this matters to networks and acquirers
 - Rizwan's operator lens
-- Key takeaways
+- Operator notes
 - FAQ
 
 ## The three-team trap
@@ -128,7 +128,7 @@ At Simpaisa, when we re-architected merchant onboarding, the first decision was 
 
 Within two quarters, activation in the long-tail SME segment increased materially while manual review load dropped and default rate stayed flat. The platform did not become more lenient. It became more legible.
 
-## Key takeaways
+## Operator notes
 
 - Onboarding is a single product surface, not three teams' overlapping work.
 - One owner, one decision model, one friction taxonomy, one feedback loop.

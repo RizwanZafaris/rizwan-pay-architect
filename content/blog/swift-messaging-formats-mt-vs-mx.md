@@ -53,7 +53,7 @@ Three reasons:
 - Internal data models should be MX-shaped, with MT translation only where legacy fallback is required.
 - Vendor integrations should be evaluated on their native MX capability.
 
-## Key takeaways
+## Operator notes
 
 - MT is legacy; MX is the standard.
 - MX is not a format change; it is a data-model change.

@@ -43,7 +43,7 @@ I led the migration at Tapmad that took payment cost from roughly 50% of revenue
 - The numbers that moved
 - Why this matters to OTT, SaaS, and subscription leaders
 - Rizwan's operator lens
-- Key takeaways
+- Operator notes
 - FAQ
 
 ## Where 50% came from
@@ -130,7 +130,7 @@ Any subscription business in a market where the dominant rails are not cards fac
 
 The hardest part of the Tapmad work was not the engineering. It was convincing the organization that the rail mix could be moved at all. The dominant rail had cultural inertia, it was "how billing worked." The shift came when we showed, with a single cohort, that the cheaper rail could be the default without hurting acquisition. After that, the question stopped being "can we move" and became "how fast."
 
-## Key takeaways
+## Operator notes
 
 - Payment cost is a product variable, not a procurement one.
 - Rail preference order is the largest single lever.

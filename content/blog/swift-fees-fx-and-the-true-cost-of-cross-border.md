@@ -26,7 +26,7 @@ The fee a customer sees on a cross-border payment confirmation is rarely the cos
 - FX margin is usually the biggest line
 - gpi fee transparency
 - Product moves that compress cost
-- Key takeaways
+- Operator notes
 - FAQ
 
 ## The cost stack
@@ -73,7 +73,7 @@ For a fintech routing cross-border:
 
 Each of these is a product decision that affects cost more than any single contract negotiation.
 
-## Key takeaways
+## Operator notes
 
 - The visible fee is the smallest part of the cost.
 - FX margin is usually the largest line and the most opaque.

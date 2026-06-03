@@ -18,20 +18,9 @@ relatedArticles:
 
 # SWIFT, AML/CFT, and Sanctions Screening in Practice
 
-The compliance theory is straightforward: every cross-border payment must be screened against sanctions lists, monitored for money-laundering and terrorist-financing patterns, and reported where required.
+The policy answer is simple; the production system is not. A SWIFT-instructed payment has names, addresses, banks, intermediaries, purpose text and sometimes poor transliteration. The screening product has to decide which ambiguity blocks money and which ambiguity goes to review.
 
-The operating reality is harder. The product decisions inside that compliance envelope determine whether throughput survives, false positives are bearable, and the customer experience is acceptable.
-
-## Table of contents
-
-- The screening stack
-- Which lists, when, and why
-- The matcher problem
-- The review queue is a product
-- AML/CFT monitoring vs sanctions screening
-- ISO 20022 and the data advantage
-- Key takeaways
-- FAQ
+The product decisions inside that compliance envelope determine whether throughput survives, false positives are bearable, and the customer experience is acceptable.
 
 ## The screening stack
 
@@ -94,7 +83,7 @@ Structured party data in ISO 20022 messages reduces the matcher's ambiguity. Ful
 
 This is one of the most underrated reasons to take the [ISO 20022 migration](/blog/iso-20022-migration-what-product-teams-must-know) seriously.
 
-## Key takeaways
+## Operator notes
 
 - The compliance theory is simple; the product decisions are not.
 - Lists, matcher tuning, decision logic, and the review queue are each separate product surfaces.

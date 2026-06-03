@@ -134,7 +134,7 @@ The feature pipeline turns hundreds of raw fields into hundreds to thousands of 
 - **Online-offline parity.** Features computed in development against historical data must match features computed in production at application time. Subtle differences (timezone handling, missing-value imputation, currency conversion) silently break models in production.
 - **Versioning.** Every feature has a version; every model is pinned to a specific feature pipeline version; changes to the feature pipeline are traced and reviewed.
 
-The teams that ship feature pipelines without these disciplines produce models that score well in development and disappointingly in production, every time, regardless of model architecture. (See [Why AI/ML Solutions Fail in Production Payments](/blog/why-ai-ml-solutions-fail-production-payments) for the related failure pattern.)
+Feature pipelines without these disciplines produce models that score well in development and disappointingly in production, regardless of model architecture. (See [Why AI/ML Solutions Fail in Production Payments](/blog/why-ai-ml-solutions-fail-production-payments) for the related failure pattern.)
 
 ## The model family
 

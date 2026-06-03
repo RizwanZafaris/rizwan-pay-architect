@@ -163,7 +163,7 @@ Three reconciliation disciplines that distinguish good products:
 
 Reconciliation is not the boring part. It is the part that decides whether finance trusts the platform.
 
-## What good looks like
+## Operating bar
 
 A VCA product team is shipping well when:
 

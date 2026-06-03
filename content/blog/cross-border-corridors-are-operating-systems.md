@@ -57,7 +57,7 @@ This essay is the framing I have used to build pay-in and payout corridors acros
 - Why this matters
 - Rizwan's operator lens
 - What product leaders should do next
-- Key takeaways
+- Operator notes
 - FAQ
 
 ## Why "corridor as route" fails
@@ -152,12 +152,12 @@ The result was a corridor portfolio where the team could explain, per corridor, 
 ## What product leaders should do next
 
 1. **Pick your top three corridors and assign owners.** Not partner managers, product owners.
-2. **Build the corridor × partner × instrument × value band success-rate view.** This is the single highest-leverage piece of cross-border observability.
+2. **Build the corridor × partner × instrument × value band success-rate view.** It is the observability view that exposes where cross-border margin and reliability are really moving.
 3. **Audit your FX product.** If your team cannot answer the six FX questions above for any corridor, FX is undermanaged.
 4. **Map compliance controls to corridor flow.** Move what can move earlier; defer what can defer safely.
 5. **Produce a corridor P&L.** Even rough is better than absent.
 
-## Key takeaways
+## Operator notes
 
 - A corridor is not a partner integration. It is an operating system.
 - FX is a product, not a price.

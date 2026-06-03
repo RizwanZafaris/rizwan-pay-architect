@@ -61,7 +61,7 @@ A product that calls both "wire" without distinguishing them produces customer c
 | FX            | Almost always involved              | Usually none                                     |
 | Tracking      | gpi end-to-end where supported      | Native to the rail                               |
 
-## Key takeaways
+## Operator notes
 
 - "Wire transfer" is the banking outcome; "SWIFT" is the messaging protocol that often carries the instruction.
 - Many domestic wires never touch SWIFT.

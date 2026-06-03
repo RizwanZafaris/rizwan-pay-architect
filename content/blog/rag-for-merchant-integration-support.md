@@ -32,7 +32,7 @@ relatedArticles:
 
 Merchant integration support is the cleanest place to put a GenAI bot in a payments platform. The questions are patterned, the answers live in docs you already maintain, and the failure mode (wrong answer) has a cheap recovery (human takes over).
 
-We shipped this surface at Simpaisa and cut merchant integration support time by ~65%. This is the playbook.
+We shipped this surface at Simpaisa and cut merchant integration support time by roughly 65%. The useful part was not the bot; it was the evidence discipline around what the bot could answer, when it handed over, and how stale documentation was removed from retrieval.
 
 ## Why RAG, not fine-tuning
 
@@ -77,7 +77,7 @@ Three teams co-own it: DevRel/Docs (corpus quality), product engineering (retrie
 - **Code-block hallucinations.** LLMs love to invent SDK method names. Mitigation: any code block in an answer must be matched against the actual SDK API surface; if no match, strip and hand off.
 - **Overconfidence on currency conversions or settlement timing.** Add specific guardrails for these topics, never let the bot quote money.
 
-## What good looks like at 6 months
+## Operating bar at 6 months
 
 - 80%+ first-turn resolution on patterned questions
 - <2% factual error rate (sample-audited weekly)

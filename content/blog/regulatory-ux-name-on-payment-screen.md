@@ -39,7 +39,7 @@ I have launched payment products under State Bank of Pakistan oversight, with ba
 - Multi-jurisdiction UX
 - Why this matters to scheme reviewers and bank sponsors
 - Rizwan's operator lens
-- Key takeaways
+- Operator notes
 - FAQ
 
 ## What "regulatory UX" actually means
@@ -112,7 +112,7 @@ The launches that went smoothly were not the ones with the cleanest architecture
 
 The change that produced the smoothest launches at Simpaisa was simple: regulatory UX moved into the design review, with a compliance reviewer present, on every sprint. Not at the end. On every sprint.
 
-## Key takeaways
+## Operator notes
 
 - Regulators read your screens, not your roadmap.
 - Merchant naming, descriptors, and disclosures are product surface, not branding.

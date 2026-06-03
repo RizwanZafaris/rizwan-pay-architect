@@ -32,7 +32,7 @@ Understanding that single distinction makes most cross-border payment problems l
 - SWIFT gpi and end-to-end tracking
 - Where ISO 20022 fits
 - Common failure modes
-- Key takeaways
+- Operator notes
 - FAQ
 
 ## What SWIFT actually is
@@ -83,7 +83,7 @@ The product implications for payment teams are covered in [ISO 20022 Migration: 
 
 Each of these is solvable at the product layer if the platform owns the message construction, the screening overlay, and the tracking surface.
 
-## Key takeaways
+## Operator notes
 
 - SWIFT is messaging, not movement.
 - Correspondent banking explains most cross-border cost and latency.

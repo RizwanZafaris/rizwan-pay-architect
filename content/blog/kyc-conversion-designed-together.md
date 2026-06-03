@@ -25,7 +25,7 @@ KYC is usually owned by compliance. Conversion is usually owned by growth. The t
 
 ## The shared surface
 
-KYC and conversion are not adjacent surfaces. They are the same surface viewed from different sides. Every KYC decision is a conversion decision. Every conversion decision is a risk decision. The teams that ship the best onboarding put both owners on the same product squad and measure the joint outcome.
+KYC and conversion are not adjacent surfaces. They are the same surface viewed from different sides. Every KYC decision is a conversion decision. Every conversion decision is a risk decision. The best onboarding teams put both owners on the same product squad and measure the joint outcome.
 
 ## Eight principles that hold across markets
 
@@ -69,7 +69,7 @@ The metric set must serve both. A working dashboard:
 
 When both teams are on the same dashboard with the same OKR, the religious war ends within a quarter.
 
-## What good looks like
+## Operating bar
 
 A working flow in a mainstream vertical:
 

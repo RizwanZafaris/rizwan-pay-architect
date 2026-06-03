@@ -101,7 +101,7 @@ Two-page document per use case:
 
 If you can't write this page, you can't defend the system. Build the document before you build the model.
 
-## What good looks like at 12 months
+## Operating bar at 12 months
 
 - Fraud loss below industry benchmark (we held <0.1% of GTV)
 - False-positive rate trending down quarter over quarter without raising false-negative rate

@@ -60,7 +60,7 @@ Tiering belongs to the same product surface as onboarding risk tiers. They are t
 
 ## Transparency beats speed
 
-The single highest-leverage change you can ship is not faster settlement. It is a merchant-visible **settlement timeline**: every transaction shows its expected settlement date the moment it is captured, with updates if anything shifts.
+The change I would ship before faster settlement is a merchant-visible **settlement timeline**: every transaction shows its expected settlement date the moment it is captured, with updates if anything shifts.
 
 When merchants can see what is coming and when, support tickets drop by 30–50%. We have measured this.
 

@@ -43,7 +43,7 @@ I have built and operated payment infrastructure across these markets at $1B+ GT
 - FX margin is the merchant's number, not the platform's
 - Why this matters to global platforms
 - Rizwan's operator lens
-- Key takeaways
+- Operator notes
 - FAQ
 
 ## The five assumptions that break
@@ -118,7 +118,7 @@ Frontier-market product discipline travels back to the core product. That is the
 
 The pattern across Simpaisa, Tapmad, and Daraz was consistent: every product decision that initially looked like a local accommodation turned out to be a generally better product decision once made. The native KYC flows were better than the English forms. The settlement-timing product was better than the monthly default. The transparent FX line item was better than the bundled spread. The platforms that fought to keep the global default lost. The platforms that absorbed the pressure test won, locally, and then globally.
 
-## Key takeaways
+## Operator notes
 
 - Emerging markets are not edge cases. They are pressure tests.
 - Cards are not the baseline anywhere, they are increasingly less so even in mature markets.

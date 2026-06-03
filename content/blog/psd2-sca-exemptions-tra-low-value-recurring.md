@@ -4,7 +4,7 @@ slug: "psd2-sca-exemptions-tra-low-value-recurring"
 category: "Payment Infrastructure"
 metaTitle: "PSD2 SCA Exemptions Explained: TRA, Low-Value, Recurring | Rizwan Zafar"
 metaDescription: "How the five PSD2 SCA exemptions actually work, TRA, low-value, recurring, trusted beneficiary, MIT, when each one applies, the issuer-side reality, and the auth-rate maths behind exemption strategy."
-excerpt: "PSD2 SCA exemptions are the single highest-leverage card-present-not-present optimisation. The five exemptions are well-documented in the RTS. The mechanics that make them ship, issuer cooperation, fraud-rate maths, scheme step-up logic, abandon-recovery flows, almost never are."
+excerpt: "PSD2 SCA exemptions can materially lift card-not-present conversion. The five exemptions are well-documented in the RTS; the mechanics that make them ship are not."
 publishDate: "2026-05-20"
 readingTime: "11 min read"
 featured: true

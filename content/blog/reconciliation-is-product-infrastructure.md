@@ -44,7 +44,7 @@ I have run reconciliation across multiple rails, cards, wallets, IBFT, DCB, and 
 - Why this matters
 - Rizwan's operator lens
 - What product leaders should do next
-- Key takeaways
+- Operator notes
 - FAQ
 
 ## Why reconciliation is treated as back office
@@ -161,7 +161,7 @@ If you own a payments platform and you are not sure where to start:
 4. **Build the feedback loop.** Create a recurring product ritual where reconciliation exceptions enter the backlog.
 5. **Move finance from the system of record to a consumer of the ledger.** The ledger is the product; the close is a report.
 
-## Key takeaways
+## Operator notes
 
 - Reconciliation is a product surface, not an ops queue.
 - Three-way is the floor. Two-way reconciliation systematically misreports.

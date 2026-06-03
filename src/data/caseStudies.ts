@@ -232,7 +232,7 @@ export const caseStudies: CaseStudy[] = [
       "Most KYB delays are document quality issues, not policy issues. Fix capture first.",
     ],
     whyItMatters:
-      "Acquirers, PSPs and cross-border networks live or die on activation funnel and risk posture. This is the playbook the Visa/Stripe/Adyen onboarding orgs operate from.",
+      "Acquirers, PSPs and cross-border networks live or die on activation speed and risk posture moving together. The useful signal is not that onboarding became faster; it is that faster onboarding did not weaken the bank, scheme or regulator evidence trail.",
     keywords: ["KYC KYB automation", "merchant onboarding", "AML CFT", "fintech compliance"],
   },
   {
@@ -424,7 +424,7 @@ export const caseStudies: CaseStudy[] = [
       "Local methods plus FX, not cards alone, win cross-border in emerging markets.",
     ],
     whyItMatters:
-      "Wise, Thunes, DLocal, Stripe Connect and Adyen for Platforms all sell some version of this. This is what shipping it actually looks like.",
+      "The relevant signal for Wise, Thunes, DLocal, Stripe Connect or Adyen-style platform work is corridor ownership: partner selection, FX exposure, payout reliability, compliance overlays and merchant-facing economics managed as one product.",
     keywords: ["cross-border payments", "FX infrastructure", "remittance", "MENA fintech"],
   },
   {
@@ -701,7 +701,7 @@ export const caseStudies: CaseStudy[] = [
     executiveSummary:
       "Ran GenAI use-case identification across the organisation, evaluated 20+ candidates with value modeling (ROI / feasibility / data readiness), and shipped four production deployments. Built the governance posture so AI runs alongside PCI DSS, ISO 27001 and AML/CFT controls, not despite them.",
     problem:
-      "Payments organisations are flooded with low-leverage AI demos. The real questions are which use cases survive the regulatory frame, which have data and feedback loops in place, and which produce auditable, explainable behaviour in production. Without a value-modeling discipline, AI becomes a procurement exercise instead of a product surface.",
+      "The organisation had more AI ideas than production candidates. The useful filter was not model novelty; it was whether a use case had clean source data, a measurable operating cost, a human fallback, and an audit trail a regulator or bank partner could understand.",
     built: [
       "AI Merchant Integration Chatbot (Slack + Telegram), RAG over API docs, error catalogue and integration playbooks. Cuts merchant integration support time by 65%.",
       "Intelligent System Monitoring & Auto-Escalation Bot, detects payment error spikes, runs log analysis, identifies root cause, auto-escalates with full diagnostics. −70% MTTR.",
@@ -738,7 +738,7 @@ export const caseStudies: CaseStudy[] = [
       "The fraud/AML use case has the highest stated ROI and the longest validation timeline. Plan for that.",
     ],
     whyItMatters:
-      "Every payments network, PSP, BaaS and regulated fintech is running this exact play in 2026. The operating model, use-case identification, value modeling, regulator-aware deployment, human-in-the-loop fallback, is the work, not the model choice.",
+      "The signal for a payments or banking employer is not that AI was used. It is that four use cases made it through value modelling, data-readiness review, risk sign-off, production fallback design and post-launch measurement.",
     keywords: [
       "AI in payments",
       "GenAI fintech",
@@ -924,12 +924,12 @@ export const caseStudies: CaseStudy[] = [
     ],
     lessons: [
       "ISO 20022 is a data-model migration, not a message-format one. Teams that treat it as 'change the parser' rebuild in 18 months.",
-      "gpi is the single highest-leverage merchant-facing feature on SWIFT. Surfacing UETR tracking removes more support tickets than every other improvement combined.",
+      "gpi UETR visibility was the merchant-facing change with the clearest support impact; it turned cross-border status from a back-office chase into a product surface.",
       "CSP attestation is not a yearly audit event. It's a quarterly operating discipline that produces evidence as a by-product.",
       "Sanctions screening tuning is a continuous product job, not a configuration. Per-corridor false-positive rates diverge fast.",
     ],
     whyItMatters:
-      "Every bank, regulated fintech, payment orchestrator and remittance platform that touches SWIFT is in some stage of this exact migration. The teams that ship it well — dual-rail parsing, MX-shaped data, real-time sanctions, gpi adoption, CSP attestation as operating discipline — keep their correspondent relationships intact. The teams that ship it badly lose correspondents one at a time, until the cross-border product becomes a liability. This is the playbook.",
+      "This matters for any bank, PSP or remittance platform still carrying MT-era assumptions. The useful signal is operational: MX-shaped data, gpi visibility, sanctions checks and CSP evidence became part of the product rhythm instead of a migration afterthought.",
     keywords: [
       "SWIFT MT MX implementation",
       "ISO 20022 migration",
@@ -1058,7 +1058,7 @@ export const caseStudies: CaseStudy[] = [
       "Migration governance is the actual product. A per-merchant flag, a dry-run mode, a rollback, and a named ops owner per merchant tier, these are the artefacts that decided whether the programme shipped clean or shipped incidents",
     ],
     whyItMatters:
-      "Most acquirer-processors in MENA, South Asia, and emerging Asia run a subset of the MPGS surface. The teams that own the full surface, Hosted Session, Direct API, 3DS2 exemption tuning, scheme tokenisation, recurring, dispute ingestion, settlement reconciliation, outpace the rest of the market on auth rate, dispute cost, PCI scope and merchant retention. The teams that stay on Hosted Checkout become orchestration shells around someone else's platform. This is the playbook for moving from the first posture to the second without a 24-hour outage in the migration window.",
+      "For an acquirer-processor, this is the difference between reselling a gateway flow and owning the payments surface. The evidence is in the migration control, auth-rate lift, dispute ingestion, tokenisation coverage and settlement break discipline.",
     keywords: [
       "MPGS integration programme",
       "MasterCard Payment Gateway Services",
@@ -1182,14 +1182,14 @@ export const caseStudies: CaseStudy[] = [
       "Built lifecycle webhook ingestion as idempotent + replayable from day one, added two weeks of build effort; saved an entire incident class around webhook duplication and out-of-order events",
     ],
     lessons: [
-      "Tokenisation is a credential-lifecycle programme, not a one-time migration. The webhooks (issuance, reissuance, suspension, deletion) are what make tokens pay back; teams that ship the migration without the lifecycle engine see lifecycle event backlog grow inside 90 days.",
+      "Tokenisation is a credential-lifecycle programme, not a one-time migration. The webhooks, issuance, reissuance, suspension and deletion, are what make tokens pay back; migrations without the lifecycle engine create an avoidable event backlog inside 90 days.",
       "Per-merchant migration governance, feature flag, dry-run, rollback, named ops owner, is the actual product. Portfolio-wide cutovers on credentials are how good engineering teams ship sev-1 incidents.",
       "Token genealogy (the chain of token IDs across reissuance for the same cardholder) is the single most underrated artefact. CE3.0 lookups, recurring re-trigger, and audit replays all depend on it being clean.",
       "PCI scope reduction is the headline; the auth-rate lift is the substance. The 91% PAN footprint reduction got the audit team's attention; the +1.8 points auth-rate lift paid the programme back inside six months.",
       "Vault decommissioning is a separate programme. Building it as the final step of tokenisation produces a clean attestation; building it into the migration plan as 'phase 4' produces an audit observation.",
     ],
     whyItMatters:
-      "Network tokenisation is no longer optional. Schemes are pushing it to mandatory across every major market; PCI auditors are pricing PAN-on-file storage out of viability; CE3.0 makes prior-cardholder evidence depend on token persistence; recurring success on the subscription economy depends on lifecycle webhooks. The acquirer-processors that ship this programme cleanly, single broker, lifecycle engine, per-merchant migration, recurring rewire, get the auth-rate lift, the PCI cost saving, the dispute win-rate lift and the regulatory posture as one bundle. The ones that ship it badly carry three vaults, a broken recurring engine, and a CE3.0 implementation that looks good on paper and loses disputes in production. This is the playbook for the first.",
+      "The hiring signal is credential-lifecycle ownership. Tokenisation only pays back when lifecycle webhooks, recurring logic, dispute evidence, vault retirement and merchant migration governance are designed together.",
     keywords: [
       "MDES network tokenisation",
       "Visa Token Service VTS",
@@ -1320,7 +1320,7 @@ export const caseStudies: CaseStudy[] = [
       "Per-merchant exemption profiles are not optional. Portfolio defaults produce mediocre frictionless rates everywhere; per-merchant profiles produce category-best on the cohorts where the merchant mix supports it.",
     ],
     whyItMatters:
-      "Every acquirer in any market where SCA applies (Europe, UK, MENA increasingly, parts of LATAM) carries this exact problem. The frictionless-rate gap between band-3 acquirers (70%+) and band-1 acquirers (35-45%) is worth multiple basis points of merchant-level auth rate, which translates directly to merchant retention. The programme is non-trivial, per-issuer scoring, MIT pipeline correctness, abandon-recovery, fraud-rate guard-rails, but it is the highest-leverage CNP product investment available at most mid-size acquirers. This is the playbook.",
+      "For CNP businesses, the commercial value sits in the uncomfortable middle: issuer scoring, exemption choice, fraud-rate guard rails and abandoned challenge recovery. This case shows that friction can be reduced without treating fraud tolerance as a rounding error.",
     keywords: [
       "3DS2 optimisation",
       "SCA exemption programme",
@@ -1441,13 +1441,13 @@ export const caseStudies: CaseStudy[] = [
     ],
     lessons: [
       "Click to Pay is a federated identity programme dressed as a checkout feature. The conversion lift comes from cross-merchant recognition, not from the Click to Pay button itself.",
-      "Button placement is the single highest-leverage merchant-side decision. A/B placement variants per merchant produced 2-3 points of delta on otherwise-identical Click to Pay flows.",
+      "Button placement carried more conversion variance than expected; per-merchant A/B placement produced 2-3 points of delta on otherwise-identical Click to Pay flows.",
       "Cardholder opt-in (no auto-enrol) is the right posture even when schemes push for the opposite. The complaint rate, the consent audit, and the regulator conversation are all easier with explicit opt-in.",
       "Network-token presentation through Click to Pay is what produces the auth-rate lift. The conversion lift is the headline; the auth-rate lift is the substance.",
       "Cross-merchant reuse rate is the leading indicator of programme success. 44% reuse on a regional cohort proved the scheme-led wallet thesis; below ~25% reuse and the programme is just an alternative checkout button.",
     ],
     whyItMatters:
-      "The scheme-led wallet has been a story without proof for five years. Click to Pay has been live in the schemes since 2019; conversion-lift evidence on regional cohorts was thin until programmes like this one delivered the funnel data. The platforms that ship Click to Pay cleanly, VCTP + MCTP on a unified internal API, in-checkout enrolment, cross-merchant recognition, network-token presentation, get the conversion lift, the auth-rate lift, the MDR participation, and the scheme posture as one bundle. The ones that defer continue to lose CNP conversion to Apple Pay / Google Pay penetration where it exists, and to nothing where it does not. This is the playbook for shipping the scheme wallet in MENA, with the funnel evidence that justifies it.",
+      "The useful signal is not that Click to Pay was integrated; it is that the programme produced funnel evidence, enrolment discipline, button-placement learning and network-token auth lift across a real merchant cohort.",
     keywords: [
       "Click to Pay programme",
       "VCTP rollout",
@@ -1582,7 +1582,7 @@ export const caseStudies: CaseStudy[] = [
       "List ingestion monitoring is the under-invested guard rail. A list update that arrived in a new format on a Friday afternoon and silently failed to ingest is how sanctions hits get missed.",
     ],
     whyItMatters:
-      "Sanctions and PEP screening is the single highest-risk surface in regulated payments operations. The teams that ship it well, real-time pre-send blocking, per-corridor tuning, list-update monitoring, regulator-facing audit posture, close regulator observations and earn the standing that justifies operating across multiple markets. The teams that ship it badly carry observations that escalate through the supervisory cycle until they cost the licence. The cost difference between a 14% false-positive rate and a 38% rate is the analyst headcount of an entire compliance function. This is the playbook.",
+      "The hiring signal is operating control. Real-time screening, market-specific list coverage, explainable suppression rules and analyst throughput improved together, which is what sponsor banks and regulators care about when volumes scale.",
     keywords: [
       "AML CFT sanctions engine",
       "real-time sanctions screening",
@@ -1709,7 +1709,7 @@ export const caseStudies: CaseStudy[] = [
       "Wallet-partner relationships are an ongoing operating function, not a one-time integration. The quarterly partner alignment is what keeps the integration current as wallet partners change their own APIs.",
     ],
     whyItMatters:
-      "Every regional fintech in MENA + South Asia eventually has to ship wallet acceptance. The teams that do it well, unified API, per-wallet adapter, intelligent routing, cross-rail fallback, uniform AML, capture the conversion lift, the cost reduction, the merchant-onboarding speed, and the regulator posture as one bundle. The teams that ship bespoke per-wallet integrations end up with five brittle pipelines, five reconciliation surfaces, five compliance gaps, and per-merchant engineering work that does not scale. This is the playbook for the first.",
+      "This is relevant to any MENA or South Asia acceptance team trying to move beyond card-first assumptions. The durable work is the adapter layer, same-session fallback, wallet-partner cadence, reconciliation and uniform AML posture.",
     keywords: [
       "regional wallet integration",
       "Easypaisa JazzCash integration",
@@ -1840,7 +1840,7 @@ export const caseStudies: CaseStudy[] = [
       "Forward-looking programme prioritisation is the test of the governance maturity. If the top 5 enterprise risks do not appear in the top 5 programmes, the organisation is running audit-reactive regardless of how strong the artefacts look.",
     ],
     whyItMatters:
-      "Every regulated fintech of meaningful scale faces the same problem: PMO + Risk operating as separate functions, governance posture as audit-reactive, regulator inquiries producing scrambles, programme prioritisation disconnected from risk reality. The operating model that solves this, joint Risk Council, unified register, audit-evidence pipeline, inquiry-response runbook, programme prioritisation tied to risk, produces the regulator commendation, the inquiry response time, the absence of findings, and the year-ahead readiness as one bundle. The model is non-trivial to ship (it requires senior buy-in, real tooling investment, and a cultural shift in both functions), but it is replicable across organisations. This is the playbook.",
+      "The signal for senior programme roles is governance that changes operating behaviour: one register, one council rhythm, evidence produced during delivery and regulator inquiries answered from a maintained system rather than a scramble.",
     keywords: [
       "PMO Risk Council operating model",
       "joint PMO Risk governance",
@@ -1970,7 +1970,7 @@ export const caseStudies: CaseStudy[] = [
       "Break-detection latency is the metric that matters more than accuracy. A 99.5% accurate engine that detects breaks on T+3 produces a worse merchant experience than a 99.0% accurate engine that detects on T+1.",
     ],
     whyItMatters:
-      "Settlement and reconciliation is the part of the acquirer-processor stack that is invisible when it works and existential when it does not. The platforms that ship triple-match cleanly, canonical IDs, automated remediation, per-merchant reporting, sub-T+1 break detection, operate with merchant trust, audit-clean posture, and finance-team efficiency that compounds. The platforms that ship two-way match carry rolling break backlogs, audit observations, manual finance work, and merchant-facing settlement issues that become churn drivers. The cost difference between the two is not engineering, it is the operating model. This is the playbook.",
+      "The useful signal is that reconciliation became a merchant-trust product, not only a finance close process. Triple-match, break ageing, automated remediation and merchant-visible reporting changed both audit posture and support load.",
     keywords: [
       "settlement engine reconciliation",
       "triple-match reconciliation",

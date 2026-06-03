@@ -82,7 +82,7 @@ It assembles context and routes. That's the whole job. Bounding it tightly is wh
 - **Cascading errors that look like one incident.** Agent posts each one separately at first. Added a 60-second deduplication window before posting.
 - **Bias toward recent incident patterns.** Agent learned to over-attribute to the last failure mode. Periodically reset / rebalance training context.
 
-## What good looks like at 6 months
+## Operating bar at 6 months
 
 - Incident commanders never arrive cold to a payment incident
 - MTTR halved to two-thirds reduced

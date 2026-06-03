@@ -25,7 +25,7 @@ The question is wrong if framed as "which rail is best." The right question is "
 - Decision dimensions
 - A practical decision matrix
 - Routing as a product
-- Key takeaways
+- Operator notes
 - FAQ
 
 ## The three rail families
@@ -73,7 +73,7 @@ For platforms that own the merchant-facing surface, **routing** is the most impo
 
 A platform with explicit routing wins on every dimension over time. A platform with implicit routing accrues legacy decisions that are expensive to undo.
 
-## Key takeaways
+## Operator notes
 
 - No universal best rail; the best rail is a function of corridor, value, customer, and use case.
 - Routing is the product that wins.
