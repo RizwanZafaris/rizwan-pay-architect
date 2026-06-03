@@ -1,5 +1,5 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { useEffect } from "react";
+import { useEffect, type CSSProperties } from "react";
 import { getPost, getRelated, isPostPublished, publishedPosts, type Post } from "@/data/posts";
 import { profile } from "@/data/profile";
 import { caseStudies } from "@/data/caseStudies";
@@ -267,6 +267,15 @@ function extractTOC(md: string) {
     });
 }
 
+function articleSignals(post: Post, tocLength: number) {
+  return [
+    "Operator-written",
+    `${post.readingTime}`,
+    `${tocLength} section${tocLength === 1 ? "" : "s"}`,
+    "Recruiter-readable",
+  ];
+}
+
 // End-of-essay conversion block. Routes the reader (organic or AI-referred)
 // from the most-linked, most-indexed surface (essays) toward the parent topic
 // hub, a relevant case study, and the recruiter actions — the linking the
@@ -387,7 +396,9 @@ function BlogPostPage() {
 
   return (
     <article className="blog-article-page overflow-x-clip">
-      <header className="border-b border-rule bg-surface/45">
+      <header className="article-hero-shell relative overflow-hidden border-b border-rule bg-surface/45">
+        <span aria-hidden="true" className="article-hero-rule article-hero-rule-a" />
+        <span aria-hidden="true" className="article-hero-rule article-hero-rule-b" />
         <div className="mx-auto max-w-6xl px-5 sm:px-6 pt-14 pb-12">
           <Link
             to="/blog"
@@ -429,11 +440,22 @@ function BlogPostPage() {
                 <span>By {profile.name}</span>
               </div>
             </div>
-            <div className="lg:col-span-4 min-w-0 rounded-lg border border-rule bg-background p-5">
+            <div className="article-brief-card lg:col-span-4 min-w-0 rounded-lg border border-rule bg-background/90 p-5">
               <div className="text-[10px] uppercase tracking-[0.18em] text-ink-soft mb-3 font-mono-tech">
-                Why this matters
+                Briefing note
               </div>
               <p className="text-sm leading-relaxed text-ink">{p.description}</p>
+              <div className="article-status-stack mt-5 flex flex-wrap gap-2">
+                {articleSignals(p, toc.length).map((signal, index) => (
+                  <span
+                    key={signal}
+                    className="article-status-badge"
+                    style={{ "--motion-delay": `${180 + index * 70}ms` } as CSSProperties}
+                  >
+                    {signal}
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -443,19 +465,39 @@ function BlogPostPage() {
         {/* TOC */}
         <aside className="lg:col-span-3 order-1">
           {toc.length > 0 && (
-            <div className="lg:sticky lg:top-24 rounded-lg border border-rule bg-surface p-5">
+            <div className="article-rail-card lg:sticky lg:top-24 rounded-lg border border-rule bg-surface p-5">
+              <div className="article-rail-progress" aria-hidden="true">
+                <span />
+              </div>
               <div className="text-[10px] uppercase tracking-[0.18em] text-ink-soft mb-3 font-mono-tech">
-                On this page
+                Article map
               </div>
               <ul className="space-y-2 text-sm leading-snug">
                 {toc.map((t) => (
                   <li key={t.id}>
-                    <a href={`#${t.id}`} className="text-ink-soft hover:text-ink transition-colors">
+                    <a
+                      href={`#${t.id}`}
+                      className="article-map-link text-ink-soft hover:text-ink transition-colors"
+                    >
                       {t.text}
                     </a>
                   </li>
                 ))}
               </ul>
+              <div className="mt-5 border-t border-rule pt-4">
+                <div className="text-[10px] uppercase tracking-[0.18em] text-ink-soft mb-3 font-mono-tech">
+                  Reader signals
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {articleSignals(p, toc.length)
+                    .slice(0, 3)
+                    .map((signal) => (
+                      <span key={signal} className="article-mini-chip">
+                        {signal}
+                      </span>
+                    ))}
+                </div>
+              </div>
             </div>
           )}
         </aside>
@@ -478,7 +520,7 @@ function BlogPostPage() {
               {p.tags.map((t) => (
                 <span
                   key={t}
-                  className="text-xs px-2.5 py-1 border border-rule rounded-full text-ink-soft bg-surface"
+                  className="blog-tag-chip text-xs px-2.5 py-1 border border-rule rounded-full text-ink-soft bg-surface"
                 >
                   {t}
                 </span>
