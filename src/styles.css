@@ -1025,6 +1025,38 @@
     box-shadow: 0 0 0 3px color-mix(in oklab, var(--signal) 13%, transparent);
   }
 
+  .resume-role-line {
+    letter-spacing: 0;
+    max-width: 48rem;
+  }
+
+  .resume-role-accent {
+    background-image: linear-gradient(
+      to top,
+      color-mix(in oklab, var(--signal) 22%, transparent) 0 44%,
+      transparent 44% 100%
+    );
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+  }
+
+  .resume-identity-chip {
+    display: inline-flex;
+    align-items: center;
+    min-height: 1.8rem;
+    border: 1px solid color-mix(in oklab, var(--ink) 14%, var(--rule));
+    border-radius: 999px;
+    background: color-mix(in oklab, var(--paper) 88%, white 12%);
+    padding: 0.42rem 0.68rem;
+    color: var(--ink);
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 0.64rem;
+    letter-spacing: 0.11em;
+    line-height: 1;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
   @media (max-width: 640px) {
     .blog-kinetic-label {
       display: none;
@@ -1443,6 +1475,7 @@
   .recruiter-proof-card,
   .contact-proof-card,
   .resume-skill-chip,
+  .resume-identity-chip,
   .resume-timeline-card,
   .recruiter-card,
   .contact-card,
@@ -1469,6 +1502,12 @@
   .resume-skill-chip:hover {
     transform: translateY(-1px);
     border-color: color-mix(in oklab, var(--accent-emerald) 40%, var(--rule));
+  }
+
+  .resume-identity-chip:hover {
+    transform: translateY(-1px);
+    border-color: color-mix(in oklab, var(--signal) 36%, var(--rule));
+    background: color-mix(in oklab, var(--paper) 78%, var(--signal) 6%);
   }
 
   .resume-divider {
@@ -1599,6 +1638,7 @@
     .recruiter-proof-card,
     .contact-proof-card,
     .resume-skill-chip,
+    .resume-identity-chip,
     .resume-timeline-card,
     .recruiter-card,
     .contact-card {
@@ -1679,6 +1719,7 @@
     .recruiter-proof-card,
     .contact-proof-card,
     .resume-skill-chip,
+    .resume-identity-chip,
     .resume-timeline-card,
     .recruiter-card,
     .contact-card,

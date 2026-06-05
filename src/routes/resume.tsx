@@ -202,9 +202,28 @@ function ResumePage() {
               Executive resume
             </span>
           </div>
-          <h1 className="font-instrument text-3xl sm:text-4xl md:text-6xl text-ink mt-7 leading-[1.02] max-w-4xl text-wrap">
-            Rizwan Zafar, Product &amp; Program Executive
+          <h1
+            className="font-instrument text-4xl sm:text-5xl md:text-6xl text-ink mt-7 leading-[1.02] max-w-4xl text-wrap"
+            aria-label="Rizwan Zafar, Product and Program Executive scaling fintech infrastructure"
+          >
+            <span className="block">Rizwan Zafar</span>
+            <span className="resume-role-line mt-3 block font-sans text-base sm:text-lg md:text-2xl leading-snug text-ink-soft">
+              <span className="sr-only">, </span>
+              Product &amp; Program Executive{" "}
+              <span className="resume-role-accent text-ink">Scaling Fintech Infrastructure</span>
+            </span>
           </h1>
+          <div className="mt-4 flex flex-wrap gap-2" aria-label="Primary executive positioning">
+            {["Payments", "Fintech Infrastructure", "Program Leadership"].map((item, index) => (
+              <span
+                key={item}
+                className="resume-identity-chip"
+                style={delayStyle(120 + index * 55)}
+              >
+                {item}
+              </span>
+            ))}
+          </div>
           <p className="mt-4 text-lg md:text-xl text-ink-soft leading-relaxed max-w-3xl">
             Senior product and program leader who has scaled fintech, ecommerce and OTT
             infrastructure in complex markets: pay-in and payout rails, merchant onboarding,
