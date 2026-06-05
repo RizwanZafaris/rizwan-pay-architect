@@ -1,23 +1,78 @@
 import type { CSSProperties } from "react";
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { CalendarDays, Download, Linkedin, Mail } from "lucide-react";
 import { profile } from "@/data/profile";
-import { absUrl } from "@/lib/seo";
+import { absUrl, OG_IMAGE_URL, SITE_URL } from "@/lib/seo";
+
+const resumeKeywords = [
+  "Product & Program Executive",
+  "fintech infrastructure resume",
+  "payments product leader",
+  "VP Product payments",
+  "Head of Product fintech",
+  "Program Director fintech",
+  "Technical Program Manager payments",
+  "payment infrastructure product management",
+  "settlement reconciliation",
+  "merchant onboarding KYC KYB",
+  "cross-border payments",
+  "fraud AML payments",
+  "AI in payment operations",
+] as const;
 
 const resumeJsonLd = {
   "@context": "https://schema.org",
   "@type": "ProfilePage",
-  name: "Resume, Rizwan Zafar",
+  "@id": `${absUrl("/resume")}#profilepage`,
+  name: "Rizwan Zafar Resume, Product & Program Executive",
   url: absUrl("/resume"),
+  description:
+    "Executive resume for Rizwan Zafar, a Product & Program Executive focused on fintech infrastructure, payments, PMO governance and AI-enabled payment operations.",
+  dateModified: "2026-06-05",
+  inLanguage: "en",
+  isPartOf: { "@type": "WebSite", "@id": `${SITE_URL}#website`, name: "rzifi.com" },
+  primaryImageOfPage: { "@type": "ImageObject", url: OG_IMAGE_URL, width: 1200, height: 630 },
+  about: resumeKeywords,
   mainEntity: {
     "@type": "Person",
+    "@id": `${SITE_URL}#person`,
     name: profile.name,
-    jobTitle: "Product & Program Executive, Fintech Infrastructure",
+    jobTitle: [
+      "Product & Program Executive",
+      "Chief Product Officer, Payments",
+      "Fintech Infrastructure Product Leader",
+    ],
     url: absUrl("/resume"),
     email: `mailto:${profile.email}`,
     address: { "@type": "PostalAddress", addressLocality: "Dubai", addressCountry: "AE" },
-    sameAs: [profile.linkedin, profile.twitter].filter(Boolean),
+    sameAs: profile.socials.map((social) => social.url),
+    worksFor: { "@type": "Organization", name: "Simpaisa", url: "https://simpaisa.com" },
+    hasCredential: profile.certifications.map((cert) => ({
+      "@type": "EducationalOccupationalCredential",
+      name: cert,
+    })),
+    knowsAbout: resumeKeywords,
+    hasOccupation: {
+      "@type": "Occupation",
+      name: "Product & Program Executive, Fintech Infrastructure",
+      occupationalCategory: [
+        "Product Management",
+        "Program Management",
+        "Fintech Infrastructure",
+        "Payments",
+      ],
+      skills: resumeKeywords.join(", "),
+    },
   },
+};
+
+const resumeBreadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+    { "@type": "ListItem", position: 2, name: "Resume", item: absUrl("/resume") },
+  ],
 };
 
 const proofMetrics = [
@@ -42,6 +97,46 @@ const roleFit = [
     title: "Platform Scale",
     body: "Built product and operating systems across fintech, ecommerce and OTT: payment rails, subscription billing, partner ecosystems, risk controls and AI-enabled operations.",
   },
+] as const;
+
+const recruiterSearchFit = [
+  "VP Product, Payments",
+  "Head of Product, Fintech Infrastructure",
+  "Director Product, Payment Platforms",
+  "Product Lead, Cross-Border Payments",
+  "Program Director, Fintech / PMO",
+  "Technical Program Manager, Payments",
+  "Director, Digital Transformation",
+  "AI in Fintech Operations Lead",
+] as const;
+
+const selectedProofLinks = [
+  {
+    title: "$1B+ regulated payment infrastructure",
+    body: "Multi-rail pay-in, payout, wallet, card acquiring, settlement and cross-border infrastructure across seven markets.",
+    to: "/product-work/simpaisa-payment-infrastructure",
+  },
+  {
+    title: "Merchant onboarding, KYC/KYB and risk controls",
+    body: "Activation cut from weeks to hours with risk-tiered onboarding, sanctions/PEP controls and auditable review flows.",
+    to: "/product-work/merchant-onboarding-kyc",
+  },
+  {
+    title: "Settlement and reconciliation at scale",
+    body: "Canonical ledger, three-way reconciliation and 99.95% settlement SLA across fragmented rails and partners.",
+    to: "/product-work/settlement-reconciliation",
+  },
+  {
+    title: "Fraud, AML/CFT and operational risk",
+    body: "Payment risk controls, fraud loss below 0.1% of GTV and regulated operating cadence across complex markets.",
+    to: "/product-work/fraud-risk-aml-cft",
+  },
+] as const;
+
+const recruiterPathLinks = [
+  { label: "Visa / Mastercard fit", to: "/for/visa-mastercard" },
+  { label: "Stripe / Adyen / Wise / Thunes fit", to: "/for/stripe-adyen-wise-thunes" },
+  { label: "Banks and regulated fintech fit", to: "/for/banks-fintechs" },
 ] as const;
 
 const resumeExperience = [
@@ -149,26 +244,33 @@ const delayStyle = (ms: number) => ({ "--motion-delay": `${ms}ms` }) as CSSPrope
 export const Route = createFileRoute("/resume")({
   head: () => ({
     meta: [
-      { title: "Resume | Rizwan Zafar, Product & Program Executive" },
+      { title: "Product & Program Executive Resume | Rizwan Zafar" },
       {
         name: "description",
         content:
-          "Executive resume for Rizwan Zafar: Product & Program leader in fintech infrastructure, $1B+ GTV, 25M+ monthly transactions, 7 markets.",
+          "Rizwan Zafar resume: Product & Program Executive for fintech infrastructure, payments, PMO and AI operations. $1B+ GTV, 25M+ transactions, 7 markets.",
       },
-      { property: "og:title", content: "Resume | Rizwan Zafar, Product & Program Executive" },
+      { name: "keywords", content: resumeKeywords.join(", ") },
+      {
+        property: "og:title",
+        content: "Rizwan Zafar Resume | Product & Program Executive",
+      },
       {
         property: "og:description",
         content:
-          "Payments and fintech infrastructure resume: product leadership, PMO governance, $1B+ GTV, 25M+ monthly transactions and 7 markets.",
+          "Executive resume for senior payments product, fintech infrastructure, program leadership, PMO and AI-enabled operations roles.",
       },
       { property: "og:url", content: absUrl("/resume") },
       { property: "og:type", content: "profile" },
-      { name: "twitter:title", content: "Resume | Rizwan Zafar" },
+      { property: "og:image", content: OG_IMAGE_URL },
+      { property: "og:image:alt", content: "Rizwan Zafar, Product & Program Executive resume" },
+      { name: "twitter:title", content: "Rizwan Zafar Resume" },
       {
         name: "twitter:description",
         content:
           "Product & Program Executive resume for fintech, payments, PMO and digital transformation roles.",
       },
+      { name: "twitter:image", content: OG_IMAGE_URL },
     ],
     links: [
       { rel: "canonical", href: absUrl("/resume") },
@@ -179,7 +281,10 @@ export const Route = createFileRoute("/resume")({
         title: "Download PDF resume",
       },
     ],
-    scripts: [{ type: "application/ld+json", children: JSON.stringify(resumeJsonLd) }],
+    scripts: [
+      { type: "application/ld+json", children: JSON.stringify(resumeJsonLd) },
+      { type: "application/ld+json", children: JSON.stringify(resumeBreadcrumbJsonLd) },
+    ],
   }),
   component: ResumePage,
 });
@@ -326,6 +431,60 @@ function ResumePage() {
             </div>
           </div>
         ))}
+      </section>
+
+      <section className="grid md:grid-cols-12 gap-8 border-b border-rule py-10">
+        <div className="resume-soft-reveal md:col-span-3" style={delayStyle(0)}>
+          <h2 className="font-instrument text-2xl text-ink">Recruiter Search Fit</h2>
+          <p className="mt-3 text-sm text-ink-soft leading-relaxed">
+            Built for senior hiring managers searching for product, program and payments leadership
+            across regulated fintech, banks, payment networks and infrastructure platforms.
+          </p>
+        </div>
+        <div className="md:col-span-9 space-y-6">
+          <div className="flex flex-wrap gap-2">
+            {recruiterSearchFit.map((role, index) => (
+              <span
+                key={role}
+                className="resume-skill-chip rounded-md border border-rule bg-surface px-3 py-1.5 text-sm text-ink"
+                style={delayStyle(index * 30)}
+              >
+                {role}
+              </span>
+            ))}
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-3">
+            {selectedProofLinks.map((proof, index) => (
+              <Link
+                key={proof.to}
+                to={proof.to}
+                className="resume-soft-reveal group rounded-lg border border-rule bg-card p-4 transition-colors hover:border-ink/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)]"
+                style={delayStyle(120 + index * 50)}
+              >
+                <span className="text-[10px] uppercase tracking-[0.16em] text-ink-soft font-mono-tech">
+                  Proof case study
+                </span>
+                <h3 className="mt-2 font-instrument text-lg text-ink group-hover:text-[var(--brand)] transition-colors">
+                  {proof.title}
+                </h3>
+                <p className="mt-2 text-sm text-ink-soft leading-relaxed">{proof.body}</p>
+              </Link>
+            ))}
+          </div>
+
+          <div className="flex flex-wrap gap-2.5">
+            {recruiterPathLinks.map((path) => (
+              <Link
+                key={path.to}
+                to={path.to}
+                className="inline-flex items-center justify-center rounded-full border border-ink/20 px-4 py-2 text-sm font-medium text-ink hover:bg-ink/5 transition-colors"
+              >
+                {path.label}
+              </Link>
+            ))}
+          </div>
+        </div>
       </section>
 
       <section className="grid md:grid-cols-12 gap-8 border-b border-rule py-10">
