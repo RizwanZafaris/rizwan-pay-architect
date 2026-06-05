@@ -87,14 +87,19 @@ export const Route = createFileRoute("/blog/$slug")({
     const wordCount = content.trim().split(/\s+/).length;
     const jsonLd = {
       "@context": "https://schema.org",
-      "@type": "BlogPosting",
+      "@type": "Article",
       "@id": `${url}#article`,
       headline: p.title,
       description: p.description,
       image: [OG_IMAGE_URL],
       datePublished: p.date,
       dateModified: p.updated ?? p.date,
-      author: { "@type": "Person", "@id": `${SITE_URL}#person`, name: profile.name, url: SITE_URL },
+      author: {
+        "@type": "Person",
+        "@id": `${SITE_URL}#person`,
+        name: profile.name,
+        url: absUrl("/about"),
+      },
       publisher: {
         "@type": "Person",
         "@id": `${SITE_URL}#person`,
