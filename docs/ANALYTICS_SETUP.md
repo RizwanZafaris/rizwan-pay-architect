@@ -15,17 +15,17 @@ Recommended architecture: **GTM is the hub**. Keep GA4, Google Ads, LinkedIn Ins
 
 ## 0 · Analytics stack
 
-| Tool | Status in code | Where to configure | Purpose |
-| --- | --- | --- | --- |
-| Google Tag Manager | Installed | `VITE_GTM_ID` / GTM workspace | Tag orchestration, triggers and debug |
-| Google Analytics 4 | Ready via GTM events | GTM + GA4 Measurement ID | Traffic, funnels, conversions |
-| Google Search Console | Verified in root meta | Google Search Console | Search indexing and query performance |
-| Bing Webmaster Tools | Optional meta ready | `VITE_BING_SITE_VERIFICATION` | Bing/Copilot search visibility |
-| Microsoft Clarity | Optional script ready | `VITE_MICROSOFT_CLARITY_ID` | Heatmaps/session recordings |
-| Plausible | Optional script ready | `VITE_PLAUSIBLE_DOMAIN` | Privacy-friendly traffic analytics |
-| LinkedIn Insight Tag | Use GTM | GTM Custom HTML or LinkedIn template | Recruiter/audience retargeting |
-| Meta/TikTok/Google Ads pixels | Use GTM | GTM templates | Paid campaign tracking only if needed |
-| AI bot analytics | Requires server/CDN logs | Cloudflare/Hostinger logs | GPTBot, ClaudeBot, PerplexityBot do not reliably run client JS |
+| Tool                          | Status in code           | Where to configure                   | Purpose                                                        |
+| ----------------------------- | ------------------------ | ------------------------------------ | -------------------------------------------------------------- |
+| Google Tag Manager            | Installed                | `VITE_GTM_ID` / GTM workspace        | Tag orchestration, triggers and debug                          |
+| Google Analytics 4            | Ready via GTM events     | GTM + GA4 Measurement ID             | Traffic, funnels, conversions                                  |
+| Google Search Console         | Verified in root meta    | Google Search Console                | Search indexing and query performance                          |
+| Bing Webmaster Tools          | Optional meta ready      | `VITE_BING_SITE_VERIFICATION`        | Bing/Copilot search visibility                                 |
+| Microsoft Clarity             | Optional script ready    | `VITE_MICROSOFT_CLARITY_ID`          | Heatmaps/session recordings                                    |
+| Plausible                     | Optional script ready    | `VITE_PLAUSIBLE_DOMAIN`              | Privacy-friendly traffic analytics                             |
+| LinkedIn Insight Tag          | Use GTM                  | GTM Custom HTML or LinkedIn template | Recruiter/audience retargeting                                 |
+| Meta/TikTok/Google Ads pixels | Use GTM                  | GTM templates                        | Paid campaign tracking only if needed                          |
+| AI bot analytics              | Requires server/CDN logs | Cloudflare/Hostinger logs            | GPTBot, ClaudeBot, PerplexityBot do not reliably run client JS |
 
 ## 1 · Event catalogue
 
@@ -38,24 +38,26 @@ Production is a prerendered static export, so the site also includes a tiny vani
 | `spa_pageview`        | Every client-side route change (TanStack Router navigation) — _not_ the initial server-rendered load (GTM's own `gtm.load` covers that) | `page_path`, `page_location`, `page_title`                                                             | GA4 page_view tag, override `page_location` and `page_title` from the dataLayer                |
 | `cta_click`           | Any tracked CTA button or link                                                                                                          | `cta_id`, `cta_location`, `cta_destination` (optional)                                                 | Generic engagement event; useful for funnel analysis (where did they click before converting?) |
 | `outbound_click`      | LinkedIn / mailto / external links                                                                                                      | `outbound_domain`, `outbound_url`, `outbound_location`                                                 | GA4 `click` event with `outbound: true` parameter                                              |
-| `resume_download`     | PDF download from any surface                                                                                                           | `source` (hero / header / about / for / resume_page / case_study)                                      | **MARK AS CONVERSION** in GA4 — primary lead-quality signal                                    |
+| `schedule_meeting`    | Cal.com / schedule-intent click from header, resume, contact or mobile menu                                                             | `source`, `schedule_url`                                                                               | **MARK AS CONVERSION** in GA4 + Google Ads — primary lead signal                               |
+| `resume_download`     | PDF download from any surface                                                                                                           | `source` (hero / header / mobile_menu / about / for / resume_page / case_study)                        | **MARK AS CONVERSION** in GA4 — lead-quality signal                                            |
 | `blog_view`           | Each `/blog/<slug>` mount                                                                                                               | `blog_slug`, `blog_category`, `blog_reading_time`                                                      | Content engagement; useful for finding which topics convert                                    |
-| `case_study_view`     | Each `/product-work/<slug>` mount                                                                                                       | `case_study_slug`, `case_study_category`                                                               | **MARK AS CONVERSION** — strongest mid-funnel signal                                           |
+| `case_study_view`     | Each `/product-work/<slug>` mount                                                                                                       | `case_study_slug`, `case_study_category`                                                               | Mid-funnel engagement                                                                          |
 | `contact_form_start`  | First focus on any contact form field                                                                                                   | (none)                                                                                                 | Funnel step: form started                                                                      |
-| `contact_form_submit` | Form submitted (any outcome)                                                                                                            | `submit_method` (`server` / `mailto`), `submit_status` (`sent` / `error`), `submit_error` (when error) | **MARK AS CONVERSION** when `submit_status = sent`                                             |
+| `contact_form_submit` | Form submitted (any outcome)                                                                                                            | `submit_method` (`server` / `mailto`), `submit_status` (`sent` / `error`), `submit_error` (when error) | Operational funnel event; optional secondary conversion only                                   |
 | `site_search`         | Homepage search submit or blog search intent                                                                                            | `search_term`, `search_location`, `search_filter`                                                      | Content demand signal; tells you what recruiters/readers look for                              |
 
 ### `cta_id` values (enumerated)
 
 - `see_case_studies` · `download_resume` · `email_me` · `discuss_a_role`
+- `book_intro_call` · `ask_availability` · `linkedin_contact` · `whatsapp_message`
 - `full_resume` · `send_message` · `open_email_app` · `copy_email`
-- `request_preview` (Felo / Job Hunt waitlist)
+- `request_preview` (Felo / Job Hunt waitlist) · `newsletter_subscribe_request` · `rss_feed`
 
 ### `cta_location` values (enumerated)
 
 - `hero` · `header` · `for_top` · `for_lens`
 - `case_study_footer` · `blog_post_footer` · `contact_page`
-- `products_card` · `footer`
+- `products_card` · `footer` · `mobile_menu` · `resume_page` · `resume_contact`
 
 ---
 
@@ -69,26 +71,28 @@ GTM doesn't auto-read dataLayer keys; you have to declare each one.
 
 **Variables → New → Data Layer Variable** — create these variables (Variable Type: `Data Layer Variable`, Version: `Version 2`):
 
-| Variable Name           | Data Layer Variable Name |
-| ----------------------- | ------------------------ |
-| DLV — page_path         | `page_path`              |
-| DLV — page_location     | `page_location`          |
-| DLV — page_title        | `page_title`             |
-| DLV — cta_id            | `cta_id`                 |
-| DLV — cta_location      | `cta_location`           |
-| DLV — cta_destination   | `cta_destination`        |
-| DLV — outbound_domain   | `outbound_domain`        |
-| DLV — outbound_url      | `outbound_url`           |
-| DLV — outbound_location | `outbound_location`      |
-| DLV — source (resume)   | `source`                 |
-| DLV — blog_slug         | `blog_slug`              |
-| DLV — blog_category     | `blog_category`          |
-| DLV — case_study_slug   | `case_study_slug`        |
-| DLV — case_study_category | `case_study_category`  |
-| DLV — submit_status     | `submit_status`          |
-| DLV — search_term       | `search_term`            |
-| DLV — search_location   | `search_location`        |
-| DLV — search_filter     | `search_filter`          |
+| Variable Name             | Data Layer Variable Name |
+| ------------------------- | ------------------------ |
+| DLV — page_path           | `page_path`              |
+| DLV — page_location       | `page_location`          |
+| DLV — page_title          | `page_title`             |
+| DLV — cta_id              | `cta_id`                 |
+| DLV — cta_location        | `cta_location`           |
+| DLV — cta_destination     | `cta_destination`        |
+| DLV — outbound_domain     | `outbound_domain`        |
+| DLV — outbound_url        | `outbound_url`           |
+| DLV — outbound_location   | `outbound_location`      |
+| DLV — source              | `source`                 |
+| DLV — schedule_url        | `schedule_url`           |
+| DLV — link_location       | `link_location`          |
+| DLV — blog_slug           | `blog_slug`              |
+| DLV — blog_category       | `blog_category`          |
+| DLV — case_study_slug     | `case_study_slug`        |
+| DLV — case_study_category | `case_study_category`    |
+| DLV — submit_status       | `submit_status`          |
+| DLV — search_term         | `search_term`            |
+| DLV — search_location     | `search_location`        |
+| DLV — search_filter       | `search_filter`          |
 
 ### Step 2 — Create the Triggers
 
@@ -99,12 +103,14 @@ GTM doesn't auto-read dataLayer keys; you have to declare each one.
 | CE — spa_pageview       | `spa_pageview`           | Fires on every SPA navigation                      |
 | CE — cta_click          | `cta_click`              | All CTAs                                           |
 | CE — outbound_click     | `outbound_click`         | All external links                                 |
+| CE — schedule_meeting   | `schedule_meeting`       | Conversion trigger                                 |
 | CE — resume_download    | `resume_download`        | Conversion trigger                                 |
 | CE — blog_view          | `blog_view`              | Conversion-worthy                                  |
-| CE — case_study_view    | `case_study_view`        | Conversion trigger                                 |
+| CE — case_study_view    | `case_study_view`        | Mid-funnel engagement                              |
 | CE — contact_form_start | `contact_form_start`     | Funnel step                                        |
 | CE — contact_form_sent  | `contact_form_submit`    | Use this regex filter on `submit_status`: `^sent$` |
 | CE — contact_form_error | `contact_form_submit`    | Filter `submit_status` matches regex `^error$`     |
+| CE — linkedin_click     | `linkedin_click`         | Conversion trigger                                 |
 | CE — site_search        | `site_search`            | Content demand / search intent                     |
 
 For the two filtered `contact_form_*` triggers: under "This trigger fires on" → choose "Some Custom Events" → add the condition.
@@ -138,17 +144,19 @@ This single tag sets up GA4. All event tags below reference it implicitly.
 
 Repeat the GA4 Event pattern for each event. Compact recipe:
 
-| Tag Name                 | GA4 Event Name       | Parameters                                                                                                    | Trigger                 |
-| ------------------------ | -------------------- | ------------------------------------------------------------------------------------------------------------- | ----------------------- |
-| GA4 — cta_click          | `cta_click`          | `cta_id={{DLV — cta_id}}`, `cta_location={{DLV — cta_location}}`, `cta_destination={{DLV — cta_destination}}` | CE — cta_click          |
-| GA4 — outbound_click     | `click`              | `outbound=true`, `outbound_domain={{DLV — outbound_domain}}`, `outbound_url={{DLV — outbound_url}}`           | CE — outbound_click     |
-| GA4 — resume_download    | `resume_download`    | `source={{DLV — source (resume)}}`                                                                            | CE — resume_download    |
-| GA4 — blog_view          | `blog_view`          | `blog_slug={{DLV — blog_slug}}`, `blog_category={{DLV — blog_category}}`                                      | CE — blog_view          |
-| GA4 — case_study_view    | `case_study_view`    | `case_study_slug={{DLV — case_study_slug}}`                                                                   | CE — case_study_view    |
-| GA4 — contact_form_start | `contact_form_start` | (none)                                                                                                        | CE — contact_form_start |
-| GA4 — contact_form_sent  | `contact_form_sent`  | (none)                                                                                                        | CE — contact_form_sent  |
-| GA4 — contact_form_error | `contact_form_error` | (none)                                                                                                        | CE — contact_form_error |
-| GA4 — site_search        | `search`             | `search_term={{DLV — search_term}}`, `search_location={{DLV — search_location}}`, `search_filter={{DLV — search_filter}}` | CE — site_search |
+| Tag Name                 | GA4 Event Name       | Parameters                                                                                                                | Trigger                 |
+| ------------------------ | -------------------- | ------------------------------------------------------------------------------------------------------------------------- | ----------------------- |
+| GA4 — cta_click          | `cta_click`          | `cta_id={{DLV — cta_id}}`, `cta_location={{DLV — cta_location}}`, `cta_destination={{DLV — cta_destination}}`             | CE — cta_click          |
+| GA4 — outbound_click     | `click`              | `outbound=true`, `outbound_domain={{DLV — outbound_domain}}`, `outbound_url={{DLV — outbound_url}}`                       | CE — outbound_click     |
+| GA4 — schedule_meeting   | `schedule_meeting`   | `source={{DLV — source}}`, `schedule_url={{DLV — schedule_url}}`                                                          | CE — schedule_meeting   |
+| GA4 — resume_download    | `resume_download`    | `source={{DLV — source}}`                                                                                                 | CE — resume_download    |
+| GA4 — linkedin_click     | `linkedin_click`     | `link_location={{DLV — link_location}}`                                                                                   | CE — linkedin_click     |
+| GA4 — blog_view          | `blog_view`          | `blog_slug={{DLV — blog_slug}}`, `blog_category={{DLV — blog_category}}`                                                  | CE — blog_view          |
+| GA4 — case_study_view    | `case_study_view`    | `case_study_slug={{DLV — case_study_slug}}`                                                                               | CE — case_study_view    |
+| GA4 — contact_form_start | `contact_form_start` | (none)                                                                                                                    | CE — contact_form_start |
+| GA4 — contact_form_sent  | `contact_form_sent`  | (none)                                                                                                                    | CE — contact_form_sent  |
+| GA4 — contact_form_error | `contact_form_error` | (none)                                                                                                                    | CE — contact_form_error |
+| GA4 — site_search        | `search`             | `search_term={{DLV — search_term}}`, `search_location={{DLV — search_location}}`, `search_filter={{DLV — search_filter}}` | CE — site_search        |
 
 ### Step 6 — Publish the container
 
@@ -164,9 +172,9 @@ Open <https://analytics.google.com> → property **(Admin → Property Settings)
 
 **Admin → Conversions → New conversion event** for these 3:
 
-1. `resume_download`
-2. `case_study_view`
-3. `contact_form_sent`
+1. `schedule_meeting`
+2. `resume_download`
+3. `linkedin_click`
 
 These become trackable goals in funnels, audience definitions, and ad attribution.
 
@@ -178,13 +186,15 @@ These become trackable goals in funnels, audience definitions, and ad attributio
 | ------------------- | --------------------- |
 | CTA ID              | `cta_id`              |
 | CTA Location        | `cta_location`        |
-| Resume source       | `source`              |
+| Source              | `source`              |
+| Schedule URL        | `schedule_url`        |
 | Blog slug           | `blog_slug`           |
 | Blog category       | `blog_category`       |
 | Case study slug     | `case_study_slug`     |
 | Case study category | `case_study_category` |
 | Outbound domain     | `outbound_domain`     |
 | Outbound location   | `outbound_location`   |
+| Link location       | `link_location`       |
 | Submit status       | `submit_status`       |
 | Search term         | `search_term`         |
 | Search location     | `search_location`     |
@@ -197,8 +207,8 @@ Once registered, these show up as filterable columns in Reports → Engagement �
 In **Explore → Free form**:
 
 1. **Top-of-funnel** — `page_view` segmented by `landing_page` (built-in) → which routes get traffic
-2. **Mid-funnel** — `case_study_view` segmented by `case_study_slug` → which case studies convert attention
-3. **Conversion path** — funnel: `page_view` → `case_study_view` → `cta_click (cta_id=discuss_a_role)` → `contact_form_sent`
+2. **Mid-funnel** — `case_study_view` segmented by `case_study_slug` → which case studies earn attention
+3. **Conversion path** — funnel: `page_view` → `case_study_view` → `cta_click (cta_id=book_intro_call)` → `schedule_meeting`
 4. **CTA effectiveness** — `cta_click` events segmented by `cta_location` + `cta_id`
 5. **Inbound CTA destinations** — referrals from LinkedIn vs Google by landing page
 
@@ -213,20 +223,28 @@ In **Explore → Free form**:
    - `{ event: "gtm.js", ... }`
    - `{ event: "gtm.dom", ... }`
    - `{ event: "gtm.load", ... }`
-3. Click the **See case studies** button in the hero → re-type `dataLayer` → look for:
+3. Click **Schedule call** in the header or **Book intro call** on the contact page → re-type `dataLayer` → look for:
+   ```js
+   { event: "schedule_meeting", source: "header", schedule_url: "https://cal.com/..." }
+   ```
+4. Click the **See case studies** button in the hero → look for:
    ```js
    { event: "cta_click", cta_id: "see_case_studies", cta_location: "hero", cta_destination: "/product-work" }
    ```
-4. Click **Download resume** → look for both:
+5. Click **Download resume** → look for both:
    ```js
    { event: "cta_click", cta_id: "download_resume", cta_location: "hero", cta_destination: "/Rizwan_Zafar_Resume.pdf" }
    { event: "resume_download", source: "hero" }
    ```
-5. Navigate to `/about` → look for:
+6. Click any LinkedIn link → look for:
+   ```js
+   { event: "linkedin_click", link_location: "..." }
+   ```
+7. Navigate to `/about` → look for:
    ```js
    { event: "spa_pageview", page_path: "/about", page_location: "...", page_title: "About — Rizwan Zafar..." }
    ```
-6. Search from the homepage or blog page → look for:
+8. Search from the homepage or blog page → look for:
    ```js
    { event: "site_search", search_term: "swift", search_location: "home" }
    ```

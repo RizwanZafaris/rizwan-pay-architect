@@ -137,21 +137,30 @@ export type SiteEvent =
         | "download_resume"
         | "email_me"
         | "discuss_a_role"
+        | "book_intro_call"
+        | "ask_availability"
+        | "linkedin_contact"
+        | "whatsapp_message"
         | "full_resume"
         | "send_message"
         | "open_email_app"
         | "copy_email"
-        | "request_preview";
+        | "request_preview"
+        | "newsletter_subscribe_request"
+        | "rss_feed";
       cta_location:
         | "hero"
         | "header"
+        | "mobile_menu"
         | "for_top"
         | "for_lens"
         | "case_study_footer"
         | "blog_post_footer"
         | "contact_page"
         | "products_card"
-        | "footer";
+        | "footer"
+        | "resume_page"
+        | "resume_contact";
       cta_destination?: string;
     }
 
@@ -172,10 +181,26 @@ export type SiteEvent =
       link_location: string;
     }
 
+  // Cal.com / scheduling clicks. This is the primary paid-search conversion.
+  | {
+      event: "schedule_meeting";
+      source:
+        | "hero"
+        | "header"
+        | "mobile_menu"
+        | "resume_page"
+        | "resume_contact"
+        | "contact_page"
+        | "for"
+        | "case_study"
+        | "footer";
+      schedule_url?: string;
+    }
+
   // Resume download (separate from cta_click because it's a conversion event).
   | {
       event: "resume_download";
-      source: "hero" | "header" | "about" | "for" | "resume_page" | "case_study";
+      source: "hero" | "header" | "mobile_menu" | "about" | "for" | "resume_page" | "case_study";
     }
 
   // Blog post viewed (fires on mount of /blog/<slug>).
@@ -239,14 +264,21 @@ export const outboundClick = (url: string, location: string): void => {
     if (isEmail) trackEvent("email_click", { link_location: location });
     if (isLinkedIn) trackEvent("linkedin_click", { link_location: location });
   } catch {
+    const isLinkedIn = url.includes("linkedin.com");
     trackEvent("outbound_click", {
       outbound_domain: url.split(":")[0] || "unknown",
       outbound_url: url.startsWith("mailto:") ? "mailto" : url,
       outbound_location: location,
-      link_type: url.startsWith("mailto:") ? "email" : "external",
+      link_type: url.startsWith("mailto:") ? "email" : isLinkedIn ? "linkedin" : "external",
     });
+    if (isLinkedIn) trackEvent("linkedin_click", { link_location: location });
   }
 };
+
+export const scheduleMeeting = (
+  source: Extract<SiteEvent, { event: "schedule_meeting" }>["source"],
+  schedule_url?: string,
+): void => trackEvent("schedule_meeting", { source, ...(schedule_url ? { schedule_url } : {}) });
 
 export const resumeDownload = (
   source: Extract<SiteEvent, { event: "resume_download" }>["source"],

@@ -20,7 +20,7 @@ You don't have to think about these — they ship with every build:
 - ✅ Apex/www/http canonical-host enforcement (.htaccess)
 - ✅ IndexNow key file (`/2b37cfa0f40ee28009e4db27f7f62a6b.txt`)
 - ✅ `/.well-known/security.txt`
-- ✅ GTM with SPA `spa_pageview` (GTM-TM5BP98G) and typed events (resume_download, contact_form_submit, blog_view, case_study_view)
+- ✅ GTM with SPA `spa_pageview` (GTM-TM5BP98G) and typed events (schedule_meeting, resume_download, linkedin_click, contact_form_submit, blog_view, case_study_view)
 
 Run-anytime commands (already in `package.json`):
 
@@ -177,9 +177,9 @@ If realtime shows 0 users: the GTM container isn't actually published in product
 
 In GA4 **Admin → Events**, mark these as **Conversions** (toggle on):
 
-- `resume_download` — every PDF download. Highest-intent signal.
-- `case_study_view` — engagement with deep content.
-- `contact_form_submit` — actual outreach.
+- `schedule_meeting` — Cal.com / booking intent. Highest-intent lead signal.
+- `resume_download` — PDF download. Strong recruiter-intent signal.
+- `linkedin_click` — referral / validation intent from serious visitors.
 
 These already fire from the existing GTM container. Marking them as conversions makes them show up in GSC + GA4 attribution reports.
 

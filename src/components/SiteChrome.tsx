@@ -213,6 +213,10 @@ export function SiteHeader() {
                 href={profile.calendarUrl}
                 target="_blank"
                 rel="noreferrer"
+                data-analytics-event="cta_click"
+                data-analytics-cta-id="book_intro_call"
+                data-analytics-cta-location="mobile_menu"
+                data-analytics-cta-destination={profile.calendarUrl}
                 onClick={() => setOpen(false)}
                 className="mt-2 px-3 py-3 rounded-lg text-base text-ink hover:bg-ink/5 transition-colors"
               >
