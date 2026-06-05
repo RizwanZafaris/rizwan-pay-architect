@@ -214,15 +214,17 @@ function ResumePage() {
             </span>
           </h1>
           <div className="mt-4 flex flex-wrap gap-2" aria-label="Primary executive positioning">
-            {["Payments", "Fintech Infrastructure", "Program Leadership"].map((item, index) => (
-              <span
-                key={item}
-                className="resume-identity-chip"
-                style={delayStyle(120 + index * 55)}
-              >
-                {item}
-              </span>
-            ))}
+            {["Product Leadership", "Program Leadership", "Payments", "Fintech Infrastructure"].map(
+              (item, index) => (
+                <span
+                  key={item}
+                  className="resume-identity-chip"
+                  style={delayStyle(120 + index * 55)}
+                >
+                  {item}
+                </span>
+              ),
+            )}
           </div>
           <p className="mt-4 text-lg md:text-xl text-ink-soft leading-relaxed max-w-3xl">
             Senior product and program leader who has scaled fintech, ecommerce and OTT
