@@ -387,9 +387,6 @@ function ResumePage() {
       <section className="py-10">
         <div className="flex items-end justify-between gap-6 mb-7">
           <h2 className="font-instrument text-3xl md:text-4xl text-ink">Experience</h2>
-          <div className="hidden md:block text-[10px] uppercase tracking-[0.18em] text-ink-soft font-mono-tech">
-            Action · Scope · Impact
-          </div>
         </div>
         <div className="space-y-9">
           {resumeExperience.map((job, index) => (
