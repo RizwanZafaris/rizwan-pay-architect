@@ -1,4 +1,4 @@
-import{G as i,j as t,L as n}from"./index-CmDrc_VJ.js";function o(){const{product:e}=i.useLoaderData(),s=e.waitlistEmail?`mailto:${e.waitlistEmail}?subject=${encodeURIComponent(`Waitlist · ${e.name}`)}&body=${encodeURIComponent(`Hi Rizwan,
+import{G as i,j as t,L as n}from"./index-DY8mN9h2.js";function o(){const{product:e}=i.useLoaderData(),s=e.waitlistEmail?`mailto:${e.waitlistEmail}?subject=${encodeURIComponent(`Waitlist · ${e.name}`)}&body=${encodeURIComponent(`Hi Rizwan,
 
 Please add me to the ${e.name} preview waitlist.
 
