@@ -13,7 +13,7 @@ export type SitemapEntry = {
   priority: number;
 };
 
-const SITE_REFRESH_DATE = "2026-05-30";
+const SITE_REFRESH_DATE = "2026-06-05";
 
 const staticEntries: SitemapEntry[] = [
   {
