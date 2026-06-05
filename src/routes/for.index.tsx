@@ -2,7 +2,79 @@ import type { CSSProperties } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { audiences, getHub, postsForHub, caseStudiesForHub, type Audience } from "@/data/hubs";
 import { profile } from "@/data/profile";
-import { absUrl, SITE_URL } from "@/lib/seo";
+import { absUrl, OG_IMAGE_URL, SITE_URL } from "@/lib/seo";
+
+const recruiterKeywords = [
+  "Product & Program Executive",
+  "senior product leader payments",
+  "fintech infrastructure recruiter brief",
+  "VP Product payments",
+  "Head of Product fintech",
+  "Program Director fintech",
+  "Technical Program Manager payments",
+  "payment infrastructure",
+  "cross-border payments",
+  "merchant onboarding",
+  "settlement reconciliation",
+  "fraud AML payments",
+  "regulated fintech",
+  "AI in payment operations",
+] as const;
+
+const recruiterProfileJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ProfilePage",
+  "@id": `${absUrl("/for")}#profilepage`,
+  name: "Recruiter Brief, Rizwan Zafar",
+  url: absUrl("/for"),
+  description:
+    "Recruiter-ready profile for Rizwan Zafar, a Product & Program Executive focused on payments infrastructure, regulated fintech, PMO leadership and AI-enabled payment operations.",
+  dateModified: "2026-06-05",
+  inLanguage: "en",
+  isPartOf: { "@type": "WebSite", "@id": `${SITE_URL}#website`, name: "rzifi.com" },
+  primaryImageOfPage: { "@type": "ImageObject", url: OG_IMAGE_URL, width: 1200, height: 630 },
+  about: recruiterKeywords,
+  mainEntity: {
+    "@type": "Person",
+    "@id": `${SITE_URL}#person`,
+    name: profile.name,
+    jobTitle: [
+      "Product & Program Executive",
+      "Chief Product Officer, Payments",
+      "Fintech Infrastructure Product Leader",
+    ],
+    url: absUrl("/for"),
+    email: `mailto:${profile.email}`,
+    address: { "@type": "PostalAddress", addressLocality: "Dubai", addressCountry: "AE" },
+    sameAs: profile.entitySameAs,
+    worksFor: { "@type": "Organization", name: "SimPaisa", url: "https://simpaisa.com" },
+    hasCredential: profile.certifications.map((cert) => ({
+      "@type": "EducationalOccupationalCredential",
+      name: cert,
+    })),
+    knowsAbout: recruiterKeywords,
+    hasOccupation: {
+      "@type": "Occupation",
+      name: "Product & Program Executive, Fintech Infrastructure",
+      occupationalCategory: [
+        "Product Management",
+        "Program Management",
+        "Payments",
+        "Fintech Infrastructure",
+      ],
+      skills: recruiterKeywords.join(", "),
+    },
+  },
+};
+
+const recruiterBreadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+    { "@type": "ListItem", position: 2, name: "Recruiters", item: absUrl("/for") },
+  ],
+};
 
 export const Route = createFileRoute("/for/")({
   head: () => ({
@@ -34,31 +106,11 @@ export const Route = createFileRoute("/for/")({
     scripts: [
       {
         type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "ProfilePage",
-          name: "Recruiter Brief, Rizwan Zafar",
-          url: absUrl("/for"),
-          mainEntity: {
-            "@type": "Person",
-            name: profile.name,
-            jobTitle: "Product & Program Executive, Fintech Infrastructure",
-            url: SITE_URL,
-            email: `mailto:${profile.email}`,
-            address: { "@type": "PostalAddress", addressLocality: "Dubai", addressCountry: "AE" },
-            sameAs: profile.entitySameAs,
-            knowsAbout: [
-              "Payments infrastructure",
-              "Product management",
-              "Program management",
-              "Fintech",
-              "Cross-border payments",
-              "Settlement and reconciliation",
-              "Fraud and AML",
-              "Merchant onboarding",
-            ],
-          },
-        }),
+        children: JSON.stringify(recruiterProfileJsonLd),
+      },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify(recruiterBreadcrumbJsonLd),
       },
     ],
   }),
