@@ -1,4 +1,4 @@
-import{r as m,j as e,f as s,g,o as S,L as k,S as F,i as q,t as u}from"./index-BRcBmrSF.js";const H={},v=(typeof import.meta<"u"?H?.VITE_CONTACT_ACCESS_KEY??"":"")||"",M="https://api.web3forms.com/submit",B=[{value:"Dubai",label:"GST / UTC+4"},{value:"24h",label:"Typical reply"},{value:"Senior",label:"Product & program roles"}],o=s.calendarUrl.trim(),h=o||`mailto:${s.email}?subject=${encodeURIComponent("Intro call availability")}&body=${encodeURIComponent(`Hi Rizwan,
+import{r as m,j as e,f as s,g,o as S,L as k,S as F,i as q,t as u}from"./index-DJ3FTDcl.js";const H={},v=(typeof import.meta<"u"?H?.VITE_CONTACT_ACCESS_KEY??"":"")||"",M="https://api.web3forms.com/submit",B=[{value:"Dubai",label:"GST / UTC+4"},{value:"24h",label:"Typical reply"},{value:"Senior",label:"Product & program roles"}],o=s.calendarUrl.trim(),h=o||`mailto:${s.email}?subject=${encodeURIComponent("Intro call availability")}&body=${encodeURIComponent(`Hi Rizwan,
 
 I found your portfolio and would like to schedule an intro call.
 
