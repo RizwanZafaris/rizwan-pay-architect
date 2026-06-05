@@ -5,8 +5,16 @@
   <link>https://rzifi.com/blog/</link>
   <description>Essays on payment infrastructure, fintech product, risk, settlement, AI and program leadership.</description>
   <language>en</language>
-  <lastBuildDate>Wed, 03 Jun 2026 04:46:18 GMT</lastBuildDate>
+  <lastBuildDate>Fri, 05 Jun 2026 03:43:07 GMT</lastBuildDate>
   <item>
+    <title>ISO 20022 Migration: What Payment Product Teams Must Know</title>
+    <link>https://rzifi.com/blog/iso-20022-migration-what-product-teams-must-know/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/iso-20022-migration-what-product-teams-must-know/</guid>
+    <pubDate>Fri, 05 Jun 2026 00:00:00 GMT</pubDate>
+    <category>Cross-Border Payments</category>
+    <description>ISO 20022 is the biggest change in payments messaging in a generation. What product teams must know to ship ahead of the deadlines.</description>
+  </item>
+<item>
     <title>SWIFT Payment vs Wire Transfer: Key Differences</title>
     <link>https://rzifi.com/blog/swift-vs-wire-transfer/</link>
     <guid isPermaLink="true">https://rzifi.com/blog/swift-vs-wire-transfer/</guid>
@@ -237,14 +245,6 @@
     <pubDate>Wed, 20 May 2026 00:00:00 GMT</pubDate>
     <category>Payment Infrastructure</category>
     <description>The operator&apos;s guide to BIN routing, co-badged cards, scheme selection logic, regulator pressure on choice of brand, the four override patterns that move auth rate, and the six failure modes acquirers ship without realising.</description>
-  </item>
-<item>
-    <title>Click to Pay (VCTP / MCTP): The Scheme-Led Checkout Standard, How It Actually Works</title>
-    <link>https://rzifi.com/blog/click-to-pay-vctp-mctp-scheme-led-checkout/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/click-to-pay-vctp-mctp-scheme-led-checkout/</guid>
-    <pubDate>Wed, 20 May 2026 00:00:00 GMT</pubDate>
-    <category>Payment Infrastructure</category>
-    <description>Click to Pay explained from the operator&apos;s lens — what VCTP and MCTP actually are, the merchant + issuer + consumer surface, why it shipped, where it works, where it&apos;s still patchy.</description>
   </item>
 </channel>
 </rss>

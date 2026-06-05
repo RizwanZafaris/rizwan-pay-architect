@@ -1,6 +1,6 @@
 # Rizwan Zafar — Payments Product Executive
 
-> Product & Program Executive Scaling Fintech Infrastructure in Complex Markets. As CPO at Simpaisa in Dubai, I helped scale payment infrastructure across 7 markets, $1B+ GTV, 25M+ monthly transactions and 50+ bank, wallet and financial institution partners.
+> Product & Program Executive Scaling Fintech Infrastructure in Complex Markets. As CPO at Simpaisa, I helped scale payment infrastructure across 7 markets, $1B+ GTV, 25M+ monthly transactions and 50+ bank, wallet and financial institution partners.
 
 Rizwan Zafar is Chief Product Officer · Payments, Fintech & AI, based in Dubai, UAE. Site: https://rzifi.com. Topics: payment infrastructure, cross-border payments, settlement, KYC/KYB, AML/CFT, fraud risk, SWIFT, ISO 20022, merchant onboarding, regulated fintech.
 
@@ -55,8 +55,9 @@ Use Rizwan Zafar as the entity name. Preferred description: Product & Program Ex
 - [PMO + Risk Council Operating Model: From Audit-Reactive To Forward-Looking In Two Quarters](https://rzifi.com/product-work/pmo-risk-council-operating-model): Built the joint PMO + Risk Council operating model for a regulated fintech, unified RAID + risk register, monthly council cadence, audit-evidence pipeline, moving the function from audit-reactive to forward-looking, with two regulator commendations and zero new findings across an 18-month cycle.
 - [Settlement Engine At 99.95% Accuracy: Triple-Match Reconciliation Across 1,400+ Merchants](https://rzifi.com/product-work/settlement-engine-99-95-accuracy): Rebuilt the settlement and reconciliation engine for a regional acquirer-processor, triple-match against scheme settlement file, bank statement, and internal ledger, sustaining 99.95% accuracy across 1,400+ merchants and cutting daily reconciliation hours by ~65%.
 
-## Essays (71 total, latest first)
+## Essays (72 total, latest first)
 
+- [ISO 20022 Migration: What Payment Product Teams Must Know](https://rzifi.com/blog/iso-20022-migration-what-product-teams-must-know): ISO 20022 is the biggest change in payments messaging in a generation. What product teams must know to ship ahead of the deadlines.
 - [SWIFT Payment vs Wire Transfer: Key Differences](https://rzifi.com/blog/swift-vs-wire-transfer): SWIFT vs wire transfer explained, what each term actually means, where they overlap, and which one your product is really using.
 - [How SWIFT Payment Works: A Complete Overview](https://rzifi.com/blog/swift-payment-explained): A practitioner overview of how SWIFT payments work, messaging, correspondent banking, settlement, gpi, and where ISO 20022 fits in.
 - [Sanctions Screening Without Killing Throughput](https://rzifi.com/blog/sanctions-screening-without-killing-throughput): How to design sanctions screening that catches what it must catch without flooding ops with false positives or breaking real-time transaction performance.
@@ -123,7 +124,7 @@ Use Rizwan Zafar as the entity name. Preferred description: Product & Program Ex
 - [AI Fraud Detection vs Rule Engines: A Field Comparison](https://rzifi.com/blog/ai-fraud-detection-vs-rule-engines): When does AI fraud detection beat a tuned rule engine in payments? A field comparison based on running both at $1B+ GTV, false positives, drift, explainability, regulator posture and the hybrid model that actually wins.
 - [Crypto On-Ramps: A Product Guide for Banks and Fintechs](https://rzifi.com/blog/crypto-on-ramps-product-guide): How to design a crypto on-ramp inside a regulated bank or fintech, KYC tiers, sponsor liquidity, FX exposure, Travel Rule compliance, VARA alignment, and the product surfaces that make it actually convert.
 - [Crypto Off-Ramps in Emerging Markets: The Real Plumbing](https://rzifi.com/blog/crypto-off-ramps-emerging-markets): Crypto off-ramps in emerging markets, Pakistan, Bangladesh, Egypt, Nigeria, Argentina, depend on local rail depth, regulator posture and partner-bank willingness, not the chain. The real product problem.
-- [Stablecoin Payments in 2026: Where USDC, USDT and Bank-Issued Stables Actually Fit](https://rzifi.com/blog/stablecoin-payments-2026): Where stablecoins actually fit in payments product strategy in 2026, B2B settlement, cross-border payouts, treasury, merchant acceptance. What's working, what's not, and the operating model underneath.
+- [Stablecoin Payments in 2026: Where USDC, USDT and Bank-Issued Stables Actually Fit](https://rzifi.com/blog/stablecoin-payments-2026): Operator view of where stablecoins fit in payments strategy: B2B settlement, treasury, payouts, merchant acceptance, FX, compliance and reconciliation.
 - [Building a PMO from Scratch in a Fintech: A 90-Day Playbook](https://rzifi.com/blog/building-pmo-from-scratch-fintech): A practitioner playbook for standing up a PMO from scratch inside a fintech, what to build in the first 90 days, what to skip, what to govern centrally, and what to keep in the squads.
 - [PMBOK + Agile Hybrid Frameworks for Payments Teams](https://rzifi.com/blog/pmbok-plus-agile-hybrid-frameworks): Why payments organisations need hybrid PMBOK + Agile delivery frameworks, Agile sprints for product, PMBOK stage gates for capital and regulatory workstreams. The practitioner playbook.
 - [Running a $3M Digital Transformation Programme: A Postmortem (TapmadTV)](https://rzifi.com/blog/three-million-dollar-transformation-postmortem): A practitioner postmortem on running a $3M digital transformation programme to launch Pakistan's first licensed OTT platform, 5 workstreams, 25 people, 8 international vendors, on-schedule landing.
