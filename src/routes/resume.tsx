@@ -45,7 +45,7 @@ const resumeJsonLd = {
     url: absUrl("/resume"),
     email: `mailto:${profile.email}`,
     address: { "@type": "PostalAddress", addressLocality: "Dubai", addressCountry: "AE" },
-    sameAs: profile.socials.map((social) => social.url),
+    sameAs: profile.entitySameAs,
     worksFor: { "@type": "Organization", name: "Simpaisa", url: "https://simpaisa.com" },
     hasCredential: profile.certifications.map((cert) => ({
       "@type": "EducationalOccupationalCredential",

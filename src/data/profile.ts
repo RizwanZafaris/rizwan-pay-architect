@@ -15,6 +15,13 @@ export const profile = {
   linkedin: "https://www.linkedin.com/in/rizwanzaffar",
   twitter: "https://twitter.com/rizwan_zafar",
   personalSite: "https://rzifi.com",
+  wikidata: "https://www.wikidata.org/wiki/Q140070742",
+  entitySameAs: [
+    "https://www.linkedin.com/in/rizwanzaffar",
+    "https://twitter.com/rizwan_zafar",
+    "https://github.com/RizwanZafaris",
+    "https://www.wikidata.org/wiki/Q140070742",
+  ] as const,
   // Structured social list — single source of truth for the footer icon
   // row, the contact-page social cards, and the JSON-LD `sameAs`.
   // Add new entries here; UI components pick them up automatically.

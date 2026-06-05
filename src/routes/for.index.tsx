@@ -46,7 +46,7 @@ export const Route = createFileRoute("/for/")({
             url: SITE_URL,
             email: `mailto:${profile.email}`,
             address: { "@type": "PostalAddress", addressLocality: "Dubai", addressCountry: "AE" },
-            sameAs: [profile.linkedin, profile.twitter].filter(Boolean),
+            sameAs: profile.entitySameAs,
             knowsAbout: [
               "Payments infrastructure",
               "Product management",

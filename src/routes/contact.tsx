@@ -62,7 +62,7 @@ export const Route = createFileRoute("/contact")({
                 addressLocality: "Dubai",
                 addressCountry: "AE",
               },
-              sameAs: profile.socials.map((social) => social.url),
+              sameAs: profile.entitySameAs,
               contactPoint: {
                 "@type": "ContactPoint",
                 email: profile.email,

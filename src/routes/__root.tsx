@@ -197,7 +197,7 @@ const personJsonLd = {
     description:
       "Payments & fintech infrastructure company (Dubai). Rizwan Zafar is Chief Product Officer.",
   },
-  sameAs: profile.socials.map((s) => s.url),
+  sameAs: profile.entitySameAs,
   alumniOf: [
     { "@type": "EducationalOrganization", name: "MIT Sloan School of Management" },
     { "@type": "EducationalOrganization", name: "University of Karachi" },
@@ -262,7 +262,7 @@ const organizationJsonLd = {
   logo: `${SITE_URL}/og-default.png`,
   image: `${SITE_URL}/og-default.png`,
   founder: { "@type": "Person", "@id": `${SITE_URL}#person`, name: profile.name, url: SITE_URL },
-  sameAs: profile.socials.map((s) => s.url),
+  sameAs: profile.entitySameAs,
   contactPoint: {
     "@type": "ContactPoint",
     contactType: "Hiring inquiries",
