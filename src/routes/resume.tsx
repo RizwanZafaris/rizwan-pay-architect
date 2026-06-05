@@ -1,5 +1,6 @@
 import type { CSSProperties } from "react";
 import { createFileRoute } from "@tanstack/react-router";
+import { CalendarDays, Download, Linkedin, Mail } from "lucide-react";
 import { profile } from "@/data/profile";
 import { absUrl } from "@/lib/seo";
 
@@ -31,15 +32,15 @@ const proofMetrics = [
 const roleFit = [
   {
     title: "Product Leadership",
-    body: "Payment infrastructure, pay-in/payout APIs, card acquiring, wallets, DCB, merchant onboarding, settlement, reconciliation, fraud controls and cross-border corridors.",
+    body: "Payment infrastructure, pay-in/payout APIs, card acquiring, wallets, DCB, merchant onboarding, settlement, reconciliation, fraud controls, BNPL and cross-border corridors.",
   },
   {
     title: "Program Leadership",
     body: "PMO governance, multi-squad delivery, vendor management, SteerCo reporting, regulatory programs, PCI DSS, ISO 27001 and complex-market execution.",
   },
   {
-    title: "Commercial Scale",
-    body: "Built product and operating systems that scaled GTV, improved authorization, reduced failure rates, controlled fraud loss and made local rails usable for enterprise platforms.",
+    title: "Platform Scale",
+    body: "Built product and operating systems across fintech, ecommerce and OTT: payment rails, subscription billing, partner ecosystems, risk controls and AI-enabled operations.",
   },
 ] as const;
 
@@ -120,11 +121,14 @@ const resumeExperience = [
 
 const prioritySkills = [
   "Payment infrastructure",
+  "Pay-in & payout rails",
   "Product strategy",
   "Program governance",
   "Cross-border payments",
   "Settlement & reconciliation",
   "KYC/KYB automation",
+  "BNPL & subscription billing",
+  "Crypto on/off-ramp strategy",
   "Fraud & AML/CFT",
   "Bank/wallet partnerships",
   "PCI DSS / ISO 27001",
@@ -136,8 +140,8 @@ const prioritySkills = [
 const resumeSignals = [
   "Recruiter scan-ready",
   "$1B+ scale validated",
-  "PDF resume available",
-  "Dubai / GST",
+  "Schedule call ready",
+  "Global fintech ready",
 ] as const;
 
 const delayStyle = (ms: number) => ({ "--motion-delay": `${ms}ms` }) as CSSProperties;
@@ -202,11 +206,25 @@ function ResumePage() {
             Rizwan Zafar, Product &amp; Program Executive
           </h1>
           <p className="mt-4 text-lg md:text-xl text-ink-soft leading-relaxed max-w-3xl">
-            Dubai-based product and program leader scaling regulated fintech infrastructure in
-            complex markets: payment rails, merchant onboarding, settlement, reconciliation,
-            risk/AML controls, partner ecosystems and AI-enabled operations.
+            Senior product and program leader who has scaled fintech, ecommerce and OTT
+            infrastructure in complex markets: pay-in and payout rails, merchant onboarding,
+            settlement, reconciliation, risk/AML controls, partner ecosystems, BNPL/subscription
+            billing and AI-enabled operations.
           </p>
           <div className="mt-6 flex flex-wrap gap-2.5 max-w-full">
+            <a
+              href={profile.calendarUrl}
+              target="_blank"
+              rel="noreferrer"
+              data-analytics-event="cta_click"
+              data-analytics-cta-id="book_intro_call"
+              data-analytics-cta-location="resume_page"
+              data-analytics-cta-destination={profile.calendarUrl}
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-ink text-background px-5 py-2.5 text-sm font-medium hover:bg-brand hover:text-[var(--brand-foreground)] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2"
+            >
+              <CalendarDays aria-hidden="true" className="h-4 w-4" />
+              Schedule meeting
+            </a>
             <a
               href={profile.resumeHref}
               download
@@ -215,32 +233,18 @@ function ResumePage() {
               data-analytics-cta-location="resume_page"
               data-analytics-cta-destination={profile.resumeHref}
               data-analytics-source="resume_page"
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-ink text-background px-5 py-2.5 text-sm font-medium hover:bg-brand hover:text-[var(--brand-foreground)] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2"
+              className="inline-flex items-center justify-center gap-2 rounded-full border border-ink/20 px-5 py-2.5 text-sm font-medium text-ink hover:bg-ink/5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2"
             >
-              <svg
-                aria-hidden="true"
-                className="w-4 h-4"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-              >
-                <path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14" />
-              </svg>
+              <Download aria-hidden="true" className="h-4 w-4" />
               Download PDF
-            </a>
-            <a
-              href={`mailto:${profile.email}`}
-              className="inline-flex min-w-0 max-w-full items-center justify-center rounded-full border border-ink/20 px-4 sm:px-5 py-2.5 text-center text-sm font-medium leading-tight text-ink break-all hover:bg-ink/5 transition-colors"
-            >
-              {profile.email}
             </a>
             <a
               href={profile.linkedin}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center justify-center rounded-full border border-ink/20 px-5 py-2.5 text-sm font-medium text-ink hover:bg-ink/5 transition-colors"
+              className="inline-flex items-center justify-center gap-2 rounded-full border border-ink/20 px-5 py-2.5 text-sm font-medium text-ink hover:bg-ink/5 transition-colors"
             >
+              <Linkedin aria-hidden="true" className="h-4 w-4" />
               LinkedIn
             </a>
           </div>
@@ -268,7 +272,8 @@ function ResumePage() {
             ))}
           </ul>
           <div className="mt-5 border-t border-rule pt-4 text-xs text-ink-soft">
-            {profile.location} · Open to UAE, KSA, Singapore, MENA, Europe and global fintech roles.
+            Open to UAE, KSA, Singapore, MENA, Europe and global roles across fintechs, banks,
+            financial institutions, payment networks and digital platforms.
           </div>
           <div className="mt-5 flex flex-wrap gap-2" aria-label="Resume readiness signals">
             {resumeSignals.map((signal, index) => (
@@ -321,7 +326,8 @@ function ResumePage() {
             Currently CPO at Simpaisa, where I helped scale regulated payment infrastructure to $1B+
             GTV, 25M+ monthly transactions and 50+ bank, wallet and FI partners. My operating lane
             sits between product strategy, program delivery, compliance, risk, engineering
-            leadership, partner ecosystems and market expansion.
+            leadership, partner ecosystems and market expansion, with adjacent work across BNPL, OTT
+            subscription billing and crypto on/off-ramp product strategy.
           </p>
           <div className="grid md:grid-cols-3 gap-3">
             {roleFit.map((item, index) => (
@@ -466,17 +472,32 @@ function ResumePage() {
           <div className="space-y-2 text-sm text-ink-soft">
             <div>{profile.location}</div>
             <a
-              className="block text-ink underline underline-offset-4"
+              className="flex w-fit items-center gap-2 text-ink underline underline-offset-4"
+              href={profile.calendarUrl}
+              target="_blank"
+              rel="noreferrer"
+              data-analytics-event="cta_click"
+              data-analytics-cta-id="book_intro_call"
+              data-analytics-cta-location="resume_contact"
+              data-analytics-cta-destination={profile.calendarUrl}
+            >
+              <CalendarDays aria-hidden="true" className="h-4 w-4" />
+              Schedule a meeting
+            </a>
+            <a
+              className="flex w-fit items-center gap-2 text-ink underline underline-offset-4"
               href={`mailto:${profile.email}`}
             >
+              <Mail aria-hidden="true" className="h-4 w-4" />
               {profile.email}
             </a>
             <a
-              className="block text-ink underline underline-offset-4"
+              className="flex w-fit items-center gap-2 text-ink underline underline-offset-4"
               href={profile.linkedin}
               target="_blank"
               rel="noreferrer"
             >
+              <Linkedin aria-hidden="true" className="h-4 w-4" />
               LinkedIn profile
             </a>
           </div>
@@ -495,6 +516,19 @@ function ResumePage() {
         </div>
         <div className="flex flex-wrap gap-2.5 shrink-0">
           <a
+            href={profile.calendarUrl}
+            target="_blank"
+            rel="noreferrer"
+            data-analytics-event="cta_click"
+            data-analytics-cta-id="book_intro_call"
+            data-analytics-cta-location="resume_page"
+            data-analytics-cta-destination={profile.calendarUrl}
+            className="inline-flex items-center justify-center gap-2 rounded-full bg-background text-ink px-5 py-2.5 text-sm font-medium hover:bg-[var(--brand)] hover:text-background transition-colors"
+          >
+            <CalendarDays aria-hidden="true" className="h-4 w-4" />
+            Schedule meeting
+          </a>
+          <a
             href={profile.resumeHref}
             download
             data-analytics-event="cta_click"
@@ -502,15 +536,10 @@ function ResumePage() {
             data-analytics-cta-location="resume_page"
             data-analytics-cta-destination={profile.resumeHref}
             data-analytics-source="resume_page"
-            className="inline-flex items-center justify-center rounded-full bg-background text-ink px-5 py-2.5 text-sm font-medium hover:bg-[var(--brand)] hover:text-background transition-colors"
+            className="inline-flex items-center justify-center gap-2 rounded-full border border-background/25 px-5 py-2.5 text-sm font-medium text-background hover:bg-background/10 transition-colors"
           >
+            <Download aria-hidden="true" className="h-4 w-4" />
             Download PDF
-          </a>
-          <a
-            href={`mailto:${profile.email}`}
-            className="inline-flex items-center justify-center rounded-full border border-background/25 px-5 py-2.5 text-sm font-medium text-background hover:bg-background/10 transition-colors"
-          >
-            Email me
           </a>
         </div>
       </section>

@@ -21,17 +21,17 @@ export const Route = createFileRoute("/contact")({
     const url = absUrl("/contact");
     return {
       meta: [
-        { title: "Contact Rizwan Zafar | Payments Product Executive, Dubai" },
+        { title: "Contact Rizwan Zafar | Payments Product & Program Executive" },
         {
           name: "description",
           content:
-            "Contact Rizwan Zafar, Product & Program Executive in Dubai. Open to senior fintech and payment infrastructure roles. Replies in 24h, Sun–Thu GST.",
+            "Contact Rizwan Zafar for senior Product & Program roles across fintech, banking, payments and digital platforms in UAE, KSA, Singapore, MENA and Europe.",
         },
         { property: "og:title", content: "Contact Rizwan Zafar, Payments Product Executive" },
         {
           property: "og:description",
           content:
-            "Open to senior Product & Program roles in fintech. Based in Dubai. Replies within 24 hours, Sun–Thu GST.",
+            "Open to senior Product & Program roles across fintechs, banks, payment networks and digital platforms in UAE, KSA, Singapore, MENA, Europe and global markets.",
         },
         { property: "og:url", content: url },
         { property: "og:type", content: "website" },
@@ -39,7 +39,7 @@ export const Route = createFileRoute("/contact")({
         {
           name: "twitter:description",
           content:
-            "Open to senior Product & Program roles in fintech. Dubai-based. Reply within 24h, Sun–Thu.",
+            "Open to senior Product & Program roles across fintechs, banks, payment networks and digital platforms in UAE, KSA, Singapore, MENA, Europe and global markets.",
         },
       ],
       links: [{ rel: "canonical", href: url }],

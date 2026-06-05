@@ -1,4 +1,5 @@
 import { Link, useRouterState } from "@tanstack/react-router";
+import { CalendarDays, Download } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { profile } from "@/data/profile";
 import { ctaClick, outboundClick, resumeDownload } from "@/lib/analytics";
@@ -111,31 +112,22 @@ export function SiteHeader() {
 
           <div className="flex items-center gap-1.5 shrink-0">
             <a
-              href={profile.resumeHref}
-              download
-              aria-label="Download PDF résumé"
+              href={profile.calendarUrl}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Schedule an intro meeting"
               data-analytics-event="cta_click"
-              data-analytics-cta-id="download_resume"
+              data-analytics-cta-id="book_intro_call"
               data-analytics-cta-location="header"
-              data-analytics-cta-destination={profile.resumeHref}
-              data-analytics-source="header"
+              data-analytics-cta-destination={profile.calendarUrl}
               onClick={() => {
-                ctaClick("download_resume", "header", profile.resumeHref);
-                resumeDownload("header");
+                ctaClick("book_intro_call", "header", profile.calendarUrl);
+                outboundClick(profile.calendarUrl, "header");
               }}
               className="inline-flex items-center gap-1.5 rounded-full bg-ink text-background px-3.5 sm:px-4 py-2.5 text-[12px] font-medium hover:bg-brand transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background"
             >
-              <svg
-                aria-hidden="true"
-                className="w-3.5 h-3.5"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-              >
-                <path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14" />
-              </svg>
-              <span className="hidden sm:inline">Download PDF</span>
+              <CalendarDays aria-hidden="true" className="h-3.5 w-3.5" />
+              <span className="hidden sm:inline">Schedule call</span>
             </a>
             {/* Mobile/tablet menu trigger */}
             <button
@@ -218,12 +210,27 @@ export function SiteHeader() {
                 </Link>
               ))}
               <a
-                href={profile.resumeHref}
-                download
+                href={profile.calendarUrl}
+                target="_blank"
+                rel="noreferrer"
                 onClick={() => setOpen(false)}
                 className="mt-2 px-3 py-3 rounded-lg text-base text-ink hover:bg-ink/5 transition-colors"
               >
-                Resume, Download PDF
+                Schedule meeting
+              </a>
+              <a
+                href={profile.resumeHref}
+                download
+                onClick={() => {
+                  setOpen(false);
+                  resumeDownload("mobile_menu");
+                }}
+                className="px-3 py-3 rounded-lg text-base text-ink-soft hover:text-ink hover:bg-ink/5 transition-colors"
+              >
+                <span className="inline-flex items-center gap-2">
+                  <Download aria-hidden="true" className="h-4 w-4" />
+                  Download PDF
+                </span>
               </a>
             </nav>
             <div className="mt-3 pt-3 border-t border-rule flex items-center justify-between text-xs text-ink-soft font-mono-tech">

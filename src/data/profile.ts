@@ -6,9 +6,7 @@ export const profile = {
   phone: "+971-58-9683970",
   whatsappUrl:
     "https://wa.me/971589683970?text=Hi%20Rizwan%2C%20I%20found%20your%20portfolio%20and%20would%20like%20to%20discuss%20a%20senior%20product%20or%20program%20opportunity.",
-  // Add the exact Cal.com event URL here when ready, for example:
-  // "https://cal.com/your-handle/intro"
-  calendarUrl: "",
+  calendarUrl: "https://cal.com/rizwan-zafar-gws2uk",
   newsletter: {
     name: "Payments Infrastructure Notes",
     href: "mailto:rizwanzaffar.pk@gmail.com?subject=Subscribe%20me%20to%20Payments%20Infrastructure%20Notes&body=Hi%20Rizwan%2C%0A%0APlease%20add%20me%20to%20your%20payments%20infrastructure%20essay%20updates.%0A%0AName%3A%0ACompany%3A",
@@ -42,7 +40,7 @@ export const profile = {
   ] as const,
   resumeHref: "/Rizwan_Zafar_Resume.pdf",
   headline:
-    "Product & Program Executive Scaling Fintech Infrastructure in Complex Markets. As CPO at Simpaisa in Dubai, I helped scale payment infrastructure across 7 markets, $1B+ GTV, 25M+ monthly transactions and 50+ bank, wallet and financial institution partners.",
+    "Product & Program Executive Scaling Fintech Infrastructure in Complex Markets. As CPO at Simpaisa, I helped scale payment infrastructure across 7 markets, $1B+ GTV, 25M+ monthly transactions and 50+ bank, wallet and financial institution partners.",
   positioning:
     "I build regulated payment infrastructure where product, program delivery, network partnerships, risk, compliance and operations collide. My work turns fragmented local rails into reliable products: card acquiring, merchant onboarding, cross-border corridors, settlement and reconciliation, fraud and AML/CFT controls, and now AI-augmented operations. I run the full lifecycle, strategy → roadmap → PMO governance → execution → P&L, across regulated markets.",
   bio: "Product & Program leader with 14+ years across payments, fintech and digital transformation. Currently CPO at Simpaisa, a B2B payments platform I helped scale from $0 to $1B+ TPV across seven markets in MENA and South Asia, serving 50+ bank, wallet and financial institution partners and enterprise clients including TikTok, Uber, Temu, MoneyGram, InDrive and PUBG. Built and led the 40-engineer organisation (from 2 people) across 12 cross-functional squads. Deployed 4 production GenAI solutions covering merchant integration support (−65% support time), incident auto-escalation (−70% MTTR), partner support automation (90% resolution) and a fraud/AML AI pilot with a banking partner. Earlier: $3M digital transformation programme at TapmadTV, payments operations at Daraz (Alibaba Group), PMO setups at Wing Logic and DS Engineering. Engineer's discipline, programme manager's tempo, regulator's vocabulary. PMP, PMI-ACP, CSPO, CSM, COBIT 5, ITIL v3. PCI DSS and ISO/IEC 27001 led from scratch.",

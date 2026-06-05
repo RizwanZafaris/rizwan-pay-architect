@@ -125,8 +125,9 @@ function AboutPage() {
           <h2>Where I'm headed</h2>
           <p>
             Senior product and payment infrastructure roles at companies building serious payments
-            platforms, Visa, Mastercard, Stripe, Wise, Adyen, Thunes, DLocal and similar. Based in
-            Dubai. Open to UAE, KSA, Singapore, MENA, Europe and global fintech.
+            platforms, Visa, Mastercard, Stripe, Wise, Adyen, Thunes, DLocal and similar. Open to
+            UAE, KSA, Singapore, MENA, Europe and global roles across fintechs, banks, financial
+            institutions, payment networks and digital platforms.
           </p>
         </div>
 
