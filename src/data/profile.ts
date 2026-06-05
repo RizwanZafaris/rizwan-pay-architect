@@ -1,5 +1,8 @@
 export const profile = {
   name: "Rizwan Zafar",
+  givenName: "Rizwan",
+  familyName: "Zafar",
+  nationality: "Pakistani",
   role: "Chief Product Officer · Payments, Fintech & AI",
   location: "Dubai, UAE",
   email: "rizwanzaffar.pk@gmail.com",
@@ -383,3 +386,13 @@ export const profile = {
   ],
   openRolesIn: ["UAE", "KSA", "Singapore", "MENA", "Europe", "Global fintech"],
 };
+
+export const personSchemaCredentials = profile.certifications.filter(
+  (credential) => !credential.startsWith("Led "),
+);
+
+export const personSchemaAwards = [
+  ...profile.honors.map((h) => `${h.title} (${h.issuer}, ${h.year})`),
+  "Led PCI DSS Level 1 certification programme from scratch — SimPaisa",
+  "Led ISO/IEC 27001 certification programme from scratch — SimPaisa",
+] as const;

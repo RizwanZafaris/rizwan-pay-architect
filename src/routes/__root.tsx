@@ -45,7 +45,7 @@ function GtmRouteTracker() {
 
 import appCss from "../styles.css?url";
 import { SiteHeader, SiteFooter } from "@/components/SiteChrome";
-import { profile } from "@/data/profile";
+import { personSchemaAwards, personSchemaCredentials, profile } from "@/data/profile";
 import {
   absUrl,
   SITE_URL,
@@ -180,6 +180,9 @@ const personJsonLd = {
   "@type": "Person",
   "@id": `${SITE_URL}#person`,
   name: profile.name,
+  givenName: profile.givenName,
+  familyName: profile.familyName,
+  nationality: profile.nationality,
   jobTitle: "Chief Product Officer, Payments Infrastructure",
   description:
     "Fintech CPO with 14+ years scaling regulated payment infrastructure. $1B+ GTV, 7 markets, 50+ bank and wallet partners. Dubai, UAE.",
@@ -202,11 +205,11 @@ const personJsonLd = {
     { "@type": "EducationalOrganization", name: "MIT Sloan School of Management" },
     { "@type": "EducationalOrganization", name: "University of Karachi" },
   ],
-  hasCredential: profile.certifications.map((c) => ({
+  hasCredential: personSchemaCredentials.map((c) => ({
     "@type": "EducationalOccupationalCredential",
     name: c,
   })),
-  award: profile.honors.map((h) => `${h.title} (${h.issuer}, ${h.year})`),
+  award: personSchemaAwards,
   knowsAbout: [
     "Payment Infrastructure",
     "Cross-border Payments",

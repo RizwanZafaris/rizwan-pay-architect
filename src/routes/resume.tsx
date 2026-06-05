@@ -1,7 +1,7 @@
 import type { CSSProperties } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { CalendarDays, Download, Linkedin, Mail } from "lucide-react";
-import { profile } from "@/data/profile";
+import { personSchemaAwards, personSchemaCredentials, profile } from "@/data/profile";
 import { absUrl, OG_IMAGE_URL, SITE_URL } from "@/lib/seo";
 
 const resumeKeywords = [
@@ -37,6 +37,9 @@ const resumeJsonLd = {
     "@type": "Person",
     "@id": `${SITE_URL}#person`,
     name: profile.name,
+    givenName: profile.givenName,
+    familyName: profile.familyName,
+    nationality: profile.nationality,
     jobTitle: [
       "Product & Program Executive",
       "Chief Product Officer, Payments",
@@ -47,10 +50,11 @@ const resumeJsonLd = {
     address: { "@type": "PostalAddress", addressLocality: "Dubai", addressCountry: "AE" },
     sameAs: profile.entitySameAs,
     worksFor: { "@type": "Organization", name: "Simpaisa", url: "https://simpaisa.com" },
-    hasCredential: profile.certifications.map((cert) => ({
+    hasCredential: personSchemaCredentials.map((cert) => ({
       "@type": "EducationalOccupationalCredential",
       name: cert,
     })),
+    award: personSchemaAwards,
     knowsAbout: resumeKeywords,
     hasOccupation: {
       "@type": "Occupation",

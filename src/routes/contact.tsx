@@ -54,6 +54,9 @@ export const Route = createFileRoute("/contact")({
             mainEntity: {
               "@type": "Person",
               name: profile.name,
+              givenName: profile.givenName,
+              familyName: profile.familyName,
+              nationality: profile.nationality,
               url: SITE_URL,
               email: `mailto:${profile.email}`,
               jobTitle: "Product & Program Executive, Fintech Infrastructure",

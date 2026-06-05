@@ -1,7 +1,7 @@
 import type { CSSProperties } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { audiences, getHub, postsForHub, caseStudiesForHub, type Audience } from "@/data/hubs";
-import { profile } from "@/data/profile";
+import { personSchemaAwards, personSchemaCredentials, profile } from "@/data/profile";
 import { absUrl, OG_IMAGE_URL, SITE_URL } from "@/lib/seo";
 
 const recruiterKeywords = [
@@ -38,6 +38,9 @@ const recruiterProfileJsonLd = {
     "@type": "Person",
     "@id": `${SITE_URL}#person`,
     name: profile.name,
+    givenName: profile.givenName,
+    familyName: profile.familyName,
+    nationality: profile.nationality,
     jobTitle: [
       "Product & Program Executive",
       "Chief Product Officer, Payments",
@@ -48,10 +51,11 @@ const recruiterProfileJsonLd = {
     address: { "@type": "PostalAddress", addressLocality: "Dubai", addressCountry: "AE" },
     sameAs: profile.entitySameAs,
     worksFor: { "@type": "Organization", name: "SimPaisa", url: "https://simpaisa.com" },
-    hasCredential: profile.certifications.map((cert) => ({
+    hasCredential: personSchemaCredentials.map((cert) => ({
       "@type": "EducationalOccupationalCredential",
       name: cert,
     })),
+    award: personSchemaAwards,
     knowsAbout: recruiterKeywords,
     hasOccupation: {
       "@type": "Occupation",
