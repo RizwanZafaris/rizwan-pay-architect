@@ -25,6 +25,17 @@
 </IfModule>
 
 # ────────────────────────────────────────────────────────────────────────────
+# Security headers
+# ────────────────────────────────────────────────────────────────────────────
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "DENY"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+  Header always set X-XSS-Protection "1; mode=block"
+</IfModule>
+
+# ────────────────────────────────────────────────────────────────────────────
 # 2. Semantic / legacy redirects
 #    The public navigation labels this body of work as case studies, while the
 #    canonical content lives under /product-work/. Preserve old or intuitive
@@ -142,11 +153,12 @@
     Header set Cache-Control "public, max-age=300, must-revalidate"
   </FilesMatch>
 
-  # Security headers
+  # Security headers (defined early in file; repeated here inside mod_headers for cache-section scoping)
   Header always set X-Content-Type-Options "nosniff"
-  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set X-Frame-Options "DENY"
   Header always set Referrer-Policy "strict-origin-when-cross-origin"
-  Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+  Header always set X-XSS-Protection "1; mode=block"
 </IfModule>
 
 # ────────────────────────────────────────────────────────────────────────────

@@ -86,7 +86,15 @@ export const Route = createFileRoute("/")({
           "Payment infrastructure for complex markets. $1B+ GTV. 25M+ monthly transactions. 7 markets. 50+ bank & wallet partners.",
       },
     ],
-    links: [{ rel: "canonical", href: absUrl("/") }],
+    links: [
+      {
+        rel: "preload",
+        as: "image",
+        href: "/assets/rizwan-zafar-cutout-460.webp",
+        type: "image/webp",
+      },
+      { rel: "canonical", href: absUrl("/") },
+    ],
     scripts: [
       { type: "application/ld+json", children: JSON.stringify(profilePageJsonLd) },
       { children: heroScrambleScript },
