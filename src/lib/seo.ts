@@ -10,6 +10,8 @@ type ViteEnv = {
   VITE_OG_IMAGE_URL?: string;
   VITE_GTM_ID?: string;
   VITE_GA_MEASUREMENT_ID?: string;
+  VITE_GOOGLE_ADS_ID?: string;
+  VITE_GOOGLE_ADS_PAGE_VIEW_CONVERSION_LABEL?: string;
   VITE_BING_SITE_VERIFICATION?: string;
   VITE_MICROSOFT_CLARITY_ID?: string;
   VITE_PLAUSIBLE_DOMAIN?: string;
@@ -66,10 +68,21 @@ export const GTM_ID = env.VITE_GTM_ID ?? "GTM-TM5BP98G";
 // paused, unpublished, or blocked by container quality issues.
 export const GA_MEASUREMENT_ID = env.VITE_GA_MEASUREMENT_ID ?? "G-F1NK5FJYJY";
 
+// Google Ads base tag for campaign attribution / conversion readiness.
+// Keep this alongside GA4 in the direct Google tag fallback so the paid resume
+// campaign can be verified even before Ads conversions are imported from GA4.
+export const GOOGLE_ADS_ID = env.VITE_GOOGLE_ADS_ID ?? "AW-790961325";
+export const GOOGLE_ADS_PAGE_VIEW_CONVERSION_LABEL =
+  env.VITE_GOOGLE_ADS_PAGE_VIEW_CONVERSION_LABEL ?? "6HJOCOTfn7ocEK25lPkC";
+export const GOOGLE_ADS_PAGE_VIEW_CONVERSION_SEND_TO =
+  GOOGLE_ADS_ID && GOOGLE_ADS_PAGE_VIEW_CONVERSION_LABEL
+    ? `${GOOGLE_ADS_ID}/${GOOGLE_ADS_PAGE_VIEW_CONVERSION_LABEL}`
+    : "";
+
 // Optional analytics / webmaster IDs.
-// Keep GA4, Google Ads, LinkedIn Insight, Meta Pixel and other marketing tags
-// in GTM. These direct toggles are for tools that are useful outside GTM or
-// need a page-level verification meta tag.
+// Keep LinkedIn Insight, Meta Pixel and other marketing tags in GTM. These
+// direct toggles are for tools that are useful outside GTM, need page-level
+// verification, or need paid-media verification before GTM publishing.
 export const BING_SITE_VERIFICATION =
   env.VITE_BING_SITE_VERIFICATION || DEFAULT_BING_SITE_VERIFICATION;
 export const MICROSOFT_CLARITY_ID = env.VITE_MICROSOFT_CLARITY_ID || "";

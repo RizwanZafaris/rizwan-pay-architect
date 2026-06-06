@@ -11,7 +11,7 @@ This doc is the canonical reference for:
 
 ---
 
-Recommended architecture: **GTM is the hub**. Keep GA4, Google Ads, LinkedIn Insight, Meta Pixel and TikTok Pixel inside GTM so one workspace owns triggers, consent, preview/debug and publishing. Only direct-install tools that need their own lightweight script or meta verification, such as Microsoft Clarity, Plausible or Bing Webmaster Tools.
+Recommended architecture: **GTM is the hub**. Keep LinkedIn Insight, Meta Pixel and TikTok Pixel inside GTM so one workspace owns triggers, consent, preview/debug and publishing. Google Ads also has a direct base tag in code for Ads verification and paid-campaign readiness; conversion actions can still be imported from GA4 or fired through GTM once the Ads/GA4 link is confirmed. Only direct-install additional tools that need their own lightweight script or meta verification, such as Microsoft Clarity, Plausible or Bing Webmaster Tools.
 
 ## 0 · Analytics stack
 
@@ -19,12 +19,14 @@ Recommended architecture: **GTM is the hub**. Keep GA4, Google Ads, LinkedIn Ins
 | ----------------------------- | ------------------------ | ------------------------------------ | -------------------------------------------------------------- |
 | Google Tag Manager            | Installed                | `VITE_GTM_ID` / GTM workspace        | Tag orchestration, triggers and debug                          |
 | Google Analytics 4            | Ready via GTM events     | GTM + GA4 Measurement ID             | Traffic, funnels, conversions                                  |
+| Google Ads base tag           | Installed                | `VITE_GOOGLE_ADS_ID`                 | Ads verification, attribution and conversion-readiness          |
+| Google Ads page-view snippet  | Installed on `/resume/`  | `VITE_GOOGLE_ADS_PAGE_VIEW_CONVERSION_LABEL` | Resume-page visit conversion action for the test campaign |
 | Google Search Console         | Verified in root meta    | Google Search Console                | Search indexing and query performance                          |
 | Bing Webmaster Tools          | Optional meta ready      | `VITE_BING_SITE_VERIFICATION`        | Bing/Copilot search visibility                                 |
 | Microsoft Clarity             | Optional script ready    | `VITE_MICROSOFT_CLARITY_ID`          | Heatmaps/session recordings                                    |
 | Plausible                     | Optional script ready    | `VITE_PLAUSIBLE_DOMAIN`              | Privacy-friendly traffic analytics                             |
 | LinkedIn Insight Tag          | Use GTM                  | GTM Custom HTML or LinkedIn template | Recruiter/audience retargeting                                 |
-| Meta/TikTok/Google Ads pixels | Use GTM                  | GTM templates                        | Paid campaign tracking only if needed                          |
+| Meta/TikTok pixels            | Use GTM                  | GTM templates                        | Paid campaign tracking only if needed                          |
 | AI bot analytics              | Requires server/CDN logs | Cloudflare/Hostinger logs            | GPTBot, ClaudeBot, PerplexityBot do not reliably run client JS |
 
 ## 1 · Event catalogue
@@ -32,6 +34,12 @@ Recommended architecture: **GTM is the hub**. Keep GA4, Google Ads, LinkedIn Ins
 All events live in [`src/lib/analytics.ts`](../src/lib/analytics.ts) as a typed union. Add a new one there first, then wire the matching trigger in GTM.
 
 Production is a prerendered static export, so the site also includes a tiny vanilla analytics bridge in [`src/routes/__root.tsx`](../src/routes/__root.tsx). It listens for `data-analytics-*` attributes, PDF clicks, external clicks, blog views, case-study views and search submits, then pushes the same event names into `dataLayer`. This keeps analytics working even when React hydration is stripped from the Hostinger static build.
+
+Google Ads direct install:
+
+- Base tag: `AW-790961325`, configurable via `VITE_GOOGLE_ADS_ID`.
+- Resume page-view conversion: `AW-790961325/6HJOCOTfn7ocEK25lPkC`, configurable via `VITE_GOOGLE_ADS_PAGE_VIEW_CONVERSION_LABEL`.
+- This conversion fires only on `/resume/`. It should be treated as a landing-page / page-view conversion for the small Google Ads test, not as a qualified lead. For higher-quality lead reporting, create separate Google Ads conversion actions for `schedule_meeting`, `resume_download` and `linkedin_click`.
 
 | Event name            | Fires when                                                                                                                              | Params (dataLayer keys)                                                                                | Recommended GA4 use                                                                            |
 | --------------------- | --------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------- |

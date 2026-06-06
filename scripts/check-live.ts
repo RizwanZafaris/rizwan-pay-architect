@@ -28,6 +28,12 @@ const DEV_IMPORT_PATTERN = ["/@id", "virtual"].join("/");
 const START_ENTRY_PATTERN = ["tanstack", "start-client-entry"].join("-");
 const EXPECTED_GTM_ID = process.env.VITE_GTM_ID || "GTM-TM5BP98G";
 const EXPECTED_GTM_RE = EXPECTED_GTM_ID.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+const EXPECTED_GOOGLE_ADS_ID = process.env.VITE_GOOGLE_ADS_ID || "AW-790961325";
+const EXPECTED_GOOGLE_ADS_RE = EXPECTED_GOOGLE_ADS_ID.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+const EXPECTED_GOOGLE_ADS_PAGE_VIEW_CONVERSION_LABEL =
+  process.env.VITE_GOOGLE_ADS_PAGE_VIEW_CONVERSION_LABEL || "6HJOCOTfn7ocEK25lPkC";
+const EXPECTED_GOOGLE_ADS_PAGE_VIEW_CONVERSION_RE =
+  EXPECTED_GOOGLE_ADS_PAGE_VIEW_CONVERSION_LABEL.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
 type Probe = {
   name: string;
@@ -56,6 +62,26 @@ const probes: Probe[] = [
     required: true,
     matchBody: new RegExp(
       `googletagmanager\\.com/(?:gtm\\.js|ns\\.html)\\?id=${EXPECTED_GTM_RE}`,
+      "i",
+    ),
+  },
+  {
+    name: "Google Ads base tag",
+    url: `${APEX_ORIGIN}/`,
+    expect: 200,
+    required: true,
+    matchBody: new RegExp(
+      `googletagmanager\\.com/gtag/js\\?id=${EXPECTED_GOOGLE_ADS_RE}|gtag\\(["']config["'],["']${EXPECTED_GOOGLE_ADS_RE}["']`,
+      "i",
+    ),
+  },
+  {
+    name: "Google Ads resume page-view conversion snippet",
+    url: `${APEX_ORIGIN}/resume/`,
+    expect: 200,
+    required: true,
+    matchBody: new RegExp(
+      `${EXPECTED_GOOGLE_ADS_RE}/${EXPECTED_GOOGLE_ADS_PAGE_VIEW_CONVERSION_RE}`,
       "i",
     ),
   },
