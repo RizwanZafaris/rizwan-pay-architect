@@ -98,7 +98,7 @@ export const Route = createFileRoute("/blog/$slug")({
         "@type": "Person",
         "@id": `${SITE_URL}#person`,
         name: profile.name,
-        url: absUrl("/about"),
+        url: SITE_URL,
       },
       publisher: {
         "@type": "Person",

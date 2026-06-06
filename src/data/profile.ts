@@ -6,7 +6,6 @@ export const profile = {
   role: "Chief Product Officer · Payments, Fintech & AI",
   location: "Dubai, UAE",
   email: "rizwanzaffar.pk@gmail.com",
-  phone: "+971-58-9683970",
   whatsappUrl:
     "https://wa.me/971589683970?text=Hi%20Rizwan%2C%20I%20found%20your%20portfolio%20and%20would%20like%20to%20discuss%20a%20senior%20product%20or%20program%20opportunity.",
   calendarUrl: "https://cal.com/rizwan-zafar-gws2uk",

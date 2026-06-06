@@ -80,6 +80,46 @@ const recruiterBreadcrumbJsonLd = {
   ],
 };
 
+const recruiterFaqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "@id": `${absUrl("/for")}#faqpage`,
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "What payment markets has Rizwan Zafar worked in?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Pakistan, Bangladesh, Nepal, Egypt, Iraq, Saudi Arabia, and UAE — 7 regulated markets processing $1B+ annual GTV and 25M+ monthly transactions.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "What is Rizwan Zafar's experience with payment infrastructure?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "14+ years in fintech and payments. As CPO at SimPaisa, Rizwan scaled a multi-rail payment platform to $1B+ GTV, 25M+ monthly transactions, PCI DSS Level 1 and ISO/IEC 27001 certified, serving TikTok, Uber, MoneyGram, and 50+ bank and wallet partners.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "What roles is Rizwan Zafar open to?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "VP Product, Director of Product, Head of Payments, or CPO roles at companies including Visa, Mastercard, Wise, Stripe, Adyen, Checkout.com, DLocal, Thunes, Rapyd, and regional fintechs across MENA, UK, USA, and APAC.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Where is Rizwan Zafar based and what locations does he consider?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Based in Dubai, UAE. Open to roles in UAE, Saudi Arabia, Singapore, UK, USA, and global remote senior positions.",
+      },
+    },
+  ],
+};
+
 export const Route = createFileRoute("/for/")({
   head: () => ({
     meta: [
@@ -115,6 +155,10 @@ export const Route = createFileRoute("/for/")({
       {
         type: "application/ld+json",
         children: JSON.stringify(recruiterBreadcrumbJsonLd),
+      },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify(recruiterFaqJsonLd),
       },
     ],
   }),

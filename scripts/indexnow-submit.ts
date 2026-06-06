@@ -21,7 +21,11 @@
 
 import { readFileSync } from "node:fs";
 
-const INDEXNOW_KEY = "2b37cfa0f40ee28009e4db27f7f62a6b";
+const INDEXNOW_KEY = process.env.INDEXNOW_KEY ?? "2b37cfa0f40ee28009e4db27f7f62a6b";
+if (!INDEXNOW_KEY) {
+  console.error("✗ INDEXNOW_KEY not set. Add it to .env.local");
+  process.exit(1);
+}
 const HOST = "rzifi.com";
 const SITE = `https://${HOST}`;
 const KEY_LOCATION = `${SITE}/${INDEXNOW_KEY}.txt`;
