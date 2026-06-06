@@ -1,0 +1,1 @@
+import{j as e}from"./index-CdbG5jF1.js";const o=({error:t})=>e.jsx("div",{className:"mx-auto max-w-2xl px-6 py-24 text-center",children:e.jsx("p",{className:"text-ink-soft",children:t.message})});export{o as errorComponent};

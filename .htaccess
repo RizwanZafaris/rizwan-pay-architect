@@ -24,7 +24,6 @@
   RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 </IfModule>
 
-# ────────────────────────────────────────────────────────────────────────────
 # 2. Semantic / legacy redirects
 #    The public navigation labels this body of work as case studies, while the
 #    canonical content lives under /product-work/. Preserve old or intuitive
@@ -38,7 +37,18 @@
 </IfModule>
 
 # ────────────────────────────────────────────────────────────────────────────
-# 3. Trailing-slash policy
+# 3. Security headers
+# ────────────────────────────────────────────────────────────────────────────
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "DENY"
+  Header always set X-XSS-Protection "1; mode=block"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "camera=(), geolocation=(), microphone=()"
+</IfModule>
+
+# ────────────────────────────────────────────────────────────────────────────
+# 4. Trailing-slash policy
 #    Hostinger serves prerendered directories at /<route>/index.html, so the
 #    canonical URL for every non-root route ends with a trailing slash.
 #    /about           → 301 → /about/         (canonical)
@@ -57,7 +67,7 @@
 </IfModule>
 
 # ────────────────────────────────────────────────────────────────────────────
-# 4. Pretty URLs → prerendered HTML  (runs AFTER redirects)
+# 5. Pretty URLs → prerendered HTML  (runs AFTER redirects)
 #    /about/      → /about/index.html
 #    /blog/foo/   → /blog/foo/index.html
 # ────────────────────────────────────────────────────────────────────────────
@@ -85,7 +95,7 @@
 </IfModule>
 
 # ────────────────────────────────────────────────────────────────────────────
-# 5. Compression — Brotli first, gzip fallback
+# 6. Compression — Brotli first, gzip fallback
 # ────────────────────────────────────────────────────────────────────────────
 <IfModule mod_deflate.c>
   AddOutputFilterByType DEFLATE text/html text/css text/javascript application/javascript application/json application/xml image/svg+xml
@@ -96,7 +106,7 @@
 </IfModule>
 
 # ────────────────────────────────────────────────────────────────────────────
-# 6. Cache headers
+# 7. Cache headers
 #    - Hashed asset files (Vite outputs *-[hash].js / *-[hash].css): cache 1 year, immutable
 #    - HTML: short cache, must-revalidate
 #    - PDF, images, fonts: 30 days
@@ -142,15 +152,10 @@
     Header set Cache-Control "public, max-age=300, must-revalidate"
   </FilesMatch>
 
-  # Security headers
-  Header always set X-Content-Type-Options "nosniff"
-  Header always set X-Frame-Options "SAMEORIGIN"
-  Header always set Referrer-Policy "strict-origin-when-cross-origin"
-  Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
 </IfModule>
 
 # ────────────────────────────────────────────────────────────────────────────
-# 7. Pretty MIME types (Hostinger sometimes mis-types these)
+# 8. Pretty MIME types (Hostinger sometimes mis-types these)
 # ────────────────────────────────────────────────────────────────────────────
 <IfModule mod_mime.c>
   AddType application/javascript .js .mjs
@@ -162,12 +167,12 @@
 </IfModule>
 
 # ────────────────────────────────────────────────────────────────────────────
-# 8. Don't list directories
+# 9. Don't list directories
 # ────────────────────────────────────────────────────────────────────────────
 Options -Indexes
 
 # ────────────────────────────────────────────────────────────────────────────
-# 9. Custom 404 — branded, hard-noindexed page (prerendered to /404.html).
+# 10. Custom 404 — branded, hard-noindexed page (prerendered to /404.html).
 #    Pairs with the §3 final fallback so missing URLs return 404 (not a
 #    soft-404 homepage at 200).
 # ────────────────────────────────────────────────────────────────────────────
