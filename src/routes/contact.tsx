@@ -133,12 +133,6 @@ const priorityChannels = [
     id: "email_me",
   },
   {
-    label: "WhatsApp",
-    detail: "Use for time-sensitive scheduling only",
-    href: profile.whatsappUrl,
-    id: "whatsapp_message",
-  },
-  {
     label: "LinkedIn",
     detail: "Good for referrals and quick validation",
     href: profile.linkedin,
@@ -149,7 +143,7 @@ const priorityChannels = [
 const contactSignals = [
   "24h response",
   "Email scheduling ready",
-  "WhatsApp for scheduling",
+  "Cal.com booking ready",
   "Senior mandates",
 ] as const;
 
@@ -438,8 +432,8 @@ function ContactPage() {
               role discussions.
             </li>
             <li>
-              <span className="text-ink font-medium">3. LinkedIn or WhatsApp</span>, for quick
-              validation, referrals or scheduling follow-up.
+              <span className="text-ink font-medium">3. LinkedIn</span>, for quick validation,
+              referrals or scheduling follow-up.
             </li>
           </ol>
 

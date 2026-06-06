@@ -11,21 +11,17 @@
  *   bun scripts/indexnow-submit.ts /blog/new-post /product-work/new-study
  *
  * Setup:
- *   - The hex key in INDEXNOW_KEY is the same string written to
+ *   - Set INDEXNOW_KEY in .env.local or the shell. The hex key is the same string written to
  *     public/<key>.txt; engines GET that URL to verify ownership.
- *   - The key here MUST match the filename in public/. Don't change one
- *     without changing the other.
+ *   - The env value MUST match the filename in public/. Don't change one without
+ *     changing the other.
  *
  * Spec: https://www.indexnow.org/documentation
  */
 
 import { readFileSync } from "node:fs";
 
-const INDEXNOW_KEY = process.env.INDEXNOW_KEY ?? "2b37cfa0f40ee28009e4db27f7f62a6b";
-if (!INDEXNOW_KEY) {
-  console.error("✗ INDEXNOW_KEY not set. Add it to .env.local");
-  process.exit(1);
-}
+const INDEXNOW_KEY = (process.env.INDEXNOW_KEY ?? "").trim();
 const HOST = "rzifi.com";
 const SITE = `https://${HOST}`;
 const KEY_LOCATION = `${SITE}/${INDEXNOW_KEY}.txt`;
@@ -67,6 +63,13 @@ async function submit(urls: string[], endpoint: string) {
 }
 
 async function main() {
+  if (!INDEXNOW_KEY) {
+    console.error(
+      "✗ INDEXNOW_KEY is required. Add it to .env.local or run `INDEXNOW_KEY=<key> bun scripts/indexnow-submit.ts`.",
+    );
+    process.exit(1);
+  }
+
   const args = process.argv.slice(2);
   let urls: string[];
   if (args.length > 0) {

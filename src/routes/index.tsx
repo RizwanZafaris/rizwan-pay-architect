@@ -90,8 +90,9 @@ export const Route = createFileRoute("/")({
       {
         rel: "preload",
         as: "image",
-        href: "/assets/rizwan-zafar-cutout-460.webp",
+        href: portraitWebpSmall,
         type: "image/webp",
+        fetchPriority: "high",
       },
       { rel: "canonical", href: absUrl("/") },
     ],
