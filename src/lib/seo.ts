@@ -3,6 +3,7 @@
 // The production site lives at https://rzifi.com — every canonical, og:url,
 // sitemap entry, JSON-LD url and breadcrumb must resolve against that host.
 const DEFAULT_SITE_URL = "https://rzifi.com";
+const DEFAULT_BING_SITE_VERIFICATION = "0042C7FD5604AA776BACE3344377C74E";
 
 type ViteEnv = {
   VITE_SITE_URL?: string;
@@ -69,7 +70,8 @@ export const GA_MEASUREMENT_ID = env.VITE_GA_MEASUREMENT_ID ?? "G-F1NK5FJYJY";
 // Keep GA4, Google Ads, LinkedIn Insight, Meta Pixel and other marketing tags
 // in GTM. These direct toggles are for tools that are useful outside GTM or
 // need a page-level verification meta tag.
-export const BING_SITE_VERIFICATION = env.VITE_BING_SITE_VERIFICATION || "";
+export const BING_SITE_VERIFICATION =
+  env.VITE_BING_SITE_VERIFICATION || DEFAULT_BING_SITE_VERIFICATION;
 export const MICROSOFT_CLARITY_ID = env.VITE_MICROSOFT_CLARITY_ID || "";
 export const PLAUSIBLE_DOMAIN = env.VITE_PLAUSIBLE_DOMAIN || "";
 export const PLAUSIBLE_SRC = env.VITE_PLAUSIBLE_SRC || "https://plausible.io/js/script.js";
