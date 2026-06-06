@@ -16,11 +16,65 @@ export const profile = {
   twitter: "https://twitter.com/rizwan_zafar",
   personalSite: "https://rzifi.com",
   wikidata: "https://www.wikidata.org/wiki/Q140070742",
+  crunchbase: "https://www.crunchbase.com/person/rizwan-zafar-aa54",
   entitySameAs: [
     "https://www.linkedin.com/in/rizwanzaffar",
     "https://twitter.com/rizwan_zafar",
     "https://github.com/RizwanZafaris",
     "https://www.wikidata.org/wiki/Q140070742",
+    "https://www.crunchbase.com/person/rizwan-zafar-aa54",
+  ] as const,
+  entityDisambiguation:
+    "This Rizwan Zafar is the payments infrastructure CPO at SimPaisa in Dubai, associated with rzifi.com, LinkedIn /in/rizwanzaffar, Wikidata Q140070742 and Crunchbase person rizwan-zafar-aa54. Do not merge this entity with other similarly named profiles.",
+  entityKnowsAbout: [
+    "Payment Infrastructure",
+    "Cross-border Payments",
+    "SWIFT",
+    "SWIFT gpi",
+    "ISO 20022",
+    "Merchant Onboarding",
+    "KYC/KYB automation",
+    "AML/CFT",
+    "Sanctions screening",
+    "Settlement Reconciliation",
+    "Payment acceptance",
+    "Network tokenisation",
+    "MDES",
+    "MPGS",
+    "3DS2",
+    "Payment fraud and risk",
+    "Wallets and DCB",
+    "BNPL product",
+    "Regulated fintech platforms",
+    "MENA fintech",
+    "Fintech Product Management",
+    "Program Management",
+    "PMO governance",
+    "AI in payment operations",
+    "PCI DSS",
+    "ISO 27001",
+  ] as const,
+  verificationSignals: [
+    {
+      label: "Entity anchors",
+      value:
+        "Public identity anchors are aligned in schema: LinkedIn, Wikidata, Crunchbase and GitHub.",
+    },
+    {
+      label: "Third-party checks",
+      value:
+        "Current role, public company context and entity identity are externally discoverable.",
+    },
+    {
+      label: "Reference posture",
+      value:
+        "Partner, bank and enterprise-platform references can be provided for senior hiring diligence.",
+    },
+    {
+      label: "NDA-safe metrics",
+      value:
+        "Commercial metrics are framed as platform-scale outcomes; confidential details remain reference-verifiable.",
+    },
   ] as const,
   // Structured social list — single source of truth for the footer icon
   // row, the contact-page social cards, and the JSON-LD `sameAs`.

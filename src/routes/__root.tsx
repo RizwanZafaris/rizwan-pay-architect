@@ -180,12 +180,14 @@ const personJsonLd = {
   "@type": "Person",
   "@id": `${SITE_URL}#person`,
   name: profile.name,
+  alternateName: ["Rizwan Zafar payments", "Rizwan Zafar SimPaisa", "Rizwan Zafar CPO"],
   givenName: profile.givenName,
   familyName: profile.familyName,
   nationality: profile.nationality,
   jobTitle: "Chief Product Officer, Payments Infrastructure",
   description:
     "Fintech CPO with 14+ years scaling regulated payment infrastructure. $1B+ GTV, 7 markets, 50+ bank and wallet partners. Dubai, UAE.",
+  disambiguatingDescription: profile.entityDisambiguation,
   url: SITE_URL,
   image: `${SITE_URL}/og-default.png`,
   email: profile.email,
@@ -201,6 +203,32 @@ const personJsonLd = {
       "Payments & fintech infrastructure company (Dubai). Rizwan Zafar is Chief Product Officer.",
   },
   sameAs: profile.entitySameAs,
+  identifier: [
+    {
+      "@type": "PropertyValue",
+      propertyID: "Wikidata",
+      value: "Q140070742",
+      url: profile.wikidata,
+    },
+    {
+      "@type": "PropertyValue",
+      propertyID: "Crunchbase",
+      value: "rizwan-zafar-aa54",
+      url: profile.crunchbase,
+    },
+  ],
+  subjectOf: [
+    {
+      "@type": "ProfilePage",
+      name: "Rizwan Zafar on Crunchbase",
+      url: profile.crunchbase,
+    },
+    {
+      "@type": "ProfilePage",
+      name: "Rizwan Zafar on Wikidata",
+      url: profile.wikidata,
+    },
+  ],
   alumniOf: [
     { "@type": "EducationalOrganization", name: "MIT Sloan School of Management" },
     { "@type": "EducationalOrganization", name: "University of Karachi" },
@@ -210,26 +238,7 @@ const personJsonLd = {
     name: c,
   })),
   award: personSchemaAwards,
-  knowsAbout: [
-    "Payment Infrastructure",
-    "Cross-border Payments",
-    "SWIFT",
-    "ISO 20022",
-    "Merchant Onboarding",
-    "AML/CFT",
-    "Settlement Reconciliation",
-    "PCI DSS",
-    "Fintech Product Management",
-    "Payment acceptance",
-    "KYC/KYB automation",
-    "Payment fraud and risk",
-    "Wallets and DCB",
-    "BNPL product",
-    "Regulated fintech platforms",
-    "MENA fintech",
-    "SWIFT gpi",
-    "ISO 27001",
-  ],
+  knowsAbout: profile.entityKnowsAbout,
 };
 
 const websiteJsonLd = {

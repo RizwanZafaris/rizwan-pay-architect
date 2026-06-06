@@ -10,8 +10,8 @@ import { SocialIconRow } from "@/components/SocialIcons";
 // /products, /media, /topics stayed off the top bar because they
 // dilute the senior narrative when scanned in 5 seconds. They remain
 // reachable: products from /about (and the Products section on the
-// homepage); media/topics from the footer's secondary nav and from
-// in-context links inside the blog.
+// homepage), topics from the footer and blog links, and media only by
+// direct URL until real public proof exists.
 const nav = [
   { to: "/product-work", label: "Case Studies" },
   { to: "/blog", label: "Blog" },
@@ -296,11 +296,6 @@ export function SiteFooter() {
             <li>
               <Link to="/topics" className="hover:text-ink text-ink-soft">
                 Topics
-              </Link>
-            </li>
-            <li>
-              <Link to="/media" className="hover:text-ink text-ink-soft">
-                Media
               </Link>
             </li>
             <li>

@@ -98,15 +98,6 @@ const staticEntries: SitemapEntry[] = [
     priority: 0.65,
   },
   {
-    path: "/media",
-    title: "Media",
-    section: "Core",
-    description: "Media, recognitions and public proof points.",
-    lastmod: SITE_REFRESH_DATE,
-    changefreq: "monthly",
-    priority: 0.55,
-  },
-  {
     path: "/sitemap",
     title: "HTML Sitemap",
     section: "Core",

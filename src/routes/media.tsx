@@ -6,6 +6,7 @@ export const Route = createFileRoute("/media")({
   head: () => ({
     meta: [
       { title: "Media, Videos, Podcasts and Talks | Rizwan Zafar" },
+      { name: "robots", content: "noindex, follow" },
       {
         name: "description",
         content:
