@@ -291,23 +291,6 @@ function HomePage() {
               <span className="text-ink">InDrive</span>
             </p>
 
-            <div
-              className="mt-4 grid gap-2 sm:grid-cols-2 max-w-xl"
-              aria-label="Verification and trust signals"
-            >
-              {profile.verificationSignals.slice(0, 4).map((signal) => (
-                <div
-                  key={signal.label}
-                  className="rounded-lg border border-rule bg-card/85 px-3 py-2.5"
-                >
-                  <div className="text-[10px] uppercase tracking-[0.16em] text-ink font-mono-tech">
-                    {signal.label}
-                  </div>
-                  <p className="mt-1 text-xs leading-relaxed text-ink-soft">{signal.value}</p>
-                </div>
-              ))}
-            </div>
-
             <form
               action="/blog/"
               method="get"
