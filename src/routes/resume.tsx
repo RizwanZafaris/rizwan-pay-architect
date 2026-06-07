@@ -2,7 +2,7 @@ import type { CSSProperties } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { CalendarDays, Download, Linkedin, Mail } from "lucide-react";
 import { personSchemaAwards, personSchemaCredentials, profile } from "@/data/profile";
-import { absUrl, OG_IMAGE_URL, SITE_URL } from "@/lib/seo";
+import { absUrl, GOOGLE_ADS_PAGE_VIEW_CONVERSION_SEND_TO, OG_IMAGE_URL, SITE_URL } from "@/lib/seo";
 
 const resumeKeywords = [
   "Product & Program Executive",
@@ -78,6 +78,10 @@ const resumeBreadcrumbJsonLd = {
     { "@type": "ListItem", position: 2, name: "Resume", item: absUrl("/resume") },
   ],
 };
+
+const googleAdsResumeConversionScript = GOOGLE_ADS_PAGE_VIEW_CONVERSION_SEND_TO
+  ? `if(window.gtag&&!window.__rzifiAdsResumePageViewConversion){window.__rzifiAdsResumePageViewConversion=true;gtag("event","conversion",{"send_to":"${GOOGLE_ADS_PAGE_VIEW_CONVERSION_SEND_TO}"});}`
+  : "";
 
 const proofMetrics = [
   { value: "$1B+", label: "GTV / TPV scaled" },
@@ -286,6 +290,7 @@ export const Route = createFileRoute("/resume")({
       },
     ],
     scripts: [
+      ...(googleAdsResumeConversionScript ? [{ children: googleAdsResumeConversionScript }] : []),
       { type: "application/ld+json", children: JSON.stringify(resumeJsonLd) },
       { type: "application/ld+json", children: JSON.stringify(resumeBreadcrumbJsonLd) },
     ],

@@ -81,7 +81,7 @@ const probes: Probe[] = [
     expect: 200,
     required: true,
     matchBody: new RegExp(
-      `${EXPECTED_GOOGLE_ADS_RE}/${EXPECTED_GOOGLE_ADS_PAGE_VIEW_CONVERSION_RE}`,
+      `gtag\\(["']event["'],["']conversion["'][\\s\\S]{0,220}${EXPECTED_GOOGLE_ADS_RE}/${EXPECTED_GOOGLE_ADS_PAGE_VIEW_CONVERSION_RE}`,
       "i",
     ),
   },
