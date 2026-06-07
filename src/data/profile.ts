@@ -360,7 +360,21 @@ export const profile = {
     },
     {
       group: "Markets",
-      items: ["UAE", "Pakistan", "Bangladesh", "Nepal", "Iraq", "Egypt", "MENA", "South Asia"],
+      items: [
+        "UAE",
+        "KSA",
+        "Qatar",
+        "Pakistan",
+        "Bangladesh",
+        "Sri Lanka",
+        "Nepal",
+        "Myanmar",
+        "Nigeria",
+        "Iraq",
+        "Egypt",
+        "MENA",
+        "South Asia",
+      ],
     },
   ],
   aiSolutions: [

@@ -176,6 +176,8 @@ const proofMetrics = [
   { value: "4", label: "Production AI deployments" },
 ] as const;
 
+const marketRegions = profile.skills.find((group) => group.group === "Markets")?.items ?? [];
+
 const roleLanes = [
   {
     title: "Product Leadership",
@@ -375,6 +377,34 @@ function ForIndex() {
             </div>
           </div>
         ))}
+      </section>
+
+      <section
+        className="grid md:grid-cols-12 gap-8 border-b border-rule py-10 md:py-12"
+        aria-labelledby="markets-heading"
+      >
+        <div className="md:col-span-3 recruiter-soft-reveal" style={delayStyle(0)}>
+          <div className="text-[10px] uppercase tracking-[0.18em] text-ink-soft font-mono-tech">
+            Region coverage
+          </div>
+          <h2 id="markets-heading" className="mt-2 font-instrument text-2xl text-ink">
+            MARKETS
+          </h2>
+          <p className="mt-3 text-sm text-ink-soft leading-relaxed">
+            Regions connected to payments operations, market expansion, rails and corridor work.
+          </p>
+        </div>
+        <div className="md:col-span-9 flex flex-wrap gap-2.5 content-start">
+          {marketRegions.map((region, index) => (
+            <span
+              key={region}
+              className="recruiter-soft-reveal rounded-md border border-rule bg-surface px-3 py-1.5 text-sm text-ink"
+              style={delayStyle(80 + index * 35)}
+            >
+              {region}
+            </span>
+          ))}
+        </div>
       </section>
 
       <section
