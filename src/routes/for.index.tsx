@@ -380,32 +380,6 @@ function ForIndex() {
       </section>
 
       <section
-        className="grid md:grid-cols-12 gap-6 border-b border-rule py-8 md:py-10"
-        aria-label="Verification posture"
-      >
-        <div className="md:col-span-3 recruiter-soft-reveal" style={delayStyle(0)}>
-          <h2 className="font-instrument text-2xl text-ink">Verification Posture</h2>
-          <p className="mt-3 text-sm text-ink-soft leading-relaxed">
-            Big claims need diligence. This is the recruiter-safe way to read the proof.
-          </p>
-        </div>
-        <div className="md:col-span-9 grid sm:grid-cols-2 gap-3">
-          {profile.verificationSignals.map((signal, index) => (
-            <article
-              key={signal.label}
-              className="recruiter-soft-reveal recruiter-card rounded-lg border border-rule bg-surface p-4"
-              style={delayStyle(80 + index * 55)}
-            >
-              <h3 className="text-[10px] uppercase tracking-[0.16em] text-ink font-mono-tech">
-                {signal.label}
-              </h3>
-              <p className="mt-2 text-sm text-ink-soft leading-relaxed">{signal.value}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section
         className="grid md:grid-cols-12 gap-8 border-b border-rule py-10 md:py-12"
         aria-labelledby="markets-heading"
       >
@@ -429,6 +403,32 @@ function ForIndex() {
             >
               {region}
             </span>
+          ))}
+        </div>
+      </section>
+
+      <section
+        className="grid md:grid-cols-12 gap-6 border-b border-rule py-8 md:py-10"
+        aria-label="Verification posture"
+      >
+        <div className="md:col-span-3 recruiter-soft-reveal" style={delayStyle(0)}>
+          <h2 className="font-instrument text-2xl text-ink">Verification Posture</h2>
+          <p className="mt-3 text-sm text-ink-soft leading-relaxed">
+            Big claims need diligence. This is the recruiter-safe way to read the proof.
+          </p>
+        </div>
+        <div className="md:col-span-9 grid sm:grid-cols-2 gap-3">
+          {profile.verificationSignals.map((signal, index) => (
+            <article
+              key={signal.label}
+              className="recruiter-soft-reveal recruiter-card rounded-lg border border-rule bg-surface p-4"
+              style={delayStyle(80 + index * 55)}
+            >
+              <h3 className="text-[10px] uppercase tracking-[0.16em] text-ink font-mono-tech">
+                {signal.label}
+              </h3>
+              <p className="mt-2 text-sm text-ink-soft leading-relaxed">{signal.value}</p>
+            </article>
           ))}
         </div>
       </section>
