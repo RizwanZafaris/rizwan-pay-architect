@@ -1,4 +1,4 @@
-import { profile } from "@/data/profile";
+import { profile, type SocialPlatform } from "@/data/profile";
 import { outboundClick } from "@/lib/analytics";
 
 /**
@@ -17,8 +17,6 @@ import { outboundClick } from "@/lib/analytics";
  * the icon glyph.
  */
 
-type Platform = (typeof profile.socials)[number]["platform"];
-
 function domainFor(url: string) {
   try {
     return new URL(url).hostname;
@@ -27,7 +25,13 @@ function domainFor(url: string) {
   }
 }
 
-function Icon({ platform, className = "w-4 h-4" }: { platform: Platform; className?: string }) {
+function Icon({
+  platform,
+  className = "w-4 h-4",
+}: {
+  platform: SocialPlatform;
+  className?: string;
+}) {
   switch (platform) {
     case "linkedin":
       return (
@@ -45,6 +49,26 @@ function Icon({ platform, className = "w-4 h-4" }: { platform: Platform; classNa
       return (
         <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden className={className}>
           <path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56 0-.27-.01-1-.02-1.96-3.2.69-3.87-1.54-3.87-1.54-.52-1.33-1.28-1.69-1.28-1.69-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.76 2.7 1.25 3.36.96.1-.74.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.15 1.18a10.94 10.94 0 0 1 5.74 0c2.19-1.49 3.15-1.18 3.15-1.18.63 1.58.23 2.75.12 3.04.74.81 1.18 1.84 1.18 3.1 0 4.43-2.7 5.41-5.27 5.69.41.36.78 1.06.78 2.13 0 1.54-.01 2.78-.01 3.16 0 .31.21.67.8.56C20.21 21.38 23.5 17.08 23.5 12 23.5 5.65 18.35.5 12 .5z" />
+        </svg>
+      );
+    case "medium":
+      return (
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden className={className}>
+          <path d="M13.55 12c0 3.72-3.02 6.74-6.73 6.74S.1 15.72.1 12s3.01-6.74 6.72-6.74 6.73 3.02 6.73 6.74Zm7.39 0c0 3.5-1.51 6.33-3.37 6.33S14.2 15.5 14.2 12s1.51-6.33 3.37-6.33S20.94 8.5 20.94 12Zm2.96 0c0 3.13-.53 5.66-1.18 5.66s-1.18-2.53-1.18-5.66.53-5.66 1.18-5.66S23.9 8.87 23.9 12Z" />
+        </svg>
+      );
+    case "substack":
+      return (
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden className={className}>
+          <path d="M4 3h16v2.3H4V3Zm0 4.65h16v2.3H4v-2.3Zm0 4.65h16V22l-8-4.45L4 22v-9.7Z" />
+        </svg>
+      );
+    case "instagram":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden className={className}>
+          <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" strokeWidth="2" />
+          <circle cx="12" cy="12" r="4" stroke="currentColor" strokeWidth="2" />
+          <circle cx="17.4" cy="6.6" r="1.2" fill="currentColor" />
         </svg>
       );
     default:

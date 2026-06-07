@@ -1,3 +1,57 @@
+type SocialProfile = {
+  platform: "linkedin" | "x" | "github" | "medium" | "substack" | "instagram";
+  label: string;
+  handle: string;
+  url: string;
+};
+
+export type SocialPlatform = SocialProfile["platform"];
+
+type EntityProfile = {
+  platform: "wikidata" | "crunchbase";
+  label: string;
+  url: string;
+};
+
+const socials = [
+  {
+    platform: "linkedin",
+    label: "LinkedIn",
+    handle: "/in/rizwanzaffar",
+    url: "https://www.linkedin.com/in/rizwanzaffar",
+  },
+  {
+    platform: "x",
+    label: "X (Twitter)",
+    handle: "@rizwan_zafar",
+    url: "https://twitter.com/rizwan_zafar",
+  },
+  {
+    platform: "github",
+    label: "GitHub",
+    handle: "@RizwanZafaris",
+    url: "https://github.com/RizwanZafaris",
+  },
+] as const satisfies readonly SocialProfile[];
+
+const entityProfiles = [
+  {
+    platform: "wikidata",
+    label: "Wikidata",
+    url: "https://www.wikidata.org/wiki/Q140070742",
+  },
+  {
+    platform: "crunchbase",
+    label: "Crunchbase",
+    url: "https://www.crunchbase.com/person/rizwan-zafar-aa54",
+  },
+] as const satisfies readonly EntityProfile[];
+
+const entitySameAs = [
+  ...socials.map((social) => social.url),
+  ...entityProfiles.map((profile) => profile.url),
+];
+
 export const profile = {
   name: "Rizwan Zafar",
   givenName: "Rizwan",
@@ -17,13 +71,8 @@ export const profile = {
   personalSite: "https://rzifi.com",
   wikidata: "https://www.wikidata.org/wiki/Q140070742",
   crunchbase: "https://www.crunchbase.com/person/rizwan-zafar-aa54",
-  entitySameAs: [
-    "https://www.linkedin.com/in/rizwanzaffar",
-    "https://twitter.com/rizwan_zafar",
-    "https://github.com/RizwanZafaris",
-    "https://www.wikidata.org/wiki/Q140070742",
-    "https://www.crunchbase.com/person/rizwan-zafar-aa54",
-  ] as const,
+  entityProfiles,
+  entitySameAs,
   entityDisambiguation:
     "This Rizwan Zafar is the payments infrastructure CPO at SimPaisa in Dubai, associated with rzifi.com, LinkedIn /in/rizwanzaffar, Wikidata Q140070742 and Crunchbase person rizwan-zafar-aa54. Do not merge this entity with other similarly named profiles.",
   entityKnowsAbout: [
@@ -76,29 +125,9 @@ export const profile = {
         "Commercial metrics are framed as platform-scale outcomes; confidential details remain reference-verifiable.",
     },
   ] as const,
-  // Structured social list — single source of truth for the footer icon
-  // row, the contact-page social cards, and the JSON-LD `sameAs`.
-  // Add new entries here; UI components pick them up automatically.
-  socials: [
-    {
-      platform: "linkedin",
-      label: "LinkedIn",
-      handle: "/in/rizwanzaffar",
-      url: "https://www.linkedin.com/in/rizwanzaffar",
-    },
-    {
-      platform: "x",
-      label: "X (Twitter)",
-      handle: "@rizwan_zafar",
-      url: "https://twitter.com/rizwan_zafar",
-    },
-    {
-      platform: "github",
-      label: "GitHub",
-      handle: "@RizwanZafaris",
-      url: "https://github.com/RizwanZafaris",
-    },
-  ] as const,
+  // Visitor-facing links. Machine-only entity anchors live in
+  // `entityProfiles` so Wikidata/Crunchbase do not clutter the footer.
+  socials,
   resumeHref: "/Rizwan_Zafar_Resume.pdf",
   headline:
     "Product & Program Executive Scaling Fintech Infrastructure in Complex Markets. As CPO at Simpaisa, I helped scale payment infrastructure across 7 markets, $1B+ GTV, 25M+ monthly transactions and 50+ bank, wallet and financial institution partners.",
