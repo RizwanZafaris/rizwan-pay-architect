@@ -1,0 +1,1 @@
+import{t}from"./index-X6XpEtps.js";const o=({error:e})=>t.jsx("div",{className:"mx-auto max-w-2xl px-6 py-24 text-center",children:t.jsx("p",{className:"text-ink-soft",children:e.message})});export{o as errorComponent};
