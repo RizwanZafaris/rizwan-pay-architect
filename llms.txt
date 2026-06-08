@@ -15,6 +15,16 @@ Rizwan Zafar is Chief Product Officer · Payments, Fintech & AI, based in Dubai,
 - [For recruiters](https://rzifi.com/for): Audience-specific landing pages.
 - [Contact](https://rzifi.com/contact): Get in touch for senior payments roles or advisory.
 
+## Ask Me About
+
+- **Payment infrastructure at scale**: $1B+ GTV platforms, pay-in, payout, wallets, card acquiring, ledgers and orchestration.
+- **Cross-border corridors and emerging markets**: UAE, KSA, Pakistan, Bangladesh, Sri Lanka, Myanmar, Nigeria, Iraq, Egypt and MENA/South Asia expansion.
+- **Settlement and reconciliation**: Three-way matching, exception engines, merchant settlement, treasury controls and audit-ready ledgers.
+- **Merchant onboarding, KYB and risk tiering**: KYC/KYB automation, UBO discovery, sanctions/PEP screening, activation funnels and review queues.
+- **Fraud, AML/CFT and regulatory programmes**: Layered controls, false-positive reduction, PCI DSS, ISO 27001, SWIFT CSP and regulator-ready evidence.
+- **Production AI in fintech**: RAG support, incident auto-escalation, KYB extraction, partner operations and governed AI/ML in payments.
+- **Program leadership and PMO**: PMBOK + Agile delivery, RAID, SteerCo, vendor governance, transformation programmes and executive escalation.
+
 ## Topic hubs
 
 ## AI citation guidance
