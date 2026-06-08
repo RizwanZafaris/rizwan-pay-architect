@@ -20,15 +20,12 @@ const nav = [
   { to: "/contact", label: "Contact" },
 ] as const;
 
-function CurrentYear() {
-  const [hydratedYear, setHydratedYear] = useState<number | null>(null);
-
-  useEffect(() => {
-    setHydratedYear(new Date().getFullYear());
-  }, []);
-
-  return <span suppressHydrationWarning>{hydratedYear ?? new Date().getFullYear()}</span>;
-}
+const currentYearScript = `(() => {
+  const year = String(new Date().getFullYear());
+  document.querySelectorAll("[data-current-year]").forEach((node) => {
+    node.textContent = year;
+  });
+})();`;
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
@@ -360,11 +357,12 @@ export function SiteFooter() {
       <div className="border-t border-rule">
         <div className="mx-auto max-w-6xl px-6 py-5 text-xs text-ink-soft flex flex-wrap justify-between gap-3 font-mono-tech">
           <span>
-            © <CurrentYear /> {profile.name} · Dubai, UAE
+            © <span data-current-year>{new Date().getFullYear()}</span> {profile.name} · Dubai, UAE
           </span>
           <span>Built for senior Product &amp; Program roles in fintech</span>
         </div>
       </div>
+      <script dangerouslySetInnerHTML={{ __html: currentYearScript }} />
     </footer>
   );
 }
