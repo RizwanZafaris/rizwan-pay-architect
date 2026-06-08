@@ -20,6 +20,16 @@ const nav = [
   { to: "/contact", label: "Contact" },
 ] as const;
 
+function CurrentYear() {
+  const [hydratedYear, setHydratedYear] = useState<number | null>(null);
+
+  useEffect(() => {
+    setHydratedYear(new Date().getFullYear());
+  }, []);
+
+  return <span suppressHydrationWarning>{hydratedYear ?? new Date().getFullYear()}</span>;
+}
+
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
   const panelRef = useRef<HTMLDivElement>(null);
@@ -350,7 +360,7 @@ export function SiteFooter() {
       <div className="border-t border-rule">
         <div className="mx-auto max-w-6xl px-6 py-5 text-xs text-ink-soft flex flex-wrap justify-between gap-3 font-mono-tech">
           <span>
-            © {new Date().getFullYear()} {profile.name} · Dubai, UAE
+            © <CurrentYear /> {profile.name} · Dubai, UAE
           </span>
           <span>Built for senior Product &amp; Program roles in fintech</span>
         </div>
