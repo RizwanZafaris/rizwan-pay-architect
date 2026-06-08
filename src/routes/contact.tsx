@@ -15,6 +15,9 @@ const CONTACT_ACCESS_KEY: string =
     ? ((import.meta as ImportMeta & { env?: ContactEnv }).env?.VITE_CONTACT_ACCESS_KEY ?? "")
     : "") || "";
 const CONTACT_ENDPOINT = "https://api.web3forms.com/submit";
+const CONTACT_MAILTO_ACTION = `mailto:${profile.email}?subject=${encodeURIComponent(
+  "Inbound from rzifi.com contact form",
+)}`;
 
 export const Route = createFileRoute("/contact")({
   head: () => {
@@ -280,6 +283,10 @@ function ContactPage() {
   const isSent = state === "sent";
   const isSending = state === "sending";
   const usesServerSubmission = !!CONTACT_ACCESS_KEY;
+  const nativeFormAction = usesServerSubmission ? CONTACT_ENDPOINT : CONTACT_MAILTO_ACTION;
+  const nativeFormEncType = usesServerSubmission
+    ? "application/x-www-form-urlencoded"
+    : "text/plain";
   const submitLabel = isSending
     ? "Sending…"
     : usesServerSubmission
@@ -591,12 +598,23 @@ function ContactPage() {
             </div>
           ) : (
             <form
+              action={nativeFormAction}
+              method="post"
+              encType={nativeFormEncType}
               onSubmit={onSubmit}
               onFocus={markStart}
               data-analytics-form="contact"
               className="mt-6 space-y-4"
-              noValidate
             >
+              {usesServerSubmission && (
+                <>
+                  <input type="hidden" name="access_key" value={CONTACT_ACCESS_KEY} />
+                  <input type="hidden" name="subject" value="Inbound from rzifi.com contact form" />
+                  <input type="hidden" name="from_name" value="rzifi.com contact form" />
+                  <input type="hidden" name="botcheck" value="" />
+                </>
+              )}
+
               {/* Honeypot, visually hidden from sighted users + screen readers */}
               <div
                 aria-hidden="true"
