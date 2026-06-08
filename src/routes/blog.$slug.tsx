@@ -84,14 +84,16 @@ export const Route = createFileRoute("/blog/$slug")({
     const content = loaderData?.content ?? "";
     if (!p) return { meta: [{ title: "Essay" }] };
     const url = absUrl(`/blog/${params.slug}`);
+    const published = isPostPublished(p);
+    const ogImage = published ? absUrl(`/og/blog/${params.slug}.png`) : OG_IMAGE_URL;
     const wordCount = content.trim().split(/\s+/).length;
     const jsonLd = {
       "@context": "https://schema.org",
-      "@type": "Article",
+      "@type": "BlogPosting",
       "@id": `${url}#article`,
       headline: p.title,
       description: p.description,
-      image: [OG_IMAGE_URL],
+      image: [ogImage],
       datePublished: p.date,
       dateModified: p.updated ?? p.date,
       author: {
@@ -182,7 +184,6 @@ export const Route = createFileRoute("/blog/$slug")({
     // Many frontmatter `metaDescription`s exceed that — smart-trim here so
     // we don't have to hand-edit 55 markdown files.
     const metaDescription = trimToMax(p.description, 160);
-    const published = isPostPublished(p);
 
     return {
       meta: [
@@ -194,7 +195,11 @@ export const Route = createFileRoute("/blog/$slug")({
         { property: "og:description", content: p.description },
         { property: "og:type", content: "article" },
         { property: "og:url", content: url },
-        { property: "og:image", content: OG_IMAGE_URL },
+        { property: "og:image", content: ogImage },
+        { property: "og:image:width", content: "1200" },
+        { property: "og:image:height", content: "630" },
+        { property: "og:image:type", content: "image/png" },
+        { property: "og:image:alt", content: `${p.title} — ${profile.name}` },
         { property: "article:published_time", content: p.date },
         { property: "article:modified_time", content: p.updated ?? p.date },
         { property: "article:section", content: p.category },
@@ -202,7 +207,8 @@ export const Route = createFileRoute("/blog/$slug")({
         ...p.tags.map((tag) => ({ property: "article:tag", content: tag })),
         { name: "twitter:title", content: p.title },
         { name: "twitter:description", content: p.description },
-        { name: "twitter:image", content: OG_IMAGE_URL },
+        { name: "twitter:image", content: ogImage },
+        { name: "twitter:image:alt", content: `${p.title} — ${profile.name}` },
       ],
       links: [{ rel: "canonical", href: url }],
       scripts,

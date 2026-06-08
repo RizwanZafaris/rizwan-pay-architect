@@ -444,33 +444,6 @@ function ResumePage() {
         ))}
       </section>
 
-      <section
-        className="grid md:grid-cols-12 gap-8 border-b border-rule py-10"
-        aria-labelledby="resume-markets-heading"
-      >
-        <div className="resume-soft-reveal md:col-span-3" style={delayStyle(0)}>
-          <div className="text-[10px] uppercase tracking-[0.18em] text-ink-soft font-mono-tech">
-            Region coverage
-          </div>
-          <h2 id="resume-markets-heading" className="mt-2 font-instrument text-2xl text-ink">
-            MARKETS
-          </h2>
-        </div>
-        <div className="md:col-span-9">
-          <div className="flex flex-wrap gap-2">
-            {marketRegions.map((region, index) => (
-              <span
-                key={region}
-                className="resume-skill-chip rounded-md border border-rule bg-surface px-3 py-1.5 text-sm text-ink"
-                style={delayStyle(index * 35)}
-              >
-                {region}
-              </span>
-            ))}
-          </div>
-        </div>
-      </section>
-
       <section className="grid md:grid-cols-12 gap-8 border-b border-rule py-10">
         <div className="resume-soft-reveal md:col-span-3" style={delayStyle(0)}>
           <h2 className="font-instrument text-2xl text-ink">Recruiter Search Fit</h2>
@@ -575,6 +548,33 @@ function ResumePage() {
                 style={delayStyle(index * 35)}
               >
                 {skill}
+              </span>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section
+        className="grid md:grid-cols-12 gap-8 border-b border-rule py-10"
+        aria-labelledby="resume-markets-heading"
+      >
+        <div className="resume-soft-reveal md:col-span-3" style={delayStyle(0)}>
+          <div className="text-[10px] uppercase tracking-[0.18em] text-ink-soft font-mono-tech">
+            Region coverage
+          </div>
+          <h2 id="resume-markets-heading" className="mt-2 font-instrument text-2xl text-ink">
+            MARKETS
+          </h2>
+        </div>
+        <div className="md:col-span-9">
+          <div className="flex flex-wrap gap-2">
+            {marketRegions.map((region, index) => (
+              <span
+                key={region}
+                className="resume-skill-chip rounded-md border border-rule bg-surface px-3 py-1.5 text-sm text-ink"
+                style={delayStyle(index * 35)}
+              >
+                {region}
               </span>
             ))}
           </div>

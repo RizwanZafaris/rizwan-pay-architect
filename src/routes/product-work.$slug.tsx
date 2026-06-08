@@ -7,12 +7,33 @@ import {
   getCaseStudy,
   type CaseStudy,
 } from "@/data/caseStudies";
+import { profile } from "@/data/profile";
 import { compactMetricValue } from "@/lib/case-study-ui";
 import { absUrl, SITE_URL, titleFor, trimToMax } from "@/lib/seo";
 import { DiagramFigure, caseStudyDiagrams } from "@/components/diagrams/Diagrams";
 import { ctaClick, resumeDownload, trackEvent } from "@/lib/analytics";
 import { AnimatedMetric } from "@/components/motion/AnimatedMetric";
 import { Reveal } from "@/components/motion/Reveal";
+
+const CASE_STUDY_SCHEMA_DATE = "2026-06-05";
+
+function caseStudyWordCount(s: CaseStudy) {
+  const parts = [
+    s.title,
+    s.tagline,
+    s.executiveSummary,
+    s.problem,
+    s.role,
+    s.whyItMatters,
+    s.built.join(" "),
+    s.architecture?.join(" ") ?? "",
+    s.operatingModel?.join(" ") ?? "",
+    s.impact.join(" "),
+    s.tradeoffs?.join(" ") ?? "",
+    s.lessons.join(" "),
+  ];
+  return parts.join(" ").trim().split(/\s+/).filter(Boolean).length;
+}
 
 export const Route = createFileRoute("/product-work/$slug")({
   loader: ({ params }) => {
@@ -26,6 +47,8 @@ export const Route = createFileRoute("/product-work/$slug")({
     const url = absUrl(`/product-work/${params.slug}`);
     const titleTag = titleFor(s.title);
     const metaDescription = trimToMax(s.tagline, 160);
+    const ogImage = absUrl(`/og/product-work/${params.slug}.png`);
+    const wordCount = caseStudyWordCount(s);
     return {
       meta: [
         { title: titleTag },
@@ -35,6 +58,19 @@ export const Route = createFileRoute("/product-work/$slug")({
         { property: "og:description", content: s.tagline },
         { property: "og:type", content: "article" },
         { property: "og:url", content: url },
+        { property: "og:image", content: ogImage },
+        { property: "og:image:width", content: "1200" },
+        { property: "og:image:height", content: "630" },
+        { property: "og:image:type", content: "image/png" },
+        { property: "og:image:alt", content: `${s.title} — ${profile.name}` },
+        { property: "article:published_time", content: CASE_STUDY_SCHEMA_DATE },
+        { property: "article:modified_time", content: CASE_STUDY_SCHEMA_DATE },
+        { property: "article:section", content: s.category },
+        { property: "article:author", content: profile.name },
+        { name: "twitter:title", content: s.title },
+        { name: "twitter:description", content: s.tagline },
+        { name: "twitter:image", content: ogImage },
+        { name: "twitter:image:alt", content: `${s.title} — ${profile.name}` },
       ],
       links: [{ rel: "canonical", href: url }],
       scripts: [
@@ -43,12 +79,34 @@ export const Route = createFileRoute("/product-work/$slug")({
           children: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Article",
+            "@id": `${url}#article`,
             headline: s.title,
             description: s.tagline,
+            image: [ogImage],
+            datePublished: CASE_STUDY_SCHEMA_DATE,
+            dateModified: CASE_STUDY_SCHEMA_DATE,
             keywords: s.keywords.join(", "),
             articleSection: s.category,
-            author: { "@type": "Person", name: "Rizwan Zafar", url: SITE_URL },
-            mainEntityOfPage: url,
+            wordCount,
+            inLanguage: "en",
+            author: {
+              "@type": "Person",
+              "@id": `${SITE_URL}#person`,
+              name: profile.name,
+              url: SITE_URL,
+            },
+            publisher: {
+              "@type": "Person",
+              "@id": `${SITE_URL}#person`,
+              name: profile.name,
+              url: SITE_URL,
+            },
+            isPartOf: { "@type": "WebSite", "@id": `${SITE_URL}#website`, name: "rzifi.com" },
+            about: [
+              { "@type": "Thing", name: s.category },
+              ...s.keywords.slice(0, 8).map((keyword) => ({ "@type": "Thing", name: keyword })),
+            ],
+            mainEntityOfPage: { "@type": "WebPage", "@id": url },
             url,
           }),
         },

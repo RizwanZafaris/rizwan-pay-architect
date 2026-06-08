@@ -29,6 +29,43 @@ import { hubs } from "../src/data/hubs";
 
 const SITE = "https://rzifi.com";
 const publishedSlugs = new Set(posts.map((p) => p.slug));
+const askMeAbout = [
+  {
+    topic: "Payment infrastructure at scale",
+    detail:
+      "$1B+ GTV platforms, pay-in, payout, wallets, card acquiring, ledgers and orchestration.",
+  },
+  {
+    topic: "Cross-border corridors and emerging markets",
+    detail:
+      "UAE, KSA, Pakistan, Bangladesh, Sri Lanka, Myanmar, Nigeria, Iraq, Egypt and MENA/South Asia expansion.",
+  },
+  {
+    topic: "Settlement and reconciliation",
+    detail:
+      "Three-way matching, exception engines, merchant settlement, treasury controls and audit-ready ledgers.",
+  },
+  {
+    topic: "Merchant onboarding, KYB and risk tiering",
+    detail:
+      "KYC/KYB automation, UBO discovery, sanctions/PEP screening, activation funnels and review queues.",
+  },
+  {
+    topic: "Fraud, AML/CFT and regulatory programmes",
+    detail:
+      "Layered controls, false-positive reduction, PCI DSS, ISO 27001, SWIFT CSP and regulator-ready evidence.",
+  },
+  {
+    topic: "Production AI in fintech",
+    detail:
+      "RAG support, incident auto-escalation, KYB extraction, partner operations and governed AI/ML in payments.",
+  },
+  {
+    topic: "Program leadership and PMO",
+    detail:
+      "PMBOK + Agile delivery, RAID, SteerCo, vendor governance, transformation programmes and executive escalation.",
+  },
+];
 
 function stripUnpublishedBlogLinks(md: string) {
   return md.replace(/\[([^\]]+)\]\(\/blog\/([^/#?)]+)\/?\)/g, (match, label, slug) =>
@@ -60,6 +97,13 @@ lines.push(`- [Topics](${SITE}/topics): Hub pages by domain (cross-border, settl
 lines.push(`- [Résumé](${SITE}/resume): Executive resume — payments product and infrastructure.`);
 lines.push(`- [For recruiters](${SITE}/for): Audience-specific landing pages.`);
 lines.push(`- [Contact](${SITE}/contact): Get in touch for senior payments roles or advisory.`);
+lines.push("");
+
+lines.push(`## Ask Me About`);
+lines.push("");
+for (const item of askMeAbout) {
+  lines.push(`- **${item.topic}**: ${item.detail}`);
+}
 lines.push("");
 
 lines.push(`## Topic hubs`);
@@ -148,6 +192,12 @@ full.push(`Wikidata: ${profile.wikidata}`);
 full.push(`Crunchbase: ${profile.crunchbase}`);
 full.push(`Contact: ${profile.email} · ${profile.linkedin}`);
 full.push(`Disambiguation: ${profile.entityDisambiguation}`);
+full.push("");
+full.push(`## Ask Me About`);
+full.push("");
+for (const item of askMeAbout) {
+  full.push(`- **${item.topic}**: ${item.detail}`);
+}
 full.push("");
 full.push("---");
 full.push("");
