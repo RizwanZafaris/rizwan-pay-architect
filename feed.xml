@@ -5,8 +5,16 @@
   <link>https://rzifi.com/blog/</link>
   <description>Essays on payment infrastructure, fintech product, risk, settlement, AI and program leadership.</description>
   <language>en</language>
-  <lastBuildDate>Mon, 08 Jun 2026 15:44:16 GMT</lastBuildDate>
+  <lastBuildDate>Tue, 09 Jun 2026 22:18:35 GMT</lastBuildDate>
   <item>
+    <title>SWIFT gpi, Tracking, and the End of Payment Uncertainty</title>
+    <link>https://rzifi.com/blog/swift-gpi-tracking-and-the-end-of-payment-uncertainty/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/swift-gpi-tracking-and-the-end-of-payment-uncertainty/</guid>
+    <pubDate>Tue, 09 Jun 2026 00:00:00 GMT</pubDate>
+    <category>Cross-Border Payments</category>
+    <description>SWIFT gpi added end-to-end tracking, fee transparency, and same-day credit to cross-border payments. What it actually changed for product teams.</description>
+  </item>
+<item>
     <title>ISO 20022 Migration: What Payment Product Teams Must Know</title>
     <link>https://rzifi.com/blog/iso-20022-migration-what-product-teams-must-know/</link>
     <guid isPermaLink="true">https://rzifi.com/blog/iso-20022-migration-what-product-teams-must-know/</guid>
@@ -237,14 +245,6 @@
     <pubDate>Thu, 21 May 2026 00:00:00 GMT</pubDate>
     <category>Settlement &amp; Reconciliation</category>
     <description>Settlement timing is the most underrated product surface in payments. How T+0, T+1 and T+n settlement windows shape merchant trust, cashflow, and churn.</description>
-  </item>
-<item>
-    <title>BIN Routing and Scheme Selection: When To Override the Card-Brand Default</title>
-    <link>https://rzifi.com/blog/bin-routing-scheme-selection-override-default/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/bin-routing-scheme-selection-override-default/</guid>
-    <pubDate>Wed, 20 May 2026 00:00:00 GMT</pubDate>
-    <category>Payment Infrastructure</category>
-    <description>The operator&apos;s guide to BIN routing, co-badged cards, scheme selection logic, regulator pressure on choice of brand, the four override patterns that move auth rate, and the six failure modes acquirers ship without realising.</description>
   </item>
 </channel>
 </rss>
