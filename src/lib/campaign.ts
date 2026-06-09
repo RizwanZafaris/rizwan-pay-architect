@@ -1,43 +1,16 @@
-import { useEffect, useState } from "react";
-import { profile } from "@/data/profile";
-
-// Campaign params worth carrying from a paid landing URL into the cal.com
-// booking link, so a booked call can be attributed back to the ad that paid
-// for it. cal.com stores unknown query params with the booking; the click ids
-// (gclid/li_fat_id/msclkid) also let offline-conversion uploads close the loop.
-const FORWARDED_PARAMS = [
-  "utm_source",
-  "utm_medium",
-  "utm_campaign",
-  "utm_content",
-  "utm_term",
-  "gclid",
-  "gbraid",
-  "wbraid",
-  "li_fat_id",
-  "msclkid",
-] as const;
-
-/**
- * profile.calendarUrl with the current page's campaign params appended, plus a
- * stable `ref` naming the CTA placement. SSR/first paint renders the bare
- * calendar URL (matching the prerendered HTML); params attach after hydration.
- */
-export function useCalendarUrlWithCampaignParams(refTag: string): string {
-  const [url, setUrl] = useState(profile.calendarUrl);
-  useEffect(() => {
-    try {
-      const pageParams = new URLSearchParams(window.location.search);
-      const target = new URL(profile.calendarUrl);
-      for (const key of FORWARDED_PARAMS) {
-        const value = pageParams.get(key);
-        if (value) target.searchParams.set(key, value);
-      }
-      target.searchParams.set("ref", refTag);
-      setUrl(target.toString());
-    } catch {
-      // Malformed location/search — keep the bare calendar URL.
-    }
-  }, [refTag]);
-  return url;
-}
+// Campaign attribution for booking links.
+//
+// The production site is fully static — no React hydration runs in the built
+// HTML (same reason the analytics bridge and the resume-page Google Ads
+// conversion are inline scripts in __root.tsx / resume.tsx). Anything that
+// must execute for real visitors ships as an inline vanilla script.
+//
+// This script rewrites every cal.com link at load time:
+//   - forwards the landing URL's campaign params (utm_*, gclid, gbraid,
+//     wbraid, li_fat_id, msclkid) onto the booking URL, so a booked call
+//     attributes back to the ad that paid for the click;
+//   - appends ref=<data-analytics-cta-location> naming the CTA placement
+//     (hire_hero, campaign_header, resume_page, …) on every visit.
+// cal.com stores unknown query params with the booking; click ids also enable
+// offline-conversion uploads later.
+export const calendarCampaignParamsScript = `!function(){function a(){try{var q=new URLSearchParams(location.search),k=["utm_source","utm_medium","utm_campaign","utm_content","utm_term","gclid","gbraid","wbraid","li_fat_id","msclkid"];document.querySelectorAll('a[href*="cal.com"]').forEach(function(e){try{var u=new URL(e.href);k.forEach(function(n){var v=q.get(n);if(v)u.searchParams.set(n,v)});var l=e.dataset.analyticsCtaLocation;if(l)u.searchParams.set("ref",l);e.href=u.toString();if(e.dataset.analyticsCtaDestination)e.dataset.analyticsCtaDestination=u.toString()}catch(x){}})}catch(x){}}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",a);else a()}();`;

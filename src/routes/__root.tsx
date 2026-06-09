@@ -70,6 +70,7 @@ function GtmRouteTracker() {
 
 import appCss from "../styles.css?url";
 import { SiteHeader, SiteFooter, CampaignHeader, CampaignFooter } from "@/components/SiteChrome";
+import { calendarCampaignParamsScript } from "@/lib/campaign";
 import { personSchemaAwards, personSchemaCredentials, profile } from "@/data/profile";
 import {
   absUrl,
@@ -416,6 +417,7 @@ function RootShell({ children }: { children: React.ReactNode }) {
         {analyticsBridgeScript && (
           <script dangerouslySetInnerHTML={{ __html: analyticsBridgeScript }} />
         )}
+        <script dangerouslySetInnerHTML={{ __html: calendarCampaignParamsScript }} />
         {clarityScript && <script dangerouslySetInnerHTML={{ __html: clarityScript }} />}
         {linkedInInsightScript && (
           <script dangerouslySetInnerHTML={{ __html: linkedInInsightScript }} />

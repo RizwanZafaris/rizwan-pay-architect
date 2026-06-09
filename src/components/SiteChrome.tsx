@@ -3,7 +3,6 @@ import { CalendarDays, Download } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { profile } from "@/data/profile";
 import { ctaClick, outboundClick, resumeDownload } from "@/lib/analytics";
-import { useCalendarUrlWithCampaignParams } from "@/lib/campaign";
 import { SocialIconRow } from "@/components/SocialIcons";
 
 // Recruiter-first nav. 6 tabs ordered along the executive scan path:
@@ -374,7 +373,9 @@ export function SiteFooter() {
 // CTA, no nav, no menu) and a one-line footer. Wired in __root.tsx by pathname.
 
 export function CampaignHeader() {
-  const calendarUrl = useCalendarUrlWithCampaignParams("hire-header");
+  // The inline calendarCampaignParamsScript (see __root.tsx) appends campaign
+  // params + ref to this href at load time — the static build never hydrates.
+  const calendarUrl = profile.calendarUrl;
   return (
     <header className="sticky top-0 z-40 px-3 sm:px-4 pt-3 sm:pt-4">
       <div className="mx-auto max-w-6xl">
