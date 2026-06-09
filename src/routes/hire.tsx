@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, CalendarDays, Linkedin } from "lucide-react";
 import { profile } from "@/data/profile";
+import { useCalendarUrlWithCampaignParams } from "@/lib/campaign";
 import { absUrl, OG_IMAGE_URL, SITE_URL } from "@/lib/seo";
 
 // Dedicated, conversion-focused PAID landing page.
@@ -16,10 +17,14 @@ import { absUrl, OG_IMAGE_URL, SITE_URL } from "@/lib/seo";
 // fact base — do not reintroduce the older inflated framings (7 markets, 25M monthly,
 // 50+ partners).
 //
-// Tracking is inherited from the site shell (GTM/GA4/Google Ads tags live in
-// __root.tsx). The `book_intro_call` CTA maps to the `schedule_meeting` event →
-// Google Ads "Book appointment" (Primary) conversion + GA4 key event. The LinkedIn
-// link auto-fires `linkedin_click` (Secondary). gclid/gbraid/wbraid + UTMs survive.
+// Tracking is inherited from the site shell (GTM/GA4/Google Ads/LinkedIn Insight
+// tags live in __root.tsx). The `book_intro_call` CTA maps to the `schedule_meeting`
+// event → Google Ads "Book appointment" (Primary) conversion + GA4 key event. The
+// LinkedIn link auto-fires `linkedin_click` (Secondary).
+//
+// This route renders with CampaignHeader/CampaignFooter (no site nav — paid
+// clicks shouldn't leak into the blog), and booking CTAs append the landing
+// URL's UTMs/click-ids to the cal.com link via useCalendarUrlWithCampaignParams.
 
 const proofMetrics = [
   { value: "$1B+", label: "Annual GTV" },
@@ -104,6 +109,10 @@ export const Route = createFileRoute("/hire")({
 });
 
 function HirePage() {
+  // Booking links carry the landing URL's UTMs/click-ids into cal.com so a
+  // booked call attributes back to the campaign that paid for the click.
+  const heroCalendarUrl = useCalendarUrlWithCampaignParams("hire-hero");
+  const footerCalendarUrl = useCalendarUrlWithCampaignParams("hire-footer");
   return (
     <div className="mx-auto max-w-4xl px-5 sm:px-6 py-16 md:py-24">
       {/* Hero — single intent, single action */}
@@ -111,13 +120,14 @@ function HirePage() {
         <div className="text-[11px] uppercase tracking-[0.22em] text-ink-soft font-mono-tech">
           For hiring teams in payments, fintech &amp; financial institutions
         </div>
-        <h1 className="font-instrument text-4xl sm:text-5xl md:text-6xl text-ink mt-5 leading-[1.05]">
-          Hiring a product and program leader?
+        <h1 className="font-instrument text-3xl sm:text-4xl md:text-5xl text-ink mt-5 leading-[1.08] max-w-3xl mx-auto">
+          Hiring a payments product and program leader who&apos;s scaled $1B+ in frontier and
+          emerging markets?
         </h1>
         <p className="mt-5 text-lg md:text-xl text-ink-soft leading-relaxed max-w-2xl mx-auto">
           I&apos;m {profile.name}, CPO at Simpaisa. I pair payments{" "}
-          <span className="text-ink font-medium">product</span> leadership &mdash; $1B+ annual GTV
-          and 270M+ payments a year across 5 frontier markets &mdash; with the{" "}
+          <span className="text-ink font-medium">product</span> leadership &mdash; 270M+ payments a
+          year across 5 regulated markets &mdash; with the{" "}
           <span className="text-ink font-medium">program &amp; PMO</span> discipline that delivers
           it: multi-squad execution, SteerCo governance, vendor management and PCI-DSS / ISO 27001
           programs run from scratch. MIT Sloan &middot; Dubai &middot; open globally.
@@ -125,13 +135,13 @@ function HirePage() {
 
         <div className="mt-9 flex flex-col items-center gap-3">
           <a
-            href={profile.calendarUrl}
+            href={heroCalendarUrl}
             target="_blank"
             rel="noreferrer"
             data-analytics-event="cta_click"
             data-analytics-cta-id="book_intro_call"
             data-analytics-cta-location="hire_hero"
-            data-analytics-cta-destination={profile.calendarUrl}
+            data-analytics-cta-destination={heroCalendarUrl}
             className={primaryCtaClass}
           >
             <CalendarDays aria-hidden="true" className="h-5 w-5" />
@@ -160,11 +170,6 @@ function HirePage() {
           </div>
         ))}
       </section>
-
-      {/* Press credibility (social proof) */}
-      <p className="mt-6 text-center text-[11px] uppercase tracking-[0.18em] text-ink-soft font-mono-tech">
-        Featured in Business Insider &middot; Speaker at BIT25, Khaleej Times
-      </p>
 
       {/* Best-fit roles — both lanes */}
       <p className="mt-11 text-center text-base md:text-lg text-ink leading-relaxed max-w-3xl mx-auto">
@@ -206,13 +211,13 @@ function HirePage() {
       {/* Repeat CTA + de-emphasised secondary paths */}
       <section className="mt-12 text-center">
         <a
-          href={profile.calendarUrl}
+          href={footerCalendarUrl}
           target="_blank"
           rel="noreferrer"
           data-analytics-event="cta_click"
           data-analytics-cta-id="book_intro_call"
           data-analytics-cta-location="hire_footer"
-          data-analytics-cta-destination={profile.calendarUrl}
+          data-analytics-cta-destination={footerCalendarUrl}
           className={primaryCtaClass}
         >
           <CalendarDays aria-hidden="true" className="h-5 w-5" />

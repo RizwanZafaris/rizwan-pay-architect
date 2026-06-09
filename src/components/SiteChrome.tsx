@@ -3,6 +3,7 @@ import { CalendarDays, Download } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { profile } from "@/data/profile";
 import { ctaClick, outboundClick, resumeDownload } from "@/lib/analytics";
+import { useCalendarUrlWithCampaignParams } from "@/lib/campaign";
 import { SocialIconRow } from "@/components/SocialIcons";
 
 // Recruiter-first nav. 6 tabs ordered along the executive scan path:
@@ -361,6 +362,68 @@ export function SiteFooter() {
           </span>
           <span>Built for senior Product &amp; Program roles in fintech</span>
         </div>
+      </div>
+      <script dangerouslySetInnerHTML={{ __html: currentYearScript }} />
+    </footer>
+  );
+}
+
+// ─── Campaign chrome (paid landing pages, e.g. /hire) ────────────────────────
+// Paid clicks cost money; the full nav is a set of exit paths that never come
+// back. Campaign pages get a single-action header (logo home link + book-call
+// CTA, no nav, no menu) and a one-line footer. Wired in __root.tsx by pathname.
+
+export function CampaignHeader() {
+  const calendarUrl = useCalendarUrlWithCampaignParams("hire-header");
+  return (
+    <header className="sticky top-0 z-40 px-3 sm:px-4 pt-3 sm:pt-4">
+      <div className="mx-auto max-w-6xl">
+        <div className="flex items-center justify-between gap-3 rounded-full border border-ink/10 bg-background/92 backdrop-blur-xl pl-3 pr-2 py-2 shadow-[0_1px_0_rgba(255,255,255,0.6)_inset,0_8px_30px_-12px_rgba(15,23,42,0.18)]">
+          <Link to="/" className="flex items-center gap-2.5 min-w-0 group">
+            <span className="h-8 w-8 shrink-0 rounded-lg bg-ink text-background grid place-items-center font-display text-[13px] font-semibold tracking-tighter">
+              RZ
+            </span>
+            <span className="hidden sm:flex flex-col leading-tight min-w-0">
+              <span className="text-[13px] font-semibold tracking-tight text-ink truncate">
+                {profile.name}
+              </span>
+              <span className="text-[9px] uppercase tracking-[0.22em] text-ink-soft font-mono-tech">
+                Payments · Product
+              </span>
+            </span>
+          </Link>
+          <a
+            href={calendarUrl}
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Schedule an intro meeting"
+            data-analytics-event="cta_click"
+            data-analytics-cta-id="book_intro_call"
+            data-analytics-cta-location="campaign_header"
+            data-analytics-cta-destination={calendarUrl}
+            onClick={() => {
+              ctaClick("book_intro_call", "campaign_header", calendarUrl);
+              outboundClick(calendarUrl, "campaign_header");
+            }}
+            className="inline-flex items-center gap-1.5 rounded-full bg-ink text-background px-3.5 sm:px-4 py-2.5 text-[12px] font-medium hover:bg-brand transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+          >
+            <CalendarDays aria-hidden="true" className="h-3.5 w-3.5" />
+            <span>Book a 15-min call</span>
+          </a>
+        </div>
+      </div>
+    </header>
+  );
+}
+
+export function CampaignFooter() {
+  return (
+    <footer className="border-t border-rule mt-16">
+      <div className="mx-auto max-w-6xl px-6 py-5 text-xs text-ink-soft flex flex-wrap justify-between gap-3 font-mono-tech">
+        <span>
+          © <span data-current-year>{new Date().getFullYear()}</span> {profile.name} · Dubai, UAE
+        </span>
+        <span>Payments · Product &amp; Program leadership</span>
       </div>
       <script dangerouslySetInnerHTML={{ __html: currentYearScript }} />
     </footer>
