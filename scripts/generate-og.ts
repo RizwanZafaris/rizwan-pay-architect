@@ -156,7 +156,7 @@ await writeCard({
   eyebrow: "RZIFI.COM · PAYMENTS PRODUCT",
   title: profile.name,
   subtitle: "Product & Program Executive scaling fintech infrastructure in complex markets.",
-  section: "Dubai · $1B+ GTV · 25M+ tx/mo",
+  section: "Dubai · $1B+ GTV · 270M+ payments/yr",
   footer: "Cross-border · Settlement · KYC/KYB · AML/CFT · ISO 20022",
   out: "public/og-default.png",
 });

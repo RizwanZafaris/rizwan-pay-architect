@@ -58,7 +58,7 @@ export const caseStudies: CaseStudy[] = [
     slug: "simpaisa-payment-infrastructure",
     title: "Simpaisa Payment Infrastructure Platform",
     tagline:
-      "A regulated, multi-rail payments platform processing $1B+ annual GTV and 25M+ monthly transactions across pay-in, payout, wallets (DCB/IBFT), card acquiring (MPGS/MDES), settlement, FX and cross-border corridors, PCI DSS and ISO/IEC 27001 certified.",
+      "A regulated, multi-rail payments platform processing $1B+ annual GTV and 270M+ payments a year across pay-in, payout, wallets (DCB/IBFT), card acquiring (MPGS/MDES), settlement, FX and cross-border corridors, PCI DSS and ISO/IEC 27001 certified.",
     category: "Payment Infrastructure",
     markets: ["UAE", "Pakistan", "Bangladesh", "Nepal", "Iraq", "Egypt"],
     relevantFor: ["Visa", "Mastercard", "Stripe", "Adyen", "Thunes", "DLocal"],
@@ -85,8 +85,8 @@ export const caseStudies: CaseStudy[] = [
         value: "$1B+",
       },
       {
-        label: "Monthly transactions",
-        value: "25M+",
+        label: "Annual transactions",
+        value: "270M+",
       },
       {
         label: "Settlement SLA",
@@ -132,8 +132,8 @@ export const caseStudies: CaseStudy[] = [
     ],
     role: "Chief Product Officer (acting CTO during the 2024 regulatory tightening). Owned product strategy, roadmap, partner integrations, regulatory posture, security architecture and the org structure to ship and operate the platform end-to-end.",
     impact: [
-      "Scaled to $1B+ annual GTV and 25M+ monthly transactions across 5 countries",
-      "Onboarded enterprise platforms including TikTok, Uber, InDrive, Temu, PUBG and MoneyGram",
+      "Scaled to $1B+ annual GTV and 270M+ payments a year across 5 frontier markets",
+      "Onboarded enterprise platforms including TikTok, Samsung, Shein, Uber and MoneyGram",
       "Held fraud loss below 0.1% of GTV; cut platform downtime by 90%",
       "Led PCI DSS and ISO/IEC 27001 certification programs from scratch",
       "Drove 30% enterprise wallet adoption and 99.95% settlement SLA",

@@ -64,7 +64,7 @@ function ProductsPage() {
       <ul className="mt-6 grid sm:grid-cols-2 lg:grid-cols-4 gap-3 max-w-4xl">
         {[
           { v: "$1B+", l: "annual GTV cleared" },
-          { v: "25M+", l: "monthly transactions" },
+          { v: "270M+", l: "annual transactions" },
           { v: "5", l: "regulated markets" },
           { v: "99.95%", l: "settlement SLA" },
         ].map((p) => (

@@ -90,7 +90,7 @@ const recruiterFaqJsonLd = {
       name: "What payment markets has Rizwan Zafar worked in?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Pakistan, Bangladesh, Nepal, Egypt, Iraq, Saudi Arabia, and UAE — 7 regulated markets processing $1B+ annual GTV and 25M+ monthly transactions.",
+        text: "Pakistan, Bangladesh, Nepal, Iraq and Egypt — 5 regulated frontier markets processing $1B+ annual GTV and 270M+ payments a year.",
       },
     },
     {
@@ -98,7 +98,7 @@ const recruiterFaqJsonLd = {
       name: "What is Rizwan Zafar's experience with payment infrastructure?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "14+ years in fintech and payments. As CPO at SimPaisa, Rizwan scaled a multi-rail payment platform to $1B+ GTV, 25M+ monthly transactions, PCI DSS Level 1 and ISO/IEC 27001 certified, serving TikTok, Uber, MoneyGram, and 50+ bank and wallet partners.",
+        text: "14+ years in fintech and payments. As CPO at SimPaisa, Rizwan scaled a multi-rail payment platform to $1B+ GTV, 270M+ payments a year, PCI DSS Level 1 and ISO/IEC 27001 certified, serving TikTok, Samsung, Shein, Uber and MoneyGram.",
       },
     },
     {
@@ -127,7 +127,7 @@ export const Route = createFileRoute("/for/")({
       {
         name: "description",
         content:
-          "Recruiter-ready brief for Rizwan Zafar: senior product and program leader in payments infrastructure, $1B+ GTV, 25M+ transactions and 7 markets.",
+          "Recruiter-ready brief for Rizwan Zafar: senior product and program leader in payments infrastructure, $1B+ GTV, 270M+ payments a year and 5 frontier markets.",
       },
       {
         property: "og:title",
@@ -169,8 +169,8 @@ const delayStyle = (ms: number) => ({ "--motion-delay": `${ms}ms` }) as CSSPrope
 
 const proofMetrics = [
   { value: "$1B+", label: "GTV / TPV scaled" },
-  { value: "25M+", label: "Monthly transactions" },
-  { value: "7", label: "Markets" },
+  { value: "270M+", label: "Annual transactions" },
+  { value: "5", label: "Markets" },
   { value: "50+", label: "Bank, wallet & FI partners" },
   { value: "40+", label: "Engineers led" },
   { value: "4", label: "Production AI deployments" },
@@ -185,7 +185,7 @@ const roleLanes = [
     proof: [
       "Scaled multi-rail pay-in, payout, wallet, DCB, IBFT, card acquiring and cross-border products.",
       "Owned product strategy, roadmap, partner coverage, authorization, activation and platform economics.",
-      "Built infrastructure used by enterprise platforms including TikTok, Uber, Temu and MoneyGram.",
+      "Built infrastructure used by enterprise platforms including TikTok, Samsung, Shein, Uber and MoneyGram.",
     ],
   },
   {
@@ -248,7 +248,7 @@ const audienceProof: Record<Audience["slug"], { label: string; value: string }[]
   "stripe-adyen-wise-thunes": [
     { label: "Rails", value: "Cards · wallets · DCB · IBFT" },
     { label: "Coverage", value: "50+ partners" },
-    { label: "Transactions", value: "25M+ / month" },
+    { label: "Transactions", value: "270M+ / year" },
     { label: "Developer surface", value: "APIs · webhooks · routing" },
   ],
   "banks-fintechs": [
