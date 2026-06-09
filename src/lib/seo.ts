@@ -12,6 +12,7 @@ type ViteEnv = {
   VITE_GA_MEASUREMENT_ID?: string;
   VITE_GOOGLE_ADS_ID?: string;
   VITE_GOOGLE_ADS_PAGE_VIEW_CONVERSION_LABEL?: string;
+  VITE_LINKEDIN_PARTNER_ID?: string;
   VITE_BING_SITE_VERIFICATION?: string;
   VITE_MICROSOFT_CLARITY_ID?: string;
   VITE_PLAUSIBLE_DOMAIN?: string;
@@ -78,6 +79,13 @@ export const GOOGLE_ADS_PAGE_VIEW_CONVERSION_SEND_TO =
   GOOGLE_ADS_ID && GOOGLE_ADS_PAGE_VIEW_CONVERSION_LABEL
     ? `${GOOGLE_ADS_ID}/${GOOGLE_ADS_PAGE_VIEW_CONVERSION_LABEL}`
     : "";
+
+// LinkedIn Insight Tag. Partner id from Campaign Manager (account 168924577)
+// → Signals manager → Sources → Insight Tag. Shipped as a direct tag (not via
+// GTM) so the tag verifies and starts building the retargeting audience before
+// any GTM publishing round-trip; fires site-wide, conversions are defined in
+// Campaign Manager on top of it. Set VITE_LINKEDIN_PARTNER_ID="" to opt out.
+export const LINKEDIN_PARTNER_ID = env.VITE_LINKEDIN_PARTNER_ID ?? "3222825";
 
 // Optional analytics / webmaster IDs.
 // Keep LinkedIn Insight, Meta Pixel and other marketing tags in GTM. These

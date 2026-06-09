@@ -69,7 +69,7 @@ function GtmRouteTracker() {
 }
 
 import appCss from "../styles.css?url";
-import { SiteHeader, SiteFooter } from "@/components/SiteChrome";
+import { SiteHeader, SiteFooter, CampaignHeader, CampaignFooter } from "@/components/SiteChrome";
 import { personSchemaAwards, personSchemaCredentials, profile } from "@/data/profile";
 import {
   absUrl,
@@ -84,6 +84,7 @@ import {
   MICROSOFT_CLARITY_ID,
   PLAUSIBLE_DOMAIN,
   PLAUSIBLE_SRC,
+  LINKEDIN_PARTNER_ID,
 } from "@/lib/seo";
 
 // Google Tag Manager bootstrap, runs as early as possible. Mirrors Google's
@@ -104,6 +105,14 @@ const gaBootstrapScript = googleTagLoaderId
 
 const clarityScript = MICROSOFT_CLARITY_ID
   ? `(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script",${JSON.stringify(MICROSOFT_CLARITY_ID)});`
+  : "";
+
+// LinkedIn Insight Tag — official snippet. Fires site-wide so the LinkedIn
+// retargeting audience builds from all traffic; conversions (e.g. booked-call
+// page actions) are defined on top of it in Campaign Manager. Partner id in
+// src/lib/seo.ts.
+const linkedInInsightScript = LINKEDIN_PARTNER_ID
+  ? `_linkedin_partner_id="${LINKEDIN_PARTNER_ID}";window._linkedin_data_partner_ids=window._linkedin_data_partner_ids||[];window._linkedin_data_partner_ids.push(_linkedin_partner_id);(function(l){if(!l){window.lintrk=function(a,b){window.lintrk.q.push([a,b])};window.lintrk.q=[]}var s=document.getElementsByTagName("script")[0];var b=document.createElement("script");b.type="text/javascript";b.async=true;b.src="https://snap.licdn.com/li.lms-analytics/insight.min.js";s.parentNode.insertBefore(b,s)})(window.lintrk);`
   : "";
 
 const analyticsBridgeScript =
@@ -408,6 +417,9 @@ function RootShell({ children }: { children: React.ReactNode }) {
           <script dangerouslySetInnerHTML={{ __html: analyticsBridgeScript }} />
         )}
         {clarityScript && <script dangerouslySetInnerHTML={{ __html: clarityScript }} />}
+        {linkedInInsightScript && (
+          <script dangerouslySetInnerHTML={{ __html: linkedInInsightScript }} />
+        )}
         {PLAUSIBLE_DOMAIN && <script defer data-domain={PLAUSIBLE_DOMAIN} src={PLAUSIBLE_SRC} />}
         <HeadContent />
       </head>
@@ -424,6 +436,17 @@ function RootShell({ children }: { children: React.ReactNode }) {
             />
           </noscript>
         )}
+        {LINKEDIN_PARTNER_ID && (
+          <noscript>
+            <img
+              height="1"
+              width="1"
+              style={{ display: "none" }}
+              alt=""
+              src={`https://px.ads.linkedin.com/collect/?pid=${LINKEDIN_PARTNER_ID}&fmt=gif`}
+            />
+          </noscript>
+        )}
         {children}
         <Scripts />
       </body>
@@ -433,15 +456,19 @@ function RootShell({ children }: { children: React.ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  // Paid landing pages swap the full site chrome for a single-action header —
+  // every nav tab on a paid click is an exit path the campaign paid for.
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const isCampaignPage = pathname === "/hire" || pathname === "/hire/";
   return (
     <QueryClientProvider client={queryClient}>
       {(GTM_ID || GA_MEASUREMENT_ID || GOOGLE_ADS_ID) && <GtmRouteTracker />}
       <div className="min-h-screen flex flex-col">
-        <SiteHeader />
+        {isCampaignPage ? <CampaignHeader /> : <SiteHeader />}
         <main className="flex-1">
           <Outlet />
         </main>
-        <SiteFooter />
+        {isCampaignPage ? <CampaignFooter /> : <SiteFooter />}
       </div>
     </QueryClientProvider>
   );
