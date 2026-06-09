@@ -25,11 +25,11 @@ export const products: Product[] = [
     oneLiner:
       "Regulated multi-rail payment infrastructure across pay-in, payout, wallets, DCB, IBFT, card acquiring, cross-border, FX, settlement, fraud and KYC/KYB.",
     description:
-      "A seven-market regulated payments platform serving global enterprises and local merchants. Unified pay-in/payout API across cards (MPGS/MDES), wallets, DCB, IBFT and cross-border corridors, with a canonical ledger, in-line risk service and partner-aware settlement.",
+      "A five-market regulated payments platform serving global enterprises and local merchants. Unified pay-in/payout API across cards (MPGS/MDES), wallets, DCB, IBFT and cross-border corridors, with a canonical ledger, in-line risk service and partner-aware settlement.",
     metrics: [
       { label: "Annual GTV", value: "$1B+" },
-      { label: "Monthly transactions", value: "25M+" },
-      { label: "Markets", value: "7" },
+      { label: "Annual transactions", value: "270M+" },
+      { label: "Markets", value: "5" },
       { label: "Settlement SLA", value: "99.95%" },
       { label: "Fraud loss", value: "<0.1% GTV" },
     ],

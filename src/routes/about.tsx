@@ -76,10 +76,10 @@ function AboutPage() {
         <p className="mt-6 text-lg text-ink-soft leading-relaxed max-w-2xl">
           Product &amp; Program leader in regulated payments. 14+ years across product, payments,
           programme delivery and digital transformation. Currently CPO at Simpaisa: helped scale the
-          B2B payments platform from $0 to $1B+ TPV across 7 markets, 50+ bank, wallet and FI
+          B2B payments platform from $0 to $1B+ TPV across 5 frontier markets, alongside global PSP
           partners, built the 40-engineer organisation from 2 people across 12 cross-functional
           squads, deployed 4 production GenAI solutions, and infrastructure now used by TikTok,
-          Uber, Temu, InDrive, MoneyGram and PUBG. Earlier: $3M digital transformation programme at
+          Uber, Samsung, Shein and MoneyGram. Earlier: $3M digital transformation programme at
           TapmadTV, payments ops at Daraz (Alibaba Group), PMO setups at Wing Logic and DS
           Engineering. PMP, PMI-ACP, CSPO, CSM, COBIT 5, ITIL v3. Engineer's discipline, programme
           manager's tempo, regulator's vocabulary.
@@ -115,10 +115,10 @@ function AboutPage() {
             IBFT, payouts, cross-border corridors with real-time FX. Onboarding cut from weeks to
             hours. Fraud loss below 0.1% of GTV. Payment failure rate down from ~8% to ~1.2% through
             routing, retries and acquirer SLA management. Downtime down 90%. Local infrastructure
-            partner for DLocal, Thunes, Boku and Coda, enabling TikTok, Temu, Uber, InDrive,
-            MoneyGram and PUBG to collect and disburse where they had no local rails. $1B+ GTV. 25M+
-            monthly transactions. 99.95% settlement SLA. Built and led a 40-engineer payments org
-            across 12 cross-functional squads. Launched BNPL from 0 to 100K users in 8 months. PCI
+            partner for DLocal, Thunes, Boku, Coda and Tazapay, enabling TikTok, Samsung, Shein,
+            Uber and MoneyGram to collect and disburse where they had no local rails. $1B+ GTV. 270M+
+            payments a year. 99.95% settlement SLA. Built and led a 40-engineer payments org
+            across 12 cross-functional squads. Launched BNPL from scratch. PCI
             DSS and ISO/IEC 27001 from scratch. Dual CPO + acting CTO through 2024 regulatory
             tightening.
           </p>

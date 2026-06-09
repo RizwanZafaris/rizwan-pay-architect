@@ -121,7 +121,7 @@ const recruiterSearchFit = [
 const selectedProofLinks = [
   {
     title: "$1B+ regulated payment infrastructure",
-    body: "Multi-rail pay-in, payout, wallet, card acquiring, settlement and cross-border infrastructure across seven markets.",
+    body: "Multi-rail pay-in, payout, wallet, card acquiring, settlement and cross-border infrastructure across five frontier markets.",
     to: "/product-work/simpaisa-payment-infrastructure",
   },
   {
@@ -155,7 +155,7 @@ const resumeExperience = [
     location: "Dubai, UAE",
     bullets: [
       "Owned product strategy and program execution for a regulated multi-rail payments platform spanning pay-in, payouts, wallets, DCB, IBFT, card acquiring, settlement, FX and cross-border corridors.",
-      "Helped scale infrastructure from $0 to $1B+ GTV, 25M+ monthly transactions and 50+ bank, wallet and financial institution partners across complex markets.",
+      "Helped scale infrastructure from $0 to $1B+ GTV and 270M+ payments a year, working with leading global PSPs across 5 frontier markets.",
       "Built merchant onboarding, KYC/KYB, risk-tiering and category pricing flows that cut standard-risk activation from weeks to hours and supported 150+ merchant integrations.",
       "Led a 40-engineer payments organization across 12 squads; managed $5M+ technology budget, 15+ vendor relationships, PCI DSS, ISO/IEC 27001 and multi-jurisdiction reporting programs.",
       "Improved platform economics and control: payment failure rate down from ~8% to ~1.2%, 99.95% settlement SLA, fraud loss below 0.1% of GTV and downtime down 90%.",
@@ -256,7 +256,7 @@ export const Route = createFileRoute("/resume")({
       {
         name: "description",
         content:
-          "Rizwan Zafar resume: Product & Program Executive for fintech infrastructure, payments, PMO and AI operations. $1B+ GTV, 25M+ transactions, 7 markets.",
+          "Rizwan Zafar resume: Product & Program Executive for fintech infrastructure, payments, PMO and AI operations. $1B+ GTV, 270M+ payments a year, 5 markets.",
       },
       { name: "keywords", content: resumeKeywords.join(", ") },
       {
@@ -515,7 +515,7 @@ function ResumePage() {
             style={delayStyle(120)}
           >
             Currently CPO at Simpaisa, where I helped scale regulated payment infrastructure to $1B+
-            GTV, 25M+ monthly transactions and 50+ bank, wallet and FI partners. My operating lane
+            GTV, 270M+ payments a year, working with leading global PSPs. My operating lane
             sits between product strategy, program delivery, compliance, risk, engineering
             leadership, partner ecosystems and market expansion, with adjacent work across BNPL, OTT
             subscription billing and crypto on/off-ramp product strategy.

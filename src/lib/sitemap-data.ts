@@ -175,7 +175,14 @@ export const sitemapEntries: SitemapEntry[] = [
 ];
 
 export const routesToPrerender = Array.from(
-  new Set([...sitemapEntries.map((entry) => entry.path), ...posts.map((p) => `/blog/${p.slug}`)]),
+  new Set([
+    ...sitemapEntries.map((entry) => entry.path),
+    ...posts.map((p) => `/blog/${p.slug}`),
+    // Paid-ads landing page: prerendered so the ad click lands on real HTML,
+    // but intentionally kept OUT of `sitemapEntries` (and ships robots:noindex)
+    // so it never competes with /resume in organic search.
+    "/hire",
+  ]),
 );
 
 export const htmlSitemapSections = [

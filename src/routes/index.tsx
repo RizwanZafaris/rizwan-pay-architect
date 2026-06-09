@@ -63,7 +63,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Product & Program Executive scaling fintech infrastructure in complex markets: $1B+ GTV, 25M+ monthly transactions, 7 markets, 50+ FI partners. Dubai.",
+          "Product & Program Executive scaling fintech infrastructure in complex markets: $1B+ GTV, 270M+ payments a year, 5 frontier markets. Dubai.",
       },
       {
         property: "og:title",
@@ -72,7 +72,7 @@ export const Route = createFileRoute("/")({
       {
         property: "og:description",
         content:
-          "Payment infrastructure for complex markets. $1B+ GTV. 25M+ monthly transactions. 7 markets. 50+ bank & wallet partners. Used by TikTok, Uber, Temu.",
+          "Payment infrastructure for complex markets. $1B+ GTV. 270M+ payments a year. 5 frontier markets. Used by TikTok, Samsung, Shein.",
       },
       { property: "og:url", content: absUrl("/") },
       { property: "og:type", content: "profile" },
@@ -83,7 +83,7 @@ export const Route = createFileRoute("/")({
       {
         name: "twitter:description",
         content:
-          "Payment infrastructure for complex markets. $1B+ GTV. 25M+ monthly transactions. 7 markets. 50+ bank & wallet partners.",
+          "Payment infrastructure for complex markets. $1B+ GTV. 270M+ payments a year. 5 frontier markets.",
       },
     ],
     links: [
@@ -181,10 +181,10 @@ function HomePage() {
             <p className="mt-3.5 md:mt-4 max-w-xl text-[15px] md:text-base text-ink-soft leading-relaxed">
               I build payment rails where market complexity and scale collide. As CPO at Simpaisa in
               Dubai, I helped scale infrastructure across{" "}
-              <span className="text-ink font-medium">7 markets</span>,{" "}
+              <span className="text-ink font-medium">5 frontier markets</span>,{" "}
               <span className="text-ink font-medium">$1B+ GTV</span>,{" "}
-              <span className="text-ink font-medium">25M+ monthly transactions</span> and{" "}
-              <span className="text-ink font-medium">50+ bank, wallet &amp; FI</span> partners.
+              <span className="text-ink font-medium">270M+ payments a year</span> and{" "}
+              <span className="text-ink font-medium">named global PSPs</span> as partners.
             </p>
 
             {/* Proof row — compact tiles. Mobile: 2×2, desktop: 1×4. */}
@@ -192,9 +192,9 @@ function HomePage() {
               {(
                 [
                   { value: "$1B+", label: "GTV" },
-                  { value: "25M+", label: "Monthly tx" },
-                  { value: "7", label: "Markets" },
-                  { value: "50+", label: "Bank & wallet" },
+                  { value: "270M+", label: "Annual tx" },
+                  { value: "5", label: "Markets" },
+                  { value: "97%", label: "Payment success" },
                 ] as const
               ).map((m) => (
                 <div
@@ -284,11 +284,11 @@ function HomePage() {
               <span className="opacity-40 mx-1">·</span>
               <span className="text-ink">Uber</span>
               <span className="opacity-40 mx-1">·</span>
-              <span className="text-ink">Temu</span>
+              <span className="text-ink">Samsung</span>
               <span className="opacity-40 mx-1">·</span>
               <span className="text-ink">MoneyGram</span>
               <span className="opacity-40 mx-1">·</span>
-              <span className="text-ink">InDrive</span>
+              <span className="text-ink">Shein</span>
             </p>
 
             <form
@@ -697,7 +697,7 @@ function HomePage() {
                 14+ years.
                 <br />
                 $1B+ GTV.
-                <br />7 markets.
+                <br />5 frontier markets.
               </div>
               <Link to="/about" className="mt-6 inline-flex items-center gap-1.5 text-sm group">
                 My story <span className="transition-transform group-hover:translate-x-1">→</span>
