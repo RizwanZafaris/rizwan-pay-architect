@@ -158,7 +158,7 @@ const resumeExperience = [
       "Helped scale infrastructure from $0 to $1B+ GTV and 270M+ payments a year, working with leading global PSPs across 5 frontier markets.",
       "Built merchant onboarding, KYC/KYB, risk-tiering and category pricing flows that cut standard-risk activation from weeks to hours and supported 150+ merchant integrations.",
       "Led a 40-engineer payments organization across 12 squads; managed $5M+ technology budget, 15+ vendor relationships, PCI DSS, ISO/IEC 27001 and multi-jurisdiction reporting programs.",
-      "Improved platform economics and control: payment failure rate down from ~8% to ~1.2%, 99.95% settlement SLA, fraud loss below 0.1% of GTV and downtime down 90%.",
+      "Improved platform economics and control: 97% payment success at 90% straight-through processing, 99.95% settlement SLA, fraud loss below 0.1% of GTV and downtime down 90%.",
       "Deployed four production AI/GenAI solutions across merchant support, incident auto-escalation, partner operations and fraud/AML decisioning.",
     ],
   },

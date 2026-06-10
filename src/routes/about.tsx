@@ -113,7 +113,7 @@ function AboutPage() {
             Since 2020 I've been CPO at Simpaisa, building regulated payment infrastructure across
             Pakistan, Bangladesh, Nepal, Iraq and Egypt. Card acquiring (MPGS/MDES), wallets, DCB,
             IBFT, payouts, cross-border corridors with real-time FX. Onboarding cut from weeks to
-            hours. Fraud loss below 0.1% of GTV. Payment failure rate down from ~8% to ~1.2% through
+            hours. Fraud loss below 0.1% of GTV. 97% payment success at 90% straight-through processing, built through
             routing, retries and acquirer SLA management. Downtime down 90%. Local infrastructure
             partner for DLocal, Thunes, Boku, Coda and Tazapay, enabling TikTok, Samsung, Shein,
             Uber and MoneyGram to collect and disburse where they had no local rails. $1B+ GTV. 270M+
