@@ -1,6 +1,6 @@
 # Rizwan Zafar — Website Content Index
 
-Operator-grade content library for a payments product executive. Every entry is scoped through Rizwan's lens: Simpaisa CPO, $1B+ GTV, 25M+ monthly transactions, MENA + South Asia, Tapmad (50%→1% payment cost, 5M subs), Daraz payments ops.
+Operator-grade content library for a payments product executive. Every entry is scoped through Rizwan's lens: Simpaisa CPO, $1B+ GTV, 270M+ annual transactions, MENA + South Asia, Tapmad (50%→1% payment cost, 5M subs), Daraz payments ops.
 
 This index is the **single source of truth** for the editorial system. Articles are generated in batches against this list.
 

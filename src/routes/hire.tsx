@@ -1,7 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, CalendarDays, Linkedin } from "lucide-react";
 import { profile } from "@/data/profile";
-import { useCalendarUrlWithCampaignParams } from "@/lib/campaign";
 import { absUrl, OG_IMAGE_URL, SITE_URL } from "@/lib/seo";
 
 // Dedicated, conversion-focused PAID landing page.
@@ -23,8 +22,9 @@ import { absUrl, OG_IMAGE_URL, SITE_URL } from "@/lib/seo";
 // LinkedIn link auto-fires `linkedin_click` (Secondary).
 //
 // This route renders with CampaignHeader/CampaignFooter (no site nav — paid
-// clicks shouldn't leak into the blog), and booking CTAs append the landing
-// URL's UTMs/click-ids to the cal.com link via useCalendarUrlWithCampaignParams.
+// clicks shouldn't leak into the blog). The inline calendarCampaignParamsScript
+// in __root.tsx appends the landing URL's UTMs/click-ids + a ref per placement
+// to every cal.com link at load time (the static build never hydrates React).
 
 const proofMetrics = [
   { value: "$1B+", label: "Annual GTV" },
@@ -109,10 +109,10 @@ export const Route = createFileRoute("/hire")({
 });
 
 function HirePage() {
-  // Booking links carry the landing URL's UTMs/click-ids into cal.com so a
-  // booked call attributes back to the campaign that paid for the click.
-  const heroCalendarUrl = useCalendarUrlWithCampaignParams("hire-hero");
-  const footerCalendarUrl = useCalendarUrlWithCampaignParams("hire-footer");
+  // Bare cal.com URL in the markup; the inline campaign script rewrites it
+  // with UTMs/click-ids + ref at load time so booked calls attribute to ads.
+  const heroCalendarUrl = profile.calendarUrl;
+  const footerCalendarUrl = profile.calendarUrl;
   return (
     <div className="mx-auto max-w-4xl px-5 sm:px-6 py-16 md:py-24">
       {/* Hero — single intent, single action */}

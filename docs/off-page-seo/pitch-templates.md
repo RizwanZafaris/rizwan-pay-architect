@@ -8,7 +8,7 @@ Subject: Opinion pitch: payment infrastructure is becoming a product discipline
 
 Hi [Editor Name],
 
-I am Rizwan Zafar, CPO at Simpaisa in Dubai. I have helped scale regulated payment infrastructure across 7 markets, $1B+ GTV, 25M+ monthly transactions and 50+ bank, wallet and FI partners.
+I am Rizwan Zafar, CPO at Simpaisa in Dubai. I have helped scale regulated payment infrastructure across 5 frontier markets to $1B+ annual GTV and 270M+ payments a year at a 99.95% settlement SLA.
 
 I would like to pitch an opinion piece for Payments Dive:
 
@@ -41,7 +41,7 @@ Subject: Expert opinion: AI in payments should start in operations
 
 Hi [Editor Name],
 
-I am Rizwan Zafar, a Dubai-based payments product and program executive. As CPO at Simpaisa, I helped scale payment infrastructure across 7 markets, $1B+ GTV and 25M+ monthly transactions.
+I am Rizwan Zafar, a Dubai-based payments product and program executive. As CPO at Simpaisa, I helped scale payment infrastructure across 5 frontier markets to $1B+ annual GTV and 270M+ payments a year.
 
 I would like to contribute an expert opinion:
 
@@ -83,7 +83,7 @@ Proposed structure:
 4. How a PM communicates this to executives and engineering
 
 About me:
-I am Rizwan Zafar, CPO at Simpaisa in Dubai. I have helped scale regulated payment infrastructure across 7 markets, $1B+ GTV and 25M+ monthly transactions.
+I am Rizwan Zafar, CPO at Simpaisa in Dubai. I have helped scale regulated payment infrastructure across 5 frontier markets to $1B+ annual GTV and 270M+ payments a year.
 
 Relevant article:
 https://rzifi.com/blog/product-management-for-payments-platforms/
@@ -109,7 +109,7 @@ Talking points:
 
 - Why emerging-market payment infrastructure is a corridor problem, not one API problem
 - How local wallets, card acquiring, DCB, IBFT, settlement and risk fit into one product architecture
-- What breaks first at $1B+ GTV and 25M+ monthly transactions
+- What breaks first at $1B+ annual GTV and 270M+ payments a year
 - How product leaders should work with banks, wallets, regulators and enterprise platforms
 - Where AI actually helps in payment operations
 
@@ -125,7 +125,7 @@ Subject: Guest angle: building fintech infrastructure in the Middle East
 
 Hi 11:FS team,
 
-I am Rizwan Zafar, a Dubai-based Product & Program Executive and CPO at Simpaisa. I have helped scale regulated payment infrastructure across 7 markets, $1B+ GTV, 25M+ monthly transactions and 50+ bank, wallet and FI partners.
+I am Rizwan Zafar, a Dubai-based Product & Program Executive and CPO at Simpaisa. I have helped scale regulated payment infrastructure across 5 frontier markets to $1B+ annual GTV and 270M+ payments a year at a 99.95% settlement SLA.
 
 I noticed Fintech Insider has covered the Middle East fintech build story and AI in financial services. I can bring a practitioner view from payments infrastructure, not just market commentary.
 
@@ -153,7 +153,7 @@ Use this for Qwoted, Featured and SourceBottle.
 
 Short bio:
 
-Rizwan Zafar is a Dubai-based Product & Program Executive and CPO at Simpaisa. He has helped scale regulated payment infrastructure across 7 markets, $1B+ GTV, 25M+ monthly transactions and 50+ bank, wallet and FI partners.
+Rizwan Zafar is a Dubai-based Product & Program Executive and CPO at Simpaisa. He has helped scale regulated payment infrastructure across 5 frontier markets to $1B+ annual GTV and 270M+ payments a year at a 99.95% settlement SLA.
 
 Quote format:
 

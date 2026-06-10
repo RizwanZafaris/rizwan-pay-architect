@@ -37,7 +37,7 @@ relatedArticles:
 
 Most teams pitch their payment platform by showing the API reference. That is the wrong artifact. The API is the receptionist. The product is the building behind it.
 
-After running multi-rail infrastructure at over a billion in annual GTV, cards, wallets, IBFT, DCB, and bank settlement, across 25M+ monthly transactions, the part that decides whether the platform survives growth is not the API surface. It is three things: **state**, **trust**, and **failure handling**.
+After running multi-rail infrastructure at over a billion in annual GTV, cards, wallets, IBFT, DCB, and bank settlement, across 270M+ annual transactions, the part that decides whether the platform survives growth is not the API surface. It is three things: **state**, **trust**, and **failure handling**.
 
 ## Table of contents
 

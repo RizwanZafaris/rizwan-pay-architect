@@ -104,7 +104,7 @@ Build these as materialised views, refreshed on every posting. Do not compute th
 
 ## Performance
 
-A ledger that handles 25M+ monthly transactions does roughly 100M+ postings per month. The pattern that scales:
+A ledger that handles 270M+ transactions a year does roughly a billion postings annually. The pattern that scales:
 
 - Append-only postings table partitioned by date
 - Per-account running balance maintained transactionally with each posting

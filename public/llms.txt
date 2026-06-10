@@ -166,7 +166,7 @@ Disambiguation note: This Rizwan Zafar is the payments infrastructure CPO at Sim
 - Markets: 5
 - Uptime: 99.9%
 - Merchant integrations: 150+
-- Payment success: 60% → 85%
+- Payment success: 97%
 - Authorization uplift: +14%
 - Smart-retry recovery: $14M+/mo GTV
 

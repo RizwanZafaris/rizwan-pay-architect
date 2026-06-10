@@ -171,7 +171,7 @@ const proofMetrics = [
   { value: "$1B+", label: "GTV / TPV scaled" },
   { value: "270M+", label: "Annual transactions" },
   { value: "5", label: "Markets" },
-  { value: "50+", label: "Bank, wallet & FI partners" },
+  { value: "99.95%", label: "Settlement SLA" },
   { value: "40+", label: "Engineers led" },
   { value: "4", label: "Production AI deployments" },
 ] as const;
@@ -247,7 +247,7 @@ const audienceProof: Record<Audience["slug"], { label: string; value: string }[]
   ],
   "stripe-adyen-wise-thunes": [
     { label: "Rails", value: "Cards · wallets · DCB · IBFT" },
-    { label: "Coverage", value: "50+ partners" },
+    { label: "Partner stack", value: "DLocal · Thunes · Boku · Coda" },
     { label: "Transactions", value: "270M+ / year" },
     { label: "Developer surface", value: "APIs · webhooks · routing" },
   ],

@@ -612,6 +612,10 @@ function ContactPage() {
                   <input type="hidden" name="subject" value="Inbound from rzifi.com contact form" />
                   <input type="hidden" name="from_name" value="rzifi.com contact form" />
                   <input type="hidden" name="botcheck" value="" />
+                  {/* Web3Forms honours `redirect` on native (no-JS) POSTs, so the
+                      static production build lands on a branded confirmation
+                      instead of Web3Forms' generic success page. */}
+                  <input type="hidden" name="redirect" value={absUrl("/contact/thanks/")} />
                 </>
               )}
 

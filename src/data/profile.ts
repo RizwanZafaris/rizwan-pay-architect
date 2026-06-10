@@ -140,7 +140,7 @@ export const profile = {
     { label: "Markets", value: "5" },
     { label: "Uptime", value: "99.9%" },
     { label: "Merchant integrations", value: "150+" },
-    { label: "Payment success", value: "60% → 85%" },
+    { label: "Payment success", value: "97%" },
     { label: "Authorization uplift", value: "+14%" },
     { label: "Smart-retry recovery", value: "$14M+/mo GTV" },
     { label: "Production AI solutions", value: "4 deployed" },

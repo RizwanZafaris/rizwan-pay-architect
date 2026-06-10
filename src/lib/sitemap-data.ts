@@ -182,6 +182,9 @@ export const routesToPrerender = Array.from(
     // but intentionally kept OUT of `sitemapEntries` (and ships robots:noindex)
     // so it never competes with /resume in organic search.
     "/hire",
+    // Contact-form confirmation (Web3Forms native-POST redirect target).
+    // Prerendered + noindex, out of the sitemap for the same reason.
+    "/contact/thanks",
   ]),
 );
 

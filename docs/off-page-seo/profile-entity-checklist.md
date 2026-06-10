@@ -6,11 +6,11 @@ Use the same wording across every profile. Consistency helps search engines and 
 
 Headline:
 
-> Product & Program Executive Scaling Fintech Infrastructure in Complex Markets | CPO, Payments | $1B+ GTV | 25M+ Monthly Transactions | Dubai
+> Product & Program Executive Scaling Fintech Infrastructure in Complex Markets | CPO, Payments | $1B+ Annual GTV | 270M+ Payments a Year | Dubai
 
 About opening:
 
-> I am a Dubai-based Product & Program Executive scaling regulated fintech and payment infrastructure in complex markets. As CPO at Simpaisa, I helped scale payment infrastructure across 7 markets, $1B+ GTV, 25M+ monthly transactions and 50+ bank, wallet and financial institution partners.
+> I am a Dubai-based Product & Program Executive scaling regulated fintech and payment infrastructure in complex markets. As CPO at Simpaisa, I helped scale payment infrastructure across 5 frontier markets to $1B+ annual GTV and 270M+ payments a year at a 99.95% settlement SLA.
 
 Featured links:
 
@@ -51,7 +51,7 @@ Pinned post:
 >
 > Proof:
 > - $1B+ GTV
-> - 25M+ monthly transactions
+> - 270M+ payments a year
 > - 7 markets
 > - 50+ FI partners
 >
