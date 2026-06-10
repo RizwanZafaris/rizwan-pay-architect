@@ -9,9 +9,10 @@
  *   bun scripts/generate-og.ts
  */
 import { mkdir } from "node:fs/promises";
+import { existsSync } from "node:fs";
 import { dirname } from "node:path";
 import sharp from "sharp";
-import { publishedPosts } from "../src/data/posts";
+import { posts } from "../src/data/posts";
 import { caseStudies } from "../src/data/caseStudies";
 import { profile } from "../src/data/profile";
 
@@ -161,18 +162,36 @@ await writeCard({
   out: "public/og-default.png",
 });
 
-for (const post of publishedPosts) {
+// ALL posts, including future-dated ones — drip essays publish via the CI
+// cron from a clean checkout, so their cards must be generated and COMMITTED
+// before publish day (publishedPosts here is how the 2026-06 SWIFT series
+// nearly shipped with 404 social cards). Incremental by default so reruns
+// don't rewrite 100+ identical PNGs; OG_FORCE=1 regenerates everything
+// (use after title/description/design changes).
+const force = process.env.OG_FORCE === "1";
+let skipped = 0;
+for (const post of posts) {
+  const out = `public/og/blog/${post.slug}.png`;
+  if (!force && existsSync(out)) {
+    skipped++;
+    continue;
+  }
   await writeCard({
     eyebrow: "RZIFI.COM · ESSAY",
     title: post.title,
     subtitle: post.description,
     section: post.category,
     footer: `${profile.name} · ${post.readingTime} · ${post.date}`,
-    out: `public/og/blog/${post.slug}.png`,
+    out,
   });
 }
 
 for (const study of caseStudies) {
+  const out = `public/og/product-work/${study.slug}.png`;
+  if (!force && existsSync(out)) {
+    skipped++;
+    continue;
+  }
   const metric = study.metrics[0]
     ? `${study.metrics[0].value} ${study.metrics[0].label}`
     : "Case study";
@@ -182,10 +201,11 @@ for (const study of caseStudies) {
     subtitle: study.tagline,
     section: study.category,
     footer: `${profile.name} · ${metric}`,
-    out: `public/og/product-work/${study.slug}.png`,
+    out,
   });
 }
 
 console.log(
-  `✓ Wrote OG cards: 1 default, ${publishedPosts.length} essays, ${caseStudies.length} case studies`,
+  `✓ OG cards: ${posts.length} essays + ${caseStudies.length} case studies + default tracked` +
+    (skipped ? ` (${skipped} already existed, skipped — OG_FORCE=1 to regenerate)` : ""),
 );

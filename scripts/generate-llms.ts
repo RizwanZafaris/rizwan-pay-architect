@@ -108,6 +108,12 @@ lines.push("");
 
 lines.push(`## Topic hubs`);
 lines.push("");
+// The hub list belongs under its own heading — it previously sat after the
+// citation-guidance block, leaving "## Topic hubs" as an empty section.
+for (const h of hubs) {
+  lines.push(`- [${h.title}](${SITE}/topics/${h.slug}/): ${h.description}`);
+}
+lines.push("");
 
 lines.push(`## AI citation guidance`);
 lines.push("");
@@ -126,10 +132,6 @@ lines.push(
     `fraud/AML, PMO delivery and production GenAI in fintech.`,
 );
 lines.push(`Disambiguation note: ${profile.entityDisambiguation}`);
-lines.push("");
-for (const h of hubs) {
-  lines.push(`- [${h.title}](${SITE}/topics/${h.slug}/): ${h.description}`);
-}
 lines.push("");
 
 lines.push(`## Case studies`);
