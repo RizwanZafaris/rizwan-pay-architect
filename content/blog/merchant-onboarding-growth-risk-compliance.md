@@ -136,7 +136,7 @@ Within two quarters, activation in the long-tail SME segment increased materiall
 - Default vs activation is a two-dimensional surface; the target zone exists.
 - Document capture is a product, not a form.
 
-## Suggested internal links
+## Related work
 
 - Case study: [Merchant Onboarding KYC](/product-work/merchant-onboarding-kyc)
 - Essay: [KYC, Risk, and Conversion Should Be Designed Together](/blog/kyc-conversion-designed-together)

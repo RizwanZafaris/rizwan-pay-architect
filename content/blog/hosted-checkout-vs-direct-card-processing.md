@@ -163,7 +163,7 @@ The same maturity arc applied at Daraz in handling card disputes, owning the dis
 - Network tokens are the difference between true PSP independence and rebranded hosted.
 - 3DS2 is conversion strategy, not compliance plumbing.
 
-## Suggested internal links
+## Related work
 
 - Case study: [Hosted Checkout vs Direct Card Processing](/blog/hosted-checkout-vs-direct-card-processing)
 - Case study: [Simpaisa Payment Infrastructure](/product-work/simpaisa-payment-infrastructure)
@@ -171,7 +171,7 @@ The same maturity arc applied at Daraz in handling card disputes, owning the dis
 - Essay: [Standing Up PCI DSS and ISO 27001 Programs From Scratch](/blog/pci-dss-iso-27001-program-leadership)
 - [Resume](/resume) · [Contact](/contact)
 
-## Suggested external sources
+## Sources
 
 - PCI Security Standards Council: _PCI DSS v4.0_ and SAQ types
 - Mastercard MDES: _Digital Enablement Service_ documentation

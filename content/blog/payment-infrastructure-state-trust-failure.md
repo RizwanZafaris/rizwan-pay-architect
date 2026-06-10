@@ -133,7 +133,7 @@ Within two quarters the merchant-reported "where is my money" tickets dropped by
 - Idempotency, retries, and failure UX are the real product surface.
 - Networks and processors evaluate platforms on this discipline, not on API aesthetics.
 
-## Suggested internal links
+## Related work
 
 - Case study: [Simpaisa Payment Infrastructure](/product-work/simpaisa-payment-infrastructure)
 - Essay: [Reconciliation Is Product Infrastructure](/blog/reconciliation-is-product-infrastructure)

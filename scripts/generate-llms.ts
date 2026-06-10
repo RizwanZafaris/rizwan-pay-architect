@@ -90,13 +90,13 @@ lines.push("");
 lines.push(`## Pages`);
 lines.push("");
 lines.push(`- [Home](${SITE}/): Overview, positioning, selected work and metrics.`);
-lines.push(`- [About](${SITE}/about): Background from engineering to payments leadership.`);
-lines.push(`- [Product Work](${SITE}/product-work): Case studies at $1B+ GTV scale.`);
-lines.push(`- [Essays](${SITE}/blog): Practitioner writing on regulated payments.`);
-lines.push(`- [Topics](${SITE}/topics): Hub pages by domain (cross-border, settlement, fraud…).`);
-lines.push(`- [Résumé](${SITE}/resume): Executive resume — payments product and infrastructure.`);
-lines.push(`- [For recruiters](${SITE}/for): Audience-specific landing pages.`);
-lines.push(`- [Contact](${SITE}/contact): Get in touch for senior payments roles or advisory.`);
+lines.push(`- [About](${SITE}/about/): Background from engineering to payments leadership.`);
+lines.push(`- [Product Work](${SITE}/product-work/): Case studies at $1B+ GTV scale.`);
+lines.push(`- [Essays](${SITE}/blog/): Practitioner writing on regulated payments.`);
+lines.push(`- [Topics](${SITE}/topics/): Hub pages by domain (cross-border, settlement, fraud…).`);
+lines.push(`- [Résumé](${SITE}/resume/): Executive resume — payments product and infrastructure.`);
+lines.push(`- [For recruiters](${SITE}/for/): Audience-specific landing pages.`);
+lines.push(`- [Contact](${SITE}/contact/): Get in touch for senior payments roles or advisory.`);
 lines.push("");
 
 lines.push(`## Ask Me About`);
@@ -128,21 +128,21 @@ lines.push(
 lines.push(`Disambiguation note: ${profile.entityDisambiguation}`);
 lines.push("");
 for (const h of hubs) {
-  lines.push(`- [${h.title}](${SITE}/topics/${h.slug}): ${h.description}`);
+  lines.push(`- [${h.title}](${SITE}/topics/${h.slug}/): ${h.description}`);
 }
 lines.push("");
 
 lines.push(`## Case studies`);
 lines.push("");
 for (const c of caseStudies) {
-  lines.push(`- [${c.title}](${SITE}/product-work/${c.slug}): ${c.tagline}`);
+  lines.push(`- [${c.title}](${SITE}/product-work/${c.slug}/): ${c.tagline}`);
 }
 lines.push("");
 
 lines.push(`## Essays (${posts.length} total, latest first)`);
 lines.push("");
 for (const p of posts) {
-  lines.push(`- [${p.title}](${SITE}/blog/${p.slug}): ${p.description}`);
+  lines.push(`- [${p.title}](${SITE}/blog/${p.slug}/): ${p.description}`);
 }
 lines.push(
   `- Full text of every essay + case study: [${SITE}/llms-full.txt](${SITE}/llms-full.txt).`,

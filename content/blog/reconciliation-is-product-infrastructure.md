@@ -169,7 +169,7 @@ If you own a payments platform and you are not sure where to start:
 - Break rate is an economic metric, not an accounting metric.
 - The feedback loop into product is the difference between linear ops cost and bounded ops cost.
 
-## Suggested internal links
+## Related work
 
 - Case study: [Reconciliation Ledger Controls](/product-work/settlement-reconciliation)
 - Case study: [Settlement + Reconciliation](/product-work/settlement-reconciliation)
@@ -177,7 +177,7 @@ If you own a payments platform and you are not sure where to start:
 - Essay: [Financial Controls Are Product Requirements](/blog/financial-controls-are-product-requirements)
 - [Resume](/resume) · [Contact](/contact)
 
-## Suggested external sources
+## Sources
 
 - BIS/CPMI: _Principles for Financial Market Infrastructures_, for canonical reasoning on settlement finality
 - Stripe Docs: _Reporting and reconciliation_, for one well-documented rail's data model

@@ -165,7 +165,7 @@ The result was a corridor portfolio where the team could explain, per corridor, 
 - Success rate is corridor-segmented or it is meaningless.
 - Corridor-level P&L is the only honest unit of cross-border profitability.
 
-## Suggested internal links
+## Related work
 
 - Case study: [Cross-Border Corridors + FX](/product-work/cross-border-corridors-fx)
 - Case study: [Simpaisa Payment Infrastructure](/product-work/simpaisa-payment-infrastructure)
@@ -173,7 +173,7 @@ The result was a corridor portfolio where the team could explain, per corridor, 
 - Essay: [Correspondent Banking and Emerging-Market Corridors](/blog/correspondent-banking-and-emerging-market-corridors)
 - [Resume](/resume) · [Contact](/contact)
 
-## Suggested external sources
+## Sources
 
 - BIS/CPMI: _Cross-border payments roadmap and quantitative targets_
 - FATF: _Recommendation 16_ on wire transfers

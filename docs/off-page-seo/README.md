@@ -16,7 +16,7 @@ Proof points:
 
 - $1B+ GTV / TPV
 - 270M+ payments a year
-- 7 markets across MENA and South Asia
+- 5 frontier markets across MENA and South Asia
 - Local infrastructure partner for DLocal, Thunes, Boku and Coda Payments
 - CPO at Simpaisa, Dubai
 - Product, program, payments, fintech infrastructure and digital transformation
