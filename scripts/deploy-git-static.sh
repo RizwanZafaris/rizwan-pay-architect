@@ -23,7 +23,12 @@ BRANCH="hostinger-static"
 cd "$REPO_DIR"
 
 echo "─── 1/4  Rebuilding dist-static/ ───"
-bun run build:static
+# CI builds + gates dist-static in its own steps and sets SKIP_REBUILD=1.
+if [ "${SKIP_REBUILD:-}" = "1" ]; then
+  echo "(SKIP_REBUILD=1 — using existing dist-static/)"
+else
+  bun run build:static
+fi
 find dist-static -name "._*" -delete 2>/dev/null || true
 
 echo
@@ -34,10 +39,14 @@ rm -rf "$WORKTREE"
 # Fetch latest remote state so we don't push stale refs
 git fetch origin "$BRANCH" 2>/dev/null || true
 
-if git show-ref --verify --quiet "refs/heads/$BRANCH" \
-  || git show-ref --verify --quiet "refs/remotes/origin/$BRANCH"; then
+# The branch is 100% generated output — never merge it. Hard-reset the local
+# branch to origin (kills the silent-divergence → late non-fast-forward class
+# of failure when several machines deploy), and push with --force-with-lease
+# below so a concurrent deploy still can't be clobbered unseen.
+if git show-ref --verify --quiet "refs/remotes/origin/$BRANCH"; then
+  git worktree add -B "$BRANCH" "$WORKTREE" "origin/$BRANCH"
+elif git show-ref --verify --quiet "refs/heads/$BRANCH"; then
   git worktree add "$WORKTREE" "$BRANCH"
-  (cd "$WORKTREE" && git pull --ff-only origin "$BRANCH" 2>/dev/null || true)
 else
   git worktree add --no-checkout "$WORKTREE" -b "$BRANCH"
 fi
@@ -66,7 +75,7 @@ Regenerate with: bun run deploy:git-static
 
 echo
 echo "─── 4/4  Pushing + cleaning up ───"
-(cd "$WORKTREE" && git push -u origin "$BRANCH")
+(cd "$WORKTREE" && git push --force-with-lease -u origin "$BRANCH")
 git worktree remove --force "$WORKTREE"
 
 echo
