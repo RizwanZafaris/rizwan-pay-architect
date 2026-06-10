@@ -218,7 +218,7 @@ Execution pack: see `docs/off-page-seo/README.md`.
 
 ### 4a. LinkedIn + X consistency (30 min, one-time)
 
-- **LinkedIn**: headline = same as homepage tagline. About section opens with: "Rizwan Zafar is a Dubai-based Product & Program Executive scaling regulated fintech and payment infrastructure in complex markets. As CPO at Simpaisa, he helped scale payment infrastructure across 7 markets, $1B+ GTV, 25M+ monthly transactions and 50+ bank, wallet and financial institution partners." Use the featured links listed in `docs/off-page-seo/profile-entity-checklist.md`.
+- **LinkedIn**: headline = same as homepage tagline. About section opens with: "Rizwan Zafar is a Dubai-based Product & Program Executive scaling regulated fintech and payment infrastructure in complex markets. As CPO at Simpaisa, he helped scale payment infrastructure across 5 frontier markets to $1B+ annual GTV and 270M+ payments a year at a 99.95% settlement SLA, as local infrastructure partner for DLocal, Thunes, Boku and Coda Payments." Use the featured links listed in `docs/off-page-seo/profile-entity-checklist.md`.
 - **X bio**: "Payments product & program executive. CPO at Simpaisa, Dubai. Building regulated fintech infrastructure across complex markets." Pin one post that links to the strongest case study. AI tools read social bios for entity disambiguation.
 
 ### 4b. Wikipedia / Wikidata (only when eligible)

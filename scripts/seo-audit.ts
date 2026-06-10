@@ -25,6 +25,8 @@
 
 import { readFileSync, readdirSync, statSync, existsSync } from "node:fs";
 import { join, relative } from "node:path";
+import { posts } from "../src/data/posts";
+import { caseStudies } from "../src/data/caseStudies";
 
 const ROOT = "dist-static";
 const CANONICAL_HOST = "rzifi.com";
@@ -391,9 +393,23 @@ if (existsSync(resumePdf)) {
   }
 }
 
+// ─── OG images ──────────────────────────────────────────────────────────
+// Every post (INCLUDING future-dated drip posts) and case study must have its
+// OG card in the build — the CI cron publishes from a clean checkout, so a
+// card that exists only on a laptop ships as a 404 og:image on publish day.
+for (const post of posts) {
+  const og = join(ROOT, "og", "blog", `${post.slug}.png`);
+  if (!existsSync(og)) fail(og, "og_missing", `no OG card for post "${post.slug}"`);
+}
+for (const study of caseStudies) {
+  const og = join(ROOT, "og", "product-work", `${study.slug}.png`);
+  if (!existsSync(og)) fail(og, "og_missing", `no OG card for case study "${study.slug}"`);
+}
+
 // ─── Report ─────────────────────────────────────────────────────────────
 const checks = [
   "banned_claim",
+  "og_missing",
   "old_domain",
   "dev_leak",
   "canonical_missing",

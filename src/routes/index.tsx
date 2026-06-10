@@ -2,7 +2,9 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import type { CSSProperties } from "react";
 import { profile } from "@/data/profile";
 import { caseStudies, caseStudyThumb } from "@/data/caseStudies";
-import { posts, categories } from "@/data/posts";
+// publishedPosts, not posts: the homepage must never surface a future-dated
+// drip essay (raw `posts` made the featured slot and counts drip-leaky).
+import { publishedPosts as posts, categories } from "@/data/posts";
 import { products } from "@/data/products";
 import { absUrl, SITE_URL } from "@/lib/seo";
 import { ctaClick, resumeDownload, siteSearch } from "@/lib/analytics";

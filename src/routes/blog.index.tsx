@@ -135,14 +135,21 @@ const BLOG_FILTER_SCRIPT = `
   };
 
   const updateUrl = () => {
-    const next = new URLSearchParams();
-    if (qInput.value.trim()) next.set('q', qInput.value.trim());
-    if (hubSelect.value) next.set('hub', hubSelect.value);
-    if (readerSelect.value) next.set('reader', readerSelect.value);
-    if (companySelect.value) next.set('company', companySelect.value);
+    // Merge into the existing query (preserving utm_*/click-ids for the
+    // cal.com forwarder and analytics) and keep the hash; no-op when the URL
+    // is already correct so the initial apply() never rewrites history.
+    // Same pattern as the /product-work filter.
+    const next = new URLSearchParams(window.location.search);
+    const setOrDelete = (key, value) => { if (value) next.set(key, value); else next.delete(key); };
+    setOrDelete('q', qInput.value.trim());
+    setOrDelete('hub', hubSelect.value);
+    setOrDelete('reader', readerSelect.value);
+    setOrDelete('company', companySelect.value);
     const qs = next.toString();
-    const nextUrl = qs ? '/blog/?' + qs : '/blog/';
-    window.history.replaceState(null, '', nextUrl);
+    const nextUrl = window.location.pathname + (qs ? '?' + qs : '') + window.location.hash;
+    if (nextUrl !== window.location.pathname + window.location.search + window.location.hash) {
+      window.history.replaceState(null, '', nextUrl);
+    }
   };
 
   const apply = () => {
