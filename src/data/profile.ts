@@ -145,7 +145,7 @@ export const profile = {
     { label: "Smart-retry recovery", value: "$14M+/mo GTV" },
     { label: "Production AI solutions", value: "4 deployed" },
     { label: "Org built", value: "2 → 50+ people" },
-    { label: "Payment failure rate", value: "8% → 1.2%" },
+    { label: "Straight-through processing", value: "90%" },
     { label: "Token-failure reduction", value: "22%" },
     { label: "Integration time", value: "6 wks → 2 wks" },
     { label: "Payment cost (Tapmad)", value: "50% → 1%" },
@@ -223,7 +223,7 @@ export const profile = {
         "Built full-stack payment infrastructure: card acquiring (MPGS/MDES), wallets, DCB, IBFT, vouchers, bill payments, payout switch, cash-over-counter and cross-border corridors with real-time FX and dynamic corridor pricing.",
         "Designed merchant onboarding with self-service flows, automated KYC/KYB, tiered risk-based approval and category-based pricing, onboarding cut from weeks to hours for standard-risk merchants.",
         "Built fraud and risk infrastructure: transaction monitoring, velocity checks, device fingerprinting, AML/CFT controls, SAR workflows and chargeback management. Fraud loss held below 0.1% of GTV; fraud incidents reduced ~65%.",
-        "Drove authorisation-rate optimisation across acquiring partners: payment failure rate dropped from ~8% to ~1.2% through routing logic, retry orchestration and bank SLA management.",
+        "Drove authorisation-rate optimisation across acquiring partners: 97% payment success at 90% straight-through processing, built on routing logic, retry orchestration and bank SLA management.",
         "Launched BNPL product from 0 to 100K users in 8 months, full risk model, underwriting, repayment flows and collections, shipped through iterative agile discovery.",
         "Led PCI DSS and ISO/IEC 27001 certification from scratch and stood up multi-jurisdiction regulatory reporting.",
         "Built and led a 40-engineer payments organisation across 12 cross-functional squads (mobile, backend, payments, risk, compliance). Managed $5M+ annual technology budget and 15+ vendor relationships.",
@@ -235,7 +235,7 @@ export const profile = {
     {
       company: "Daraz (Alibaba Group)",
       role: "Project Manager, Payments Operations",
-      period: "Mar 2020, Sep 2020",
+      period: "Mar 2020, Aug 2020",
       location: "Karachi, Pakistan",
       bullets: [
         "Ran delivery governance for payment operations across five markets (Pakistan, Bangladesh, Sri Lanka, Nepal, Myanmar) during a COVID-driven volume surge: settlement cycles, dispute resolution, fraud rule configuration and COD-to-digital conversion.",
@@ -247,7 +247,7 @@ export const profile = {
     {
       company: "Tapmad",
       role: "Sr. Project & Product Manager",
-      period: "Jul 2017, May 2020",
+      period: "Jul 2017, Mar 2020",
       location: "Karachi, Pakistan",
       bullets: [
         "Owned product strategy and monetization for Pakistan's leading OTT platform, built the billing infrastructure that turned it from near-zero revenue into a commercially viable business.",

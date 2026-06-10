@@ -202,7 +202,7 @@ const roleLanes = [
     fit: "Payment infrastructure, payment orchestration, cross-border corridors, settlement and reconciliation.",
     proof: [
       "Built regulated rails across local methods, cards, wallets, payout flows, FX and partner routing.",
-      "Improved payment failure from ~8% to ~1.2% and held settlement SLA at 99.95%.",
+      "Held 97% payment success at 90% straight-through processing and a 99.95% settlement SLA.",
       "Worked where compliance, risk, bank partnerships and market operations are part of the product.",
     ],
   },

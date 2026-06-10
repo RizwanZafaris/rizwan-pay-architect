@@ -946,7 +946,7 @@ export const caseStudies: CaseStudy[] = [
     title:
       "MPGS Acquirer Integration Programme: Hosted Session, 3DS2, Tokenisation and the Recurring Stack",
     tagline:
-      "Took a regional acquirer-processor from a single Hosted Checkout flow to a full MPGS surface, Hosted Session, EMV 3DS2 step-up, scheme tokenisation, recurring billing and dispute ingestion, across 1,200+ merchants in three primary markets without a 24-hour outage.",
+      "Took a regional acquirer-processor from a single Hosted Checkout flow to a full MPGS surface, Hosted Session, EMV 3DS2 step-up, scheme tokenisation, recurring billing and dispute ingestion, across a 150+ merchant portfolio in three primary markets without a 24-hour outage.",
     category: "Payment Infrastructure",
     markets: ["UAE", "KSA", "Pakistan"],
     relevantFor: [
@@ -961,7 +961,7 @@ export const caseStudies: CaseStudy[] = [
     metrics: [
       {
         label: "Merchants migrated",
-        value: "1,200+",
+        value: "150+",
       },
       {
         label: "Authorisation rate uplift",
@@ -1007,7 +1007,7 @@ export const caseStudies: CaseStudy[] = [
       },
     ],
     executiveSummary:
-      "Designed and shipped the full MPGS surface for a regional acquirer-processor, moving from a single Hosted Checkout integration into Hosted Session (for branded checkouts), Direct API (for recurring and merchant-of-record flows), EMV 3DS2 step-up tuning, scheme tokenisation, recurring billing, dispute ingestion and merchant-facing settlement reconciliation. Migrated 1,200+ merchants in three primary markets across an 18-month rollout with no 24-hour outage and a +3.4-point portfolio-wide authorisation-rate uplift.",
+      "Designed and shipped the full MPGS surface for a regional acquirer-processor, moving from a single Hosted Checkout integration into Hosted Session (for branded checkouts), Direct API (for recurring and merchant-of-record flows), EMV 3DS2 step-up tuning, scheme tokenisation, recurring billing, dispute ingestion and merchant-facing settlement reconciliation. Migrated the full 150+ merchant portfolio in three primary markets across an 18-month rollout with no 24-hour outage and a +3.4-point portfolio-wide authorisation-rate uplift.",
     problem:
       "The acquirer had launched on MPGS via the standard Hosted Checkout flow and stayed there. The integration was stable, but the platform was locked out of every flow that mattered for premium merchants: branded checkouts, recurring billing, scheme tokenisation, merchant-of-record marketplaces, MIT/CIT differentiation, and structured 3DS2 exemption logic. Authorisation rates lagged the regional benchmark by 3–4 points. Disputes were handled by ops staff opening the scheme portal merchant-by-merchant. Settlement reconciliation was a daily fire drill. The next-quarter scheme mandate on network tokenisation made the gap untenable.",
     built: [
@@ -1038,7 +1038,7 @@ export const caseStudies: CaseStudy[] = [
     role: "Owned the MPGS programme end-to-end as Product & Program lead, integration architecture, merchant-rollout sequencing, scheme-certification path, auth-rate optimisation programme, tokenisation rollout, dispute-product surface, settlement-reconciliation product, and the per-merchant migration governance. Direct accountability for portfolio auth rate, dispute cycle time, settlement break rate and scheme-certification posture.",
     impact: [
       "Lifted portfolio-wide authorisation rate by +3.4 points across the 18-month programme, driven by 3DS2 exemption tuning, BIN-routing optimisation, and tokenisation lift",
-      "Migrated 1,200+ merchants from Hosted Checkout to the appropriate MPGS integration mode without a single 24-hour outage",
+      "Migrated 150+ merchants from Hosted Checkout to the appropriate MPGS integration mode without a single 24-hour outage",
       "Reached 92% network-tokenisation coverage on card-on-file merchants ahead of the regional scheme deadline",
       "Compressed median dispute cycle time from 21 days to 12 days through ingestion + merchant evidence-upload portal",
       "Held settlement break rate below 0.04% throughout the rollout, including across the tokenisation migration window",
@@ -1077,7 +1077,7 @@ export const caseStudies: CaseStudy[] = [
     title:
       "MDES + VTS Network Tokenisation Rollout: 92% Coverage and the Auth-Rate Lift That Pays For Itself",
     tagline:
-      "Migrated 1,200+ merchants from PAN-on-file to scheme-token credentials across MDES (Mastercard) and VTS (Visa), replaced three vault providers, rewired the recurring engine, and lifted post-tokenisation authorisation rate by 1.8 points portfolio-wide.",
+      "Migrated 150+ merchants from PAN-on-file to scheme-token credentials across MDES (Mastercard) and VTS (Visa), replaced three vault providers, rewired the recurring engine, and lifted post-tokenisation authorisation rate by 1.8 points portfolio-wide.",
     category: "Payment Infrastructure",
     markets: ["UAE", "KSA", "Pakistan"],
     relevantFor: [
@@ -1093,7 +1093,7 @@ export const caseStudies: CaseStudy[] = [
     metrics: [
       {
         label: "Card-on-file merchants migrated",
-        value: "1,200+",
+        value: "150+",
       },
       {
         label: "Token coverage on CoF traffic",
@@ -1139,9 +1139,9 @@ export const caseStudies: CaseStudy[] = [
       },
     ],
     executiveSummary:
-      "Designed and shipped the network-tokenisation programme for a regional acquirer-processor, replacing PAN-on-file storage with scheme-issued tokens via MDES (Mastercard Digital Enablement Service) and VTS (Visa Token Service). Migrated 1,200+ card-on-file merchants across three primary markets, retired three legacy vault providers in favour of a single in-house token broker, and rewired the recurring billing engine around token lifecycle. Delivered +1.8 points portfolio-wide authorisation-rate lift and a 91% reduction in PAN footprint without a single sev-1 or sev-2 incident through the cutover window.",
+      "Designed and shipped the network-tokenisation programme for a regional acquirer-processor, replacing PAN-on-file storage with scheme-issued tokens via MDES (Mastercard Digital Enablement Service) and VTS (Visa Token Service). Migrated 150+ card-on-file merchants across three primary markets, retired three legacy vault providers in favour of a single in-house token broker, and rewired the recurring billing engine around token lifecycle. Delivered +1.8 points portfolio-wide authorisation-rate lift and a 91% reduction in PAN footprint without a single sev-1 or sev-2 incident through the cutover window.",
     problem:
-      "The acquirer carried PAN-on-file across three separate vault providers accumulated over five years of acquisitions and partnerships. Every reissuance event broke a merchant relationship: subscriptions failed silently, account-updater coverage was patchy, and the dispute team was losing Compelling Evidence 3.0 (CE3.0)-eligible disputes because the cardholder identity link was broken across reissuance. PCI scope across three vaults was tripling the audit cost. The next-quarter scheme push on mandatory tokenisation for card-on-file merchants made the gap untenable. The team needed a complete migration with no merchant-visible failure, on a portfolio crossing 1,200 active merchants and ~14M token-able credentials.",
+      "The acquirer carried PAN-on-file across three separate vault providers accumulated over five years of acquisitions and partnerships. Every reissuance event broke a merchant relationship: subscriptions failed silently, account-updater coverage was patchy, and the dispute team was losing Compelling Evidence 3.0 (CE3.0)-eligible disputes because the cardholder identity link was broken across reissuance. PCI scope across three vaults was tripling the audit cost. The next-quarter scheme push on mandatory tokenisation for card-on-file merchants made the gap untenable. The team needed a complete migration with no merchant-visible failure, on a portfolio of 150+ active merchants and ~14M token-able credentials.",
     built: [
       "Single in-house token broker: one service owns MDES + VTS lifecycle, exposes a stable internal API to every merchant integration",
       "Token-state engine: every credential has a state (active, suspended, reissued, deleted) updated from MDES / VTS lifecycle webhooks in real time",
@@ -1167,7 +1167,7 @@ export const caseStudies: CaseStudy[] = [
     ],
     role: "Owned the tokenisation programme end-to-end as Product & Program lead, token broker architecture, lifecycle event design, per-merchant migration governance, recurring-engine rewrite, vault decommissioning sequence, scheme certification, and the auth-rate measurement programme. Direct accountability for migration cadence, post-migration auth-rate delta, PCI scope reduction, and zero-incident cutover record.",
     impact: [
-      "Migrated 1,200+ card-on-file merchants from PAN storage to scheme tokens across three markets in 14 months",
+      "Migrated 150+ card-on-file merchants from PAN storage to scheme tokens across three markets in 14 months",
       "Reached 92% network-tokenisation coverage on card-on-file traffic, ahead of the scheme deadline",
       "Lifted portfolio-wide authorisation rate by +1.8 points on tokenised traffic, with the largest lift on iOS Safari + cross-border combinations (+3–4 pts)",
       "Reduced PCI PAN footprint by 91%, three vault providers retired, single in-house broker stood up",

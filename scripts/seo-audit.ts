@@ -304,6 +304,8 @@ const BANNED_CLAIM_PATTERNS: { label: string; re: RegExp }[] = [
   { label: "50+ bank, wallet", re: /50\+ bank, wallet/ },
   { label: "Business Insider", re: /Business Insider/ },
   { label: "BIT25", re: /BIT25/ },
+  { label: "1,200+ merchants", re: /1,200\+/ },
+  { label: "8%->1.2% failure framing", re: /8% to ~?1\.2%/ },
 ];
 // The claim gate also covers the AI-engine trust surfaces — a regenerator
 // regression in llms*.txt or feed.xml must fail the build, not ship silently.
