@@ -5,15 +5,19 @@ import { absUrl, SITE_URL } from "@/lib/seo";
 import { ctaClick, outboundClick, trackEvent } from "@/lib/analytics";
 import { SocialCardList } from "@/components/SocialIcons";
 
-// Web3Forms-compatible endpoint. Set VITE_CONTACT_ACCESS_KEY in your environment
-// to enable server-side submission. When unset the form falls back to mailto:.
+// Web3Forms-compatible endpoint. The access key is PUBLIC BY DESIGN (Web3Forms
+// keys ship in the form's hidden input either way — same trust class as the
+// GTM/GA/Ads ids hardcoded in seo.ts). Override with VITE_CONTACT_ACCESS_KEY;
+// set it to "" to force the mailto: fallback.
 //   - Web3Forms (free, no sign-up email): https://web3forms.com
 //   - Compatible: Formspree, Getform, FormSubmit, adjust ENDPOINT + payload as needed
+const DEFAULT_CONTACT_ACCESS_KEY = "011f7e03-1cb4-446d-b53b-1829dfbf3a05";
 type ContactEnv = { VITE_CONTACT_ACCESS_KEY?: string };
 const CONTACT_ACCESS_KEY: string =
-  (typeof import.meta !== "undefined"
-    ? ((import.meta as ImportMeta & { env?: ContactEnv }).env?.VITE_CONTACT_ACCESS_KEY ?? "")
-    : "") || "";
+  typeof import.meta !== "undefined"
+    ? ((import.meta as ImportMeta & { env?: ContactEnv }).env?.VITE_CONTACT_ACCESS_KEY ??
+      DEFAULT_CONTACT_ACCESS_KEY)
+    : DEFAULT_CONTACT_ACCESS_KEY;
 const CONTACT_ENDPOINT = "https://api.web3forms.com/submit";
 const CONTACT_MAILTO_ACTION = `mailto:${profile.email}?subject=${encodeURIComponent(
   "Inbound from rzifi.com contact form",

@@ -166,9 +166,15 @@ function HomePage() {
             </div>
 
             <h1 className="font-instrument tracking-tight leading-[1.05] text-[28px] sm:text-[36px] md:text-[42px] lg:text-[50px] text-ink">
-              <span className="block">Product &amp; Program Executive</span>
+              {/* sr-only spaces keep the H1 extracting as readable text for
+                  screen readers and AI crawlers — block spans alone concatenate
+                  into "ExecutiveScaling…" (same fix as the resume H1). */}
+              <span className="block">
+                Product &amp; Program Executive<span className="sr-only"> </span>
+              </span>
               <span className="block">
                 Scaling <span className="italic text-[var(--brand)]">Fintech Infrastructure</span>
+                <span className="sr-only"> </span>
               </span>
               <span className="block">
                 in{" "}

@@ -221,7 +221,7 @@ for (const cluster of clusters) {
         secondaryKeywords: [topic, lens, ...cluster.keywords].slice(0, 8),
         targetReader: cluster.audience,
         whyRizwanCanWin:
-          "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across seven markets, $1B+ GTV, 25M+ monthly transactions, 50+ bank/wallet/FI partners and product/program leadership across payments, OTT and ecommerce.",
+          "Rizwan can write this with first-hand credibility from scaling regulated payment infrastructure across 5 frontier markets to $1B+ annual GTV and 270M+ payments a year, with product/program leadership across payments, OTT and ecommerce.",
         outline: [
           `Define ${topic} and the decision context`,
           "Show where it sits in the payment/product/program stack",

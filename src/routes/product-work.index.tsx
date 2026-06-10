@@ -143,11 +143,17 @@ const PW_FILTER_SCRIPT = `
     }
     if (countEl) countEl.textContent = String(count);
     if (emptyEl) emptyEl.hidden = count !== 0;
-    const next = new URLSearchParams();
-    if (company) next.set('company', company);
-    if (theme) next.set('theme', theme);
+    // Merge into the existing query (preserving utm_*/click-ids for the
+    // cal.com forwarder and analytics) and keep the hash; no-op when the
+    // URL is already correct so the initial apply() never rewrites history.
+    const next = new URLSearchParams(window.location.search);
+    if (company) next.set('company', company); else next.delete('company');
+    if (theme) next.set('theme', theme); else next.delete('theme');
     const qs = next.toString();
-    window.history.replaceState(null, '', qs ? '/product-work/?' + qs : '/product-work/');
+    const nextUrl = window.location.pathname + (qs ? '?' + qs : '') + window.location.hash;
+    if (nextUrl !== window.location.pathname + window.location.search + window.location.hash) {
+      window.history.replaceState(null, '', nextUrl);
+    }
   };
 
   companySel.addEventListener('change', apply);
@@ -243,7 +249,9 @@ function ProductWorkIndex() {
                   <span className="text-[10px] font-medium uppercase tracking-[0.14em] text-[var(--accent-emerald)] font-mono-tech sm:tracking-[0.18em]">
                     {c.category}
                   </span>
-                  <span className="font-mono-tech text-xs text-ink-soft">/0{i + 1}</span>
+                  <span className="font-mono-tech text-xs text-ink-soft">
+                    /{String(i + 1).padStart(2, "0")}
+                  </span>
                 </div>
                 <h2 className="mt-2 break-words font-instrument text-[1.6rem] leading-[1.08] text-ink transition-colors group-hover:text-[var(--brand)] sm:text-2xl">
                   {c.title}

@@ -292,19 +292,29 @@ for (const file of htmlFiles) auditHtml(file);
 // explicitly disavowed. Any HTML or the resume PDF containing one of these
 // fails the build — internally inconsistent numbers are an entity-trust
 // defect for both recruiters and AI engines.
-const BANNED_CLAIMS = [
-  "25M+",
-  "25M+ monthly",
-  "7 markets",
-  "50+ partners",
-  "50+ bank, wallet",
-  "Business Insider",
-  "BIT25",
+// Patterns, not bare substrings: "(?<!\$)25M\+" so a legitimate future
+// "$25M+ budget" doesn't false-positive, while "25M+ monthly transactions"
+// stays caught. Add new retired claims here as regexes.
+const BANNED_CLAIM_PATTERNS: { label: string; re: RegExp }[] = [
+  { label: "25M+", re: /(?<!\$)25M\+/ },
+  { label: "7 markets", re: /\b7 markets\b/ },
+  { label: "50+ partners", re: /50\+ partners/ },
+  { label: "50+ bank, wallet", re: /50\+ bank, wallet/ },
+  { label: "Business Insider", re: /Business Insider/ },
+  { label: "BIT25", re: /BIT25/ },
 ];
-for (const file of htmlFiles) {
+// The claim gate also covers the AI-engine trust surfaces — a regenerator
+// regression in llms*.txt or feed.xml must fail the build, not ship silently.
+const claimScanFiles = [
+  ...htmlFiles,
+  ...["llms.txt", "llms-full.txt", "feed.xml"]
+    .map((f) => join(ROOT, f))
+    .filter((f) => existsSync(f)),
+];
+for (const file of claimScanFiles) {
   const body = readFileSync(file, "utf-8");
-  for (const claim of BANNED_CLAIMS) {
-    if (body.includes(claim)) fail(file, "banned_claim", `contains retired claim "${claim}"`);
+  for (const { label, re } of BANNED_CLAIM_PATTERNS) {
+    if (re.test(body)) fail(file, "banned_claim", `contains retired claim "${label}"`);
   }
 }
 const resumePdf = join(ROOT, "Rizwan_Zafar_Resume.pdf");

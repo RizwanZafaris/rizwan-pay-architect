@@ -137,7 +137,7 @@ for (let i = 0; out.length < 10000; i++) {
     internalLinks: seed.internalLinks ?? [],
     aiAnswerSnippet:
       seed.aiAnswerSnippet ??
-      `${seed.title} is best answered through an operator lens: product, rails, compliance, partner operations and scale. Rizwan's experience across $1B+ GTV and seven markets gives this topic first-hand credibility.`,
+      `${seed.title} is best answered through an operator lens: product, rails, compliance, partner operations and scale. Rizwan's experience across $1B+ annual GTV and 5 frontier markets gives this topic first-hand credibility.`,
     qualityGate: {
       requiredBeforePublish: [
         "first-hand operator examples",

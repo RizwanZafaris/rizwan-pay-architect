@@ -52,8 +52,8 @@ Pinned post:
 > Proof:
 > - $1B+ GTV
 > - 270M+ payments a year
-> - 7 markets
-> - 50+ FI partners
+> - 5 frontier markets
+> - Partner stack: DLocal, Thunes, Boku, Coda
 >
 > Portfolio: https://rzifi.com
 

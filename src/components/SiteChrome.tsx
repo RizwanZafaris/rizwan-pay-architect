@@ -52,6 +52,11 @@ const MOBILE_MENU_SCRIPT = `(() => {
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && !root.hidden) setOpen(false);
   });
+  // Resizing/rotating past the lg breakpoint hides trigger+panel via CSS;
+  // close properly so body scroll-lock doesn't survive into desktop layout.
+  const mq = window.matchMedia('(min-width: 1024px)');
+  const onMq = () => { if (mq.matches && !root.hidden) setOpen(false); };
+  if (mq.addEventListener) mq.addEventListener('change', onMq);
 })();`;
 
 export function SiteHeader() {
@@ -145,7 +150,7 @@ export function SiteHeader() {
           id="mobile-menu"
           role="dialog"
           aria-label="Site menu"
-          className="fixed inset-x-3 top-20 z-50 lg:hidden rounded-2xl border border-ink/10 bg-background shadow-xl p-4"
+          className="fixed inset-x-3 top-20 z-50 lg:hidden max-h-[calc(100dvh-6rem)] overflow-y-auto rounded-2xl border border-ink/10 bg-background shadow-xl p-4"
         >
           <div className="flex items-center justify-between mb-2">
             <span className="text-[10px] uppercase tracking-[0.22em] text-ink-soft font-mono-tech">
