@@ -10,14 +10,14 @@ Goal: improve off-page authority for `https://rzifi.com` through real profession
 
 Short version:
 
-> Rizwan Zafar is a Dubai-based payments product and program executive who has helped scale regulated payment infrastructure across 7 markets, $1B+ GTV, 25M+ monthly transactions, and 50+ bank, wallet and financial institution partners.
+> Rizwan Zafar is a Dubai-based payments product and program executive who has helped scale regulated payment infrastructure across 5 frontier markets to $1B+ annual GTV and 270M+ payments a year at a 99.95% settlement SLA.
 
 Proof points:
 
 - $1B+ GTV / TPV
-- 25M+ monthly transactions
+- 270M+ payments a year
 - 7 markets across MENA and South Asia
-- 50+ bank, wallet and FI partners
+- Local infrastructure partner for DLocal, Thunes, Boku and Coda Payments
 - CPO at Simpaisa, Dubai
 - Product, program, payments, fintech infrastructure and digital transformation
 - PCI DSS and ISO/IEC 27001 program leadership

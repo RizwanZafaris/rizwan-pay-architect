@@ -138,7 +138,7 @@ Before you commit to an LLM for a payments problem, run it through these five qu
 1. **Is the input primarily text or unstructured?** If your inputs are 30 numeric features in a JSON, the answer is no.
 2. **Is the output text or freeform?** If the output is approve / decline / a probability, the answer is no.
 3. **Is "almost right" acceptable?** In fraud or credit, it's not. Each wrong decision has a defined dollar cost.
-4. **Is the per-call cost economically tolerable?** At 25M+ transactions/month, even $0.001/call is $25K/month. At LLM rates ($0.01–$0.10 per call), the math collapses.
+4. **Is the per-call cost economically tolerable?** At 270M+ transactions a year, even $0.001/call is $270K a year. At LLM rates ($0.01–$0.10 per call), the math collapses.
 5. **Can you afford 500ms+ of latency?** Most payment decisions can't.
 
 If you said "no" to two or more, you have a classical ML problem. Build it that way.

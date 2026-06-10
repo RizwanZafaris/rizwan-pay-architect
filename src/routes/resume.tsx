@@ -84,10 +84,10 @@ const googleAdsResumeConversionScript = GOOGLE_ADS_PAGE_VIEW_CONVERSION_SEND_TO
   : "";
 
 const proofMetrics = [
-  { value: "$1B+", label: "GTV / TPV scaled" },
-  { value: "25M+", label: "Monthly transactions" },
-  { value: "7", label: "Complex markets" },
-  { value: "50+", label: "Bank, wallet & FI partners" },
+  { value: "$1B+", label: "Annual GTV" },
+  { value: "270M+", label: "Payments a year" },
+  { value: "5", label: "Frontier markets" },
+  { value: "99.95%", label: "Settlement SLA" },
   { value: "40+", label: "Engineers led" },
   { value: "4", label: "Production AI deployments" },
 ] as const;

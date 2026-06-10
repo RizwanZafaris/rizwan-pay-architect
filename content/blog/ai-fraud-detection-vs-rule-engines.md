@@ -48,7 +48,7 @@ This is a field comparison from running both at $1B+ GTV across cards, wallets, 
 ## Where ML wins
 
 - **Novel attack detection.** Pattern combinations no analyst would have thought to write a rule for.
-- **Coverage at scale.** A model can score 25M+ monthly transactions on 50+ features in real time. Rules can't combine that many signals.
+- **Coverage at scale.** A model can score 270M+ transactions a year on 50+ features in real time. Rules can't combine that many signals.
 - **Tuning under volume.** ML can re-tune from feedback. Rules require human re-tuning.
 - **Cohort sensitivity.** Different merchant cohorts get different scoring without writing per-cohort rules.
 

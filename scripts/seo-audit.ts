@@ -286,8 +286,104 @@ const htmlFiles = walk(ROOT).filter(
 );
 for (const file of htmlFiles) auditHtml(file);
 
+// ─── Banned claims ──────────────────────────────────────────────────────
+// Retired metric framings (the canonical fact base is $1B+ annual GTV,
+// 270M+ payments/year, 5 frontier markets) and claims the owner has
+// explicitly disavowed. Any HTML or the resume PDF containing one of these
+// fails the build — internally inconsistent numbers are an entity-trust
+// defect for both recruiters and AI engines.
+const BANNED_CLAIMS = [
+  "25M+",
+  "25M+ monthly",
+  "7 markets",
+  "50+ partners",
+  "50+ bank, wallet",
+  "Business Insider",
+  "BIT25",
+];
+for (const file of htmlFiles) {
+  const body = readFileSync(file, "utf-8");
+  for (const claim of BANNED_CLAIMS) {
+    if (body.includes(claim)) fail(file, "banned_claim", `contains retired claim "${claim}"`);
+  }
+}
+const resumePdf = join(ROOT, "Rizwan_Zafar_Resume.pdf");
+if (existsSync(resumePdf)) {
+  // Inflate the PDF's Flate-compressed content streams so the text is
+  // checkable regardless of how the PDF was produced (Word leaves text raw,
+  // reportlab compresses it). Then assert canonical facts present and the
+  // retired/stub claims absent.
+  const { inflateSync } = await import("node:zlib");
+  // PDF-flavoured ASCII85 (reportlab emits /ASCII85Decode + /FlateDecode).
+  const ascii85Decode = (s: string): Buffer => {
+    s = s.replace(/\s/g, "").replace(/~>$/, "");
+    const out: number[] = [];
+    let tuple = 0;
+    let count = 0;
+    for (const ch of s) {
+      if (ch === "z" && count === 0) {
+        out.push(0, 0, 0, 0);
+        continue;
+      }
+      const v = ch.charCodeAt(0) - 33;
+      if (v < 0 || v > 84) continue;
+      tuple = tuple * 85 + v;
+      count++;
+      if (count === 5) {
+        out.push((tuple >>> 24) & 255, (tuple >>> 16) & 255, (tuple >>> 8) & 255, tuple & 255);
+        tuple = 0;
+        count = 0;
+      }
+    }
+    if (count > 0) {
+      for (let i = count; i < 5; i++) tuple = tuple * 85 + 84;
+      const bytes = [(tuple >>> 24) & 255, (tuple >>> 16) & 255, (tuple >>> 8) & 255, tuple & 255];
+      out.push(...bytes.slice(0, count - 1));
+    }
+    return Buffer.from(out);
+  };
+  const rawBuf = readFileSync(resumePdf);
+  const raw = rawBuf.toString("latin1");
+  let text = raw;
+  const streamRe = /stream\r?\n/g;
+  let m: RegExpExecArray | null;
+  while ((m = streamRe.exec(raw)) !== null) {
+    const start = m.index + m[0].length;
+    const end = raw.indexOf("endstream", start);
+    if (end === -1) continue;
+    const seg = rawBuf.subarray(start, end);
+    try {
+      text += inflateSync(seg).toString("latin1");
+    } catch {
+      try {
+        text += inflateSync(ascii85Decode(seg.toString("latin1"))).toString("latin1");
+      } catch {
+        // neither plain Flate nor ASCII85+Flate (image/font stream) — skip
+      }
+    }
+  }
+  // PDF text operators put parens/escapes between glyph runs; strip the
+  // common noise so substring checks behave.
+  const flat = text.replace(/[()\\]/g, "").replace(/\s+/g, " ");
+  for (const claim of ["lovable.app", "25M+", "7 markets", "Business Insider", "BIT25"]) {
+    if (flat.includes(claim)) fail(resumePdf, "banned_claim", `PDF contains "${claim}"`);
+  }
+  // Kerning (TJ arrays) can split a string mid-run with adjustment integers —
+  // e.g. `(rzif)-3(i.com)` — so the domain marker is matched on a letters-only
+  // collapse (kerning digits stripped), and the volume marker on the flat text.
+  const lettersOnly = flat.toLowerCase().replace(/[^a-z]/g, "");
+  if (!lettersOnly.includes("rzificom")) {
+    fail(resumePdf, "banned_claim", `PDF is missing canonical marker "rzifi.com"`);
+  }
+  const alphaNum = flat.toLowerCase().replace(/[^a-z0-9]/g, "");
+  if (!alphaNum.includes("270m")) {
+    fail(resumePdf, "banned_claim", `PDF is missing canonical marker "270M"`);
+  }
+}
+
 // ─── Report ─────────────────────────────────────────────────────────────
 const checks = [
+  "banned_claim",
   "old_domain",
   "dev_leak",
   "canonical_missing",

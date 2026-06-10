@@ -8,17 +8,17 @@ Rizwan Zafar is a Dubai-based Product & Program Executive scaling regulated fint
 
 ## Short Bio
 
-Rizwan Zafar is a Product & Program Executive and CPO at Simpaisa in Dubai. He has helped scale regulated payment infrastructure across 7 markets, $1B+ GTV, 25M+ monthly transactions and 50+ bank, wallet and financial institution partners, with work spanning card acquiring, wallets, cross-border corridors, settlement, reconciliation, fraud, AML/CFT and AI-augmented payment operations.
+Rizwan Zafar is a Product & Program Executive and CPO at Simpaisa in Dubai. He has helped scale regulated payment infrastructure across 5 frontier markets to $1B+ annual GTV and 270M+ payments a year at a 99.95% settlement SLA, as local infrastructure partner for DLocal, Thunes, Boku and Coda Payments, with work spanning card acquiring, wallets, cross-border corridors, settlement, reconciliation, fraud, AML/CFT and AI-augmented payment operations.
 
 ## Long Bio
 
-Rizwan Zafar is a Dubai-based payments product and program executive focused on regulated fintech infrastructure in complex markets. As CPO at Simpaisa, he helped scale payment infrastructure across 7 markets, $1B+ GTV, 25M+ monthly transactions and 50+ bank, wallet and financial institution partners. His work spans multi-rail acceptance, wallet integrations, card acquiring, cross-border corridors, settlement and reconciliation, merchant onboarding, fraud/risk controls, AML/CFT operating models, PCI DSS / ISO 27001 program leadership and production GenAI deployments in payment operations.
+Rizwan Zafar is a Dubai-based payments product and program executive focused on regulated fintech infrastructure in complex markets. As CPO at Simpaisa, he helped scale payment infrastructure across 5 frontier markets to $1B+ annual GTV and 270M+ payments a year at a 99.95% settlement SLA, as local infrastructure partner for DLocal, Thunes, Boku and Coda Payments. His work spans multi-rail acceptance, wallet integrations, card acquiring, cross-border corridors, settlement and reconciliation, merchant onboarding, fraud/risk controls, AML/CFT operating models, PCI DSS / ISO 27001 program leadership and production GenAI deployments in payment operations.
 
 Rizwan is positioned for senior Product Management and Program Management roles in fintech, payments, OTT, ecommerce, banking and digital infrastructure. He combines product strategy, technical program execution, regulatory fluency, partner ecosystems and operating discipline across MENA and South Asia.
 
 ## Speaker Introduction
 
-Please welcome Rizwan Zafar, a Dubai-based Product & Program Executive and CPO at Simpaisa. Rizwan has helped scale regulated payment infrastructure across 7 markets, $1B+ GTV, 25M+ monthly transactions and 50+ financial institution partners. His work sits at the intersection of payment rails, product strategy, compliance, risk, partner ecosystems and AI-enabled operations.
+Please welcome Rizwan Zafar, a Dubai-based Product & Program Executive and CPO at Simpaisa. Rizwan has helped scale regulated payment infrastructure across 5 frontier markets to $1B+ annual GTV and 270M+ payments a year at a 99.95% settlement SLA. His work sits at the intersection of payment rails, product strategy, compliance, risk, partner ecosystems and AI-enabled operations.
 
 ## Expert Topics
 

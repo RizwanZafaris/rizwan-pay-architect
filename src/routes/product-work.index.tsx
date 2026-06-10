@@ -1,7 +1,6 @@
-import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { zodValidator, fallback } from "@tanstack/zod-adapter";
 import { z } from "zod";
-import { useMemo } from "react";
 import { caseStudies, caseStudyThumb, type CaseStudy } from "@/data/caseStudies";
 import { compactMetricValue } from "@/lib/case-study-ui";
 import { absUrl } from "@/lib/seo";
@@ -103,29 +102,70 @@ const THEME_RULES: { id: string; label: string; match: (c: CaseStudy) => boolean
   },
 ];
 
-function ProductWorkIndex() {
-  const { company, theme } = Route.useSearch();
-  const navigate = useNavigate({ from: "/product-work" });
+// Static derivations — all cards prerender and PW_FILTER_SCRIPT (inline
+// vanilla, same pattern as the blog filter) hides non-matching ones. Do not
+// move filtering into React state: production ships no React runtime.
+const companies = Array.from(new Set(caseStudies.flatMap((c) => c.relevantFor ?? []))).sort();
+const themes = THEME_RULES.filter((t) => caseStudies.some((c) => t.match(c)));
+const themeIdsFor = (c: CaseStudy) =>
+  THEME_RULES.filter((t) => t.match(c))
+    .map((t) => t.id)
+    .join("|");
 
-  const companies = useMemo(
-    () => Array.from(new Set(caseStudies.flatMap((c) => c.relevantFor ?? []))).sort(),
-    [],
-  );
-  const themes = useMemo(() => THEME_RULES.filter((t) => caseStudies.some((c) => t.match(c))), []);
+const PW_FILTER_SCRIPT = `
+(() => {
+  if (window.__rzPwFilterBound) return;
+  window.__rzPwFilterBound = true;
 
-  const filtered = useMemo(() => {
-    return caseStudies.filter((c) => {
-      if (company && !(c.relevantFor ?? []).includes(company)) return false;
-      if (theme) {
-        const rule = THEME_RULES.find((t) => t.id === theme);
-        if (rule && !rule.match(c)) return false;
-      }
-      return true;
+  const companySel = document.querySelector('#pw-company');
+  const themeSel = document.querySelector('#pw-theme');
+  const results = Array.from(document.querySelectorAll('[data-pw-result]'));
+  if (!companySel || !themeSel || results.length === 0) return;
+  const countEl = document.querySelector('[data-pw-count]');
+  const emptyEl = document.querySelector('[data-pw-empty]');
+
+  const params = new URLSearchParams(window.location.search);
+  companySel.value = params.get('company') || '';
+  themeSel.value = params.get('theme') || '';
+
+  const hasToken = (value, selected) => !selected || (value || '').split('|').includes(selected);
+
+  const apply = () => {
+    const company = companySel.value;
+    const theme = themeSel.value;
+    let count = 0;
+    for (const el of results) {
+      const matches =
+        hasToken(el.getAttribute('data-pw-companies'), company) &&
+        hasToken(el.getAttribute('data-pw-themes'), theme);
+      el.hidden = !matches;
+      if (matches) count++;
+    }
+    if (countEl) countEl.textContent = String(count);
+    if (emptyEl) emptyEl.hidden = count !== 0;
+    const next = new URLSearchParams();
+    if (company) next.set('company', company);
+    if (theme) next.set('theme', theme);
+    const qs = next.toString();
+    window.history.replaceState(null, '', qs ? '/product-work/?' + qs : '/product-work/');
+  };
+
+  companySel.addEventListener('change', apply);
+  themeSel.addEventListener('change', apply);
+  document.querySelectorAll('[data-pw-clear]').forEach((btn) => {
+    btn.addEventListener('click', (event) => {
+      event.preventDefault();
+      companySel.value = '';
+      themeSel.value = '';
+      apply();
     });
-  }, [company, theme]);
+  });
 
-  const hasFilters = Boolean(company || theme);
+  apply();
+})();
+`;
 
+function ProductWorkIndex() {
   return (
     <div className="mx-auto max-w-6xl overflow-x-clip px-4 py-12 sm:px-6 sm:py-20">
       <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--accent-emerald)] font-mono-tech">
@@ -142,60 +182,47 @@ function ProductWorkIndex() {
 
       {/* Filters */}
       <div className="mt-8 grid gap-4 rounded-2xl border border-rule bg-surface p-4 sm:mt-10 sm:grid-cols-2 sm:p-5">
-        <FilterSelect
-          id="pw-company"
-          label="Relevant company"
-          value={company}
-          onChange={(v) =>
-            navigate({ search: (p: Record<string, unknown>) => ({ ...p, company: v }) })
-          }
-          options={companies}
-        />
+        <FilterSelect id="pw-company" label="Relevant company" options={companies} />
         <FilterSelect
           id="pw-theme"
           label="Compliance theme"
-          value={theme}
-          onChange={(v) =>
-            navigate({ search: (p: Record<string, unknown>) => ({ ...p, theme: v }) })
-          }
           options={themes.map((t) => ({ value: t.id, label: t.label }))}
         />
       </div>
 
       <div className="mt-4 flex flex-wrap items-center justify-between gap-3 text-xs font-mono-tech text-ink-soft">
         <span aria-live="polite">
-          Showing {filtered.length} of {caseStudies.length} case{" "}
+          Showing <span data-pw-count>{caseStudies.length}</span> of {caseStudies.length} case{" "}
           {caseStudies.length === 1 ? "study" : "studies"}
         </span>
-        {hasFilters && (
-          <button
-            type="button"
-            onClick={() => navigate({ search: { company: "", theme: "" } })}
-            className="uppercase tracking-[0.18em] text-ink hover:text-[var(--brand)] focus:outline-none focus-visible:ring-2 focus-visible:ring-ink/40 rounded"
-          >
-            Clear filters
-          </button>
-        )}
+        <button
+          type="button"
+          data-pw-clear
+          className="uppercase tracking-[0.18em] text-ink hover:text-[var(--brand)] focus:outline-none focus-visible:ring-2 focus-visible:ring-ink/40 rounded"
+        >
+          Clear filters
+        </button>
       </div>
 
       <div className="mt-8 grid gap-5">
-        {filtered.length === 0 && (
-          <div className="rounded-2xl border border-dashed border-rule p-10 text-center text-ink-soft">
-            No case studies match those filters.{" "}
-            <button
-              type="button"
-              onClick={() => navigate({ search: { company: "", theme: "" } })}
-              className="underline text-ink hover:text-[var(--brand)]"
-            >
-              Clear filters
-            </button>
-          </div>
-        )}
-        {filtered.map((c, i) => (
+        <div
+          hidden
+          data-pw-empty
+          className="rounded-2xl border border-dashed border-rule p-10 text-center text-ink-soft"
+        >
+          No case studies match those filters.{" "}
+          <button type="button" data-pw-clear className="underline text-ink hover:text-[var(--brand)]">
+            Clear filters
+          </button>
+        </div>
+        {caseStudies.map((c, i) => (
           <Link
             key={c.slug}
             to="/product-work/$slug"
             params={{ slug: c.slug }}
+            data-pw-result
+            data-pw-companies={(c.relevantFor ?? []).join("|")}
+            data-pw-themes={themeIdsFor(c)}
             className="case-study-card group grid min-w-0 items-stretch overflow-hidden rounded-2xl border border-ink/10 bg-surface transition-all duration-200 hover:border-ink/30 lg:grid-cols-12"
           >
             {/* Abstract symbolic thumb — Higgsfield-generated, brand-coherent. */}
@@ -256,6 +283,7 @@ function ProductWorkIndex() {
           </Link>
         ))}
       </div>
+      <script dangerouslySetInnerHTML={{ __html: PW_FILTER_SCRIPT }} />
     </div>
   );
 }
@@ -270,16 +298,13 @@ function cardSummary(text: string) {
 function FilterSelect({
   id,
   label,
-  value,
-  onChange,
   options,
 }: {
   id: string;
   label: string;
-  value: string;
-  onChange: (v: string) => void;
   options: Option[];
 }) {
+  // Uncontrolled on purpose: PW_FILTER_SCRIPT owns the value in production.
   return (
     <div className="block">
       <label
@@ -292,8 +317,7 @@ function FilterSelect({
         id={id}
         name={id}
         aria-label={label}
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
+        defaultValue=""
         className="mt-2 w-full rounded-lg border border-rule bg-surface px-3 py-2.5 text-sm text-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-ink/40 focus:border-ink/60"
       >
         <option value="">All</option>

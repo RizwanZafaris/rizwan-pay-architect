@@ -1,6 +1,5 @@
-import { Link, useRouterState } from "@tanstack/react-router";
+import { Link } from "@tanstack/react-router";
 import { CalendarDays, Download } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
 import { profile } from "@/data/profile";
 import { ctaClick, outboundClick, resumeDownload } from "@/lib/analytics";
 import { SocialIconRow } from "@/components/SocialIcons";
@@ -27,61 +26,35 @@ const currentYearScript = `(() => {
   });
 })();`;
 
+// The static production build ships no React runtime, so the menu is wired by
+// this inline vanilla script (same pattern as the blog filter and year stamp):
+// the panel prerenders with `hidden` and the script toggles it. Do not move
+// this behavior into useState — component state never runs in production.
+const MOBILE_MENU_SCRIPT = `(() => {
+  if (window.__rzMenuBound) return; window.__rzMenuBound = true;
+  const root = document.querySelector('[data-mobile-menu-root]');
+  const trigger = document.querySelector('[data-mobile-menu-trigger]');
+  if (!root || !trigger) return;
+  const setOpen = (open) => {
+    root.hidden = !open;
+    trigger.setAttribute('aria-expanded', String(open));
+    document.body.style.overflow = open ? 'hidden' : '';
+    const target = open ? root.querySelector('[data-mobile-menu-close]') : trigger;
+    if (target && target.focus) target.focus();
+  };
+  trigger.addEventListener('click', () => setOpen(root.hidden));
+  root.addEventListener('click', (e) => {
+    const t = e.target;
+    if (!(t instanceof Element)) return;
+    if (t.closest('[data-mobile-menu-close],[data-mobile-menu-backdrop]')) { setOpen(false); return; }
+    if (t.closest('a')) setOpen(false);
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !root.hidden) setOpen(false);
+  });
+})();`;
+
 export function SiteHeader() {
-  const [open, setOpen] = useState(false);
-  const panelRef = useRef<HTMLDivElement>(null);
-  const triggerRef = useRef<HTMLButtonElement>(null);
-  const closeBtnRef = useRef<HTMLButtonElement>(null);
-  const { location } = useRouterState();
-
-  // Close on route change
-  useEffect(() => {
-    setOpen(false);
-  }, [location.pathname]);
-
-  // Esc + focus trap + inert main on open
-  useEffect(() => {
-    if (!open) return;
-    document.body.style.overflow = "hidden";
-
-    // Inert main + footer so underlying links aren't tabbable while menu is open
-    const inertTargets = Array.from(document.querySelectorAll<HTMLElement>("main, footer"));
-    inertTargets.forEach((n) => n.setAttribute("inert", ""));
-
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        e.preventDefault();
-        setOpen(false);
-        triggerRef.current?.focus();
-      }
-      if (e.key === "Tab" && panelRef.current) {
-        const focusables = panelRef.current.querySelectorAll<HTMLElement>(
-          'a, button, [tabindex]:not([tabindex="-1"])',
-        );
-        if (!focusables.length) return;
-        const first = focusables[0];
-        const last = focusables[focusables.length - 1];
-        if (e.shiftKey && document.activeElement === first) {
-          e.preventDefault();
-          last.focus();
-        } else if (!e.shiftKey && document.activeElement === last) {
-          e.preventDefault();
-          first.focus();
-        }
-      }
-    };
-    document.addEventListener("keydown", onKey);
-    // Focus the close button first
-    requestAnimationFrame(() => {
-      closeBtnRef.current?.focus();
-    });
-    return () => {
-      document.body.style.overflow = "";
-      document.removeEventListener("keydown", onKey);
-      inertTargets.forEach((n) => n.removeAttribute("inert"));
-    };
-  }, [open]);
-
   return (
     <header className="sticky top-0 z-40 px-3 sm:px-4 pt-3 sm:pt-4">
       <div className="mx-auto max-w-6xl">
@@ -136,14 +109,13 @@ export function SiteHeader() {
               <CalendarDays aria-hidden="true" className="h-3.5 w-3.5" />
               <span className="hidden sm:inline">Schedule call</span>
             </a>
-            {/* Mobile/tablet menu trigger */}
+            {/* Mobile/tablet menu trigger — wired by MOBILE_MENU_SCRIPT */}
             <button
-              ref={triggerRef}
               type="button"
-              onClick={() => setOpen((v) => !v)}
-              aria-expanded={open}
+              data-mobile-menu-trigger
+              aria-expanded="false"
               aria-controls="mobile-menu"
-              aria-label={open ? "Close menu" : "Open menu"}
+              aria-label="Open menu"
               className="lg:hidden inline-flex items-center justify-center w-11 h-11 rounded-full hover:bg-ink/5 transition-colors text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background"
             >
               <svg
@@ -154,105 +126,93 @@ export function SiteHeader() {
                 stroke="currentColor"
                 strokeWidth="2"
               >
-                {open ? <path d="M6 6l12 12M18 6l-12 12" /> : <path d="M4 7h16M4 12h16M4 17h16" />}
+                <path d="M4 7h16M4 12h16M4 17h16" />
               </svg>
             </button>
           </div>
         </div>
       </div>
 
-      {/* Mobile menu overlay */}
-      {open && (
-        <div data-mobile-menu-root>
-          {/* Backdrop, not focusable; click closes */}
-          <div
-            aria-hidden
-            onClick={() => setOpen(false)}
-            className="fixed inset-0 z-40 bg-ink/30 backdrop-blur-sm lg:hidden"
-          />
-          <div
-            id="mobile-menu"
-            ref={panelRef}
-            role="dialog"
-            aria-modal="true"
-            aria-label="Site menu"
-            className="fixed inset-x-3 top-20 z-50 lg:hidden rounded-2xl border border-ink/10 bg-background shadow-xl p-4"
-          >
-            <div className="flex items-center justify-between mb-2">
-              <span className="text-[10px] uppercase tracking-[0.22em] text-ink-soft font-mono-tech">
-                Menu
-              </span>
-              <button
-                ref={closeBtnRef}
-                type="button"
-                onClick={() => {
-                  setOpen(false);
-                  triggerRef.current?.focus();
-                }}
-                aria-label="Close menu"
-                className="inline-flex items-center justify-center w-9 h-9 rounded-full hover:bg-ink/5 text-ink"
+      {/* Mobile menu overlay — prerendered hidden; MOBILE_MENU_SCRIPT toggles it */}
+      <div data-mobile-menu-root hidden>
+        {/* Backdrop, not focusable; click closes (handled by the script) */}
+        <div
+          aria-hidden
+          data-mobile-menu-backdrop
+          className="fixed inset-0 z-40 bg-ink/30 backdrop-blur-sm lg:hidden"
+        />
+        <div
+          id="mobile-menu"
+          role="dialog"
+          aria-label="Site menu"
+          className="fixed inset-x-3 top-20 z-50 lg:hidden rounded-2xl border border-ink/10 bg-background shadow-xl p-4"
+        >
+          <div className="flex items-center justify-between mb-2">
+            <span className="text-[10px] uppercase tracking-[0.22em] text-ink-soft font-mono-tech">
+              Menu
+            </span>
+            <button
+              type="button"
+              data-mobile-menu-close
+              aria-label="Close menu"
+              className="inline-flex items-center justify-center w-9 h-9 rounded-full hover:bg-ink/5 text-ink"
+            >
+              <svg
+                aria-hidden
+                className="w-5 h-5"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
               >
-                <svg
-                  aria-hidden
-                  className="w-5 h-5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                >
-                  <path d="M6 6l12 12M18 6l-12 12" />
-                </svg>
-              </button>
-            </div>
-            <nav className="flex flex-col" aria-label="Mobile primary">
-              {nav.map((n) => (
-                <Link
-                  key={n.to}
-                  to={n.to}
-                  onClick={() => setOpen(false)}
-                  className="px-3 py-3 rounded-lg text-base text-ink-soft hover:text-ink hover:bg-ink/5 transition-colors"
-                  activeProps={{ className: "text-ink font-medium bg-ink/5" }}
-                >
-                  {n.label}
-                </Link>
-              ))}
-              <a
-                href={profile.calendarUrl}
-                target="_blank"
-                rel="noreferrer"
-                data-analytics-event="cta_click"
-                data-analytics-cta-id="book_intro_call"
-                data-analytics-cta-location="mobile_menu"
-                data-analytics-cta-destination={profile.calendarUrl}
-                onClick={() => setOpen(false)}
-                className="mt-2 px-3 py-3 rounded-lg text-base text-ink hover:bg-ink/5 transition-colors"
-              >
-                Schedule meeting
-              </a>
-              <a
-                href={profile.resumeHref}
-                download
-                onClick={() => {
-                  setOpen(false);
-                  resumeDownload("mobile_menu");
-                }}
+                <path d="M6 6l12 12M18 6l-12 12" />
+              </svg>
+            </button>
+          </div>
+          <nav className="flex flex-col" aria-label="Mobile primary">
+            {nav.map((n) => (
+              <Link
+                key={n.to}
+                to={n.to}
                 className="px-3 py-3 rounded-lg text-base text-ink-soft hover:text-ink hover:bg-ink/5 transition-colors"
+                activeProps={{ className: "text-ink font-medium bg-ink/5" }}
               >
-                <span className="inline-flex items-center gap-2">
-                  <Download aria-hidden="true" className="h-4 w-4" />
-                  Download PDF
-                </span>
-              </a>
-            </nav>
-            <div className="mt-3 pt-3 border-t border-rule flex items-center justify-between text-xs text-ink-soft font-mono-tech">
-              <span>{profile.location}</span>
-              <a href={`mailto:${profile.email}`} className="text-ink underline">
-                Email
-              </a>
-            </div>
+                {n.label}
+              </Link>
+            ))}
+            <a
+              href={profile.calendarUrl}
+              target="_blank"
+              rel="noreferrer"
+              data-analytics-event="cta_click"
+              data-analytics-cta-id="book_intro_call"
+              data-analytics-cta-location="mobile_menu"
+              data-analytics-cta-destination={profile.calendarUrl}
+              className="mt-2 px-3 py-3 rounded-lg text-base text-ink hover:bg-ink/5 transition-colors"
+            >
+              Schedule meeting
+            </a>
+            <a
+              href={profile.resumeHref}
+              download
+              onClick={() => resumeDownload("mobile_menu")}
+              className="px-3 py-3 rounded-lg text-base text-ink-soft hover:text-ink hover:bg-ink/5 transition-colors"
+            >
+              <span className="inline-flex items-center gap-2">
+                <Download aria-hidden="true" className="h-4 w-4" />
+                Download PDF
+              </span>
+            </a>
+          </nav>
+          <div className="mt-3 pt-3 border-t border-rule flex items-center justify-between text-xs text-ink-soft font-mono-tech">
+            <span>{profile.location}</span>
+            <a href={`mailto:${profile.email}`} className="text-ink underline">
+              Email
+            </a>
           </div>
         </div>
-      )}
+      </div>
+      <script dangerouslySetInnerHTML={{ __html: MOBILE_MENU_SCRIPT }} />
     </header>
   );
 }

@@ -32,7 +32,7 @@ relatedArticles:
 
 Most payment platforms treat reconciliation as the thing finance does after the product team has gone home. That framing survives until the platform crosses a few hundred million in GTV. After that, it becomes the single largest source of silent product debt in the business.
 
-I have run reconciliation across multiple rails, cards, wallets, IBFT, DCB, and bank settlement, at over a billion in annual GTV and 25M+ monthly transactions. This essay is the operator view: what reconciliation actually is, why it is a product problem first, and what the architecture should look like.
+I have run reconciliation across multiple rails, cards, wallets, IBFT, DCB, and bank settlement, at over a billion in annual GTV and 270M+ annual transactions. This essay is the operator view: what reconciliation actually is, why it is a product problem first, and what the architecture should look like.
 
 ## Table of contents
 
