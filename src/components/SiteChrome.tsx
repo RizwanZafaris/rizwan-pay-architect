@@ -50,7 +50,17 @@ const MOBILE_MENU_SCRIPT = `(() => {
     if (t.closest('a')) setOpen(false);
   });
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && !root.hidden) setOpen(false);
+    if (root.hidden) return;
+    if (e.key === 'Escape') { setOpen(false); return; }
+    // Focus trap: while the dialog is open, Tab cycles within the panel.
+    if (e.key === 'Tab') {
+      const items = root.querySelectorAll('a[href], button:not([disabled])');
+      if (!items.length) return;
+      const first = items[0], last = items[items.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+      else if (!root.contains(document.activeElement)) { e.preventDefault(); first.focus(); }
+    }
   });
   // Resizing/rotating past the lg breakpoint hides trigger+panel via CSS;
   // close properly so body scroll-lock doesn't survive into desktop layout.
@@ -149,6 +159,7 @@ export function SiteHeader() {
         <div
           id="mobile-menu"
           role="dialog"
+          aria-modal="true"
           aria-label="Site menu"
           className="fixed inset-x-3 top-20 z-50 lg:hidden max-h-[calc(100dvh-6rem)] overflow-y-auto rounded-2xl border border-ink/10 bg-background shadow-xl p-4"
         >
@@ -160,7 +171,7 @@ export function SiteHeader() {
               type="button"
               data-mobile-menu-close
               aria-label="Close menu"
-              className="inline-flex items-center justify-center w-9 h-9 rounded-full hover:bg-ink/5 text-ink"
+              className="inline-flex items-center justify-center w-11 h-11 rounded-full hover:bg-ink/5 text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2"
             >
               <svg
                 aria-hidden

@@ -1,0 +1,72 @@
+# Build & deploy rzifi.com — replaces laptop deploys with a pipeline.
+#
+# Triggers:
+#   - push to main: every merged PR goes live without a manual deploy
+#   - daily cron 23:30 UTC (≈ 03:30 GST / 04:30 PKT): flips scheduled essays
+#     live on their publishDate — the content drip (next: 2026-06-12) depends
+#     on a rebuild, since noindex/sitemap gating is baked at build time
+#   - workflow_dispatch: manual runs from the Actions tab
+#
+# Pipeline: bun build:static → seo:audit (banned-claims + schema + canonical
+# gates; a failure here blocks the deploy) → publish dist-static/ onto the
+# hostinger-static branch (Hostinger auto-pulls it via webhook).
+name: Build & Deploy
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: "30 23 * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-hostinger-static
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: oven-sh/setup-bun@v2
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Build static site
+        run: bun run build:static
+
+      - name: SEO + banned-claims gate
+        run: bun run seo:audit
+
+      - name: Publish to hostinger-static
+        env:
+          SKIP_REBUILD: "1" # dist-static was just built and gated above
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          bash scripts/deploy-git-static.sh
+
+  live-check:
+    needs: build-deploy
+    runs-on: ubuntu-latest
+    # Advisory: Hostinger webhook pull + hCDN max-age=300 mean propagation
+    # takes a few minutes; transient mixed-cache states shouldn't fail CI.
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: oven-sh/setup-bun@v2
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Wait for Hostinger pull + CDN TTL
+        run: sleep 420
+
+      - name: Probe live site
+        run: bun scripts/check-live.ts

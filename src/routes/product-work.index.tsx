@@ -3,6 +3,7 @@ import { zodValidator, fallback } from "@tanstack/zod-adapter";
 import { z } from "zod";
 import { caseStudies, caseStudyThumb, type CaseStudy } from "@/data/caseStudies";
 import { compactMetricValue } from "@/lib/case-study-ui";
+import { profile } from "@/data/profile";
 import { absUrl } from "@/lib/seo";
 
 const searchSchema = z.object({
@@ -105,7 +106,16 @@ const THEME_RULES: { id: string; label: string; match: (c: CaseStudy) => boolean
 // Static derivations — all cards prerender and PW_FILTER_SCRIPT (inline
 // vanilla, same pattern as the blog filter) hides non-matching ones. Do not
 // move filtering into React state: production ships no React runtime.
-const companies = Array.from(new Set(caseStudies.flatMap((c) => c.relevantFor ?? []))).sort();
+// The "Relevant company" dropdown lists real companies only. Audience-phrase
+// tags ("Banks expanding fintech reach", "VP Operations / Treasury hiring
+// managers"…) stay on the cards as relevance data but read as leaked taxonomy
+// when surfaced as filter options. Allow-list = canonical target companies
+// (profile.relevantFor) + regional acquirers named in the case studies.
+const COMPANY_FILTER_EXTRAS = ["Geidea", "Magnati"] as const;
+const companyAllowList = new Set<string>([...profile.relevantFor, ...COMPANY_FILTER_EXTRAS]);
+const companies = Array.from(new Set(caseStudies.flatMap((c) => c.relevantFor ?? [])))
+  .filter((name) => companyAllowList.has(name))
+  .sort();
 const themes = THEME_RULES.filter((t) => caseStudies.some((c) => t.match(c)));
 const themeIdsFor = (c: CaseStudy) =>
   THEME_RULES.filter((t) => t.match(c))
