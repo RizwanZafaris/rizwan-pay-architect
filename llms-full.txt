@@ -49,7 +49,7 @@ Product & Program leader with 14+ years across payments, fintech and digital tra
 - **Smart-retry recovery**: $14M+/mo GTV
 - **Production AI solutions**: 4 deployed
 - **Org built**: 2 → 50+ people
-- **Payment failure rate**: 8% → 1.2%
+- **Straight-through processing**: 90%
 - **Token-failure reduction**: 22%
 - **Integration time**: 6 wks → 2 wks
 - **Payment cost (Tapmad)**: 50% → 1%
@@ -539,11 +539,11 @@ Owned the SWIFT product surface end-to-end: integration architecture, gpi adopti
 URL: https://rzifi.com/product-work/mpgs-acquirer-integration-programme
 Category: Payment Infrastructure
 
-**Tagline**: Took a regional acquirer-processor from a single Hosted Checkout flow to a full MPGS surface, Hosted Session, EMV 3DS2 step-up, scheme tokenisation, recurring billing and dispute ingestion, across 1,200+ merchants in three primary markets without a 24-hour outage.
+**Tagline**: Took a regional acquirer-processor from a single Hosted Checkout flow to a full MPGS surface, Hosted Session, EMV 3DS2 step-up, scheme tokenisation, recurring billing and dispute ingestion, across a 150+ merchant portfolio in three primary markets without a 24-hour outage.
 
 ### Executive summary
 
-Designed and shipped the full MPGS surface for a regional acquirer-processor, moving from a single Hosted Checkout integration into Hosted Session (for branded checkouts), Direct API (for recurring and merchant-of-record flows), EMV 3DS2 step-up tuning, scheme tokenisation, recurring billing, dispute ingestion and merchant-facing settlement reconciliation. Migrated 1,200+ merchants in three primary markets across an 18-month rollout with no 24-hour outage and a +3.4-point portfolio-wide authorisation-rate uplift.
+Designed and shipped the full MPGS surface for a regional acquirer-processor, moving from a single Hosted Checkout integration into Hosted Session (for branded checkouts), Direct API (for recurring and merchant-of-record flows), EMV 3DS2 step-up tuning, scheme tokenisation, recurring billing, dispute ingestion and merchant-facing settlement reconciliation. Migrated the full 150+ merchant portfolio in three primary markets across an 18-month rollout with no 24-hour outage and a +3.4-point portfolio-wide authorisation-rate uplift.
 
 ### Problem
 
@@ -567,7 +567,7 @@ Owned the MPGS programme end-to-end as Product & Program lead, integration archi
 ### Impact
 
 - Lifted portfolio-wide authorisation rate by +3.4 points across the 18-month programme, driven by 3DS2 exemption tuning, BIN-routing optimisation, and tokenisation lift
-- Migrated 1,200+ merchants from Hosted Checkout to the appropriate MPGS integration mode without a single 24-hour outage
+- Migrated 150+ merchants from Hosted Checkout to the appropriate MPGS integration mode without a single 24-hour outage
 - Reached 92% network-tokenisation coverage on card-on-file merchants ahead of the regional scheme deadline
 - Compressed median dispute cycle time from 21 days to 12 days through ingestion + merchant evidence-upload portal
 - Held settlement break rate below 0.04% throughout the rollout, including across the tokenisation migration window
@@ -588,15 +588,15 @@ Owned the MPGS programme end-to-end as Product & Program lead, integration archi
 URL: https://rzifi.com/product-work/mdes-network-tokenisation-rollout
 Category: Payment Infrastructure
 
-**Tagline**: Migrated 1,200+ merchants from PAN-on-file to scheme-token credentials across MDES (Mastercard) and VTS (Visa), replaced three vault providers, rewired the recurring engine, and lifted post-tokenisation authorisation rate by 1.8 points portfolio-wide.
+**Tagline**: Migrated 150+ merchants from PAN-on-file to scheme-token credentials across MDES (Mastercard) and VTS (Visa), replaced three vault providers, rewired the recurring engine, and lifted post-tokenisation authorisation rate by 1.8 points portfolio-wide.
 
 ### Executive summary
 
-Designed and shipped the network-tokenisation programme for a regional acquirer-processor, replacing PAN-on-file storage with scheme-issued tokens via MDES (Mastercard Digital Enablement Service) and VTS (Visa Token Service). Migrated 1,200+ card-on-file merchants across three primary markets, retired three legacy vault providers in favour of a single in-house token broker, and rewired the recurring billing engine around token lifecycle. Delivered +1.8 points portfolio-wide authorisation-rate lift and a 91% reduction in PAN footprint without a single sev-1 or sev-2 incident through the cutover window.
+Designed and shipped the network-tokenisation programme for a regional acquirer-processor, replacing PAN-on-file storage with scheme-issued tokens via MDES (Mastercard Digital Enablement Service) and VTS (Visa Token Service). Migrated 150+ card-on-file merchants across three primary markets, retired three legacy vault providers in favour of a single in-house token broker, and rewired the recurring billing engine around token lifecycle. Delivered +1.8 points portfolio-wide authorisation-rate lift and a 91% reduction in PAN footprint without a single sev-1 or sev-2 incident through the cutover window.
 
 ### Problem
 
-The acquirer carried PAN-on-file across three separate vault providers accumulated over five years of acquisitions and partnerships. Every reissuance event broke a merchant relationship: subscriptions failed silently, account-updater coverage was patchy, and the dispute team was losing Compelling Evidence 3.0 (CE3.0)-eligible disputes because the cardholder identity link was broken across reissuance. PCI scope across three vaults was tripling the audit cost. The next-quarter scheme push on mandatory tokenisation for card-on-file merchants made the gap untenable. The team needed a complete migration with no merchant-visible failure, on a portfolio crossing 1,200 active merchants and ~14M token-able credentials.
+The acquirer carried PAN-on-file across three separate vault providers accumulated over five years of acquisitions and partnerships. Every reissuance event broke a merchant relationship: subscriptions failed silently, account-updater coverage was patchy, and the dispute team was losing Compelling Evidence 3.0 (CE3.0)-eligible disputes because the cardholder identity link was broken across reissuance. PCI scope across three vaults was tripling the audit cost. The next-quarter scheme push on mandatory tokenisation for card-on-file merchants made the gap untenable. The team needed a complete migration with no merchant-visible failure, on a portfolio of 150+ active merchants and ~14M token-able credentials.
 
 ### Role
 
@@ -614,7 +614,7 @@ Owned the tokenisation programme end-to-end as Product & Program lead, token bro
 
 ### Impact
 
-- Migrated 1,200+ card-on-file merchants from PAN storage to scheme tokens across three markets in 14 months
+- Migrated 150+ card-on-file merchants from PAN storage to scheme tokens across three markets in 14 months
 - Reached 92% network-tokenisation coverage on card-on-file traffic, ahead of the scheme deadline
 - Lifted portfolio-wide authorisation rate by +1.8 points on tokenised traffic, with the largest lift on iOS Safari + cross-border combinations (+3–4 pts)
 - Reduced PCI PAN footprint by 91%, three vault providers retired, single in-house broker stood up
