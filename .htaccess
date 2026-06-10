@@ -131,6 +131,16 @@
   ExpiresByType image/jpeg "access plus 30 days"
   ExpiresByType image/webp "access plus 30 days"
   ExpiresByType image/svg+xml "access plus 30 days"
+</IfModule>
+
+# Resume PDF: recruiters must always get the current version — 1 hour, not
+# the 30-day static-asset default (a stale resume circulated for weeks once).
+<Files "Rizwan_Zafar_Resume.pdf">
+  <IfModule mod_headers.c>
+    Header set Cache-Control "public, max-age=3600"
+  </IfModule>
+</Files>
+<IfModule mod_expires.c>
   ExpiresByType image/x-icon "access plus 30 days"
 
   # PDFs

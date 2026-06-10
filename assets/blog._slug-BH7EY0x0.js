@@ -1,2 +1,0 @@
-import{t,p as o}from"./index-oh4zHBiu.js";function i(e){return e.toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/(^-|-$)/g,"")}o.use({renderer:{heading({tokens:e,depth:r}){const s=this.parser.parseInline(e),n=i(e.map(a=>a.raw??"").join(""));return`<h${r} id="${n}">${s}</h${r}>
-`}}});const x=({error:e})=>t.jsx("div",{className:"mx-auto max-w-2xl px-6 py-24 text-center",children:t.jsx("p",{className:"text-ink-soft",children:e.message})});export{x as errorComponent};
