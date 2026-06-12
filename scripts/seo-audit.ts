@@ -40,7 +40,9 @@ const DEV_LEAK_PATTERNS = [
   "/@vite/client",
   "/@react-refresh",
 ];
-const TITLE_MAX = 65; // tolerant — Google truncates ~60, allow a few char slack
+const TITLE_MAX = 120; // sanity cap only — full titles beat machine-truncation
+// (Google indexes the whole tag and truncates display itself); the real
+// regression guard is the ellipsis check below.
 const DESC_MIN = 50;
 const DESC_MAX = 165;
 
@@ -234,7 +236,10 @@ function auditHtml(file: string) {
   const titleMatch = body.match(/<title>([^<]*)<\/title>/i);
   if (!titleMatch || !titleMatch[1].trim()) fail(file, "title_missing", "no <title>");
   else if (titleMatch[1].length > TITLE_MAX)
-    fail(file, "title_too_long", `${titleMatch[1].length} chars > ${TITLE_MAX}`);
+    fail(file, "title_too_long",
+  "title_truncated", `${titleMatch[1].length} chars > ${TITLE_MAX}`);
+  if (titleMatch && /\u2026|\.\.\./.test(titleMatch[1]))
+    fail(file, "title_truncated", `<title> contains an ellipsis: "${titleMatch[1]}"`);
 
   // 2d. meta description — present and 50-165 chars.
   const descMatch = body.match(/<meta[^>]+name=["']description["'][^>]*content=["']([^"']+)["']/i);
@@ -424,6 +429,7 @@ const checks = [
   "canonical_href_missing",
   "title_missing",
   "title_too_long",
+  "title_truncated",
   "description_missing",
   "description_short",
   "description_long",

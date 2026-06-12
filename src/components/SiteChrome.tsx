@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router";
+import { Link, useRouterState } from "@tanstack/react-router";
 import { CalendarDays, Download } from "lucide-react";
 import { profile } from "@/data/profile";
 import { ctaClick, outboundClick, resumeDownload } from "@/lib/analytics";
@@ -70,6 +70,13 @@ const MOBILE_MENU_SCRIPT = `(() => {
 })();`;
 
 export function SiteHeader() {
+  // /contact and /resume carry their own inline booking embed — the header
+  // CTA should land on the local #book instead of forcing a navigation
+  // away at peak intent (also keeps per-placement funnel attribution clean).
+  const headerPathname = useRouterState({ select: (s) => s.location.pathname });
+  const hasLocalEmbed =
+    headerPathname.startsWith("/contact") || headerPathname.startsWith("/resume");
+  const bookingHref = hasLocalEmbed ? "#book" : "/contact/#book";
   return (
     <header className="sticky top-0 z-40 px-3 sm:px-4 pt-3 sm:pt-4">
       <div className="mx-auto max-w-6xl">
@@ -107,14 +114,14 @@ export function SiteHeader() {
 
           <div className="flex items-center gap-1.5 shrink-0">
             <a
-              href="/contact/#book"
+              href={bookingHref}
               aria-label="Book a 15-min intro call"
               data-analytics-event="cta_click"
               data-analytics-cta-id="book_intro_call"
               data-analytics-cta-location="header"
-              data-analytics-cta-destination="/contact/#book"
+              data-analytics-cta-destination={bookingHref}
               onClick={() => {
-                ctaClick("book_intro_call", "header", "/contact/#book");
+                ctaClick("book_intro_call", "header", bookingHref);
               }}
               className="inline-flex items-center gap-1.5 rounded-full bg-ink text-background px-3.5 sm:px-4 py-2.5 text-[12px] font-medium hover:bg-brand transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background"
             >
@@ -245,7 +252,7 @@ export function SiteFooter() {
           </p>
           <div className="mt-5 inline-flex items-center gap-2 text-xs text-ink-soft">
             <span className="relative inline-flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full rounded-full bg-[var(--accent-emerald)] opacity-60 animate-ping"></span>
+              <span className="absolute inline-flex h-full w-full rounded-full bg-[var(--accent-emerald)] opacity-60 motion-safe:animate-ping"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-[var(--accent-emerald)]"></span>
             </span>
             <span className="font-mono-tech uppercase tracking-[0.18em]">Open to senior roles</span>

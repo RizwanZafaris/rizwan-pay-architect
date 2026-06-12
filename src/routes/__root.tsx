@@ -82,7 +82,7 @@ import {
   MICROSOFT_CLARITY_ID,
   PLAUSIBLE_DOMAIN,
   PLAUSIBLE_SRC,
-  LINKEDIN_PARTNER_ID,
+  LINKEDIN_PARTNER_IDS,
 } from "@/lib/seo";
 
 // Google Tag Manager was retired 2026-06-12 — the container's UI-built tags
@@ -107,8 +107,8 @@ const clarityScript = MICROSOFT_CLARITY_ID
 // retargeting audience builds from all traffic; conversions (e.g. booked-call
 // page actions) are defined on top of it in Campaign Manager. Partner id in
 // src/lib/seo.ts.
-const linkedInInsightScript = LINKEDIN_PARTNER_ID
-  ? `_linkedin_partner_id="${LINKEDIN_PARTNER_ID}";window._linkedin_data_partner_ids=window._linkedin_data_partner_ids||[];window._linkedin_data_partner_ids.push(_linkedin_partner_id);(function(l){if(!l){window.lintrk=function(a,b){window.lintrk.q.push([a,b])};window.lintrk.q=[]}var s=document.getElementsByTagName("script")[0];var b=document.createElement("script");b.type="text/javascript";b.async=true;b.src="https://snap.licdn.com/li.lms-analytics/insight.min.js";s.parentNode.insertBefore(b,s)})(window.lintrk);`
+const linkedInInsightScript = LINKEDIN_PARTNER_IDS.length
+  ? `window._linkedin_data_partner_ids=window._linkedin_data_partner_ids||[];${LINKEDIN_PARTNER_IDS.map((id) => `window._linkedin_data_partner_ids.push("${id}");`).join("")}(function(l){if(!l){window.lintrk=function(a,b){window.lintrk.q.push([a,b])};window.lintrk.q=[]}var s=document.getElementsByTagName("script")[0];var b=document.createElement("script");b.type="text/javascript";b.async=true;b.src="https://snap.licdn.com/li.lms-analytics/insight.min.js";s.parentNode.insertBefore(b,s)})(window.lintrk);`
   : "";
 
 const analyticsBridgeScript =
@@ -359,7 +359,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:image:alt", content: `${profile.name}, Payments Product Executive` },
       // Twitter
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:url", content: SITE_URL },
       { name: "twitter:title", content: "Rizwan Zafar, Payments Product Executive | Dubai" },
       {
         name: "twitter:description",
@@ -379,6 +378,15 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "mask-icon", href: "/favicon.svg", color: "#0e4f4f" },
       // AI-discovery hint for the curated LLM index.
       { rel: "alternate", type: "text/markdown", href: "/llms.txt", title: "llms.txt" },
+      // Fonts load from head links with preconnects instead of a styles.css
+      // @import (which serialized HTML -> CSS -> fonts-CSS -> woff2 — the
+      // site's biggest render delay; audit 2026-06-12).
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap",
+      },
       { rel: "stylesheet", href: appCss },
       {
         rel: "alternate",
@@ -419,14 +427,14 @@ function RootShell({ children }: { children: React.ReactNode }) {
         <HeadContent />
       </head>
       <body>
-        {LINKEDIN_PARTNER_ID && (
+        {LINKEDIN_PARTNER_IDS.length > 0 && (
           <noscript>
             <img
               height="1"
               width="1"
               style={{ display: "none" }}
               alt=""
-              src={`https://px.ads.linkedin.com/collect/?pid=${LINKEDIN_PARTNER_ID}&fmt=gif`}
+              src={`https://px.ads.linkedin.com/collect/?pid=${LINKEDIN_PARTNER_IDS[0]}&fmt=gif`}
             />
           </noscript>
         )}
@@ -447,8 +455,11 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       {(GA_MEASUREMENT_ID || GOOGLE_ADS_ID) && <RouteAnalyticsTracker />}
       <div className="min-h-screen flex flex-col">
+        <a href="#main" className="skip-link">
+          Skip to content
+        </a>
         {isCampaignPage ? <CampaignHeader /> : <SiteHeader />}
-        <main className="flex-1">
+        <main id="main" className="flex-1">
           <Outlet />
         </main>
         {isCampaignPage ? <CampaignFooter /> : <SiteFooter />}

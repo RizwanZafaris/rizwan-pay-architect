@@ -1,4 +1,5 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap");
+/* Google Fonts load from <head> links with preconnect (see __root.tsx) —
+   an @import here serializes HTML -> CSS -> fonts-CSS -> woff2. */
 @import "tailwindcss" source(none);
 @source "../src";
 @import "tw-animate-css";
@@ -1733,4 +1734,28 @@
       background-size: 100% 0.18em;
     }
   }
+}
+
+/* ─── Audit 2026-06-12 additions ──────────────────────────────────────── */
+
+/* Keyboard skip link: visually hidden until focused. */
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -3rem;
+  z-index: 100;
+  padding: 0.5rem 1rem;
+  border-radius: 0 0 0.5rem 0.5rem;
+  background: var(--ink);
+  color: var(--background);
+  font-size: 0.875rem;
+  transition: top 150ms ease;
+}
+.skip-link:focus-visible {
+  top: 0;
+}
+
+/* TOC/anchor jumps must clear the floating pill header. */
+.prose-editorial :is(h2, h3, h4) {
+  scroll-margin-top: 6rem;
 }

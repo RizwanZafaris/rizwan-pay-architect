@@ -157,6 +157,13 @@ const contactSignals = [
   "Senior mandates",
 ] as const;
 
+
+
+// Static build never hydrates React — the "Copy email" buttons are wired by
+// this inline script (same pattern as the menu/embed scripts). The React
+// onClick above still covers dev/hydrated contexts; double-copy is harmless.
+const COPY_EMAIL_SCRIPT = `document.querySelectorAll("[data-copy-email]").forEach(function(b){if(b.__rzifiCopyBound)return;b.__rzifiCopyBound=1;b.addEventListener("click",function(){var e=b.getAttribute("data-copy-email");function done(ok){var t=b.textContent;b.textContent=ok?"Copied":"Copy failed";setTimeout(function(){b.textContent=t},2000)}try{navigator.clipboard.writeText(e).then(function(){done(true)},function(){done(false)})}catch(x){done(false)}})});`;
+
 function ContactPage() {
   const [state, setState] = useState<SubmitState>("idle");
   const [errorMsg, setErrorMsg] = useState<string>("");
@@ -576,6 +583,7 @@ function ContactPage() {
                 </span>
                 <button
                   type="button"
+                  data-copy-email={profile.email}
                   onClick={copyEmail}
                   className="ml-auto text-xs uppercase tracking-[0.14em] rounded-md border border-ink/20 px-3 py-1.5 hover:border-ink/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-ink/40"
                 >
@@ -794,6 +802,7 @@ function ContactPage() {
                 </button>
                 <button
                   type="button"
+                  data-copy-email={profile.email}
                   onClick={copyEmail}
                   data-analytics-event="cta_click"
                   data-analytics-cta-id="copy_email"
@@ -825,6 +834,8 @@ function ContactPage() {
           )}
         </div>
       </section>
+
+      <script dangerouslySetInnerHTML={{ __html: COPY_EMAIL_SCRIPT }} />
 
       {calendarUrl && (
         <BookingSection
