@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, CalendarDays, Linkedin } from "lucide-react";
 import { profile } from "@/data/profile";
+import { calInlineEmbedScript } from "@/lib/campaign";
 import { absUrl, OG_IMAGE_URL, SITE_URL } from "@/lib/seo";
 
 // Dedicated, conversion-focused PAID landing page.
@@ -25,6 +26,13 @@ import { absUrl, OG_IMAGE_URL, SITE_URL } from "@/lib/seo";
 // clicks shouldn't leak into the blog). The inline calendarCampaignParamsScript
 // in __root.tsx appends the landing URL's UTMs/click-ids + a ref per placement
 // to every cal.com link at load time (the static build never hydrates React).
+//
+// Booking is INLINE (cal.com embed in the #book section, calInlineEmbedScript):
+// both CTAs smooth-scroll there instead of redirecting, so the visitor never
+// leaves the page at the conversion moment. Cal's bookingSuccessful event fires
+// the GA4 `book_call_confirmed` event — the true booked-call conversion. A
+// plain cal.com fallback link stays under the embed (and in <noscript>) for
+// blocked-iframe/no-JS visitors; the link rewriter above still decorates it.
 
 const proofMetrics = [
   { value: "$1B+", label: "Annual GTV" },
@@ -102,17 +110,22 @@ export const Route = createFileRoute("/hire")({
       },
       { name: "twitter:image", content: OG_IMAGE_URL },
     ],
-    links: [{ rel: "canonical", href: absUrl("/hire") }],
+    links: [
+      { rel: "canonical", href: absUrl("/hire") },
+      // The inline booking embed loads embed.js + the booker iframe from
+      // app.cal.com — warm the connection while the visitor reads the hero.
+      { rel: "preconnect", href: "https://app.cal.com" },
+    ],
     scripts: [{ type: "application/ld+json", children: JSON.stringify(hireJsonLd) }],
   }),
   component: HirePage,
 });
 
 function HirePage() {
-  // Bare cal.com URL in the markup; the inline campaign script rewrites it
-  // with UTMs/click-ids + ref at load time so booked calls attribute to ads.
-  const heroCalendarUrl = profile.calendarUrl;
-  const footerCalendarUrl = profile.calendarUrl;
+  // Bare cal.com URL for the under-embed fallback link; the inline campaign
+  // script rewrites it with UTMs/click-ids + ref at load time. The embed
+  // itself forwards the same params via Cal.config.forwardQueryParams.
+  const calendarUrl = profile.calendarUrl;
   return (
     <div className="mx-auto max-w-4xl px-5 sm:px-6 py-16 md:py-24">
       {/* Hero — single intent, single action */}
@@ -135,13 +148,11 @@ function HirePage() {
 
         <div className="mt-9 flex flex-col items-center gap-3">
           <a
-            href={heroCalendarUrl}
-            target="_blank"
-            rel="noreferrer"
+            href="#book"
             data-analytics-event="cta_click"
             data-analytics-cta-id="book_intro_call"
             data-analytics-cta-location="hire_hero"
-            data-analytics-cta-destination={heroCalendarUrl}
+            data-analytics-cta-destination="#book"
             className={primaryCtaClass}
           >
             <CalendarDays aria-hidden="true" className="h-5 w-5" />
@@ -149,7 +160,8 @@ function HirePage() {
             <ArrowRight aria-hidden="true" className="h-4 w-4" />
           </a>
           <p className="text-sm text-ink-soft">
-            15 minutes, no pitch &mdash; just whether there&apos;s a fit for your role.
+            15 minutes, no pitch &mdash; just whether there&apos;s a fit for your role. Booking
+            happens right on this page.
           </p>
         </div>
       </section>
@@ -208,16 +220,59 @@ function HirePage() {
         </div>
       </section>
 
+      {/* Inline booking — the conversion moment stays on rzifi.com.
+          The embed lazy-boots via calInlineEmbedScript (IO + CTA click). */}
+      <section id="book" className="mt-14 scroll-mt-24">
+        <div className="text-center">
+          <div className="text-[11px] uppercase tracking-[0.22em] text-ink-soft font-mono-tech">
+            Book directly &mdash; right here
+          </div>
+          <h2 className="font-instrument text-2xl md:text-3xl text-ink mt-3">
+            Pick a time that suits you
+          </h2>
+          <p className="mt-2 text-sm text-ink-soft">
+            15 minutes &middot; no pitch &middot; times shown in your timezone.
+          </p>
+        </div>
+        <div className="mt-6 rounded-lg border border-rule bg-card p-2 sm:p-4">
+          <div id="cal-booking-slot" className="min-h-[560px] md:min-h-[620px] w-full">
+            <noscript>
+              <p className="p-6 text-center text-sm text-ink-soft">
+                The booking calendar needs JavaScript.{" "}
+                <a className="underline text-ink" href={calendarUrl}>
+                  Book on cal.com instead
+                </a>
+                .
+              </p>
+            </noscript>
+          </div>
+        </div>
+        <p className="mt-3 text-center text-xs text-ink-soft">
+          Calendar not loading?{" "}
+          <a
+            href={calendarUrl}
+            target="_blank"
+            rel="noreferrer"
+            data-analytics-event="cta_click"
+            data-analytics-cta-id="book_intro_call"
+            data-analytics-cta-location="hire_embed_fallback"
+            data-analytics-cta-destination={calendarUrl}
+            className="underline hover:text-ink"
+          >
+            Open cal.com in a new tab
+          </a>
+          .
+        </p>
+      </section>
+
       {/* Repeat CTA + de-emphasised secondary paths */}
       <section className="mt-12 text-center">
         <a
-          href={footerCalendarUrl}
-          target="_blank"
-          rel="noreferrer"
+          href="#book"
           data-analytics-event="cta_click"
           data-analytics-cta-id="book_intro_call"
           data-analytics-cta-location="hire_footer"
-          data-analytics-cta-destination={footerCalendarUrl}
+          data-analytics-cta-destination="#book"
           className={primaryCtaClass}
         >
           <CalendarDays aria-hidden="true" className="h-5 w-5" />
@@ -257,6 +312,11 @@ function HirePage() {
           </p>
         </div>
       </section>
+
+      {/* Inline cal.com embed boot — static build never hydrates React, so the
+          booking widget is wired by this vanilla script (lazy IO boot, smooth
+          scroll for #book CTAs, bookingSuccessful → GA4 book_call_confirmed). */}
+      <script dangerouslySetInnerHTML={{ __html: calInlineEmbedScript }} />
     </div>
   );
 }
