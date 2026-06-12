@@ -39,6 +39,9 @@ jobs:
       - name: Install dependencies
         run: bun install --frozen-lockfile
 
+      - name: Typecheck (no red types reach production)
+        run: bun run typecheck
+
       - name: Build static site
         run: bun run build:static
 

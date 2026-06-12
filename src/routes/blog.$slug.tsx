@@ -8,6 +8,8 @@ import { absUrl, SITE_URL, OG_IMAGE_URL, titleFor, trimToMax } from "@/lib/seo";
 import { DiagramFigure, postDiagrams } from "@/components/diagrams/Diagrams";
 import { trackEvent } from "@/lib/analytics";
 import { marked } from "marked";
+// 64×64 author avatar (24KB WebP, same asset the /about hero uses).
+import authorPortrait from "@/assets/rizwan-zafar-cutout-460.webp";
 
 // Pull Q&A pairs out of a "## FAQ" section so we can emit FAQPage JSON-LD.
 // Question lines are "**…?**" inside the section; the answer is everything until the next "**…?**".
@@ -382,6 +384,58 @@ function EssayFooterCTA({ post }: { post: Post }) {
   );
 }
 
+// Author-entity box. Closes the loop the SEO audit flagged: every essay now
+// carries a visible byline linking back to /about (the Person hub), reinforcing
+// the BlogPosting → #person authorship signal already in the JSON-LD. Rendered
+// inside the article body column so it aligns with the prose.
+function EssayAuthorBox() {
+  return (
+    <div className="mt-12 rounded-lg border border-rule bg-surface p-6 md:p-7">
+      <div className="flex items-start gap-4">
+        <img
+          src={authorPortrait}
+          alt={profile.name}
+          width={64}
+          height={64}
+          loading="lazy"
+          decoding="async"
+          className="h-16 w-16 shrink-0 rounded-full border border-rule object-cover"
+        />
+        <div className="min-w-0">
+          <div className="text-[10px] uppercase tracking-[0.18em] text-ink-soft font-mono-tech">
+            Written by
+          </div>
+          <Link
+            to="/about"
+            className="mt-1 inline-block font-instrument text-xl text-ink hover:text-[var(--brand)] transition-colors"
+          >
+            {profile.name}
+          </Link>
+          <p className="mt-0.5 text-sm text-ink-soft">{profile.role}</p>
+          <p className="mt-3 text-sm leading-relaxed text-ink-soft">
+            Payments product &amp; program leader &mdash; scaled a regulated multi-rail platform from
+            $0 to $1B+ GTV across five frontier markets. These essays are the public version of how I
+            think through the work.
+          </p>
+          <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm">
+            <Link to="/about" className="text-ink underline-offset-4 hover:underline">
+              More about Rizwan →
+            </Link>
+            <a
+              href={profile.linkedin}
+              target="_blank"
+              rel="noreferrer"
+              className="text-ink-soft hover:text-ink"
+            >
+              LinkedIn
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function BlogPostPage() {
   const {
     post: p,
@@ -539,6 +593,7 @@ function BlogPostPage() {
               ))}
             </div>
           </div>
+          <EssayAuthorBox />
           <div className="mt-12 rounded-lg border border-rule bg-surface p-6 md:p-7">
             <div className="text-[10px] uppercase tracking-[0.18em] text-ink-soft font-mono-tech">
               Continue the conversation

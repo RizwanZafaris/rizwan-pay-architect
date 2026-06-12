@@ -18,7 +18,9 @@ const profilePageJsonLd = {
   "@context": "https://schema.org",
   "@type": "ProfilePage",
   url: SITE_URL,
-  mainEntity: { "@type": "Person", name: profile.name, url: SITE_URL },
+  // Reference the canonical #person node (defined in __root.tsx, emitted
+  // site-wide) by @id instead of forking a second Person entity.
+  mainEntity: { "@type": "Person", "@id": `${SITE_URL}#person`, name: profile.name, url: SITE_URL },
 };
 
 const heroScrambleScript = `

@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { profile } from "@/data/profile";
 import { legacyRecommendations, paymentsRecommendations } from "@/data/recommendations";
-import { absUrl } from "@/lib/seo";
+import { absUrl, SITE_URL } from "@/lib/seo";
 // 96×96 circle on this page — using the small WebP cutout (24KB) instead of the
 // 1.3MB full JPG. Same person, same brand asset, 50× smaller payload.
 import portrait from "@/assets/rizwan-zafar-cutout-460.webp";
@@ -37,7 +37,14 @@ export const Route = createFileRoute("/about")({
           "@context": "https://schema.org",
           "@type": "AboutPage",
           url: absUrl("/about"),
-          mainEntity: { "@type": "Person", name: "Rizwan Zafar", url: absUrl("/about") },
+          // Reference the canonical site-wide #person node by @id rather than
+          // forking a second Person entity for the AboutPage.
+          mainEntity: {
+            "@type": "Person",
+            "@id": `${SITE_URL}#person`,
+            name: profile.name,
+            url: absUrl("/about"),
+          },
         }),
       },
     ],

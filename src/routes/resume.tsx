@@ -119,33 +119,36 @@ const recruiterSearchFit = [
   "AI in Fintech Operations Lead",
 ] as const;
 
+// `slug` / `audience` feed the typed dynamic-route Link params
+// (/product-work/$slug, /for/$audience) — TanStack Router types reject a
+// fully-resolved literal path, so we pass the pattern + params instead.
 const selectedProofLinks = [
   {
     title: "$1B+ regulated payment infrastructure",
     body: "Multi-rail pay-in, payout, wallet, card acquiring, settlement and cross-border infrastructure across five frontier markets.",
-    to: "/product-work/simpaisa-payment-infrastructure",
+    slug: "simpaisa-payment-infrastructure",
   },
   {
     title: "Merchant onboarding, KYC/KYB and risk controls",
     body: "Activation cut from weeks to hours with risk-tiered onboarding, sanctions/PEP controls and auditable review flows.",
-    to: "/product-work/merchant-onboarding-kyc",
+    slug: "merchant-onboarding-kyc",
   },
   {
     title: "Settlement and reconciliation at scale",
     body: "Canonical ledger, three-way reconciliation and 99.95% settlement SLA across fragmented rails and partners.",
-    to: "/product-work/settlement-reconciliation",
+    slug: "settlement-reconciliation",
   },
   {
     title: "Fraud, AML/CFT and operational risk",
     body: "Payment risk controls, fraud loss below 0.1% of GTV and regulated operating cadence across complex markets.",
-    to: "/product-work/fraud-risk-aml-cft",
+    slug: "fraud-risk-aml-cft",
   },
 ] as const;
 
 const recruiterPathLinks = [
-  { label: "Visa / Mastercard fit", to: "/for/visa-mastercard" },
-  { label: "Stripe / Adyen / Wise / Thunes fit", to: "/for/stripe-adyen-wise-thunes" },
-  { label: "Banks and regulated fintech fit", to: "/for/banks-fintechs" },
+  { label: "Visa / Mastercard fit", audience: "visa-mastercard" },
+  { label: "Stripe / Adyen / Wise / Thunes fit", audience: "stripe-adyen-wise-thunes" },
+  { label: "Banks and regulated fintech fit", audience: "banks-fintechs" },
 ] as const;
 
 const resumeExperience = [
@@ -467,8 +470,9 @@ function ResumePage() {
           <div className="grid md:grid-cols-2 gap-3">
             {selectedProofLinks.map((proof, index) => (
               <Link
-                key={proof.to}
-                to={proof.to}
+                key={proof.slug}
+                to="/product-work/$slug"
+                params={{ slug: proof.slug }}
                 className="resume-soft-reveal group rounded-lg border border-rule bg-card p-4 transition-colors hover:border-ink/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)]"
                 style={delayStyle(120 + index * 50)}
               >
@@ -486,8 +490,9 @@ function ResumePage() {
           <div className="flex flex-wrap gap-2.5">
             {recruiterPathLinks.map((path) => (
               <Link
-                key={path.to}
-                to={path.to}
+                key={path.audience}
+                to="/for/$audience"
+                params={{ audience: path.audience }}
                 className="inline-flex items-center justify-center rounded-full border border-ink/20 px-4 py-2 text-sm font-medium text-ink hover:bg-ink/5 transition-colors"
               >
                 {path.label}

@@ -1759,3 +1759,87 @@
 .prose-editorial :is(h2, h3, h4) {
   scroll-margin-top: 6rem;
 }
+
+/* ---------------------------------------------------------------------------
+   Print styles. Recruiters and hiring panels routinely print or "Save as PDF"
+   the /resume page — without this it printed the full interactive web layout
+   (sticky header, footer, booking embed, dark accents). Chrome-hiding is
+   global (no page benefits from nav chrome on paper); typography/break tuning
+   is scoped to .resume-page.
+--------------------------------------------------------------------------- */
+@media print {
+  /* Never print the interactive shell. */
+  header,
+  footer,
+  .skip-link,
+  #book,
+  #cal-booking-slot {
+    display: none !important;
+  }
+
+  /* Edge-to-edge, ink-on-paper. */
+  html,
+  body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+
+  main {
+    flex: 1 1 auto;
+  }
+
+  /* Drop decorative hero rules / glows and any reveal animations that would
+     otherwise leave content mid-transition (opacity:0) on the printed page. */
+  .priority-hero-rule,
+  .article-hero-rule {
+    display: none !important;
+  }
+
+  .resume-soft-reveal,
+  [class*="reveal"],
+  [class*="motion"] {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+
+  @page {
+    margin: 14mm 14mm;
+  }
+
+  .resume-page {
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    font-size: 11pt;
+    line-height: 1.4;
+  }
+
+  /* Keep an experience entry / proof card from splitting across pages. */
+  .resume-page section,
+  .resume-page article,
+  .resume-page li {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .resume-page h1,
+  .resume-page h2,
+  .resume-page h3 {
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+
+  /* Borders/surfaces print as hairlines, not heavy fills. */
+  .resume-page .bg-card,
+  .resume-page .bg-surface,
+  .resume-page .bg-surface-2 {
+    background: #fff !important;
+  }
+
+  /* Links stay underlined so the PDF reads as a document, not a webpage. */
+  .resume-page a {
+    color: #000 !important;
+    text-decoration: underline;
+  }
+}
