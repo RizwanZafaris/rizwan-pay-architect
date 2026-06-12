@@ -87,7 +87,17 @@ export const GOOGLE_ADS_PAGE_VIEW_CONVERSION_SEND_TO =
 // GTM) so the tag verifies and starts building the retargeting audience before
 // any GTM publishing round-trip; fires site-wide, conversions are defined in
 // Campaign Manager on top of it. Set VITE_LINKEDIN_PARTNER_ID="" to opt out.
-export const LINKEDIN_PARTNER_ID = env.VITE_LINKEDIN_PARTNER_ID ?? "3222825";
+// Comma-separated: the live ad account's tag (10373449, created 2026-06-12)
+// first, plus the original 3222825 so history in the old account stays intact.
+export const LINKEDIN_PARTNER_IDS = (env.VITE_LINKEDIN_PARTNER_ID ?? "10373449,3222825")
+  .split(",")
+  .map((id) => id.trim())
+  .filter(Boolean);
+// LinkedIn event-specific conversion for a booked call (Campaign Manager →
+// Analyze → Conversion tracking → create "Meeting booked" event conversion,
+// then put its numeric id here / in VITE_LINKEDIN_BOOKING_CONVERSION_ID).
+// Empty string = the lintrk track call is omitted from the embed script.
+export const LINKEDIN_BOOKING_CONVERSION_ID = env.VITE_LINKEDIN_BOOKING_CONVERSION_ID ?? "";
 
 // Optional analytics / webmaster IDs — all direct tags (GTM retired).
 export const BING_SITE_VERIFICATION =
@@ -128,12 +138,14 @@ export function titleFor(
 ): string {
   const max = options?.max ?? 60;
   const suffix = options?.suffix ?? " | Rizwan Zafar";
-  if (options?.meta)
-    return options.meta.length <= max ? options.meta : trimToMax(options.meta, max);
+  // NEVER machine-truncate a <title>: Google indexes the full text and only
+  // truncates the DISPLAY, while a baked "…" wastes keywords and is what AI
+  // engines show when citing the page (2026-06-12 audit: 58 pages shipped
+  // ellipsised titles). Long raw titles ship whole, just without the suffix;
+  // trimToMax remains for meta DESCRIPTIONS only.
+  if (options?.meta) return options.meta;
   const withSuffix = `${raw}${suffix}`;
-  if (withSuffix.length <= max) return withSuffix;
-  if (raw.length <= max) return raw;
-  return trimToMax(raw, max);
+  return withSuffix.length <= max ? withSuffix : raw;
 }
 
 export const SITE_KEYWORDS = [

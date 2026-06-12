@@ -25,14 +25,16 @@ concurrency:
 
 permissions:
   contents: write
+  issues: write # failure notifications
+  actions: write # cron keepalive (re-enable after 60-day inactivity timer)
 
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
 
-      - uses: oven-sh/setup-bun@v2
+      - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2
 
       - name: Install dependencies
         run: bun install --frozen-lockfile
@@ -51,16 +53,35 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           bash scripts/deploy-git-static.sh
 
+      # GitHub disables scheduled workflows after 60 days without repo
+      # activity — the drip publishing and the daily live probe would die
+      # silently together. Each cron run re-arms the timer.
+      - name: Cron keepalive
+        if: github.event_name == 'schedule'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api -X PUT "repos/${{ github.repository }}/actions/workflows/build-deploy.yml/enable" || true
+
+      - name: Notify on failure
+        if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh issue create \
+            --repo "${{ github.repository }}" \
+            --title "Deploy pipeline failed: ${{ github.workflow }} #${{ github.run_number }}" \
+            --body "Run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }} (trigger: ${{ github.event_name }}). The site was NOT updated — investigate before the next cron." \
+            || true
+
   live-check:
     needs: build-deploy
     runs-on: ubuntu-latest
-    # Advisory: Hostinger webhook pull + hCDN max-age=300 mean propagation
-    # takes a few minutes; transient mixed-cache states shouldn't fail CI.
-    continue-on-error: true
+    # Propagation flake (webhook pull + hCDN max-age=300) is absorbed by the
+    # 420s wait below; a failure after that is real and must notify.
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
 
-      - uses: oven-sh/setup-bun@v2
+      - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2
 
       - name: Install dependencies
         run: bun install --frozen-lockfile
@@ -70,3 +91,14 @@ jobs:
 
       - name: Probe live site
         run: bun scripts/check-live.ts
+
+      - name: Notify on failure
+        if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh issue create \
+            --repo "${{ github.repository }}" \
+            --title "Live-site probe failed after deploy #${{ github.run_number }}" \
+            --body "check-live.ts found the deployed site unhealthy: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" \
+            || true
