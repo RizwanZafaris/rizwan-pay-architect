@@ -348,13 +348,14 @@ function EssayFooterCTA({ post }: { post: Post }) {
           </div>
           <div className="mt-4 sm:mt-0 flex flex-wrap gap-2 shrink-0">
             <a
-              href="/contact/"
+              href="/contact/#book"
               data-analytics-event="cta_click"
-              data-analytics-source="essay_footer"
-              data-analytics-target="contact"
+              data-analytics-cta-id="book_intro_call"
+              data-analytics-cta-location="blog_post_footer"
+              data-analytics-cta-destination="/contact/#book"
               className="rounded-md bg-background text-ink px-4 py-2 text-sm font-medium hover:opacity-90"
             >
-              Get in touch
+              Book a 15-min intro call
             </a>
             <a
               href="/resume/"

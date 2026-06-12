@@ -419,6 +419,17 @@ function CaseStudyPage() {
           </p>
           <div className="mt-5 flex flex-wrap gap-3">
             <a
+              href="/contact/#book"
+              data-analytics-event="cta_click"
+              data-analytics-cta-id="book_intro_call"
+              data-analytics-cta-location="case_study_footer"
+              data-analytics-cta-destination="/contact/#book"
+              onClick={() => ctaClick("book_intro_call", "case_study_footer", "/contact/#book")}
+              className="inline-flex rounded-md bg-ink px-5 py-2.5 text-sm font-medium text-background transition-colors hover:bg-brand"
+            >
+              Book a 15-min intro call
+            </a>
+            <a
               href="/Rizwan_Zafar_Resume.pdf"
               download
               data-analytics-event="cta_click"
@@ -430,7 +441,7 @@ function CaseStudyPage() {
                 ctaClick("download_resume", "case_study_footer", "/Rizwan_Zafar_Resume.pdf");
                 resumeDownload("case_study");
               }}
-              className="inline-flex rounded-md bg-ink px-5 py-2.5 text-sm font-medium text-background transition-colors hover:bg-brand"
+              className="inline-flex rounded-md border border-ink/20 px-5 py-2.5 text-sm font-medium text-ink hover:border-ink/40"
             >
               Download résumé (PDF)
             </a>

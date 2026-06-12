@@ -168,7 +168,7 @@ export const Route = createFileRoute("/for/")({
 const delayStyle = (ms: number) => ({ "--motion-delay": `${ms}ms` }) as CSSProperties;
 
 const proofMetrics = [
-  { value: "$1B+", label: "GTV / TPV scaled" },
+  { value: "$1B+", label: "GTV scaled" },
   { value: "270M+", label: "Annual transactions" },
   { value: "5", label: "Markets" },
   { value: "99.95%", label: "Settlement SLA" },
@@ -658,6 +658,16 @@ function ForIndex() {
           </p>
         </div>
         <div className="flex flex-wrap gap-2.5 shrink-0">
+          <a
+            href="/contact/#book"
+            data-analytics-event="cta_click"
+            data-analytics-cta-id="book_intro_call"
+            data-analytics-cta-location="for_body"
+            data-analytics-cta-destination="/contact/#book"
+            className="inline-flex items-center justify-center rounded-full bg-ink text-background px-5 py-2.5 text-sm font-medium hover:bg-background hover:text-ink transition-colors"
+          >
+            Book a 15-min intro call
+          </a>
           <a
             href={profile.resumeHref}
             download

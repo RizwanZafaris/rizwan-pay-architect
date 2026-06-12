@@ -4,6 +4,7 @@ import { profile } from "@/data/profile";
 import { absUrl, SITE_URL } from "@/lib/seo";
 import { ctaClick, outboundClick, trackEvent } from "@/lib/analytics";
 import { SocialCardList } from "@/components/SocialIcons";
+import { BookingSection } from "@/components/BookingSection";
 
 // Web3Forms-compatible endpoint. The access key is PUBLIC BY DESIGN (Web3Forms
 // keys ship in the form's hidden input either way — same trust class as the
@@ -120,16 +121,18 @@ const contactProof = [
 ] as const;
 
 const calendarUrl = profile.calendarUrl.trim();
+// With the inline embed on this page, the schedule CTA anchors to #book
+// instead of leaving the site; mailto fallback only when no calendar is set.
 const scheduleHref =
-  calendarUrl ||
+  (calendarUrl && "#book") ||
   `mailto:${profile.email}?subject=${encodeURIComponent("Intro call availability")}&body=${encodeURIComponent(
     "Hi Rizwan,\n\nI found your portfolio and would like to schedule an intro call.\n\nCompany:\nRole/context:\nPreferred times:\n",
   )}`;
 
 const priorityChannels = [
   {
-    label: calendarUrl ? "Book intro call" : "Ask for availability",
-    detail: calendarUrl ? "Cal.com scheduling" : "Email pre-filled for scheduling",
+    label: calendarUrl ? "Book a 15-min intro call" : "Ask for availability",
+    detail: calendarUrl ? "Books right here on this page" : "Email pre-filled for scheduling",
     href: scheduleHref,
     id: calendarUrl ? "book_intro_call" : "ask_availability",
   },
@@ -354,8 +357,6 @@ function ContactPage() {
           <div className="mt-5 grid gap-2">
             <a
               href={scheduleHref}
-              target={calendarUrl ? "_blank" : undefined}
-              rel={calendarUrl ? "noreferrer" : undefined}
               data-analytics-event="cta_click"
               data-analytics-cta-id={calendarUrl ? "book_intro_call" : "ask_availability"}
               data-analytics-cta-location="contact_page"
@@ -366,11 +367,11 @@ function ContactPage() {
                   "contact_page",
                   scheduleHref,
                 );
-                outboundClick(scheduleHref, "contact_page");
+                if (!calendarUrl) outboundClick(scheduleHref, "contact_page");
               }}
               className="contact-card flex items-center justify-between border border-ink bg-ink px-4 py-3 text-sm text-background hover:bg-[var(--brand)]"
             >
-              <span>{calendarUrl ? "Book intro call" : "Ask for availability"}</span>
+              <span>{calendarUrl ? "Book a 15-min intro call" : "Ask for availability"}</span>
               <span aria-hidden="true">→</span>
             </a>
             <Link
@@ -824,6 +825,15 @@ function ContactPage() {
           )}
         </div>
       </section>
+
+      {calendarUrl && (
+        <BookingSection
+          refName="contact_inline_embed"
+          fallbackLocation="contact_embed_fallback"
+          calendarUrl={calendarUrl}
+          className="mt-4 pb-12"
+        />
+      )}
     </div>
   );
 }

@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, CalendarDays, Linkedin } from "lucide-react";
 import { profile } from "@/data/profile";
-import { calInlineEmbedScript } from "@/lib/campaign";
+import { BookingSection } from "@/components/BookingSection";
 import { absUrl, OG_IMAGE_URL, SITE_URL } from "@/lib/seo";
 
 // Dedicated, conversion-focused PAID landing page.
@@ -27,7 +27,7 @@ import { absUrl, OG_IMAGE_URL, SITE_URL } from "@/lib/seo";
 // in __root.tsx appends the landing URL's UTMs/click-ids + a ref per placement
 // to every cal.com link at load time (the static build never hydrates React).
 //
-// Booking is INLINE (cal.com embed in the #book section, calInlineEmbedScript):
+// Booking is INLINE (shared <BookingSection/> renders the #book embed):
 // both CTAs smooth-scroll there instead of redirecting, so the visitor never
 // leaves the page at the conversion moment. Cal's bookingSuccessful event fires
 // the GA4 `book_call_confirmed` event — the true booked-call conversion. A
@@ -220,50 +220,12 @@ function HirePage() {
         </div>
       </section>
 
-      {/* Inline booking — the conversion moment stays on rzifi.com.
-          The embed lazy-boots via calInlineEmbedScript (IO + CTA click). */}
-      <section id="book" className="mt-14 scroll-mt-24">
-        <div className="text-center">
-          <div className="text-[11px] uppercase tracking-[0.22em] text-ink-soft font-mono-tech">
-            Book directly &mdash; right here
-          </div>
-          <h2 className="font-instrument text-2xl md:text-3xl text-ink mt-3">
-            Pick a time that suits you
-          </h2>
-          <p className="mt-2 text-sm text-ink-soft">
-            15 minutes &middot; no pitch &middot; times shown in your timezone.
-          </p>
-        </div>
-        <div className="mt-6 rounded-lg border border-rule bg-card p-2 sm:p-4">
-          <div id="cal-booking-slot" className="min-h-[560px] md:min-h-[620px] w-full">
-            <noscript>
-              <p className="p-6 text-center text-sm text-ink-soft">
-                The booking calendar needs JavaScript.{" "}
-                <a className="underline text-ink" href={calendarUrl}>
-                  Book on cal.com instead
-                </a>
-                .
-              </p>
-            </noscript>
-          </div>
-        </div>
-        <p className="mt-3 text-center text-xs text-ink-soft">
-          Calendar not loading?{" "}
-          <a
-            href={calendarUrl}
-            target="_blank"
-            rel="noreferrer"
-            data-analytics-event="cta_click"
-            data-analytics-cta-id="book_intro_call"
-            data-analytics-cta-location="hire_embed_fallback"
-            data-analytics-cta-destination={calendarUrl}
-            className="underline hover:text-ink"
-          >
-            Open cal.com in a new tab
-          </a>
-          .
-        </p>
-      </section>
+      {/* Inline booking — the conversion moment stays on rzifi.com. */}
+      <BookingSection
+        refName="hire_inline_embed"
+        fallbackLocation="hire_embed_fallback"
+        calendarUrl={calendarUrl}
+      />
 
       {/* Repeat CTA + de-emphasised secondary paths */}
       <section className="mt-12 text-center">
@@ -313,10 +275,6 @@ function HirePage() {
         </div>
       </section>
 
-      {/* Inline cal.com embed boot — static build never hydrates React, so the
-          booking widget is wired by this vanilla script (lazy IO boot, smooth
-          scroll for #book CTAs, bookingSuccessful → GA4 book_call_confirmed). */}
-      <script dangerouslySetInnerHTML={{ __html: calInlineEmbedScript }} />
     </div>
   );
 }

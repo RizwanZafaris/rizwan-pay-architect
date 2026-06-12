@@ -305,6 +305,9 @@ const BANNED_CLAIM_PATTERNS: { label: string; re: RegExp }[] = [
   { label: "Business Insider", re: /Business Insider/ },
   { label: "BIT25", re: /BIT25/ },
   { label: "1,200+ merchants", re: /1,200\+/ },
+  // Owner ruling 2026-06-12: canonical merchant count is 150+. The settlement
+  // case study shipped "1,400+ merchants" briefly — keep it dead.
+  { label: "1,400+ merchants", re: /1,400\+\s*merchants?/i },
   { label: "8%->1.2% failure framing", re: /8% to ~?1\.2%/ },
 ];
 // The claim gate also covers the AI-engine trust surfaces — a regenerator

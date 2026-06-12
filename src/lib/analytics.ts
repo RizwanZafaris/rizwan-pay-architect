@@ -146,7 +146,10 @@ export type SiteEvent =
       cta_location:
         | "hero"
         | "header"
+        | "campaign_header"
         | "mobile_menu"
+        | "home_body"
+        | "for_body"
         | "for_top"
         | "for_lens"
         | "case_study_footer"

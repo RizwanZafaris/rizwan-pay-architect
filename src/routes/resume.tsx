@@ -2,6 +2,7 @@ import type { CSSProperties } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { CalendarDays, Download, Linkedin, Mail } from "lucide-react";
 import { personSchemaAwards, personSchemaCredentials, profile } from "@/data/profile";
+import { BookingSection } from "@/components/BookingSection";
 import { absUrl, GOOGLE_ADS_PAGE_VIEW_CONVERSION_SEND_TO, OG_IMAGE_URL, SITE_URL } from "@/lib/seo";
 
 const resumeKeywords = [
@@ -350,17 +351,15 @@ function ResumePage() {
           </p>
           <div className="mt-6 flex flex-wrap gap-2.5 max-w-full">
             <a
-              href={profile.calendarUrl}
-              target="_blank"
-              rel="noreferrer"
+              href="#book"
               data-analytics-event="cta_click"
               data-analytics-cta-id="book_intro_call"
               data-analytics-cta-location="resume_page"
-              data-analytics-cta-destination={profile.calendarUrl}
+              data-analytics-cta-destination="#book"
               className="inline-flex items-center justify-center gap-2 rounded-full bg-ink text-background px-5 py-2.5 text-sm font-medium hover:bg-brand hover:text-[var(--brand-foreground)] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2"
             >
               <CalendarDays aria-hidden="true" className="h-4 w-4" />
-              Schedule meeting
+              Book a 15-min intro call
             </a>
             <a
               href={profile.resumeHref}
@@ -688,16 +687,14 @@ function ResumePage() {
             <div>{profile.location}</div>
             <a
               className="flex w-fit items-center gap-2 text-ink underline underline-offset-4"
-              href={profile.calendarUrl}
-              target="_blank"
-              rel="noreferrer"
+              href="#book"
               data-analytics-event="cta_click"
               data-analytics-cta-id="book_intro_call"
               data-analytics-cta-location="resume_contact"
-              data-analytics-cta-destination={profile.calendarUrl}
+              data-analytics-cta-destination="#book"
             >
               <CalendarDays aria-hidden="true" className="h-4 w-4" />
-              Schedule a meeting
+              Book a 15-min intro call
             </a>
             <a
               className="flex w-fit items-center gap-2 text-ink underline underline-offset-4"
@@ -731,17 +728,15 @@ function ResumePage() {
         </div>
         <div className="flex flex-wrap gap-2.5 shrink-0">
           <a
-            href={profile.calendarUrl}
-            target="_blank"
-            rel="noreferrer"
+            href="#book"
             data-analytics-event="cta_click"
             data-analytics-cta-id="book_intro_call"
             data-analytics-cta-location="resume_page"
-            data-analytics-cta-destination={profile.calendarUrl}
+            data-analytics-cta-destination="#book"
             className="inline-flex items-center justify-center gap-2 rounded-full bg-background text-ink px-5 py-2.5 text-sm font-medium hover:bg-[var(--brand)] hover:text-background transition-colors"
           >
             <CalendarDays aria-hidden="true" className="h-4 w-4" />
-            Schedule meeting
+            Book a 15-min intro call
           </a>
           <a
             href={profile.resumeHref}
@@ -758,6 +753,12 @@ function ResumePage() {
           </a>
         </div>
       </section>
+
+      <BookingSection
+        refName="resume_inline_embed"
+        fallbackLocation="resume_embed_fallback"
+        calendarUrl={profile.calendarUrl}
+      />
     </div>
   );
 }
