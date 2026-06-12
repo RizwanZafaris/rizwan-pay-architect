@@ -76,7 +76,7 @@ function AboutPage() {
         <p className="mt-6 text-lg text-ink-soft leading-relaxed max-w-2xl">
           Product &amp; Program leader in regulated payments. 14+ years across product, payments,
           programme delivery and digital transformation. Currently CPO at Simpaisa: helped scale the
-          B2B payments platform from $0 to $1B+ TPV across 5 frontier markets, alongside global PSP
+          B2B payments platform from $0 to $1B+ GTV across 5 frontier markets, alongside global PSP
           partners, built the 40-engineer organisation from 2 people across 12 cross-functional
           squads, deployed 4 production GenAI solutions, and infrastructure now used by TikTok,
           Uber, Samsung, Shein and MoneyGram. Earlier: $3M digital transformation programme at

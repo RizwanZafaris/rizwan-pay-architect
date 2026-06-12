@@ -107,22 +107,19 @@ export function SiteHeader() {
 
           <div className="flex items-center gap-1.5 shrink-0">
             <a
-              href={profile.calendarUrl}
-              target="_blank"
-              rel="noreferrer"
-              aria-label="Schedule an intro meeting"
+              href="/contact/#book"
+              aria-label="Book a 15-min intro call"
               data-analytics-event="cta_click"
               data-analytics-cta-id="book_intro_call"
               data-analytics-cta-location="header"
-              data-analytics-cta-destination={profile.calendarUrl}
+              data-analytics-cta-destination="/contact/#book"
               onClick={() => {
-                ctaClick("book_intro_call", "header", profile.calendarUrl);
-                outboundClick(profile.calendarUrl, "header");
+                ctaClick("book_intro_call", "header", "/contact/#book");
               }}
               className="inline-flex items-center gap-1.5 rounded-full bg-ink text-background px-3.5 sm:px-4 py-2.5 text-[12px] font-medium hover:bg-brand transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background"
             >
               <CalendarDays aria-hidden="true" className="h-3.5 w-3.5" />
-              <span className="hidden sm:inline">Schedule call</span>
+              <span className="hidden sm:inline">Book a 15-min intro call</span>
             </a>
             {/* Mobile/tablet menu trigger — wired by MOBILE_MENU_SCRIPT */}
             <button
@@ -197,16 +194,14 @@ export function SiteHeader() {
               </Link>
             ))}
             <a
-              href={profile.calendarUrl}
-              target="_blank"
-              rel="noreferrer"
+              href="/contact/#book"
               data-analytics-event="cta_click"
               data-analytics-cta-id="book_intro_call"
               data-analytics-cta-location="mobile_menu"
-              data-analytics-cta-destination={profile.calendarUrl}
+              data-analytics-cta-destination="/contact/#book"
               className="mt-2 px-3 py-3 rounded-lg text-base text-ink hover:bg-ink/5 transition-colors"
             >
-              Schedule meeting
+              Book a 15-min intro call
             </a>
             <a
               href={profile.resumeHref}
@@ -370,22 +365,19 @@ export function CampaignHeader() {
             </span>
           </Link>
           <a
-            href={calendarUrl}
-            target="_blank"
-            rel="noreferrer"
-            aria-label="Schedule an intro meeting"
+            href="#book"
+            aria-label="Book a 15-min intro call"
             data-analytics-event="cta_click"
             data-analytics-cta-id="book_intro_call"
             data-analytics-cta-location="campaign_header"
-            data-analytics-cta-destination={calendarUrl}
+            data-analytics-cta-destination="#book"
             onClick={() => {
-              ctaClick("book_intro_call", "campaign_header", calendarUrl);
-              outboundClick(calendarUrl, "campaign_header");
+              ctaClick("book_intro_call", "campaign_header", "#book");
             }}
             className="inline-flex items-center gap-1.5 rounded-full bg-ink text-background px-3.5 sm:px-4 py-2.5 text-[12px] font-medium hover:bg-brand transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background"
           >
             <CalendarDays aria-hidden="true" className="h-3.5 w-3.5" />
-            <span>Book a 15-min call</span>
+            <span>Book a 15-min intro call</span>
           </a>
         </div>
       </div>

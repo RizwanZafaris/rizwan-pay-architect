@@ -15,8 +15,10 @@
 // offline-conversion uploads later.
 export const calendarCampaignParamsScript = `!function(){function a(){try{var q=new URLSearchParams(location.search),k=["utm_source","utm_medium","utm_campaign","utm_content","utm_term","gclid","gbraid","wbraid","li_fat_id","msclkid"];document.querySelectorAll('a[href*="cal.com"]').forEach(function(e){try{var u=new URL(e.href);k.forEach(function(n){var v=q.get(n);if(v)u.searchParams.set(n,v)});var l=e.dataset.analyticsCtaLocation;if(l)u.searchParams.set("ref",l);e.href=u.toString();if(e.dataset.analyticsCtaDestination)e.dataset.analyticsCtaDestination=u.toString()}catch(x){}})}catch(x){}}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",a);else a()}();`;
 
-// Inline cal.com booking embed for /hire — the visitor books WITHOUT leaving
-// the site (no redirect at the conversion moment).
+// Inline cal.com booking embed (used on /hire, /contact and /resume via
+// <BookingSection/>) — the visitor books WITHOUT leaving the site. `ref`
+// names the placement (hire_inline_embed / contact_inline_embed /
+// resume_inline_embed) for funnel attribution.
 //
 // Same zero-hydration constraint as above: everything is a vanilla inline
 // script. Behaviour:
@@ -43,9 +45,9 @@ export const calendarCampaignParamsScript = `!function(){function a(){try{var q=
 //       book_call_confirmed  (Cal "bookingSuccessful") — BOOKED (true conversion)
 //     Import book_call_confirmed in Google Ads as the primary conversion once
 //     it has volume; until then existing click wiring stays untouched.
-export const calInlineEmbedScript = `!function(){
+export const calInlineEmbedScript = (ref: string) => `!function(){
 var section=document.getElementById("book");if(!section)return;
-function track(ev,params){try{if(typeof gtag==="function"){params=params||{};params.source=params.source||"hire_inline_embed";gtag("event",ev,params)}}catch(x){}}
+function track(ev,params){try{if(typeof gtag==="function"){params=params||{};params.source=params.source||"${ref}";gtag("event",ev,params)}}catch(x){}}
 var booted=false;
 function boot(){if(booted)return;booted=true;
 try{
@@ -53,7 +55,7 @@ try{
 Cal("init","15min",{origin:"https://app.cal.com"});
 Cal.config=Cal.config||{};Cal.config.forwardQueryParams=true;
 var dark=document.documentElement.classList.contains("dark")||(window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches);
-Cal.ns["15min"]("inline",{elementOrSelector:"#cal-booking-slot",config:{layout:"month_view",useSlotsViewOnSmallScreen:"true",theme:dark?"dark":"light",ref:"hire_inline_embed"},calLink:"rizwan-zafar-gws2uk/15min"});
+Cal.ns["15min"]("inline",{elementOrSelector:"#cal-booking-slot",config:{layout:"month_view",useSlotsViewOnSmallScreen:"true",theme:dark?"dark":"light",ref:"${ref}"},calLink:"rizwan-zafar-gws2uk/15min"});
 Cal.ns["15min"]("ui",{cssVarsPerTheme:{light:{"cal-brand":"#0e4f4f"},dark:{"cal-brand":"#3ecbe6"}},hideEventTypeDetails:false,layout:"month_view"});
 var ready=false;function markReady(){if(!ready){ready=true;track("cal_embed_ready")}}
 Cal.ns["15min"]("on",{action:"linkReady",callback:markReady});
@@ -65,5 +67,6 @@ Cal.ns["15min"]("on",{action:"*",callback:function(e){try{var a=e&&e.detail&&(e.
 try{if("IntersectionObserver" in window){var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){boot();io.disconnect()}})},{rootMargin:"900px 0px"});io.observe(section);
 var seen=false,vo=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting&&!seen){seen=true;track("cal_embed_viewed");vo.disconnect()}})},{threshold:0.15});vo.observe(section)}else boot()}catch(x){boot()}
 document.querySelectorAll('a[href="#book"]').forEach(function(a){a.addEventListener("click",function(ev){boot();try{ev.preventDefault();section.scrollIntoView({behavior:"smooth",block:"start"});history.replaceState(null,"","#book")}catch(x){location.hash="book"}})});
+window.addEventListener("hashchange",function(){if(location.hash==="#book"){boot();try{section.scrollIntoView({behavior:"smooth",block:"start"})}catch(x){}}});
 if(location.hash==="#book")boot();
 }();`;

@@ -851,7 +851,19 @@ function HomePage() {
             Mastercard, Stripe, Wise, Adyen, Thunes, DLocal, Checkout.com, Rapyd and regional
             fintechs. Replies within 24 hours, Sun–Thu (GST).
           </p>
-          <div className="home-search-panel mt-9 mx-auto max-w-md rounded-lg sm:rounded-full border border-rule bg-card p-2 sm:p-1.5 sm:pl-5 flex flex-col sm:flex-row sm:items-center gap-3">
+          <div className="mt-8">
+            <a
+              href="/contact/#book"
+              data-analytics-event="cta_click"
+              data-analytics-cta-id="book_intro_call"
+              data-analytics-cta-location="home_body"
+              data-analytics-cta-destination="/contact/#book"
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-ink text-background px-7 py-3.5 text-base font-medium shadow-sm transition duration-200 hover:bg-brand hover:text-[var(--brand-foreground)] hover:-translate-y-0.5 hover:shadow-md"
+            >
+              Book a 15-min intro call <span aria-hidden>→</span>
+            </a>
+          </div>
+          <div className="home-search-panel mt-5 mx-auto max-w-md rounded-lg sm:rounded-full border border-rule bg-card p-2 sm:p-1.5 sm:pl-5 flex flex-col sm:flex-row sm:items-center gap-3">
             <span className="text-sm text-ink-soft font-mono-tech truncate min-w-0 px-2 sm:px-0">
               {profile.email}
             </span>

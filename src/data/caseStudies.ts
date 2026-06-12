@@ -1051,7 +1051,7 @@ export const caseStudies: CaseStudy[] = [
       "Standardised on internal MPGS APIs rather than letting each squad call MPGS directly, slowed initial features by ~6 weeks; saved ~6 quarters of rework when MPGS shipped breaking changes",
     ],
     lessons: [
-      "MPGS Hosted Checkout is the right starting integration; staying on it past $200M TPV is a strategic mistake, not a stability win",
+      "MPGS Hosted Checkout is the right starting integration; staying on it past $200M GTV is a strategic mistake, not a stability win",
       "Auth-rate optimisation is a permanent programme, not a project. The first 2 points come from 3DS2; the next 1–2 points come from BIN routing and tokenisation; the last 0.5 point comes from per-issuer experiments",
       "Network tokenisation is the highest-leverage migration on the MPGS surface. The PCI-scope reduction, the auth-rate lift, and the lifecycle automation each justify it on their own; together they pay back the migration cost inside two quarters",
       "Dispute product matters at portfolio scale. Once the platform crosses ~10k disputes/year, ingesting the scheme portal into the internal case manager removes more ops cost than any other single move",
@@ -1857,9 +1857,9 @@ export const caseStudies: CaseStudy[] = [
   {
     slug: "settlement-engine-99-95-accuracy",
     title:
-      "Settlement Engine At 99.95% Accuracy: Triple-Match Reconciliation Across 1,400+ Merchants",
+      "Settlement Engine At 99.95% Accuracy: Triple-Match Reconciliation Across 150+ Merchants",
     tagline:
-      "Rebuilt the settlement and reconciliation engine for a regional acquirer-processor, triple-match against scheme settlement file, bank statement, and internal ledger, sustaining 99.95% accuracy across 1,400+ merchants and cutting daily reconciliation hours by ~65%.",
+      "Rebuilt the settlement and reconciliation engine for a regional acquirer-processor, triple-match against scheme settlement file, bank statement, and internal ledger, sustaining 99.95% accuracy across 150+ merchants and cutting daily reconciliation hours by ~65%.",
     category: "Settlement & Reconciliation",
     markets: ["UAE", "KSA", "Pakistan", "Bangladesh"],
     relevantFor: [
@@ -1876,7 +1876,7 @@ export const caseStudies: CaseStudy[] = [
       },
       {
         label: "Merchants reconciled daily",
-        value: "1,400+",
+        value: "150+",
       },
       {
         label: "Triple-match coverage",
@@ -1918,7 +1918,7 @@ export const caseStudies: CaseStudy[] = [
       },
     ],
     executiveSummary:
-      "Rebuilt the settlement and reconciliation engine for a regional acquirer-processor, moved from two-way match (ledger vs scheme file) to triple-match (scheme settlement file + bank statement + internal ledger). Achieved 99.95% sustained reconciliation accuracy across 1,400+ merchants in four markets. Cut break-detection latency from T+3 evening to T+1 morning, reducing daily reconciliation effort by ~65% and merchant-facing settlement delays from ~2% to ~0.04% per month. Established the reconciliation engine as the system of record for both finance reporting and merchant settlement disputes.",
+      "Rebuilt the settlement and reconciliation engine for a regional acquirer-processor, moved from two-way match (ledger vs scheme file) to triple-match (scheme settlement file + bank statement + internal ledger). Achieved 99.95% sustained reconciliation accuracy across 150+ merchants in four markets. Cut break-detection latency from T+3 evening to T+1 morning, reducing daily reconciliation effort by ~65% and merchant-facing settlement delays from ~2% to ~0.04% per month. Established the reconciliation engine as the system of record for both finance reporting and merchant settlement disputes.",
     problem:
       "The platform's reconciliation engine was two-way: internal ledger matched against scheme settlement file. The bank statement was reconciled manually by the finance team, T+2 to T+3, producing a daily 6+ FTE-hour exercise across four markets. Reconciliation breaks were detected late (T+3 evening or later); merchants who had been credited but where the funds had not arrived from the scheme were experiencing settlement delays at a ~2% monthly rate; the finance team was carrying a backlog of unresolved breaks rolling from week to week. The CFO and the COO had been escalating; the audit team had flagged the manual statement reconciliation as a tier-2 observation. The senior team needed a system that produced T+1 morning break detection, full triple-match, and per-merchant visibility into the reconciliation state.",
     built: [
@@ -1948,7 +1948,7 @@ export const caseStudies: CaseStudy[] = [
     ],
     role: "Owned the settlement engine rebuild end-to-end, triple-match architecture, match-key strategy, automated remediation logic, per-merchant reporting, audit-evidence pipeline, settlement-state SLA design, and the coordination with finance + ops + audit + merchant-success. Direct accountability for reconciliation accuracy KPIs, break-detection latency, daily reconciliation FTE effort, and merchant-facing settlement experience.",
     impact: [
-      "Achieved and sustained 99.95% reconciliation accuracy across 1,400+ merchants in four markets",
+      "Achieved and sustained 99.95% reconciliation accuracy across 150+ merchants in four markets",
       "Cut daily reconciliation effort by ~65% across the four markets, from ~6 FTE-hours per market to ~2",
       "Reduced merchant-facing settlement delays from ~2% per month to ~0.04% per month",
       "Brought break detection from T+3 evening to T+1 morning",
