@@ -16,7 +16,8 @@ import { pageAnalyticsContext } from "@/lib/analytics";
 // production build never hydrates; initial loads are tracked by gtag.js).
 declare global {
   interface Window {
-    dataLayer?: Array<Record<string, unknown>>;
+    // dataLayer is declared canonically in analytics.ts (DataLayerEntry[]).
+    // GTM is retired, so the gtag bootstrap below is the only writer.
     gtag?: (...args: unknown[]) => void;
     __rzifiAdsResumePageViewConversion?: boolean;
   }

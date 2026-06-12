@@ -196,7 +196,7 @@ const BLOG_FILTER_SCRIPT = `
 
 function BlogIndex() {
   const { q, hub, reader, company } = Route.useSearch();
-  const navigate = useNavigate({ from: "/blog" });
+  const navigate = useNavigate({ from: "/blog/" });
 
   type SearchState = { q: string; hub: string; reader: string; company: string };
   const setParam = (key: keyof SearchState, value: string) =>

@@ -2010,7 +2010,7 @@ export const getRelated = (slug: string) => {
     .map((href) => href.match(/\/blog\/([^/#?]+)/)?.[1])
     .filter((x): x is string => Boolean(x))
     .map((relatedSlug) => getPost(relatedSlug))
-    .filter((x): x is Post => Boolean(x) && isPostPublished(x));
+    .filter((x): x is Post => x !== undefined && isPostPublished(x));
   const explicitSlugs = new Set(explicit.map((x) => x.slug));
   const fallback = publishedPosts
     .filter(
