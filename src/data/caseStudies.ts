@@ -30,6 +30,10 @@ export type CaseStudy = {
   pullQuote?: string;
   /** Optional attribution for the pull-quote (e.g. self-attributed by year). */
   pullQuoteBy?: string;
+  /** Disclosure line for work delivered outside Simpaisa (e.g. independent
+   *  consulting for a confidential client). Rendered in the hero so a reader
+   *  never has to guess whether a case study is employer or advisory work. */
+  engagement?: string;
 };
 
 // Hero image paths follow a strict convention so routes don't need to look
@@ -46,7 +50,6 @@ const CS_IMAGE_ALIAS: Record<string, string> = {
   "aml-cft-sanctions-engine-implementation": "fraud-risk-aml-cft",
   "regional-wallet-integration-easypaisa-jazzcash-sadad": "cross-border-corridors-fx",
   "pmo-risk-council-operating-model": "simpaisa-ai-solutions-suite",
-  "settlement-engine-99-95-accuracy": "settlement-reconciliation",
 };
 const caseStudyImageSlug = (slug: string) => CS_IMAGE_ALIAS[slug] ?? slug;
 
@@ -943,6 +946,7 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "mpgs-acquirer-integration-programme",
+    engagement: "Independent consulting engagement · regional acquirer-processor (client confidential).",
     title:
       "MPGS Acquirer Integration Programme: Hosted Session, 3DS2, Tokenisation and the Recurring Stack",
     tagline:
@@ -1009,11 +1013,11 @@ export const caseStudies: CaseStudy[] = [
     executiveSummary:
       "Designed and shipped the full MPGS surface for a regional acquirer-processor, moving from a single Hosted Checkout integration into Hosted Session (for branded checkouts), Direct API (for recurring and merchant-of-record flows), EMV 3DS2 step-up tuning, scheme tokenisation, recurring billing, dispute ingestion and merchant-facing settlement reconciliation. Migrated the full 150+ merchant portfolio in three primary markets across an 18-month rollout with no 24-hour outage and a +3.4-point portfolio-wide authorisation-rate uplift.",
     problem:
-      "The acquirer had launched on MPGS via the standard Hosted Checkout flow and stayed there. The integration was stable, but the platform was locked out of every flow that mattered for premium merchants: branded checkouts, recurring billing, scheme tokenisation, merchant-of-record marketplaces, MIT/CIT differentiation, and structured 3DS2 exemption logic. Authorisation rates lagged the regional benchmark by 3–4 points. Disputes were handled by ops staff opening the scheme portal merchant-by-merchant. Settlement reconciliation was a daily fire drill. The next-quarter scheme mandate on network tokenisation made the gap untenable.",
+      "The acquirer had launched on MPGS via the standard Hosted Checkout flow and stayed there. The integration was stable, but the platform was locked out of every flow that mattered for premium merchants: branded checkouts, recurring billing, scheme tokenisation, merchant-of-record marketplaces, MIT/CIT differentiation, and structured 3DS2 risk-based-authentication logic. Authorisation rates lagged the regional benchmark by 3–4 points. Disputes were handled by ops staff opening the scheme portal merchant-by-merchant. Settlement reconciliation was a daily fire drill. The next-quarter scheme mandate on network tokenisation made the gap untenable.",
     built: [
       "Hosted Session integration: kept MPGS PCI scope while letting merchants brand the checkout (own CSS, own form, own redirect-free experience)",
       "Direct API integration for recurring (RECURRING / INITIAL CIT / SUBSEQUENT MIT) and marketplace flows that needed payer-not-present orchestration",
-      "EMV 3DS2 step-up logic with explicit handling of all five PSD2 exemptions (TRA, low-value, recurring, trusted beneficiary, MIT) and per-issuer step-up scoring",
+      "EMV 3DS2 step-up logic with per-issuer risk-based authentication (frictionless, data-only / 3RI, recurring and MIT anchoring, issuer trust-listing) and per-issuer step-up scoring",
       "Network tokenisation via MDES (Mastercard) and VTS (Visa), replacing PAN-on-file with scheme tokens for 92% of card-on-file merchants",
       "Recurring billing engine: token-backed subscriptions, retry ladder driven by decline-reason taxonomy, dunning sequences per market",
       "Dispute ingestion: scheme webhook + Notification Service consumer into the internal case-management system; evidence-upload portal for merchants",
@@ -1022,7 +1026,7 @@ export const caseStudies: CaseStudy[] = [
     ],
     architecture: [
       "MPGS integration sits behind a stable internal Acquirer API; Hosted Checkout vs Hosted Session vs Direct API is an internal routing decision per merchant, not a per-merchant SDK",
-      "3DS2 step-up logic runs as a pre-auth service: scores the transaction, picks the exemption, calls MPGS with the exemption flag, falls back to step-up only when the score demands it",
+      "3DS2 step-up logic runs as a pre-auth service: scores the transaction, picks the lowest-friction authentication path, calls MPGS with the corresponding flag, falls back to step-up only when the score demands it",
       "Tokenisation is a one-way migration per merchant: PAN is detokenised inside a hardened service the merchant never sees; merchant-facing APIs only ever reference scheme tokens",
       "Recurring engine is event-sourced: every retry decision is a recorded event with the decline reason and the next-attempt rule that fired",
       "Settlement reconciliation runs T+1 morning; breaks are routed to per-merchant queues with named ops owners and SLA timers",
@@ -1037,7 +1041,7 @@ export const caseStudies: CaseStudy[] = [
     ],
     role: "Owned the MPGS programme end-to-end as Product & Program lead, integration architecture, merchant-rollout sequencing, scheme-certification path, auth-rate optimisation programme, tokenisation rollout, dispute-product surface, settlement-reconciliation product, and the per-merchant migration governance. Direct accountability for portfolio auth rate, dispute cycle time, settlement break rate and scheme-certification posture.",
     impact: [
-      "Lifted portfolio-wide authorisation rate by +3.4 points across the 18-month programme, driven by 3DS2 exemption tuning, BIN-routing optimisation, and tokenisation lift",
+      "Lifted portfolio-wide authorisation rate by +3.4 points across the 18-month programme, driven by 3DS2 risk-based-authentication tuning, BIN-routing optimisation, and tokenisation lift",
       "Migrated 150+ merchants from Hosted Checkout to the appropriate MPGS integration mode without a single 24-hour outage",
       "Reached 92% network-tokenisation coverage on card-on-file merchants ahead of the regional scheme deadline",
       "Compressed median dispute cycle time from 21 days to 12 days through ingestion + merchant evidence-upload portal",
@@ -1074,6 +1078,7 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "mdes-network-tokenisation-rollout",
+    engagement: "Independent consulting engagement · regional acquirer-processor (client confidential).",
     title:
       "MDES + VTS Network Tokenisation Rollout: 92% Coverage and the Auth-Rate Lift That Pays For Itself",
     tagline:
@@ -1205,9 +1210,10 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "3ds2-sca-step-up-optimisation-programme",
-    title: "3DS2 + SCA Step-Up Optimisation: From 38% Frictionless to 73% Without Lifting Fraud",
+    engagement: "Independent consulting engagement · regional acquirer-processor (client confidential).",
+    title: "3DS2 Step-Up Optimisation: From 38% Frictionless to 73% Without Lifting Fraud",
     tagline:
-      "Rebuilt the 3DS2 step-up programme for a regional acquirer-processor, per-issuer scoring, full PSD2 exemption suite, abandon-recovery flows, lifting frictionless rate from 38% to 73% over three quarters while holding fraud below the band-2 (6 bps) TRA ceiling.",
+      "Rebuilt the EMV 3DS2 step-up programme for a regional acquirer-processor — per-issuer risk-based authentication, the full 3DS2 frictionless / data-only path suite, abandon-recovery flows — lifting frictionless rate from 38% to 73% over three quarters while holding portfolio fraud below the 6 bps scheme fraud-monitoring threshold.",
     category: "Payment Infrastructure",
     markets: ["UAE", "KSA", "Pakistan", "Egypt"],
     relevantFor: [
@@ -1234,7 +1240,7 @@ export const caseStudies: CaseStudy[] = [
       },
       {
         label: "Portfolio fraud rate",
-        value: "Held below 6 bps (band 2 TRA)",
+        value: "Held below 6 bps (scheme threshold)",
       },
       {
         label: "Auth-rate lift on CNP traffic",
@@ -1247,14 +1253,14 @@ export const caseStudies: CaseStudy[] = [
     ],
     beforeAfter: [
       {
-        metric: "TRA exemption usage",
+        metric: "Risk-based authentication",
         before: "Portfolio-wide single flag",
-        after: "Per-merchant, per-issuer, per-amount-band exemption profile",
+        after: "Per-merchant, per-issuer, per-amount-band RBA profile",
       },
       {
         metric: "Recurring + MIT handling",
         before: "Step-up on every payment",
-        after: "MIT flag at auth + recurring exemption with token persistence",
+        after: "MIT flag at auth + recurring authentication anchor with token persistence",
       },
       {
         metric: "Step-up abandonment recovery",
@@ -1268,64 +1274,64 @@ export const caseStudies: CaseStudy[] = [
       },
     ],
     executiveSummary:
-      "Rebuilt the 3DS2 + SCA exemption programme for a regional acquirer-processor, moved from portfolio-wide TRA flagging to per-issuer, per-merchant, per-amount-band exemption profiles; deployed the full PSD2 exemption suite (TRA, low-value, recurring, trusted beneficiary, MIT); and shipped step-up abandon-recovery flows. Lifted frictionless rate from 38% to 73% over three quarters, while holding the portfolio fraud rate below the band-2 TRA ceiling (6 bps) on routed traffic, and moving the qualifying merchant cohort into band 3 in the final quarter. Delivered +5.4 points portfolio CNP authorisation-rate lift, with the largest gains on iOS Safari + cross-border combinations.",
+      "Rebuilt the EMV 3DS2 step-up programme for a regional acquirer-processor across UAE, KSA, Pakistan and Egypt — markets where cardholder step-up is governed by scheme mandates (Visa / Mastercard EMV 3DS2) and local-regulator e-commerce authentication rules (SAMA, CBUAE, SBP, CBE), not PSD2 / SCA. Moved from portfolio-wide step-up flagging to per-issuer, per-merchant, per-amount-band risk-based authentication (RBA); used the full 3DS2 frictionless / data-only (3RI) path suite, recurring and MIT authentication anchoring, and issuer trust-listing; and shipped step-up abandon-recovery flows. Lifted frictionless rate from 38% to 73% over three quarters while holding portfolio fraud below the 6 bps scheme fraud-monitoring threshold on routed traffic, and delivered +5.4 points portfolio CNP authorisation-rate lift — largest gains on iOS Safari + cross-border combinations.",
     problem:
-      "The platform was operating in TRA band 2 (€250 ceiling, 6 bps fraud floor) with a portfolio frictionless rate of 38%, well below regional peers. CNP authorisation rate trailed the regional benchmark by 4 points. The step-up flow was either always-on (high friction, high abandonment) or off (no exemption strategy at all) depending on the merchant. Recurring subscriptions stepped up on every charge; MIT flags were inconsistently set; trusted-beneficiary lookups were not in the flow. The scheme account manager had quietly warned that the band-2 status was at risk of slipping to band 1 if fraud trends did not improve. The team needed a complete rebuild of the exemption + step-up surface, with no acceptable trade-off on the fraud rate.",
+      "The platform was stepping up 62% of card-not-present traffic with a portfolio frictionless rate of 38%, well below regional peers, while CNP authorisation rate trailed the regional benchmark by 4 points. Step-up was either always-on (high friction, high abandonment) or off (no risk-based strategy at all) depending on the merchant. Recurring subscriptions stepped up on every charge; MIT flags were inconsistently set; issuer trust signals were not in the flow. The scheme account manager had warned that the portfolio's fraud trend was approaching the fraud-monitoring-programme threshold. The team needed a complete rebuild of the risk-based-authentication and step-up surface, with no acceptable trade-off on the fraud rate — and it had to satisfy the local e-commerce authentication mandates in each market (SAMA, CBUAE, SBP, CBE) alongside the Visa / Mastercard 3DS2 rules.",
     built: [
-      "Pre-auth exemption scoring service: scores every CNP transaction against the five PSD2 exemptions and picks the highest-value applicable path",
-      "Per-issuer override map: 180+ issuer + BIN-range combinations with observed exemption-honour rates, step-up override rates, and per-amount-band TRA ceilings",
-      "Per-merchant exemption profile: each merchant's typical transaction mix, fraud band, and exemption preferences captured as a config",
+      "Pre-auth RBA scoring service: scores every CNP transaction and picks the highest-value applicable 3DS2 path (frictionless, data-only / 3RI, or step-up)",
+      "Per-issuer override map: 180+ issuer + BIN-range combinations with observed frictionless-honour rates, step-up override rates, and per-amount-band thresholds",
+      "Per-merchant authentication profile: each merchant's typical transaction mix, fraud profile, and authentication preferences captured as a config",
       "MIT indicator pipeline: end-to-end correctness on the MIT flag at authorisation (not capture), including back-fill for recurring subscriptions",
-      "Recurring exemption with token persistence: token-backed subscriptions retain the first-CIT-authentication anchor; amount-drift detection re-arms SCA only when amount changes materially",
-      "Trusted-beneficiary lookup in the auth flow (per-issuer; honoured where issuers expose the signal)",
+      "Recurring authentication anchor with token persistence: token-backed subscriptions retain the first-CIT-authentication anchor; amount-drift detection re-arms step-up only when amount changes materially",
+      "Issuer trust-listing in the auth flow (per-issuer; honoured where issuers expose the signal)",
       "Step-up abandonment recovery: OTP resend, push notification re-prompt, fallback to alternative payment method, post-abandonment outreach via merchant",
-      "Real-time fraud-rate dashboard: per-band visibility against TRA ceilings (€100 / €250 / €500); auto-tightens exemption flagging when rolling rate approaches threshold",
+      "Real-time fraud-rate dashboard: per-segment visibility against the scheme fraud-monitoring threshold; auto-tightens frictionless flagging when rolling rate approaches the threshold",
     ],
     architecture: [
-      "Exemption-scoring runs as a synchronous pre-auth service: < 80ms p95 added latency; cached per-issuer profile + per-merchant config + transaction risk score",
+      "RBA scoring runs as a synchronous pre-auth service: < 80ms p95 added latency; cached per-issuer profile + per-merchant config + transaction risk score",
       "Per-issuer scoring updates monthly from observed honour rates; weighted toward last 30 days of behaviour; manual override allowed for known-issuer changes",
       "MIT pipeline keyed on a prior-authentication-reference table: every MIT request lookups the originating CIT and includes its authentication evidence in the auth request",
       "Step-up abandonment recovery sequenced: client-side OTP resend (zero latency), then alternative method offer, then session-recovery email for merchants who opt in",
-      "Fraud-rate guard-rails are first-class: real-time portfolio rate + per-merchant rate + per-issuer rate; exemption ceiling tightens automatically when any segment approaches the band ceiling",
-      "Reconciliation: every exemption decision and step-up outcome is logged; available for scheme audit replay and per-merchant performance reporting",
+      "Fraud-rate guard-rails are first-class: real-time portfolio rate + per-merchant rate + per-issuer rate; frictionless flagging tightens automatically when any segment approaches the scheme threshold",
+      "Reconciliation: every authentication decision and step-up outcome is logged; available for scheme audit replay and per-merchant performance reporting",
     ],
     operatingModel: [
       "Weekly 3DS2 health review: frictionless rate, step-up rate, abandonment, fraud rate, by merchant tier, by network, by issuer cohort",
       "Monthly per-issuer profile refresh: re-score the 180+ issuer combinations based on observed behaviour from the last 30 days",
-      "Quarterly merchant exemption-strategy review with top 30 merchants: their fraud band, their exemption mix, their step-up abandonment, the auth-rate impact",
-      "Real-time alerting when any merchant's fraud rate crosses 70% of its band ceiling; programme tightens automatically and notifies the merchant-success team",
-      "Annual scheme audit prep: exemption-decision logs, fraud-rate evidence per band, attestation of TRA programme controls",
+      "Quarterly merchant authentication-strategy review with top 30 merchants: their fraud profile, their authentication mix, their step-up abandonment, the auth-rate impact",
+      "Real-time alerting when any merchant's fraud rate crosses 70% of the scheme threshold; programme tightens automatically and notifies the merchant-success team",
+      "Annual scheme + regulator audit prep: authentication-decision logs, fraud-rate evidence, attestation of step-up programme controls against scheme and local-mandate requirements",
     ],
-    role: "Owned the 3DS2 + SCA programme end-to-end as Product & Program lead, exemption-scoring architecture, per-issuer scoring model, MIT pipeline correctness, recurring-token integration, abandon-recovery flows, fraud-rate guard-rails and the scheme-audit posture. Direct accountability for frictionless rate, fraud rate, auth-rate lift, and TRA band maintenance.",
+    role: "Owned the 3DS2 / risk-based-authentication programme end-to-end as Product & Program lead — RBA scoring architecture, per-issuer scoring model, MIT pipeline correctness, recurring-token integration, abandon-recovery flows, fraud-rate guard-rails and the scheme-audit posture. Direct accountability for frictionless rate, fraud rate, auth-rate lift, and the portfolio's scheme fraud-monitoring standing.",
     impact: [
       "Lifted portfolio frictionless rate from 38% to 73% in three quarters",
       "Cut step-up rate from 62% to 27% on the same traffic",
       "Recovered ~11% of step-up abandonment via OTP resend + alternative-method fallback",
-      "Held portfolio fraud rate below 6 bps on routed exemption traffic, preserved TRA band 2 throughout and moved into band 3 on the qualifying merchant cohort in quarter 4",
+      "Held portfolio fraud rate below 6 bps on routed traffic, keeping the portfolio clear of the scheme fraud-monitoring threshold throughout",
       "Delivered +5.4 points portfolio CNP authorisation-rate uplift, with +3-4 pts on iOS Safari + cross-border combinations",
-      "Closed two outstanding scheme audit observations on exemption documentation",
+      "Closed two outstanding scheme audit observations on authentication documentation",
       "Established the per-issuer profile as a permanent monthly artefact, not a project deliverable",
     ],
     tradeoffs: [
       "Built per-issuer scoring as a 180+ combination map rather than a model, heavier ops cadence (monthly refresh) than a self-learning model would need; saved a year of model-tuning time and produced interpretable decisions that scheme audits accept",
-      "Required ~80ms pre-auth latency budget for the exemption-scoring service, added P95 latency on the auth path; recovered the latency in lower step-up rate and lower abandonment",
+      "Required ~80ms pre-auth latency budget for the RBA scoring service, added P95 latency on the auth path; recovered the latency in lower step-up rate and lower abandonment",
       "Built abandon-recovery as a full surface (OTP resend, alternative-method, post-abandon outreach) rather than just OTP resend, heavier engineering; produced the 11% recovery rate that other platforms with single-mode resend do not see",
-      "Held a strict portfolio-fraud-rate floor (auto-tighten on approach to band ceiling), accepted that some merchants temporarily lost frictionless coverage in bad weeks; protected the TRA band from drift",
+      "Held a strict portfolio-fraud-rate floor (auto-tighten on approach to the scheme threshold), accepted that some merchants temporarily lost frictionless coverage in bad weeks; protected the portfolio's scheme standing from drift",
     ],
     lessons: [
-      "Exemption strategy without per-issuer scoring is portfolio guesswork. Two acquirers running identical TRA logic see different frictionless rates because their merchant mix sends them to different issuer pools.",
-      "Step-up abandonment recovery is part of the exemption programme, not separate from it. A step-up that abandons is worse than a frictionless decline; the recovery flow is where 10–15% of would-be losses come back.",
+      "Risk-based authentication without per-issuer scoring is portfolio guesswork. Two acquirers running identical step-up logic see different frictionless rates because their merchant mix sends them to different issuer pools.",
+      "Step-up abandonment recovery is part of the authentication programme, not separate from it. A step-up that abandons is worse than a frictionless decline; the recovery flow is where 10–15% of would-be losses come back.",
       "Fraud-rate guard-rails belong on the OKR slate as floors, not as dashboards. Programmes that ship without auto-tighten logic re-enter the bad-quarter spiral every fraud spike.",
       "MIT pipeline correctness is invisible until the chargeback arrives 60 days later. Build the prior-authentication-reference table early; verify the MIT flag is set at auth, not at capture; instrument the entire pipeline.",
-      "Per-merchant exemption profiles are not optional. Portfolio defaults produce mediocre frictionless rates everywhere; per-merchant profiles produce category-best on the cohorts where the merchant mix supports it.",
+      "Per-merchant authentication profiles are not optional. Portfolio defaults produce mediocre frictionless rates everywhere; per-merchant profiles produce category-best on the cohorts where the merchant mix supports it.",
     ],
     whyItMatters:
-      "For CNP businesses, the commercial value sits in the uncomfortable middle: issuer scoring, exemption choice, fraud-rate guard rails and abandoned challenge recovery. This case shows that friction can be reduced without treating fraud tolerance as a rounding error.",
+      "For CNP businesses, the commercial value sits in the uncomfortable middle: issuer scoring, authentication-path choice, fraud-rate guard rails and abandoned-challenge recovery. This case shows that friction can be reduced without treating fraud tolerance as a rounding error — under scheme and local-regulator rules, not PSD2.",
     keywords: [
       "3DS2 optimisation",
-      "SCA exemption programme",
-      "PSD2 frictionless rate",
-      "TRA exemption strategy",
+      "EMV 3DS2 risk-based authentication",
+      "card step-up optimisation",
+      "frictionless rate uplift",
       "step-up abandonment recovery",
       "per-issuer scoring 3DS2",
       "MIT pipeline payments",
@@ -1336,6 +1342,7 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "click-to-pay-vctp-mctp-programme",
+    engagement: "Independent consulting engagement · regional acquirer (client confidential).",
     title:
       "Click to Pay (VCTP + MCTP) Programme: Scheme-Led Checkout, Recognised Cardholders, and 7.2pt Conversion Lift",
     tagline:
@@ -1463,6 +1470,7 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "aml-cft-sanctions-engine-implementation",
+    engagement: "Independent consulting engagement · regional acquirer-processor (client confidential).",
     title:
       "AML/CFT Sanctions Engine: Real-Time Screening + 60% False-Positive Cut Across Six Markets",
     tagline:
@@ -1598,6 +1606,7 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "regional-wallet-integration-easypaisa-jazzcash-sadad",
+    engagement: "Independent consulting engagement · regional acquirer (client confidential).",
     title:
       "Regional Wallet Integration: Easypaisa + JazzCash + SADAD + STC Pay Across MENA + South Asia",
     tagline:
@@ -1725,6 +1734,7 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "pmo-risk-council-operating-model",
+    engagement: "Independent consulting engagement · regional acquirer-processor (client confidential).",
     title:
       "PMO + Risk Council Operating Model: From Audit-Reactive To Forward-Looking In Two Quarters",
     tagline:
@@ -1852,136 +1862,6 @@ export const caseStudies: CaseStudy[] = [
       "RAID risk register integration",
       "regulator commendation",
       "MENA fintech governance",
-    ],
-  },
-  {
-    slug: "settlement-engine-99-95-accuracy",
-    title:
-      "Settlement Engine At 99.95% Accuracy: Triple-Match Reconciliation Across 150+ Merchants",
-    tagline:
-      "Rebuilt the settlement and reconciliation engine for a regional acquirer-processor, triple-match against scheme settlement file, bank statement, and internal ledger, sustaining 99.95% accuracy across 150+ merchants and cutting daily reconciliation hours by ~65%.",
-    category: "Settlement & Reconciliation",
-    markets: ["UAE", "KSA", "Pakistan", "Bangladesh"],
-    relevantFor: [
-      "Acquirer-processors",
-      "Sponsor banks",
-      "Cross-border payment platforms",
-      "Banks operating regulated reconciliation",
-      "VP Operations / Treasury hiring managers",
-    ],
-    metrics: [
-      {
-        label: "Reconciliation accuracy",
-        value: "99.95% sustained",
-      },
-      {
-        label: "Merchants reconciled daily",
-        value: "150+",
-      },
-      {
-        label: "Triple-match coverage",
-        value: "Scheme file + bank statement + internal ledger",
-      },
-      {
-        label: "Daily reconciliation hours saved",
-        value: "~65% reduction",
-      },
-      {
-        label: "Break detection latency",
-        value: "T+1 morning (was T+3 evening)",
-      },
-      {
-        label: "Merchant-visible settlement delays",
-        value: "Cut from ~2% to ~0.04%",
-      },
-    ],
-    beforeAfter: [
-      {
-        metric: "Reconciliation cadence",
-        before: "Two-way match (ledger vs scheme); manual statement reconciliation",
-        after: "Triple-match: scheme file + bank statement + internal ledger",
-      },
-      {
-        metric: "Break detection",
-        before: "T+3 evening (after manual review)",
-        after: "T+1 morning (automated detection)",
-      },
-      {
-        metric: "Daily reconciliation effort",
-        before: "~6 FTE-hours per market per day",
-        after: "~2 FTE-hours per market per day",
-      },
-      {
-        metric: "Merchant-facing settlement issues",
-        before: "~2% of merchants experienced a delay per month",
-        after: "~0.04% per month",
-      },
-    ],
-    executiveSummary:
-      "Rebuilt the settlement and reconciliation engine for a regional acquirer-processor, moved from two-way match (ledger vs scheme file) to triple-match (scheme settlement file + bank statement + internal ledger). Achieved 99.95% sustained reconciliation accuracy across 150+ merchants in four markets. Cut break-detection latency from T+3 evening to T+1 morning, reducing daily reconciliation effort by ~65% and merchant-facing settlement delays from ~2% to ~0.04% per month. Established the reconciliation engine as the system of record for both finance reporting and merchant settlement disputes.",
-    problem:
-      "The platform's reconciliation engine was two-way: internal ledger matched against scheme settlement file. The bank statement was reconciled manually by the finance team, T+2 to T+3, producing a daily 6+ FTE-hour exercise across four markets. Reconciliation breaks were detected late (T+3 evening or later); merchants who had been credited but where the funds had not arrived from the scheme were experiencing settlement delays at a ~2% monthly rate; the finance team was carrying a backlog of unresolved breaks rolling from week to week. The CFO and the COO had been escalating; the audit team had flagged the manual statement reconciliation as a tier-2 observation. The senior team needed a system that produced T+1 morning break detection, full triple-match, and per-merchant visibility into the reconciliation state.",
-    built: [
-      "Triple-match engine: every settlement record reconciled across three sources, scheme settlement file (Visa BASE II / Mastercard Settlement File), bank statement (MT940 / MT950 / camt.053), internal ledger entry",
-      "Match-key strategy: per-scheme transaction-reference normalisation; per-statement narration parsing; per-ledger reference standardisation; cross-source key generation enabling automated matching across heterogeneous identifiers",
-      "Per-merchant break detection: every break tagged to the affected merchant, the financial impact, the source of the discrepancy, the suggested remediation",
-      "Real-time break dashboard: live state of all open breaks; per-merchant view; per-source view; per-resolution-owner view",
-      "Automated remediation workflows: common break classes (timing mismatch, narration variation, FX rounding) auto-resolved with audit trail; novel break classes routed to finance ops",
-      "Per-merchant reconciliation report: daily report per merchant on their settled, pending, and broken transactions, surfaced in the merchant portal",
-      "Audit-evidence pipeline: every reconciliation decision logged with the matched records, the decision rule, the resolver, the timestamp",
-      "Settlement-state SLAs: defined per merchant tier with auto-escalation when breaks exceed defined ageing",
-    ],
-    architecture: [
-      "The triple-match engine is the system of record for settlement state; the internal ledger is one input among three, not the truth",
-      "Match-key generation is per-scheme + per-statement + per-ledger, normalised against a canonical settlement transaction-ID; mismatches are reconciled through configurable rules",
-      "Automated remediation runs as a series of rules; each rule has documented controls; novel break patterns are escalated to finance ops for manual handling and rule-base expansion",
-      "Per-merchant reporting is generated daily; surfaced via merchant portal API; reconciled against the merchant's own books if the merchant operates one",
-      "Audit evidence is keyed on the reconciliation event (not the transaction), every reconciliation decision is one row, queryable per merchant, per market, per resolution rule",
-      "Failure mode: if any of the three sources is missing on a given day, the engine flags the day as partial-reconciliation and surfaces the gap explicitly rather than silently passing",
-    ],
-    operatingModel: [
-      "Daily reconciliation standup (per market, 15 minutes): prior-day breaks, root cause, remediation, evidence",
-      "Weekly per-market reconciliation health review: break rate, resolution time, recurring patterns, rule-base additions",
-      "Monthly finance + merchant-success joint review: merchants experiencing recurring issues, settlement-state SLA misses, remediation outcomes",
-      "Quarterly scheme + bank coordination: cross-source reconciliation issues flagged with scheme / bank counterparties; resolution timelines tracked",
-      "Real-time alerting on breaks above tier-defined thresholds; alerting on missing source files (scheme file missed, statement late)",
-    ],
-    role: "Owned the settlement engine rebuild end-to-end, triple-match architecture, match-key strategy, automated remediation logic, per-merchant reporting, audit-evidence pipeline, settlement-state SLA design, and the coordination with finance + ops + audit + merchant-success. Direct accountability for reconciliation accuracy KPIs, break-detection latency, daily reconciliation FTE effort, and merchant-facing settlement experience.",
-    impact: [
-      "Achieved and sustained 99.95% reconciliation accuracy across 150+ merchants in four markets",
-      "Cut daily reconciliation effort by ~65% across the four markets, from ~6 FTE-hours per market to ~2",
-      "Reduced merchant-facing settlement delays from ~2% per month to ~0.04% per month",
-      "Brought break detection from T+3 evening to T+1 morning",
-      "Closed the audit observation on manual statement reconciliation",
-      "Established the triple-match engine as the system of record for both finance reporting and merchant settlement disputes",
-      "Eliminated the rolling weekly backlog of unresolved breaks; reached steady-state same-day resolution on the majority of breaks",
-    ],
-    tradeoffs: [
-      "Built triple-match over two-way match, more complex match-key engineering; produced the audit posture and the merchant-facing experience that two-way could not",
-      "Standardised per-source match-key normalisation rather than per-source bespoke logic, required upfront investment in canonical settlement ID; paid back when new scheme settlement-file format variants arrived without code changes",
-      "Built automated remediation as rule-base with documented controls, heavier upfront ops-engineering investment; produced the audit-ready resolution trail and the rapid scaling to additional break patterns",
-      "Insisted on per-merchant daily reporting in the merchant portal, added engineering for the merchant-facing surface; improved the merchant experience and reduced inbound support volume materially",
-    ],
-    lessons: [
-      "Two-way reconciliation is structurally insufficient at any meaningful merchant count. The bank statement is a third source of truth; failing to include it means the engine cannot detect the cases where the scheme settled but the bank statement did not credit (or vice versa).",
-      "Match-key normalisation is the actual product. The scheme transaction ID, the bank narration, and the internal reference rarely match by string; the canonical ID layer is what makes triple-match feasible.",
-      "Automated remediation is rule-base + governance. Rules without governance produce silent over-reconciliation (false matches); governance without rule-base scales linearly with FTE. Both together produce sustained accuracy.",
-      "Per-merchant reconciliation reporting is a merchant-experience product, not an internal finance one. The reporting surface in the merchant portal is what convinces merchants the platform is operating well.",
-      "Break-detection latency is the metric that matters more than accuracy. A 99.5% accurate engine that detects breaks on T+3 produces a worse merchant experience than a 99.0% accurate engine that detects on T+1.",
-    ],
-    whyItMatters:
-      "The useful signal is that reconciliation became a merchant-trust product, not only a finance close process. Triple-match, break ageing, automated remediation and merchant-visible reporting changed both audit posture and support load.",
-    keywords: [
-      "settlement engine reconciliation",
-      "triple-match reconciliation",
-      "99.95% reconciliation accuracy",
-      "scheme settlement file reconciliation",
-      "bank statement MT940 camt.053",
-      "merchant settlement reporting",
-      "automated break remediation",
-      "T+1 reconciliation",
-      "acquirer settlement engine",
-      "audit-clean reconciliation",
     ],
   },
 ];

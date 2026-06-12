@@ -233,6 +233,15 @@ function CaseStudyPage() {
           <p className="mt-5 max-w-3xl break-words text-base leading-relaxed text-ink-soft sm:text-lg">
             {s.tagline}
           </p>
+          {s.engagement && (
+            <p className="mt-5 inline-flex items-center gap-2 rounded-full border border-rule bg-surface px-3.5 py-1.5 text-xs text-ink-soft font-mono-tech">
+              <span
+                aria-hidden="true"
+                className="h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--accent-emerald)]"
+              />
+              {s.engagement}
+            </p>
+          )}
         </div>
         <div className="bg-surface-2 border-t border-rule">
           <div className="mx-auto grid max-w-5xl grid-cols-1 gap-3 px-5 py-5 sm:grid-cols-2 sm:px-6 md:grid-cols-4 md:gap-4">
