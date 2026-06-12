@@ -60,6 +60,9 @@ export const profile = {
   role: "Chief Product Officer · Payments, Fintech & AI",
   location: "Dubai, UAE",
   email: "rizwanzaffar.pk@gmail.com",
+  // WhatsApp Business short link (wa.me/message) — used as the low-friction
+  // booking fallback next to the cal embed; primary channel in UAE/Gulf.
+  whatsapp: "https://wa.me/message/PJHRLU7SB2TYF1",
   calendarUrl: "https://cal.com/rizwan-zafar-gws2uk",
   newsletter: {
     name: "Payments Infrastructure Notes",

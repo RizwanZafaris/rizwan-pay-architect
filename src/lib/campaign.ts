@@ -24,9 +24,15 @@ import { LINKEDIN_BOOKING_CONVERSION_ID } from "@/lib/seo";
 //
 // Same zero-hydration constraint as above: everything is a vanilla inline
 // script. Behaviour:
-//   - lazy boot: embed.js only loads when the #book section nears the viewport
-//     (IntersectionObserver, 900px margin) or a CTA targeting #book is clicked,
-//     so the landing render stays as fast as the link version;
+//   - boot timing: by default embed.js loads lazily when the #book section
+//     nears the viewport (IntersectionObserver, 900px margin) or a CTA
+//     targeting #book is clicked. Pass {eager:true} on pages whose whole
+//     purpose is booking (/hire): the embed then boots on load, so the
+//     calendar is already interactive by the time the visitor scrolls to it
+//     (a paid click must never stare at a blank slot);
+//   - a #cal-booking-skeleton placeholder (rendered by BookingSection) covers
+//     the pre-iframe gap; it is hidden on cal_embed_ready and by the
+//     :has(iframe) CSS rule as a no-JS fallback;
 //   - Cal.config.forwardQueryParams forwards the landing URL's utm_* / gclid /
 //     li_fat_id etc. into the booking, same attribution contract as the link
 //     rewriter above; ref=hire_inline_embed names the placement;
@@ -49,7 +55,7 @@ import { LINKEDIN_BOOKING_CONVERSION_ID } from "@/lib/seo";
 //       book_call_confirmed  (Cal "bookingSuccessful") — BOOKED (true conversion)
 //     Import book_call_confirmed in Google Ads as the primary conversion once
 //     it has volume; until then existing click wiring stays untouched.
-export const calInlineEmbedScript = (ref: string) => `!function(){
+export const calInlineEmbedScript = (ref: string, opts?: { eager?: boolean }) => `!function(){
 var section=document.getElementById("book");if(!section)return;
 function track(ev,params){try{if(typeof gtag==="function"){params=params||{};params.source=params.source||"${ref}";gtag("event",ev,params)}}catch(x){}}
 var booted=false;
@@ -60,7 +66,7 @@ Cal("init","15min",{origin:"https://app.cal.com"});
 Cal.config=Cal.config||{};Cal.config.forwardQueryParams=true;
 Cal.ns["15min"]("inline",{elementOrSelector:"#cal-booking-slot",config:{layout:"month_view",useSlotsViewOnSmallScreen:"true",theme:"light",ref:"${ref}"},calLink:"rizwan-zafar-gws2uk/15min"});
 Cal.ns["15min"]("ui",{cssVarsPerTheme:{light:{"cal-brand":"#0e4f4f"},dark:{"cal-brand":"#3ecbe6"}},hideEventTypeDetails:false,layout:"month_view"});
-var ready=false;function markReady(){if(!ready){ready=true;track("cal_embed_ready")}}
+var ready=false;function markReady(){if(!ready){ready=true;try{var sk=document.getElementById("cal-booking-skeleton");if(sk)sk.style.display="none"}catch(x){}track("cal_embed_ready")}}
 Cal.ns["15min"]("on",{action:"linkReady",callback:markReady});
 Cal.ns["15min"]("on",{action:"linkFailed",callback:function(e){var r="unknown";try{r=(e&&e.detail&&e.detail.data&&(e.detail.data.msg||e.detail.data.code))||"unknown"}catch(x){}track("cal_embed_failed",{reason:String(r).slice(0,90)})}});
 Cal.ns["15min"]("on",{action:"bookingSuccessful",callback:function(){track("book_call_confirmed");${
@@ -71,8 +77,11 @@ Cal.ns["15min"]("on",{action:"bookingSuccessful",callback:function(){track("book
 var stepSeen={};
 Cal.ns["15min"]("on",{action:"*",callback:function(e){try{var a=e&&e.detail&&(e.detail.type||(e.detail.data&&e.detail.data.action));if(!a||typeof a!=="string")return;if(a.indexOf("__")===0)return;markReady();if(a==="linkReady"||a==="linkFailed"||a==="bookingSuccessful")return;if(stepSeen[a])return;stepSeen[a]=1;track("cal_embed_step",{cal_action:a.slice(0,60)})}catch(x){}}});
 }catch(x){}}
-try{if("IntersectionObserver" in window){var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){boot();io.disconnect()}})},{rootMargin:"900px 0px"});io.observe(section);
-var seen=false,vo=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting&&!seen){seen=true;track("cal_embed_viewed");vo.disconnect()}})},{threshold:0.15});vo.observe(section)}else boot()}catch(x){boot()}
+try{if("IntersectionObserver" in window){${
+    opts?.eager ? "" : `var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){boot();io.disconnect()}})},{rootMargin:"900px 0px"});io.observe(section);
+`
+  }var seen=false,vo=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting&&!seen){seen=true;track("cal_embed_viewed");vo.disconnect()}})},{threshold:0.15});vo.observe(section)}else boot()}catch(x){boot()}
+${opts?.eager ? "boot();" : ""}
 document.querySelectorAll('a[href="#book"]').forEach(function(a){a.addEventListener("click",function(ev){boot();try{ev.preventDefault();section.scrollIntoView({behavior:"smooth",block:"start"});history.replaceState(null,"","#book")}catch(x){location.hash="book"}})});
 window.addEventListener("hashchange",function(){if(location.hash==="#book"){boot();try{section.scrollIntoView({behavior:"smooth",block:"start"})}catch(x){}}});
 if(location.hash==="#book")boot();
