@@ -26,8 +26,8 @@ const WWW_ORIGIN = HOST.replace("//", "//www.");
 const HTTP_ORIGIN = HOST.replace(/^https/, "http");
 const DEV_IMPORT_PATTERN = ["/@id", "virtual"].join("/");
 const START_ENTRY_PATTERN = ["tanstack", "start-client-entry"].join("-");
-const EXPECTED_GTM_ID = process.env.VITE_GTM_ID || "GTM-TM5BP98G";
-const EXPECTED_GTM_RE = EXPECTED_GTM_ID.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+const EXPECTED_GA_ID = process.env.VITE_GA_MEASUREMENT_ID || "G-F1NK5FJYJY";
+const EXPECTED_GA_RE = EXPECTED_GA_ID.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 const EXPECTED_GOOGLE_ADS_ID = process.env.VITE_GOOGLE_ADS_ID || "AW-790961325";
 const EXPECTED_GOOGLE_ADS_RE = EXPECTED_GOOGLE_ADS_ID.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 const EXPECTED_GOOGLE_ADS_PAGE_VIEW_CONVERSION_LABEL =
@@ -56,14 +56,13 @@ const probes: Probe[] = [
     matchBody: /<title>/i,
   },
   {
-    name: "Google Tag Manager",
+    // GTM retired 2026-06-12 (duplicate-tag double counting) — the direct
+    // GA4 config is the analytics pipeline this probe guards now.
+    name: "GA4 direct tag",
     url: `${APEX_ORIGIN}/`,
     expect: 200,
     required: true,
-    matchBody: new RegExp(
-      `googletagmanager\\.com/(?:gtm\\.js|ns\\.html)\\?id=${EXPECTED_GTM_RE}`,
-      "i",
-    ),
+    matchBody: new RegExp(`gtag\\(["']config["'],["']${EXPECTED_GA_RE}["']`, "i"),
   },
   {
     name: "Google Ads base tag",
