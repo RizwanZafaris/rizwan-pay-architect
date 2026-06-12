@@ -220,11 +220,14 @@ function HirePage() {
         </div>
       </section>
 
-      {/* Inline booking — the conversion moment stays on rzifi.com. */}
+      {/* Inline booking — the conversion moment stays on rzifi.com. Eager:
+          booking is this page's entire purpose, so the embed boots at page
+          load and is interactive before the visitor scrolls to it. */}
       <BookingSection
         refName="hire_inline_embed"
         fallbackLocation="hire_embed_fallback"
         calendarUrl={calendarUrl}
+        eager
       />
 
       {/* Repeat CTA + de-emphasised secondary paths */}
