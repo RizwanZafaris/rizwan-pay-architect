@@ -5,8 +5,16 @@
   <link>https://rzifi.com/blog/</link>
   <description>Essays on payment infrastructure, fintech product, risk, settlement, AI and program leadership.</description>
   <language>en</language>
-  <lastBuildDate>Thu, 11 Jun 2026 02:00:22 GMT</lastBuildDate>
+  <lastBuildDate>Fri, 12 Jun 2026 00:04:31 GMT</lastBuildDate>
   <item>
+    <title>SWIFT, AML/CFT, and Sanctions Screening in Practice</title>
+    <link>https://rzifi.com/blog/swift-aml-cft-sanctions-screening/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/swift-aml-cft-sanctions-screening/</guid>
+    <pubDate>Fri, 12 Jun 2026 00:00:00 GMT</pubDate>
+    <category>Cross-Border Payments</category>
+    <description>How AML/CFT and sanctions screening actually work on SWIFT-instructed cross-border payments, and the product decisions that decide false-positive rates.</description>
+  </item>
+<item>
     <title>SWIFT gpi, Tracking, and the End of Payment Uncertainty</title>
     <link>https://rzifi.com/blog/swift-gpi-tracking-and-the-end-of-payment-uncertainty/</link>
     <guid isPermaLink="true">https://rzifi.com/blog/swift-gpi-tracking-and-the-end-of-payment-uncertainty/</guid>
@@ -237,14 +245,6 @@
     <pubDate>Thu, 21 May 2026 00:00:00 GMT</pubDate>
     <category>Payment Infrastructure</category>
     <description>Hosted checkout ships fast. Direct card processing ships maturity. A practitioner walk-through of MPGS, MDES, tokenization, 3DS, and PCI scope decisions.</description>
-  </item>
-<item>
-    <title>Settlement Windows and Merchant Trust</title>
-    <link>https://rzifi.com/blog/settlement-windows-and-merchant-trust/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/settlement-windows-and-merchant-trust/</guid>
-    <pubDate>Thu, 21 May 2026 00:00:00 GMT</pubDate>
-    <category>Settlement &amp; Reconciliation</category>
-    <description>Settlement timing is the most underrated product surface in payments. How T+0, T+1 and T+n settlement windows shape merchant trust, cashflow, and churn.</description>
   </item>
 </channel>
 </rss>
