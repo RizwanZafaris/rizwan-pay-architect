@@ -72,10 +72,11 @@ Disambiguation note: This Rizwan Zafar is the payments infrastructure CPO at Sim
 - [AML/CFT Sanctions Engine: Real-Time Screening + 60% False-Positive Cut Across Six Markets](https://rzifi.com/product-work/aml-cft-sanctions-engine-implementation/): Stood up the AML/CFT sanctions and PEP screening engine across six MENA + South Asia markets for a regulated fintech, real-time pre-send blocking + daily batch re-screen, per-corridor list tuning, cut sanctions false-positive rate by ~60% without lowering true-positive coverage.
 - [Regional Wallet Integration: Easypaisa + JazzCash + SADAD + STC Pay Across MENA + South Asia](https://rzifi.com/product-work/regional-wallet-integration-easypaisa-jazzcash-sadad/): Integrated the dominant regional wallets, Easypaisa, JazzCash, SADAD, STC Pay, plus Mada-rail acceptance, into a unified payment-acceptance surface for a regional fintech across four markets; produced 27% lift in non-card acceptance and removed three single-rail dependencies.
 - [PMO + Risk Council Operating Model: From Audit-Reactive To Forward-Looking In Two Quarters](https://rzifi.com/product-work/pmo-risk-council-operating-model/): Built the joint PMO + Risk Council operating model for a regulated fintech, unified RAID + risk register, monthly council cadence, audit-evidence pipeline, moving the function from audit-reactive to forward-looking, with two regulator commendations and zero new findings across an 18-month cycle.
-- [Settlement Engine At 99.95% Accuracy: Triple-Match Reconciliation Across 1,400+ Merchants](https://rzifi.com/product-work/settlement-engine-99-95-accuracy/): Rebuilt the settlement and reconciliation engine for a regional acquirer-processor, triple-match against scheme settlement file, bank statement, and internal ledger, sustaining 99.95% accuracy across 1,400+ merchants and cutting daily reconciliation hours by ~65%.
+- [Settlement Engine At 99.95% Accuracy: Triple-Match Reconciliation Across 150+ Merchants](https://rzifi.com/product-work/settlement-engine-99-95-accuracy/): Rebuilt the settlement and reconciliation engine for a regional acquirer-processor, triple-match against scheme settlement file, bank statement, and internal ledger, sustaining 99.95% accuracy across 150+ merchants and cutting daily reconciliation hours by ~65%.
 
-## Essays (73 total, latest first)
+## Essays (74 total, latest first)
 
+- [SWIFT, AML/CFT, and Sanctions Screening in Practice](https://rzifi.com/blog/swift-aml-cft-sanctions-screening/): How AML/CFT and sanctions screening actually work on SWIFT-instructed cross-border payments, and the product decisions that decide false-positive rates.
 - [SWIFT gpi, Tracking, and the End of Payment Uncertainty](https://rzifi.com/blog/swift-gpi-tracking-and-the-end-of-payment-uncertainty/): SWIFT gpi added end-to-end tracking, fee transparency, and same-day credit to cross-border payments. What it actually changed for product teams.
 - [ISO 20022 Migration: What Payment Product Teams Must Know](https://rzifi.com/blog/iso-20022-migration-what-product-teams-must-know/): ISO 20022 is the biggest change in payments messaging in a generation. What product teams must know to ship ahead of the deadlines.
 - [SWIFT Payment vs Wire Transfer: Key Differences](https://rzifi.com/blog/swift-vs-wire-transfer/): SWIFT vs wire transfer explained, what each term actually means, where they overlap, and which one your product is really using.
@@ -161,7 +162,7 @@ Disambiguation note: This Rizwan Zafar is the payments infrastructure CPO at Sim
 - Email: rizwanzaffar.pk@gmail.com
 
 ### Selected metrics
-- TPV scaled: $0 → $1B+
+- GTV scaled: $0 → $1B+
 - Annual transactions: 270M+
 - Markets: 5
 - Uptime: 99.9%
