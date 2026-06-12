@@ -1,17 +1,36 @@
-# Analytics setup — GTM, GA4 and optional analytics tools
-
-GTM container ID: **`GTM-TM5BP98G`** (configurable via `VITE_GTM_ID`).
+# Analytics setup — direct gtag (single pipeline)
 
 This doc is the canonical reference for:
 
-1. What events the site sends to `dataLayer`
-2. How to wire each one to GA4, LinkedIn Insight, Meta Pixel, Google Ads or any other tag inside the GTM workspace
-3. Which events to mark as conversions
-4. How to verify the install end-to-end
+1. What events the site sends to GA4 (via inline `gtag()` calls)
+2. Which events to mark as conversions in GA4 / import into Google Ads
+3. How to verify the install end-to-end
 
 ---
 
-Recommended architecture: **GTM is the hub**. Keep LinkedIn Insight, Meta Pixel and TikTok Pixel inside GTM so one workspace owns triggers, consent, preview/debug and publishing. Google Ads also has a direct base tag in code for Ads verification and paid-campaign readiness; conversion actions can still be imported from GA4 or fired through GTM once the Ads/GA4 link is confirmed. Only direct-install additional tools that need their own lightweight script or meta verification, such as Microsoft Clarity, Plausible or Bing Webmaster Tools.
+Architecture: **direct gtag is the single pipeline.** Every tag ships inline
+in code (GA4 `G-F1NK5FJYJY`, Google Ads `AW-790961325`, LinkedIn Insight
+`3222825`, optional Clarity/Plausible) and every event fires as an inline
+`gtag("event", …)` call. Nothing is routed through Google Tag Manager.
+
+## ⚠️ GTM retired — 2026-06-12
+
+The GTM container (`GTM-TM5BP98G`) is **no longer loaded by the site**. Its
+UI-built tags (6 at retirement: GA4 config + event tags, Ads, LinkedIn
+mirrors) duplicated the inline tags above, so GA4/Ads/LinkedIn received every
+hit 2–3×, and the old `trackEvent` double-pushed (`dataLayer.push` for GTM
+*plus* `gtag()`). Fixed by removing the container loader + noscript iframe
+from `__root.tsx`, making all event senders gtag-only, and pointing the
+`check-live` probe at the direct GA4 tag.
+
+What to do in the GTM UI: nothing is required (the container never loads).
+For hygiene, pause or delete the 6 tags — and do NOT re-publish the container
+expecting it to work; if GTM should ever come back as the hub, the inline
+tags must be stripped first so there is exactly one pipeline.
+
+Historical note: events still also appear in `window.dataLayer` because
+`gtag()` itself is a `dataLayer.push` — that is gtag.js internals, not a
+second pipeline.
 
 ## 0 · Analytics stack
 

@@ -60,13 +60,15 @@ export const absUrl = (path: string) => {
 const DEFAULT_OG_IMAGE = `${SITE_URL}/og-default.png`;
 export const OG_IMAGE_URL = env.VITE_OG_IMAGE_URL || DEFAULT_OG_IMAGE;
 
-// Google Tag Manager. Set VITE_GTM_ID in .env.local (or empty) to opt out for dev.
-// The container live in production is GTM-TM5BP98G.
-export const GTM_ID = env.VITE_GTM_ID ?? "GTM-TM5BP98G";
+// Google Tag Manager — RETIRED 2026-06-12. The container (GTM-TM5BP98G) held
+// UI-built tags duplicating what the code already sends directly (GA4, Ads,
+// LinkedIn Insight), so every event double-counted. Single direct-gtag
+// pipeline now; leave empty unless deliberately reinstating GTM as the ONLY
+// pipeline (then strip the inline tags instead).
+export const GTM_ID = env.VITE_GTM_ID ?? "";
 
-// Direct GA4 fallback. The GTM container can still own richer marketing tags,
-// but a first-party Google tag keeps page views and key events live if GTM is
-// paused, unpublished, or blocked by container quality issues.
+// GA4 direct tag — the single analytics pipeline. All site events reach GA4
+// via inline gtag() calls (analytics bridge + cal embed funnel scripts).
 export const GA_MEASUREMENT_ID = env.VITE_GA_MEASUREMENT_ID ?? "G-F1NK5FJYJY";
 
 // Google Ads base tag for campaign attribution / conversion readiness.
@@ -87,10 +89,7 @@ export const GOOGLE_ADS_PAGE_VIEW_CONVERSION_SEND_TO =
 // Campaign Manager on top of it. Set VITE_LINKEDIN_PARTNER_ID="" to opt out.
 export const LINKEDIN_PARTNER_ID = env.VITE_LINKEDIN_PARTNER_ID ?? "3222825";
 
-// Optional analytics / webmaster IDs.
-// Keep LinkedIn Insight, Meta Pixel and other marketing tags in GTM. These
-// direct toggles are for tools that are useful outside GTM, need page-level
-// verification, or need paid-media verification before GTM publishing.
+// Optional analytics / webmaster IDs — all direct tags (GTM retired).
 export const BING_SITE_VERIFICATION =
   env.VITE_BING_SITE_VERIFICATION || DEFAULT_BING_SITE_VERIFICATION;
 export const MICROSOFT_CLARITY_ID = env.VITE_MICROSOFT_CLARITY_ID || "";

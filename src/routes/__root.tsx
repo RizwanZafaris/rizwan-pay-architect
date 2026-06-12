@@ -11,9 +11,9 @@ import {
 import { useEffect } from "react";
 import { pageAnalyticsContext } from "@/lib/analytics";
 
-// SPA page-view tracker: pushes to dataLayer on every client-side route change
-// so GTM tags fire on navigation, not just the initial load. Pair with GTM's
-// "History Change" or a Custom Event ("spa_pageview") trigger.
+// SPA page-view tracker: re-configs gtag on every client-side route change so
+// GA4/Ads attribute SPA navigations (dev/hydrated contexts only — the static
+// production build never hydrates; initial loads are tracked by gtag.js).
 declare global {
   interface Window {
     dataLayer?: Array<Record<string, unknown>>;
@@ -37,7 +37,7 @@ function maybeTrackGoogleAdsResumePageView(pathname: string) {
   });
 }
 
-function GtmRouteTracker() {
+function RouteAnalyticsTracker() {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -47,8 +47,6 @@ function GtmRouteTracker() {
       page_title: document.title,
       ...pageAnalyticsContext(pathname),
     };
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({ event: "spa_pageview", ...payload });
     if (GA_MEASUREMENT_ID && window.gtag) {
       window.gtag("config", GA_MEASUREMENT_ID, {
         page_path: payload.page_path,
@@ -77,7 +75,6 @@ import {
   SITE_URL,
   OG_IMAGE_URL,
   SITE_KEYWORDS,
-  GTM_ID,
   GA_MEASUREMENT_ID,
   GOOGLE_ADS_ID,
   GOOGLE_ADS_PAGE_VIEW_CONVERSION_SEND_TO,
@@ -88,11 +85,9 @@ import {
   LINKEDIN_PARTNER_ID,
 } from "@/lib/seo";
 
-// Google Tag Manager bootstrap, runs as early as possible. Mirrors Google's
-// official snippet. Skipped when GTM_ID is empty (e.g. local dev).
-const gtmScript = GTM_ID
-  ? `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','${GTM_ID}');`
-  : "";
+// Google Tag Manager was retired 2026-06-12 — the container's UI-built tags
+// duplicated the direct tags below, double-counting GA4/Ads/LinkedIn events.
+// Direct gtag is the single pipeline now (see docs/ANALYTICS_SETUP.md).
 
 const googleTagLoaderId = GOOGLE_ADS_ID || GA_MEASUREMENT_ID;
 
@@ -117,11 +112,11 @@ const linkedInInsightScript = LINKEDIN_PARTNER_ID
   : "";
 
 const analyticsBridgeScript =
-  GTM_ID || GA_MEASUREMENT_ID || GOOGLE_ADS_ID
+  GA_MEASUREMENT_ID || GOOGLE_ADS_ID
     ? `!function(){if(window.__rzifiAnalyticsBridge)return;window.__rzifiAnalyticsBridge=1;
 function ctx(){var p=location.pathname,t="supporting_page",s="discovery",a="recruiter_hiring_manager";if(p==="/"){t="home"}else if(p.indexOf("/resume/")===0){t="resume";s="validation"}else if(p.indexOf("/for/")===0){t="recruiter";s="validation"}else if(p.indexOf("/contact/")===0){t="contact";s="conversion"}else if(p.indexOf("/product-work/")===0&&p!=="/product-work/"){t="case_study";s="proof";a="product_leadership"}else if(p.indexOf("/product-work/")===0){t="case_studies";s="proof";a="product_leadership"}else if(p.indexOf("/blog/")===0&&p!=="/blog/"){t="blog_post";s="authority";a="payments_product_leaders"}else if(p.indexOf("/blog/")===0||p.indexOf("/topics/")===0){t="authority_hub";s="authority";a="payments_product_leaders"}return{page_path:p,page_location:location.href,page_title:document.title,page_type:t,funnel_stage:s,audience:a}}
 function scrub(o){var c={},r=/[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,}/gi;for(var k in o){if(!Object.prototype.hasOwnProperty.call(o,k))continue;var v=o[k];if(k.indexOf("email")>-1)continue;if(typeof v==="string"){if(v.indexOf("mailto:")===0)v="mailto";else v=v.replace(r,"[redacted]")}c[k]=v}return c}
-function p(e,d){var payload=Object.assign({},ctx(),scrub(d||{}));window.dataLayer=window.dataLayer||[];window.dataLayer.push(Object.assign({event:e},payload));if(window.gtag)window.gtag("event",e,payload)}
+function p(e,d){var payload=Object.assign({},ctx(),scrub(d||{}));if(window.gtag)window.gtag("event",e,payload)}
 function k(s){return s.replace(/^analytics/,"").replace(/[A-Z]/g,function(c){return"_"+c.toLowerCase()}).replace(/^_/,"")}
 function d(el){var o={};for(var n in el.dataset)if(n.indexOf("analytics")===0&&n!=="analyticsEvent")o[k(n)]=el.dataset[n];return o}
 function source(){var x=location.pathname;if(x==="/")return"hero";if(x.indexOf("/resume/")===0)return"resume_page";if(x.indexOf("/for/")===0)return"for";if(x.indexOf("/about/")===0)return"about";if(x.indexOf("/product-work/")===0)return"case_study";return"header"}
@@ -408,8 +403,6 @@ function RootShell({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <head>
-        {/* GTM, kept as the first <script> in <head> per Google's spec */}
-        {gtmScript && <script dangerouslySetInnerHTML={{ __html: gtmScript }} />}
         {googleTagLoaderId && (
           <script async src={`https://www.googletagmanager.com/gtag/js?id=${googleTagLoaderId}`} />
         )}
@@ -426,18 +419,6 @@ function RootShell({ children }: { children: React.ReactNode }) {
         <HeadContent />
       </head>
       <body>
-        {/* GTM noscript fallback, must be the first child of <body> */}
-        {GTM_ID && (
-          <noscript>
-            <iframe
-              src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
-              height="0"
-              width="0"
-              style={{ display: "none", visibility: "hidden" }}
-              title="Google Tag Manager"
-            />
-          </noscript>
-        )}
         {LINKEDIN_PARTNER_ID && (
           <noscript>
             <img
@@ -464,7 +445,7 @@ function RootComponent() {
   const isCampaignPage = pathname === "/hire" || pathname === "/hire/";
   return (
     <QueryClientProvider client={queryClient}>
-      {(GTM_ID || GA_MEASUREMENT_ID || GOOGLE_ADS_ID) && <GtmRouteTracker />}
+      {(GA_MEASUREMENT_ID || GOOGLE_ADS_ID) && <RouteAnalyticsTracker />}
       <div className="min-h-screen flex flex-col">
         {isCampaignPage ? <CampaignHeader /> : <SiteHeader />}
         <main className="flex-1">

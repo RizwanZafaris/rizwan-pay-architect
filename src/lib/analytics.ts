@@ -1,13 +1,14 @@
 /**
- * Site analytics — pushes named, typed events to window.dataLayer so GTM
- * triggers can fire on them.
+ * Site analytics — sends named, typed events straight to GA4 via gtag()
+ * (single pipeline; the GTM container was retired 2026-06-12 because its
+ * UI-built tags duplicated these sends and double-counted everything).
  *
- * Event catalogue and corresponding GTM setup live in `docs/ANALYTICS_SETUP.md`.
+ * Event catalogue and GA4 setup live in `docs/ANALYTICS_SETUP.md`.
  *
  * Rules:
  *   - All events are snake_case, mirroring GA4's recommended convention.
- *   - Params are flat (no nested objects) so GTM Data Layer Variables
- *     can read them with a single key path.
+ *   - Params are flat (no nested objects) so GA4 custom dimensions can
+ *     read them with a single key path.
  *   - We never push PII (email, name, etc.) from the contact form even
  *     though the user typed it — only the outcome status.
  */
@@ -94,7 +95,7 @@ function sanitizeAnalyticsParams(params: EventParams): EventParams {
   return clean;
 }
 
-/** Safely push an event to the GTM dataLayer. No-op on the server / when GTM is absent. */
+/** Send an event to GA4 via gtag. No-op on the server / when gtag is absent. */
 export function trackEvent(eventName: SiteEvent["event"], params: EventParams = {}): void {
   if (typeof window === "undefined") return;
   const payload = {
@@ -104,12 +105,6 @@ export function trackEvent(eventName: SiteEvent["event"], params: EventParams = 
     ...pageAnalyticsContext(window.location.pathname),
     ...sanitizeAnalyticsParams(params),
   };
-  // GTM's own snippet initialises dataLayer, but guard anyway.
-  window.dataLayer = window.dataLayer || [];
-  window.dataLayer.push({
-    event: eventName,
-    ...payload,
-  });
   window.gtag?.("event", eventName, payload);
 }
 
@@ -118,9 +113,9 @@ export function trackEvent(eventName: SiteEvent["event"], params: EventParams = 
 // surface enumerable from a single place.
 
 export type SiteEvent =
-  // SPA navigation. Fired by GtmRouteTracker in __root.tsx on every client
-  // route change. Initial server-rendered load is captured by GTM's own
-  // gtm.js / gtm.dom / gtm.load events.
+  // SPA navigation. Fired by RouteAnalyticsTracker in __root.tsx on every
+  // client route change (hydrated contexts only). Initial loads are captured
+  // by gtag.js's configured page_view.
   | {
       event: "spa_pageview";
       page_path: string;
