@@ -95,10 +95,12 @@ export const LINKEDIN_PARTNER_IDS = (env.VITE_LINKEDIN_PARTNER_ID ?? "10373449,3
   .map((id) => id.trim())
   .filter(Boolean);
 // LinkedIn event-specific conversion for a booked call (Campaign Manager →
-// Analyze → Conversion tracking → create "Meeting booked" event conversion,
-// then put its numeric id here / in VITE_LINKEDIN_BOOKING_CONVERSION_ID).
-// Empty string = the lintrk track call is omitted from the embed script.
-export const LINKEDIN_BOOKING_CONVERSION_ID = env.VITE_LINKEDIN_BOOKING_CONVERSION_ID ?? "";
+// Analyze → Conversion tracking → "Meeting booked" Insight-Tag event conversion,
+// id 1139100523, created 2026-06-12 on ad account 168924577). Fired by the cal
+// embed's bookingSuccessful handler via window.lintrk("track",{conversion_id}).
+// Override with VITE_LINKEDIN_BOOKING_CONVERSION_ID; set "" to omit the call.
+export const LINKEDIN_BOOKING_CONVERSION_ID =
+  env.VITE_LINKEDIN_BOOKING_CONVERSION_ID ?? "1139100523";
 
 // Optional analytics / webmaster IDs — all direct tags (GTM retired).
 export const BING_SITE_VERIFICATION =
