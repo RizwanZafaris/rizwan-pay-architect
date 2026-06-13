@@ -90,11 +90,12 @@ lines.push("");
 lines.push(`## Pages`);
 lines.push("");
 lines.push(`- [Home](${SITE}/): Overview, positioning, selected work and metrics.`);
-lines.push(`- [About](${SITE}/about/): Background from engineering to payments leadership.`);
+lines.push(
+  `- [Résumé](${SITE}/resume/): Executive resume, background and payments leadership proof.`,
+);
 lines.push(`- [Product Work](${SITE}/product-work/): Case studies at $1B+ GTV scale.`);
 lines.push(`- [Essays](${SITE}/blog/): Practitioner writing on regulated payments.`);
 lines.push(`- [Topics](${SITE}/topics/): Hub pages by domain (cross-border, settlement, fraud…).`);
-lines.push(`- [Résumé](${SITE}/resume/): Executive resume — payments product and infrastructure.`);
 lines.push(`- [For recruiters](${SITE}/for/): Audience-specific landing pages.`);
 lines.push(`- [Contact](${SITE}/contact/): Get in touch for senior payments roles or advisory.`);
 lines.push("");

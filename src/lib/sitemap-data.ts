@@ -26,15 +26,6 @@ const staticEntries: SitemapEntry[] = [
     priority: 1,
   },
   {
-    path: "/about",
-    title: "About",
-    section: "Core",
-    description: "Background from engineering to payments product leadership.",
-    lastmod: SITE_REFRESH_DATE,
-    changefreq: "monthly",
-    priority: 0.8,
-  },
-  {
     path: "/product-work",
     title: "Case Studies",
     section: "Core",

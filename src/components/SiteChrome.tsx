@@ -8,8 +8,8 @@ import { SocialIconRow } from "@/components/SocialIcons";
 // Home → proof → case studies → fit (recruiters) → resume → contact.
 // /products, /media, /topics stayed off the top bar because they
 // dilute the senior narrative when scanned in 5 seconds. They remain
-// reachable: products from /about (and the Products section on the
-// homepage), topics from the footer and blog links, and media only by
+// reachable: products from the Products section on the homepage, topics
+// from the footer and blog links, and media only by
 // direct URL until real public proof exists.
 const nav = [
   { to: "/product-work", label: "Case Studies" },

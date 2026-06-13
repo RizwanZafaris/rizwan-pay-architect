@@ -34,7 +34,7 @@ export const SITE_URL = env.VITE_SITE_URL || DEFAULT_SITE_URL;
  *
  * Examples:
  *   absUrl("/")                      → "https://rzifi.com/"
- *   absUrl("/about")                 → "https://rzifi.com/about/"
+ *   absUrl("/resume")                → "https://rzifi.com/resume/"
  *   absUrl("/blog/foo-bar")          → "https://rzifi.com/blog/foo-bar/"
  *   absUrl("/sitemap.xml")           → "https://rzifi.com/sitemap.xml"   (file)
  *   absUrl("/Rizwan_Zafar_Resume.pdf") → "https://rzifi.com/Rizwan_Zafar_Resume.pdf"
@@ -101,8 +101,7 @@ export const LINKEDIN_PARTNER_IDS = (env.VITE_LINKEDIN_PARTNER_ID ?? "10373449,3
 // (Earlier id 28792705 was a Conversions-API/Direct-API type — wrong method for
 // a browser lintrk call, so it never matched; ad id was 1139100523, also unused.)
 // Override with VITE_LINKEDIN_BOOKING_CONVERSION_ID; set "" to omit the call.
-export const LINKEDIN_BOOKING_CONVERSION_ID =
-  env.VITE_LINKEDIN_BOOKING_CONVERSION_ID ?? "28792729";
+export const LINKEDIN_BOOKING_CONVERSION_ID = env.VITE_LINKEDIN_BOOKING_CONVERSION_ID ?? "28792729";
 
 // Optional analytics / webmaster IDs — all direct tags (GTM retired).
 export const BING_SITE_VERIFICATION =

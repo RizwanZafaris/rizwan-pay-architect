@@ -102,7 +102,7 @@ const probes: Probe[] = [
     expectRedirectTo: `${APEX_ORIGIN}/`,
   },
   {
-    name: "www HTTPS /about/ → apex",
+    name: "www HTTPS /about/ → apex /about/",
     url: `${WWW_ORIGIN}/about/`,
     expect: "redirect",
     required: true,
@@ -112,15 +112,21 @@ const probes: Probe[] = [
   // http MUST 301 to https. Apex-host stays the same.
   { name: "http → https", url: `${HTTP_ORIGIN}/`, expect: "redirect", required: true },
 
-  // Trailing-slash policy: routes without a slash must 301 to the slash form.
+  // Legacy profile URL redirects to the resume page.
   {
-    name: "/about (no slash) → /about/",
+    name: "/about → /resume/",
     url: `${APEX_ORIGIN}/about`,
     expect: "redirect",
     required: true,
-    expectRedirectTo: `${APEX_ORIGIN}/about/`,
+    expectRedirectTo: `${APEX_ORIGIN}/resume/`,
   },
-  { name: "/about/ (canonical)", url: `${APEX_ORIGIN}/about/`, expect: 200, required: true },
+  {
+    name: "/about/ → /resume/",
+    url: `${APEX_ORIGIN}/about/`,
+    expect: "redirect",
+    required: true,
+    expectRedirectTo: `${APEX_ORIGIN}/resume/`,
+  },
 
   // Core SEO assets.
   {
@@ -167,13 +173,6 @@ const probes: Probe[] = [
 
   // Indexable routes — pick a representative sample. Use slash form so we hit
   // the post-redirect URL directly.
-  {
-    name: "/about/",
-    url: `${APEX_ORIGIN}/about/`,
-    expect: 200,
-    required: true,
-    matchBody: /<h1[^>]*>/,
-  },
   { name: "/blog/", url: `${APEX_ORIGIN}/blog/`, expect: 200, required: true },
   {
     name: "/contact/",

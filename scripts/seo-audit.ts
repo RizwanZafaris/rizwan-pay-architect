@@ -51,7 +51,6 @@ const DESC_MAX = 165;
 // search engines cannot accidentally ship with noindex.
 const REQUIRED_INDEXABLE: string[] = [
   "/",
-  "/about",
   "/blog",
   "/contact",
   "/for",
@@ -101,7 +100,7 @@ function matchAll(src: string, re: RegExp): string[] {
 
 // Apache trailing-slash policy: every route gets a trailing slash; files
 // (anything with a dot in the last path segment) do not. The canonical URL
-// for /about is /about/, but the canonical URL for /og-default.png is
+// for /resume is /resume/, but the canonical URL for /og-default.png is
 // /og-default.png.
 function expectedCanonicalPath(route: string): string {
   if (route === "/") return "/";
@@ -236,8 +235,7 @@ function auditHtml(file: string) {
   const titleMatch = body.match(/<title>([^<]*)<\/title>/i);
   if (!titleMatch || !titleMatch[1].trim()) fail(file, "title_missing", "no <title>");
   else if (titleMatch[1].length > TITLE_MAX)
-    fail(file, "title_too_long",
-  "title_truncated", `${titleMatch[1].length} chars > ${TITLE_MAX}`);
+    fail(file, "title_too_long", "title_truncated", `${titleMatch[1].length} chars > ${TITLE_MAX}`);
   if (titleMatch && /\u2026|\.\.\./.test(titleMatch[1]))
     fail(file, "title_truncated", `<title> contains an ellipsis: "${titleMatch[1]}"`);
 

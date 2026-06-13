@@ -385,8 +385,8 @@ function EssayFooterCTA({ post }: { post: Post }) {
 }
 
 // Author-entity box. Closes the loop the SEO audit flagged: every essay now
-// carries a visible byline linking back to /about (the Person hub), reinforcing
-// the BlogPosting → #person authorship signal already in the JSON-LD. Rendered
+// carries a visible byline linking back to /resume (the Person hub), reinforcing
+// the BlogPosting -> #person authorship signal already in the JSON-LD. Rendered
 // inside the article body column so it aligns with the prose.
 function EssayAuthorBox() {
   return (
@@ -406,20 +406,20 @@ function EssayAuthorBox() {
             Written by
           </div>
           <Link
-            to="/about"
+            to="/resume"
             className="mt-1 inline-block font-instrument text-xl text-ink hover:text-[var(--brand)] transition-colors"
           >
             {profile.name}
           </Link>
           <p className="mt-0.5 text-sm text-ink-soft">{profile.role}</p>
           <p className="mt-3 text-sm leading-relaxed text-ink-soft">
-            Payments product &amp; program leader &mdash; scaled a regulated multi-rail platform from
-            $0 to $1B+ GTV across five frontier markets. These essays are the public version of how I
-            think through the work.
+            Payments product &amp; program leader &mdash; scaled a regulated multi-rail platform
+            from $0 to $1B+ GTV across five frontier markets. These essays are the public version of
+            how I think through the work.
           </p>
           <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm">
-            <Link to="/about" className="text-ink underline-offset-4 hover:underline">
-              More about Rizwan →
+            <Link to="/resume" className="text-ink underline-offset-4 hover:underline">
+              View resume →
             </Link>
             <a
               href={profile.linkedin}

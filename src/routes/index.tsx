@@ -709,8 +709,9 @@ function HomePage() {
                 $1B+ GTV.
                 <br />5 frontier markets.
               </div>
-              <Link to="/about" className="mt-6 inline-flex items-center gap-1.5 text-sm group">
-                My story <span className="transition-transform group-hover:translate-x-1">→</span>
+              <Link to="/resume" className="mt-6 inline-flex items-center gap-1.5 text-sm group">
+                View resume{" "}
+                <span className="transition-transform group-hover:translate-x-1">→</span>
               </Link>
             </div>
           </div>
