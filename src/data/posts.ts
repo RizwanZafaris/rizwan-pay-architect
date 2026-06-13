@@ -242,6 +242,30 @@ export const posts: Post[] = [
     ]
   },
   {
+    "slug": "agentic-commerce-visa-mastercard-payments",
+    "title": "Agentic Commerce: What Visa and Mastercard Are Really Building",
+    "metaTitle": "Agentic Commerce: Visa vs Mastercard | Rizwan Zafar",
+    "date": "2026-06-13",
+    "category": "AI in Fintech",
+    "readingTime": "13 min read",
+    "description": "A researched operator view of agentic commerce, Visa Intelligent Commerce, Mastercard Agent Pay, use cases, risks, and what AI shopping agents change in payments.",
+    "thesis": "Agentic commerce is not a better checkout button. It is the arrival of a new economic actor: software that can discover, decide, and pay under human-defined authority.",
+    "tags": [
+      "agentic commerce",
+      "AI payments",
+      "Visa Intelligent Commerce",
+      "Mastercard Agent Pay",
+      "tokenization",
+      "payment infrastructure",
+      "digital commerce"
+    ],
+    "relatedArticles": [
+      "/blog/ai-in-payments-four-production-use-cases",
+      "/blog/mdes-network-tokenisation-how-it-actually-works",
+      "/blog/click-to-pay-vctp-mctp-scheme-led-checkout"
+    ]
+  },
+  {
     "slug": "swift-aml-cft-sanctions-screening",
     "title": "SWIFT, AML/CFT, and Sanctions Screening in Practice",
     "metaTitle": "SWIFT AML/CFT and Sanctions Screening in Practice | Rizwan Zafar",
@@ -2010,7 +2034,7 @@ export const getRelated = (slug: string) => {
     .map((href) => href.match(/\/blog\/([^/#?]+)/)?.[1])
     .filter((x): x is string => Boolean(x))
     .map((relatedSlug) => getPost(relatedSlug))
-    .filter((x): x is Post => x !== undefined && isPostPublished(x));
+    .filter((x): x is Post => Boolean(x) && isPostPublished(x));
   const explicitSlugs = new Set(explicit.map((x) => x.slug));
   const fallback = publishedPosts
     .filter(
