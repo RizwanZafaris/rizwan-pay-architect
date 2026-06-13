@@ -1,1 +1,0 @@
-import{j as t,L as n}from"./index-CatSnmTi.js";const e=()=>t.jsxs("div",{className:"mx-auto max-w-2xl px-6 py-24 text-center",children:[t.jsx("h1",{className:"font-instrument text-3xl text-ink",children:"Case study not found"}),t.jsx(n,{to:"/product-work",className:"mt-6 inline-block text-brand underline",children:"Back to product work"})]});export{e as notFoundComponent};

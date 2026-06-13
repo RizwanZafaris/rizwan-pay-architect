@@ -7,11 +7,10 @@ Rizwan Zafar is Chief Product Officer · Payments, Fintech & AI, based in Dubai,
 ## Pages
 
 - [Home](https://rzifi.com/): Overview, positioning, selected work and metrics.
-- [About](https://rzifi.com/about/): Background from engineering to payments leadership.
+- [Résumé](https://rzifi.com/resume/): Executive resume, background and payments leadership proof.
 - [Product Work](https://rzifi.com/product-work/): Case studies at $1B+ GTV scale.
 - [Essays](https://rzifi.com/blog/): Practitioner writing on regulated payments.
 - [Topics](https://rzifi.com/topics/): Hub pages by domain (cross-border, settlement, fraud…).
-- [Résumé](https://rzifi.com/resume/): Executive resume — payments product and infrastructure.
 - [For recruiters](https://rzifi.com/for/): Audience-specific landing pages.
 - [Contact](https://rzifi.com/contact/): Get in touch for senior payments roles or advisory.
 
@@ -73,8 +72,9 @@ Disambiguation note: This Rizwan Zafar is the payments infrastructure CPO at Sim
 - [Regional Wallet Integration: Easypaisa + JazzCash + SADAD + STC Pay Across MENA + South Asia](https://rzifi.com/product-work/regional-wallet-integration-easypaisa-jazzcash-sadad/): Integrated the dominant regional wallets, Easypaisa, JazzCash, SADAD, STC Pay, plus Mada-rail acceptance, into a unified payment-acceptance surface for a regional fintech across four markets; produced 27% lift in non-card acceptance and removed three single-rail dependencies.
 - [PMO + Risk Council Operating Model: From Audit-Reactive To Forward-Looking In Two Quarters](https://rzifi.com/product-work/pmo-risk-council-operating-model/): Built the joint PMO + Risk Council operating model for a regulated fintech, unified RAID + risk register, monthly council cadence, audit-evidence pipeline, moving the function from audit-reactive to forward-looking, with two regulator commendations and zero new findings across an 18-month cycle.
 
-## Essays (74 total, latest first)
+## Essays (75 total, latest first)
 
+- [Agentic Commerce: What Visa and Mastercard Are Really Building](https://rzifi.com/blog/agentic-commerce-visa-mastercard-payments/): A researched operator view of agentic commerce, Visa Intelligent Commerce, Mastercard Agent Pay, use cases, risks, and what AI shopping agents change in payments.
 - [SWIFT, AML/CFT, and Sanctions Screening in Practice](https://rzifi.com/blog/swift-aml-cft-sanctions-screening/): How AML/CFT and sanctions screening actually work on SWIFT-instructed cross-border payments, and the product decisions that decide false-positive rates.
 - [SWIFT gpi, Tracking, and the End of Payment Uncertainty](https://rzifi.com/blog/swift-gpi-tracking-and-the-end-of-payment-uncertainty/): SWIFT gpi added end-to-end tracking, fee transparency, and same-day credit to cross-border payments. What it actually changed for product teams.
 - [ISO 20022 Migration: What Payment Product Teams Must Know](https://rzifi.com/blog/iso-20022-migration-what-product-teams-must-know/): ISO 20022 is the biggest change in payments messaging in a generation. What product teams must know to ship ahead of the deadlines.

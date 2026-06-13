@@ -34,6 +34,7 @@
 
   RewriteRule ^case-studies/?$ /product-work/ [L,R=301]
   RewriteRule ^case-studies/(.+?)/?$ /product-work/$1/ [L,R=301]
+  RewriteRule ^about/?$ /resume/ [L,R=301]
 </IfModule>
 
 # ────────────────────────────────────────────────────────────────────────────
@@ -52,7 +53,7 @@
 # 4. Trailing-slash policy
 #    Hostinger serves prerendered directories at /<route>/index.html, so the
 #    canonical URL for every non-root route ends with a trailing slash.
-#    /about           → 301 → /about/         (canonical)
+#    /resume          → 301 → /resume/        (canonical)
 #    /blog/foo        → 301 → /blog/foo/      (canonical)
 #    Skip rule for real files (`.htaccess`, `.webp`, `.css`, etc).
 # ────────────────────────────────────────────────────────────────────────────
@@ -69,7 +70,7 @@
 
 # ────────────────────────────────────────────────────────────────────────────
 # 5. Pretty URLs → prerendered HTML  (runs AFTER redirects)
-#    /about/      → /about/index.html
+#    /resume/     → /resume/index.html
 #    /blog/foo/   → /blog/foo/index.html
 # ────────────────────────────────────────────────────────────────────────────
 <IfModule mod_rewrite.c>
