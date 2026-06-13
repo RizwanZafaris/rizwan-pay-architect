@@ -5,8 +5,16 @@
   <link>https://rzifi.com/blog/</link>
   <description>Essays on payment infrastructure, fintech product, risk, settlement, AI and program leadership.</description>
   <language>en</language>
-  <lastBuildDate>Sat, 13 Jun 2026 01:37:55 GMT</lastBuildDate>
+  <lastBuildDate>Sat, 13 Jun 2026 01:49:44 GMT</lastBuildDate>
   <item>
+    <title>Agentic Commerce: What Visa and Mastercard Are Really Building</title>
+    <link>https://rzifi.com/blog/agentic-commerce-visa-mastercard-payments/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/agentic-commerce-visa-mastercard-payments/</guid>
+    <pubDate>Sat, 13 Jun 2026 00:00:00 GMT</pubDate>
+    <category>AI in Fintech</category>
+    <description>A researched operator view of agentic commerce, Visa Intelligent Commerce, Mastercard Agent Pay, use cases, risks, and what AI shopping agents change in payments.</description>
+  </item>
+<item>
     <title>SWIFT, AML/CFT, and Sanctions Screening in Practice</title>
     <link>https://rzifi.com/blog/swift-aml-cft-sanctions-screening/</link>
     <guid isPermaLink="true">https://rzifi.com/blog/swift-aml-cft-sanctions-screening/</guid>
@@ -237,14 +245,6 @@
     <pubDate>Fri, 22 May 2026 00:00:00 GMT</pubDate>
     <category>Merchant Onboarding</category>
     <description>Why merchant onboarding is a single product surface where growth, risk, and compliance must be designed together, not by three separate teams.</description>
-  </item>
-<item>
-    <title>Hosted Checkout vs Direct Card Processing: A Product Maturity Guide (MPGS, MDES, 3DS)</title>
-    <link>https://rzifi.com/blog/hosted-checkout-vs-direct-card-processing/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/hosted-checkout-vs-direct-card-processing/</guid>
-    <pubDate>Thu, 21 May 2026 00:00:00 GMT</pubDate>
-    <category>Payment Infrastructure</category>
-    <description>Hosted checkout ships fast. Direct card processing ships maturity. A practitioner walk-through of MPGS, MDES, tokenization, 3DS, and PCI scope decisions.</description>
   </item>
 </channel>
 </rss>
