@@ -5,8 +5,16 @@
   <link>https://rzifi.com/blog/</link>
   <description>Essays on payment infrastructure, fintech product, risk, settlement, AI and program leadership.</description>
   <language>en</language>
-  <lastBuildDate>Sun, 14 Jun 2026 03:07:16 GMT</lastBuildDate>
+  <lastBuildDate>Mon, 15 Jun 2026 06:28:04 GMT</lastBuildDate>
   <item>
+    <title>mBridge Is Not a SWIFT Killer. It Is a Settlement Warning Shot</title>
+    <link>https://rzifi.com/blog/mbridge-cross-border-settlement-warning-shot/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/mbridge-cross-border-settlement-warning-shot/</guid>
+    <pubDate>Mon, 15 Jun 2026 00:00:00 GMT</pubDate>
+    <category>Cross-Border Payments</category>
+    <description>mBridge is not a SWIFT replacement. It is a settlement experiment product leaders should read as corridor infrastructure, not messaging.</description>
+  </item>
+<item>
     <title>Agentic Commerce: What Visa and Mastercard Are Really Building</title>
     <link>https://rzifi.com/blog/agentic-commerce-visa-mastercard-payments/</link>
     <guid isPermaLink="true">https://rzifi.com/blog/agentic-commerce-visa-mastercard-payments/</guid>
@@ -237,14 +245,6 @@
     <pubDate>Fri, 22 May 2026 00:00:00 GMT</pubDate>
     <category>Settlement &amp; Reconciliation</category>
     <description>How to design exception management for payment reconciliation so finance ops scales sublinearly with GTV, taxonomy, routing, SLAs, and product feedback loops.</description>
-  </item>
-<item>
-    <title>Merchant Onboarding: Where Growth, Risk and Compliance Collide</title>
-    <link>https://rzifi.com/blog/merchant-onboarding-growth-risk-compliance/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/merchant-onboarding-growth-risk-compliance/</guid>
-    <pubDate>Fri, 22 May 2026 00:00:00 GMT</pubDate>
-    <category>Merchant Onboarding</category>
-    <description>Why merchant onboarding is a single product surface where growth, risk, and compliance must be designed together, not by three separate teams.</description>
   </item>
 </channel>
 </rss>
