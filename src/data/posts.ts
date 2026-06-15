@@ -242,6 +242,29 @@ export const posts: Post[] = [
     ]
   },
   {
+    "slug": "mbridge-cross-border-settlement-warning-shot",
+    "title": "mBridge Is Not a SWIFT Killer. It Is a Settlement Warning Shot",
+    "metaTitle": "mBridge Is a Settlement Warning Shot | Rizwan Zafar",
+    "date": "2026-06-15",
+    "category": "Cross-Border Payments",
+    "readingTime": "6 min read",
+    "description": "mBridge is not a SWIFT replacement. It is a settlement experiment product leaders should read as corridor infrastructure, not messaging.",
+    "thesis": "mBridge matters less as a headline about replacing SWIFT and more as a practical warning: cross-border product teams now need to design for multiple settlement regimes, not one universal rail.",
+    "tags": [
+      "mBridge",
+      "cross-border payments",
+      "CBDC",
+      "SWIFT",
+      "settlement finality",
+      "CIPS"
+    ],
+    "relatedArticles": [
+      "/blog/swift-payment-explained",
+      "/blog/cross-border-corridors-are-operating-systems",
+      "/blog/future-of-treasury-with-stablecoins"
+    ]
+  },
+  {
     "slug": "agentic-commerce-visa-mastercard-payments",
     "title": "Agentic Commerce: What Visa and Mastercard Are Really Building",
     "metaTitle": "Agentic Commerce: Visa vs Mastercard | Rizwan Zafar",

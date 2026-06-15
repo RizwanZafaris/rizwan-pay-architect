@@ -379,14 +379,15 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "mask-icon", href: "/favicon.svg", color: "#0e4f4f" },
       // AI-discovery hint for the curated LLM index.
       { rel: "alternate", type: "text/markdown", href: "/llms.txt", title: "llms.txt" },
-      // Fonts load from head links with preconnects instead of a styles.css
-      // @import (which serialized HTML -> CSS -> fonts-CSS -> woff2 — the
-      // site's biggest render delay; audit 2026-06-12).
+      // Keep hosted editorial fonts off the mobile critical path. The mobile
+      // article route already has strong system fallbacks, and this avoids a
+      // render-blocking Google Fonts stylesheet before first paint.
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap",
+        media: "(min-width: 768px)",
       },
       { rel: "stylesheet", href: appCss },
       {
