@@ -5,8 +5,24 @@
   <link>https://rzifi.com/blog/</link>
   <description>Essays on payment infrastructure, fintech product, risk, settlement, AI and program leadership.</description>
   <language>en</language>
-  <lastBuildDate>Mon, 15 Jun 2026 06:28:04 GMT</lastBuildDate>
+  <lastBuildDate>Tue, 16 Jun 2026 06:09:14 GMT</lastBuildDate>
   <item>
+    <title>Nuvei Buying Payoneer Is a Corridor Stack Bet, Not Just M&amp;A</title>
+    <link>https://rzifi.com/blog/nuvei-payoneer-corridor-stack-bet/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/nuvei-payoneer-corridor-stack-bet/</guid>
+    <pubDate>Tue, 16 Jun 2026 00:00:00 GMT</pubDate>
+    <category>Cross-Border Payments</category>
+    <description>Nuvei&apos;s $2.75B Payoneer deal is a bet on owning acceptance, FX, payouts, settlement and compliance across cross-border corridors.</description>
+  </item>
+<item>
+    <title>SWIFT vs Card Rails vs Local Wallets: When to Use What</title>
+    <link>https://rzifi.com/blog/swift-vs-card-rails-vs-local-wallets/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/swift-vs-card-rails-vs-local-wallets/</guid>
+    <pubDate>Tue, 16 Jun 2026 00:00:00 GMT</pubDate>
+    <category>Cross-Border Payments</category>
+    <description>A practitioner comparison of SWIFT, card rails, and local wallets, cost, speed, geography, risk, and when to use each.</description>
+  </item>
+<item>
     <title>mBridge Is Not a SWIFT Killer. It Is a Settlement Warning Shot</title>
     <link>https://rzifi.com/blog/mbridge-cross-border-settlement-warning-shot/</link>
     <guid isPermaLink="true">https://rzifi.com/blog/mbridge-cross-border-settlement-warning-shot/</guid>
@@ -229,22 +245,6 @@
     <pubDate>Sat, 23 May 2026 00:00:00 GMT</pubDate>
     <category>Settlement &amp; Reconciliation</category>
     <description>How to design a double-entry payment ledger that holds across cards, wallets, IBFT, DCB and cross-border rails at $1B+ GTV, entities, postings, and invariants.</description>
-  </item>
-<item>
-    <title>Regulatory UX: Why the Name on a Payment Screen Can Block a Launch</title>
-    <link>https://rzifi.com/blog/regulatory-ux-name-on-payment-screen/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/regulatory-ux-name-on-payment-screen/</guid>
-    <pubDate>Sat, 23 May 2026 00:00:00 GMT</pubDate>
-    <category>Fraud &amp; Risk</category>
-    <description>An operator essay on regulatory UX, why the words, names, and disclosures on a payment screen can be the difference between a launch and a six-month delay.</description>
-  </item>
-<item>
-    <title>Exception Management in Reconciliation</title>
-    <link>https://rzifi.com/blog/exception-management-reconciliation/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/exception-management-reconciliation/</guid>
-    <pubDate>Fri, 22 May 2026 00:00:00 GMT</pubDate>
-    <category>Settlement &amp; Reconciliation</category>
-    <description>How to design exception management for payment reconciliation so finance ops scales sublinearly with GTV, taxonomy, routing, SLAs, and product feedback loops.</description>
   </item>
 </channel>
 </rss>
