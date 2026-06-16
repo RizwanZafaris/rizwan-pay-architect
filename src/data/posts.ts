@@ -221,6 +221,31 @@ export const posts: Post[] = [
     ]
   },
   {
+    "slug": "nuvei-payoneer-corridor-stack-bet",
+    "title": "Nuvei Buying Payoneer Is a Corridor Stack Bet, Not Just M&A",
+    "metaTitle": "Nuvei-Payoneer Is a Corridor Stack Bet | Rizwan Zafar",
+    "date": "2026-06-16",
+    "category": "Cross-Border Payments",
+    "readingTime": "6 min read",
+    "description": "Nuvei's $2.75B Payoneer deal is a bet on owning acceptance, FX, payouts, settlement and compliance across cross-border corridors.",
+    "thesis": "The Nuvei-Payoneer deal is not just payments consolidation. It is a signal that cross-border platforms are trying to own more of the corridor stack.",
+    "tags": [
+      "Nuvei",
+      "Payoneer",
+      "cross-border payments",
+      "payment acceptance",
+      "payouts",
+      "FX",
+      "settlement",
+      "fintech M&A"
+    ],
+    "relatedArticles": [
+      "/blog/cross-border-corridors-are-operating-systems",
+      "/blog/reconciliation-is-product-infrastructure",
+      "/blog/stablecoin-payments-2026"
+    ]
+  },
+  {
     "slug": "swift-vs-card-rails-vs-local-wallets",
     "title": "SWIFT vs Card Rails vs Local Wallets: When to Use What",
     "metaTitle": "SWIFT vs Card Rails vs Local Wallets | Rizwan Zafar",
