@@ -221,6 +221,31 @@ export const posts: Post[] = [
     ]
   },
   {
+    "slug": "boku-upi-local-rails-cross-border",
+    "title": "Boku's UPI Launch Is a Local-Rail Export Story",
+    "metaTitle": "Boku UPI: Local Rails Go Cross-Border | Rizwan Zafar",
+    "date": "2026-06-17",
+    "category": "Cross-Border Payments",
+    "readingTime": "6 min read",
+    "description": "Boku's UPI launch shows how domestic instant rails become cross-border checkout infrastructure for global merchants and payment teams.",
+    "thesis": "Boku's first cross-border UPI transactions are not just another local payment method. They show how domestic instant rails are becoming export infrastructure for global checkout.",
+    "tags": [
+      "UPI",
+      "Boku",
+      "cross-border payments",
+      "local payment methods",
+      "instant payments",
+      "merchant acceptance",
+      "settlement",
+      "payment orchestration"
+    ],
+    "relatedArticles": [
+      "/blog/cross-border-corridors-are-operating-systems",
+      "/blog/local-payment-methods-developer-experience",
+      "/blog/swift-vs-card-rails-vs-local-wallets"
+    ]
+  },
+  {
     "slug": "nuvei-payoneer-corridor-stack-bet",
     "title": "Nuvei Buying Payoneer Is a Corridor Stack Bet, Not Just M&A",
     "metaTitle": "Nuvei-Payoneer Is a Corridor Stack Bet | Rizwan Zafar",
@@ -2082,7 +2107,8 @@ export const getRelated = (slug: string) => {
     .map((href) => href.match(/\/blog\/([^/#?]+)/)?.[1])
     .filter((x): x is string => Boolean(x))
     .map((relatedSlug) => getPost(relatedSlug))
-    .filter((x): x is Post => Boolean(x) && isPostPublished(x));
+    .filter((x): x is Post => Boolean(x))
+    .filter(isPostPublished);
   const explicitSlugs = new Set(explicit.map((x) => x.slug));
   const fallback = publishedPosts
     .filter(
