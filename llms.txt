@@ -72,8 +72,9 @@ Disambiguation note: This Rizwan Zafar is the payments infrastructure CPO at Sim
 - [Regional Wallet Integration: Easypaisa + JazzCash + SADAD + STC Pay Across MENA + South Asia](https://rzifi.com/product-work/regional-wallet-integration-easypaisa-jazzcash-sadad/): Integrated the dominant regional wallets, Easypaisa, JazzCash, SADAD, STC Pay, plus Mada-rail acceptance, into a unified payment-acceptance surface for a regional fintech across four markets; produced 27% lift in non-card acceptance and removed three single-rail dependencies.
 - [PMO + Risk Council Operating Model: From Audit-Reactive To Forward-Looking In Two Quarters](https://rzifi.com/product-work/pmo-risk-council-operating-model/): Built the joint PMO + Risk Council operating model for a regulated fintech, unified RAID + risk register, monthly council cadence, audit-evidence pipeline, moving the function from audit-reactive to forward-looking, with two regulator commendations and zero new findings across an 18-month cycle.
 
-## Essays (78 total, latest first)
+## Essays (79 total, latest first)
 
+- [Boku's UPI Launch Is a Local-Rail Export Story](https://rzifi.com/blog/boku-upi-local-rails-cross-border/): Boku's UPI launch shows how domestic instant rails become cross-border checkout infrastructure for global merchants and payment teams.
 - [Nuvei Buying Payoneer Is a Corridor Stack Bet, Not Just M&A](https://rzifi.com/blog/nuvei-payoneer-corridor-stack-bet/): Nuvei's $2.75B Payoneer deal is a bet on owning acceptance, FX, payouts, settlement and compliance across cross-border corridors.
 - [SWIFT vs Card Rails vs Local Wallets: When to Use What](https://rzifi.com/blog/swift-vs-card-rails-vs-local-wallets/): A practitioner comparison of SWIFT, card rails, and local wallets, cost, speed, geography, risk, and when to use each.
 - [mBridge Is Not a SWIFT Killer. It Is a Settlement Warning Shot](https://rzifi.com/blog/mbridge-cross-border-settlement-warning-shot/): mBridge is not a SWIFT replacement. It is a settlement experiment product leaders should read as corridor infrastructure, not messaging.
