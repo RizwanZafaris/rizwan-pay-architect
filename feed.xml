@@ -5,8 +5,16 @@
   <link>https://rzifi.com/blog/</link>
   <description>Essays on payment infrastructure, fintech product, risk, settlement, AI and program leadership.</description>
   <language>en</language>
-  <lastBuildDate>Thu, 18 Jun 2026 02:01:15 GMT</lastBuildDate>
+  <lastBuildDate>Thu, 18 Jun 2026 06:40:32 GMT</lastBuildDate>
   <item>
+    <title>Revolut UAE Licences: The Product Work Starts Now</title>
+    <link>https://rzifi.com/blog/revolut-uae-licences-product-operating-model/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/revolut-uae-licences-product-operating-model/</guid>
+    <pubDate>Thu, 18 Jun 2026 00:00:00 GMT</pubDate>
+    <category>Cross-Border Payments</category>
+    <description>Revolut&apos;s UAE licences are not just market entry news. They test wallet, cross-border, compliance and rail design in a serious market.</description>
+  </item>
+<item>
     <title>Boku&apos;s UPI Launch Is a Local-Rail Export Story</title>
     <link>https://rzifi.com/blog/boku-upi-local-rails-cross-border/</link>
     <guid isPermaLink="true">https://rzifi.com/blog/boku-upi-local-rails-cross-border/</guid>
@@ -237,14 +245,6 @@
     <pubDate>Sun, 24 May 2026 00:00:00 GMT</pubDate>
     <category>AI in Fintech</category>
     <description>A practical view of agentic AI in payments operations: where agents help, where deterministic workflows win, and how to control production risk.</description>
-  </item>
-<item>
-    <title>KYB Automation Without Blowing Up Risk</title>
-    <link>https://rzifi.com/blog/kyb-automation-without-blowing-up-risk/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/kyb-automation-without-blowing-up-risk/</guid>
-    <pubDate>Sun, 24 May 2026 00:00:00 GMT</pubDate>
-    <category>Merchant Onboarding</category>
-    <description>How to automate KYB onboarding for merchants without inflating fraud, sanctions, or default rates, tiering, data sources, and the review queue that scales.</description>
   </item>
 </channel>
 </rss>
