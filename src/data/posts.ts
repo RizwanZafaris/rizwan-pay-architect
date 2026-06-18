@@ -221,6 +221,28 @@ export const posts: Post[] = [
     ]
   },
   {
+    "slug": "revolut-uae-licences-product-operating-model",
+    "title": "Revolut UAE Licences: The Product Work Starts Now",
+    "metaTitle": "Revolut UAE Licences: Product Work Starts Now | Rizwan Zafar",
+    "date": "2026-06-18",
+    "category": "Cross-Border Payments",
+    "readingTime": "6 min read",
+    "description": "Revolut's UAE licences are not just market entry news. They test wallet, cross-border, compliance and rail design in a serious market.",
+    "thesis": "A UAE payments licence is not the finish line. For a global wallet, it is where the local operating model starts to get tested.",
+    "tags": [
+      "UAE fintech",
+      "cross-border payments",
+      "wallets",
+      "payment licences"
+    ],
+    "relatedArticles": [
+      "/blog/cross-border-corridors-are-operating-systems",
+      "/blog/swift-vs-card-rails-vs-local-wallets",
+      "/blog/local-payment-methods-developer-experience",
+      "/blog/merchant-onboarding-growth-risk-compliance"
+    ]
+  },
+  {
     "slug": "boku-upi-local-rails-cross-border",
     "title": "Boku's UPI Launch Is a Local-Rail Export Story",
     "metaTitle": "Boku UPI: Local Rails Go Cross-Border | Rizwan Zafar",
