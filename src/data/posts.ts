@@ -221,6 +221,31 @@ export const posts: Post[] = [
     ]
   },
   {
+    "slug": "mollie-eea-localisation-infrastructure",
+    "title": "Mollie's EEA Expansion Is a Localisation Infrastructure Bet",
+    "metaTitle": "Mollie EEA Expansion: Localisation Infrastructure",
+    "date": "2026-06-19",
+    "category": "Cross-Border Payments",
+    "readingTime": "6 min read",
+    "description": "Mollie's EUR350M EEA expansion shows why cross-border merchants need local payment methods, onboarding, support, and reconciliation as one stack.",
+    "thesis": "Mollie's EEA expansion is not just country coverage. It is a bet that local payment methods, onboarding, support, settlement and reconciliation have to be shipped as one merchant operating system.",
+    "tags": [
+      "Mollie",
+      "EEA payments",
+      "cross-border commerce",
+      "local payment methods",
+      "merchant acquiring",
+      "payment infrastructure",
+      "reconciliation"
+    ],
+    "relatedArticles": [
+      "/blog/cross-border-corridors-are-operating-systems",
+      "/blog/local-payment-methods-developer-experience",
+      "/blog/reconciliation-is-product-infrastructure",
+      "/blog/hosted-checkout-vs-direct-card-processing"
+    ]
+  },
+  {
     "slug": "revolut-uae-licences-product-operating-model",
     "title": "Revolut UAE Licences: The Product Work Starts Now",
     "metaTitle": "Revolut UAE Licences: Product Work Starts Now | Rizwan Zafar",
