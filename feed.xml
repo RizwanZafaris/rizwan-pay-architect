@@ -5,7 +5,7 @@
   <link>https://rzifi.com/blog/</link>
   <description>Essays on payment infrastructure, fintech product, risk, settlement, AI and program leadership.</description>
   <language>en</language>
-  <lastBuildDate>Fri, 19 Jun 2026 02:16:33 GMT</lastBuildDate>
+  <lastBuildDate>Fri, 19 Jun 2026 09:08:58 GMT</lastBuildDate>
   <item>
     <title>Correspondent Banking and the Reality of Emerging-Market Corridors</title>
     <link>https://rzifi.com/blog/correspondent-banking-and-emerging-market-corridors/</link>
@@ -13,6 +13,14 @@
     <pubDate>Fri, 19 Jun 2026 00:00:00 GMT</pubDate>
     <category>Cross-Border Payments</category>
     <description>How correspondent banking actually works in emerging-market corridors, de-risking, nostro/vostro, FX, and the product opportunities created by friction.</description>
+  </item>
+<item>
+    <title>Mollie&apos;s EEA Expansion Is a Localisation Infrastructure Bet</title>
+    <link>https://rzifi.com/blog/mollie-eea-localisation-infrastructure/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/mollie-eea-localisation-infrastructure/</guid>
+    <pubDate>Fri, 19 Jun 2026 00:00:00 GMT</pubDate>
+    <category>Cross-Border Payments</category>
+    <description>Mollie&apos;s EUR350M EEA expansion shows why cross-border merchants need local payment methods, onboarding, support, and reconciliation as one stack.</description>
   </item>
 <item>
     <title>Revolut UAE Licences: The Product Work Starts Now</title>
@@ -237,14 +245,6 @@
     <pubDate>Mon, 25 May 2026 00:00:00 GMT</pubDate>
     <category>AI in Fintech</category>
     <description>A realistic architecture for using LLMs in KYB document extraction while keeping risk decisions auditable and compliance-controlled.</description>
-  </item>
-<item>
-    <title>Risk Tiering Merchants Is a Product Decision</title>
-    <link>https://rzifi.com/blog/risk-tiering-merchants-product-decision/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/risk-tiering-merchants-product-decision/</guid>
-    <pubDate>Mon, 25 May 2026 00:00:00 GMT</pubDate>
-    <category>Merchant Onboarding</category>
-    <description>Why merchant risk tiering belongs to product, not just risk, how tiers shape onboarding, limits, settlement, fees, and the entire merchant lifecycle.</description>
   </item>
 </channel>
 </rss>
