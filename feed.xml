@@ -5,8 +5,16 @@
   <link>https://rzifi.com/blog/</link>
   <description>Essays on payment infrastructure, fintech product, risk, settlement, AI and program leadership.</description>
   <language>en</language>
-  <lastBuildDate>Thu, 18 Jun 2026 06:44:29 GMT</lastBuildDate>
+  <lastBuildDate>Fri, 19 Jun 2026 02:16:33 GMT</lastBuildDate>
   <item>
+    <title>Correspondent Banking and the Reality of Emerging-Market Corridors</title>
+    <link>https://rzifi.com/blog/correspondent-banking-and-emerging-market-corridors/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/correspondent-banking-and-emerging-market-corridors/</guid>
+    <pubDate>Fri, 19 Jun 2026 00:00:00 GMT</pubDate>
+    <category>Cross-Border Payments</category>
+    <description>How correspondent banking actually works in emerging-market corridors, de-risking, nostro/vostro, FX, and the product opportunities created by friction.</description>
+  </item>
+<item>
     <title>Revolut UAE Licences: The Product Work Starts Now</title>
     <link>https://rzifi.com/blog/revolut-uae-licences-product-operating-model/</link>
     <guid isPermaLink="true">https://rzifi.com/blog/revolut-uae-licences-product-operating-model/</guid>
@@ -237,14 +245,6 @@
     <pubDate>Mon, 25 May 2026 00:00:00 GMT</pubDate>
     <category>Merchant Onboarding</category>
     <description>Why merchant risk tiering belongs to product, not just risk, how tiers shape onboarding, limits, settlement, fees, and the entire merchant lifecycle.</description>
-  </item>
-<item>
-    <title>Agentic Payments Operations: What Works, What Is Theatre</title>
-    <link>https://rzifi.com/blog/agentic-payments-operations-what-works/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/agentic-payments-operations-what-works/</guid>
-    <pubDate>Sun, 24 May 2026 00:00:00 GMT</pubDate>
-    <category>AI in Fintech</category>
-    <description>A practical view of agentic AI in payments operations: where agents help, where deterministic workflows win, and how to control production risk.</description>
   </item>
 </channel>
 </rss>
