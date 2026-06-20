@@ -5,8 +5,16 @@
   <link>https://rzifi.com/blog/</link>
   <description>Essays on payment infrastructure, fintech product, risk, settlement, AI and program leadership.</description>
   <language>en</language>
-  <lastBuildDate>Sat, 20 Jun 2026 01:35:39 GMT</lastBuildDate>
+  <lastBuildDate>Sat, 20 Jun 2026 06:20:12 GMT</lastBuildDate>
   <item>
+    <title>Zodia&apos;s Luxembourg Licence Turns Stablecoin Custody Into Payment Infrastructure</title>
+    <link>https://rzifi.com/blog/zodia-luxembourg-stablecoin-payments-licence/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/zodia-luxembourg-stablecoin-payments-licence/</guid>
+    <pubDate>Sat, 20 Jun 2026 00:00:00 GMT</pubDate>
+    <category>Crypto &amp; Stablecoins</category>
+    <description>Zodia&apos;s Luxembourg licence shows why stablecoin custody, EMT transfer, settlement, treasury, and reconciliation are now one product surface.</description>
+  </item>
+<item>
     <title>Correspondent Banking and the Reality of Emerging-Market Corridors</title>
     <link>https://rzifi.com/blog/correspondent-banking-and-emerging-market-corridors/</link>
     <guid isPermaLink="true">https://rzifi.com/blog/correspondent-banking-and-emerging-market-corridors/</guid>
@@ -237,14 +245,6 @@
     <pubDate>Tue, 26 May 2026 00:00:00 GMT</pubDate>
     <category>Program Management</category>
     <description>How fintech PMOs should govern vendors across payments, OTT, banking and regulated transformation programs without slowing delivery.</description>
-  </item>
-<item>
-    <title>KYB Document Extraction: A Realistic LLM Use Case in Regulated Payments</title>
-    <link>https://rzifi.com/blog/kyb-document-extraction-llm-use-case/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/kyb-document-extraction-llm-use-case/</guid>
-    <pubDate>Mon, 25 May 2026 00:00:00 GMT</pubDate>
-    <category>AI in Fintech</category>
-    <description>A realistic architecture for using LLMs in KYB document extraction while keeping risk decisions auditable and compliance-controlled.</description>
   </item>
 </channel>
 </rss>
