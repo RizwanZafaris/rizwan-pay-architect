@@ -200,6 +200,31 @@ export const posts: Post[] = [
     ]
   },
   {
+    "slug": "zodia-luxembourg-stablecoin-payments-licence",
+    "title": "Zodia's Luxembourg Licence Turns Stablecoin Custody Into Payment Infrastructure",
+    "metaTitle": "Zodia Luxembourg Licence: Stablecoin Payment Infrastructure",
+    "date": "2026-06-20",
+    "category": "Crypto & Stablecoins",
+    "readingTime": "6 min read",
+    "description": "Zodia's Luxembourg licence shows why stablecoin custody, EMT transfer, settlement, treasury, and reconciliation are now one product surface.",
+    "thesis": "Zodia's Luxembourg Payment Institution licence is not just a custody headline. It is a signal that regulated stablecoin custody, EMT transfer, settlement, treasury, and reconciliation are becoming one institutional product surface.",
+    "tags": [
+      "Zodia Custody",
+      "stablecoins",
+      "MiCA",
+      "electronic money tokens",
+      "Luxembourg fintech",
+      "payment infrastructure",
+      "treasury"
+    ],
+    "relatedArticles": [
+      "/blog/stablecoin-payments-2026",
+      "/blog/future-of-treasury-with-stablecoins",
+      "/blog/reconciliation-is-product-infrastructure",
+      "/blog/cross-border-corridors-are-operating-systems"
+    ]
+  },
+  {
     "slug": "correspondent-banking-and-emerging-market-corridors",
     "title": "Correspondent Banking and the Reality of Emerging-Market Corridors",
     "metaTitle": "Correspondent Banking in Emerging-Market Corridors | Rizwan Zafar",
