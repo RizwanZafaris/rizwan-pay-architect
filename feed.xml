@@ -5,8 +5,16 @@
   <link>https://rzifi.com/blog/</link>
   <description>Essays on payment infrastructure, fintech product, risk, settlement, AI and program leadership.</description>
   <language>en</language>
-  <lastBuildDate>Sun, 21 Jun 2026 01:58:23 GMT</lastBuildDate>
+  <lastBuildDate>Sun, 21 Jun 2026 06:21:20 GMT</lastBuildDate>
   <item>
+    <title>Finastra&apos;s Core Banking Sale Is a Product Focus Lesson</title>
+    <link>https://rzifi.com/blog/finastra-core-banking-sale-product-focus/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/finastra-core-banking-sale-product-focus/</guid>
+    <pubDate>Sun, 21 Jun 2026 00:00:00 GMT</pubDate>
+    <category>Product Strategy</category>
+    <description>Finastra&apos;s Universal Banking sale shows why fintech platforms need sharper product focus, cleaner ownership, and fewer strategy-adjacent bundles.</description>
+  </item>
+<item>
     <title>Zodia&apos;s Luxembourg Licence Turns Stablecoin Custody Into Payment Infrastructure</title>
     <link>https://rzifi.com/blog/zodia-luxembourg-stablecoin-payments-licence/</link>
     <guid isPermaLink="true">https://rzifi.com/blog/zodia-luxembourg-stablecoin-payments-licence/</guid>
@@ -237,14 +245,6 @@
     <pubDate>Tue, 26 May 2026 00:00:00 GMT</pubDate>
     <category>Merchant Onboarding</category>
     <description>How to manage the real tradeoff between onboarding conversion and downstream default, fraud, and chargeback rates without picking a side.</description>
-  </item>
-<item>
-    <title>Vendor Governance in Fintech: The PMO Surface Most Teams Underestimate</title>
-    <link>https://rzifi.com/blog/vendor-governance-fintech-pmo/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/vendor-governance-fintech-pmo/</guid>
-    <pubDate>Tue, 26 May 2026 00:00:00 GMT</pubDate>
-    <category>Program Management</category>
-    <description>How fintech PMOs should govern vendors across payments, OTT, banking and regulated transformation programs without slowing delivery.</description>
   </item>
 </channel>
 </rss>
