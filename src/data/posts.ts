@@ -200,6 +200,30 @@ export const posts: Post[] = [
     ]
   },
   {
+    "slug": "finastra-core-banking-sale-product-focus",
+    "title": "Finastra's Core Banking Sale Is a Product Focus Lesson",
+    "metaTitle": "Finastra Core Sale: Product Focus Lesson",
+    "date": "2026-06-21",
+    "category": "Product Strategy",
+    "readingTime": "6 min read",
+    "description": "Finastra's Universal Banking sale shows why fintech platforms need sharper product focus, cleaner ownership, and fewer strategy-adjacent bundles.",
+    "thesis": "Finastra's Universal Banking sale is not only M&A news. It is a product-focus lesson for fintech leaders managing broad platforms, legacy modernization, and delivery risk.",
+    "tags": [
+      "Finastra",
+      "product strategy",
+      "core banking",
+      "fintech platforms",
+      "program management",
+      "payments"
+    ],
+    "relatedArticles": [
+      "/blog/product-management-for-payments-platforms",
+      "/blog/what-is-core-banking-system-when-to-replace",
+      "/blog/program-vs-product-management-fintech",
+      "/blog/raid-steerco-pmo-stack-that-ships"
+    ]
+  },
+  {
     "slug": "zodia-luxembourg-stablecoin-payments-licence",
     "title": "Zodia's Luxembourg Licence Turns Stablecoin Custody Into Payment Infrastructure",
     "metaTitle": "Zodia Luxembourg Licence: Stablecoin Payment Infrastructure",
