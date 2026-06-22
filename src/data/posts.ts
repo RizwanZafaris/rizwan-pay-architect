@@ -200,6 +200,30 @@ export const posts: Post[] = [
     ]
   },
   {
+    "slug": "swift-november-2026-address-cutoff-product-problem",
+    "title": "Swift's November 2026 Address Cutoff Is a Product Problem",
+    "metaTitle": "Swift Address Cutoff Is a Product Problem",
+    "date": "2026-06-22",
+    "category": "Cross-Border Payments",
+    "readingTime": "6 min read",
+    "description": "Swift's November 2026 structured-address cutoff turns ISO 20022 from a bank-format project into a capture-side product requirement.",
+    "thesis": "Swift's November 2026 structured-address cutoff is not a standards-team footnote. It is a product requirement for every cross-border payment surface that still accepts weak beneficiary data.",
+    "tags": [
+      "Swift",
+      "ISO 20022",
+      "cross-border payments",
+      "payment data",
+      "payment operations",
+      "settlement"
+    ],
+    "relatedArticles": [
+      "/blog/iso-20022-migration-what-product-teams-must-know",
+      "/blog/swift-payment-delays-what-actually-causes-them",
+      "/blog/swift-messaging-formats-mt-vs-mx",
+      "/blog/swift-compliance-checklist-for-banks-and-fintechs"
+    ]
+  },
+  {
     "slug": "finastra-core-banking-sale-product-focus",
     "title": "Finastra's Core Banking Sale Is a Product Focus Lesson",
     "metaTitle": "Finastra Core Sale: Product Focus Lesson",
