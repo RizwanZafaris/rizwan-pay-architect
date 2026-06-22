@@ -5,8 +5,16 @@
   <link>https://rzifi.com/blog/</link>
   <description>Essays on payment infrastructure, fintech product, risk, settlement, AI and program leadership.</description>
   <language>en</language>
-  <lastBuildDate>Mon, 22 Jun 2026 02:02:03 GMT</lastBuildDate>
+  <lastBuildDate>Mon, 22 Jun 2026 06:12:34 GMT</lastBuildDate>
   <item>
+    <title>Swift&apos;s November 2026 Address Cutoff Is a Product Problem</title>
+    <link>https://rzifi.com/blog/swift-november-2026-address-cutoff-product-problem/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/swift-november-2026-address-cutoff-product-problem/</guid>
+    <pubDate>Mon, 22 Jun 2026 00:00:00 GMT</pubDate>
+    <category>Cross-Border Payments</category>
+    <description>Swift&apos;s November 2026 structured-address cutoff turns ISO 20022 from a bank-format project into a capture-side product requirement.</description>
+  </item>
+<item>
     <title>Finastra&apos;s Core Banking Sale Is a Product Focus Lesson</title>
     <link>https://rzifi.com/blog/finastra-core-banking-sale-product-focus/</link>
     <guid isPermaLink="true">https://rzifi.com/blog/finastra-core-banking-sale-product-focus/</guid>
@@ -237,14 +245,6 @@
     <pubDate>Tue, 26 May 2026 00:00:00 GMT</pubDate>
     <category>Settlement &amp; Reconciliation</category>
     <description>Why financial controls, segregation of duties, audit trails, maker-checker, reversals, are product requirements, not compliance afterthoughts.</description>
-  </item>
-<item>
-    <title>Onboarding Conversion vs. Default Rate: The Real Tradeoff</title>
-    <link>https://rzifi.com/blog/onboarding-conversion-vs-default-rate-tradeoff/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/onboarding-conversion-vs-default-rate-tradeoff/</guid>
-    <pubDate>Tue, 26 May 2026 00:00:00 GMT</pubDate>
-    <category>Merchant Onboarding</category>
-    <description>How to manage the real tradeoff between onboarding conversion and downstream default, fraud, and chargeback rates without picking a side.</description>
   </item>
 </channel>
 </rss>
