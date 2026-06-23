@@ -180,6 +180,30 @@ export const posts: Post[] = [
     ]
   },
   {
+    "slug": "boe-systemic-stablecoin-rules-operating-model",
+    "title": "The Bank of England's Stablecoin Rules Are an Operating Model",
+    "metaTitle": "Bank of England Stablecoin Rules: Operating Model",
+    "date": "2026-06-23",
+    "category": "Crypto & Stablecoins",
+    "readingTime": "6 min read",
+    "description": "The Bank of England's 2026 stablecoin rules turn stablecoins into a payment operating model: backing assets, limits, redemption, and rails.",
+    "thesis": "The Bank of England's systemic stablecoin rules are not just a regulatory update. They define the operating model that serious payment products will have to build around.",
+    "tags": [
+      "Bank of England",
+      "stablecoins",
+      "systemic stablecoins",
+      "payment infrastructure",
+      "cross-border payments",
+      "settlement"
+    ],
+    "relatedArticles": [
+      "/blog/zodia-luxembourg-stablecoin-payments-licence",
+      "/blog/stablecoin-payments-2026",
+      "/blog/reconciliation-is-product-infrastructure",
+      "/blog/cross-border-corridors-are-operating-systems"
+    ]
+  },
+  {
     "slug": "swift-fees-fx-and-the-true-cost-of-cross-border",
     "title": "SWIFT Fees, FX, and the True Cost of a Cross-Border Payment",
     "metaTitle": "SWIFT Fees, FX, and True Cost of Cross-Border Payments | Rizwan Zafar",
