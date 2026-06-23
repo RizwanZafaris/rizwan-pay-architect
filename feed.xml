@@ -5,14 +5,14 @@
   <link>https://rzifi.com/blog/</link>
   <description>Essays on payment infrastructure, fintech product, risk, settlement, AI and program leadership.</description>
   <language>en</language>
-  <lastBuildDate>Mon, 22 Jun 2026 06:12:34 GMT</lastBuildDate>
+  <lastBuildDate>Tue, 23 Jun 2026 01:30:19 GMT</lastBuildDate>
   <item>
-    <title>Swift&apos;s November 2026 Address Cutoff Is a Product Problem</title>
-    <link>https://rzifi.com/blog/swift-november-2026-address-cutoff-product-problem/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/swift-november-2026-address-cutoff-product-problem/</guid>
-    <pubDate>Mon, 22 Jun 2026 00:00:00 GMT</pubDate>
+    <title>SWIFT Fees, FX, and the True Cost of a Cross-Border Payment</title>
+    <link>https://rzifi.com/blog/swift-fees-fx-and-the-true-cost-of-cross-border/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/swift-fees-fx-and-the-true-cost-of-cross-border/</guid>
+    <pubDate>Tue, 23 Jun 2026 00:00:00 GMT</pubDate>
     <category>Cross-Border Payments</category>
-    <description>Swift&apos;s November 2026 structured-address cutoff turns ISO 20022 from a bank-format project into a capture-side product requirement.</description>
+    <description>Where the real cost of a cross-border SWIFT payment hides, fees, FX margin, charge bearer, and the product decisions that compress it.</description>
   </item>
 <item>
     <title>Finastra&apos;s Core Banking Sale Is a Product Focus Lesson</title>
