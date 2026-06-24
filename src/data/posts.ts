@@ -180,6 +180,31 @@ export const posts: Post[] = [
     ]
   },
   {
+    "slug": "project-pangea-stablecoin-fx-settlement",
+    "title": "Project Pangea Shows Stablecoin FX Needs PvP, Not Hype",
+    "metaTitle": "Project Pangea and Stablecoin FX Settlement",
+    "date": "2026-06-24",
+    "category": "Cross-Border Payments",
+    "readingTime": "6 min read",
+    "description": "Project Pangea shows stablecoin FX needs PvP settlement, ISO 20022, Swift integration, liquidity controls, and bank-grade reconciliation.",
+    "thesis": "Project Pangea is not just another stablecoin announcement. It is a useful test of whether banks can move FX from T+2 messaging into T+0 payment-versus-payment settlement without losing controls.",
+    "tags": [
+      "Project Pangea",
+      "Chainlink",
+      "stablecoin FX",
+      "PvP settlement",
+      "ISO 20022",
+      "cross-border payments"
+    ],
+    "relatedArticles": [
+      "/blog/boe-systemic-stablecoin-rules-operating-model",
+      "/blog/zodia-luxembourg-stablecoin-payments-licence",
+      "/blog/iso-20022-migration-what-product-teams-must-know",
+      "/blog/cross-border-corridors-are-operating-systems",
+      "/blog/reconciliation-is-product-infrastructure"
+    ]
+  },
+  {
     "slug": "boe-systemic-stablecoin-rules-operating-model",
     "title": "The Bank of England's Stablecoin Rules Are an Operating Model",
     "metaTitle": "Bank of England Stablecoin Rules: Operating Model",
