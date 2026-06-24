@@ -5,14 +5,38 @@
   <link>https://rzifi.com/blog/</link>
   <description>Essays on payment infrastructure, fintech product, risk, settlement, AI and program leadership.</description>
   <language>en</language>
-  <lastBuildDate>Wed, 24 Jun 2026 01:25:16 GMT</lastBuildDate>
+  <lastBuildDate>Wed, 24 Jun 2026 06:28:25 GMT</lastBuildDate>
   <item>
+    <title>Project Pangea Shows Stablecoin FX Needs PvP, Not Hype</title>
+    <link>https://rzifi.com/blog/project-pangea-stablecoin-fx-settlement/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/project-pangea-stablecoin-fx-settlement/</guid>
+    <pubDate>Wed, 24 Jun 2026 00:00:00 GMT</pubDate>
+    <category>Cross-Border Payments</category>
+    <description>Project Pangea shows stablecoin FX needs PvP settlement, ISO 20022, Swift integration, liquidity controls, and bank-grade reconciliation.</description>
+  </item>
+<item>
+    <title>The Bank of England&apos;s Stablecoin Rules Are an Operating Model</title>
+    <link>https://rzifi.com/blog/boe-systemic-stablecoin-rules-operating-model/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/boe-systemic-stablecoin-rules-operating-model/</guid>
+    <pubDate>Tue, 23 Jun 2026 00:00:00 GMT</pubDate>
+    <category>Crypto &amp; Stablecoins</category>
+    <description>The Bank of England&apos;s 2026 stablecoin rules turn stablecoins into a payment operating model: backing assets, limits, redemption, and rails.</description>
+  </item>
+<item>
     <title>SWIFT Fees, FX, and the True Cost of a Cross-Border Payment</title>
     <link>https://rzifi.com/blog/swift-fees-fx-and-the-true-cost-of-cross-border/</link>
     <guid isPermaLink="true">https://rzifi.com/blog/swift-fees-fx-and-the-true-cost-of-cross-border/</guid>
     <pubDate>Tue, 23 Jun 2026 00:00:00 GMT</pubDate>
     <category>Cross-Border Payments</category>
     <description>Where the real cost of a cross-border SWIFT payment hides, fees, FX margin, charge bearer, and the product decisions that compress it.</description>
+  </item>
+<item>
+    <title>Swift&apos;s November 2026 Address Cutoff Is a Product Problem</title>
+    <link>https://rzifi.com/blog/swift-november-2026-address-cutoff-product-problem/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/swift-november-2026-address-cutoff-product-problem/</guid>
+    <pubDate>Mon, 22 Jun 2026 00:00:00 GMT</pubDate>
+    <category>Cross-Border Payments</category>
+    <description>Swift&apos;s November 2026 structured-address cutoff turns ISO 20022 from a bank-format project into a capture-side product requirement.</description>
   </item>
 <item>
     <title>Finastra&apos;s Core Banking Sale Is a Product Focus Lesson</title>
@@ -221,30 +245,6 @@
     <pubDate>Wed, 27 May 2026 00:00:00 GMT</pubDate>
     <category>Payment Infrastructure</category>
     <description>Acceptance in emerging markets is decided at the SDK and webhook layer. Why local payment methods are developer-experience problems first.</description>
-  </item>
-<item>
-    <title>PMO Maturity Model for Fintech: Five Stages and How to Know Yours</title>
-    <link>https://rzifi.com/blog/pmo-maturity-model-fintech/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/pmo-maturity-model-fintech/</guid>
-    <pubDate>Wed, 27 May 2026 00:00:00 GMT</pubDate>
-    <category>Program Management</category>
-    <description>A practical five-stage PMO maturity model for fintech and payments teams, from delivery tracking to regulated execution system.</description>
-  </item>
-<item>
-    <title>Cross-Border Corridors Are Operating Systems, Not Routes</title>
-    <link>https://rzifi.com/blog/cross-border-corridors-are-operating-systems/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/cross-border-corridors-are-operating-systems/</guid>
-    <pubDate>Tue, 26 May 2026 00:00:00 GMT</pubDate>
-    <category>Cross-Border Payments</category>
-    <description>A corridor is not a partner integration. It is a product with its own success rate, FX behavior, compliance overlay, and unit economics. A practitioner view from MENA and South Asia.</description>
-  </item>
-<item>
-    <title>Financial Controls Are Product Requirements, Not Compliance Afterthoughts</title>
-    <link>https://rzifi.com/blog/financial-controls-are-product-requirements/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/financial-controls-are-product-requirements/</guid>
-    <pubDate>Tue, 26 May 2026 00:00:00 GMT</pubDate>
-    <category>Settlement &amp; Reconciliation</category>
-    <description>Why financial controls, segregation of duties, audit trails, maker-checker, reversals, are product requirements, not compliance afterthoughts.</description>
   </item>
 </channel>
 </rss>
