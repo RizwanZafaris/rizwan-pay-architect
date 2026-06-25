@@ -180,6 +180,106 @@ export const posts: Post[] = [
     ]
   },
   {
+    "slug": "amex-aba-professional-card-programs",
+    "title": "AmEx and ABA Show Vertical Cards Are Infrastructure",
+    "metaTitle": "AmEx ABA Business Card: Vertical Card Infrastructure",
+    "date": "2026-06-25",
+    "category": "Payment Infrastructure",
+    "readingTime": "6 min read",
+    "description": "AmEx, Mercantile and ABA show why vertical business cards need underwriting, rewards, network benefits, and cash-flow tooling.",
+    "thesis": "The ABA American Express Business Card is a useful signal: vertical card programmes are moving from affinity branding into operating infrastructure for professional services.",
+    "tags": [
+      "American Express",
+      "Mercantile",
+      "American Bar Association",
+      "business cards",
+      "issuer processing",
+      "vertical fintech"
+    ],
+    "relatedArticles": [
+      "/blog/virtual-card-accounts-product-guide",
+      "/blog/how-credit-scoring-systems-actually-work",
+      "/blog/risk-tiering-merchants-product-decision",
+      "/blog/merchant-onboarding-growth-risk-compliance",
+      "/blog/financial-controls-are-product-requirements"
+    ]
+  },
+  {
+    "slug": "github-copilot-byok-agent-routing",
+    "title": "GitHub Copilot BYOK Makes Agents a Routing Problem",
+    "metaTitle": "GitHub Copilot BYOK: Agent Routing for Leaders",
+    "date": "2026-06-25",
+    "category": "AI in Fintech",
+    "readingTime": "7 min read",
+    "description": "GitHub Copilot BYOK turns coding agents into a model-routing, governance, cost, and data-boundary decision for product leaders.",
+    "thesis": "GitHub Copilot app support for BYOK is more than another model picker. It is a signal that agent adoption will be governed through routing, policy, cost, and data boundaries.",
+    "tags": [
+      "GitHub Copilot",
+      "BYOK",
+      "AI agents",
+      "model routing",
+      "developer tools",
+      "fintech AI"
+    ],
+    "relatedArticles": [
+      "/blog/ai-in-payments-four-production-use-cases",
+      "/blog/rag-for-merchant-integration-support",
+      "/blog/value-modeling-genai-use-cases-fintech",
+      "/blog/kyb-document-extraction-llm-use-case",
+      "/blog/why-ai-ml-solutions-fail-production-payments"
+    ]
+  },
+  {
+    "slug": "stripe-global-demand-product-system",
+    "title": "Stripe Shows Global Checkout Is a Product System",
+    "metaTitle": "Stripe Global Checkout: Product System Lessons",
+    "date": "2026-06-25",
+    "category": "Product Strategy",
+    "readingTime": "7 min read",
+    "description": "Stripe's Sessions 2026 updates show global checkout is a product system across localization, pricing, auth, fraud, tax, and treasury.",
+    "thesis": "Stripe's global-demand update is not a list of feature launches. It is a map of how product teams should think about converting international demand into retained revenue.",
+    "tags": [
+      "Stripe",
+      "checkout conversion",
+      "global payments",
+      "product strategy",
+      "localization",
+      "growth"
+    ],
+    "relatedArticles": [
+      "/blog/local-payment-methods-developer-experience",
+      "/blog/hosted-checkout-vs-direct-card-processing",
+      "/blog/kyc-conversion-designed-together",
+      "/blog/product-management-for-payments-platforms",
+      "/blog/payment-cost-50-to-1"
+    ]
+  },
+  {
+    "slug": "thredd-visa-cloud-connect-apac-rollout",
+    "title": "Thredd's Visa Cloud Connect Rollout Is a PMO Lesson",
+    "metaTitle": "Thredd Visa Cloud Connect APAC: PMO Lessons",
+    "date": "2026-06-25",
+    "category": "Program Management",
+    "readingTime": "6 min read",
+    "description": "Thredd's Visa Cloud Connect APAC rollout shows why payment infrastructure migrations need sequencing, resilience, data, and governance.",
+    "thesis": "Thredd bringing Visa Cloud Connect live in APAC is not only an issuer-processing milestone. It is a useful case study in how to govern cloud payment infrastructure rollouts.",
+    "tags": [
+      "Thredd",
+      "Visa Cloud Connect",
+      "issuer processing",
+      "APAC payments",
+      "cloud migration",
+      "PMO"
+    ],
+    "relatedArticles": [
+      "/blog/raid-steerco-pmo-stack-that-ships",
+      "/blog/vendor-governance-fintech-pmo",
+      "/blog/project-management-fintech-regulatory-programmes",
+      "/blog/pmo-maturity-model-fintech",
+      "/blog/ledger-design-for-multi-rail-payments"
+    ]
+  },
+  {
     "slug": "project-pangea-stablecoin-fx-settlement",
     "title": "Project Pangea Shows Stablecoin FX Needs PvP, Not Hype",
     "metaTitle": "Project Pangea and Stablecoin FX Settlement",
