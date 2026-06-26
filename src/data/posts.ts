@@ -28,6 +28,8 @@ export const categories = [
   "Fraud & Risk",
   "Merchant Onboarding",
   "Payment Infrastructure",
+  "Payments Strategy",
+  "Product Management",
   "Product Strategy",
   "Program Management",
   "Settlement & Reconciliation"
@@ -160,6 +162,81 @@ export const posts: Post[] = [
     ]
   },
   {
+    "slug": "forter-ai-agents-commerce-risk-radar",
+    "title": "Forter Agents Show AI Risk Work Is Becoming Operational",
+    "metaTitle": "Forter AI Agents: Commerce Risk Lessons",
+    "date": "2026-06-26",
+    "category": "AI in Fintech",
+    "readingTime": "8 min read",
+    "description": "Forter's five commerce AI agents show the practical shift from chatbots to workflow agents for fraud, disputes, payments, and integration.",
+    "thesis": "Forter's agent launch and today's repo radar point to the same pattern: AI is moving from generic assistants into bounded workflows with data access, controls, and operating accountability.",
+    "tags": [
+      "Forter",
+      "AI agents",
+      "fraud operations",
+      "commerce risk",
+      "MCP",
+      "repo radar"
+    ],
+    "relatedArticles": [
+      "/blog/ai-in-payments-four-production-use-cases",
+      "/blog/why-ai-ml-solutions-fail-production-payments",
+      "/blog/ai-auto-escalation-payment-ops",
+      "/blog/rag-for-merchant-integration-support",
+      "/blog/value-modeling-genai-use-cases-fintech"
+    ]
+  },
+  {
+    "slug": "gocardless-sequence-direct-debit-product-design",
+    "title": "GoCardless and Sequence Make Billing a Product Surface",
+    "metaTitle": "GoCardless Sequence Direct Debit: Product Lessons",
+    "date": "2026-06-26",
+    "category": "Product Management",
+    "readingTime": "7 min read",
+    "description": "GoCardless and Sequence's native Direct Debit integration shows why billing, collection, retries, and cash timing are product work.",
+    "thesis": "GoCardless and Sequence are a useful reminder that billing is not a back-office afterthought. Payment collection, retries, mandates, and cash timing shape activation, retention, and customer trust.",
+    "tags": [
+      "GoCardless",
+      "Sequence",
+      "Direct Debit",
+      "billing",
+      "quote to cash",
+      "product operations"
+    ],
+    "relatedArticles": [
+      "/blog/payment-cost-50-to-1",
+      "/blog/exception-management-reconciliation",
+      "/blog/local-payment-methods-developer-experience",
+      "/blog/financial-controls-are-product-requirements",
+      "/blog/risk-adjusted-backlog-payments"
+    ]
+  },
+  {
+    "slug": "lean-ziina-uae-one-tap-pay-by-bank",
+    "title": "Lean and Ziina Turn UAE Pay by Bank Into a Checkout Test",
+    "metaTitle": "Lean and Ziina UAE Pay by Bank: Checkout Lessons",
+    "date": "2026-06-26",
+    "category": "Payments Strategy",
+    "readingTime": "7 min read",
+    "description": "Lean and Ziina's UAE one-tap Pay by Bank launch shows how Open Finance will be judged by conversion, trust, and settlement ops.",
+    "thesis": "Lean and Ziina's UAE one-tap Pay by Bank launch is more than an Open Finance milestone. It is a checkout, trust, settlement, and reconciliation test for account-to-account payments in the Gulf.",
+    "tags": [
+      "UAE payments",
+      "Pay by Bank",
+      "Open Finance",
+      "Lean Technologies",
+      "Ziina",
+      "account-to-account payments"
+    ],
+    "relatedArticles": [
+      "/blog/open-banking-product-architecture",
+      "/blog/local-payment-methods-developer-experience",
+      "/blog/settlement-windows-and-merchant-trust",
+      "/blog/mena-south-asia-payment-infrastructure-country-map",
+      "/blog/merchant-onboarding-growth-risk-compliance"
+    ]
+  },
+  {
     "slug": "swift-payment-delays-what-actually-causes-them",
     "title": "SWIFT Payment Delays: What Actually Causes Them",
     "metaTitle": "SWIFT Payment Delays: What Causes Them | Rizwan Zafar",
@@ -177,6 +254,31 @@ export const posts: Post[] = [
     "relatedArticles": [
       "/blog/swift-gpi-tracking-and-the-end-of-payment-uncertainty",
       "/blog/swift-aml-cft-sanctions-screening"
+    ]
+  },
+  {
+    "slug": "us-bank-gigsafe-instant-payout-programme",
+    "title": "U.S. Bank and GigSafe Show Instant Payouts Need a PMO",
+    "metaTitle": "U.S. Bank GigSafe: Instant Payout PMO Lessons",
+    "date": "2026-06-26",
+    "category": "Program Management",
+    "readingTime": "7 min read",
+    "description": "U.S. Bank and GigSafe's logistics payment partnership is a reminder that instant payouts need governance, controls, sequencing, and ops.",
+    "thesis": "Instant payouts in regulated logistics are not just a rail decision. They need compliance design, worker identity, funding controls, exception handling, reconciliation, and governance.",
+    "tags": [
+      "U.S. Bank",
+      "GigSafe",
+      "instant payouts",
+      "logistics payments",
+      "programme governance",
+      "embedded payments"
+    ],
+    "relatedArticles": [
+      "/blog/raid-steerco-pmo-stack-that-ships",
+      "/blog/vendor-governance-fintech-pmo",
+      "/blog/settlement-windows-and-merchant-trust",
+      "/blog/three-way-reconciliation-at-scale",
+      "/blog/project-management-fintech-regulatory-programmes"
     ]
   },
   {
