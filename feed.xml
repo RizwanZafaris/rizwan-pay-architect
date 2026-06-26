@@ -5,8 +5,32 @@
   <link>https://rzifi.com/blog/</link>
   <description>Essays on payment infrastructure, fintech product, risk, settlement, AI and program leadership.</description>
   <language>en</language>
-  <lastBuildDate>Fri, 26 Jun 2026 01:36:53 GMT</lastBuildDate>
+  <lastBuildDate>Fri, 26 Jun 2026 09:33:36 GMT</lastBuildDate>
   <item>
+    <title>Forter Agents Show AI Risk Work Is Becoming Operational</title>
+    <link>https://rzifi.com/blog/forter-ai-agents-commerce-risk-radar/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/forter-ai-agents-commerce-risk-radar/</guid>
+    <pubDate>Fri, 26 Jun 2026 00:00:00 GMT</pubDate>
+    <category>AI in Fintech</category>
+    <description>Forter&apos;s five commerce AI agents show the practical shift from chatbots to workflow agents for fraud, disputes, payments, and integration.</description>
+  </item>
+<item>
+    <title>GoCardless and Sequence Make Billing a Product Surface</title>
+    <link>https://rzifi.com/blog/gocardless-sequence-direct-debit-product-design/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/gocardless-sequence-direct-debit-product-design/</guid>
+    <pubDate>Fri, 26 Jun 2026 00:00:00 GMT</pubDate>
+    <category>Product Management</category>
+    <description>GoCardless and Sequence&apos;s native Direct Debit integration shows why billing, collection, retries, and cash timing are product work.</description>
+  </item>
+<item>
+    <title>Lean and Ziina Turn UAE Pay by Bank Into a Checkout Test</title>
+    <link>https://rzifi.com/blog/lean-ziina-uae-one-tap-pay-by-bank/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/lean-ziina-uae-one-tap-pay-by-bank/</guid>
+    <pubDate>Fri, 26 Jun 2026 00:00:00 GMT</pubDate>
+    <category>Payments Strategy</category>
+    <description>Lean and Ziina&apos;s UAE one-tap Pay by Bank launch shows how Open Finance will be judged by conversion, trust, and settlement ops.</description>
+  </item>
+<item>
     <title>SWIFT Payment Delays: What Actually Causes Them</title>
     <link>https://rzifi.com/blog/swift-payment-delays-what-actually-causes-them/</link>
     <guid isPermaLink="true">https://rzifi.com/blog/swift-payment-delays-what-actually-causes-them/</guid>
@@ -15,12 +39,76 @@
     <description>The real reasons SWIFT payments are delayed, compliance review, correspondent chain length, cut-offs, holidays, weak data, and how to mitigate each.</description>
   </item>
 <item>
+    <title>U.S. Bank and GigSafe Show Instant Payouts Need a PMO</title>
+    <link>https://rzifi.com/blog/us-bank-gigsafe-instant-payout-programme/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/us-bank-gigsafe-instant-payout-programme/</guid>
+    <pubDate>Fri, 26 Jun 2026 00:00:00 GMT</pubDate>
+    <category>Program Management</category>
+    <description>U.S. Bank and GigSafe&apos;s logistics payment partnership is a reminder that instant payouts need governance, controls, sequencing, and ops.</description>
+  </item>
+<item>
+    <title>AmEx and ABA Show Vertical Cards Are Infrastructure</title>
+    <link>https://rzifi.com/blog/amex-aba-professional-card-programs/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/amex-aba-professional-card-programs/</guid>
+    <pubDate>Thu, 25 Jun 2026 00:00:00 GMT</pubDate>
+    <category>Payment Infrastructure</category>
+    <description>AmEx, Mercantile and ABA show why vertical business cards need underwriting, rewards, network benefits, and cash-flow tooling.</description>
+  </item>
+<item>
+    <title>GitHub Copilot BYOK Makes Agents a Routing Problem</title>
+    <link>https://rzifi.com/blog/github-copilot-byok-agent-routing/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/github-copilot-byok-agent-routing/</guid>
+    <pubDate>Thu, 25 Jun 2026 00:00:00 GMT</pubDate>
+    <category>AI in Fintech</category>
+    <description>GitHub Copilot BYOK turns coding agents into a model-routing, governance, cost, and data-boundary decision for product leaders.</description>
+  </item>
+<item>
+    <title>Stripe Shows Global Checkout Is a Product System</title>
+    <link>https://rzifi.com/blog/stripe-global-demand-product-system/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/stripe-global-demand-product-system/</guid>
+    <pubDate>Thu, 25 Jun 2026 00:00:00 GMT</pubDate>
+    <category>Product Strategy</category>
+    <description>Stripe&apos;s Sessions 2026 updates show global checkout is a product system across localization, pricing, auth, fraud, tax, and treasury.</description>
+  </item>
+<item>
+    <title>Thredd&apos;s Visa Cloud Connect Rollout Is a PMO Lesson</title>
+    <link>https://rzifi.com/blog/thredd-visa-cloud-connect-apac-rollout/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/thredd-visa-cloud-connect-apac-rollout/</guid>
+    <pubDate>Thu, 25 Jun 2026 00:00:00 GMT</pubDate>
+    <category>Program Management</category>
+    <description>Thredd&apos;s Visa Cloud Connect APAC rollout shows why payment infrastructure migrations need sequencing, resilience, data, and governance.</description>
+  </item>
+<item>
+    <title>Project Pangea Shows Stablecoin FX Needs PvP, Not Hype</title>
+    <link>https://rzifi.com/blog/project-pangea-stablecoin-fx-settlement/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/project-pangea-stablecoin-fx-settlement/</guid>
+    <pubDate>Wed, 24 Jun 2026 00:00:00 GMT</pubDate>
+    <category>Cross-Border Payments</category>
+    <description>Project Pangea shows stablecoin FX needs PvP settlement, ISO 20022, Swift integration, liquidity controls, and bank-grade reconciliation.</description>
+  </item>
+<item>
+    <title>The Bank of England&apos;s Stablecoin Rules Are an Operating Model</title>
+    <link>https://rzifi.com/blog/boe-systemic-stablecoin-rules-operating-model/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/boe-systemic-stablecoin-rules-operating-model/</guid>
+    <pubDate>Tue, 23 Jun 2026 00:00:00 GMT</pubDate>
+    <category>Crypto &amp; Stablecoins</category>
+    <description>The Bank of England&apos;s 2026 stablecoin rules turn stablecoins into a payment operating model: backing assets, limits, redemption, and rails.</description>
+  </item>
+<item>
     <title>SWIFT Fees, FX, and the True Cost of a Cross-Border Payment</title>
     <link>https://rzifi.com/blog/swift-fees-fx-and-the-true-cost-of-cross-border/</link>
     <guid isPermaLink="true">https://rzifi.com/blog/swift-fees-fx-and-the-true-cost-of-cross-border/</guid>
     <pubDate>Tue, 23 Jun 2026 00:00:00 GMT</pubDate>
     <category>Cross-Border Payments</category>
     <description>Where the real cost of a cross-border SWIFT payment hides, fees, FX margin, charge bearer, and the product decisions that compress it.</description>
+  </item>
+<item>
+    <title>Swift&apos;s November 2026 Address Cutoff Is a Product Problem</title>
+    <link>https://rzifi.com/blog/swift-november-2026-address-cutoff-product-problem/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/swift-november-2026-address-cutoff-product-problem/</guid>
+    <pubDate>Mon, 22 Jun 2026 00:00:00 GMT</pubDate>
+    <category>Cross-Border Payments</category>
+    <description>Swift&apos;s November 2026 structured-address cutoff turns ISO 20022 from a bank-format project into a capture-side product requirement.</description>
   </item>
 <item>
     <title>Finastra&apos;s Core Banking Sale Is a Product Focus Lesson</title>
@@ -157,94 +245,6 @@
     <pubDate>Sun, 31 May 2026 00:00:00 GMT</pubDate>
     <category>Fraud &amp; Risk</category>
     <description>Where rules belong, where models belong, and how to design an AML/CFT detection stack that is both defensible to regulators and effective at catching real bad actors.</description>
-  </item>
-<item>
-    <title>How Emerging Markets Pressure-Test Payment Product Strategy</title>
-    <link>https://rzifi.com/blog/emerging-markets-pressure-test-payments/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/emerging-markets-pressure-test-payments/</guid>
-    <pubDate>Sun, 31 May 2026 00:00:00 GMT</pubDate>
-    <category>Emerging Markets</category>
-    <description>What payment product teams from Visa, Mastercard, Stripe, and Adyen learn the hard way when they ship into Pakistan, Bangladesh, Egypt, and Iraq.</description>
-  </item>
-<item>
-    <title>PCI DSS and ISO 27001 as Product Programs</title>
-    <link>https://rzifi.com/blog/pci-dss-iso-27001-program-leadership/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/pci-dss-iso-27001-program-leadership/</guid>
-    <pubDate>Sat, 30 May 2026 00:00:00 GMT</pubDate>
-    <category>Fraud &amp; Risk</category>
-    <description>What it takes to lead PCI DSS and ISO 27001 programs from scratch at a payments platform, scoping, evidence, controls, and the trap of treating compliance as paperwork.</description>
-  </item>
-<item>
-    <title>Chargebacks Are a Product Problem</title>
-    <link>https://rzifi.com/blog/chargebacks-product-problem/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/chargebacks-product-problem/</guid>
-    <pubDate>Fri, 29 May 2026 00:00:00 GMT</pubDate>
-    <category>Fraud &amp; Risk</category>
-    <description>How to treat chargebacks as a product surface, root-cause categorisation, prevention, representment, and the feedback loop that actually reduces the rate.</description>
-  </item>
-<item>
-    <title>Payment Cost Is a Product Variable: From 50% to 1% (Tapmad Migration Playbook)</title>
-    <link>https://rzifi.com/blog/payment-cost-50-to-1/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/payment-cost-50-to-1/</guid>
-    <pubDate>Fri, 29 May 2026 00:00:00 GMT</pubDate>
-    <category>Product Strategy</category>
-    <description>How a subscription business cut payment cost from ~50% of revenue to ~1% by treating cost as a product variable, rail mix, dunning, smart retries.</description>
-  </item>
-<item>
-    <title>Payments PRD Template: The 9 Sections Every Senior PM Should Write</title>
-    <link>https://rzifi.com/blog/payments-prd-template-nine-sections/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/payments-prd-template-nine-sections/</guid>
-    <pubDate>Fri, 29 May 2026 00:00:00 GMT</pubDate>
-    <category>Product Strategy</category>
-    <description>A practical payments PRD template for senior product managers covering rail choice, risk, settlement, compliance, operations and launch gates.</description>
-  </item>
-<item>
-    <title>Layered Fraud Controls in the Payments Stack</title>
-    <link>https://rzifi.com/blog/layered-fraud-controls-payments-stack/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/layered-fraud-controls-payments-stack/</guid>
-    <pubDate>Thu, 28 May 2026 00:00:00 GMT</pubDate>
-    <category>Fraud &amp; Risk</category>
-    <description>How to design layered fraud controls across device, identity, transaction, behavioural and network layers, without crushing conversion or throughput.</description>
-  </item>
-<item>
-    <title>The Risk-Adjusted Backlog: Prioritising Payment Products When Failure Costs Real Money</title>
-    <link>https://rzifi.com/blog/risk-adjusted-backlog-payments/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/risk-adjusted-backlog-payments/</guid>
-    <pubDate>Thu, 28 May 2026 00:00:00 GMT</pubDate>
-    <category>Product Strategy</category>
-    <description>How senior payment product teams prioritise roadmaps when revenue, compliance, fraud, settlement risk and reliability all compete.</description>
-  </item>
-<item>
-    <title>KYC and Conversion Designed Together</title>
-    <link>https://rzifi.com/blog/kyc-conversion-designed-together/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/kyc-conversion-designed-together/</guid>
-    <pubDate>Wed, 27 May 2026 00:00:00 GMT</pubDate>
-    <category>Merchant Onboarding</category>
-    <description>Why KYC and conversion are the same product surface, how to design identity verification flows that compliance accepts and merchants actually finish.</description>
-  </item>
-<item>
-    <title>Why Local Payment Methods Are a Developer-Experience Problem</title>
-    <link>https://rzifi.com/blog/local-payment-methods-developer-experience/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/local-payment-methods-developer-experience/</guid>
-    <pubDate>Wed, 27 May 2026 00:00:00 GMT</pubDate>
-    <category>Payment Infrastructure</category>
-    <description>Acceptance in emerging markets is decided at the SDK and webhook layer. Why local payment methods are developer-experience problems first.</description>
-  </item>
-<item>
-    <title>PMO Maturity Model for Fintech: Five Stages and How to Know Yours</title>
-    <link>https://rzifi.com/blog/pmo-maturity-model-fintech/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/pmo-maturity-model-fintech/</guid>
-    <pubDate>Wed, 27 May 2026 00:00:00 GMT</pubDate>
-    <category>Program Management</category>
-    <description>A practical five-stage PMO maturity model for fintech and payments teams, from delivery tracking to regulated execution system.</description>
-  </item>
-<item>
-    <title>Cross-Border Corridors Are Operating Systems, Not Routes</title>
-    <link>https://rzifi.com/blog/cross-border-corridors-are-operating-systems/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/cross-border-corridors-are-operating-systems/</guid>
-    <pubDate>Tue, 26 May 2026 00:00:00 GMT</pubDate>
-    <category>Cross-Border Payments</category>
-    <description>A corridor is not a partner integration. It is a product with its own success rate, FX behavior, compliance overlay, and unit economics. A practitioner view from MENA and South Asia.</description>
   </item>
 </channel>
 </rss>
