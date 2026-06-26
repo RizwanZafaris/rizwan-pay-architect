@@ -70,45 +70,53 @@ export function BookingSection({
           </noscript>
         </div>
       </div>
-      <p className="mt-3 text-center text-xs text-ink-soft">
-        Prefer not to wait for the calendar?{" "}
-        <a
-          href={profile.whatsapp}
-          target="_blank"
-          rel="noreferrer"
-          data-analytics-event="cta_click"
-          data-analytics-cta-id="whatsapp_message"
-          data-analytics-cta-location={fallbackLocation}
-          data-analytics-cta-destination={profile.whatsapp}
-          className="underline hover:text-ink"
-        >
-          WhatsApp me
-        </a>
-        ,{" "}
-        <a
-          href={`mailto:${profile.email}?subject=Intro%20call`}
-          data-analytics-event="cta_click"
-          data-analytics-cta-id="email_me"
-          data-analytics-cta-location={fallbackLocation}
-          className="underline hover:text-ink"
-        >
-          email {profile.email}
-        </a>{" "}
-        or{" "}
-        <a
-          href={calendarUrl}
-          target="_blank"
-          rel="noreferrer"
-          data-analytics-event="cta_click"
-          data-analytics-cta-id="book_intro_call"
-          data-analytics-cta-location={fallbackLocation}
-          data-analytics-cta-destination={calendarUrl}
-          className="underline hover:text-ink"
-        >
-          open cal.com in a new tab
-        </a>
-        .
-      </p>
+      {/* Async fallback — promoted from a single grey line to a clear (but
+          still secondary) block. Most visitors who won't commit to a live
+          slot will send a one-line message; this captures them instead of
+          losing them. The calendar above stays the primary action. */}
+      <div className="mt-4 text-center">
+        <p className="text-[11px] uppercase tracking-[0.16em] text-ink-soft font-mono-tech">
+          Not ready to book a live call?
+        </p>
+        <div className="mt-2.5 flex flex-wrap items-center justify-center gap-2.5">
+          <a
+            href={profile.whatsapp}
+            target="_blank"
+            rel="noreferrer"
+            data-analytics-event="cta_click"
+            data-analytics-cta-id="whatsapp_message"
+            data-analytics-cta-location={fallbackLocation}
+            data-analytics-cta-destination={profile.whatsapp}
+            className="inline-flex items-center gap-2 rounded-full border border-rule px-4 py-2 text-sm font-medium text-ink transition duration-200 hover:border-ink/40 hover:bg-ink/[0.03] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)]"
+          >
+            WhatsApp me
+          </a>
+          <a
+            href={`mailto:${profile.email}?subject=Intro%20call`}
+            data-analytics-event="cta_click"
+            data-analytics-cta-id="email_me"
+            data-analytics-cta-location={fallbackLocation}
+            className="inline-flex items-center gap-2 rounded-full border border-rule px-4 py-2 text-sm font-medium text-ink transition duration-200 hover:border-ink/40 hover:bg-ink/[0.03] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)]"
+          >
+            Email me
+          </a>
+        </div>
+        <p className="mt-2.5 text-[11px] text-ink-soft">
+          Usually replies within a day &middot;{" "}
+          <a
+            href={calendarUrl}
+            target="_blank"
+            rel="noreferrer"
+            data-analytics-event="cta_click"
+            data-analytics-cta-id="book_intro_call"
+            data-analytics-cta-location={fallbackLocation}
+            data-analytics-cta-destination={calendarUrl}
+            className="underline hover:text-ink"
+          >
+            open cal.com in a new tab
+          </a>
+        </p>
+      </div>
       <script dangerouslySetInnerHTML={{ __html: calInlineEmbedScript(refName, { eager }) }} />
     </section>
   );
