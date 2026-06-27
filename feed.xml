@@ -5,8 +5,24 @@
   <link>https://rzifi.com/blog/</link>
   <description>Essays on payment infrastructure, fintech product, risk, settlement, AI and program leadership.</description>
   <language>en</language>
-  <lastBuildDate>Sat, 27 Jun 2026 09:20:31 GMT</lastBuildDate>
+  <lastBuildDate>Sat, 27 Jun 2026 09:32:51 GMT</lastBuildDate>
   <item>
+    <title>GitHub Desktop Makes Worktrees an AI Agent Control</title>
+    <link>https://rzifi.com/blog/github-desktop-worktrees-ai-agent-control/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/github-desktop-worktrees-ai-agent-control/</guid>
+    <pubDate>Sat, 27 Jun 2026 00:00:00 GMT</pubDate>
+    <category>AI &amp; Product Operations</category>
+    <description>GitHub Desktop 3.6 brings worktrees and AI-assisted conflicts together. The operator lesson is isolation, review, and controlled parallelism.</description>
+  </item>
+<item>
+    <title>Visa DCAP Makes Authentication an Acquiring Economics Decision</title>
+    <link>https://rzifi.com/blog/visa-dcap-acquiring-economics-data-only-3ds/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/visa-dcap-acquiring-economics-data-only-3ds/</guid>
+    <pubDate>Sat, 27 Jun 2026 00:00:00 GMT</pubDate>
+    <category>Merchant Acquiring</category>
+    <description>Visa DCAP turns richer checkout data into interchange savings, but acquirers must protect authorization, latency, and merchant economics.</description>
+  </item>
+<item>
     <title>Forter Agents Show AI Risk Work Is Becoming Operational</title>
     <link>https://rzifi.com/blog/forter-ai-agents-commerce-risk-radar/</link>
     <guid isPermaLink="true">https://rzifi.com/blog/forter-ai-agents-commerce-risk-radar/</guid>
@@ -229,22 +245,6 @@
     <pubDate>Tue, 02 Jun 2026 00:00:00 GMT</pubDate>
     <category>Cross-Border Payments</category>
     <description>A practitioner overview of how SWIFT payments work, messaging, correspondent banking, settlement, gpi, and where ISO 20022 fits in.</description>
-  </item>
-<item>
-    <title>Sanctions Screening Without Killing Throughput</title>
-    <link>https://rzifi.com/blog/sanctions-screening-without-killing-throughput/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/sanctions-screening-without-killing-throughput/</guid>
-    <pubDate>Mon, 01 Jun 2026 00:00:00 GMT</pubDate>
-    <category>Fraud &amp; Risk</category>
-    <description>How to design sanctions screening that catches what it must catch without flooding ops with false positives or breaking real-time transaction performance.</description>
-  </item>
-<item>
-    <title>AML/CFT: Rules vs Models, and Why You Need Both</title>
-    <link>https://rzifi.com/blog/aml-cft-rules-vs-models/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/aml-cft-rules-vs-models/</guid>
-    <pubDate>Sun, 31 May 2026 00:00:00 GMT</pubDate>
-    <category>Fraud &amp; Risk</category>
-    <description>Where rules belong, where models belong, and how to design an AML/CFT detection stack that is both defensible to regulators and effective at catching real bad actors.</description>
   </item>
 </channel>
 </rss>
