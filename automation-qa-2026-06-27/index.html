@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Content Automation QA Report | Rizwan Zafar</title>
+    <meta
+      name="description"
+      content="Sanitized QA report for Rizwan Zafar's daily content and social distribution automation."
+    />
+    <style>
+      :root {
+        color-scheme: light;
+        --ink: #15201d;
+        --muted: #586560;
+        --line: #d9dfdc;
+        --paper: #ffffff;
+        --wash: #f4f7f5;
+        --green: #08775b;
+        --amber: #8a5a00;
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        background: var(--wash);
+        color: var(--ink);
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        line-height: 1.6;
+      }
+
+      main {
+        width: min(940px, calc(100% - 32px));
+        margin: 0 auto;
+        padding: 48px 0 72px;
+      }
+
+      header {
+        border-bottom: 1px solid var(--line);
+        padding-bottom: 28px;
+      }
+
+      .eyebrow {
+        margin: 0 0 8px;
+        color: var(--green);
+        font-size: 0.78rem;
+        font-weight: 750;
+        text-transform: uppercase;
+      }
+
+      h1, h2 { line-height: 1.2; }
+      h1 { margin: 0; font-size: clamp(2rem, 5vw, 3.4rem); }
+      h2 { margin: 0 0 14px; font-size: 1.35rem; }
+      p { margin: 0 0 14px; }
+
+      .summary {
+        max-width: 720px;
+        margin-top: 14px;
+        color: var(--muted);
+        font-size: 1.05rem;
+      }
+
+      .status {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin-top: 18px;
+        color: var(--green);
+        font-weight: 750;
+      }
+
+      .status::before {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--green);
+        content: "";
+      }
+
+      section {
+        padding: 30px 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .metrics {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 1px;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        background: var(--line);
+      }
+
+      .metric {
+        min-height: 112px;
+        padding: 20px;
+        background: var(--paper);
+      }
+
+      .metric strong {
+        display: block;
+        color: var(--green);
+        font-size: 1.75rem;
+        line-height: 1.2;
+      }
+
+      .metric span { color: var(--muted); font-size: 0.9rem; }
+      ul, ol { margin: 0; padding-left: 1.25rem; }
+      li + li { margin-top: 9px; }
+      .warning { color: var(--amber); }
+
+      footer {
+        padding-top: 24px;
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+
+      a { color: var(--green); }
+
+      @media (max-width: 700px) {
+        main { padding-top: 28px; }
+        .metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <p class="eyebrow">Automation assurance report · 27 June 2026</p>
+        <h1>Daily Content Automation QA</h1>
+        <p class="summary">
+          End-to-end validation of analytics, topic selection, website publishing, media,
+          LinkedIn and X distribution, scheduling controls, and failure recovery.
+        </p>
+        <p class="status">Passed with external warnings</p>
+      </header>
+
+      <section aria-labelledby="verification">
+        <h2 id="verification">Verification</h2>
+        <div class="metrics">
+          <div class="metric"><strong>18/18</strong><span>Regression checks</span></div>
+          <div class="metric"><strong>8/8</strong><span>Live Buffer items</span></div>
+          <div class="metric"><strong>146</strong><span>Routes built</span></div>
+          <div class="metric"><strong>0</strong><span>Build failures</span></div>
+        </div>
+      </section>
+
+      <section aria-labelledby="fixed">
+        <h2 id="fixed">Controls Confirmed</h2>
+        <ul>
+          <li>LinkedIn is limited to one post per Pakistan calendar day.</li>
+          <li>X posts require exactly two hashtags and remain within 280 characters.</li>
+          <li>LinkedIn posts require three to five focused hashtags.</li>
+          <li>Canonical website links and deployed versioned images are mandatory.</li>
+          <li>Buffer reruns detect existing posts instead of creating duplicates.</li>
+          <li>Partial publication failures create a persistent audit record.</li>
+          <li>Acquiring and issuing are tracked independently from cross-border and AI.</li>
+          <li>GA4 reports normalize blog URLs and include traffic-source reporting.</li>
+        </ul>
+      </section>
+
+      <section aria-labelledby="analytics">
+        <h2 id="analytics">Analytics And Topic Policy</h2>
+        <p>
+          Topic selection uses 28-day and 90-day analytics, with fewer than ten sessions treated as
+          under-tested rather than successful or unsuccessful. The fintech portfolio reserves space
+          for acquiring and issuing while limiting repeated cross-border coverage.
+        </p>
+        <p>
+          The operating mix uses 60% evidence-backed topics and 40% strategic exploration so new
+          areas can gather enough data to be evaluated fairly.
+        </p>
+      </section>
+
+      <section aria-labelledby="warnings">
+        <h2 id="warnings" class="warning">Remaining Warnings</h2>
+        <ol>
+          <li>No blog-level CTA events are currently available, limiting content-to-conversion analysis.</li>
+          <li>The calendar step dimension is unavailable, so booking-widget drop-off remains incomplete.</li>
+          <li>Some external sources block automated retrieval; official-source browsing is used as fallback.</li>
+          <li>The optional outreach scanner is not active because its repository is not available locally.</li>
+          <li>Large JavaScript chunk warnings remain a separate website performance task.</li>
+        </ol>
+      </section>
+
+      <section aria-labelledby="sequence">
+        <h2 id="sequence">Required Daily Sequence</h2>
+        <ol>
+          <li>Review GA4 performance and topic coverage.</li>
+          <li>Collect and classify current source signals.</li>
+          <li>Apply quality and portfolio rules.</li>
+          <li>Publish website content with cache-safe images.</li>
+          <li>Run regression checks and Buffer dry-run.</li>
+          <li>Distribute only after all checks pass.</li>
+          <li>Save analytics, calendar, publication, and failure audits.</li>
+        </ol>
+      </section>
+
+      <footer>
+        <p><a href="https://rzifi.com/">Rizwan Zafar</a> · Product, payments and programme leadership</p>
+      </footer>
+    </main>
+  </body>
+</html>
