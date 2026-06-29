@@ -5,7 +5,7 @@
   <link>https://rzifi.com/blog/</link>
   <description>Essays on payment infrastructure, fintech product, risk, settlement, AI and program leadership.</description>
   <language>en</language>
-  <lastBuildDate>Mon, 29 Jun 2026 19:28:30 GMT</lastBuildDate>
+  <lastBuildDate>Mon, 29 Jun 2026 19:39:22 GMT</lastBuildDate>
   <item>
     <title>Adyen&apos;s UAE License Makes Merchant Acquiring More Local</title>
     <link>https://rzifi.com/blog/adyen-uae-license-merchant-acquiring-local-settlement/</link>
@@ -13,6 +13,14 @@
     <pubDate>Tue, 30 Jun 2026 00:00:00 GMT</pubDate>
     <category>Merchant Acquiring</category>
     <description>Adyen&apos;s new UAE license matters because local settlement control changes merchant acquiring, compliance operations, and product speed.</description>
+  </item>
+<item>
+    <title>Revolut and Adyen&apos;s UAE Licences Show What Dubai Wants From Fintech</title>
+    <link>https://rzifi.com/blog/revolut-adyen-uae-licences-dubai-fintech-signal/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/revolut-adyen-uae-licences-dubai-fintech-signal/</guid>
+    <pubDate>Tue, 30 Jun 2026 00:00:00 GMT</pubDate>
+    <category>Payment Infrastructure</category>
+    <description>Revolut and Adyen won different UAE approvals in June 2026, but both point to the same Dubai signal: more of the payment stack must be owned locally.</description>
   </item>
 <item>
     <title>SWIFT in 2026: ISO 20022, Instant Rails, and the Pressure on Correspondent Banking</title>
@@ -237,14 +245,6 @@
     <pubDate>Mon, 15 Jun 2026 00:00:00 GMT</pubDate>
     <category>Cross-Border Payments</category>
     <description>mBridge is not a SWIFT replacement. It is a settlement experiment product leaders should read as corridor infrastructure, not messaging.</description>
-  </item>
-<item>
-    <title>Agentic Commerce: What Visa and Mastercard Are Really Building</title>
-    <link>https://rzifi.com/blog/agentic-commerce-visa-mastercard-payments/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/agentic-commerce-visa-mastercard-payments/</guid>
-    <pubDate>Sat, 13 Jun 2026 00:00:00 GMT</pubDate>
-    <category>AI in Fintech</category>
-    <description>A researched operator view of agentic commerce, Visa Intelligent Commerce, Mastercard Agent Pay, use cases, risks, and what AI shopping agents change in payments.</description>
   </item>
 </channel>
 </rss>
