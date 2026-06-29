@@ -5,8 +5,24 @@
   <link>https://rzifi.com/blog/</link>
   <description>Essays on payment infrastructure, fintech product, risk, settlement, AI and program leadership.</description>
   <language>en</language>
-  <lastBuildDate>Mon, 29 Jun 2026 06:12:36 GMT</lastBuildDate>
+  <lastBuildDate>Mon, 29 Jun 2026 19:28:30 GMT</lastBuildDate>
   <item>
+    <title>Adyen&apos;s UAE License Makes Merchant Acquiring More Local</title>
+    <link>https://rzifi.com/blog/adyen-uae-license-merchant-acquiring-local-settlement/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/adyen-uae-license-merchant-acquiring-local-settlement/</guid>
+    <pubDate>Tue, 30 Jun 2026 00:00:00 GMT</pubDate>
+    <category>Merchant Acquiring</category>
+    <description>Adyen&apos;s new UAE license matters because local settlement control changes merchant acquiring, compliance operations, and product speed.</description>
+  </item>
+<item>
+    <title>SWIFT in 2026: ISO 20022, Instant Rails, and the Pressure on Correspondent Banking</title>
+    <link>https://rzifi.com/blog/swift-in-2026-trends-to-watch/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/swift-in-2026-trends-to-watch/</guid>
+    <pubDate>Tue, 30 Jun 2026 00:00:00 GMT</pubDate>
+    <category>Cross-Border Payments</category>
+    <description>Where SWIFT and cross-border payments are heading in 2026, ISO 20022 done, instant rails everywhere, correspondent banking under pressure, and the G20 roadmap deadline.</description>
+  </item>
+<item>
     <title>Authorization Rate Is a Merchant P&amp;L Metric, Not a Gateway KPI</title>
     <link>https://rzifi.com/blog/authorization-rate-merchant-pnl-operating-model/</link>
     <guid isPermaLink="true">https://rzifi.com/blog/authorization-rate-merchant-pnl-operating-model/</guid>
@@ -229,22 +245,6 @@
     <pubDate>Sat, 13 Jun 2026 00:00:00 GMT</pubDate>
     <category>AI in Fintech</category>
     <description>A researched operator view of agentic commerce, Visa Intelligent Commerce, Mastercard Agent Pay, use cases, risks, and what AI shopping agents change in payments.</description>
-  </item>
-<item>
-    <title>SWIFT, AML/CFT, and Sanctions Screening in Practice</title>
-    <link>https://rzifi.com/blog/swift-aml-cft-sanctions-screening/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/swift-aml-cft-sanctions-screening/</guid>
-    <pubDate>Fri, 12 Jun 2026 00:00:00 GMT</pubDate>
-    <category>Cross-Border Payments</category>
-    <description>How AML/CFT and sanctions screening actually work on SWIFT-instructed cross-border payments, and the product decisions that decide false-positive rates.</description>
-  </item>
-<item>
-    <title>SWIFT gpi, Tracking, and the End of Payment Uncertainty</title>
-    <link>https://rzifi.com/blog/swift-gpi-tracking-and-the-end-of-payment-uncertainty/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/swift-gpi-tracking-and-the-end-of-payment-uncertainty/</guid>
-    <pubDate>Tue, 09 Jun 2026 00:00:00 GMT</pubDate>
-    <category>Cross-Border Payments</category>
-    <description>SWIFT gpi added end-to-end tracking, fee transparency, and same-day credit to cross-border payments. What it actually changed for product teams.</description>
   </item>
 </channel>
 </rss>
