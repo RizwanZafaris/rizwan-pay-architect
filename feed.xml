@@ -5,7 +5,7 @@
   <link>https://rzifi.com/blog/</link>
   <description>Essays on payment infrastructure, fintech product, risk, settlement, AI and program leadership.</description>
   <language>en</language>
-  <lastBuildDate>Tue, 30 Jun 2026 05:40:22 GMT</lastBuildDate>
+  <lastBuildDate>Tue, 30 Jun 2026 07:25:07 GMT</lastBuildDate>
   <item>
     <title>Adyen&apos;s UAE License Makes Merchant Acquiring More Local</title>
     <link>https://rzifi.com/blog/adyen-uae-license-merchant-acquiring-local-settlement/</link>
@@ -13,6 +13,22 @@
     <pubDate>Tue, 30 Jun 2026 00:00:00 GMT</pubDate>
     <category>Merchant Acquiring</category>
     <description>Adyen&apos;s new UAE license matters because local settlement control changes merchant acquiring, compliance operations, and product speed.</description>
+  </item>
+<item>
+    <title>GOV.UK Pay&apos;s Adyen Migration Is a 1,000-Service Programme</title>
+    <link>https://rzifi.com/blog/gov-uk-pay-adyen-1000-service-migration/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/gov-uk-pay-adyen-1000-service-migration/</guid>
+    <pubDate>Tue, 30 Jun 2026 00:00:00 GMT</pubDate>
+    <category>Program Management</category>
+    <description>GOV.UK Pay&apos;s move from Stripe to Adyen shows how to govern a 1,000-service payment migration without breaking user journeys or finance controls.</description>
+  </item>
+<item>
+    <title>Mercado Pago&apos;s Claude Plugin Turns Payment Docs Into Controls</title>
+    <link>https://rzifi.com/blog/mercado-pago-claude-plugin-payment-integration-agent/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/mercado-pago-claude-plugin-payment-integration-agent/</guid>
+    <pubDate>Tue, 30 Jun 2026 00:00:00 GMT</pubDate>
+    <category>AI &amp; Product Operations</category>
+    <description>Mercado Pago&apos;s Claude Code plugin shows where payment integration agents help—and why versioning, evidence, security, and human review still matter.</description>
   </item>
 <item>
     <title>Revolut and Adyen&apos;s UAE Licences Show What Dubai Wants From Fintech</title>
@@ -229,22 +245,6 @@
     <pubDate>Tue, 16 Jun 2026 00:00:00 GMT</pubDate>
     <category>Cross-Border Payments</category>
     <description>Nuvei&apos;s $2.75B Payoneer deal is a bet on owning acceptance, FX, payouts, settlement and compliance across cross-border corridors.</description>
-  </item>
-<item>
-    <title>SWIFT vs Card Rails vs Local Wallets: When to Use What</title>
-    <link>https://rzifi.com/blog/swift-vs-card-rails-vs-local-wallets/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/swift-vs-card-rails-vs-local-wallets/</guid>
-    <pubDate>Tue, 16 Jun 2026 00:00:00 GMT</pubDate>
-    <category>Cross-Border Payments</category>
-    <description>A practitioner comparison of SWIFT, card rails, and local wallets, cost, speed, geography, risk, and when to use each.</description>
-  </item>
-<item>
-    <title>mBridge Is Not a SWIFT Killer. It Is a Settlement Warning Shot</title>
-    <link>https://rzifi.com/blog/mbridge-cross-border-settlement-warning-shot/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/mbridge-cross-border-settlement-warning-shot/</guid>
-    <pubDate>Mon, 15 Jun 2026 00:00:00 GMT</pubDate>
-    <category>Cross-Border Payments</category>
-    <description>mBridge is not a SWIFT replacement. It is a settlement experiment product leaders should read as corridor infrastructure, not messaging.</description>
   </item>
 </channel>
 </rss>
