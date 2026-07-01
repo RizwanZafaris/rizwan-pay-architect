@@ -21,11 +21,13 @@ export type Post = {
 };
 
 export const categories = [
+  "AI & Product Operations",
   "AI in Fintech",
   "Cross-Border Payments",
   "Crypto & Stablecoins",
   "Emerging Markets",
   "Fraud & Risk",
+  "Merchant Acquiring",
   "Merchant Onboarding",
   "Payment Infrastructure",
   "Payments Strategy",
@@ -140,6 +142,100 @@ export const posts: Post[] = [
     ]
   },
   {
+    "slug": "adyen-uae-license-merchant-acquiring-local-settlement",
+    "title": "Adyen's UAE License Makes Merchant Acquiring More Local",
+    "metaTitle": "Adyen UAE License and Merchant Acquiring | Rizwan Zafar",
+    "date": "2026-06-30",
+    "category": "Merchant Acquiring",
+    "readingTime": "7 min read",
+    "description": "Adyen's new UAE license matters because local settlement control changes merchant acquiring, compliance operations, and product speed.",
+    "thesis": "Adyen's UAE approval is not just expansion news. It changes who controls settlement, compliance loops, and merchant operating reliability.",
+    "tags": [
+      "Adyen",
+      "UAE payments",
+      "merchant acquiring",
+      "settlement",
+      "payment licensing"
+    ],
+    "relatedArticles": [
+      "/blog/authorization-rate-merchant-pnl-operating-model",
+      "/blog/visa-dcap-acquiring-economics-data-only-3ds",
+      "/blog/hosted-checkout-vs-direct-card-processing",
+      "/blog/payment-cost-50-to-1"
+    ]
+  },
+  {
+    "slug": "gov-uk-pay-adyen-1000-service-migration",
+    "title": "GOV.UK Pay's Adyen Migration Is a 1,000-Service Programme",
+    "metaTitle": "GOV.UK Pay's 1,000-Service Adyen Migration",
+    "date": "2026-06-30",
+    "category": "Program Management",
+    "readingTime": "8 min read",
+    "description": "GOV.UK Pay's move from Stripe to Adyen shows how to govern a 1,000-service payment migration without breaking user journeys or finance controls.",
+    "thesis": "Moving roughly 1,000 public services to a new payment provider is a portfolio migration across identity, settlement, reconciliation, support, and release governance.",
+    "tags": [
+      "GOV.UK Pay",
+      "Adyen",
+      "payment migration",
+      "programme governance",
+      "public sector payments",
+      "reconciliation"
+    ],
+    "relatedArticles": [
+      "/blog/raid-steerco-pmo-stack-that-ships",
+      "/blog/vendor-governance-fintech-pmo",
+      "/blog/three-way-reconciliation-at-scale",
+      "/blog/settlement-windows-and-merchant-trust"
+    ]
+  },
+  {
+    "slug": "mercado-pago-claude-plugin-payment-integration-agent",
+    "title": "Mercado Pago's Claude Plugin Turns Payment Docs Into Controls",
+    "metaTitle": "Mercado Pago's Claude Plugin for Payment Integrations",
+    "date": "2026-06-30",
+    "category": "AI & Product Operations",
+    "readingTime": "8 min read",
+    "description": "Mercado Pago's Claude Code plugin shows where payment integration agents help—and why versioning, evidence, security, and human review still matter.",
+    "thesis": "The useful shift is not faster code generation. It is moving official payment knowledge, webhook testing, credential checks, and production review into the developer workflow.",
+    "tags": [
+      "Mercado Pago",
+      "Claude Code",
+      "payment integrations",
+      "AI coding agents",
+      "MCP",
+      "developer experience"
+    ],
+    "relatedArticles": [
+      "/blog/github-desktop-worktrees-ai-agent-control",
+      "/blog/github-copilot-byok-agent-routing",
+      "/blog/local-payment-methods-developer-experience",
+      "/blog/financial-controls-are-product-requirements"
+    ]
+  },
+  {
+    "slug": "revolut-adyen-uae-licences-dubai-fintech-signal",
+    "title": "Revolut and Adyen's UAE Licences Show What Dubai Wants From Fintech",
+    "metaTitle": "Revolut and Adyen's UAE Licences | Rizwan Zafar",
+    "date": "2026-06-30",
+    "category": "Payment Infrastructure",
+    "readingTime": "8 min read",
+    "description": "Revolut and Adyen won different UAE approvals in June 2026, but both point to the same Dubai signal: more of the payment stack must be owned locally.",
+    "thesis": "Revolut and Adyen got different UAE licences in June 2026. The shared message is that Dubai wants locally controlled payment operations, not thin market-entry stories.",
+    "tags": [
+      "Revolut",
+      "Adyen",
+      "UAE fintech",
+      "payment licences",
+      "Dubai payments"
+    ],
+    "relatedArticles": [
+      "/blog/revolut-uae-licences-product-operating-model",
+      "/blog/authorization-rate-merchant-pnl-operating-model",
+      "/blog/merchant-onboarding-growth-risk-compliance",
+      "/blog/swift-vs-card-rails-vs-local-wallets"
+    ]
+  },
+  {
     "slug": "swift-in-2026-trends-to-watch",
     "title": "SWIFT in 2026: ISO 20022, Instant Rails, and the Pressure on Correspondent Banking",
     "metaTitle": "SWIFT in 2026: Trends to Watch | Rizwan Zafar",
@@ -159,6 +255,128 @@ export const posts: Post[] = [
       "/blog/iso-20022-migration-what-product-teams-must-know",
       "/blog/correspondent-banking-and-emerging-market-corridors",
       "/blog/swift-and-cryptocurrency-the-honest-take"
+    ]
+  },
+  {
+    "slug": "authorization-rate-merchant-pnl-operating-model",
+    "title": "Authorization Rate Is a Merchant P&L Metric, Not a Gateway KPI",
+    "metaTitle": "Authorization Rate Is a Merchant P&L Metric",
+    "date": "2026-06-29",
+    "category": "Merchant Acquiring",
+    "readingTime": "8 min read",
+    "description": "A practical operating model for improving payment authorization without confusing retries, tokenization, fraud controls, or routing with profit.",
+    "thesis": "Authorization rate belongs in the merchant P&L, but only when teams measure clean attempts, incremental approvals, fraud, fees, and fulfilment together.",
+    "tags": [
+      "payment authorization",
+      "merchant acquiring",
+      "network tokenization",
+      "smart routing",
+      "payment retries",
+      "checkout conversion"
+    ],
+    "relatedArticles": [
+      "/blog/visa-dcap-acquiring-economics-data-only-3ds",
+      "/blog/emv-3ds2-step-up-frictionless-optimisation",
+      "/blog/payment-cost-50-to-1",
+      "/blog/hosted-checkout-vs-direct-card-processing"
+    ]
+  },
+  {
+    "slug": "openai-broadcom-jalapeno-ai-unit-economics",
+    "title": "OpenAI's Jalapeño Chip Turns AI Strategy Into Unit Economics",
+    "metaTitle": "OpenAI's Jalapeño Chip and AI Unit Economics",
+    "date": "2026-06-29",
+    "category": "AI & Product Operations",
+    "readingTime": "7 min read",
+    "description": "OpenAI and Broadcom's inference chip matters when it changes latency, cost, reliability, and vendor risk—not when a benchmark wins a headline.",
+    "thesis": "OpenAI's first inference chip is a reminder that AI product strategy eventually becomes a unit-economics, latency, reliability, and concentration-risk decision.",
+    "tags": [
+      "OpenAI",
+      "Broadcom",
+      "AI inference",
+      "AI infrastructure",
+      "product economics",
+      "vendor strategy"
+    ],
+    "relatedArticles": [
+      "/blog/github-copilot-byok-agent-routing",
+      "/blog/github-desktop-worktrees-ai-agent-control",
+      "/blog/why-ai-ml-solutions-fail-production-payments",
+      "/blog/agentic-commerce-visa-mastercard-payments"
+    ]
+  },
+  {
+    "slug": "thredd-sutton-bin-sponsorship-operating-model",
+    "title": "Thredd and Sutton Turn BIN Sponsorship Into an Operating Model",
+    "metaTitle": "BIN Sponsorship Needs an Operating Model",
+    "date": "2026-06-28",
+    "category": "Payment Infrastructure",
+    "readingTime": "7 min read",
+    "description": "Thredd and Sutton Bank show why card launches need explicit ownership across BIN sponsorship, issuer processing, risk, settlement, and operations.",
+    "thesis": "Thredd and Sutton Bank's US partnership is a reminder that BIN sponsorship is not a launch shortcut. It is an operating model for control, risk, processing, and accountability.",
+    "tags": [
+      "Thredd",
+      "Sutton Bank",
+      "BIN sponsorship",
+      "issuer processing",
+      "card programmes",
+      "embedded finance"
+    ],
+    "relatedArticles": [
+      "/blog/amex-aba-professional-card-programs",
+      "/blog/virtual-card-accounts-product-guide",
+      "/blog/financial-controls-are-product-requirements",
+      "/blog/how-credit-scoring-systems-actually-work"
+    ]
+  },
+  {
+    "slug": "github-desktop-worktrees-ai-agent-control",
+    "title": "GitHub Desktop Makes Worktrees an AI Agent Control",
+    "metaTitle": "GitHub Desktop Worktrees: An AI Agent Control Plane",
+    "date": "2026-06-27",
+    "category": "AI & Product Operations",
+    "readingTime": "7 min read",
+    "description": "GitHub Desktop 3.6 brings worktrees and AI-assisted conflicts together. The operator lesson is isolation, review, and controlled parallelism.",
+    "thesis": "GitHub Desktop 3.6 makes worktrees accessible beside Copilot-assisted commits and conflict resolution, turning branch isolation into an operating control for parallel AI work.",
+    "tags": [
+      "GitHub Desktop",
+      "Git worktrees",
+      "AI coding agents",
+      "Copilot",
+      "engineering governance",
+      "delivery operations"
+    ],
+    "relatedArticles": [
+      "/blog/github-copilot-byok-agent-routing",
+      "/blog/why-ai-ml-solutions-fail-production-payments",
+      "/blog/vendor-governance-fintech-pmo",
+      "/blog/raid-steerco-pmo-stack-that-ships",
+      "/blog/agentic-payments-operations-what-works"
+    ]
+  },
+  {
+    "slug": "visa-dcap-acquiring-economics-data-only-3ds",
+    "title": "Visa DCAP Makes Authentication an Acquiring Economics Decision",
+    "metaTitle": "Visa DCAP: The Acquiring Economics Behind Data Only 3DS",
+    "date": "2026-06-27",
+    "category": "Merchant Acquiring",
+    "readingTime": "7 min read",
+    "description": "Visa DCAP turns richer checkout data into interchange savings, but acquirers must protect authorization, latency, and merchant economics.",
+    "thesis": "Visa's Digital Commerce Authentication Program makes Data Only 3DS a commercial acquiring decision: the savings matter only when eligibility, authorization, latency, and disputes are measured together.",
+    "tags": [
+      "Visa DCAP",
+      "merchant acquiring",
+      "3D Secure",
+      "interchange",
+      "authorization optimization",
+      "checkout conversion"
+    ],
+    "relatedArticles": [
+      "/blog/emv-3ds2-step-up-frictionless-optimisation",
+      "/blog/payment-cost-50-to-1",
+      "/blog/mdes-network-tokenisation-how-it-actually-works",
+      "/blog/hosted-checkout-vs-direct-card-processing",
+      "/blog/chargebacks-product-problem"
     ]
   },
   {

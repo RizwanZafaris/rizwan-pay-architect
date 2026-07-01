@@ -11,6 +11,35 @@ import { marked } from "marked";
 // 64×64 author avatar (24KB WebP, same asset the /about hero uses).
 import authorPortrait from "@/assets/rizwan-zafar-cutout-460.webp";
 
+const OG_IMAGE_OVERRIDES: Record<string, string> = {
+  "gov-uk-pay-adyen-1000-service-migration":
+    "/og/blog/gov-uk-pay-adyen-1000-service-migration-v20260630.png",
+  "mercado-pago-claude-plugin-payment-integration-agent":
+    "/og/blog/mercado-pago-claude-plugin-payment-integration-agent-v20260630.png",
+  "revolut-adyen-uae-licences-dubai-fintech-signal":
+    "/og/blog/revolut-adyen-uae-licences-dubai-fintech-signal-v20260630.png",
+  "adyen-uae-license-merchant-acquiring-local-settlement":
+    "/og/blog/adyen-uae-license-merchant-acquiring-local-settlement-v20260630.png",
+  "lean-ziina-uae-one-tap-pay-by-bank":
+    "/og/blog/lean-ziina-uae-one-tap-pay-by-bank-v20260627.png",
+  "gocardless-sequence-direct-debit-product-design":
+    "/og/blog/gocardless-sequence-direct-debit-product-design-v20260627.png",
+  "us-bank-gigsafe-instant-payout-programme":
+    "/og/blog/us-bank-gigsafe-instant-payout-programme-v20260627.png",
+  "forter-ai-agents-commerce-risk-radar":
+    "/og/blog/forter-ai-agents-commerce-risk-radar-v20260627.png",
+  "visa-dcap-acquiring-economics-data-only-3ds":
+    "/og/blog/visa-dcap-acquiring-economics-data-only-3ds-v20260627.png",
+  "github-desktop-worktrees-ai-agent-control":
+    "/og/blog/github-desktop-worktrees-ai-agent-control-v20260627.png",
+  "thredd-sutton-bin-sponsorship-operating-model":
+    "/og/blog/thredd-sutton-bin-sponsorship-operating-model-v20260630.png",
+  "authorization-rate-merchant-pnl-operating-model":
+    "/og/blog/authorization-rate-merchant-pnl-operating-model-v20260630.png",
+  "openai-broadcom-jalapeno-ai-unit-economics":
+    "/og/blog/openai-broadcom-jalapeno-ai-unit-economics-v20260629.png",
+};
+
 // Pull Q&A pairs out of a "## FAQ" section so we can emit FAQPage JSON-LD.
 // Question lines are "**…?**" inside the section; the answer is everything until the next "**…?**".
 function extractFAQs(md: string): { question: string; answer: string }[] {
@@ -87,7 +116,8 @@ export const Route = createFileRoute("/blog/$slug")({
     if (!p) return { meta: [{ title: "Essay" }] };
     const url = absUrl(`/blog/${params.slug}`);
     const published = isPostPublished(p);
-    const ogImage = published ? absUrl(`/og/blog/${params.slug}.png`) : OG_IMAGE_URL;
+    const ogImagePath = OG_IMAGE_OVERRIDES[params.slug] ?? `/og/blog/${params.slug}.png`;
+    const ogImage = published ? absUrl(ogImagePath) : OG_IMAGE_URL;
     const wordCount = content.trim().split(/\s+/).length;
     const jsonLd = {
       "@context": "https://schema.org",
