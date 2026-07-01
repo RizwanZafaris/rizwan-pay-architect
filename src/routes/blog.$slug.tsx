@@ -12,6 +12,10 @@ import { marked } from "marked";
 import authorPortrait from "@/assets/rizwan-zafar-cutout-460.webp";
 
 const OG_IMAGE_OVERRIDES: Record<string, string> = {
+  "visa-mastercard-open-usd-stablecoin-network-economics":
+    "/og/blog/visa-mastercard-open-usd-stablecoin-network-economics-v20260701.png",
+  "processor-only-card-issuing-operating-model":
+    "/og/blog/processor-only-card-issuing-operating-model-v20260701.png",
   "gov-uk-pay-adyen-1000-service-migration":
     "/og/blog/gov-uk-pay-adyen-1000-service-migration-v20260630.png",
   "mercado-pago-claude-plugin-payment-integration-agent":

@@ -142,6 +142,54 @@ export const posts: Post[] = [
     ]
   },
   {
+    "slug": "processor-only-card-issuing-operating-model",
+    "title": "Processor-Only Card Issuing Moves the Work, Not the Risk",
+    "metaTitle": "Processor-Only Card Issuing: The Operating Model",
+    "date": "2026-07-01",
+    "category": "Payment Infrastructure",
+    "readingTime": "7 min read",
+    "description": "Processor-only card issuing offers control, but shifts licensing, ledger, compliance, fraud, disputes, and bank management back to your team.",
+    "thesis": "Choosing processor-only issuing is not a narrower vendor contract. It is a decision to own the regulated and operational machinery around the processor.",
+    "tags": [
+      "issuer processing",
+      "card programmes",
+      "processor-only issuing",
+      "BIN sponsorship",
+      "issuing operations",
+      "programme management"
+    ],
+    "relatedArticles": [
+      "/blog/thredd-sutton-bin-sponsorship-operating-model",
+      "/blog/virtual-card-accounts-product-guide",
+      "/blog/financial-controls-are-product-requirements",
+      "/blog/three-way-reconciliation-at-scale"
+    ]
+  },
+  {
+    "slug": "visa-mastercard-open-usd-stablecoin-network-economics",
+    "title": "Visa and Mastercard Join Open USD: The Stablecoin Battle Moves to Distribution",
+    "metaTitle": "Visa, Mastercard and Open USD Network Economics",
+    "date": "2026-07-01",
+    "category": "Crypto & Stablecoins",
+    "readingTime": "8 min read",
+    "description": "Open USD brings Visa, Mastercard, Stripe and 140+ partners into a shared stablecoin model built around distribution, governance and reserve economics.",
+    "thesis": "Open USD is not only a new token. It is a consortium bet that shared distribution, governance, and reserve economics can outperform a single stablecoin issuer.",
+    "tags": [
+      "Open USD",
+      "Open Standard",
+      "Visa",
+      "Mastercard",
+      "stablecoin payments",
+      "payment infrastructure"
+    ],
+    "relatedArticles": [
+      "/blog/stablecoin-payments-2026",
+      "/blog/future-of-treasury-with-stablecoins",
+      "/blog/project-pangea-stablecoin-fx-settlement",
+      "/blog/cross-border-corridors-are-operating-systems"
+    ]
+  },
+  {
     "slug": "adyen-uae-license-merchant-acquiring-local-settlement",
     "title": "Adyen's UAE License Makes Merchant Acquiring More Local",
     "metaTitle": "Adyen UAE License and Merchant Acquiring | Rizwan Zafar",
