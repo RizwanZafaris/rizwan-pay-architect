@@ -5,8 +5,16 @@
   <link>https://rzifi.com/blog/</link>
   <description>Essays on payment infrastructure, fintech product, risk, settlement, AI and program leadership.</description>
   <language>en</language>
-  <lastBuildDate>Wed, 01 Jul 2026 06:04:55 GMT</lastBuildDate>
+  <lastBuildDate>Wed, 01 Jul 2026 06:12:54 GMT</lastBuildDate>
   <item>
+    <title>Processor-Only Card Issuing Moves the Work, Not the Risk</title>
+    <link>https://rzifi.com/blog/processor-only-card-issuing-operating-model/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/processor-only-card-issuing-operating-model/</guid>
+    <pubDate>Wed, 01 Jul 2026 00:00:00 GMT</pubDate>
+    <category>Payment Infrastructure</category>
+    <description>Processor-only card issuing offers control, but shifts licensing, ledger, compliance, fraud, disputes, and bank management back to your team.</description>
+  </item>
+<item>
     <title>Adyen&apos;s UAE License Makes Merchant Acquiring More Local</title>
     <link>https://rzifi.com/blog/adyen-uae-license-merchant-acquiring-local-settlement/</link>
     <guid isPermaLink="true">https://rzifi.com/blog/adyen-uae-license-merchant-acquiring-local-settlement/</guid>
@@ -237,14 +245,6 @@
     <pubDate>Wed, 17 Jun 2026 00:00:00 GMT</pubDate>
     <category>Cross-Border Payments</category>
     <description>Boku&apos;s UPI launch shows how domestic instant rails become cross-border checkout infrastructure for global merchants and payment teams.</description>
-  </item>
-<item>
-    <title>Nuvei Buying Payoneer Is a Corridor Stack Bet, Not Just M&amp;A</title>
-    <link>https://rzifi.com/blog/nuvei-payoneer-corridor-stack-bet/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/nuvei-payoneer-corridor-stack-bet/</guid>
-    <pubDate>Tue, 16 Jun 2026 00:00:00 GMT</pubDate>
-    <category>Cross-Border Payments</category>
-    <description>Nuvei&apos;s $2.75B Payoneer deal is a bet on owning acceptance, FX, payouts, settlement and compliance across cross-border corridors.</description>
   </item>
 </channel>
 </rss>
