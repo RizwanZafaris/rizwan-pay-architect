@@ -5,7 +5,7 @@
   <link>https://rzifi.com/blog/</link>
   <description>Essays on payment infrastructure, fintech product, risk, settlement, AI and program leadership.</description>
   <language>en</language>
-  <lastBuildDate>Wed, 01 Jul 2026 06:12:54 GMT</lastBuildDate>
+  <lastBuildDate>Wed, 01 Jul 2026 06:17:51 GMT</lastBuildDate>
   <item>
     <title>Processor-Only Card Issuing Moves the Work, Not the Risk</title>
     <link>https://rzifi.com/blog/processor-only-card-issuing-operating-model/</link>
@@ -13,6 +13,14 @@
     <pubDate>Wed, 01 Jul 2026 00:00:00 GMT</pubDate>
     <category>Payment Infrastructure</category>
     <description>Processor-only card issuing offers control, but shifts licensing, ledger, compliance, fraud, disputes, and bank management back to your team.</description>
+  </item>
+<item>
+    <title>Visa and Mastercard Join Open USD: The Stablecoin Battle Moves to Distribution</title>
+    <link>https://rzifi.com/blog/visa-mastercard-open-usd-stablecoin-network-economics/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/visa-mastercard-open-usd-stablecoin-network-economics/</guid>
+    <pubDate>Wed, 01 Jul 2026 00:00:00 GMT</pubDate>
+    <category>Crypto &amp; Stablecoins</category>
+    <description>Open USD brings Visa, Mastercard, Stripe and 140+ partners into a shared stablecoin model built around distribution, governance and reserve economics.</description>
   </item>
 <item>
     <title>Adyen&apos;s UAE License Makes Merchant Acquiring More Local</title>
@@ -237,14 +245,6 @@
     <pubDate>Thu, 18 Jun 2026 00:00:00 GMT</pubDate>
     <category>Cross-Border Payments</category>
     <description>Revolut&apos;s UAE licences are not just market entry news. They test wallet, cross-border, compliance and rail design in a serious market.</description>
-  </item>
-<item>
-    <title>Boku&apos;s UPI Launch Is a Local-Rail Export Story</title>
-    <link>https://rzifi.com/blog/boku-upi-local-rails-cross-border/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/boku-upi-local-rails-cross-border/</guid>
-    <pubDate>Wed, 17 Jun 2026 00:00:00 GMT</pubDate>
-    <category>Cross-Border Payments</category>
-    <description>Boku&apos;s UPI launch shows how domestic instant rails become cross-border checkout infrastructure for global merchants and payment teams.</description>
   </item>
 </channel>
 </rss>
