@@ -142,6 +142,28 @@ export const posts: Post[] = [
     ]
   },
   {
+    "slug": "github-models-retirement-ai-platform-exit-plan",
+    "title": "GitHub Models Is Shutting Down. Your AI Stack Needs an Exit Plan",
+    "metaTitle": "GitHub Models Shutdown: Build an AI Exit Plan",
+    "date": "2026-07-02",
+    "category": "AI in Fintech",
+    "readingTime": "7 min read",
+    "description": "GitHub Models closes on July 30, 2026. Use the brownouts to test provider portability, evaluation baselines, data controls, and recovery plans.",
+    "thesis": "GitHub Models' shutdown is a useful warning: an AI prototype becomes an operational dependency faster than most teams build an exit path.",
+    "tags": [
+      "GitHub Models",
+      "AI platform operations",
+      "model portability",
+      "vendor risk",
+      "fintech AI governance"
+    ],
+    "relatedArticles": [
+      "/blog/github-copilot-byok-agent-routing",
+      "/blog/ai-in-payments-four-production-use-cases",
+      "/blog/financial-controls-are-product-requirements"
+    ]
+  },
+  {
     "slug": "processor-only-card-issuing-operating-model",
     "title": "Processor-Only Card Issuing Moves the Work, Not the Risk",
     "metaTitle": "Processor-Only Card Issuing: The Operating Model",
