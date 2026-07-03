@@ -123,6 +123,30 @@ export const posts: Post[] = [
     ]
   },
   {
+    "slug": "amex-network-international-uae-acceptance-operating-model",
+    "title": "85,000 Amex Locations: The UAE Acceptance Work Starts Now",
+    "metaTitle": "Amex + Network International: UAE Acceptance Model",
+    "date": "2026-07-03",
+    "category": "Merchant Acquiring",
+    "readingTime": "7 min read",
+    "description": "Amex and Network target 85,000 UAE acceptance locations. The real test is merchant activation, settlement, reconciliation, and usage.",
+    "thesis": "American Express and Network International can widen UAE acceptance quickly. Sustainable value depends on merchant activation, clean settlement, and repeat card use.",
+    "tags": [
+      "merchant acquiring",
+      "American Express",
+      "Network International",
+      "UAE payments",
+      "merchant acceptance",
+      "settlement and reconciliation"
+    ],
+    "relatedArticles": [
+      "/blog/authorization-rate-merchant-pnl-operating-model",
+      "/blog/reconciliation-is-product-infrastructure",
+      "/blog/revolut-adyen-uae-licences-dubai-fintech-signal",
+      "/product-work/mpgs-acquirer-integration-programme"
+    ]
+  },
+  {
     "slug": "tracking-a-swift-payment-step-by-step",
     "title": "How to Track a SWIFT Payment Step by Step",
     "metaTitle": "How to Track a SWIFT Payment Step by Step | Rizwan Zafar",

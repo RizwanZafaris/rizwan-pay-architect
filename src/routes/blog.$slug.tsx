@@ -12,6 +12,8 @@ import { marked } from "marked";
 import authorPortrait from "@/assets/rizwan-zafar-cutout-460.webp";
 
 const OG_IMAGE_OVERRIDES: Record<string, string> = {
+  "amex-network-international-uae-acceptance-operating-model":
+    "/og/blog/amex-network-international-uae-acceptance-operating-model-v20260703.png",
   "github-models-retirement-ai-platform-exit-plan":
     "/og/blog/github-models-retirement-ai-platform-exit-plan-v20260702.png",
   "visa-mastercard-open-usd-stablecoin-network-economics":
