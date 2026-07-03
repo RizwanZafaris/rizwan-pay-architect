@@ -371,7 +371,7 @@ function ResumePage() {
               data-analytics-cta-id="download_resume"
               data-analytics-cta-location="resume_page"
               data-analytics-cta-destination={profile.resumeHref}
-              data-analytics-source="resume_page"
+              data-analytics-placement="resume_page"
               className="inline-flex items-center justify-center gap-2 rounded-full border border-ink/20 px-5 py-2.5 text-sm font-medium text-ink hover:bg-ink/5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2"
             >
               <Download aria-hidden="true" className="h-4 w-4" />
@@ -750,7 +750,7 @@ function ResumePage() {
             data-analytics-cta-id="download_resume"
             data-analytics-cta-location="resume_page"
             data-analytics-cta-destination={profile.resumeHref}
-            data-analytics-source="resume_page"
+            data-analytics-placement="resume_page"
             className="inline-flex items-center justify-center gap-2 rounded-full border border-background/25 px-5 py-2.5 text-sm font-medium text-background hover:bg-background/10 transition-colors"
           >
             <Download aria-hidden="true" className="h-4 w-4" />

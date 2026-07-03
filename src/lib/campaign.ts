@@ -57,7 +57,7 @@ import { LINKEDIN_BOOKING_CONVERSION_ID } from "@/lib/seo";
 //     it has volume; until then existing click wiring stays untouched.
 export const calInlineEmbedScript = (ref: string, opts?: { eager?: boolean }) => `!function(){
 var section=document.getElementById("book");if(!section)return;
-function track(ev,params){try{if(typeof gtag==="function"){params=params||{};params.source=params.source||"${ref}";gtag("event",ev,params)}}catch(x){}}
+function track(ev,params){try{if(typeof gtag==="function"){params=params||{};params.placement=params.placement||"${ref}";gtag("event",ev,params)}}catch(x){}}
 var booted=false;
 function boot(){if(booted)return;booted=true;
 try{

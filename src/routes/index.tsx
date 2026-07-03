@@ -262,7 +262,7 @@ function HomePage() {
                 data-analytics-cta-id="download_resume"
                 data-analytics-cta-location="hero"
                 data-analytics-cta-destination={profile.resumeHref}
-                data-analytics-source="hero"
+                data-analytics-placement="hero"
                 onClick={() => {
                   ctaClick("download_resume", "hero", profile.resumeHref);
                   resumeDownload("hero");

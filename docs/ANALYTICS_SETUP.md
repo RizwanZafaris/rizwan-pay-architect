@@ -65,8 +65,8 @@ Google Ads direct install:
 | `spa_pageview`        | Every client-side route change (TanStack Router navigation) — _not_ the initial server-rendered load (GTM's own `gtm.load` covers that) | `page_path`, `page_location`, `page_title`                                                             | GA4 page_view tag, override `page_location` and `page_title` from the dataLayer                |
 | `cta_click`           | Any tracked CTA button or link                                                                                                          | `cta_id`, `cta_location`, `cta_destination` (optional)                                                 | Generic engagement event; useful for funnel analysis (where did they click before converting?) |
 | `outbound_click`      | LinkedIn / mailto / external links                                                                                                      | `outbound_domain`, `outbound_url`, `outbound_location`                                                 | GA4 `click` event with `outbound: true` parameter                                              |
-| `schedule_meeting`    | Cal.com / schedule-intent click from header, resume, contact or mobile menu                                                             | `source`, `schedule_url`                                                                               | **MARK AS CONVERSION** in GA4 + Google Ads — primary lead signal                               |
-| `resume_download`     | PDF download from any surface                                                                                                           | `source` (hero / header / mobile_menu / about / for / resume_page / case_study)                        | **MARK AS CONVERSION** in GA4 — lead-quality signal                                            |
+| `schedule_meeting`    | Cal.com / schedule-intent click from header, resume, contact or mobile menu                                                             | `placement`, `schedule_url`                                                                               | **MARK AS CONVERSION** in GA4 + Google Ads — primary lead signal                               |
+| `resume_download`     | PDF download from any surface                                                                                                           | `placement` (hero / header / mobile_menu / about / for / resume_page / case_study)                        | **MARK AS CONVERSION** in GA4 — lead-quality signal                                            |
 | `blog_view`           | Each `/blog/<slug>` mount                                                                                                               | `blog_slug`, `blog_category`, `blog_reading_time`                                                      | Content engagement; useful for finding which topics convert                                    |
 | `case_study_view`     | Each `/product-work/<slug>` mount                                                                                                       | `case_study_slug`, `case_study_category`                                                               | Mid-funnel engagement                                                                          |
 | `contact_form_start`  | First focus on any contact form field                                                                                                   | (none)                                                                                                 | Funnel step: form started                                                                      |
@@ -109,7 +109,7 @@ GTM doesn't auto-read dataLayer keys; you have to declare each one.
 | DLV — outbound_domain     | `outbound_domain`        |
 | DLV — outbound_url        | `outbound_url`           |
 | DLV — outbound_location   | `outbound_location`      |
-| DLV — source              | `source`                 |
+| DLV — placement          | `placement`              |
 | DLV — schedule_url        | `schedule_url`           |
 | DLV — link_location       | `link_location`          |
 | DLV — blog_slug           | `blog_slug`              |
@@ -175,8 +175,8 @@ Repeat the GA4 Event pattern for each event. Compact recipe:
 | ------------------------ | -------------------- | ------------------------------------------------------------------------------------------------------------------------- | ----------------------- |
 | GA4 — cta_click          | `cta_click`          | `cta_id={{DLV — cta_id}}`, `cta_location={{DLV — cta_location}}`, `cta_destination={{DLV — cta_destination}}`             | CE — cta_click          |
 | GA4 — outbound_click     | `click`              | `outbound=true`, `outbound_domain={{DLV — outbound_domain}}`, `outbound_url={{DLV — outbound_url}}`                       | CE — outbound_click     |
-| GA4 — schedule_meeting   | `schedule_meeting`   | `source={{DLV — source}}`, `schedule_url={{DLV — schedule_url}}`                                                          | CE — schedule_meeting   |
-| GA4 — resume_download    | `resume_download`    | `source={{DLV — source}}`                                                                                                 | CE — resume_download    |
+| GA4 — schedule_meeting   | `schedule_meeting`   | `placement={{DLV — placement}}`, `schedule_url={{DLV — schedule_url}}`                                                          | CE — schedule_meeting   |
+| GA4 — resume_download    | `resume_download`    | `placement={{DLV — placement}}`                                                                                                 | CE — resume_download    |
 | GA4 — linkedin_click     | `linkedin_click`     | `link_location={{DLV — link_location}}`                                                                                   | CE — linkedin_click     |
 | GA4 — blog_view          | `blog_view`          | `blog_slug={{DLV — blog_slug}}`, `blog_category={{DLV — blog_category}}`                                                  | CE — blog_view          |
 | GA4 — case_study_view    | `case_study_view`    | `case_study_slug={{DLV — case_study_slug}}`                                                                               | CE — case_study_view    |
@@ -213,7 +213,7 @@ These become trackable goals in funnels, audience definitions, and ad attributio
 | ------------------- | --------------------- |
 | CTA ID              | `cta_id`              |
 | CTA Location        | `cta_location`        |
-| Source              | `source`              |
+| Placement            | `placement`           |
 | Schedule URL        | `schedule_url`        |
 | Blog slug           | `blog_slug`           |
 | Blog category       | `blog_category`       |
@@ -252,7 +252,7 @@ In **Explore → Free form**:
    - `{ event: "gtm.load", ... }`
 3. Click **Schedule call** in the header or **Book intro call** on the contact page → re-type `dataLayer` → look for:
    ```js
-   { event: "schedule_meeting", source: "header", schedule_url: "https://cal.com/..." }
+   { event: "schedule_meeting", placement: "header", schedule_url: "https://cal.com/..." }
    ```
 4. Click the **See case studies** button in the hero → look for:
    ```js
@@ -261,7 +261,7 @@ In **Explore → Free form**:
 5. Click **Download resume** → look for both:
    ```js
    { event: "cta_click", cta_id: "download_resume", cta_location: "hero", cta_destination: "/Rizwan_Zafar_Resume.pdf" }
-   { event: "resume_download", source: "hero" }
+   { event: "resume_download", placement: "hero" }
    ```
 6. Click any LinkedIn link → look for:
    ```js

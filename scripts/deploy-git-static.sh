@@ -25,7 +25,20 @@ cd "$REPO_DIR"
 echo "─── 1/4  Rebuilding dist-static/ ───"
 # CI builds + gates dist-static in its own steps and sets SKIP_REBUILD=1.
 if [ "${SKIP_REBUILD:-}" = "1" ]; then
-  echo "(SKIP_REBUILD=1 — using existing dist-static/)"
+  # SKIP_REBUILD is a CI-only optimization. On a laptop it can push a stale
+  # dist-static/ that silently regresses the live site (this bit us in June:
+  # source was fixed but week-old HTML stayed live). Outside CI, refuse unless
+  # the export is fresh (<30 min old).
+  if [ -z "${CI:-}" ]; then
+    if [ -z "$(find dist-static/index.html -mmin -30 2>/dev/null)" ]; then
+      echo "ERROR: SKIP_REBUILD=1 outside CI with a stale dist-static/ (>30 min old)." >&2
+      echo "Rebuild first (bun run build:static) or drop SKIP_REBUILD." >&2
+      exit 1
+    fi
+    echo "(SKIP_REBUILD=1 — local run, dist-static/ verified fresh)"
+  else
+    echo "(SKIP_REBUILD=1 — using existing dist-static/)"
+  fi
 else
   bun run build:static
 fi

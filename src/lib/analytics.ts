@@ -180,9 +180,14 @@ export type SiteEvent =
     }
 
   // Cal.com / scheduling clicks. This is the primary paid-search conversion.
+  // NOTE: the CTA-placement param is named `placement`, NOT `source` —
+  // `source`/`medium`/`campaign` are GA4-reserved traffic-attribution params;
+  // sending them as event params overrides the session's traffic source with
+  // no medium, which files the session under the "Unassigned" channel (and
+  // blanks the landing page when such an event starts a session).
   | {
       event: "schedule_meeting";
-      source:
+      placement:
         | "hero"
         | "header"
         | "mobile_menu"
@@ -198,7 +203,7 @@ export type SiteEvent =
   // Resume download (separate from cta_click because it's a conversion event).
   | {
       event: "resume_download";
-      source: "hero" | "header" | "mobile_menu" | "about" | "for" | "resume_page" | "case_study";
+      placement: "hero" | "header" | "mobile_menu" | "about" | "for" | "resume_page" | "case_study";
     }
 
   // Blog post viewed (fires on mount of /blog/<slug>).
@@ -274,13 +279,13 @@ export const outboundClick = (url: string, location: string): void => {
 };
 
 export const scheduleMeeting = (
-  source: Extract<SiteEvent, { event: "schedule_meeting" }>["source"],
+  placement: Extract<SiteEvent, { event: "schedule_meeting" }>["placement"],
   schedule_url?: string,
-): void => trackEvent("schedule_meeting", { source, ...(schedule_url ? { schedule_url } : {}) });
+): void => trackEvent("schedule_meeting", { placement, ...(schedule_url ? { schedule_url } : {}) });
 
 export const resumeDownload = (
-  source: Extract<SiteEvent, { event: "resume_download" }>["source"],
-): void => trackEvent("resume_download", { source });
+  placement: Extract<SiteEvent, { event: "resume_download" }>["placement"],
+): void => trackEvent("resume_download", { placement });
 
 export const siteSearch = (
   search_term: string,
