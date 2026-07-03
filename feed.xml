@@ -5,8 +5,16 @@
   <link>https://rzifi.com/blog/</link>
   <description>Essays on payment infrastructure, fintech product, risk, settlement, AI and program leadership.</description>
   <language>en</language>
-  <lastBuildDate>Thu, 02 Jul 2026 06:12:20 GMT</lastBuildDate>
+  <lastBuildDate>Fri, 03 Jul 2026 01:09:53 GMT</lastBuildDate>
   <item>
+    <title>How to Track a SWIFT Payment Step by Step</title>
+    <link>https://rzifi.com/blog/tracking-a-swift-payment-step-by-step/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/tracking-a-swift-payment-step-by-step/</guid>
+    <pubDate>Fri, 03 Jul 2026 00:00:00 GMT</pubDate>
+    <category>Cross-Border Payments</category>
+    <description>A practical guide to tracking a SWIFT payment using the UETR and gpi Tracker, what to ask your bank and how to read the status.</description>
+  </item>
+<item>
     <title>GitHub Models Is Shutting Down. Your AI Stack Needs an Exit Plan</title>
     <link>https://rzifi.com/blog/github-models-retirement-ai-platform-exit-plan/</link>
     <guid isPermaLink="true">https://rzifi.com/blog/github-models-retirement-ai-platform-exit-plan/</guid>
@@ -237,14 +245,6 @@
     <pubDate>Fri, 19 Jun 2026 00:00:00 GMT</pubDate>
     <category>Cross-Border Payments</category>
     <description>How correspondent banking actually works in emerging-market corridors, de-risking, nostro/vostro, FX, and the product opportunities created by friction.</description>
-  </item>
-<item>
-    <title>Mollie&apos;s EEA Expansion Is a Localisation Infrastructure Bet</title>
-    <link>https://rzifi.com/blog/mollie-eea-localisation-infrastructure/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/mollie-eea-localisation-infrastructure/</guid>
-    <pubDate>Fri, 19 Jun 2026 00:00:00 GMT</pubDate>
-    <category>Cross-Border Payments</category>
-    <description>Mollie&apos;s EUR350M EEA expansion shows why cross-border merchants need local payment methods, onboarding, support, and reconciliation as one stack.</description>
   </item>
 </channel>
 </rss>
