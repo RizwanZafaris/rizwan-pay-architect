@@ -6,6 +6,7 @@ import { caseStudies } from "@/data/caseStudies";
 import { hubForPost } from "@/data/hubs";
 import { absUrl, SITE_URL, OG_IMAGE_URL, titleFor, trimToMax } from "@/lib/seo";
 import { DiagramFigure, postDiagrams } from "@/components/diagrams/Diagrams";
+import { NewsletterSignup } from "@/components/NewsletterSignup";
 import { trackEvent } from "@/lib/analytics";
 import { marked } from "marked";
 // 64×64 author avatar (24KB WebP, same asset the /about hero uses).
@@ -384,7 +385,7 @@ function EssayFooterCTA({ post }: { post: Post }) {
         <div className="mt-6 rounded-2xl bg-ink text-background p-6 sm:flex sm:items-center sm:justify-between gap-6">
           <div>
             <div className="font-instrument text-xl leading-snug">
-              Hiring for a senior payments product role?
+              Hiring for a senior payments product role — or stuck on a payments problem?
             </div>
             <p className="text-sm opacity-80 mt-1">
               {profile.name} — {profile.role}.
@@ -392,12 +393,22 @@ function EssayFooterCTA({ post }: { post: Post }) {
           </div>
           <div className="mt-4 sm:mt-0 flex flex-wrap gap-2 shrink-0">
             <a
+              href="/consulting/"
+              data-analytics-event="cta_click"
+              data-analytics-cta-id="advisory_essay_footer"
+              data-analytics-cta-location="essay_footer"
+              data-analytics-cta-destination="/consulting/"
+              className="rounded-md bg-background text-ink px-4 py-2 text-sm font-medium hover:opacity-90"
+            >
+              Advisory engagements
+            </a>
+            <a
               href="/contact/#book"
               data-analytics-event="cta_click"
               data-analytics-cta-id="book_intro_call"
               data-analytics-cta-location="blog_post_footer"
               data-analytics-cta-destination="/contact/#book"
-              className="rounded-md bg-background text-ink px-4 py-2 text-sm font-medium hover:opacity-90"
+              className="rounded-md border border-background/40 px-4 py-2 text-sm hover:bg-background/10"
             >
               Book a 15-min intro call
             </a>
@@ -410,17 +421,13 @@ function EssayFooterCTA({ post }: { post: Post }) {
             >
               Résumé
             </a>
-            <a
-              href="/for/"
-              data-analytics-event="cta_click"
-              data-analytics-placement="essay_footer"
-              data-analytics-target="for"
-              className="rounded-md border border-background/40 px-4 py-2 text-sm hover:bg-background/10"
-            >
-              For recruiters
-            </a>
           </div>
         </div>
+        <NewsletterSignup
+          placement="essay_footer"
+          fromPage={`/blog/${post.slug}`}
+          className="mt-8"
+        />
       </div>
     </section>
   );

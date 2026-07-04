@@ -14,6 +14,7 @@ import { SocialIconRow } from "@/components/SocialIcons";
 const nav = [
   { to: "/product-work", label: "Case Studies" },
   { to: "/blog", label: "Blog" },
+  { to: "/consulting", label: "Advisory" },
   { to: "/for", label: "Recruiters" },
   { to: "/resume", label: "Resume" },
   { to: "/contact", label: "Contact" },
@@ -255,7 +256,9 @@ export function SiteFooter() {
               <span className="absolute inline-flex h-full w-full rounded-full bg-[var(--accent-emerald)] opacity-60 motion-safe:animate-ping"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-[var(--accent-emerald)]"></span>
             </span>
-            <span className="font-mono-tech uppercase tracking-[0.18em]">Open to senior roles</span>
+            <span className="font-mono-tech uppercase tracking-[0.18em]">
+              Open to senior roles &amp; advisory
+            </span>
           </div>
         </div>
         <div>
@@ -291,6 +294,11 @@ export function SiteFooter() {
             <li>
               <Link to="/for" className="hover:text-ink text-ink-soft">
                 For Recruiters
+              </Link>
+            </li>
+            <li>
+              <Link to="/consulting" className="hover:text-ink text-ink-soft">
+                Advisory
               </Link>
             </li>
           </ul>
@@ -337,7 +345,7 @@ export function SiteFooter() {
           <span>
             © <span data-current-year>{new Date().getFullYear()}</span> {profile.name} · Dubai, UAE
           </span>
-          <span>Built for senior Product &amp; Program roles in fintech</span>
+          <span>Built for senior Product &amp; Program roles and advisory engagements in fintech</span>
         </div>
       </div>
       <script dangerouslySetInnerHTML={{ __html: currentYearScript }} />

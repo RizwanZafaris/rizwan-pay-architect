@@ -5,6 +5,7 @@ import { absUrl, SITE_URL } from "@/lib/seo";
 import { ctaClick, outboundClick, trackEvent } from "@/lib/analytics";
 import { SocialCardList } from "@/components/SocialIcons";
 import { BookingSection } from "@/components/BookingSection";
+import { NewsletterSignup } from "@/components/NewsletterSignup";
 
 // Web3Forms-compatible endpoint. The access key is PUBLIC BY DESIGN (Web3Forms
 // keys ship in the form's hidden input either way — same trust class as the
@@ -495,43 +496,11 @@ function ContactPage() {
               </div>
               <div className="font-display text-lg text-ink">{profile.location} · GST (UTC+4)</div>
             </div>
-            <div className="contact-card border border-rule bg-surface px-5 py-4">
-              <div className="text-xs uppercase tracking-[0.14em] text-ink-soft">Essay updates</div>
-              <div className="font-display text-lg text-ink">{profile.newsletter.name}</div>
-              <p className="mt-1 text-sm text-ink-soft leading-relaxed">
-                A light-touch list for payments infrastructure, fintech product and program
-                leadership notes.
-              </p>
-              <div className="mt-3 flex flex-wrap gap-2">
-                <a
-                  href={profile.newsletter.href}
-                  data-analytics-event="cta_click"
-                  data-analytics-cta-id="newsletter_subscribe_request"
-                  data-analytics-cta-location="contact_page"
-                  data-analytics-cta-destination={profile.newsletter.href}
-                  onClick={() =>
-                    ctaClick(
-                      "newsletter_subscribe_request",
-                      "contact_page",
-                      profile.newsletter.href,
-                    )
-                  }
-                  className="rounded-md bg-ink px-3 py-2 text-xs font-medium text-background hover:bg-[var(--brand)] transition-colors"
-                >
-                  Request updates
-                </a>
-                <a
-                  href={profile.newsletter.rssHref}
-                  data-analytics-event="cta_click"
-                  data-analytics-cta-id="rss_feed"
-                  data-analytics-cta-location="contact_page"
-                  data-analytics-cta-destination={profile.newsletter.rssHref}
-                  className="rounded-md border border-ink/20 px-3 py-2 text-xs font-medium text-ink hover:border-ink/50 transition-colors"
-                >
-                  RSS feed
-                </a>
-              </div>
-            </div>
+            <NewsletterSignup
+              placement="contact_page"
+              fromPage="/contact"
+              className="contact-card"
+            />
           </div>
         </div>
 
@@ -721,14 +690,34 @@ function ContactPage() {
                 <div>
                   <label
                     className="text-xs uppercase tracking-[0.12em] text-ink-soft"
+                    htmlFor="inquiry_type"
+                  >
+                    I'm reaching out about
+                  </label>
+                  {/* Native select: works without hydration, posts with the form. */}
+                  <select
+                    id="inquiry_type"
+                    name="inquiry_type"
+                    defaultValue="Hiring for a role"
+                    className={field}
+                  >
+                    <option>Hiring for a role</option>
+                    <option>Advisory / consulting engagement</option>
+                    <option>Speaking / podcast</option>
+                    <option>Something else</option>
+                  </select>
+                </div>
+                <div>
+                  <label
+                    className="text-xs uppercase tracking-[0.12em] text-ink-soft"
                     htmlFor="role"
                   >
-                    Role you're hiring for
+                    Role or problem context
                   </label>
                   <input
                     id="role"
                     name="role"
-                    placeholder="e.g. Director, Acceptance Product"
+                    placeholder="e.g. Director, Acceptance Product — or 'auth rate dropped 4pts'"
                     value={values.role}
                     onChange={(e) => setValues({ ...values, role: e.target.value })}
                     className={field}
