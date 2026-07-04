@@ -45,7 +45,6 @@
   Header always set X-Content-Type-Options "nosniff"
   Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
   Header always set X-Frame-Options "DENY"
-  Header always set X-XSS-Protection "1; mode=block"
   Header always set Referrer-Policy "strict-origin-when-cross-origin"
   Header always set Permissions-Policy "camera=(), geolocation=(), microphone=()"
 </IfModule>
@@ -160,8 +159,8 @@
     Header set Cache-Control "public, max-age=31536000, immutable"
   </FilesMatch>
 
-  # Sitemap, robots
-  <FilesMatch "(sitemap\.xml|robots\.txt|llms\.txt)$">
+  # Sitemap, robots, llms manifests
+  <FilesMatch "(sitemap\.xml|robots\.txt|llms(-full)?\.txt)$">
     Header set Cache-Control "public, max-age=300, must-revalidate"
   </FilesMatch>
 
