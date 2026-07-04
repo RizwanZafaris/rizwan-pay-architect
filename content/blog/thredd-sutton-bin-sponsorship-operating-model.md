@@ -94,7 +94,7 @@ Every material incident needs severity definitions, notification windows, decisi
 
 The launch plan should test this contract with simulations before production. A tabletop exercise will expose more operating gaps than another happy-path API demo.
 
-If you are designing or repairing this kind of issuing model, [work with Rizwan](/consulting/) to turn partner roles into controls, metrics, reconciliation, and a launch governance plan.
+If you are designing or repairing this kind of issuing model, [work with Rizwan](/hire) to turn partner roles into controls, metrics, reconciliation, and a launch governance plan.
 
 ## Measure The Programme, Not Just The Launch
 
