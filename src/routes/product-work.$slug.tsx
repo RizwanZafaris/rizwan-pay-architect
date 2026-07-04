@@ -445,7 +445,7 @@ function CaseStudyPage() {
               data-analytics-cta-id="download_resume"
               data-analytics-cta-location="case_study_footer"
               data-analytics-cta-destination="/Rizwan_Zafar_Resume.pdf"
-              data-analytics-source="case_study"
+              data-analytics-placement="case_study"
               onClick={() => {
                 ctaClick("download_resume", "case_study_footer", "/Rizwan_Zafar_Resume.pdf");
                 resumeDownload("case_study");

@@ -347,7 +347,7 @@ function EssayFooterCTA({ post }: { post: Post }) {
               <a
                 href={`/topics/${hub.slug}/`}
                 data-analytics-event="cta_click"
-                data-analytics-source="essay_footer"
+                data-analytics-placement="essay_footer"
                 data-analytics-target="hub"
                 className="group block rounded-2xl border border-rule p-5 hover:border-ink/30 transition-colors"
               >
@@ -363,7 +363,7 @@ function EssayFooterCTA({ post }: { post: Post }) {
               <a
                 href={`/product-work/${caseStudy.slug}/`}
                 data-analytics-event="cta_click"
-                data-analytics-source="essay_footer"
+                data-analytics-placement="essay_footer"
                 data-analytics-target="case_study"
                 className="group block rounded-2xl border border-rule p-5 hover:border-ink/30 transition-colors"
               >
@@ -400,7 +400,7 @@ function EssayFooterCTA({ post }: { post: Post }) {
             <a
               href="/resume/"
               data-analytics-event="cta_click"
-              data-analytics-source="essay_footer"
+              data-analytics-placement="essay_footer"
               data-analytics-target="resume"
               className="rounded-md border border-background/40 px-4 py-2 text-sm hover:bg-background/10"
             >
@@ -409,7 +409,7 @@ function EssayFooterCTA({ post }: { post: Post }) {
             <a
               href="/for/"
               data-analytics-event="cta_click"
-              data-analytics-source="essay_footer"
+              data-analytics-placement="essay_footer"
               data-analytics-target="for"
               className="rounded-md border border-background/40 px-4 py-2 text-sm hover:bg-background/10"
             >
