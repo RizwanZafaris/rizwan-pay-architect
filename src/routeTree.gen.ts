@@ -17,6 +17,7 @@ import { Route as ProductsRouteImport } from './routes/products'
 import { Route as MediaRouteImport } from './routes/media'
 import { Route as HireRouteImport } from './routes/hire'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as ConsultingRouteImport } from './routes/consulting'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as TopicsIndexRouteImport } from './routes/topics.index'
@@ -68,6 +69,11 @@ const HireRoute = HireRouteImport.update({
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ConsultingRoute = ConsultingRouteImport.update({
+  id: '/consulting',
+  path: '/consulting',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AboutRoute = AboutRouteImport.update({
@@ -134,6 +140,7 @@ const BlogSlugRoute = BlogSlugRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/consulting': typeof ConsultingRoute
   '/contact': typeof ContactRoute
   '/hire': typeof HireRoute
   '/media': typeof MediaRoute
@@ -156,6 +163,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/consulting': typeof ConsultingRoute
   '/contact': typeof ContactRoute
   '/hire': typeof HireRoute
   '/media': typeof MediaRoute
@@ -178,6 +186,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/consulting': typeof ConsultingRoute
   '/contact': typeof ContactRoute
   '/hire': typeof HireRoute
   '/media': typeof MediaRoute
@@ -202,6 +211,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/about'
+    | '/consulting'
     | '/contact'
     | '/hire'
     | '/media'
@@ -224,6 +234,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/about'
+    | '/consulting'
     | '/contact'
     | '/hire'
     | '/media'
@@ -245,6 +256,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/about'
+    | '/consulting'
     | '/contact'
     | '/hire'
     | '/media'
@@ -268,6 +280,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  ConsultingRoute: typeof ConsultingRoute
   ContactRoute: typeof ContactRoute
   HireRoute: typeof HireRoute
   MediaRoute: typeof MediaRoute
@@ -341,6 +354,13 @@ declare module '@tanstack/react-router' {
       path: '/contact'
       fullPath: '/contact'
       preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/consulting': {
+      id: '/consulting'
+      path: '/consulting'
+      fullPath: '/consulting'
+      preLoaderRoute: typeof ConsultingRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/about': {
@@ -458,6 +478,7 @@ const TopicsRouteWithChildren =
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  ConsultingRoute: ConsultingRoute,
   ContactRoute: ContactRoute,
   HireRoute: HireRoute,
   MediaRoute: MediaRoute,
@@ -477,13 +498,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}

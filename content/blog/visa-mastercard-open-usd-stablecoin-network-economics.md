@@ -128,7 +128,7 @@ Before committing volume, payment leaders should demand the reserve policy, rede
 
 Visa and Mastercard joining Open Standard is a meaningful signal. The proof will be whether Open USD can make 140 partners behave like one dependable payment network when money, regulation, and incentives are under pressure.
 
-For teams evaluating stablecoin rails, [work with Rizwan](/hire) to turn the announcement into a corridor-level product, treasury, risk, and operating model.
+For teams evaluating stablecoin rails, [work with Rizwan](/consulting/) to turn the announcement into a corridor-level product, treasury, risk, and operating model.
 
 ## FAQ
 

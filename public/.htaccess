@@ -35,6 +35,9 @@
   RewriteRule ^case-studies/?$ /product-work/ [L,R=301]
   RewriteRule ^case-studies/(.+?)/?$ /product-work/$1/ [L,R=301]
   RewriteRule ^about/?$ /resume/ [L,R=301]
+  # Guessable consulting URLs → the canonical advisory page.
+  RewriteRule ^services/?$ /consulting/ [L,R=301]
+  RewriteRule ^advisory/?$ /consulting/ [L,R=301]
   RewriteRule ^blog/agentic-payments-need-rails-not-demos/?$ /blog/agentic-commerce-visa-mastercard-payments/ [L,R=301]
 </IfModule>
 

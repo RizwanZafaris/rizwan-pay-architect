@@ -44,6 +44,15 @@ const staticEntries: SitemapEntry[] = [
     priority: 0.9,
   },
   {
+    path: "/consulting",
+    title: "Payments & Product Advisory",
+    section: "Core",
+    description: "Independent, operator-led advisory: payment performance, market entry and AI delivery.",
+    lastmod: "2026-07-04",
+    changefreq: "monthly",
+    priority: 0.9,
+  },
+  {
     path: "/for",
     title: "For Recruiters",
     section: "Core",
