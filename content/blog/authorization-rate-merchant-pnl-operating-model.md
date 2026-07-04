@@ -106,7 +106,7 @@ The formula is deliberately less exciting than an approval-rate chart:
 
 This is the same reason [payment cost should be modelled transaction by transaction](/blog/payment-cost-50-to-1). Basis points matter, but only inside the economics of the order they helped create.
 
-If your acquiring or merchant team needs this measurement contract, [work with Rizwan](/consulting/) to connect authorization, scheme cost, fraud, settlement, and merchant reporting into one decision model.
+If your acquiring or merchant team needs this measurement contract, [work with Rizwan](/hire) to connect authorization, scheme cost, fraud, settlement, and merchant reporting into one decision model.
 
 ## Give The Metric An Owner And Guardrails
 

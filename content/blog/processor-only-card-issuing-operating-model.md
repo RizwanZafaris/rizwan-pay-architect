@@ -82,7 +82,7 @@ That creates a change-governance problem. A product manager may want to relax a 
 
 A configuration change is therefore a regulated product change. It needs policy authority, testing, monitoring, rollback, and retained evidence. [Financial controls are product requirements](/blog/financial-controls-are-product-requirements), not back-office notes added after launch.
 
-If you are deciding between managed and processor-only issuing, [work with Rizwan](/consulting/) to build the responsibility matrix, control catalogue, ledger proof, and launch gates before the vendor decision hardens.
+If you are deciding between managed and processor-only issuing, [work with Rizwan](/hire) to build the responsibility matrix, control catalogue, ledger proof, and launch gates before the vendor decision hardens.
 
 ## Use Four Gates, Not One Business Case
 

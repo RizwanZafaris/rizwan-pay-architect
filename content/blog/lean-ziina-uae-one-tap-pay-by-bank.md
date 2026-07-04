@@ -123,7 +123,7 @@ If Pay by Bank can do those three things, it becomes a serious local rail. If it
 
 The operator question: when your merchant sees Pay by Bank in the dashboard, does it look like a cheaper experiment or a rail they can confidently run at scale?
 
-For payment teams that need help turning rails into commercial product systems, start with the operating model behind the checkout: [work with Rizwan](/consulting/) or review the proof points on [product work](/product-work).
+For payment teams that need help turning rails into commercial product systems, start with the operating model behind the checkout: [work with Rizwan](/hire) or review the proof points on [product work](/product-work).
 
 ## FAQ
 

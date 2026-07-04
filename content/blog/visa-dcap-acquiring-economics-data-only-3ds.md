@@ -110,7 +110,7 @@ Fourth, reconcile the incentive. Match expected qualification to network fee rec
 
 Finally, give merchants an intelligible report: eligible volume, qualified volume, realized saving, authorization movement, and exceptions. Acquiring products earn trust when merchants can see how a scheme program changes their outcome.
 
-For teams designing this kind of acquiring control plane, [work with Rizwan](/consulting/) to connect checkout, authorization, scheme cost, and merchant reporting into one operating model.
+For teams designing this kind of acquiring control plane, [work with Rizwan](/hire) to connect checkout, authorization, scheme cost, and merchant reporting into one operating model.
 
 ## Actionable Takeaway
 

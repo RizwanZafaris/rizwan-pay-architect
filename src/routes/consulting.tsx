@@ -213,6 +213,13 @@ const cardCtaClass =
 export const Route = createFileRoute("/consulting")({
   head: () => ({
     meta: [
+      // PARKED until 2026-10-02 (owner decision 2026-07-04): the advisory
+      // surface exists for direct sharing but must not draw or redirect any
+      // traffic for 90 days — noindex + out of the sitemap (same treatment
+      // as /hire) + no internal links point here. To re-launch: remove this
+      // robots tag, restore the /consulting sitemap entry, nav/footer links
+      // and the essay-CTA repoints (see docs/strategy/ audit, Positioning).
+      { name: "robots", content: "noindex, follow" },
       { title: "Payments & Product Advisory | Rizwan Zafar" },
       {
         name: "description",

@@ -129,7 +129,7 @@ Fourth, run a holdout. Measure prevented loss, false positives, customer contact
 
 Finally, create a weekly review across product, risk, finance, operations, and support. Cross-channel abuse will survive if each team sees only its own queue.
 
-If you are rebuilding merchant fraud, refund, or dispute controls, [work with Rizwan](/consulting/) to connect policy, payment data, fulfilment, and financial outcomes into one measurable operating model.
+If you are rebuilding merchant fraud, refund, or dispute controls, [work with Rizwan](/hire) to connect policy, payment data, fulfilment, and financial outcomes into one measurable operating model.
 
 ## Actionable Takeaway
 

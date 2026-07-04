@@ -110,7 +110,7 @@ Start with categories where American Express card-member demand and SME supply p
 
 Give merchants a simple activation checklist and an explicit first-30-days scorecard. Give operations one exception queue with ownership across Network and American Express. Give leadership a funnel that separates eligibility, contracting, configuration, activation, and productive use.
 
-If you are designing an acquiring expansion or merchant migration in the Gulf, [work with Rizwan](/consulting/) to turn the partnership announcement into a measurable rollout, control model, and merchant operating proposition.
+If you are designing an acquiring expansion or merchant migration in the Gulf, [work with Rizwan](/hire) to turn the partnership announcement into a measurable rollout, control model, and merchant operating proposition.
 
 ## Actionable Takeaway
 

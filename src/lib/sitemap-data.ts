@@ -44,15 +44,6 @@ const staticEntries: SitemapEntry[] = [
     priority: 0.9,
   },
   {
-    path: "/consulting",
-    title: "Payments & Product Advisory",
-    section: "Core",
-    description: "Independent, operator-led advisory: payment performance, market entry and AI delivery.",
-    lastmod: "2026-07-04",
-    changefreq: "monthly",
-    priority: 0.9,
-  },
-  {
     path: "/for",
     title: "For Recruiters",
     section: "Core",
@@ -182,6 +173,10 @@ export const routesToPrerender = Array.from(
     // but intentionally kept OUT of `sitemapEntries` (and ships robots:noindex)
     // so it never competes with /resume in organic search.
     "/hire",
+    // Advisory page — PARKED until 2026-10-02: prerendered so direct shares
+    // work, but noindex + out of the sitemap + no internal links (owner
+    // wants zero traffic redirected to it during the 90-day window).
+    "/consulting",
     // Contact-form confirmation (Web3Forms native-POST redirect target).
     // Prerendered + noindex, out of the sitemap for the same reason.
     "/contact/thanks",
