@@ -5,8 +5,24 @@
   <link>https://rzifi.com/blog/</link>
   <description>Essays on payment infrastructure, fintech product, risk, settlement, AI and program leadership.</description>
   <language>en</language>
-  <lastBuildDate>Sat, 04 Jul 2026 01:08:03 GMT</lastBuildDate>
+  <lastBuildDate>Sat, 04 Jul 2026 01:12:34 GMT</lastBuildDate>
   <item>
+    <title>Adyen&apos;s 3% Refund Signal: Fraud Controls Need a Lifecycle</title>
+    <link>https://rzifi.com/blog/adyen-refund-concentration-fraud-lifecycle-controls/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/adyen-refund-concentration-fraud-lifecycle-controls/</guid>
+    <pubDate>Sat, 04 Jul 2026 00:00:00 GMT</pubDate>
+    <category>Fraud &amp; Risk</category>
+    <description>Adyen says 3% of identities drove half of refund value on its platform. The operator response is lifecycle controls, not more checkout friction.</description>
+  </item>
+<item>
+    <title>UK Payments Draws the Right Boundary Between Core Rails and Products</title>
+    <link>https://rzifi.com/blog/uk-retail-payments-core-product-programme-boundary/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/uk-retail-payments-core-product-programme-boundary/</guid>
+    <pubDate>Sat, 04 Jul 2026 00:00:00 GMT</pubDate>
+    <category>Program Management</category>
+    <description>The UK&apos;s new retail-payments model separates one core infrastructure from product-level rules. That boundary can make or break the programme.</description>
+  </item>
+<item>
     <title>85,000 Amex Locations: The UAE Acceptance Work Starts Now</title>
     <link>https://rzifi.com/blog/amex-network-international-uae-acceptance-operating-model/</link>
     <guid isPermaLink="true">https://rzifi.com/blog/amex-network-international-uae-acceptance-operating-model/</guid>
@@ -229,22 +245,6 @@
     <pubDate>Mon, 22 Jun 2026 00:00:00 GMT</pubDate>
     <category>Cross-Border Payments</category>
     <description>Swift&apos;s November 2026 structured-address cutoff turns ISO 20022 from a bank-format project into a capture-side product requirement.</description>
-  </item>
-<item>
-    <title>Finastra&apos;s Core Banking Sale Is a Product Focus Lesson</title>
-    <link>https://rzifi.com/blog/finastra-core-banking-sale-product-focus/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/finastra-core-banking-sale-product-focus/</guid>
-    <pubDate>Sun, 21 Jun 2026 00:00:00 GMT</pubDate>
-    <category>Product Strategy</category>
-    <description>Finastra&apos;s Universal Banking sale shows why fintech platforms need sharper product focus, cleaner ownership, and fewer strategy-adjacent bundles.</description>
-  </item>
-<item>
-    <title>Zodia&apos;s Luxembourg Licence Turns Stablecoin Custody Into Payment Infrastructure</title>
-    <link>https://rzifi.com/blog/zodia-luxembourg-stablecoin-payments-licence/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/zodia-luxembourg-stablecoin-payments-licence/</guid>
-    <pubDate>Sat, 20 Jun 2026 00:00:00 GMT</pubDate>
-    <category>Crypto &amp; Stablecoins</category>
-    <description>Zodia&apos;s Luxembourg licence shows why stablecoin custody, EMT transfer, settlement, treasury, and reconciliation are now one product surface.</description>
   </item>
 </channel>
 </rss>
