@@ -123,6 +123,54 @@ export const posts: Post[] = [
     ]
   },
   {
+    "slug": "adyen-refund-concentration-fraud-lifecycle-controls",
+    "title": "Adyen's 3% Refund Signal: Fraud Controls Need a Lifecycle",
+    "metaTitle": "Adyen's 3% Refund Signal: Lifecycle Fraud Controls",
+    "date": "2026-07-04",
+    "category": "Fraud & Risk",
+    "readingTime": "7 min read",
+    "description": "Adyen says 3% of identities drove half of refund value on its platform. The operator response is lifecycle controls, not more checkout friction.",
+    "thesis": "Refund and policy abuse can come from verified customers. Payment teams need controls across account, order, fulfilment, refund, and dispute events.",
+    "tags": [
+      "first-party fraud",
+      "refund abuse",
+      "Adyen",
+      "payment risk",
+      "false declines",
+      "disputes"
+    ],
+    "relatedArticles": [
+      "/blog/chargebacks-product-problem",
+      "/blog/layered-fraud-controls-payments-stack",
+      "/blog/authorization-rate-merchant-pnl-operating-model",
+      "/blog/compelling-evidence-3-0-visa-disputes"
+    ]
+  },
+  {
+    "slug": "uk-retail-payments-core-product-programme-boundary",
+    "title": "UK Payments Draws the Right Boundary Between Core Rails and Products",
+    "metaTitle": "UK Payments: Separate Core Rails From Product Rules",
+    "date": "2026-07-04",
+    "category": "Program Management",
+    "readingTime": "8 min read",
+    "description": "The UK's new retail-payments model separates one core infrastructure from product-level rules. That boundary can make or break the programme.",
+    "thesis": "The UK proposes one core clearing and messaging scheme with competitive product arrangements above it. Delivery depends on explicit interfaces and decision rights.",
+    "tags": [
+      "UK retail payments",
+      "programme governance",
+      "payments infrastructure",
+      "product schemes",
+      "payment migration",
+      "operating model"
+    ],
+    "relatedArticles": [
+      "/blog/gov-uk-pay-adyen-1000-service-migration",
+      "/blog/raid-steerco-pmo-stack-that-ships",
+      "/blog/vendor-governance-fintech-pmo",
+      "/blog/reconciliation-is-product-infrastructure"
+    ]
+  },
+  {
     "slug": "amex-network-international-uae-acceptance-operating-model",
     "title": "85,000 Amex Locations: The UAE Acceptance Work Starts Now",
     "metaTitle": "Amex + Network International: UAE Acceptance Model",

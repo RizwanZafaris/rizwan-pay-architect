@@ -12,6 +12,10 @@ import { marked } from "marked";
 import authorPortrait from "@/assets/rizwan-zafar-cutout-460.webp";
 
 const OG_IMAGE_OVERRIDES: Record<string, string> = {
+  "adyen-refund-concentration-fraud-lifecycle-controls":
+    "/og/blog/adyen-refund-concentration-fraud-lifecycle-controls-v20260704.png",
+  "uk-retail-payments-core-product-programme-boundary":
+    "/og/blog/uk-retail-payments-core-product-programme-boundary-v20260704.png",
   "amex-network-international-uae-acceptance-operating-model":
     "/og/blog/amex-network-international-uae-acceptance-operating-model-v20260703.png",
   "github-models-retirement-ai-platform-exit-plan":
