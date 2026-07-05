@@ -166,3 +166,26 @@ F5-TTS & XTTS-v2 weights are **non-commercial** (CC-BY-NC / CPML) despite permis
 6. Upload: YouTube Data API (googleapis; quota note: 1,600 units/upload ≈ 6/day max)
 
 Phase 2: VibeVoice two-host format · Chatterbox clone fallback · DIY long→shorts clipper (SamurAIGPT local mode as reference) · Open Notebook only if the research-workbench UX is wanted.
+
+---
+
+## Appendix B — 21st.dev design mapping (live-verified 2026-07-05)
+
+**Language verdict:** KEEP the paper-editorial system (Instrument Serif + mono-tech + ink/signal). Verified against the reference set (Sahil Bloom, Julian Shapiro, Greg Isenberg, Fintech Takes, Typewolf's 2026 portfolio canon): rzifi's formula IS the premium typographic formula (expressive serif display + mono accents), and nobody in the set owns "editorial serif + mono + data-visual on paper." The gap is composition/rhythm, not language.
+
+**Portability rule (from the catalog survey):** time-looped motion (marquees, pulses, drift) ports to CSS 1:1 · scroll-linked motion (beams, reveals, count-on-view) ports via `animation-timeline` + `@supports` fallback or one shared 5-line IntersectionObserver · pointer/physics/WebGL (cobe globes, shader heroes, orbital timelines) = skip, that's the hydration tax.
+
+**Seven upgrades (impact order):**
+1. Hero recomposition — clamp(3.5–7rem) serif statement, portrait cutout overlapping the type, mono kicker, ONE CTA.
+2. Full-bleed "chapter breaks" — invert stat band + map section to ink; contained→full-bleed→contained pacing.
+3. Oversized numerals as typography — 4–8rem serif + mono suffixes + `@property` count-up (Baseline since Jul 2024; integers only — decompose "$1B+"/"99.9%" into animated int + static suffix; sr-only real number for a11y/SEO; shared 5-line IO trigger).
+4. **Dotted world map (the signature)** — build-time `dotted-map` SVG (ink dots ~12-14% opacity), 10 market pins in signal color, quadratic-Bézier arcs from hub with `stroke-dashoffset` draw-in + CSS pulse; `view()`-triggered under `@supports`; ~15-30KB inline. (All 21st.dev/Magic-UI globes are WebGL cobe — unportable; Aceternity `world-map` is the pattern to port.)
+5. Career timeline — sticky era labels (pure CSS) + scroll progress beam (`animation-timeline: view()`, static gradient rail fallback in Firefox). Skip the orbital timeline (its value IS the interactivity).
+6. Texture + print language — 2-3% feTurbulence grain data-URI, hairline ink/10 borders, hairline-offset instead of shadows, ink-duotone treatment on imagery (`grayscale + multiply`).
+7. Micro-interaction inventory (all CSS) + grayscale rails/schemes marquee (Magic UI marquee is ALREADY pure CSS — direct port; the Fintech Takes logo-wall authority trick in mono voice).
+
+Spacing scale: 8/16/24/40/64/104/168 · measure ≤65ch (shipped).
+
+**Magic MCP wiring (IMPORTANT KEY NOTE):** the Magic MCP uses a key from 21st.dev/magic/console; the `21st_sk_…` Bearer format belongs to the SEPARATE "21st Agents SDK" REST product. Claude Code wiring:
+`claude mcp add magic --scope user -- npx -y @21st-dev/magic@latest 'API_KEY="<magic-console-key>"'`
+Workflow: use Magic MCP as the reference fetcher (`/ui <description>`), pull React source to scratch, port per the table — never ship its output directly (assumes hydration).
