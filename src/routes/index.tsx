@@ -642,7 +642,7 @@ function HomePage() {
           <div className="flex items-end justify-between flex-wrap gap-6 mb-10">
             <div>
               <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
-                ◆ Editor's picks
+                ◆ Editor's picks · rotates through the day
               </div>
               <h2 className="font-instrument text-4xl md:text-6xl text-ink mt-3 leading-[1.02]">
                 The posts I'd read <span className="italic text-[var(--brand)]">first.</span>
@@ -717,7 +717,9 @@ function HomePage() {
             >
               <style dangerouslySetInnerHTML={{ __html: picksRotationCss }} />
               {sidePicks.map((slot, i) => (
-                <div key={slot.key} className="py-5 first:pt-0">
+                // min-height pins the slot geometry so client-side alternate
+                // swaps (different title lengths) can't reflow the section.
+                <div key={slot.key} className="py-5 first:pt-0 min-h-[104px]">
                   {slot.alts.map((p, a) => (
                     <Link
                       key={`${p.slug}-${a}`}
@@ -733,7 +735,7 @@ function HomePage() {
                         <div className="text-[10px] font-mono-tech uppercase tracking-[0.18em] text-ink-soft">
                           {p.category} · {p.readingTime}
                         </div>
-                        <h4 className="font-instrument text-lg text-ink mt-1.5 leading-snug group-hover:text-[var(--brand)] transition-colors">
+                        <h4 className="font-instrument text-lg text-ink mt-1.5 leading-snug line-clamp-2 group-hover:text-[var(--brand)] transition-colors">
                           {p.title}
                         </h4>
                       </div>
