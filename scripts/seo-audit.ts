@@ -360,6 +360,12 @@ for (const file of htmlFiles) {
   const text = readFileSync(file, "utf-8")
     .replace(/<script[\s\S]*?<\/script>/gi, " ")
     .replace(/<style[\s\S]*?<\/style>/gi, " ")
+    // Block-element boundaries are clause boundaries: the proof band renders
+    // career and platform stats as ADJACENT scope-tagged cells (strategy doc
+    // §4B) — separate blocks are separate claims. Only same-sentence prose
+    // mixing should fail.
+    .replace(/<\/(?:div|p|li|h[1-6]|section|article|figcaption|blockquote|dt|dd|td|th|tr)>/gi, ".")
+    .replace(/<br[^>]*>/gi, ".")
     .replace(/<[^>]+>/g, " ")
     .replace(/&[a-z]+;/gi, " ");
   const clauses = text.split(/[.;:·|]|—|\r?\n/);
@@ -465,6 +471,7 @@ for (const study of caseStudies) {
 // ─── Report ─────────────────────────────────────────────────────────────
 const checks = [
   "banned_claim",
+  "two_tier_claim_mix",
   "og_missing",
   "old_domain",
   "dev_leak",
