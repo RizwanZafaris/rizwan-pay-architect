@@ -6,18 +6,20 @@ import { SocialIconRow } from "@/components/SocialIcons";
 
 // Brand-rebuild primary nav (strategy doc §3): a narrative scan path that
 // leads with the work and the arc, not recruiter-utility tabs. Order is
-// Work → Journey → Insights → Speaking → About, with the persistent
-// "Book a 15-min intro call" pill carrying the single CTA.
+// Work → Journey → Insights → About, with the persistent "Book a 15-min
+// intro call" pill carrying the single CTA.
 // De-emphasised surfaces (For recruiters, Resume, Contact) moved to the
 // footer so they stay reachable without diluting the senior narrative when
 // scanned in 5 seconds. /products, /media, /topics stay off the top bar too
 // and remain reachable via the footer, homepage sections and blog links.
 // Advisory (/consulting) stays out of the nav — PARKED until 2026-10-02.
+// Speaking (/speaking) stays out of the nav too — PARKED until 2027-01-06
+// (owner call 2026-07-06, same treatment as /consulting: noindex + out of
+// nav/footer/sitemap, page stays reachable by direct link for now).
 const nav = [
   { to: "/product-work", label: "Work" },
   { to: "/journey", label: "Journey" },
   { to: "/blog", label: "Insights" },
-  { to: "/speaking", label: "Speaking" },
   { to: "/about", label: "About" },
 ] as const;
 
@@ -278,11 +280,6 @@ export function SiteFooter() {
             <li>
               <Link to="/blog" className="hover:text-ink text-ink-soft inline-block py-1">
                 Insights
-              </Link>
-            </li>
-            <li>
-              <Link to="/speaking" className="hover:text-ink text-ink-soft inline-block py-1">
-                Speaking
               </Link>
             </li>
             <li>

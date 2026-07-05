@@ -111,12 +111,11 @@ export function ProofBand() {
   );
 }
 
-// ── C. MAP STRIP ──────────────────────────────────────────────────────────
-// Full-width-ish signature strip: the shared static WorldMap (10 markets +
-// arcs) with a scoped caption. Copy says "worked in", NOT "shipped in" —
-// Nigeria on the map is pending owner confirmation of shipped status, so the
-// weaker "worked in" claim is the safe framing. TODO(owner): once Nigeria's
-// shipped status is confirmed, "worked in" can be upgraded to "shipped in".
+// ── C. MAP STRIP (unused on the homepage as of 2026-07-06) ─────────────────
+// Owner call: no map on the homepage — the signature map lives on /journey
+// only. Component kept (not deleted) in case this gets revisited; not
+// imported from src/routes/index.tsx. Copy said "worked in", NOT "shipped
+// in" — Nigeria was pending owner confirmation of shipped status.
 export function MapStrip() {
   return (
     <section className="relative border-b border-rule bg-background overflow-hidden">
@@ -141,12 +140,9 @@ export function MapStrip() {
 }
 
 // ── D. INDUSTRY PILLARS ───────────────────────────────────────────────────
-// Three cards → the filtered case-study views. NOTE: /product-work currently
-// validates only `company` and `theme` search params (not `industry`), so the
-// `?industry=` filter below is a forward-looking deep link — it navigates to a
-// valid page but the filter won't pre-apply until that route learns the param.
-// TODO(owner): teach product-work.index.tsx to read ?industry= (payments |
-// ecommerce | ott) so these pillars land pre-filtered.
+// Three cards → the filtered case-study views. product-work.index.tsx reads
+// ?industry= (payments | ecommerce | ott) via its Zod searchSchema and
+// pre-applies the filter on load (verified live 2026-07-06).
 const PILLARS = [
   {
     title: "Payments & cross-border",
@@ -273,7 +269,10 @@ export function GetInTouchBand() {
       eyebrow: "Press / speaking?",
       title: "Talks, panels and commentary.",
       body: "Payments infrastructure and frontier-market fintech.",
-      links: [{ label: "Speaking →", to: "/speaking", kind: "internal" as const }],
+      // /speaking is PARKED until 2027-01-06 — route press/speaking
+      // inquiries through /contact (has a "Speaking / podcast" option)
+      // instead of linking to the noindexed page.
+      links: [{ label: "Get in touch →", to: "/contact", kind: "internal" as const }],
     },
   ];
   return (

@@ -140,7 +140,9 @@ const doorways = [
     eyebrow: "Press or speaking?",
     title: "Talks, podcasts and press.",
     body: "Frontier-market payments, regulated-fintech product and AI-assisted delivery.",
-    links: [{ label: "See speaking", to: "/speaking" as const }],
+    // /speaking is PARKED until 2027-01-06 — route through /contact (has a
+    // "Speaking / podcast" option) instead of the noindexed page.
+    links: [{ label: "Get in touch", to: "/contact" as const }],
   },
 ] as const;
 
@@ -197,6 +199,20 @@ function AboutPage() {
           had immediate, physical consequences. I have carried that definition of "done" through
           every role since.
         </p>
+        <div className="mt-6 flex flex-wrap gap-2">
+          <Link
+            to="/resume"
+            className="inline-flex items-center gap-1 rounded-full border border-ink/20 px-3.5 py-1.5 text-xs font-medium text-ink hover:border-ink/50 hover:bg-ink/5 transition-colors"
+          >
+            View resume
+          </Link>
+          <a
+            href="/Rizwan_Zafar_Resume.pdf"
+            className="inline-flex items-center gap-1 rounded-full border border-ink/20 px-3.5 py-1.5 text-xs font-medium text-ink hover:border-ink/50 hover:bg-ink/5 transition-colors"
+          >
+            Download PDF
+          </a>
+        </div>
       </header>
 
       {/* 2 — The arc */}

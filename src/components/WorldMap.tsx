@@ -20,6 +20,93 @@ function arcPath(px: number, py: number) {
   return `M ${hub.x} ${hub.y} Q ${mx} ${cy} ${px} ${py}`;
 }
 
+// ── Label collision avoidance ────────────────────────────────────────────
+// Half the ten markets (PK/UAE/KSA/Iraq/Egypt, and separately Nepal/
+// Bangladesh/Myanmar) sit in two tight geographic clusters, so a fixed
+// offset per label overlapped badly (confirmed live 2026-07-06). Instead:
+// try a ranked list of candidate positions around each pin and greedily
+// take the first one that collides with nothing placed so far (falling
+// back to the least-bad option if every candidate collides). Runs once at
+// module load against the static generated coordinates — still zero
+// client JS, this is server/build-time only.
+const LABEL_FONT_SIZE = 1.35;
+const CHAR_WIDTH = LABEL_FONT_SIZE * 0.62;
+const LABEL_HEIGHT = LABEL_FONT_SIZE * 1.3;
+const PIN_EXCLUSION = 0.9;
+
+type Anchor = "start" | "middle" | "end";
+type Box = { x1: number; y1: number; x2: number; y2: number };
+
+const CANDIDATES: { dx: number; dy: number; anchor: Anchor }[] = [
+  { dx: 1.2, dy: -0.6, anchor: "start" },
+  { dx: -1.2, dy: -0.6, anchor: "end" },
+  { dx: 0, dy: -1.7, anchor: "middle" },
+  { dx: 0, dy: 2.5, anchor: "middle" },
+  { dx: 1.3, dy: 1.7, anchor: "start" },
+  { dx: -1.3, dy: 1.7, anchor: "end" },
+  { dx: 1.9, dy: -1.7, anchor: "start" },
+  { dx: -1.9, dy: -1.7, anchor: "end" },
+  { dx: 2.7, dy: -0.6, anchor: "start" },
+  { dx: -2.7, dy: -0.6, anchor: "end" },
+  { dx: 0, dy: -3.3, anchor: "middle" },
+  { dx: 0, dy: 4.1, anchor: "middle" },
+];
+
+function labelBox(px: number, py: number, text: string, dx: number, dy: number, anchor: Anchor) {
+  const w = text.length * CHAR_WIDTH;
+  const tx = px + dx;
+  const ty = py + dy;
+  const x1 = anchor === "start" ? tx : anchor === "end" ? tx - w : tx - w / 2;
+  return {
+    x1,
+    y1: ty - LABEL_FONT_SIZE,
+    x2: x1 + w,
+    y2: ty - LABEL_FONT_SIZE + LABEL_HEIGHT,
+    tx,
+    ty,
+  };
+}
+
+function intersects(a: Box, b: Box) {
+  return a.x1 < b.x2 && a.x2 > b.x1 && a.y1 < b.y2 && a.y2 > b.y1;
+}
+
+function layoutLabels(markerPins: typeof pins) {
+  const placed: (Box & { anchor: Anchor })[] = [];
+  const pinBoxes: Box[] = markerPins.map((p) => ({
+    x1: p.x - PIN_EXCLUSION,
+    y1: p.y - PIN_EXCLUSION,
+    x2: p.x + PIN_EXCLUSION,
+    y2: p.y + PIN_EXCLUSION,
+  }));
+
+  return markerPins.map((p) => {
+    const first = CANDIDATES[0]!;
+    let choice = {
+      ...labelBox(p.x, p.y, p.name, first.dx, first.dy, first.anchor),
+      anchor: first.anchor,
+    };
+    let fewestOverlaps = Infinity;
+
+    for (const c of CANDIDATES) {
+      const box = labelBox(p.x, p.y, p.name, c.dx, c.dy, c.anchor);
+      const overlaps =
+        placed.filter((b) => intersects(box, b)).length +
+        pinBoxes.filter((b) => intersects(box, b)).length;
+      if (overlaps < fewestOverlaps) {
+        fewestOverlaps = overlaps;
+        choice = { ...box, anchor: c.anchor };
+        if (overlaps === 0) break;
+      }
+    }
+
+    placed.push(choice);
+    return { key: p.key, name: p.name, tx: choice.tx, ty: choice.ty, anchor: choice.anchor };
+  });
+}
+
+const labelLayout = layoutLabels(pins);
+
 const css = `
 .worldmap { --dot: color-mix(in oklab, var(--ink) 16%, transparent); }
 .worldmap .wm-dots { fill: var(--dot); }
@@ -76,9 +163,9 @@ export function WorldMap({
           <circle key={`pin-${p.key}`} className="wm-pin" cx={p.x} cy={p.y} r={0.5} />
         ))}
         {showLabels &&
-          pins.map((p) => (
-            <text key={`t-${p.key}`} className="wm-label" x={p.x + 1} y={p.y - 0.8}>
-              {p.name}
+          labelLayout.map((l) => (
+            <text key={`t-${l.key}`} className="wm-label" x={l.tx} y={l.ty} textAnchor={l.anchor}>
+              {l.name}
             </text>
           ))}
       </svg>

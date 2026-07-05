@@ -106,6 +106,13 @@ const bios = [
 export const Route = createFileRoute("/speaking")({
   head: () => ({
     meta: [
+      // PARKED until 2027-01-06 (owner decision 2026-07-06): this page
+      // exists for direct sharing but must not draw any organic/internal
+      // traffic for 6 months — noindex + out of the sitemap (same
+      // treatment as /consulting) + no nav/footer links. To re-launch:
+      // remove this robots tag, restore the /speaking sitemap entry
+      // (src/lib/sitemap-data.ts) and the nav/footer links (SiteChrome.tsx).
+      { name: "robots", content: "noindex, follow" },
       { title: "Speaking & Media — Frontier-Market Payments | Rizwan Zafar" },
       {
         name: "description",
