@@ -890,7 +890,7 @@ export const caseStudies: CaseStudy[] = [
     executiveSummary:
       "Stood up SWIFT MT and MX (ISO 20022) messaging inside the Simpaisa cross-border stack — message parsing, gpi UETR tracking, real-time sanctions screening, CSP attestation, and a dual-rail data model designed to absorb the ISO 20022 migration without re-platforming. Maintained 99.9%+ message-acceptance rate through the most aggressive correspondent-bank deadline window.",
     problem:
-      "Simpaisa's cross-border corridors needed reliable SWIFT messaging into and out of correspondent banks across six markets. The platform was on the wrong side of the ISO 20022 migration deadline, with MT-shaped data inside the ledger, no UETR-level tracking, sanctions screening running batch-only, and a CSP (Customer Security Programme) attestation that had been postponed two years in a row. Correspondent banks were starting to push back on every category.",
+      "Simpaisa's cross-border corridors needed reliable SWIFT messaging into and out of correspondent banks across five markets. The platform was on the wrong side of the ISO 20022 migration deadline, with MT-shaped data inside the ledger, no UETR-level tracking, sanctions screening running batch-only, and a CSP (Customer Security Programme) attestation that had been postponed two years in a row. Correspondent banks were starting to push back on every category.",
     built: [
       "Dual-rail message parser: MT (legacy) and MX (ISO 20022 pacs.008 / pacs.009 / camt.053 / camt.054) handled behind a single internal API",
       "UETR (Unique End-to-end Transaction Reference) generation and end-to-end tracking integrated with SWIFT gpi",
@@ -1472,7 +1472,7 @@ export const caseStudies: CaseStudy[] = [
     slug: "aml-cft-sanctions-engine-implementation",
     engagement: "Independent consulting engagement · regional acquirer-processor (client confidential).",
     title:
-      "AML/CFT Sanctions Engine: Real-Time Screening + 60% False-Positive Cut Across Six Markets",
+      "AML/CFT Sanctions Engine: Real-Time Screening + 60% False-Positive Cut Across Five Markets",
     tagline:
       "Stood up the AML/CFT sanctions and PEP screening engine across six MENA + South Asia markets for a regulated fintech, real-time pre-send blocking + daily batch re-screen, per-corridor list tuning, cut sanctions false-positive rate by ~60% without lowering true-positive coverage.",
     category: "Fraud & Risk",
@@ -1540,7 +1540,7 @@ export const caseStudies: CaseStudy[] = [
     executiveSummary:
       "Designed and shipped the AML/CFT sanctions and PEP screening engine for a regulated fintech operating cross-border across six MENA + South Asia markets. Replaced legacy batch-only screening with a real-time pre-send blocking layer + daily batch re-screen + monthly residual re-screen architecture. Tuned per-corridor false-positive rates, cut overall false-positive rate by ~60% while maintaining 100% true-positive coverage. Cleared two long-running regulator observations and earned a commendation in the most recent supervisory cycle. Tier-1 analyst throughput nearly tripled because the alert quality improved and routine name-collision FPs were auto-dismissed under documented controls.",
     problem:
-      "The platform was screening sanctions and PEP lists in a daily batch, every transaction was potentially exposed for up to 24 hours before being checked against the latest list updates. Two market regulators had open observations on screening cadence; one had warned that the observation would escalate at the next supervisory visit. False-positive rates ran ~38%, half the alert queue was Arabic-to-Latin transliteration collisions, common Pakistani / Indian / Bangladeshi name overlaps, and stale per-country list entries that had not been tuned for the platform's actual merchant and consumer mix. Tier-1 analysts were processing ~35 alerts per day per analyst and the queue was growing; tier-2 escalations were taking 8-12 days to close. Six markets, three sponsor banks, two scheme partners, and the legal team were all asking different questions about screening posture.",
+      "The platform was screening sanctions and PEP lists in a daily batch, every transaction was potentially exposed for up to 24 hours before being checked against the latest list updates. Two market regulators had open observations on screening cadence; one had warned that the observation would escalate at the next supervisory visit. False-positive rates ran ~38%, half the alert queue was Arabic-to-Latin transliteration collisions, common Pakistani / Indian / Bangladeshi name overlaps, and stale per-country list entries that had not been tuned for the platform's actual merchant and consumer mix. Tier-1 analysts were processing ~35 alerts per day per analyst and the queue was growing; tier-2 escalations were taking 8-12 days to close. Five markets, three sponsor banks, two scheme partners, and the legal team were all asking different questions about screening posture.",
     built: [
       "Real-time screening service: pre-send blocking call with p95 latency < 180ms; cached per-list results with appropriate TTLs (24h for sanctions, 1h for in-flight regulatory updates)",
       "Daily batch re-screen pipeline: every prior-day transaction re-screened against latest list updates; daily reconciliation against real-time results to catch list-delta hits",
@@ -1568,7 +1568,7 @@ export const caseStudies: CaseStudy[] = [
     ],
     role: "Owned the AML/CFT screening programme end-to-end, real-time service architecture, list integration, per-corridor tuning, analyst-tooling design, regulator-facing audit posture, and the change-control governance for matching-rule updates. Direct accountability for sanctions screening true-positive coverage, false-positive rate, regulator observation closure, and analyst throughput.",
     impact: [
-      "Shipped real-time pre-send sanctions blocking across six markets with p95 latency below 180ms",
+      "Shipped real-time pre-send sanctions blocking across five markets with p95 latency below 180ms",
       "Cut overall sanctions false-positive rate by ~60%, from 38% of alerts being name-collision FPs to 14%",
       "Maintained 100% true-positive coverage, every sanctions hit that should have been caught was caught",
       "Cleared two long-running regulator observations on screening cadence",

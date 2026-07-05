@@ -41,7 +41,7 @@ relatedArticles:
 
 Every operator entering MENA or South Asia gets a market deck from the local consulting partner. The deck has the same shape: GDP growth, population, smartphone penetration, "X% unbanked", a few scheme partnerships listed, a market-size estimate. It is well-presented and operationally useless. The deck does not answer the questions that matter: who is the actual regulator, what rails work in production, where do payments break, what does it take to launch.
 
-This is the deck that would actually have helped. Seven markets, UAE, KSA, Pakistan, Bangladesh, Nepal, Iraq, Egypt, covered the way an operator who has shipped product in each one would brief a new entrant. For each: the regulator stack, the dominant rails, the wallets, the cross-border position, and the launch sequence that does not collapse.
+This is the deck that would actually have helped. Seven markets, UAE, KSA, Pakistan, Bangladesh, Nepal, Iraq, Egypt, covered the way an operator running live payment corridors across the region would brief a new entrant. For each: the regulator stack, the dominant rails, the wallets, the cross-border position, and the launch sequence that does not collapse.
 
 The shape is intentionally compressed; each market deserves its own deeper essay. The operating map below is the briefing a senior payments leader gives a new hire on day one.
 

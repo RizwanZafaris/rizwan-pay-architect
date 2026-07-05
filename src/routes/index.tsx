@@ -108,32 +108,79 @@ export const Route = createFileRoute("/")({
   component: HomePage,
 });
 
+// Deterministic string hash (djb2) — seeds the Editor's Picks rotation so a
+// given date + 8-hour slot always renders the same board (reproducible
+// builds, no Math.random in SSG output).
+function pickSeed(s: string) {
+  let h = 5381;
+  for (let i = 0; i < s.length; i++) h = ((h << 5) + h + s.charCodeAt(i)) >>> 0;
+  return h;
+}
+
+// Client half of the picks rotation: sets the active 8-hour slot on the side
+// list so the CSS below reveals that slot's alternates. Runs without
+// hydration (same inline-script pattern as the rest of the site); no-JS
+// visitors keep the build-time slot.
+const picksRotationScript = `!function(){try{var s=Math.floor(new Date().getUTCHours()/8);var el=document.querySelector("[data-picks-list]");if(el)el.setAttribute("data-pick-slot",String(s))}catch(e){}}();`;
+
+const picksRotationCss = `
+[data-picks-list] [data-pick-alt]{display:none}
+[data-picks-list][data-pick-slot="0"] [data-pick-alt="0"],
+[data-picks-list][data-pick-slot="1"] [data-pick-alt="1"],
+[data-picks-list][data-pick-slot="2"] [data-pick-alt="2"]{display:grid}
+`;
+
 function HomePage() {
-  const featuredPost = posts.find((p) => p.featured) ?? posts[0];
-  // Cluster-balanced Editor's Picks. Naively .slice(0, 6) gave us the 6
-  // newest posts, but because the SWIFT cluster has 8 future-dated essays
-  // it took ALL the slots — the homepage looked like a single-topic blog.
-  // We pick the newest post from each of these 5 priority clusters so the
-  // homepage telegraphs topical breadth (cross-border, program, AI,
-  // settlement, fraud) within the recruiter's first scan.
+  // ── Dynamic Editor's Picks ─────────────────────────────────────────────
+  // The board refreshes 2-3× per day with zero frameworks, via two layers:
+  //  1. BUILD-TIME seeded rotation — the site rebuilds at least twice a day
+  //     (daily publish run + the 23:30 UTC cron), and the seed (UTC date +
+  //     8-hour slot) rotates the featured essay and each cluster's pick.
+  //  2. CLIENT slot rotation — each side-list slot server-renders its 3
+  //     rotation candidates (data-pick-alt 0/1/2); a 1-line inline script
+  //     flips the visible alternate per 8-hour UTC window between builds.
+  // Cluster balance is kept from the earlier fix (one pick per priority
+  // cluster so a hot news cluster can't take the whole board), and the
+  // cluster list deliberately spans payments AND the product/program
+  // management lanes so the board always reflects all three practices.
+  const dayStamp = new Date().toISOString().slice(0, 10);
+  const buildSlot = Math.floor(new Date().getUTCHours() / 8); // 0 | 1 | 2
+  const featuredPool = posts.filter((p) => p.featured);
+  const featuredPost = featuredPool.length
+    ? featuredPool[pickSeed(`${dayStamp}:${buildSlot}:featured`) % featuredPool.length]
+    : posts[0];
   const PICK_ORDER = [
     "Cross-Border Payments",
+    "Product Management",
     "Program Management",
     "AI in Fintech",
     "Settlement & Reconciliation",
     "Fraud & Risk",
     "Payment Infrastructure",
+    "Product Strategy",
   ] as const;
-  const editorsPicked: typeof posts = [];
+  // One slot per cluster (first five clusters with content), each carrying
+  // its 3 most-recent published essays as rotation alternates, phase-shifted
+  // by the build seed.
+  const sidePicks: { key: string; alts: typeof posts }[] = [];
   for (const cat of PICK_ORDER) {
-    const next = posts.find((p) => p.category === cat && !editorsPicked.includes(p));
-    if (next) editorsPicked.push(next);
-    if (editorsPicked.length === 6) break;
+    if (sidePicks.length === 5) break;
+    const candidates = posts
+      .filter((p) => p.category === cat && p.slug !== featuredPost.slug)
+      .slice(0, 3);
+    if (!candidates.length) continue;
+    const start = pickSeed(`${dayStamp}:${buildSlot}:${cat}`) % candidates.length;
+    sidePicks.push({
+      key: cat,
+      alts: [0, 1, 2].map((i) => candidates[(start + i) % candidates.length]),
+    });
   }
-  // Backfill from the newest list if a category had no post.
+  // Backfill from the newest list if fewer than 5 clusters had a post.
   for (const p of posts) {
-    if (editorsPicked.length >= 6) break;
-    if (!editorsPicked.includes(p)) editorsPicked.push(p);
+    if (sidePicks.length >= 5) break;
+    if (p.slug !== featuredPost.slug && !sidePicks.some((s) => s.alts[0].slug === p.slug)) {
+      sidePicks.push({ key: p.slug, alts: [p, p, p] });
+    }
   }
   const featuredCases = caseStudies.slice(0, 3);
 
@@ -663,27 +710,38 @@ function HomePage() {
               </p>
             </Link>
 
-            <div className="lg:col-span-5 flex flex-col divide-y divide-rule">
-              {editorsPicked.slice(1, 6).map((p, i) => (
-                <Link
-                  key={p.slug}
-                  to="/blog/$slug"
-                  params={{ slug: p.slug }}
-                  className="group py-5 first:pt-0 grid grid-cols-[auto_1fr] gap-4 items-start"
-                >
-                  <div className="font-instrument text-3xl text-[var(--brand)] leading-none w-10">
-                    {String(i + 1).padStart(2, "0")}
-                  </div>
-                  <div>
-                    <div className="text-[10px] font-mono-tech uppercase tracking-[0.18em] text-ink-soft">
-                      {p.category} · {p.readingTime}
-                    </div>
-                    <h4 className="font-instrument text-lg text-ink mt-1.5 leading-snug group-hover:text-[var(--brand)] transition-colors">
-                      {p.title}
-                    </h4>
-                  </div>
-                </Link>
+            <div
+              className="lg:col-span-5 flex flex-col divide-y divide-rule"
+              data-picks-list
+              data-pick-slot={buildSlot}
+            >
+              <style dangerouslySetInnerHTML={{ __html: picksRotationCss }} />
+              {sidePicks.map((slot, i) => (
+                <div key={slot.key} className="py-5 first:pt-0">
+                  {slot.alts.map((p, a) => (
+                    <Link
+                      key={`${p.slug}-${a}`}
+                      to="/blog/$slug"
+                      params={{ slug: p.slug }}
+                      data-pick-alt={a}
+                      className="group grid grid-cols-[auto_1fr] gap-4 items-start"
+                    >
+                      <div className="font-instrument text-3xl text-[var(--brand)] leading-none w-10">
+                        {String(i + 1).padStart(2, "0")}
+                      </div>
+                      <div>
+                        <div className="text-[10px] font-mono-tech uppercase tracking-[0.18em] text-ink-soft">
+                          {p.category} · {p.readingTime}
+                        </div>
+                        <h4 className="font-instrument text-lg text-ink mt-1.5 leading-snug group-hover:text-[var(--brand)] transition-colors">
+                          {p.title}
+                        </h4>
+                      </div>
+                    </Link>
+                  ))}
+                </div>
               ))}
+              <script dangerouslySetInnerHTML={{ __html: picksRotationScript }} />
             </div>
           </div>
         </div>
