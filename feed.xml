@@ -5,8 +5,24 @@
   <link>https://rzifi.com/blog/</link>
   <description>Essays on payment infrastructure, fintech product, risk, settlement, AI and program leadership.</description>
   <language>en</language>
-  <lastBuildDate>Sun, 05 Jul 2026 01:14:36 GMT</lastBuildDate>
+  <lastBuildDate>Sun, 05 Jul 2026 09:44:08 GMT</lastBuildDate>
   <item>
+    <title>Amex and Apple Pay Turn Rewards Into a Checkout Control Plane</title>
+    <link>https://rzifi.com/blog/amex-apple-pay-rewards-wallet-control-plane/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/amex-apple-pay-rewards-wallet-control-plane/</guid>
+    <pubDate>Sun, 05 Jul 2026 00:00:00 GMT</pubDate>
+    <category>Payment Infrastructure</category>
+    <description>Amex now lets eligible US card members use points through Apple Pay online. The real work is eligibility, reversals, reconciliation, and value.</description>
+  </item>
+<item>
+    <title>GitHub Copilot Session Streaming Makes Agent Governance Observable</title>
+    <link>https://rzifi.com/blog/github-copilot-agent-session-streaming-governance/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/github-copilot-agent-session-streaming-governance/</guid>
+    <pubDate>Sun, 05 Jul 2026 00:00:00 GMT</pubDate>
+    <category>AI &amp; Product Operations</category>
+    <description>GitHub now streams Copilot agent prompts, responses, and tool calls. Enterprises need a governed telemetry pipeline, not another unused log feed.</description>
+  </item>
+<item>
     <title>Adyen&apos;s 3% Refund Signal: Fraud Controls Need a Lifecycle</title>
     <link>https://rzifi.com/blog/adyen-refund-concentration-fraud-lifecycle-controls/</link>
     <guid isPermaLink="true">https://rzifi.com/blog/adyen-refund-concentration-fraud-lifecycle-controls/</guid>
@@ -229,22 +245,6 @@
     <pubDate>Tue, 23 Jun 2026 00:00:00 GMT</pubDate>
     <category>Crypto &amp; Stablecoins</category>
     <description>The Bank of England&apos;s 2026 stablecoin rules turn stablecoins into a payment operating model: backing assets, limits, redemption, and rails.</description>
-  </item>
-<item>
-    <title>SWIFT Fees, FX, and the True Cost of a Cross-Border Payment</title>
-    <link>https://rzifi.com/blog/swift-fees-fx-and-the-true-cost-of-cross-border/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/swift-fees-fx-and-the-true-cost-of-cross-border/</guid>
-    <pubDate>Tue, 23 Jun 2026 00:00:00 GMT</pubDate>
-    <category>Cross-Border Payments</category>
-    <description>Where the real cost of a cross-border SWIFT payment hides, fees, FX margin, charge bearer, and the product decisions that compress it.</description>
-  </item>
-<item>
-    <title>Swift&apos;s November 2026 Address Cutoff Is a Product Problem</title>
-    <link>https://rzifi.com/blog/swift-november-2026-address-cutoff-product-problem/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/swift-november-2026-address-cutoff-product-problem/</guid>
-    <pubDate>Mon, 22 Jun 2026 00:00:00 GMT</pubDate>
-    <category>Cross-Border Payments</category>
-    <description>Swift&apos;s November 2026 structured-address cutoff turns ISO 20022 from a bank-format project into a capture-side product requirement.</description>
   </item>
 </channel>
 </rss>
