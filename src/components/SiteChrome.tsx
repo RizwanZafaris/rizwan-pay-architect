@@ -4,20 +4,21 @@ import { profile } from "@/data/profile";
 import { ctaClick, outboundClick, resumeDownload } from "@/lib/analytics";
 import { SocialIconRow } from "@/components/SocialIcons";
 
-// Recruiter-first nav. 6 tabs ordered along the executive scan path:
-// Home → proof → case studies → fit (recruiters) → resume → contact.
-// /products, /media, /topics stayed off the top bar because they
-// dilute the senior narrative when scanned in 5 seconds. They remain
-// reachable: products from the Products section on the homepage, topics
-// from the footer and blog links, and media only by
-// direct URL until real public proof exists.
+// Brand-rebuild primary nav (strategy doc §3): a narrative scan path that
+// leads with the work and the arc, not recruiter-utility tabs. Order is
+// Work → Journey → Insights → Speaking → About, with the persistent
+// "Book a 15-min intro call" pill carrying the single CTA.
+// De-emphasised surfaces (For recruiters, Resume, Contact) moved to the
+// footer so they stay reachable without diluting the senior narrative when
+// scanned in 5 seconds. /products, /media, /topics stay off the top bar too
+// and remain reachable via the footer, homepage sections and blog links.
+// Advisory (/consulting) stays out of the nav — PARKED until 2026-10-02.
 const nav = [
-  { to: "/product-work", label: "Case Studies" },
-  { to: "/blog", label: "Blog" },
-  // { to: "/consulting", label: "Advisory" }, — PARKED until 2026-10-02
-  { to: "/for", label: "For recruiters" },
-  { to: "/resume", label: "Resume" },
-  { to: "/contact", label: "Contact" },
+  { to: "/product-work", label: "Work" },
+  { to: "/journey", label: "Journey" },
+  { to: "/blog", label: "Insights" },
+  { to: "/speaking", label: "Speaking" },
+  { to: "/about", label: "About" },
 ] as const;
 
 const currentYearScript = `(() => {
@@ -265,18 +266,33 @@ export function SiteFooter() {
           </div>
           <ul className="space-y-2">
             <li>
-              <Link to="/products" className="hover:text-ink text-ink-soft inline-block py-1">
-                Products
+              <Link to="/product-work" className="hover:text-ink text-ink-soft inline-block py-1">
+                Work
               </Link>
             </li>
             <li>
-              <Link to="/product-work" className="hover:text-ink text-ink-soft inline-block py-1">
-                Case Studies
+              <Link to="/journey" className="hover:text-ink text-ink-soft inline-block py-1">
+                Journey
               </Link>
             </li>
             <li>
               <Link to="/blog" className="hover:text-ink text-ink-soft inline-block py-1">
-                Blog
+                Insights
+              </Link>
+            </li>
+            <li>
+              <Link to="/speaking" className="hover:text-ink text-ink-soft inline-block py-1">
+                Speaking
+              </Link>
+            </li>
+            <li>
+              <Link to="/about" className="hover:text-ink text-ink-soft inline-block py-1">
+                About
+              </Link>
+            </li>
+            <li>
+              <Link to="/products" className="hover:text-ink text-ink-soft inline-block py-1">
+                Products
               </Link>
             </li>
             <li>
@@ -289,18 +305,18 @@ export function SiteFooter() {
                 Sitemap
               </Link>
             </li>
-            <li>
-              <Link to="/for" className="hover:text-ink text-ink-soft inline-block py-1">
-                For Recruiters
-              </Link>
-            </li>
           </ul>
         </div>
         <div>
           <div className="text-[10px] uppercase tracking-[0.22em] text-ink-soft font-mono-tech mb-3">
-            Contact
+            Connect
           </div>
           <ul className="space-y-2">
+            <li>
+              <Link to="/for" className="hover:text-ink text-ink-soft inline-block py-1">
+                For recruiters
+              </Link>
+            </li>
             <li>
               <Link to="/resume" className="hover:text-ink text-ink-soft inline-block py-1">
                 Resume

@@ -333,6 +333,54 @@ for (const file of claimScanFiles) {
     if (re.test(body)) fail(file, "banned_claim", `contains retired claim "${label}"`);
   }
 }
+
+// ── Two-tier claims gate (strategy doc §2, owner ruling 2026-07-05) ──────────
+// Career-scope claims ("since 2009", "17 years", "ten markets", "three
+// industries") and Simpaisa PLATFORM metrics ("$1B GTV", "270M payments",
+// "150+ merchants", "99.95% SLA") must never sit in the SAME clause. Correct
+// copy keeps them in separate sentences (career = the arc; platform = the
+// current role). We split each HTML page's visible text into clauses on
+// sentence + list delimiters (incl. the `·` proof-band separator and em-dash)
+// and fail on any clause that carries a marker from BOTH tiers.
+const CAREER_MARKERS = [
+  /\bsince 2009\b/i,
+  /\b(?:17|seventeen) years\b/i,
+  /\b(?:10|ten) markets\b/i,
+  /\b(?:3|three) industries\b/i,
+];
+const PLATFORM_METRICS = [
+  /\$1\s*B\b/i,
+  /\$1\s*billion/i,
+  /\b270\s*M\b/i,
+  /\b270\s*million/i,
+  /\b150\+\s*merchant/i,
+  /\b99\.95\s*%/,
+];
+for (const file of htmlFiles) {
+  const text = readFileSync(file, "utf-8")
+    .replace(/<script[\s\S]*?<\/script>/gi, " ")
+    .replace(/<style[\s\S]*?<\/style>/gi, " ")
+    // Block-element boundaries are clause boundaries: the proof band renders
+    // career and platform stats as ADJACENT scope-tagged cells (strategy doc
+    // §4B) — separate blocks are separate claims. Only same-sentence prose
+    // mixing should fail.
+    .replace(/<\/(?:div|p|li|h[1-6]|section|article|figcaption|blockquote|dt|dd|td|th|tr)>/gi, ".")
+    .replace(/<br[^>]*>/gi, ".")
+    .replace(/<[^>]+>/g, " ")
+    .replace(/&[a-z]+;/gi, " ");
+  const clauses = text.split(/[.;:·|]|—|\r?\n/);
+  for (const clause of clauses) {
+    const careerHit = CAREER_MARKERS.find((re) => re.test(clause));
+    const platformHit = PLATFORM_METRICS.find((re) => re.test(clause));
+    if (careerHit && platformHit) {
+      fail(
+        file,
+        "two_tier_claim_mix",
+        `career + platform scope mixed in one clause: "${clause.trim().replace(/\s+/g, " ").slice(0, 120)}"`,
+      );
+    }
+  }
+}
 const resumePdf = join(ROOT, "Rizwan_Zafar_Resume.pdf");
 if (existsSync(resumePdf)) {
   // Inflate the PDF's Flate-compressed content streams so the text is
@@ -423,6 +471,7 @@ for (const study of caseStudies) {
 // ─── Report ─────────────────────────────────────────────────────────────
 const checks = [
   "banned_claim",
+  "two_tier_claim_mix",
   "og_missing",
   "old_domain",
   "dev_leak",

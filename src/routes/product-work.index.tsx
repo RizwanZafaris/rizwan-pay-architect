@@ -9,6 +9,9 @@ import { absUrl } from "@/lib/seo";
 const searchSchema = z.object({
   company: fallback(z.string(), "").default(""),
   theme: fallback(z.string(), "").default(""),
+  // Homepage industry pillars deep-link here (?industry=payments|ecommerce|ott
+  // …). Values are fixed by INDUSTRY_RULES below — see homeSections.tsx PILLARS.
+  industry: fallback(z.string(), "").default(""),
 });
 
 export const Route = createFileRoute("/product-work/")({
@@ -122,6 +125,66 @@ const themeIdsFor = (c: CaseStudy) =>
     .map((t) => t.id)
     .join("|");
 
+// Industry lens — maps each case study to one or more of the fixed industry
+// slugs the homepage pillars deep-link to (payments | ecommerce | ott |
+// compliance | cross-border | onboarding). Same match-rule shape as
+// THEME_RULES; a study can belong to several industries (e.g. a cross-border
+// study is also payments). Order here is the chip render order.
+const INDUSTRY_RULES: { id: string; label: string; match: (c: CaseStudy) => boolean }[] = [
+  {
+    id: "payments",
+    label: "Payments",
+    match: (c) =>
+      /(payment|acquir|wallet|DCB|IBFT|settlement|reconcil|billing|BNPL|MPGS|MDES|token|3DS|click to pay)/i.test(
+        [c.category, c.title, ...c.keywords].join(" "),
+      ),
+  },
+  {
+    id: "ecommerce",
+    label: "E-commerce",
+    match: (c) =>
+      c.slug.startsWith("daraz-") ||
+      /(marketplace|e-commerce|checkout conversion|COD to digital)/i.test(
+        [c.category, c.title, ...c.keywords].join(" "),
+      ),
+  },
+  {
+    id: "ott",
+    label: "OTT & subscriptions",
+    match: (c) =>
+      c.slug.startsWith("tapmad-") ||
+      /(OTT|subscription|streaming|ARPU)/i.test([c.category, c.title, ...c.keywords].join(" ")),
+  },
+  {
+    id: "compliance",
+    label: "Compliance",
+    match: (c) =>
+      /(AML|CFT|sanctions|PEP|KYC|KYB|onboarding|PCI|ISO\s?27001|governance|CSP)/i.test(
+        [c.category, c.title, ...c.keywords].join(" "),
+      ),
+  },
+  {
+    id: "cross-border",
+    label: "Cross-border",
+    match: (c) =>
+      /(cross-border|corridor|FX|remittance|SWIFT|ISO 20022|gpi|correspondent)/i.test(
+        [c.category, c.title, ...c.keywords].join(" "),
+      ),
+  },
+  {
+    id: "onboarding",
+    label: "Onboarding",
+    match: (c) =>
+      /(onboarding|KYC|KYB|UBO|activation)/i.test([c.category, c.title, ...c.keywords].join(" ")),
+  },
+];
+
+const industries = INDUSTRY_RULES.filter((t) => caseStudies.some((c) => t.match(c)));
+const industryIdsFor = (c: CaseStudy) =>
+  INDUSTRY_RULES.filter((t) => t.match(c))
+    .map((t) => t.id)
+    .join("|");
+
 const PW_FILTER_SCRIPT = `
 (() => {
   if (window.__rzPwFilterBound) return;
@@ -133,12 +196,25 @@ const PW_FILTER_SCRIPT = `
   if (!companySel || !themeSel || results.length === 0) return;
   const countEl = document.querySelector('[data-pw-count]');
   const emptyEl = document.querySelector('[data-pw-empty]');
+  // Industry lens is a set of chip <button>s (not a <select>) so the homepage
+  // pillars land on a visible, tappable state. Current value lives in a var,
+  // seeded from ?industry= on load.
+  const industryChips = Array.from(document.querySelectorAll('[data-pw-industry]'));
 
   const params = new URLSearchParams(window.location.search);
   companySel.value = params.get('company') || '';
   themeSel.value = params.get('theme') || '';
+  let industry = params.get('industry') || '';
 
   const hasToken = (value, selected) => !selected || (value || '').split('|').includes(selected);
+
+  const syncChips = () => {
+    for (const chip of industryChips) {
+      const on = chip.getAttribute('data-pw-industry') === industry;
+      chip.setAttribute('aria-pressed', on ? 'true' : 'false');
+      chip.dataset.pwActive = on ? 'true' : 'false';
+    }
+  };
 
   const apply = () => {
     const company = companySel.value;
@@ -147,18 +223,21 @@ const PW_FILTER_SCRIPT = `
     for (const el of results) {
       const matches =
         hasToken(el.getAttribute('data-pw-companies'), company) &&
-        hasToken(el.getAttribute('data-pw-themes'), theme);
+        hasToken(el.getAttribute('data-pw-themes'), theme) &&
+        hasToken(el.getAttribute('data-pw-industries'), industry);
       el.hidden = !matches;
       if (matches) count++;
     }
     if (countEl) countEl.textContent = String(count);
     if (emptyEl) emptyEl.hidden = count !== 0;
+    syncChips();
     // Merge into the existing query (preserving utm_*/click-ids for the
     // cal.com forwarder and analytics) and keep the hash; no-op when the
     // URL is already correct so the initial apply() never rewrites history.
     const next = new URLSearchParams(window.location.search);
     if (company) next.set('company', company); else next.delete('company');
     if (theme) next.set('theme', theme); else next.delete('theme');
+    if (industry) next.set('industry', industry); else next.delete('industry');
     const qs = next.toString();
     const nextUrl = window.location.pathname + (qs ? '?' + qs : '') + window.location.hash;
     if (nextUrl !== window.location.pathname + window.location.search + window.location.hash) {
@@ -168,11 +247,21 @@ const PW_FILTER_SCRIPT = `
 
   companySel.addEventListener('change', apply);
   themeSel.addEventListener('change', apply);
+  industryChips.forEach((chip) => {
+    chip.addEventListener('click', (event) => {
+      event.preventDefault();
+      const value = chip.getAttribute('data-pw-industry') || '';
+      // Toggle: clicking the active chip clears the industry filter.
+      industry = industry === value ? '' : value;
+      apply();
+    });
+  });
   document.querySelectorAll('[data-pw-clear]').forEach((btn) => {
     btn.addEventListener('click', (event) => {
       event.preventDefault();
       companySel.value = '';
       themeSel.value = '';
+      industry = '';
       apply();
     });
   });
@@ -192,12 +281,34 @@ function ProductWorkIndex() {
         <span className="italic text-ink-soft">regulated payments infrastructure.</span>
       </h1>
       <p className="mt-5 max-w-2xl text-base leading-relaxed text-ink-soft sm:text-lg">
-        Real systems shipped at $1B+ GTV scale. Filter by the companies this work is most relevant
-        to, or by compliance theme.
+        Real systems shipped at $1B+ GTV scale. Filter by industry, by the companies this work is
+        most relevant to, or by compliance theme.
       </p>
 
+      {/* Industry lens — chip row. Matches the homepage pillar deep links
+          (?industry=payments|ecommerce|ott…). Uncontrolled: PW_FILTER_SCRIPT
+          owns the active state in production. */}
+      <div className="mt-8 sm:mt-10">
+        <div className="text-[10px] uppercase tracking-[0.22em] text-ink-soft font-mono-tech">
+          Industry
+        </div>
+        <div className="mt-3 flex flex-wrap gap-2" role="group" aria-label="Filter by industry">
+          {industries.map((ind) => (
+            <button
+              key={ind.id}
+              type="button"
+              data-pw-industry={ind.id}
+              aria-pressed="false"
+              className="rounded-full border border-rule bg-surface px-3 py-1.5 text-xs font-mono-tech uppercase tracking-[0.1em] text-ink-soft transition-colors hover:border-ink/40 hover:text-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-ink/40 data-[pw-active=true]:border-[var(--brand)] data-[pw-active=true]:bg-[var(--brand)]/10 data-[pw-active=true]:text-[var(--brand)]"
+            >
+              {ind.label}
+            </button>
+          ))}
+        </div>
+      </div>
+
       {/* Filters */}
-      <div className="mt-8 grid gap-4 rounded-2xl border border-rule bg-surface p-4 sm:mt-10 sm:grid-cols-2 sm:p-5">
+      <div className="mt-6 grid gap-4 rounded-2xl border border-rule bg-surface p-4 sm:grid-cols-2 sm:p-5">
         <FilterSelect id="pw-company" label="Relevant company" options={companies} />
         <FilterSelect
           id="pw-theme"
@@ -227,7 +338,11 @@ function ProductWorkIndex() {
           className="rounded-2xl border border-dashed border-rule p-10 text-center text-ink-soft"
         >
           No case studies match those filters.{" "}
-          <button type="button" data-pw-clear className="underline text-ink hover:text-[var(--brand)]">
+          <button
+            type="button"
+            data-pw-clear
+            className="underline text-ink hover:text-[var(--brand)]"
+          >
             Clear filters
           </button>
         </div>
@@ -239,6 +354,7 @@ function ProductWorkIndex() {
             data-pw-result
             data-pw-companies={(c.relevantFor ?? []).join("|")}
             data-pw-themes={themeIdsFor(c)}
+            data-pw-industries={industryIdsFor(c)}
             className="case-study-card group grid min-w-0 items-stretch overflow-hidden rounded-2xl border border-ink/10 bg-surface transition-all duration-200 hover:border-ink/30 lg:grid-cols-12"
           >
             {/* Abstract symbolic thumb — Higgsfield-generated, brand-coherent. */}
@@ -313,15 +429,7 @@ function cardSummary(text: string) {
   return `${text.slice(0, 207).replace(/\s+\S*$/, "")}...`;
 }
 
-function FilterSelect({
-  id,
-  label,
-  options,
-}: {
-  id: string;
-  label: string;
-  options: Option[];
-}) {
+function FilterSelect({ id, label, options }: { id: string; label: string; options: Option[] }) {
   // Uncontrolled on purpose: PW_FILTER_SCRIPT owns the value in production.
   return (
     <div className="block">

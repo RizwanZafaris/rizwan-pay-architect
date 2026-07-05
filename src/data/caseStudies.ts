@@ -50,6 +50,9 @@ const CS_IMAGE_ALIAS: Record<string, string> = {
   "aml-cft-sanctions-engine-implementation": "fraud-risk-aml-cft",
   "regional-wallet-integration-easypaisa-jazzcash-sadad": "cross-border-corridors-fx",
   "pmo-risk-council-operating-model": "simpaisa-ai-solutions-suite",
+  "daraz-checkout-conversion-false-declines": "daraz-payment-operations",
+  "daraz-multi-market-settlement-reconciliation": "daraz-payment-operations",
+  "tapmad-dcb-monetisation-wallet-migration": "tapmad-wallet-billing-migration",
 };
 const caseStudyImageSlug = (slug: string) => CS_IMAGE_ALIAS[slug] ?? slug;
 
@@ -946,7 +949,8 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "mpgs-acquirer-integration-programme",
-    engagement: "Independent consulting engagement · regional acquirer-processor (client confidential).",
+    engagement:
+      "Independent consulting engagement · regional acquirer-processor (client confidential).",
     title:
       "MPGS Acquirer Integration Programme: Hosted Session, 3DS2, Tokenisation and the Recurring Stack",
     tagline:
@@ -1078,7 +1082,8 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "mdes-network-tokenisation-rollout",
-    engagement: "Independent consulting engagement · regional acquirer-processor (client confidential).",
+    engagement:
+      "Independent consulting engagement · regional acquirer-processor (client confidential).",
     title:
       "MDES + VTS Network Tokenisation Rollout: 92% Coverage and the Auth-Rate Lift That Pays For Itself",
     tagline:
@@ -1210,7 +1215,8 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "3ds2-sca-step-up-optimisation-programme",
-    engagement: "Independent consulting engagement · regional acquirer-processor (client confidential).",
+    engagement:
+      "Independent consulting engagement · regional acquirer-processor (client confidential).",
     title: "3DS2 Step-Up Optimisation: From 38% Frictionless to 73% Without Lifting Fraud",
     tagline:
       "Rebuilt the EMV 3DS2 step-up programme for a regional acquirer-processor — per-issuer risk-based authentication, the full 3DS2 frictionless / data-only path suite, abandon-recovery flows — lifting frictionless rate from 38% to 73% over three quarters while holding portfolio fraud below the 6 bps scheme fraud-monitoring threshold.",
@@ -1470,7 +1476,8 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "aml-cft-sanctions-engine-implementation",
-    engagement: "Independent consulting engagement · regional acquirer-processor (client confidential).",
+    engagement:
+      "Independent consulting engagement · regional acquirer-processor (client confidential).",
     title:
       "AML/CFT Sanctions Engine: Real-Time Screening + 60% False-Positive Cut Across Five Markets",
     tagline:
@@ -1734,7 +1741,8 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "pmo-risk-council-operating-model",
-    engagement: "Independent consulting engagement · regional acquirer-processor (client confidential).",
+    engagement:
+      "Independent consulting engagement · regional acquirer-processor (client confidential).",
     title:
       "PMO + Risk Council Operating Model: From Audit-Reactive To Forward-Looking In Two Quarters",
     tagline:
@@ -1862,6 +1870,255 @@ export const caseStudies: CaseStudy[] = [
       "RAID risk register integration",
       "regulator commendation",
       "MENA fintech governance",
+    ],
+  },
+  {
+    slug: "daraz-checkout-conversion-false-declines",
+    title: "Daraz (Alibaba Group): +15% Checkout Conversion, −20% False Declines",
+    tagline:
+      "Rebuilt marketplace checkout and the COD-to-digital migration for Alibaba-group Daraz across five South Asian markets — lifted checkout conversion +15%, cut false declines −20%, and tuned category-aware fraud rules during a COVID volume surge.",
+    category: "Payment Operations",
+    markets: ["Pakistan", "Bangladesh", "Sri Lanka", "Nepal", "Myanmar"],
+    relevantFor: ["Stripe", "Adyen", "Wise", "DLocal", "Thunes"],
+    beforeAfter: [
+      {
+        metric: "Checkout conversion",
+        before: "Baseline (COD-dominated)",
+        after: "+15%",
+      },
+      {
+        metric: "False declines",
+        before: "Baseline",
+        after: "−20%",
+      },
+      {
+        metric: "Fraud rules",
+        before: "Uniform across categories",
+        after: "Tuned per category × geography",
+      },
+    ],
+    metrics: [
+      {
+        label: "Checkout conversion",
+        value: "+15%",
+      },
+      {
+        label: "False declines",
+        value: "−20%",
+      },
+      {
+        label: "Markets",
+        value: "5 (PK · BD · LK · NP · MM)",
+      },
+      {
+        label: "Volume surge handled",
+        value: "COVID 2020",
+      },
+    ],
+    executiveSummary:
+      "Owned the checkout and payment-acceptance surface for Alibaba-group Daraz across five South Asian markets through a COVID-driven volume surge. Treated the COD-to-digital shift as an acceptance + trust problem rather than a checkout redesign — lifted checkout conversion 15%, cut false declines 20%, and tightened fraud rules by category and geography so declines fell without opening fraud exposure.",
+    problem:
+      "Marketplace checkout was cash-on-delivery dominated, digital acceptance was leaking conversion, and false declines were rejecting good buyers because fraud rules were uniform across categories that behaved nothing alike. COVID 2020 multiplied order volume overnight, exposing every acceptance weakness at once across five markets with different rails, regulators and buyer behaviour.",
+    built: [
+      "Checkout acceptance rebuild across the five markets, prioritising local digital methods over cash on delivery",
+      "COD-to-digital migration designed as incentives + refund-speed trust signals, not a checkout copy change",
+      "Category-aware fraud rule taxonomy (electronics ≠ fashion ≠ groceries) tuned per geography and seller cohort",
+      "False-decline reduction programme: relaxed over-tight rules on good-buyer segments while holding fraud exposure",
+      "Acceptance dashboards across pay-in success, decline reasons and digital share the ops team actually used",
+    ],
+    role: "Owned multi-country payment operations and the checkout-acceptance surface. Direct accountability for conversion, decline and fraud-rule KPIs across five markets. Coordinated with Daraz country GMs and regional payment partners, and ran the PMO-style tracking that held acceptance through the surge.",
+    impact: [
+      "Lifted checkout conversion 15% by shifting acceptance toward local digital methods and reducing friction",
+      "Cut false declines 20% via category- and geography-aware fraud tuning, with no rise in fraud exposure",
+      "Shifted the marketplace off cash-on-delivery dependence through incentives and refund-speed guarantees",
+      "Held acceptance through a COVID volume surge across five markets with different rails and regulators",
+    ],
+    tradeoffs: [
+      "Relaxed over-tight fraud rules on good-buyer segments, accepted marginal review load to recover the false-decline conversion",
+      "Ran digital-method incentives at short-term promo cost to break cash-on-delivery habit, recovered via digital-share gains",
+    ],
+    lessons: [
+      "COD is product debt, not customer preference. Incentives and refund-speed guarantees shift it; checkout copy does not.",
+      "False declines are a conversion problem wearing a risk costume. Category-aware rules recover good buyers without raising fraud.",
+      "Fraud rules age fast on marketplaces. Per-category × geography segmentation beats a global threshold by a wide margin.",
+    ],
+    whyItMatters:
+      "Marketplace and platform payment orgs at Stripe Connect, Adyen for Platforms, Wise Business and regional PSPs run exactly this surface: multi-country acceptance, false-decline recovery, per-category fraud, and a COD-to-digital wedge in emerging markets. The playbook ports directly.",
+    keywords: [
+      "checkout conversion optimisation",
+      "false decline reduction",
+      "COD to digital conversion",
+      "marketplace payment acceptance",
+      "category-aware fraud rules",
+      "Alibaba payments",
+      "multi-country payment ops",
+      "South Asia fintech",
+    ],
+  },
+  {
+    slug: "daraz-multi-market-settlement-reconciliation",
+    title: "Daraz (Alibaba Group): 99.5% Settlement Across Five Markets at Alibaba Scale",
+    tagline:
+      "Ran multi-country settlement and reconciliation for Alibaba-group Daraz across five South Asian markets — 99.5% settlement accuracy, ~40% wider payment coverage via Alipay and regional-method localisation with the Hangzhou team, and shortened dispute resolution.",
+    category: "Settlement & Reconciliation",
+    markets: ["Pakistan", "Bangladesh", "Sri Lanka", "Nepal", "Myanmar"],
+    relevantFor: ["Stripe", "Adyen", "Wise", "DLocal", "Thunes"],
+    beforeAfter: [
+      {
+        metric: "Settlement accuracy",
+        before: "Per-country fragmented",
+        after: "99.5% across five markets",
+      },
+      {
+        metric: "Payment coverage",
+        before: "Baseline checkout methods",
+        after: "~40% wider (Alipay + regional)",
+      },
+      {
+        metric: "Dispute resolution",
+        before: "Multi-week",
+        after: "Shortened",
+      },
+    ],
+    metrics: [
+      {
+        label: "Settlement accuracy",
+        value: "99.5%",
+      },
+      {
+        label: "Payment coverage",
+        value: "+~40% (Alipay + regional)",
+      },
+      {
+        label: "Markets reconciled",
+        value: "5 (PK · BD · LK · NP · MM)",
+      },
+      {
+        label: "Scale",
+        value: "Alibaba-group marketplace",
+      },
+    ],
+    executiveSummary:
+      "Owned the settlement and reconciliation spine for Alibaba-group Daraz across five South Asian markets through a COVID volume surge. Closed the loop from buyer pay-in to seller payout to logistics reconciliation at Alibaba scale, held 99.5% settlement accuracy, localised Alipay and regional methods with the Hangzhou product team to widen coverage ~40%, and shortened dispute resolution.",
+    problem:
+      "Multi-country marketplace flows created reconciliation breakage that country teams were absorbing manually, settlement was fragmented per market, dispute resolution ran multi-week, and checkout coverage was too narrow for the buyer base. COVID 2020 multiplied volume overnight, exposing every reconciliation weakness simultaneously across five markets with different rails and regulators.",
+    built: [
+      "Unified settlement workflow closing buyer pay-in → seller payout → logistics reconciliation across all five markets",
+      "Multi-country reconciliation at Alibaba scale replacing per-country manual absorption, sustaining 99.5% settlement accuracy",
+      "Alipay and regional-method localisation on checkout with the Alibaba Hangzhou product team, widening coverage ~40%",
+      "Dispute resolution playbook with category-aware handling that shortened resolution cycles",
+      "Settlement dashboards across per-rail payout, refund SLA and reconciliation breaks the ops team relied on",
+    ],
+    role: "Owned multi-country settlement and reconciliation governance. Direct accountability for settlement accuracy, coverage and dispute KPIs across five markets. Coordinated with Daraz country GMs, Alibaba Hangzhou product and regional payment partners, and built the PMO-style tracking that ran settlement during peak surge.",
+    impact: [
+      "Held 99.5% settlement accuracy across five markets through a COVID volume surge",
+      "Widened checkout payment coverage ~40% via Alipay and regional-method localisation with the Hangzhou team",
+      "Replaced fragmented per-country reconciliation with a unified spine at Alibaba scale",
+      "Shortened dispute resolution cycles via category-aware handling",
+    ],
+    tradeoffs: [
+      "Centralised dispute handling occasionally slowed bespoke resolutions, net cycle time still fell",
+      "Standardised one reconciliation spine across five markets rather than per-country tooling, slower to stand up, far cheaper to run",
+    ],
+    lessons: [
+      "Sellers experience payments through settlement, not checkout. The reconciliation spine, not the buyer flow, decides marketplace trust.",
+      "If country teams are your reconciliation system, you do not have one. A unified spine is what holds accuracy through a surge.",
+      "Payment coverage is a localisation problem, not a feature list. Regional methods, added with the local product team, widen acceptance faster than card features.",
+    ],
+    whyItMatters:
+      "Settlement, treasury and platform-payment teams at Stripe Connect, Adyen for Platforms, Wise Business, DLocal and Thunes run exactly this: multi-country pay-in/payout, reconciliation accuracy, method localisation and settlement-side seller trust. This is that work, in production at marketplace scale.",
+    keywords: [
+      "settlement reconciliation",
+      "multi-country reconciliation",
+      "marketplace settlement",
+      "Alipay localisation",
+      "payment coverage expansion",
+      "Alibaba payments",
+      "dispute resolution",
+      "South Asia fintech",
+    ],
+  },
+  {
+    slug: "tapmad-dcb-monetisation-wallet-migration",
+    title: "Tapmad OTT: 0→5M Subscribers, Payment Cost 50% → ~1%",
+    tagline:
+      "Built the billing engine for Pakistan's leading OTT platform — Direct Carrier Billing across all four telcos, wallet-billing migration that pulled payment cost from 50% of revenue to ~1%, 0→5M paid subscribers, ARPU +70%, $10M+ ARR, expanded into UAE and KSA.",
+    category: "Product Strategy",
+    markets: ["Pakistan", "UAE", "KSA"],
+    relevantFor: ["Stripe", "Adyen", "Visa", "Mastercard"],
+    beforeAfter: [
+      {
+        metric: "Payment cost / revenue",
+        before: "~50%",
+        after: "~1%",
+      },
+      {
+        metric: "Paid subscribers",
+        before: "~0",
+        after: "5M+",
+      },
+      {
+        metric: "ARPU",
+        before: "Baseline",
+        after: "+70%",
+      },
+    ],
+    metrics: [
+      {
+        label: "Payment cost",
+        value: "50% → ~1%",
+      },
+      {
+        label: "Paid subscribers",
+        value: "0 → 5M+",
+      },
+      {
+        label: "ARPU",
+        value: "+70%",
+      },
+      {
+        label: "ARR",
+        value: "$10M+",
+      },
+    ],
+    executiveSummary:
+      "Owned monetisation for Pakistan's leading OTT platform and built the billing infrastructure that turned near-zero revenue into a commercially viable business. Launched Direct Carrier Billing across all four telcos, diagnosed the ~50% telco revenue share as the core constraint, and led the migration to wallet-based billing that pulled payment cost to ~1% — scaling to 5M+ paid subscribers, +70% ARPU and $10M+ ARR, then expanding DCB and wallet billing into UAE and KSA.",
+    problem:
+      "The subscription business was being eaten alive by payment cost: operator and aggregator margins consumed up to half of revenue, capping growth and ARPU. Acquisition needed a billing rail that reached users without cards, and the unit economics needed a structural fix, not a pricing tweak.",
+    built: [
+      "Direct Carrier Billing across all four major telcos, reaching subscribers without cards",
+      "Wallet-billing migration that moved subscription billing off high-cost operator rails",
+      "Retention improvements: faster refunds, wallet-native subscription management, reduced payment failures",
+      "Pricing, bundles and wallet promotions that lifted ARPU 70%",
+      "DCB and wallet-billing expansion into UAE and KSA with regional telco and wallet partners",
+    ],
+    role: "Owned payments product strategy, telco and wallet partner negotiation, and the cross-functional migration with growth, finance and engineering. Direct accountability for subscriber growth, payment cost and ARPU.",
+    impact: [
+      "Scaled 0 → 5M paid subscribers in under three years",
+      "Pulled payment cost from ~50% of revenue to ~1% via the wallet-billing migration",
+      "Grew ARPU 70% through pricing, bundles and wallet promotions",
+      "Reached $10M+ ARR and expanded DCB + wallet billing into UAE and KSA",
+    ],
+    tradeoffs: [
+      "Prioritised DCB reach for acquisition first, accepted the high operator margin early to unlock scale, then migrated to wallet billing to fix the economics",
+      "Ran the wallet migration cohort by cohort rather than a hard cutover, slower headline shift, protected retention through the change",
+    ],
+    lessons: [
+      "Payment cost is a product variable, not a procurement one. The rail mix decides whether a subscription business is viable.",
+      "DCB wins acquisition in card-light markets; wallet billing wins the unit economics. You need both, in that order.",
+      "Retention levers — faster refunds, wallet-native management, fewer failures — compound with ARPU pricing to make the model work.",
+    ],
+    whyItMatters:
+      "Every subscription, streaming and creator platform inside Visa, Mastercard, Stripe and Adyen portfolios eventually faces this: reach users without cards, then fix the rail economics before margin disappears. The playbook ports directly.",
+    keywords: [
+      "subscription billing",
+      "Direct Carrier Billing",
+      "DCB monetisation",
+      "wallet billing migration",
+      "payment cost reduction",
+      "OTT monetisation",
+      "ARPU growth",
+      "fintech product strategy",
     ],
   },
 ];

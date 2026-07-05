@@ -10,11 +10,13 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TopicsRouteImport } from './routes/topics'
+import { Route as SpeakingRouteImport } from './routes/speaking'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as SitemapRouteImport } from './routes/sitemap'
 import { Route as ResumeRouteImport } from './routes/resume'
 import { Route as ProductsRouteImport } from './routes/products'
 import { Route as MediaRouteImport } from './routes/media'
+import { Route as JourneyRouteImport } from './routes/journey'
 import { Route as HireRouteImport } from './routes/hire'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as ConsultingRouteImport } from './routes/consulting'
@@ -35,6 +37,11 @@ import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 const TopicsRoute = TopicsRouteImport.update({
   id: '/topics',
   path: '/topics',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SpeakingRoute = SpeakingRouteImport.update({
+  id: '/speaking',
+  path: '/speaking',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
@@ -60,6 +67,11 @@ const ProductsRoute = ProductsRouteImport.update({
 const MediaRoute = MediaRouteImport.update({
   id: '/media',
   path: '/media',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const JourneyRoute = JourneyRouteImport.update({
+  id: '/journey',
+  path: '/journey',
   getParentRoute: () => rootRouteImport,
 } as any)
 const HireRoute = HireRouteImport.update({
@@ -149,11 +161,13 @@ export interface FileRoutesByFullPath {
   '/consulting': typeof ConsultingRoute
   '/contact': typeof ContactRoute
   '/hire': typeof HireRoute
+  '/journey': typeof JourneyRoute
   '/media': typeof MediaRoute
   '/products': typeof ProductsRouteWithChildren
   '/resume': typeof ResumeRoute
   '/sitemap': typeof SitemapRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/speaking': typeof SpeakingRoute
   '/topics': typeof TopicsRouteWithChildren
   '/blog/$slug': typeof BlogSlugRoute
   '/contact/thanks': typeof ContactThanksRoute
@@ -173,11 +187,13 @@ export interface FileRoutesByTo {
   '/consulting': typeof ConsultingRoute
   '/contact': typeof ContactRoute
   '/hire': typeof HireRoute
+  '/journey': typeof JourneyRoute
   '/media': typeof MediaRoute
   '/products': typeof ProductsRouteWithChildren
   '/resume': typeof ResumeRoute
   '/sitemap': typeof SitemapRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/speaking': typeof SpeakingRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/contact/thanks': typeof ContactThanksRoute
   '/for/$audience': typeof ForAudienceRoute
@@ -197,11 +213,13 @@ export interface FileRoutesById {
   '/consulting': typeof ConsultingRoute
   '/contact': typeof ContactRoute
   '/hire': typeof HireRoute
+  '/journey': typeof JourneyRoute
   '/media': typeof MediaRoute
   '/products': typeof ProductsRouteWithChildren
   '/resume': typeof ResumeRoute
   '/sitemap': typeof SitemapRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/speaking': typeof SpeakingRoute
   '/topics': typeof TopicsRouteWithChildren
   '/blog/$slug': typeof BlogSlugRoute
   '/contact_/thanks': typeof ContactThanksRoute
@@ -223,11 +241,13 @@ export interface FileRouteTypes {
     | '/consulting'
     | '/contact'
     | '/hire'
+    | '/journey'
     | '/media'
     | '/products'
     | '/resume'
     | '/sitemap'
     | '/sitemap.xml'
+    | '/speaking'
     | '/topics'
     | '/blog/$slug'
     | '/contact/thanks'
@@ -247,11 +267,13 @@ export interface FileRouteTypes {
     | '/consulting'
     | '/contact'
     | '/hire'
+    | '/journey'
     | '/media'
     | '/products'
     | '/resume'
     | '/sitemap'
     | '/sitemap.xml'
+    | '/speaking'
     | '/blog/$slug'
     | '/contact/thanks'
     | '/for/$audience'
@@ -270,11 +292,13 @@ export interface FileRouteTypes {
     | '/consulting'
     | '/contact'
     | '/hire'
+    | '/journey'
     | '/media'
     | '/products'
     | '/resume'
     | '/sitemap'
     | '/sitemap.xml'
+    | '/speaking'
     | '/topics'
     | '/blog/$slug'
     | '/contact_/thanks'
@@ -295,11 +319,13 @@ export interface RootRouteChildren {
   ConsultingRoute: typeof ConsultingRoute
   ContactRoute: typeof ContactRoute
   HireRoute: typeof HireRoute
+  JourneyRoute: typeof JourneyRoute
   MediaRoute: typeof MediaRoute
   ProductsRoute: typeof ProductsRouteWithChildren
   ResumeRoute: typeof ResumeRoute
   SitemapRoute: typeof SitemapRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  SpeakingRoute: typeof SpeakingRoute
   TopicsRoute: typeof TopicsRouteWithChildren
   BlogSlugRoute: typeof BlogSlugRoute
   ContactThanksRoute: typeof ContactThanksRoute
@@ -318,6 +344,13 @@ declare module '@tanstack/react-router' {
       path: '/topics'
       fullPath: '/topics'
       preLoaderRoute: typeof TopicsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/speaking': {
+      id: '/speaking'
+      path: '/speaking'
+      fullPath: '/speaking'
+      preLoaderRoute: typeof SpeakingRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/sitemap.xml': {
@@ -353,6 +386,13 @@ declare module '@tanstack/react-router' {
       path: '/media'
       fullPath: '/media'
       preLoaderRoute: typeof MediaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/journey': {
+      id: '/journey'
+      path: '/journey'
+      fullPath: '/journey'
+      preLoaderRoute: typeof JourneyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/hire': {
@@ -501,11 +541,13 @@ const rootRouteChildren: RootRouteChildren = {
   ConsultingRoute: ConsultingRoute,
   ContactRoute: ContactRoute,
   HireRoute: HireRoute,
+  JourneyRoute: JourneyRoute,
   MediaRoute: MediaRoute,
   ProductsRoute: ProductsRouteWithChildren,
   ResumeRoute: ResumeRoute,
   SitemapRoute: SitemapRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
+  SpeakingRoute: SpeakingRoute,
   TopicsRoute: TopicsRouteWithChildren,
   BlogSlugRoute: BlogSlugRoute,
   ContactThanksRoute: ContactThanksRoute,
@@ -519,13 +561,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}

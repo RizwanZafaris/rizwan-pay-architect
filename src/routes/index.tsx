@@ -7,9 +7,18 @@ import { caseStudies, caseStudyThumb } from "@/data/caseStudies";
 import { publishedPosts as posts, categories } from "@/data/posts";
 import { products } from "@/data/products";
 import { absUrl, SITE_URL } from "@/lib/seo";
-import { ctaClick, resumeDownload, siteSearch } from "@/lib/analytics";
+import { ctaClick, siteSearch } from "@/lib/analytics";
 import { AnimatedMetric } from "@/components/motion/AnimatedMetric";
 import { Reveal } from "@/components/motion/Reveal";
+import {
+  homeSectionsCss,
+  ProofBand,
+  MapStrip,
+  IndustryPillars,
+  CredentialsStrip,
+  GetInTouchBand,
+} from "@/components/home/homeSections";
+import { NewsletterSignup } from "@/components/NewsletterSignup";
 import portraitPng from "@/assets/rizwan-zafar-cutout.png";
 import portraitWebp from "@/assets/rizwan-zafar-cutout.webp";
 import portraitWebpSmall from "@/assets/rizwan-zafar-cutout-460.webp";
@@ -63,31 +72,31 @@ const heroScrambleScript = `
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Rizwan Zafar | Product & Program Executive, Fintech" },
+      { title: "Rizwan Zafar | Payments & Product Executive, Frontier Markets" },
       {
         name: "description",
         content:
-          "Product & Program Executive scaling fintech infrastructure in complex markets: $1B+ GTV, 270M+ payments a year, 5 frontier markets. Dubai.",
+          "Product & program executive operating since 2009 across ten markets. Today I run payments moving $1B+ a year for 150+ global merchants.",
       },
       {
         property: "og:title",
-        content: "Rizwan Zafar — Product & Program Executive Scaling Fintech Infrastructure",
+        content: "Rizwan Zafar — Payments & Product Infrastructure for Frontier Markets",
       },
       {
         property: "og:description",
         content:
-          "Payment infrastructure for complex markets. $1B+ GTV. 270M+ payments a year. 5 frontier markets. Used by TikTok, Samsung, Shein.",
+          "I build payment and product infrastructure for the markets most operators avoid. Simpaisa platform: $1B+ a year, 150+ global merchants including TikTok, Samsung, Shein and Uber.",
       },
       { property: "og:url", content: absUrl("/") },
       { property: "og:type", content: "profile" },
       {
         name: "twitter:title",
-        content: "Rizwan Zafar — Product & Program Executive, Fintech Infrastructure",
+        content: "Rizwan Zafar — Payments & Product Infrastructure for Frontier Markets",
       },
       {
         name: "twitter:description",
         content:
-          "Payment infrastructure for complex markets. $1B+ GTV. 270M+ payments a year. 5 frontier markets.",
+          "Payment infrastructure for the markets most operators avoid. Simpaisa platform: $1B+ a year, 270M+ payments a year, 150+ merchants.",
       },
     ],
     links: [
@@ -208,6 +217,9 @@ function HomePage() {
 
   return (
     <div className="home-page">
+      {/* Route-scoped CSS for the brand-rebuild sections (proof band, pillars,
+          map strip). Inlined per the site's JS-less/no-styles.css-edit rule. */}
+      <style dangerouslySetInnerHTML={{ __html: homeSectionsCss }} />
       {/* ============ HERO ============ */}
       <section className="home-signal-field relative overflow-hidden border-b border-rule">
         <div className="relative mx-auto max-w-7xl px-5 sm:px-6 pt-7 md:pt-9 pb-8 md:pb-12 grid lg:grid-cols-12 gap-6 lg:gap-10 items-center">
@@ -216,64 +228,89 @@ function HomePage() {
             <div className="inline-flex items-center gap-4 mb-3 md:mb-4">
               <span className="home-rule-animate h-px w-10 bg-[var(--brand)]" />
               <span className="text-[10px] uppercase tracking-[0.32em] text-[var(--brand)] font-mono-tech font-semibold">
-                ◆ Introduction · I'm Rizwan
+                ◆ Payments · Product · Frontier Markets
               </span>
             </div>
 
-            <h1 className="font-instrument tracking-tight leading-[1.05] text-[28px] sm:text-[36px] md:text-[42px] lg:text-[50px] text-ink">
+            <h1 className="font-instrument tracking-tight leading-[1.06] text-[28px] sm:text-[34px] md:text-[40px] lg:text-[46px] text-ink">
               {/* sr-only spaces keep the H1 extracting as readable text for
                   screen readers and AI crawlers — block spans alone concatenate
-                  into "ExecutiveScaling…" (same fix as the resume H1). */}
+                  words (same fix as the resume H1). */}
               <span className="block">
-                Product &amp; Program Executive<span className="sr-only"> </span>
+                I build payment and product infrastructure<span className="sr-only"> </span>
               </span>
               <span className="block">
-                Scaling <span className="italic text-[var(--brand)]">Fintech Infrastructure</span>
-                <span className="sr-only"> </span>
-              </span>
-              <span className="block">
-                in{" "}
-                <span className="text-scramble" data-text-scramble="Complex Markets" tabIndex={0}>
-                  Complex Markets
+                for the markets most operators{" "}
+                <span
+                  className="text-scramble italic text-[var(--brand)]"
+                  data-text-scramble="avoid."
+                  tabIndex={0}
+                >
+                  avoid.
                 </span>
               </span>
             </h1>
 
+            {/* Two-tier safe: sentence 1 carries only career-scope markers
+                ("since 2009", "ten markets"); sentence 2 carries only platform
+                metrics ("$1B+", "150+ merchants"). The full stop between them is
+                a clause boundary for the seo-audit gate — do not merge. */}
             <p className="mt-3.5 md:mt-4 max-w-xl text-[15px] md:text-base text-ink-soft leading-relaxed">
-              I build payment rails where market complexity and scale collide. As CPO at Simpaisa in
-              Dubai, I helped scale infrastructure across{" "}
-              <span className="text-ink font-medium">5 frontier markets</span>,{" "}
-              <span className="text-ink font-medium">$1B+ GTV</span>,{" "}
-              <span className="text-ink font-medium">270M+ payments a year</span> and{" "}
-              <span className="text-ink font-medium">named global PSPs</span> as partners.
+              Product &amp; program executive, operating{" "}
+              <span className="text-ink font-medium">since 2009</span> — ten markets across MENA and
+              South Asia, from Daraz&rsquo;s marketplaces to Tapmad&rsquo;s streaming business to
+              Simpaisa&rsquo;s cross-border gateway. Today I run payments moving{" "}
+              <span className="text-ink font-medium">$1B+ a year</span> for{" "}
+              <span className="text-ink font-medium">150+ global merchants</span> including TikTok,
+              Samsung, Shein and Uber.
             </p>
 
-            {/* Proof row — compact tiles. Mobile: 2×2, desktop: 1×4. */}
-            <div className="mt-4 md:mt-5 grid grid-cols-2 sm:grid-cols-4 gap-2.5 max-w-xl">
-              {(
-                [
-                  { value: "$1B+", label: "GTV" },
-                  { value: "270M+", label: "Annual tx" },
-                  { value: "5", label: "Markets" },
-                  { value: "97%", label: "Payment success" },
-                ] as const
-              ).map((m) => (
-                <div
-                  key={m.label}
-                  className="home-card rounded-lg border border-rule bg-card px-2.5 py-2"
-                >
-                  <div className="font-mono-tech text-xl text-ink leading-none">
-                    <AnimatedMetric value={m.value} />
-                  </div>
-                  <div className="text-[10px] uppercase tracking-[0.22em] text-ink-soft mt-1 font-mono-tech leading-tight">
-                    {m.label}
-                  </div>
-                </div>
-              ))}
+            {/* CTAs — visible in first viewport. Primary uses text-background
+                on bg-ink so contrast is unambiguous. Tertiary pill reuses the
+                exact data-analytics-* attributes of the site's booking CTA. */}
+            <div className="mt-5 md:mt-6 flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-2.5">
+              <Link
+                to="/product-work"
+                data-analytics-event="cta_click"
+                data-analytics-cta-id="see_case_studies"
+                data-analytics-cta-location="hero"
+                data-analytics-cta-destination="/product-work"
+                onClick={() => ctaClick("see_case_studies", "hero", "/product-work")}
+                className="group inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-base text-background bg-ink hover:bg-[var(--brand)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background transition-colors"
+              >
+                See the work
+                <span className="transition-transform group-hover:translate-x-1" aria-hidden>
+                  →
+                </span>
+              </Link>
+              {/* Journey CTA: no typed ctaClick() call because the analytics
+                  CtaId union has no journey id and that lib is out of scope to
+                  extend. The DOM bridge in __root.tsx fires cta_click from the
+                  data-analytics-* attributes below, so tracking still works. */}
+              <Link
+                to="/journey"
+                data-analytics-event="cta_click"
+                data-analytics-cta-id="the_journey"
+                data-analytics-cta-location="hero"
+                data-analytics-cta-destination="/journey"
+                className="inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-base text-ink border border-ink/20 hover:border-ink/50 hover:bg-ink/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background transition-colors"
+              >
+                The 17-year journey
+              </Link>
+              <a
+                href="/contact/#book"
+                data-analytics-event="cta_click"
+                data-analytics-cta-id="book_intro_call"
+                data-analytics-cta-location="hero"
+                data-analytics-cta-destination="/contact/#book"
+                className="inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium text-[var(--brand-foreground)] bg-[var(--brand)] hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background transition"
+              >
+                Book a 15-min call <span aria-hidden>→</span>
+              </a>
             </div>
 
             {/* Certification trust line — small mono-caps. */}
-            <p className="mt-3 flex flex-wrap items-center gap-x-1.5 gap-y-1 text-[10px] uppercase tracking-[0.16em] text-ink-soft font-mono-tech leading-relaxed">
+            <p className="mt-4 flex flex-wrap items-center gap-x-1.5 gap-y-1 text-[10px] uppercase tracking-[0.16em] text-ink-soft font-mono-tech leading-relaxed">
               <span className="opacity-70">Certified:</span> <span className="text-ink">PMP</span>
               <span className="opacity-40">·</span>
               <span className="text-ink">PMI-ACP</span>
@@ -285,71 +322,6 @@ function HomePage() {
               <span className="text-ink">COBIT 5</span>
               <span className="opacity-40">·</span>
               <span className="text-ink">ITIL</span>
-            </p>
-
-            {/* CTAs — visible in first viewport. Primary uses text-background
-                (cream/white) on bg-ink so contrast is unambiguous. The earlier
-                text-[var(--brand-foreground)] resolved to the SAME dark colour
-                as bg-ink in light mode, making the label invisible. */}
-            <div className="mt-4 md:mt-5 flex flex-col sm:flex-row sm:items-center gap-2.5">
-              <Link
-                to="/product-work"
-                data-analytics-event="cta_click"
-                data-analytics-cta-id="see_case_studies"
-                data-analytics-cta-location="hero"
-                data-analytics-cta-destination="/product-work"
-                onClick={() => ctaClick("see_case_studies", "hero", "/product-work")}
-                className="group inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-base text-background bg-ink hover:bg-[var(--brand)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background transition-colors"
-              >
-                See case studies
-                <span className="transition-transform group-hover:translate-x-1" aria-hidden>
-                  →
-                </span>
-              </Link>
-              <a
-                href={profile.resumeHref}
-                download
-                data-analytics-event="cta_click"
-                data-analytics-cta-id="download_resume"
-                data-analytics-cta-location="hero"
-                data-analytics-cta-destination={profile.resumeHref}
-                data-analytics-placement="hero"
-                onClick={() => {
-                  ctaClick("download_resume", "hero", profile.resumeHref);
-                  resumeDownload("hero");
-                }}
-                className="inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-base text-ink border border-ink/20 hover:border-ink/50 hover:bg-ink/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background transition-colors"
-              >
-                Download resume
-              </a>
-              <a
-                href={`mailto:${profile.email}`}
-                data-analytics-event="cta_click"
-                data-analytics-cta-id="email_me"
-                data-analytics-cta-location="hero"
-                data-analytics-cta-destination={`mailto:${profile.email}`}
-                onClick={() => ctaClick("email_me", "hero", `mailto:${profile.email}`)}
-                className="inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-base text-ink border border-ink/20 hover:border-ink/50 hover:bg-ink/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background transition-colors"
-              >
-                Email me
-              </a>
-            </div>
-
-            {/* Used-by — small trust strip directly under the CTAs.
-                Wording is intentionally precise: the platforms below are
-                enterprise customers of the Simpaisa infrastructure I helped
-                scale, not direct projects I owned end-to-end. */}
-            <p className="mt-3 text-[10px] text-ink-soft font-mono-tech uppercase tracking-[0.18em] leading-relaxed">
-              <span className="opacity-70">Infrastructure used by enterprise platforms incl.</span>{" "}
-              <span className="text-ink">TikTok</span>
-              <span className="opacity-40 mx-1">·</span>
-              <span className="text-ink">Uber</span>
-              <span className="opacity-40 mx-1">·</span>
-              <span className="text-ink">Samsung</span>
-              <span className="opacity-40 mx-1">·</span>
-              <span className="text-ink">MoneyGram</span>
-              <span className="opacity-40 mx-1">·</span>
-              <span className="text-ink">Shein</span>
             </p>
 
             <form
@@ -557,6 +529,15 @@ function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* ============ B. PROOF BAND ============ */}
+      <ProofBand />
+
+      {/* ============ C. MAP STRIP ============ */}
+      <MapStrip />
+
+      {/* ============ D. INDUSTRY PILLARS ============ */}
+      <IndustryPillars />
 
       {/* ============ PRODUCTS, built & building ============ */}
       <section className="relative">
@@ -767,11 +748,15 @@ function HomePage() {
               <div className="text-[10px] font-mono-tech uppercase tracking-[0.22em] opacity-80">
                 ◆ About me
               </div>
+              {/* Career-scope only, each on its own line (two-tier clean). The
+                  platform "$1B+" appears below in the band prose in its own
+                  sentence, never joined to a career marker in one clause. */}
               <div className="font-instrument text-3xl mt-3 leading-tight">
-                14+ years.
+                Since {profile.career.startYear}.
                 <br />
-                $1B+ GTV.
-                <br />5 frontier markets.
+                {profile.career.marketCount} markets.
+                <br />
+                {profile.career.industryCount} industries.
               </div>
               <Link to="/resume" className="mt-6 inline-flex items-center gap-1.5 text-sm group">
                 View resume{" "}
@@ -785,7 +770,8 @@ function HomePage() {
               That operating discipline now shapes how I build financial infrastructure:{" "}
               <span className="italic text-[var(--brand)]">
                 controlled, scalable, auditable, and resilient.
-              </span>
+              </span>{" "}
+              At Simpaisa today that platform moves $1B+ a year.
             </p>
             <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4">
               {profile.metrics.slice(0, 4).map((m, i) => (
@@ -885,9 +871,25 @@ function HomePage() {
         </div>
       </section>
 
-      {/* ============ MARQUEE, ecosystem ============ */}
+      {/* ============ G. CREDENTIALS STRIP ============ */}
+      <CredentialsStrip />
+
+      {/* ============ J. LOGO MARQUEE, ecosystem ============ */}
+      {/* Borrowed-authority heading: these are merchants served by the
+          platforms Rizwan has led, not personal clients — the wording keeps
+          that distinction honest. */}
+      <div className="border-t border-rule bg-surface">
+        <div className="mx-auto max-w-6xl px-5 sm:px-6 pt-8 pb-1">
+          <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
+            ◆ Ecosystem
+          </div>
+          <h2 className="font-instrument text-2xl md:text-3xl text-ink mt-2 leading-tight">
+            Merchants served by platforms I&rsquo;ve led.
+          </h2>
+        </div>
+      </div>
       <section
-        className="marquee-wrap border-y border-rule bg-surface overflow-hidden py-6 md:py-7 w-full max-w-full outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-inset"
+        className="marquee-wrap border-b border-rule bg-surface overflow-hidden py-6 md:py-7 w-full max-w-full outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-inset"
         aria-label="Partner ecosystem, scrolling. Hover or focus to pause."
         tabIndex={0}
       >
@@ -907,45 +909,15 @@ function HomePage() {
         </div>
       </section>
 
-      {/* ============ SUBSCRIBE / CTA ============ */}
-      <section>
-        <div className="mx-auto max-w-4xl px-6 py-24 text-center">
-          <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
-            ◆ Get in touch
-          </div>
-          <h2 className="font-instrument text-4xl md:text-6xl text-ink mt-3 leading-[1.05]">
-            Hire me or just <span className="italic text-[var(--brand)]">say hello.</span>
-          </h2>
-          <p className="text-ink-soft mt-5 max-w-xl mx-auto">
-            Open to senior Product &amp; Program roles in fintech and payment infrastructure, Visa,
-            Mastercard, Stripe, Wise, Adyen, Thunes, DLocal, Checkout.com, Rapyd and regional
-            fintechs. Replies within 24 hours, Sun–Thu (GST).
-          </p>
-          <div className="mt-8">
-            <a
-              href="/contact/#book"
-              data-analytics-event="cta_click"
-              data-analytics-cta-id="book_intro_call"
-              data-analytics-cta-location="home_body"
-              data-analytics-cta-destination="/contact/#book"
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-ink text-background px-7 py-3.5 text-base font-medium shadow-sm transition duration-200 hover:bg-brand hover:text-[var(--brand-foreground)] hover:-translate-y-0.5 hover:shadow-md"
-            >
-              Book a 15-min intro call <span aria-hidden>→</span>
-            </a>
-          </div>
-          <div className="home-search-panel mt-5 mx-auto max-w-md rounded-lg sm:rounded-full border border-rule bg-card p-2 sm:p-1.5 sm:pl-5 flex flex-col sm:flex-row sm:items-center gap-3">
-            <span className="text-sm text-ink-soft font-mono-tech truncate min-w-0 px-2 sm:px-0">
-              {profile.email}
-            </span>
-            <a
-              href={`mailto:${profile.email}`}
-              className="sm:ml-auto inline-flex items-center justify-center gap-1.5 rounded-full px-5 py-2.5 text-sm font-medium text-[var(--brand-foreground)] bg-[var(--brand)] hover:opacity-90 transition whitespace-nowrap"
-            >
-              Reach me <span aria-hidden>→</span>
-            </a>
-          </div>
-        </div>
-      </section>
+      {/* ============ I. GET-IN-TOUCH BAND (audience router) ============ */}
+      <GetInTouchBand />
+
+      {/* Owned-audience surface — the newsletter the "Building?" card points to.
+          Kept as the shared NewsletterSignup so the Web3Forms wiring and the
+          newsletter_signup analytics event stay consistent site-wide. */}
+      <div className="mx-auto max-w-3xl px-5 sm:px-6 pb-24">
+        <NewsletterSignup placement="home_get_in_touch" fromPage="/" />
+      </div>
     </div>
   );
 }

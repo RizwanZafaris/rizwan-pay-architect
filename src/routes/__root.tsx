@@ -71,6 +71,7 @@ import appCss from "../styles.css?url";
 import { SiteHeader, SiteFooter, CampaignHeader, CampaignFooter } from "@/components/SiteChrome";
 import { calendarCampaignParamsScript } from "@/lib/campaign";
 import { personSchemaAwards, personSchemaCredentials, profile } from "@/data/profile";
+import { markets } from "@/data/markets";
 import {
   absUrl,
   SITE_URL,
@@ -277,7 +278,28 @@ const personJsonLd = {
     name: c,
   })),
   award: personSchemaAwards,
-  knowsAbout: profile.entityKnowsAbout,
+  // Operating markets as Place nodes (career-scope). Sourced from
+  // @/data/markets; markets awaiting owner confirmation (needsOwnerConfirm,
+  // e.g. Nigeria) are excluded so every node stays fully verified.
+  workLocation: markets
+    .filter((m) => !m.needsOwnerConfirm)
+    .map((m) => ({ "@type": "Place", name: m.name })),
+  // entityKnowsAbout (profile.ts) is Simpaisa/payments-scoped; append the
+  // wider career-arc domains inline here (do not edit profile.ts) so the
+  // Person entity reflects the full 17-year e-commerce/OTT/DCB/transformation
+  // scope, not just the current payments role.
+  knowsAbout: [
+    ...profile.entityKnowsAbout,
+    "E-commerce marketplaces",
+    "OTT subscription monetisation",
+    "Direct Carrier Billing",
+    "Digital transformation programmes",
+  ],
+  // Past employers (Daraz, Tapmad) intentionally omitted from structured data
+  // here: schema.org Person has no clean "former employer" property, so
+  // worksFor stays scoped to the current role (Simpaisa) to avoid implying
+  // they are current. The career history is represented on /journey as an
+  // ItemList (owned by the /journey route), which is the valid home for it.
 };
 
 const websiteJsonLd = {
