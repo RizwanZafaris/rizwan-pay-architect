@@ -137,6 +137,29 @@ export const profile = {
   positioning:
     "I build regulated payment infrastructure where product, program delivery, network partnerships, risk, compliance and operations collide. My work turns fragmented local rails into reliable products: card acquiring, merchant onboarding, cross-border corridors, settlement and reconciliation, fraud and AML/CFT controls, and now AI-augmented operations. I run the full lifecycle, strategy → roadmap → PMO governance → execution → P&L, across regulated markets.",
   bio: "Product & Program leader with 14+ years across payments, fintech and digital transformation. Currently CPO at Simpaisa, a B2B payments platform I helped scale from $0 to $1B+ GTV across five frontier markets in MENA and South Asia, working with leading global PSPs (DLocal, Thunes, Boku, Coda Payments, Tazapay) and enterprise clients including TikTok, Samsung, Shein, Uber and MoneyGram. Built and led the organisation from 2 to 50+ people (40+ engineers) across 12 cross-functional squads. Deployed 4 production GenAI solutions covering merchant integration support (−65% support time), incident auto-escalation (−70% MTTR), partner support automation (90% resolution) and a fraud/AML AI pilot with a banking partner. Earlier: $3M digital transformation programme at TapmadTV, payments operations at Daraz (Alibaba Group), PMO setups at Wing Logic and DS Engineering. Engineer's discipline, programme manager's tempo, regulator's vocabulary. PMP, PMI-ACP, CSPO, CSM, COBIT 5, ITIL v3. PCI DSS and ISO/IEC 27001 led from scratch.",
+  // Career-scope canonical (strategy doc §2, owner-default adopted 2026-07-05).
+  // These describe the 17-year ARC and must never be mixed in one clause with
+  // the Simpaisa PLATFORM metrics below (which stay scoped to the current
+  // role). New brand surfaces (hero, /journey, /about, proof band) read from
+  // here; the two-tier claims gate in scripts/seo-audit.ts enforces separation.
+  career: {
+    startYear: 2009,
+    sinceLabel: "Operating since 2009",
+    yearsLabel: "Since 2009",
+    marketCount: 10,
+    industryCount: 3,
+    industries: ["E-commerce & marketplaces", "OTT & subscriptions", "Payments & fintech"],
+    brands: ["Daraz", "Tapmad", "Simpaisa"],
+  },
+  // Platform-scope canonical — Simpaisa, current role. Never merge with career.
+  platform: {
+    company: "Simpaisa",
+    marketCount: 5,
+    gtv: "$1B+",
+    annualPayments: "270M+",
+    merchants: "150+",
+    settlementSla: "99.95%",
+  },
   metrics: [
     { label: "GTV scaled", value: "$0 → $1B+" },
     { label: "Annual transactions", value: "270M+" },

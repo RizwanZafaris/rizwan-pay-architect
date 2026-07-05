@@ -34,7 +34,8 @@
 
   RewriteRule ^case-studies/?$ /product-work/ [L,R=301]
   RewriteRule ^case-studies/(.+?)/?$ /product-work/$1/ [L,R=301]
-  RewriteRule ^about/?$ /resume/ [L,R=301]
+  # /about is now a real page (the operator story) — the old 301→/resume was
+  # removed 2026-07-05 as part of the brand rebuild. Do not reinstate.
   # Guessable consulting URLs → the canonical advisory page.
   RewriteRule ^services/?$ /consulting/ [L,R=301]
   RewriteRule ^advisory/?$ /consulting/ [L,R=301]

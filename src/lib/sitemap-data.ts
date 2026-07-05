@@ -44,6 +44,36 @@ const staticEntries: SitemapEntry[] = [
     priority: 0.9,
   },
   {
+    path: "/journey",
+    title: "The Journey",
+    section: "Core",
+    description:
+      "Seventeen years, ten markets, three industries — a payments operator's map across MENA, South Asia and beyond.",
+    lastmod: "2026-07-05",
+    changefreq: "monthly",
+    priority: 0.9,
+  },
+  {
+    path: "/about",
+    title: "About",
+    section: "Core",
+    description:
+      "The operator story: engineering to product, why frontier markets, and the beliefs that shape the work.",
+    lastmod: "2026-07-05",
+    changefreq: "monthly",
+    priority: 0.85,
+  },
+  {
+    path: "/speaking",
+    title: "Speaking & Media",
+    section: "Core",
+    description:
+      "Talks, podcasts and press on frontier-market payments, regulated-fintech product and AI-assisted delivery.",
+    lastmod: "2026-07-05",
+    changefreq: "monthly",
+    priority: 0.7,
+  },
+  {
     path: "/for",
     title: "For Recruiters",
     section: "Core",

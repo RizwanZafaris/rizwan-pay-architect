@@ -31,6 +31,8 @@
     "@tanstack/router-plugin": "^1.167.28",
     "@tanstack/zod-adapter": "^1.167.0",
     "clsx": "^2.1.1",
+    "dotted-map": "^3.1.0",
+    "framer-motion": "^12.42.2",
     "lucide-react": "^0.575.0",
     "marked": "^18.0.3",
     "react": "^19.2.0",
