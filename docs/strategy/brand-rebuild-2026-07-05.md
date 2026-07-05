@@ -133,3 +133,36 @@ Calendar (weekly template): Mon text-insight (LI) · Tue PDF carousel · Wed ope
 2. **Ten-market list sign-off** + one shipped-item line each for Nigeria, Sri Lanka, Myanmar, KSA (I can draft from Daraz scope for LK/MM/NP; Nigeria needs your input).
 3. **Hero H1 choice** (the "markets most operators avoid" line vs a softer "Payment infrastructure for complex markets" — I recommend the former).
 4. Portrait/photography: current cutout is good; a second environmental shot would unlock the /about bento.
+
+
+---
+
+## Appendix A — Podcast/YouTube tooling, live-verified 2026-07-05
+
+### The four named repos — verdicts
+| Repo | State | Verdict |
+|---|---|---|
+| **Open Notebook** (lfnovo/open-notebook, 34.9k★, MIT, pushed Jul 3) | Very active; real 1-4-speaker podcast gen; full REST API; arm64 Docker (runs on Colima) | **Legit** — but it's a full app + SurrealDB. For a cron pipeline, the underlying `lfnovo/podcast-creator` or `souzatharsis/podcastfy` (6.4k★, Apache) gives the same capability as a library. Adopt only if the NotebookLM-style research workbench itself is wanted |
+| **OpenShorts** (mutonby/openshorts, 2.5k★, MIT, last push May 6) | "Open-source" shell around paid cloud APIs (Gemini, Flux, Hailuo, VEED, ElevenLabs — ~$0.65-2/short); UI-first platform; momentum cooling | **Don't adopt as infrastructure. Mine it** for its Gemini clip-detection prompts + ffmpeg/crop patterns |
+| **AI-Youtube-Shorts-Generator** (SamurAIGPT, 4.1k★, pushed Jun 22) | Works (local mode: faster-whisper + LLM ranking + ffmpeg/OpenCV, CPU-fine on Mac); default mode is a MuAPI customer funnel; **NO LICENSE file** (all-rights-reserved despite README badge) | **Reference implementation only** — replicate its local mode in ~200 lines we own (whisper.cpp + Codex ranking + ffmpeg + Remotion) |
+| **LTX-Video / LTX-2** (Lightricks) | LTX-2 = 22B datacenter-GPU model; Lightricks' own desktop app lists **macOS as API-only**; community MPS runs ≈5 min/clip on M3 Max | **Distraction on this hardware.** B-roll paths: Remotion (owned), Pexels API, or cloud gen API if ever truly needed |
+
+### Verified additions (the real finds)
+- **microsoft/VibeVoice-1.5B** — 49.9k★, MIT code AND weights, official MPS path: best open multi-speaker podcast audio (up to 4 voices, 90-min). Caveat: model card says research-purpose (MIT permits commercial; Microsoft discourages). Phase-2: local two-host format / drafts.
+- **resemble-ai/chatterbox** — 25.4k★, MIT incl. weights: the only commercially-clean open voice-clone at quality (~85-90% of ElevenLabs); OpenAI-compatible server exists. ElevenLabs backup/cost cap.
+- **Kokoro-82M + mlx-audio** — Apache/MIT, Apple-MLX-native, near-instant: free draft narration + Shorts VO so ElevenLabs credits go only to published takes. Kokoro-FastAPI plugs into Open Notebook/podcastfy as an OpenAI-compatible TTS endpoint.
+- **Remotion audiogram template + @remotion/captions** (current) — podcast MP3 → branded long-form YouTube video + caption-burned Shorts from one comp. Highest-leverage add; zero marginal cost.
+- **auto-editor** (Unlicense, active) — silence/jump-cut pre-pass on any raw recording.
+
+### License traps + abandonware (avoid)
+F5-TTS & XTTS-v2 weights are **non-commercial** (CC-BY-NC / CPML) despite permissive code. Dead: clipsai (Jan 2024), MeloTTS, SadTalker. GPU-only: Higgs Audio v2, LTX-2, talking-head models — local talking-head on Mac = skip; record yourself or use cloud (~$1-2/video).
+
+### MVP pipeline (this month) — all headless on the existing Bun/Codex automation
+1. Article → scripts: existing Codex stage (through the banned-claims gate)
+2. Script → audio: **ElevenLabs clone** for published episodes; **Kokoro/mlx-audio** for free drafts
+3. Publish: **Transistor.fm REST API** → embed per post
+4. Captions: whisper.cpp → @remotion/captions
+5. Video: **Remotion audiogram** → YouTube long-form + 9:16 Shorts from the same composition
+6. Upload: YouTube Data API (googleapis; quota note: 1,600 units/upload ≈ 6/day max)
+
+Phase 2: VibeVoice two-host format · Chatterbox clone fallback · DIY long→shorts clipper (SamurAIGPT local mode as reference) · Open Notebook only if the research-workbench UX is wanted.
