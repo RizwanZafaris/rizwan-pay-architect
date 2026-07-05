@@ -123,6 +123,52 @@ export const posts: Post[] = [
     ]
   },
   {
+    "slug": "amex-apple-pay-rewards-wallet-control-plane",
+    "title": "Amex and Apple Pay Turn Rewards Into a Checkout Control Plane",
+    "metaTitle": "Amex + Apple Pay: Rewards at Checkout",
+    "date": "2026-07-05",
+    "category": "Payment Infrastructure",
+    "readingTime": "7 min read",
+    "description": "Amex now lets eligible US card members use points through Apple Pay online. The real work is eligibility, reversals, reconciliation, and value.",
+    "thesis": "Putting Membership Rewards inside Apple Pay makes the wallet an issuer product surface, not merely a place to store a payment credential.",
+    "tags": [
+      "American Express",
+      "Apple Pay",
+      "Membership Rewards",
+      "digital wallets",
+      "tokenization",
+      "issuer processing"
+    ],
+    "relatedArticles": [
+      "/blog/processor-only-card-issuing-operating-model",
+      "/blog/reconciliation-is-product-infrastructure",
+      "/blog/financial-controls-are-product-requirements"
+    ]
+  },
+  {
+    "slug": "github-copilot-agent-session-streaming-governance",
+    "title": "GitHub Copilot Session Streaming Makes Agent Governance Observable",
+    "metaTitle": "GitHub Copilot Session Streaming: Governance",
+    "date": "2026-07-05",
+    "category": "AI & Product Operations",
+    "readingTime": "7 min read",
+    "description": "GitHub now streams Copilot agent prompts, responses, and tool calls. Enterprises need a governed telemetry pipeline, not another unused log feed.",
+    "thesis": "Copilot agent-session streaming gives enterprises evidence about prompts, responses, and tool calls. Evidence becomes useful only when someone operates it.",
+    "tags": [
+      "GitHub Copilot",
+      "AI agents",
+      "enterprise governance",
+      "audit logging",
+      "SIEM",
+      "product operations"
+    ],
+    "relatedArticles": [
+      "/blog/github-models-retirement-ai-platform-exit-plan",
+      "/blog/github-desktop-worktrees-ai-agent-control",
+      "/blog/financial-controls-are-product-requirements"
+    ]
+  },
+  {
     "slug": "adyen-refund-concentration-fraud-lifecycle-controls",
     "title": "Adyen's 3% Refund Signal: Fraud Controls Need a Lifecycle",
     "metaTitle": "Adyen's 3% Refund Signal: Lifecycle Fraud Controls",

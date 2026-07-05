@@ -13,6 +13,10 @@ import { marked } from "marked";
 import authorPortrait from "@/assets/rizwan-zafar-cutout-460.webp";
 
 const OG_IMAGE_OVERRIDES: Record<string, string> = {
+  "amex-apple-pay-rewards-wallet-control-plane":
+    "/og/blog/amex-apple-pay-rewards-wallet-control-plane-v20260705.png",
+  "github-copilot-agent-session-streaming-governance":
+    "/og/blog/github-copilot-agent-session-streaming-governance-v20260705.png",
   "adyen-refund-concentration-fraud-lifecycle-controls":
     "/og/blog/adyen-refund-concentration-fraud-lifecycle-controls-v20260704.png",
   "uk-retail-payments-core-product-programme-boundary":
