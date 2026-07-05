@@ -6,6 +6,12 @@
       "runtimeExecutable": "python3",
       "runtimeArgs": ["-m", "http.server", "8788", "-d", "/tmp/rzifi-hire/dist-static"],
       "port": 8788
+    },
+    {
+      "name": "rzifi-dev",
+      "runtimeExecutable": "bun",
+      "runtimeArgs": ["run", "dev"],
+      "port": 5173
     }
   ]
 }

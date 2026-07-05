@@ -64,16 +64,6 @@ const staticEntries: SitemapEntry[] = [
     priority: 0.85,
   },
   {
-    path: "/speaking",
-    title: "Speaking & Media",
-    section: "Core",
-    description:
-      "Talks, podcasts and press on frontier-market payments, regulated-fintech product and AI-assisted delivery.",
-    lastmod: "2026-07-05",
-    changefreq: "monthly",
-    priority: 0.7,
-  },
-  {
     path: "/for",
     title: "For Recruiters",
     section: "Core",
@@ -207,6 +197,10 @@ export const routesToPrerender = Array.from(
     // work, but noindex + out of the sitemap + no internal links (owner
     // wants zero traffic redirected to it during the 90-day window).
     "/consulting",
+    // Speaking page — PARKED until 2027-01-06 (owner call 2026-07-06, same
+    // treatment as /consulting): prerendered for direct shares, but noindex
+    // + out of the sitemap + no nav/footer links for the 6-month window.
+    "/speaking",
     // Contact-form confirmation (Web3Forms native-POST redirect target).
     // Prerendered + noindex, out of the sitemap for the same reason.
     "/contact/thanks",

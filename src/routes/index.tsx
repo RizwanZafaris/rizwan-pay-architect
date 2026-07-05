@@ -13,7 +13,6 @@ import { Reveal } from "@/components/motion/Reveal";
 import {
   homeSectionsCss,
   ProofBand,
-  MapStrip,
   IndustryPillars,
   CredentialsStrip,
   GetInTouchBand,
@@ -533,10 +532,10 @@ function HomePage() {
       {/* ============ B. PROOF BAND ============ */}
       <ProofBand />
 
-      {/* ============ C. MAP STRIP ============ */}
-      <MapStrip />
-
       {/* ============ D. INDUSTRY PILLARS ============ */}
+      {/* Homepage map strip (doc §4C) removed per owner call 2026-07-06 —
+          the map lives on /journey only now. MapStrip component kept in
+          homeSections.tsx in case this gets revisited. */}
       <IndustryPillars />
 
       {/* ============ PRODUCTS, built & building ============ */}
