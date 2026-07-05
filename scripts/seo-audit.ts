@@ -312,6 +312,12 @@ const BANNED_CLAIM_PATTERNS: { label: string; re: RegExp }[] = [
   // case study shipped "1,400+ merchants" briefly — keep it dead.
   { label: "1,400+ merchants", re: /1,400\+\s*merchants?/i },
   { label: "8%->1.2% failure framing", re: /8% to ~?1\.2%/ },
+  // Owner ruling 2026-07-04: canonical operating footprint is FIVE markets
+  // (Pakistan, Bangladesh, Nepal, Iraq, Egypt). The SWIFT and AML case
+  // studies shipped "across six markets" — keep the phrasing dead. Scoped to
+  // the "across …" construction so essays discussing OTHER companies' market
+  // counts don't false-positive.
+  { label: "six-market footprint (canonical is five)", re: /across six markets/i },
 ];
 // The claim gate also covers the AI-engine trust surfaces — a regenerator
 // regression in llms*.txt or feed.xml must fail the build, not ship silently.

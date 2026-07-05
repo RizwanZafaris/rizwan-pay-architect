@@ -502,7 +502,7 @@ Stood up SWIFT MT and MX (ISO 20022) messaging inside the Simpaisa cross-border 
 
 ### Problem
 
-Simpaisa's cross-border corridors needed reliable SWIFT messaging into and out of correspondent banks across six markets. The platform was on the wrong side of the ISO 20022 migration deadline, with MT-shaped data inside the ledger, no UETR-level tracking, sanctions screening running batch-only, and a CSP (Customer Security Programme) attestation that had been postponed two years in a row. Correspondent banks were starting to push back on every category.
+Simpaisa's cross-border corridors needed reliable SWIFT messaging into and out of correspondent banks across five markets. The platform was on the wrong side of the ISO 20022 migration deadline, with MT-shaped data inside the ledger, no UETR-level tracking, sanctions screening running batch-only, and a CSP (Customer Security Programme) attestation that had been postponed two years in a row. Correspondent banks were starting to push back on every category.
 
 ### Role
 
@@ -732,7 +732,7 @@ Owned the Click to Pay programme end-to-end as Product & Program lead, VCTP + MC
 
 ---
 
-## AML/CFT Sanctions Engine: Real-Time Screening + 60% False-Positive Cut Across Six Markets
+## AML/CFT Sanctions Engine: Real-Time Screening + 60% False-Positive Cut Across Five Markets
 
 URL: https://rzifi.com/product-work/aml-cft-sanctions-engine-implementation
 Category: Fraud & Risk
@@ -745,7 +745,7 @@ Designed and shipped the AML/CFT sanctions and PEP screening engine for a regula
 
 ### Problem
 
-The platform was screening sanctions and PEP lists in a daily batch, every transaction was potentially exposed for up to 24 hours before being checked against the latest list updates. Two market regulators had open observations on screening cadence; one had warned that the observation would escalate at the next supervisory visit. False-positive rates ran ~38%, half the alert queue was Arabic-to-Latin transliteration collisions, common Pakistani / Indian / Bangladeshi name overlaps, and stale per-country list entries that had not been tuned for the platform's actual merchant and consumer mix. Tier-1 analysts were processing ~35 alerts per day per analyst and the queue was growing; tier-2 escalations were taking 8-12 days to close. Six markets, three sponsor banks, two scheme partners, and the legal team were all asking different questions about screening posture.
+The platform was screening sanctions and PEP lists in a daily batch, every transaction was potentially exposed for up to 24 hours before being checked against the latest list updates. Two market regulators had open observations on screening cadence; one had warned that the observation would escalate at the next supervisory visit. False-positive rates ran ~38%, half the alert queue was Arabic-to-Latin transliteration collisions, common Pakistani / Indian / Bangladeshi name overlaps, and stale per-country list entries that had not been tuned for the platform's actual merchant and consumer mix. Tier-1 analysts were processing ~35 alerts per day per analyst and the queue was growing; tier-2 escalations were taking 8-12 days to close. Five markets, three sponsor banks, two scheme partners, and the legal team were all asking different questions about screening posture.
 
 ### Role
 
@@ -764,7 +764,7 @@ Owned the AML/CFT screening programme end-to-end, real-time service architecture
 
 ### Impact
 
-- Shipped real-time pre-send sanctions blocking across six markets with p95 latency below 180ms
+- Shipped real-time pre-send sanctions blocking across five markets with p95 latency below 180ms
 - Cut overall sanctions false-positive rate by ~60%, from 38% of alerts being name-collision FPs to 14%
 - Maintained 100% true-positive coverage, every sanctions hit that should have been caught was caught
 - Cleared two long-running regulator observations on screening cadence
@@ -11125,7 +11125,7 @@ Tags: MENA payments, South Asia payments, emerging markets fintech, UAE payments
 
 Every operator entering MENA or South Asia gets a market deck from the local consulting partner. The deck has the same shape: GDP growth, population, smartphone penetration, "X% unbanked", a few scheme partnerships listed, a market-size estimate. It is well-presented and operationally useless. The deck does not answer the questions that matter: who is the actual regulator, what rails work in production, where do payments break, what does it take to launch.
 
-This is the deck that would actually have helped. Seven markets, UAE, KSA, Pakistan, Bangladesh, Nepal, Iraq, Egypt, covered the way an operator who has shipped product in each one would brief a new entrant. For each: the regulator stack, the dominant rails, the wallets, the cross-border position, and the launch sequence that does not collapse.
+This is the deck that would actually have helped. Seven markets, UAE, KSA, Pakistan, Bangladesh, Nepal, Iraq, Egypt, covered the way an operator running live payment corridors across the region would brief a new entrant. For each: the regulator stack, the dominant rails, the wallets, the cross-border position, and the launch sequence that does not collapse.
 
 The shape is intentionally compressed; each market deserves its own deeper essay. The operating map below is the briefing a senior payments leader gives a new hire on day one.
 
