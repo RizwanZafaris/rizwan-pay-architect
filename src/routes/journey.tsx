@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { markets, type Market } from "@/data/markets";
+import { profile } from "@/data/profile";
 import { WorldMap } from "@/components/WorldMap";
 import { absUrl } from "@/lib/seo";
 
@@ -93,7 +94,9 @@ const journeyItemListJsonLd = {
 export const Route = createFileRoute("/journey")({
   head: () => ({
     meta: [
-      { title: "17 Years, 10 Markets: A Payments Operator's Journey | Rizwan Zafar" },
+      {
+        title: `${profile.career.years} Years, 10 Markets: A Payments Operator's Journey | Rizwan Zafar`,
+      },
       {
         name: "description",
         content:
@@ -101,7 +104,7 @@ export const Route = createFileRoute("/journey")({
       },
       {
         property: "og:title",
-        content: "17 Years, 10 Markets — A Payments Operator's Journey",
+        content: `${profile.career.years} Years, 10 Markets — A Payments Operator's Journey`,
       },
       {
         property: "og:description",
@@ -110,7 +113,10 @@ export const Route = createFileRoute("/journey")({
       },
       { property: "og:url", content: absUrl("/journey") },
       { property: "og:type", content: "profile" },
-      { name: "twitter:title", content: "17 Years, 10 Markets — A Payments Operator's Journey" },
+      {
+        name: "twitter:title",
+        content: `${profile.career.years} Years, 10 Markets — A Payments Operator's Journey`,
+      },
       {
         name: "twitter:description",
         content:

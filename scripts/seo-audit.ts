@@ -344,7 +344,11 @@ for (const file of claimScanFiles) {
 // and fail on any clause that carries a marker from BOTH tiers.
 const CAREER_MARKERS = [
   /\bsince 2009\b/i,
-  /\b(?:17|seventeen) years\b/i,
+  // The year count is now COMPUTED at build time (profile.ts CAREER_YEARS),
+  // so the marker must keep matching as it rolls 17 → 18 → 19… each January;
+  // a literal /17 years/ would silently stop protecting those clauses in
+  // 2027. 1[7-9]|2\d covers 2026–2038.
+  /\b(?:1[7-9]|2\d|seventeen) years\b/i,
   /\b(?:10|ten) markets\b/i,
   /\b(?:3|three) industries\b/i,
 ];

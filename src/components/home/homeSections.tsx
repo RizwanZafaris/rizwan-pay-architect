@@ -64,8 +64,10 @@ export const homeSectionsCss = `
 export function ProofBand() {
   const { career, platform } = profile;
   const stats: { value: string; label: string; scoped?: boolean }[] = [
-    // Career-scope (the arc) — no asterisk.
-    { value: `SINCE ${career.startYear}`, label: "Operating" },
+    // Career-scope (the arc) — no asterisk. Duration framing per owner
+    // ruling 2026-07-06 ("17 years", never "since 2009"); the number is
+    // computed in profile.ts so it can't go stale.
+    { value: `${career.years}`, label: "Years experience" },
     { value: `${career.marketCount}`, label: "Markets" },
     { value: `${career.industryCount}`, label: "Industries" },
     // Platform-scope (Simpaisa, current role) — asterisked.
