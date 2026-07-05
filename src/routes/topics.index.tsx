@@ -50,7 +50,7 @@ function TopicsIndex() {
         ◆ Topic hubs
       </div>
       <h1 className="font-instrument text-4xl md:text-6xl text-ink mt-3 max-w-3xl leading-[1.05]">
-        Eight hubs for <span className="italic text-ink-soft">regulated payments.</span>
+        {hubs.length} hubs for <span className="italic text-ink-soft">regulated payments.</span>
       </h1>
       <p className="mt-5 max-w-2xl text-lg text-ink-soft">
         Every essay and case study is grouped under a topic hub. Pick a hub to see the working

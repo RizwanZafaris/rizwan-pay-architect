@@ -81,7 +81,8 @@
   --destructive: oklch(0.65 0.22 27.325);
   --destructive-foreground: var(--paper);
   --border: var(--rule);
-  --input: var(--rule);
+  /* 3:1 non-text contrast for form-field boundaries (was --rule ≈ 1.36:1). */
+  --input: color-mix(in oklab, var(--ink) 35%, var(--paper));
   --ring: var(--brand);
 
   --chart-1: var(--signal);
@@ -124,7 +125,8 @@
   --accent: oklch(0.25 0.02 255);
   --accent-foreground: var(--ink);
   --border: var(--rule);
-  --input: var(--rule);
+  /* 3:1 non-text contrast for form-field boundaries (was --rule ≈ 1.36:1). */
+  --input: color-mix(in oklab, var(--ink) 35%, var(--paper));
   --ring: oklch(0.7 0.12 235);
 }
 
@@ -163,7 +165,10 @@
     font-size: 1.125rem;
     line-height: 1.75;
     color: var(--ink);
-    max-width: 100%;
+    /* Reading measure: the 768px container ran ~100 chars/line on desktop;
+       68ch lands in the 60–80 comfort band. Mobile is unaffected. */
+    max-width: min(100%, 68ch);
+    margin-inline: auto;
     min-width: 0;
     overflow-wrap: anywhere;
   }
@@ -1905,5 +1910,97 @@
   .resume-page a {
     color: #000 !important;
     text-decoration: underline;
+  }
+}
+
+/* ── 2026-07-05 UI/UX audit fixes (unlayered on purpose: targeted overrides) ── */
+
+/* Forced-dark browser modes must not auto-invert the paper palette. */
+:root {
+  color-scheme: light;
+}
+
+/* Brand selection tint. */
+::selection {
+  background: color-mix(in oklab, var(--signal) 18%, transparent);
+}
+
+/* Placeholder legibility (was ink-soft/70 ≈ 2.9:1 effective). */
+input::placeholder,
+textarea::placeholder {
+  color: var(--ink-soft);
+  opacity: 1;
+}
+
+/* Native-validation affordance — no client JS ships, so :user-invalid IS the
+   error UI (native bubbles alone are fleeting on mobile Safari). */
+input:user-invalid,
+select:user-invalid,
+textarea:user-invalid {
+  border-color: var(--destructive);
+}
+
+/* /blog/ renders the full archive on one page; let off-screen cards skip
+   layout + paint (54k-px mobile page traced 2026-07-05). */
+[data-blog-result] {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 240px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  /* LCP guard: the hero shells' opacity:0 entrance WAS the LCP (~0.7s render
+     delay traced live). Above-the-fold shells animate blur + translate only;
+     below-the-fold cards keep the full fade. */
+  .home-soft-reveal,
+  .blog-soft-reveal,
+  .resume-soft-reveal,
+  .recruiter-soft-reveal,
+  .contact-soft-reveal {
+    opacity: 1;
+    animation-name: rz-soft-reveal-lcp;
+  }
+
+  /* MPA View Transitions — native crossfade between same-origin navigations.
+     Unsupported browsers ignore the whole block; reduced-motion users never
+     see it. The header keeps its identity across pages. */
+  @view-transition {
+    navigation: auto;
+  }
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 160ms;
+  }
+  .site-header {
+    view-transition-name: site-header;
+  }
+
+  /* The essay rail becomes REAL scroll progress where scroll-driven
+     animations are supported (the 8s decorative pulse remains the fallback). */
+  @supports (animation-timeline: scroll()) {
+    .article-rail-progress span {
+      animation: rz-rail-scroll linear both;
+      animation-timeline: scroll(root);
+      height: 100%;
+    }
+  }
+}
+
+@keyframes rz-soft-reveal-lcp {
+  from {
+    transform: translateY(10px);
+    filter: blur(4px);
+  }
+  to {
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes rz-rail-scroll {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
   }
 }

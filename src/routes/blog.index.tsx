@@ -378,7 +378,16 @@ function BlogIndex() {
             {filtered.length} available essay{filtered.length === 1 ? "" : "s"}
           </div>
         </div>
-        <div className="grid md:grid-cols-12 gap-3">
+        {/* Real <form>: Enter submits a GET back to /blog/ (which the inline
+            filter script reads from the URL on load), no-JS visitors get a
+            working filter, and role="search" lets the analytics bridge fire
+            site_search on submit. */}
+        <form
+          role="search"
+          action="/blog/"
+          method="get"
+          className="grid md:grid-cols-12 gap-3"
+        >
           <div className="md:col-span-5">
             <label
               className="text-[10px] uppercase tracking-[0.18em] text-ink-soft font-mono-tech"
@@ -388,6 +397,7 @@ function BlogIndex() {
             </label>
             <input
               id="blog-q"
+              name="q"
               type="search"
               value={q}
               onChange={(e) => setParam("q", e.target.value)}
@@ -426,9 +436,11 @@ function BlogIndex() {
             onChange={(v) => setParam("company", v)}
             options={[["", "Any"], ...COMPANIES.map((c): [string, string] => [c, c])]}
           />
-        </div>
+        </form>
         <div
           data-blog-filter-status
+          role="status"
+          aria-live="polite"
           className={`mt-3 flex items-center justify-between gap-4 text-xs text-ink-soft ${
             q || hub || reader || company ? "" : "hidden"
           }`}
@@ -562,6 +574,9 @@ function Select({ id, label, value, onChange, options }: SelectProps) {
       </label>
       <select
         id={id}
+        // Named so the no-JS GET form round-trips the value (?hub=…, ?reader=…,
+        // ?company=…) in the exact shape the inline filter script reads.
+        name={id.replace("blog-", "")}
         value={value}
         onChange={(e) => onChange(e.target.value)}
         className="mt-1 w-full border border-rule bg-surface px-3 py-2.5 rounded-md text-ink focus:outline-none focus:ring-2 focus:ring-[var(--brand)]/20 focus:border-[var(--brand)]"

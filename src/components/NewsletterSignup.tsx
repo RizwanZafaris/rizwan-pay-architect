@@ -2,8 +2,8 @@
 //
 // Same zero-hydration constraint as the contact form: this must work as a
 // plain native POST because production HTML ships without React. It reuses
-// the proven Web3Forms pattern from src/routes/contact.tsx (same access key,
-// same /contact/thanks/ redirect) so no new vendor is required to ship.
+// the proven Web3Forms pattern from src/routes/contact.tsx (same access key),
+// redirecting to the subscriber-specific /newsletter/thanks/ confirmation.
 //
 // Interim backend: Web3Forms delivers each signup as an email. Swap `action`
 // to a Buttondown/beehiiv embed-subscribe endpoint once an ESP account
@@ -58,7 +58,7 @@ export function NewsletterSignup({
         <input type="hidden" name="from_name" value="rzifi.com newsletter signup" />
         <input type="hidden" name="from_page" value={fromPage} />
         <input type="hidden" name="botcheck" value="" />
-        <input type="hidden" name="redirect" value={absUrl("/contact/thanks/")} />
+        <input type="hidden" name="redirect" value={absUrl("/newsletter/thanks/")} />
         <label className="sr-only" htmlFor={`newsletter-email-${placement}`}>
           Email address
         </label>

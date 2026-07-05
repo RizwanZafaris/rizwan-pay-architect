@@ -68,7 +68,7 @@ Cal.ns["15min"]("inline",{elementOrSelector:"#cal-booking-slot",config:{layout:"
 Cal.ns["15min"]("ui",{cssVarsPerTheme:{light:{"cal-brand":"#0e4f4f"},dark:{"cal-brand":"#3ecbe6"}},hideEventTypeDetails:false,layout:"month_view"});
 var ready=false;function markReady(){if(!ready){ready=true;try{var sk=document.getElementById("cal-booking-skeleton");if(sk)sk.style.display="none"}catch(x){}track("cal_embed_ready")}}
 Cal.ns["15min"]("on",{action:"linkReady",callback:markReady});
-Cal.ns["15min"]("on",{action:"linkFailed",callback:function(e){var r="unknown";try{r=(e&&e.detail&&e.detail.data&&(e.detail.data.msg||e.detail.data.code))||"unknown"}catch(x){}track("cal_embed_failed",{reason:String(r).slice(0,90)})}});
+Cal.ns["15min"]("on",{action:"linkFailed",callback:function(e){var r="unknown";try{r=(e&&e.detail&&e.detail.data&&(e.detail.data.msg||e.detail.data.code))||"unknown"}catch(x){}try{var sk=document.getElementById("cal-booking-skeleton");if(sk){sk.style.display="";sk.innerHTML='<p class="text-sm text-ink-soft py-4">The calendar could not load right now — use the booking links below instead.</p>'}}catch(x){}track("cal_embed_failed",{reason:String(r).slice(0,90)})}});
 Cal.ns["15min"]("on",{action:"bookingSuccessful",callback:function(){track("book_call_confirmed");${
     LINKEDIN_BOOKING_CONVERSION_ID
       ? `try{if(window.lintrk)window.lintrk("track",{conversion_id:${Number(LINKEDIN_BOOKING_CONVERSION_ID)}})}catch(x){}`

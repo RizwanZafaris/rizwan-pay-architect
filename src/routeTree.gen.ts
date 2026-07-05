@@ -27,6 +27,7 @@ import { Route as BlogIndexRouteImport } from './routes/blog.index'
 import { Route as TopicsHubRouteImport } from './routes/topics.$hub'
 import { Route as ProductsSlugRouteImport } from './routes/products.$slug'
 import { Route as ProductWorkSlugRouteImport } from './routes/product-work.$slug'
+import { Route as NewsletterThanksRouteImport } from './routes/newsletter_.thanks'
 import { Route as ForAudienceRouteImport } from './routes/for.$audience'
 import { Route as ContactThanksRouteImport } from './routes/contact_.thanks'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
@@ -121,6 +122,11 @@ const ProductWorkSlugRoute = ProductWorkSlugRouteImport.update({
   path: '/product-work/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const NewsletterThanksRoute = NewsletterThanksRouteImport.update({
+  id: '/newsletter_/thanks',
+  path: '/newsletter/thanks',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ForAudienceRoute = ForAudienceRouteImport.update({
   id: '/for/$audience',
   path: '/for/$audience',
@@ -152,6 +158,7 @@ export interface FileRoutesByFullPath {
   '/blog/$slug': typeof BlogSlugRoute
   '/contact/thanks': typeof ContactThanksRoute
   '/for/$audience': typeof ForAudienceRoute
+  '/newsletter/thanks': typeof NewsletterThanksRoute
   '/product-work/$slug': typeof ProductWorkSlugRoute
   '/products/$slug': typeof ProductsSlugRoute
   '/topics/$hub': typeof TopicsHubRoute
@@ -174,6 +181,7 @@ export interface FileRoutesByTo {
   '/blog/$slug': typeof BlogSlugRoute
   '/contact/thanks': typeof ContactThanksRoute
   '/for/$audience': typeof ForAudienceRoute
+  '/newsletter/thanks': typeof NewsletterThanksRoute
   '/product-work/$slug': typeof ProductWorkSlugRoute
   '/products/$slug': typeof ProductsSlugRoute
   '/topics/$hub': typeof TopicsHubRoute
@@ -198,6 +206,7 @@ export interface FileRoutesById {
   '/blog/$slug': typeof BlogSlugRoute
   '/contact_/thanks': typeof ContactThanksRoute
   '/for/$audience': typeof ForAudienceRoute
+  '/newsletter_/thanks': typeof NewsletterThanksRoute
   '/product-work/$slug': typeof ProductWorkSlugRoute
   '/products/$slug': typeof ProductsSlugRoute
   '/topics/$hub': typeof TopicsHubRoute
@@ -223,6 +232,7 @@ export interface FileRouteTypes {
     | '/blog/$slug'
     | '/contact/thanks'
     | '/for/$audience'
+    | '/newsletter/thanks'
     | '/product-work/$slug'
     | '/products/$slug'
     | '/topics/$hub'
@@ -245,6 +255,7 @@ export interface FileRouteTypes {
     | '/blog/$slug'
     | '/contact/thanks'
     | '/for/$audience'
+    | '/newsletter/thanks'
     | '/product-work/$slug'
     | '/products/$slug'
     | '/topics/$hub'
@@ -268,6 +279,7 @@ export interface FileRouteTypes {
     | '/blog/$slug'
     | '/contact_/thanks'
     | '/for/$audience'
+    | '/newsletter_/thanks'
     | '/product-work/$slug'
     | '/products/$slug'
     | '/topics/$hub'
@@ -292,6 +304,7 @@ export interface RootRouteChildren {
   BlogSlugRoute: typeof BlogSlugRoute
   ContactThanksRoute: typeof ContactThanksRoute
   ForAudienceRoute: typeof ForAudienceRoute
+  NewsletterThanksRoute: typeof NewsletterThanksRoute
   ProductWorkSlugRoute: typeof ProductWorkSlugRoute
   BlogIndexRoute: typeof BlogIndexRoute
   ForIndexRoute: typeof ForIndexRoute
@@ -426,6 +439,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProductWorkSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/newsletter_/thanks': {
+      id: '/newsletter_/thanks'
+      path: '/newsletter/thanks'
+      fullPath: '/newsletter/thanks'
+      preLoaderRoute: typeof NewsletterThanksRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/for/$audience': {
       id: '/for/$audience'
       path: '/for/$audience'
@@ -490,6 +510,7 @@ const rootRouteChildren: RootRouteChildren = {
   BlogSlugRoute: BlogSlugRoute,
   ContactThanksRoute: ContactThanksRoute,
   ForAudienceRoute: ForAudienceRoute,
+  NewsletterThanksRoute: NewsletterThanksRoute,
   ProductWorkSlugRoute: ProductWorkSlugRoute,
   BlogIndexRoute: BlogIndexRoute,
   ForIndexRoute: ForIndexRoute,
@@ -498,3 +519,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}

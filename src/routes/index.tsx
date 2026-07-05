@@ -95,6 +95,10 @@ export const Route = createFileRoute("/")({
         rel: "preload",
         as: "image",
         href: portraitWebpSmall,
+        // Match the <picture> selection so retina screens don't fetch both
+        // the 460w preload AND the 920w display asset.
+        imageSrcSet: `${portraitWebpSmall} 460w, ${portraitWebp} 920w`,
+        imageSizes: "(max-width: 640px) 280px, (max-width: 1024px) 360px, 440px",
         type: "image/webp",
         fetchPriority: "high",
       },
@@ -891,6 +895,9 @@ function HomePage() {
           {[...profile.partners, ...profile.partners].map((p, i) => (
             <span
               key={`${p}-${i}`}
+              // The second half is a visual loop duplicate — hide it from
+              // screen readers so the brand list isn't announced twice.
+              aria-hidden={i >= profile.partners.length || undefined}
               className="font-instrument text-xl sm:text-2xl md:text-4xl text-ink/70 tracking-tight inline-flex items-center gap-12"
             >
               {p}
