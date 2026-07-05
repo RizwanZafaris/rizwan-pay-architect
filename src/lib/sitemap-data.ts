@@ -180,6 +180,8 @@ export const routesToPrerender = Array.from(
     // Contact-form confirmation (Web3Forms native-POST redirect target).
     // Prerendered + noindex, out of the sitemap for the same reason.
     "/contact/thanks",
+    // Newsletter-signup confirmation (same pattern, subscriber-correct copy).
+    "/newsletter/thanks",
   ]),
 );
 

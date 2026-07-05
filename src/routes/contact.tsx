@@ -738,10 +738,10 @@ function ContactPage() {
                   id="message"
                   name="message"
                   required
+                  minLength={20}
                   rows={5}
                   value={values.message}
                   onChange={(e) => setValues({ ...values, message: e.target.value })}
-                  aria-invalid={!!errors.message}
                   aria-describedby={errors.message ? "message-err message-help" : "message-help"}
                   className={field}
                 />

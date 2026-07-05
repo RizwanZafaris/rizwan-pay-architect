@@ -15,7 +15,7 @@ const nav = [
   { to: "/product-work", label: "Case Studies" },
   { to: "/blog", label: "Blog" },
   // { to: "/consulting", label: "Advisory" }, — PARKED until 2026-10-02
-  { to: "/for", label: "Recruiters" },
+  { to: "/for", label: "For recruiters" },
   { to: "/resume", label: "Resume" },
   { to: "/contact", label: "Contact" },
 ] as const;
@@ -79,7 +79,7 @@ export function SiteHeader() {
     headerPathname.startsWith("/contact") || headerPathname.startsWith("/resume");
   const bookingHref = hasLocalEmbed ? "#book" : "/contact/#book";
   return (
-    <header className="sticky top-0 z-40 px-3 sm:px-4 pt-3 sm:pt-4">
+    <header className="site-header sticky top-0 z-40 px-3 sm:px-4 pt-3 sm:pt-4">
       <div className="mx-auto max-w-6xl">
         <div className="flex items-center justify-between gap-3 rounded-full border border-ink/10 bg-background/92 backdrop-blur-xl pl-3 pr-2 py-2 shadow-[0_1px_0_rgba(255,255,255,0.6)_inset,0_8px_30px_-12px_rgba(15,23,42,0.18)]">
           <Link to="/" className="flex items-center gap-2.5 min-w-0 group">
@@ -124,7 +124,7 @@ export function SiteHeader() {
               onClick={() => {
                 ctaClick("book_intro_call", "header", bookingHref);
               }}
-              className="inline-flex items-center gap-1.5 rounded-full bg-ink text-background px-3.5 sm:px-4 py-2.5 text-[12px] font-medium hover:bg-brand transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+              className="inline-flex items-center justify-center gap-1.5 rounded-full bg-ink text-background px-3.5 sm:px-4 py-2.5 min-h-[44px] min-w-[44px] sm:min-w-0 text-[12px] font-medium hover:bg-brand transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background"
             >
               <CalendarDays aria-hidden="true" className="h-3.5 w-3.5" />
               <span className="hidden sm:inline">Book a 15-min intro call</span>
@@ -265,32 +265,32 @@ export function SiteFooter() {
           </div>
           <ul className="space-y-2">
             <li>
-              <Link to="/products" className="hover:text-ink text-ink-soft">
+              <Link to="/products" className="hover:text-ink text-ink-soft inline-block py-1">
                 Products
               </Link>
             </li>
             <li>
-              <Link to="/product-work" className="hover:text-ink text-ink-soft">
+              <Link to="/product-work" className="hover:text-ink text-ink-soft inline-block py-1">
                 Case Studies
               </Link>
             </li>
             <li>
-              <Link to="/blog" className="hover:text-ink text-ink-soft">
+              <Link to="/blog" className="hover:text-ink text-ink-soft inline-block py-1">
                 Blog
               </Link>
             </li>
             <li>
-              <Link to="/topics" className="hover:text-ink text-ink-soft">
+              <Link to="/topics" className="hover:text-ink text-ink-soft inline-block py-1">
                 Topics
               </Link>
             </li>
             <li>
-              <Link to="/sitemap" className="hover:text-ink text-ink-soft">
+              <Link to="/sitemap" className="hover:text-ink text-ink-soft inline-block py-1">
                 Sitemap
               </Link>
             </li>
             <li>
-              <Link to="/for" className="hover:text-ink text-ink-soft">
+              <Link to="/for" className="hover:text-ink text-ink-soft inline-block py-1">
                 For Recruiters
               </Link>
             </li>
@@ -302,12 +302,12 @@ export function SiteFooter() {
           </div>
           <ul className="space-y-2">
             <li>
-              <Link to="/resume" className="hover:text-ink text-ink-soft">
+              <Link to="/resume" className="hover:text-ink text-ink-soft inline-block py-1">
                 Resume
               </Link>
             </li>
             <li>
-              <Link to="/contact" className="hover:text-ink text-ink-soft">
+              <Link to="/contact" className="hover:text-ink text-ink-soft inline-block py-1">
                 Contact
               </Link>
             </li>
@@ -356,7 +356,7 @@ export function CampaignHeader() {
   // params + ref to this href at load time — the static build never hydrates.
   const calendarUrl = profile.calendarUrl;
   return (
-    <header className="sticky top-0 z-40 px-3 sm:px-4 pt-3 sm:pt-4">
+    <header className="site-header sticky top-0 z-40 px-3 sm:px-4 pt-3 sm:pt-4">
       <div className="mx-auto max-w-6xl">
         <div className="flex items-center justify-between gap-3 rounded-full border border-ink/10 bg-background/92 backdrop-blur-xl pl-3 pr-2 py-2 shadow-[0_1px_0_rgba(255,255,255,0.6)_inset,0_8px_30px_-12px_rgba(15,23,42,0.18)]">
           <Link to="/" className="flex items-center gap-2.5 min-w-0 group">
