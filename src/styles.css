@@ -457,6 +457,51 @@
     }
   }
 
+  /* Nav menu hover — vertical text slide-swap (JS-less port of a 21st.dev
+     "menu hover effects" pattern). The visible label (a) rolls up and out as
+     a brand-coloured duplicate (b) rolls up into place. Pure CSS transforms,
+     so it runs on the hydration-stripped build. Reduced-motion drops the roll
+     and just tints the label. */
+  .nav-swap {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    line-height: 1.35;
+  }
+  .nav-swap-a,
+  .nav-swap-b {
+    display: block;
+    transition: transform 0.34s cubic-bezier(0.65, 0, 0.35, 1);
+  }
+  .nav-swap-b {
+    position: absolute;
+    inset: 0;
+    color: var(--brand);
+    transform: translateY(105%);
+  }
+  .nav-link:hover .nav-swap-a,
+  .nav-link:focus-visible .nav-swap-a {
+    transform: translateY(-105%);
+  }
+  .nav-link:hover .nav-swap-b,
+  .nav-link:focus-visible .nav-swap-b {
+    transform: translateY(0);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .nav-swap-a,
+    .nav-swap-b {
+      transition: none;
+    }
+    .nav-link:hover .nav-swap-a,
+    .nav-link:focus-visible .nav-swap-a {
+      transform: none;
+      color: var(--brand);
+    }
+    .nav-swap-b {
+      display: none;
+    }
+  }
+
   /* Hero portrait decorative accents.
      Travel + scale tuned so motion is visible at a glance without being
      distracting. Two variants of each so adjacent accents don't pulse in

@@ -24,6 +24,23 @@ const nav = [
   { to: "/resume", label: "Resume" },
 ] as const;
 
+// Nav label with a vertical slide-swap on hover/focus — the JS-less port of a
+// 21st.dev "menu hover effects" pattern. The visible label (a) rolls up and
+// out while a brand-coloured duplicate (b) rolls up into its place; both are
+// pure CSS transforms (.nav-swap in styles.css), so it works on the static,
+// hydration-stripped build. The duplicate is aria-hidden so the label is not
+// announced twice, and reduced-motion drops the roll for a plain tint.
+function NavSwap({ label }: { label: string }) {
+  return (
+    <span className="nav-swap">
+      <span className="nav-swap-a">{label}</span>
+      <span className="nav-swap-b" aria-hidden>
+        {label}
+      </span>
+    </span>
+  );
+}
+
 const currentYearScript = `(() => {
   const year = String(new Date().getFullYear());
   document.querySelectorAll("[data-current-year]").forEach((node) => {
@@ -109,10 +126,10 @@ export function SiteHeader() {
               <Link
                 key={n.to}
                 to={n.to}
-                className="px-3 py-2.5 rounded-full hover:text-ink hover:bg-ink/5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                className="nav-link px-3 py-2.5 rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                 activeProps={{ className: "text-ink font-medium bg-ink/5" }}
               >
-                {n.label}
+                <NavSwap label={n.label} />
               </Link>
             ))}
           </nav>
