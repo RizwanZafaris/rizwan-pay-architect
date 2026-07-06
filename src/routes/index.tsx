@@ -16,7 +16,11 @@ import {
   IndustryPillars,
   CredentialsStrip,
   GetInTouchBand,
+  Testimonials,
+  HowIWorkFaq,
+  howIWorkFaqs,
 } from "@/components/home/homeSections";
+import { RevealHeading } from "@/components/RevealHeading";
 import { NewsletterSignup } from "@/components/NewsletterSignup";
 import portraitPng from "@/assets/rizwan-zafar-cutout.png";
 import portraitWebp from "@/assets/rizwan-zafar-cutout.webp";
@@ -29,6 +33,19 @@ const profilePageJsonLd = {
   // Reference the canonical #person node (defined in __root.tsx, emitted
   // site-wide) by @id instead of forking a second Person entity.
   mainEntity: { "@type": "Person", "@id": `${SITE_URL}#person`, name: profile.name, url: SITE_URL },
+};
+
+// FAQPage schema for the "How I work" section — generated from the SAME
+// howIWorkFaqs array that renders the accordion, so the structured data and
+// the visible answers cannot drift. Answers trace to the verified fact base.
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: howIWorkFaqs.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
 };
 
 const heroScrambleScript = `
@@ -113,6 +130,7 @@ export const Route = createFileRoute("/")({
     ],
     scripts: [
       { type: "application/ld+json", children: JSON.stringify(profilePageJsonLd) },
+      { type: "application/ld+json", children: JSON.stringify(faqJsonLd) },
       { children: heroScrambleScript },
     ],
   }),
@@ -604,8 +622,10 @@ function HomePage() {
                 ◆ Products
               </div>
               <h2 className="font-instrument text-4xl md:text-6xl text-ink mt-3 leading-[1.02] max-w-3xl">
-                Products I have built, and products I am{" "}
-                <span className="italic text-[var(--brand)]">building.</span>
+                <RevealHeading
+                  lead="Products I have built, and products I am"
+                  emphasis="building."
+                />
               </h2>
             </div>
             <Link
@@ -964,6 +984,12 @@ function HomePage() {
           ))}
         </div>
       </section>
+
+      {/* ============ TESTIMONIALS (renders only with real quotes) ======= */}
+      <Testimonials />
+
+      {/* ============ HOW I WORK / FAQ ============ */}
+      <HowIWorkFaq />
 
       {/* ============ I. GET-IN-TOUCH BAND (audience router) ============ */}
       <GetInTouchBand />
