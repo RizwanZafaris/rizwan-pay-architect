@@ -425,6 +425,38 @@
     }
   }
 
+  /* Kinetic headline (JS-less port of 21st.dev "Auto Revealing Heading").
+     Each word rises as the heading scrolls in; the per-word stagger comes
+     from shifting each word's animation-range by its index (--i), since
+     scroll timelines ignore animation-delay. Base state is fully visible so
+     no-support / reduced-motion browsers get plain, static text. The words
+     are real DOM text in order — SEO and a11y unchanged. */
+  .rz-word {
+    display: inline-block;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    @supports (animation-timeline: view()) {
+      .rz-words .rz-word {
+        opacity: 0;
+        transform: translateY(0.42em);
+        animation: rz-word-rise 1ms linear both;
+        animation-timeline: view();
+        animation-range: entry calc(2% + var(--i, 0) * 2.5%) entry
+          calc(24% + var(--i, 0) * 2.5%);
+      }
+    }
+  }
+  @keyframes rz-word-rise {
+    from {
+      opacity: 0;
+      transform: translateY(0.42em);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
   /* Hero portrait decorative accents.
      Travel + scale tuned so motion is visible at a glance without being
      distracting. Two variants of each so adjacent accents don't pulse in

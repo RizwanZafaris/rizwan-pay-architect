@@ -8,6 +8,8 @@
 import { Link } from "@tanstack/react-router";
 import { profile } from "@/data/profile";
 import { WorldMap } from "@/components/WorldMap";
+import { RevealHeading } from "@/components/RevealHeading";
+import { testimonials } from "@/data/testimonials";
 
 // The industry-filter deep links (?industry=…) intentionally use a raw <a>,
 // not TanStack's typed <Link>. Two reasons: (1) the target route's search
@@ -63,6 +65,35 @@ export const homeSectionsCss = `
 }
 @keyframes home-map-tick-in { from { transform: scaleX(0); } to { transform: scaleX(1); } }
 @media (prefers-reduced-motion: reduce) { .home-map-tick { animation: none; } }
+
+/* "How I work" FAQ — native <details>, zero JS. Hide the default marker and
+   draw our own +/− (a horizontal rule + a vertical one that rotates away on
+   open). The answer fades in when the item opens; closing is instant, which
+   native <details> does for free. */
+.faq-item > summary { list-style: none; cursor: pointer; }
+.faq-item > summary::-webkit-details-marker { display: none; }
+.faq-item > summary:focus-visible {
+  outline: 2px solid var(--brand); outline-offset: 4px; border-radius: 4px;
+}
+.faq-sign { position: relative; width: 14px; height: 14px; flex: none; }
+.faq-sign::before, .faq-sign::after {
+  content: ""; position: absolute; background: currentColor; border-radius: 2px;
+}
+.faq-sign::before { top: 50%; left: 0; right: 0; height: 1.5px; transform: translateY(-50%); }
+.faq-sign::after {
+  left: 50%; top: 0; bottom: 0; width: 1.5px; transform: translateX(-50%);
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+.faq-item[open] .faq-sign::after { opacity: 0; transform: translateX(-50%) rotate(90deg); }
+.faq-item[open] .faq-answer-inner { animation: faq-in 0.3s ease both; }
+@keyframes faq-in {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .faq-sign::after { transition: none; }
+  .faq-item[open] .faq-answer-inner { animation: none; }
+}
 `;
 
 // ── B. PROOF BAND ─────────────────────────────────────────────────────────
@@ -358,8 +389,7 @@ export function GetInTouchBand() {
             ◆ Get in touch
           </div>
           <h2 className="font-instrument text-4xl md:text-6xl text-ink mt-3 leading-[1.05] max-w-3xl mx-auto">
-            The right conversation depends on{" "}
-            <span className="italic text-[var(--brand)]">who you are.</span>
+            <RevealHeading lead="The right conversation depends on" emphasis="who you are." />
           </h2>
         </div>
         <div className="mt-12 grid md:grid-cols-3 gap-5">
@@ -407,6 +437,141 @@ export function GetInTouchBand() {
                 )}
               </div>
             </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ── TESTIMONIALS ──────────────────────────────────────────────────────────
+// Editorial pull-quote list — the JS-less port of the 21st.dev "Editorial
+// Testimonial" (oversized light index numeral, light quote, monogram +
+// attribution). No carousel state (the site never hydrates); the quotes
+// simply stack. Renders nothing until src/data/testimonials.ts has a real
+// entry, so no placeholder ever ships. The route also guards on length.
+function initials(name: string) {
+  return name
+    .trim()
+    .split(/\s+/)
+    .slice(0, 2)
+    .map((p) => p[0]?.toUpperCase() ?? "")
+    .join("");
+}
+
+export function Testimonials() {
+  if (testimonials.length === 0) return null;
+  return (
+    <section className="relative border-t border-rule">
+      <div className="mx-auto max-w-5xl px-5 sm:px-6 py-20 md:py-24">
+        <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
+          ◆ In their words
+        </div>
+        <h2 className="font-instrument text-4xl md:text-6xl text-ink mt-3 leading-[1.03] max-w-3xl">
+          <RevealHeading lead="The people I've built with" emphasis="on the record." />
+        </h2>
+        <ol className="mt-14 divide-y divide-rule">
+          {testimonials.map((t, i) => (
+            <li
+              key={`${t.author}-${i}`}
+              className="grid gap-6 py-10 first:pt-0 md:grid-cols-[auto_1fr] md:gap-10"
+            >
+              <div
+                className="font-mono-tech text-5xl md:text-6xl leading-none text-[var(--brand)]/15 tabular-nums select-none"
+                aria-hidden
+              >
+                {String(i + 1).padStart(2, "0")}
+              </div>
+              <figure>
+                <blockquote className="font-instrument text-2xl md:text-3xl font-light leading-snug text-ink">
+                  &ldquo;{t.quote}&rdquo;
+                </blockquote>
+                <figcaption className="mt-6 flex items-center gap-4">
+                  <span
+                    className="grid h-11 w-11 flex-none place-items-center rounded-full bg-ink text-background font-display text-sm font-semibold tracking-tight"
+                    aria-hidden
+                  >
+                    {initials(t.author)}
+                  </span>
+                  <span className="text-sm text-ink-soft leading-tight">
+                    <span className="font-medium text-ink">{t.author}</span>
+                    <br />
+                    {t.role} · {t.org}
+                    {t.relationship ? (
+                      <>
+                        <span className="mx-1.5 text-[var(--brand)]/40">/</span>
+                        {t.relationship}
+                      </>
+                    ) : null}
+                  </span>
+                </figcaption>
+              </figure>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+  );
+}
+
+// ── HOW I WORK / FAQ ──────────────────────────────────────────────────────
+// Native <details> accordion (zero JS). Every answer traces to profile.ts /
+// the verified fact base, and this same array feeds the FAQPage JSON-LD in
+// the route head — so the structured data can never drift from the copy.
+// Two-tier note: career-scope markers (ten markets) and Simpaisa platform
+// facts are kept in separate sentences within any single answer.
+export const howIWorkFaqs: { q: string; a: string }[] = [
+  {
+    q: "What roles are you focused on?",
+    a: "Senior product and program leadership in payments and fintech infrastructure — Director or VP of Product, Head of Product, and senior program or PMO roles. I own the full lifecycle: strategy, roadmap, PMO governance, execution and P&L.",
+  },
+  {
+    q: "Which markets have you worked across?",
+    a: "Ten markets across MENA and South Asia over my career, spanning payments, e-commerce and streaming. At Simpaisa specifically, I run the platform across five regulated frontier markets.",
+  },
+  {
+    q: "How technical are you?",
+    a: "I started in engineering and still operate close to the build. At Simpaisa I led a 40-plus engineer organisation across 12 squads and served as acting CTO through 2024 alongside the CPO role.",
+  },
+  {
+    q: "What does your product scope cover?",
+    a: "Regulated payment infrastructure end to end: card acquiring, merchant onboarding and KYC/KYB, pay-in and payout rails, cross-border corridors, settlement and reconciliation, fraud and AML/CFT controls, and AI-augmented operations.",
+  },
+  {
+    q: "How do you use AI in delivery?",
+    a: "I run four production GenAI systems in a regulated payments environment — merchant-integration support, incident auto-escalation, partner-support automation, and a fraud/AML pilot with a banking partner — plus a multi-agent automation behind my own delivery work.",
+  },
+  {
+    q: "Where are you based and how do you work?",
+    a: "Dubai (GST, UTC+4), which overlaps cleanly with Europe, MENA and South Asia working hours and with US East Coast mornings. I work async-first with a weekly live cadence.",
+  },
+];
+
+export function HowIWorkFaq() {
+  return (
+    <section className="relative border-t border-rule bg-surface">
+      <div className="mx-auto max-w-3xl px-5 sm:px-6 py-20 md:py-24">
+        <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
+          ◆ How I work
+        </div>
+        <h2 className="font-instrument text-4xl md:text-5xl text-ink mt-3 leading-[1.05]">
+          <RevealHeading lead="The questions I get" emphasis="most." />
+        </h2>
+        <div className="mt-10 border-t border-rule">
+          {howIWorkFaqs.map((f, i) => (
+            <details key={i} className="faq-item group border-b border-rule">
+              <summary className="flex items-center justify-between gap-6 py-5">
+                <span className="font-instrument text-lg md:text-xl text-ink leading-snug">
+                  {f.q}
+                </span>
+                <span className="faq-sign text-[var(--brand)]" aria-hidden />
+              </summary>
+              <div className="faq-answer overflow-hidden">
+                <p className="faq-answer-inner pb-6 pr-8 text-[15px] leading-relaxed text-ink-soft">
+                  {f.a}
+                </p>
+              </div>
+            </details>
           ))}
         </div>
       </div>
