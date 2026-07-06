@@ -322,15 +322,19 @@ function SpeakingPage() {
                 rizwan-zafar-cutout.*), not a downloadable public URL. Until a
                 print-ready file is published, keep an explicit owner TODO
                 rather than inventing a link. */}
+            {/* TODO(owner): publish a print-ready headshot to /public and link
+                it here (e.g. https://rzifi.com/rizwan-zafar-headshot.jpg). The
+                homepage portrait lives at src/assets/rizwan-zafar-cutout.* and
+                is bundled/hashed, so it is not a stable public download URL.
+                QA 2026-07-06: the previous version RENDERED a literal
+                "TODO(owner)" string to visitors — the seo-audit gate now fails
+                the build on that; keep scaffold language in comments only. */}
             <p className="mt-2 text-sm text-ink-soft leading-relaxed">
-              A high-resolution headshot is available on request.
-            </p>
-            <p className="mt-2 font-mono-tech text-xs text-ink-soft leading-relaxed">
-              {/* TODO(owner): publish a print-ready headshot to /public and
-                  link it here (e.g. https://rzifi.com/rizwan-zafar-headshot.jpg).
-                  The homepage portrait lives at src/assets/rizwan-zafar-cutout.*
-                  and is bundled/hashed, so it is not a stable public download URL. */}
-              TODO(owner): headshot download URL
+              A high-resolution headshot is available on request —{" "}
+              <a className="underline underline-offset-4 hover:text-ink" href="/contact/">
+                use the contact page
+              </a>{" "}
+              and it lands in your inbox the same day.
             </p>
           </div>
           <div>

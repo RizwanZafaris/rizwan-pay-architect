@@ -318,6 +318,10 @@ const BANNED_CLAIM_PATTERNS: { label: string; re: RegExp }[] = [
   // the "across …" construction so essays discussing OTHER companies' market
   // counts don't false-positive.
   { label: "six-market footprint (canonical is five)", re: /across six markets/i },
+  // QA 2026-07-06: a literal "TODO(owner)" scaffold string from markets.ts
+  // shipped to the live /journey/ page. Internal placeholder language must
+  // never reach emitted HTML — keep TODOs in source comments only.
+  { label: "TODO scaffold leaked into page copy", re: /TODO\s*\(/ },
 ];
 // The claim gate also covers the AI-engine trust surfaces — a regenerator
 // regression in llms*.txt or feed.xml must fail the build, not ship silently.
