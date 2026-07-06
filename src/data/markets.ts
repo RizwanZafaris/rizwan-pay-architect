@@ -124,10 +124,16 @@ export const markets: Market[] = [
     city: "Lagos",
     lat: 6.52,
     lng: 3.38,
-    years: "TODO(owner)",
-    brand: "TODO(owner)",
+    // TODO(owner): confirm years/brand and one concrete Nigeria shipped item —
+    // no supporting bullet exists in profile.experience yet. Until then the
+    // VISITOR-FACING copy below stays neutral (never raw scaffold text: a
+    // literal "TODO(owner)" leaked to the live page in QA 2026-07-06 and the
+    // seo-audit gate now fails the build on it), and needsOwnerConfirm keeps
+    // this market out of ALL structured data.
+    years: "In verification",
+    brand: "Corridor work",
     shipped:
-      "TODO(owner): confirm a concrete Nigeria shipped item — no supporting bullet in profile.experience yet.",
+      "Engagement detail is being verified before publication — this card carries the specifics in an upcoming update.",
     lesson: "Frontier-market corridor expansion.",
     needsOwnerConfirm: true,
   },

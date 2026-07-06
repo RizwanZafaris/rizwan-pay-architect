@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { markets, type Market } from "@/data/markets";
+import { profile } from "@/data/profile";
 import { WorldMap } from "@/components/WorldMap";
 import { absUrl } from "@/lib/seo";
 
@@ -93,7 +94,9 @@ const journeyItemListJsonLd = {
 export const Route = createFileRoute("/journey")({
   head: () => ({
     meta: [
-      { title: "17 Years, 10 Markets: A Payments Operator's Journey | Rizwan Zafar" },
+      {
+        title: `${profile.career.years} Years, 10 Markets: A Payments Operator's Journey | Rizwan Zafar`,
+      },
       {
         name: "description",
         content:
@@ -101,7 +104,7 @@ export const Route = createFileRoute("/journey")({
       },
       {
         property: "og:title",
-        content: "17 Years, 10 Markets — A Payments Operator's Journey",
+        content: `${profile.career.years} Years, 10 Markets — A Payments Operator's Journey`,
       },
       {
         property: "og:description",
@@ -110,7 +113,10 @@ export const Route = createFileRoute("/journey")({
       },
       { property: "og:url", content: absUrl("/journey") },
       { property: "og:type", content: "profile" },
-      { name: "twitter:title", content: "17 Years, 10 Markets — A Payments Operator's Journey" },
+      {
+        name: "twitter:title",
+        content: `${profile.career.years} Years, 10 Markets — A Payments Operator's Journey`,
+      },
       {
         name: "twitter:description",
         content:
@@ -160,6 +166,18 @@ const css = `
 }
 @media (min-width: 768px) {
   .journey-rail { left: 50%; transform: translateX(-50%); }
+  /* QA 2026-07-06: the era column used to be CENTERED across the centered
+     rail, so the rail sliced through every paragraph. Desktop now alternates
+     eras left/right of the rail — each 46% column sits fully clear of it. */
+  .journey-era-content { width: 46%; }
+  .journey-timeline li:nth-child(odd) .journey-era-content {
+    margin-left: auto;
+    padding-left: 2.25rem;
+  }
+  .journey-timeline li:nth-child(even) .journey-era-content {
+    margin-right: auto;
+    padding-right: 2.25rem;
+  }
 }
 
 .journey-era-label {
@@ -326,7 +344,7 @@ function JourneyPage() {
             {eras.map((era) => (
               <li key={era.id} className="relative pl-8 md:pl-0">
                 <span className="journey-era-node" aria-hidden="true" />
-                <div className="md:mx-auto md:w-[46%] md:[&:nth-child(1)]:ml-auto">
+                <div className="journey-era-content">
                   <div className="journey-era-label">
                     <span className="font-mono-tech text-[11px] uppercase tracking-[0.2em] text-[var(--brand)]">
                       {era.span}

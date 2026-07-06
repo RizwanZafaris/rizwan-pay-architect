@@ -52,6 +52,12 @@ const entitySameAs = [
   ...entityProfiles.map((profile) => profile.url),
 ];
 
+// Career-duration source of truth. Copy must use duration framing (owner
+// ruling 2026-07-06) and derive it from here — never hardcode "17 years"
+// (goes stale) or "since 2009" (retired phrasing).
+const CAREER_START_YEAR = 2009;
+const CAREER_YEARS = new Date().getFullYear() - CAREER_START_YEAR;
+
 export const profile = {
   name: "Rizwan Zafar",
   givenName: "Rizwan",
@@ -143,9 +149,13 @@ export const profile = {
   // role). New brand surfaces (hero, /journey, /about, proof band) read from
   // here; the two-tier claims gate in scripts/seo-audit.ts enforces separation.
   career: {
-    startYear: 2009,
-    sinceLabel: "Operating since 2009",
-    yearsLabel: "Since 2009",
+    startYear: CAREER_START_YEAR,
+    // Owner ruling 2026-07-06: duration framing ("17 years of experience"),
+    // never "operating since 2009". Computed at build time — the site
+    // rebuilds daily, so this rolls over automatically each January and the
+    // copy can never go stale.
+    years: CAREER_YEARS,
+    yearsLabel: `${CAREER_YEARS} years of experience`,
     marketCount: 10,
     industryCount: 3,
     industries: ["E-commerce & marketplaces", "OTT & subscriptions", "Payments & fintech"],

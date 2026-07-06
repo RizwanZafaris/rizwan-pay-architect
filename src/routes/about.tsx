@@ -149,7 +149,9 @@ const doorways = [
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About Rizwan Zafar — Operating Since 2009 Across MENA & South Asia" },
+      // Duration framing per owner ruling 2026-07-06 (never "since 2009");
+      // the year count is computed in profile.ts so it can't go stale.
+      { title: `About Rizwan Zafar — ${profile.career.years} Years Across MENA & South Asia` },
       {
         name: "description",
         content:

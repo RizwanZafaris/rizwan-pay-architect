@@ -74,8 +74,7 @@ export const Route = createFileRoute("/")({
       { title: "Rizwan Zafar | Payments & Product Executive, Frontier Markets" },
       {
         name: "description",
-        content:
-          "Product & program executive operating since 2009 across ten markets. Today I run payments moving $1B+ a year for 150+ global merchants.",
+        content: `Product & program executive with ${profile.career.years} years of experience across ten markets. Today I run payments moving $1B+ a year for 150+ global merchants.`,
       },
       {
         property: "og:title",
@@ -251,15 +250,19 @@ function HomePage() {
             </h1>
 
             {/* Two-tier safe: sentence 1 carries only career-scope markers
-                ("since 2009", "ten markets"); sentence 2 carries only platform
+                ("17 years", "ten markets"); sentence 2 carries only platform
                 metrics ("$1B+", "150+ merchants"). The full stop between them is
-                a clause boundary for the seo-audit gate — do not merge. */}
+                a clause boundary for the seo-audit gate — do not merge. Duration
+                framing per owner ruling 2026-07-06; the number is computed in
+                profile.ts so it can't go stale. */}
             <p className="mt-3.5 md:mt-4 max-w-xl text-[15px] md:text-base text-ink-soft leading-relaxed">
-              Product &amp; program executive, operating{" "}
-              <span className="text-ink font-medium">since 2009</span> — ten markets across MENA and
-              South Asia, from Daraz&rsquo;s marketplaces to Tapmad&rsquo;s streaming business to
-              Simpaisa&rsquo;s cross-border gateway. Today I run payments moving{" "}
-              <span className="text-ink font-medium">$1B+ a year</span> for{" "}
+              Product &amp; program executive with{" "}
+              <span className="text-ink font-medium">
+                {profile.career.years} years of experience
+              </span>{" "}
+              — ten markets across MENA and South Asia, from Daraz&rsquo;s marketplaces to
+              Tapmad&rsquo;s streaming business to Simpaisa&rsquo;s cross-border gateway. Today I
+              run payments moving <span className="text-ink font-medium">$1B+ a year</span> for{" "}
               <span className="text-ink font-medium">150+ global merchants</span> including TikTok,
               Samsung, Shein and Uber.
             </p>
@@ -751,7 +754,7 @@ function HomePage() {
                   platform "$1B+" appears below in the band prose in its own
                   sentence, never joined to a career marker in one clause. */}
               <div className="font-instrument text-3xl mt-3 leading-tight">
-                Since {profile.career.startYear}.
+                {profile.career.years} years.
                 <br />
                 {profile.career.marketCount} markets.
                 <br />
