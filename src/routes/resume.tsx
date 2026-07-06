@@ -511,17 +511,17 @@ function ResumePage() {
             className="resume-soft-reveal font-instrument text-2xl md:text-3xl text-ink leading-snug"
             style={delayStyle(80)}
           >
-            Product &amp; Program Executive with 14+ years across payments, fintech, OTT, ecommerce
-            operations and digital transformation.
+            Product &amp; Program Executive with {profile.career.years} years across payments,
+            fintech, OTT, ecommerce operations and digital transformation.
           </p>
           <p
             className="resume-soft-reveal text-base text-ink-soft leading-relaxed max-w-3xl"
             style={delayStyle(120)}
           >
             Currently CPO at Simpaisa, where I helped scale regulated payment infrastructure to $1B+
-            GTV, 270M+ payments a year, working with leading global PSPs. My operating lane
-            sits between product strategy, program delivery, compliance, risk, engineering
-            leadership, partner ecosystems and market expansion, with adjacent work across BNPL, OTT
+            GTV, 270M+ payments a year, working with leading global PSPs. My operating lane sits
+            between product strategy, program delivery, compliance, risk, engineering leadership,
+            partner ecosystems and market expansion, with adjacent work across BNPL, OTT
             subscription billing and crypto on/off-ramp product strategy.
           </p>
           <div className="grid md:grid-cols-3 gap-3">

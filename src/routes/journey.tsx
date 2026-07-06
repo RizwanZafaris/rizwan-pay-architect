@@ -164,21 +164,12 @@ const css = `
   );
   transform: scaleY(0.34);
 }
-@media (min-width: 768px) {
-  .journey-rail { left: 50%; transform: translateX(-50%); }
-  /* QA 2026-07-06: the era column used to be CENTERED across the centered
-     rail, so the rail sliced through every paragraph. Desktop now alternates
-     eras left/right of the rail — each 46% column sits fully clear of it. */
-  .journey-era-content { width: 46%; }
-  .journey-timeline li:nth-child(odd) .journey-era-content {
-    margin-left: auto;
-    padding-left: 2.25rem;
-  }
-  .journey-timeline li:nth-child(even) .journey-era-content {
-    margin-right: auto;
-    padding-right: 2.25rem;
-  }
-}
+/* Layout note (2026-07-06, round 2): this section has now tried centered
+   (rail sliced text) and alternating (each tall era left a half-screen void
+   beside it at 1440px — read as broken). Left rail + one content column has
+   no failure mode at any content height, so it wins on desktop AND matches
+   the mobile structure. Cap the measure so bullets stay readable. */
+.journey-era-content { max-width: 46rem; }
 
 .journey-era-label {
   position: sticky; top: 5.25rem; z-index: 2;
@@ -195,9 +186,6 @@ const css = `
   position: absolute; left: 0; top: 0.75rem; width: 0.85rem; height: 0.85rem;
   border-radius: 999px; background: var(--signal);
   box-shadow: 0 0 0 5px color-mix(in oklab, var(--signal) 14%, transparent);
-}
-@media (min-width: 768px) {
-  .journey-era-node { left: 50%; transform: translateX(-50%); }
 }
 
 .journey-point { position: relative; padding-left: 1.4rem; }
@@ -342,7 +330,7 @@ function JourneyPage() {
 
           <ol className="space-y-16 md:space-y-24">
             {eras.map((era) => (
-              <li key={era.id} className="relative pl-8 md:pl-0">
+              <li key={era.id} className="relative pl-8 md:pl-16">
                 <span className="journey-era-node" aria-hidden="true" />
                 <div className="journey-era-content">
                   <div className="journey-era-label">

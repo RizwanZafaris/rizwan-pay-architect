@@ -5,13 +5,14 @@ import { ctaClick, outboundClick, resumeDownload } from "@/lib/analytics";
 import { SocialIconRow } from "@/components/SocialIcons";
 
 // Brand-rebuild primary nav (strategy doc §3): a narrative scan path that
-// leads with the work and the arc, not recruiter-utility tabs. Order is
-// Work → Journey → Insights → About, with the persistent "Book a 15-min
-// intro call" pill carrying the single CTA.
-// De-emphasised surfaces (For recruiters, Resume, Contact) moved to the
-// footer so they stay reachable without diluting the senior narrative when
-// scanned in 5 seconds. /products, /media, /topics stay off the top bar too
-// and remain reachable via the footer, homepage sections and blog links.
+// leads with the work and the arc. Order is Work → Journey → Insights →
+// Resume, with the persistent "Book a 15-min intro call" pill carrying the
+// single CTA. (Audit sprint 2026-07, ISSUE-001: Resume promoted into the
+// top bar in place of About; About stays reachable in the footer.)
+// De-emphasised surfaces (For recruiters, Contact) live in the footer so
+// they stay reachable without diluting the senior narrative when scanned
+// in 5 seconds. /products, /media, /topics stay off the top bar too and
+// remain reachable via the footer, homepage sections and blog links.
 // Advisory (/consulting) stays out of the nav — PARKED until 2026-10-02.
 // Speaking (/speaking) stays out of the nav too — PARKED until 2027-01-06
 // (owner call 2026-07-06, same treatment as /consulting: noindex + out of
@@ -20,7 +21,7 @@ const nav = [
   { to: "/product-work", label: "Work" },
   { to: "/journey", label: "Journey" },
   { to: "/blog", label: "Insights" },
-  { to: "/about", label: "About" },
+  { to: "/resume", label: "Resume" },
 ] as const;
 
 const currentYearScript = `(() => {
@@ -94,7 +95,7 @@ export function SiteHeader() {
                 {profile.name}
               </span>
               <span className="text-[9px] uppercase tracking-[0.22em] text-ink-soft font-mono-tech">
-                Payments · Product
+                Product · Program · Payments
               </span>
             </span>
           </Link>
@@ -381,7 +382,7 @@ export function CampaignHeader() {
                 {profile.name}
               </span>
               <span className="text-[9px] uppercase tracking-[0.22em] text-ink-soft font-mono-tech">
-                Payments · Product
+                Product · Program · Payments
               </span>
             </span>
           </Link>
@@ -413,7 +414,8 @@ export function CampaignFooter() {
         <span>
           © <span data-current-year>{new Date().getFullYear()}</span> {profile.name} · Dubai, UAE
         </span>
-        <span>Payments · Product &amp; Program leadership</span>
+        {/* Ordering matches the wordmark subline ruling: Product · Program · Payments. */}
+        <span>Product · Program &amp; Payments leadership</span>
       </div>
       <script dangerouslySetInnerHTML={{ __html: currentYearScript }} />
     </footer>

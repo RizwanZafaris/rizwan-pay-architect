@@ -36,16 +36,25 @@ export const homeSectionsCss = `
     animation-delay: var(--proof-delay, 0ms);
   }
 }
-/* Industry pillar: left accent bar grows on hover; arrow nudges. Pure CSS. */
-.home-pillar-bar {
-  transform: scaleY(0.4);
-  transform-origin: top;
-  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+/* Card hover lift — shared by pillar/topic/doorway cards. The old left
+   accent bars were the design charter's banned callout pattern in diluted
+   form (QA 2026-07-06 P2) and are gone; differentiation now comes from the
+   numbered mono index + this lift. */
+.home-card-lift {
+  transition:
+    transform 0.22s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.22s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.22s ease;
 }
-.home-pillar-card:hover .home-pillar-bar,
-.home-pillar-card:focus-visible .home-pillar-bar { transform: scaleY(1); }
+.home-card-lift:hover,
+.home-card-lift:focus-visible {
+  transform: translateY(-3px);
+  border-color: color-mix(in oklab, var(--brand) 28%, var(--rule));
+  box-shadow: 0 14px 34px color-mix(in oklab, var(--ink) 9%, transparent);
+}
 @media (prefers-reduced-motion: reduce) {
-  .home-pillar-bar { transform: scaleY(1); transition: none; }
+  .home-card-lift { transition: none; }
+  .home-card-lift:hover, .home-card-lift:focus-visible { transform: none; }
 }
 /* Map strip: a slow drift on the caption underline tick. */
 .home-map-tick {
@@ -60,7 +69,22 @@ export const homeSectionsCss = `
 // Six scope-tagged stats, each its OWN cell (never a single text node that
 // joins a career stat to a platform stat). Career stats read from
 // profile.career; platform stats from profile.platform. The `*` marks the
-// three platform metrics; footnote scopes them to the current role.
+// platform metrics; one footnote scopes both rows to the current role.
+
+// Operating-record spotlight (ISSUE-004). Labels mirror the
+// `metricsSpotlight` export contract in src/data/profile.ts; the lookup goes
+// through profile.metrics BY LABEL so this renders the exact same entries
+// whether or not that named export has landed yet (parallel workstream).
+const SPOTLIGHT_METRIC_LABELS = [
+  "Payment success",
+  "Straight-through processing",
+  "Settlement SLA",
+  "Uptime",
+  "Fraud loss",
+  "Authorization uplift",
+] as const;
+type SpotlightMetric = (typeof profile.metrics)[number];
+
 export function ProofBand() {
   const { career, platform } = profile;
   const stats: { value: string; label: string; scoped?: boolean }[] = [
@@ -75,6 +99,22 @@ export function ProofBand() {
     { value: platform.annualPayments, label: "Payments / yr", scoped: true },
     { value: platform.merchants, label: "Merchants", scoped: true },
   ];
+  // ALL spotlight metrics are Simpaisa platform scope → every cell is
+  // asterisked and covered by the shared footnote below. Order is the
+  // display order, so map-then-find (a bare .filter() would re-order to
+  // profile.metrics order).
+  const spotlight = SPOTLIGHT_METRIC_LABELS.map((label) =>
+    profile.metrics.find((m) => m.label === label),
+  )
+    .filter((m): m is SpotlightMetric => Boolean(m))
+    // Display-only reshape: a value like "<0.1% GTV" wraps to two lines in a
+    // 1/6 column at desktop numeral sizes and breaks the row baseline. Move
+    // the unit into the label; the canonical metric in profile.ts is untouched.
+    .map((m) =>
+      m.value.endsWith(" GTV")
+        ? { ...m, value: m.value.slice(0, -4), label: `${m.label}, % of GTV` }
+        : m,
+    );
   return (
     <section className="relative border-b border-rule bg-surface">
       <div className="mx-auto max-w-6xl px-5 sm:px-6 py-10 md:py-12">
@@ -102,6 +142,37 @@ export function ProofBand() {
             </div>
           ))}
         </div>
+        {/* ── Operating record (ISSUE-004) — second row of the proof band. ──
+            Six platform-scope reliability/performance metrics, each its own
+            cell (never two metrics or a career marker in one text node). */}
+        {spotlight.length > 0 && (
+          <div className="mt-10 border-t border-rule pt-8">
+            <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
+              ◆ Operating record
+            </div>
+            <div className="mt-6 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-x-6 gap-y-8">
+              {spotlight.map((m, i) => (
+                <div
+                  key={m.label}
+                  className="home-proof-cell text-center lg:text-left"
+                  style={{ ["--proof-delay" as string]: `${420 + i * 70}ms` }}
+                >
+                  <div className="font-mono-tech text-2xl sm:text-3xl md:text-4xl text-ink leading-[1.05] tabular-nums">
+                    {m.value}
+                    {/* NBSP glues the scope asterisk to the value so it can
+                        never wrap onto a line of its own in narrow cells. */}
+                    <span className="text-[var(--brand)]" aria-hidden>
+                      {" "}*
+                    </span>
+                  </div>
+                  <div className="mt-2 text-[10px] uppercase tracking-[0.22em] text-ink-soft font-mono-tech">
+                    {m.label}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
         <p className="mt-8 text-[10px] uppercase tracking-[0.18em] text-ink-soft font-mono-tech">
           <span className="text-[var(--brand)]" aria-hidden>
             *{" "}
@@ -176,17 +247,19 @@ export function IndustryPillars() {
           <span className="italic text-[var(--brand)]">three arenas.</span>
         </h2>
         <div className="mt-10 grid md:grid-cols-3 gap-5">
-          {PILLARS.map((p) => (
+          {PILLARS.map((p, i) => (
             <a
               key={p.title}
               href={p.href}
-              className="home-pillar-card home-card group relative overflow-hidden rounded-lg border border-rule bg-card p-7 flex flex-col"
+              className="home-pillar-card home-card home-card-lift rz-reveal group relative overflow-hidden rounded-lg border border-rule bg-card p-7 flex flex-col"
             >
-              <span
-                className="home-pillar-bar absolute inset-y-0 left-0 w-1 bg-[var(--brand)]"
+              <div
+                className="font-mono-tech text-[11px] tracking-[0.22em] text-[var(--brand)]"
                 aria-hidden
-              />
-              <h3 className="font-instrument text-2xl text-ink leading-tight group-hover:text-[var(--brand)] transition-colors">
+              >
+                {String(i + 1).padStart(2, "0")}
+              </div>
+              <h3 className="mt-3 font-instrument text-2xl text-ink leading-tight group-hover:text-[var(--brand)] transition-colors">
                 {p.title}
               </h3>
               <p className="mt-3 text-sm text-ink-soft leading-relaxed flex-1">{p.body}</p>
@@ -251,7 +324,7 @@ export function GetInTouchBand() {
       body: "Senior product & program roles in payments and fintech infrastructure.",
       links: [
         { label: "View résumé →", to: "/resume", kind: "internal" as const },
-        { label: "Book a 15-min call →", to: "/contact/#book", kind: "book" as const },
+        { label: "Book a 15-min intro call →", to: "/contact/#book", kind: "book" as const },
       ],
     },
     {
@@ -293,7 +366,7 @@ export function GetInTouchBand() {
           {cards.map((c) => (
             <div
               key={c.eyebrow}
-              className="home-card rounded-lg border border-rule bg-card p-7 flex flex-col"
+              className="home-card home-card-lift rz-reveal rounded-lg border border-rule bg-card p-7 flex flex-col"
             >
               <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
                 {c.eyebrow}

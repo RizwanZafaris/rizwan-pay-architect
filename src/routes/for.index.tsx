@@ -98,7 +98,7 @@ const recruiterFaqJsonLd = {
       name: "What is Rizwan Zafar's experience with payment infrastructure?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "14+ years in fintech and payments. As CPO at SimPaisa, Rizwan scaled a multi-rail payment platform to $1B+ GTV, 270M+ payments a year, PCI DSS Level 1 and ISO/IEC 27001 certified, serving TikTok, Samsung, Shein, Uber and MoneyGram.",
+        text: `${profile.career.years} years in fintech and payments. As CPO at SimPaisa, Rizwan scaled a multi-rail payment platform to $1B+ GTV, 270M+ payments a year, PCI DSS Level 1 and ISO/IEC 27001 certified, serving TikTok, Samsung, Shein, Uber and MoneyGram.`,
       },
     },
     {

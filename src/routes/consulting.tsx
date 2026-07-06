@@ -19,7 +19,7 @@ import { absUrl, OG_IMAGE_URL, SITE_URL } from "@/lib/seo";
 //
 // FACTS: every number on this page comes from src/data/caseStudies.ts /
 // src/data/profile.ts (canonical: 150+ merchants, $1B+ annual GTV, 270M+
-// payments a year, 14+ years, +3.4pts auth uplift, 38%→73% frictionless
+// payments a year, computed career years, +3.4pts auth uplift, 38%→73% frictionless
 // 3DS2, 92% CoF token coverage, 7.2pt Click-to-Pay lift, 60% AML
 // false-positive cut, 99.95% settlement SLA). Do not introduce numbers,
 // clients or testimonials that are not in those files. The merchant strip is
@@ -34,7 +34,7 @@ const proofMetrics = [
   { value: "270M+", label: "Payments a year" },
   { value: "150+", label: "Merchants" },
   { value: "99.95%", label: "Settlement SLA" },
-  { value: "14+", label: "Years in payments & delivery" },
+  { value: `${profile.career.years}`, label: "Years in payments & delivery" },
 ] as const;
 
 // Enterprise platforms that ran on payment infrastructure Rizwan built and
@@ -274,9 +274,8 @@ function ConsultingPage() {
         <p className="mt-5 text-lg md:text-xl text-ink-soft leading-relaxed max-w-2xl mx-auto">
           I&apos;m {profile.name}. I&apos;ve scaled payment infrastructure to{" "}
           <span className="text-ink font-medium">$1B+ annual GTV</span>, 270M+ payments a year and
-          150+ merchants across frontier markets — as the operator, not the observer. I take a
-          small number of advisory engagements alongside that work. Dubai (GST) &middot;
-          remote-friendly.
+          150+ merchants across frontier markets — as the operator, not the observer. I take a small
+          number of advisory engagements alongside that work. Dubai (GST) &middot; remote-friendly.
         </p>
         <div className="mt-9 flex flex-col items-center gap-3">
           <a
@@ -292,8 +291,8 @@ function ConsultingPage() {
             <ArrowRight aria-hidden="true" className="h-4 w-4" />
           </a>
           <p className="text-sm text-ink-soft">
-            15 minutes, no pitch &mdash; just whether the problem is a fit. Booking happens right
-            on this page.
+            15 minutes, no pitch &mdash; just whether the problem is a fit. Booking happens right on
+            this page.
           </p>
         </div>
       </section>
@@ -431,8 +430,8 @@ function ConsultingPage() {
             ))}
           </div>
           <p className="mt-3 text-xs text-ink-soft">
-            Enterprise platforms that ran on payment infrastructure I built and operated —
-            platform relationships, not advisory clients.
+            Enterprise platforms that ran on payment infrastructure I built and operated — platform
+            relationships, not advisory clients.
           </p>
         </div>
       </section>
