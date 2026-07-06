@@ -225,8 +225,9 @@ const personJsonLd = {
   familyName: profile.familyName,
   nationality: profile.nationality,
   jobTitle: "Chief Product Officer, Payments Infrastructure",
-  description:
-    "Fintech CPO with 14+ years scaling regulated payment infrastructure. $1B+ GTV, 270M+ payments a year, 5 frontier markets. Dubai, UAE.",
+  // Duration is computed (owner ruling 2026-07-06) so it can't go stale. The
+  // sentence break before the platform metrics keeps the two-tier gate green.
+  description: `Fintech CPO with ${profile.career.years} years scaling regulated payment infrastructure. $1B+ GTV, 270M+ payments a year, 5 frontier markets. Dubai, UAE.`,
   disambiguatingDescription: profile.entityDisambiguation,
   url: SITE_URL,
   image: `${SITE_URL}/og-default.png`,

@@ -52,7 +52,7 @@ const programPoints = [
   "Built the PMO and delivery methodology from scratch; ran 12 cross-functional squads",
   "SteerCo & board governance, RAID logs, OKRs, RICE/MoSCoW; $5M+ budget, 15+ vendors",
   "Led PCI-DSS L1 & ISO 27001 certification programs — both audited without findings",
-  "Dual CPO + acting CTO in 2024; shipped 4 market launches; 14+ years delivery",
+  `Dual CPO + acting CTO in 2024; shipped 4 market launches; ${profile.career.years} years delivery`,
 ] as const;
 
 const hireJsonLd = {
@@ -277,7 +277,6 @@ function HirePage() {
           </p>
         </div>
       </section>
-
     </div>
   );
 }

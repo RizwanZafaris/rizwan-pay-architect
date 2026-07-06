@@ -139,10 +139,12 @@ export const profile = {
   socials,
   resumeHref: "/Rizwan_Zafar_Resume.pdf",
   headline:
-    "Product & Program Executive Scaling Fintech Infrastructure in Complex Markets. As CPO at Simpaisa, I helped scale payment infrastructure across 5 frontier markets, $1B+ GTV and 270M+ payments a year, working with leading global PSPs (DLocal, Thunes, Boku, Coda and Tazapay).",
+    "Product & Program Executive Scaling Fintech Infrastructure in Complex Markets. As CPO at Simpaisa, I helped scale payment infrastructure across 5 frontier markets, $1B+ GTV and 270M+ payments a year, working with leading global PSPs (DLocal, Thunes, Boku, Coda and Tazapay) and enterprise clients including TikTok, InDrive and Temu.",
   positioning:
     "I build regulated payment infrastructure where product, program delivery, network partnerships, risk, compliance and operations collide. My work turns fragmented local rails into reliable products: card acquiring, merchant onboarding, cross-border corridors, settlement and reconciliation, fraud and AML/CFT controls, and now AI-augmented operations. I run the full lifecycle, strategy → roadmap → PMO governance → execution → P&L, across regulated markets.",
-  bio: "Product & Program leader with 14+ years across payments, fintech and digital transformation. Currently CPO at Simpaisa, a B2B payments platform I helped scale from $0 to $1B+ GTV across five frontier markets in MENA and South Asia, working with leading global PSPs (DLocal, Thunes, Boku, Coda Payments, Tazapay) and enterprise clients including TikTok, Samsung, Shein, Uber and MoneyGram. Built and led the organisation from 2 to 50+ people (40+ engineers) across 12 cross-functional squads. Deployed 4 production GenAI solutions covering merchant integration support (−65% support time), incident auto-escalation (−70% MTTR), partner support automation (90% resolution) and a fraud/AML AI pilot with a banking partner. Earlier: $3M digital transformation programme at TapmadTV, payments operations at Daraz (Alibaba Group), PMO setups at Wing Logic and DS Engineering. Engineer's discipline, programme manager's tempo, regulator's vocabulary. PMP, PMI-ACP, CSPO, CSM, COBIT 5, ITIL v3. PCI DSS and ISO/IEC 27001 led from scratch.",
+  // Duration framing per owner ruling 2026-07-06 — computed, never "14+ years"
+  // (that undersold the arc) and never "since 2009" (banned framing).
+  bio: `Product & Program leader with ${CAREER_YEARS} years across payments, fintech and digital transformation. Currently CPO at Simpaisa, a B2B cross-border acquiring, payouts & gateway platform I helped scale from $0 to $1B+ GTV across five frontier markets in MENA and South Asia, working with leading global PSPs (DLocal, Thunes, Boku, Coda Payments, Tazapay) and enterprise clients including TikTok, Samsung, Shein, Uber, MoneyGram, InDrive and Temu. Built and led the organisation from 2 to 50+ people (40+ engineers) across 12 cross-functional squads. Deployed 4 production GenAI solutions covering merchant integration support (−65% support time), incident auto-escalation (−70% MTTR), partner support automation (90% resolution) and a fraud/AML AI pilot with a banking partner. Earlier: $3M digital transformation programme at TapmadTV, payments operations at Daraz (Alibaba Group), PMO setups at Wing Logic and DS Engineering. Engineer's discipline, programme manager's tempo, regulator's vocabulary. PMP, PMI-ACP, CSPO, CSM, COBIT 5, ITIL v3. PCI DSS and ISO/IEC 27001 led from scratch.`,
   // Career-scope canonical (strategy doc §2, owner-default adopted 2026-07-05).
   // These describe the 17-year ARC and must never be mixed in one clause with
   // the Simpaisa PLATFORM metrics below (which stay scoped to the current
@@ -237,12 +239,21 @@ export const profile = {
     "Careem Pay",
     "Network International",
   ],
+  // Enterprise merchants grouped first, then PSP partners. InDrive, Temu,
+  // Spotify and Yango confirmed as real Simpaisa merchants — owner
+  // attestation 2026-07-06 (audit sprint, ISSUE-005).
   partners: [
+    // Enterprise merchants
     "TikTok",
     "Samsung",
     "Shein",
     "Uber",
     "MoneyGram",
+    "InDrive",
+    "Temu",
+    "Spotify",
+    "Yango",
+    // PSP partners
     "DLocal",
     "Thunes",
     "Boku",
@@ -516,6 +527,19 @@ export const profile = {
   ],
   openRolesIn: ["UAE", "KSA", "Singapore", "MENA", "Europe", "Global fintech"],
 };
+
+// ISSUE-004 (audit sprint 2026-07): homepage "operating record" band.
+// The 6 spotlighted platform metrics, by label — Workstream B resolves each
+// against `profile.metrics` at render time, so entries must match
+// `metrics[].label` exactly. Pure additive export; changes nothing else.
+export const metricsSpotlight = [
+  "Payment success",
+  "Straight-through processing",
+  "Settlement SLA",
+  "Uptime",
+  "Fraud loss",
+  "Authorization uplift",
+] as const;
 
 export const personSchemaCredentials = profile.certifications.filter(
   (credential) => !credential.startsWith("Led "),

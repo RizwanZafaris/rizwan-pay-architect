@@ -71,25 +71,25 @@ const heroScrambleScript = `
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Rizwan Zafar | Payments & Product Executive, Frontier Markets" },
+      { title: "Rizwan Zafar | Product, Program & Payments Executive, Frontier Markets" },
       {
         name: "description",
         content: `Product & program executive with ${profile.career.years} years of experience across ten markets. Today I run payments moving $1B+ a year for 150+ global merchants.`,
       },
       {
         property: "og:title",
-        content: "Rizwan Zafar — Payments & Product Infrastructure for Frontier Markets",
+        content: "Rizwan Zafar — Product, Program & Payments Infrastructure for Frontier Markets",
       },
       {
         property: "og:description",
         content:
-          "I build payment and product infrastructure for the markets most operators avoid. Simpaisa platform: $1B+ a year, 150+ global merchants including TikTok, Samsung, Shein and Uber.",
+          "I build payment and product infrastructure for the markets most operators avoid. Simpaisa platform: $1B+ a year, 150+ global merchants including TikTok, Samsung, InDrive, Temu, Spotify and Yango.",
       },
       { property: "og:url", content: absUrl("/") },
       { property: "og:type", content: "profile" },
       {
         name: "twitter:title",
-        content: "Rizwan Zafar — Payments & Product Infrastructure for Frontier Markets",
+        content: "Rizwan Zafar — Product, Program & Payments Infrastructure for Frontier Markets",
       },
       {
         name: "twitter:description",
@@ -205,12 +205,30 @@ function HomePage() {
     "Emerging Markets": "emerging-markets",
     "Product Strategy": "",
   };
+  // One-line editorial descriptions (ISSUE-011) — neutral summaries of what
+  // each cluster covers. No metrics, no claims (two-tier gate + no-fabrication
+  // guardrail): these describe the TOPIC, never the operator's numbers.
+  const TOPIC_BLURBS: Record<string, string> = {
+    "Cross-Border Payments":
+      "Corridors, correspondent rails, FX and settlement finality — from the operator side.",
+    "Fraud & Risk":
+      "Fraud controls, chargebacks, sanctions screening and AML/CFT — risk versus conversion.",
+    "Merchant Onboarding":
+      "KYC/KYB, risk tiering and pricing — the mechanics of taking a merchant live.",
+    "Payment Infrastructure":
+      "Acquiring, routing, retries and tokenisation — the plumbing under every payment.",
+    "Settlement & Reconciliation":
+      "Settlement cycles, ledgers and break investigation — keeping books and money in sync.",
+    "Emerging Markets":
+      "Fragmented rails, local payment methods and regulation — where standard playbooks run out.",
+  };
   const hotTopics = categories
     .filter((c) => CATEGORY_TO_HUB[c])
     .map((cat) => ({
       name: cat,
       hub: CATEGORY_TO_HUB[cat],
       count: posts.filter((p) => p.category === cat).length,
+      blurb: TOPIC_BLURBS[cat] ?? "",
     }));
 
   return (
@@ -226,7 +244,7 @@ function HomePage() {
             <div className="inline-flex items-center gap-4 mb-3 md:mb-4">
               <span className="home-rule-animate h-px w-10 bg-[var(--brand)]" />
               <span className="text-[10px] uppercase tracking-[0.32em] text-[var(--brand)] font-mono-tech font-semibold">
-                ◆ Payments · Product · Frontier Markets
+                ◆ Product · Program · Payments
               </span>
             </div>
 
@@ -261,15 +279,21 @@ function HomePage() {
                 {profile.career.years} years of experience
               </span>{" "}
               — ten markets across MENA and South Asia, from Daraz&rsquo;s marketplaces to
-              Tapmad&rsquo;s streaming business to Simpaisa&rsquo;s cross-border gateway. Today I
-              run payments moving <span className="text-ink font-medium">$1B+ a year</span> for{" "}
+              Tapmad&rsquo;s streaming business to Simpaisa&rsquo;s cross-border acquiring, payouts
+              &amp; gateway. Today I run payments moving{" "}
+              <span className="text-ink font-medium">$1B+ a year</span> for{" "}
               <span className="text-ink font-medium">150+ global merchants</span> including TikTok,
-              Samsung, Shein and Uber.
+              Samsung, InDrive, Temu, Spotify and Yango.
             </p>
 
-            {/* CTAs — visible in first viewport. Primary uses text-background
-                on bg-ink so contrast is unambiguous. Tertiary pill reuses the
-                exact data-analytics-* attributes of the site's booking CTA. */}
+            {/* CTAs — visible in first viewport (ISSUE-006). Strict hierarchy:
+                PRIMARY solid-ink pill, SECONDARY outline pill, TERTIARY bare
+                text link. All three share the same fixed h-12 row height so
+                they sit on one baseline at 320/768/1440 (the old third pill
+                was py-2.5/text-sm and broke alignment at 768px). On mobile the
+                stack keeps one solid pill only, so the primary stays dominant.
+                The header already carries the brand booking pill site-wide,
+                so the hero booking action reads as the tertiary shortcut. */}
             <div className="mt-5 md:mt-6 flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-2.5">
               <Link
                 to="/product-work"
@@ -278,7 +302,7 @@ function HomePage() {
                 data-analytics-cta-location="hero"
                 data-analytics-cta-destination="/product-work"
                 onClick={() => ctaClick("see_case_studies", "hero", "/product-work")}
-                className="group inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-base text-background bg-ink hover:bg-[var(--brand)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background transition-colors"
+                className="group inline-flex h-12 items-center justify-center gap-2 rounded-full px-6 text-base font-medium text-background bg-ink hover:bg-[var(--brand)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background transition-colors"
               >
                 See the work
                 <span className="transition-transform group-hover:translate-x-1" aria-hidden>
@@ -295,7 +319,7 @@ function HomePage() {
                 data-analytics-cta-id="the_journey"
                 data-analytics-cta-location="hero"
                 data-analytics-cta-destination="/journey"
-                className="inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-base text-ink border border-ink/20 hover:border-ink/50 hover:bg-ink/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background transition-colors"
+                className="inline-flex h-12 items-center justify-center gap-2 rounded-full px-6 text-base text-ink border border-ink/20 hover:border-ink/50 hover:bg-ink/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background transition-colors"
               >
                 The 17-year journey
               </Link>
@@ -305,57 +329,44 @@ function HomePage() {
                 data-analytics-cta-id="book_intro_call"
                 data-analytics-cta-location="hero"
                 data-analytics-cta-destination="/contact/#book"
-                className="inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium text-[var(--brand-foreground)] bg-[var(--brand)] hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background transition"
+                className="group inline-flex h-12 items-center justify-center gap-1.5 rounded-full px-4 text-[15px] font-medium text-[var(--brand)] hover:underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background transition-colors"
               >
-                Book a 15-min call <span aria-hidden>→</span>
+                Book a 15-min intro call{" "}
+                <span className="transition-transform group-hover:translate-x-1" aria-hidden>
+                  →
+                </span>
               </a>
             </div>
 
-            {/* Certification trust line — small mono-caps. */}
-            <p className="mt-4 flex flex-wrap items-center gap-x-1.5 gap-y-1 text-[10px] uppercase tracking-[0.16em] text-ink-soft font-mono-tech leading-relaxed">
-              <span className="opacity-70">Certified:</span> <span className="text-ink">PMP</span>
-              <span className="opacity-40">·</span>
-              <span className="text-ink">PMI-ACP</span>
-              <span className="opacity-40">·</span>
-              <span className="text-ink">CSPO</span>
-              <span className="opacity-40">·</span>
-              <span className="text-ink">CSM</span>
-              <span className="opacity-40">·</span>
-              <span className="text-ink">COBIT 5</span>
-              <span className="opacity-40">·</span>
-              <span className="text-ink">ITIL</span>
-            </p>
-
-            <form
-              action="/blog/"
-              method="get"
-              role="search"
-              data-analytics-event="site_search"
-              data-analytics-search-location="home"
-              onSubmit={(event) => {
-                const q = new FormData(event.currentTarget).get("q");
-                siteSearch(typeof q === "string" ? q : "", "home");
-              }}
-              className="home-search-panel mt-3 max-w-xl rounded-lg border border-rule bg-card/90 p-2 flex flex-col sm:flex-row gap-2"
-              style={{ "--motion-delay": "180ms" } as CSSProperties}
-            >
-              <label htmlFor="home-blog-search" className="sr-only">
-                Search payments essays
-              </label>
-              <input
-                id="home-blog-search"
-                name="q"
-                type="search"
-                placeholder="Search SWIFT, reconciliation, KYB..."
-                className="min-w-0 flex-1 rounded-md border border-transparent bg-surface px-3 py-2.5 text-sm text-ink placeholder:text-ink-soft focus:outline-none focus:border-[var(--brand)]"
-              />
-              <button
-                type="submit"
-                className="rounded-md bg-ink px-4 py-2.5 text-sm font-medium text-background hover:bg-[var(--brand)] transition-colors"
+            {/* Certification chip row (ISSUE-007) — upgraded from the old 10px
+                mono string to visible bordered text chips (12px, ink-soft on
+                paper). Same ◆ mono-label design language; text chips only, no
+                fabricated badge icons. Names trace to profile.certifications. */}
+            <div className="mt-4 flex flex-wrap items-center gap-x-2 gap-y-1.5">
+              <span className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
+                ◆ Certified
+              </span>
+              <ul
+                className="flex flex-wrap items-center gap-1.5"
+                aria-label="Professional certifications"
               >
-                Search essays
-              </button>
-            </form>
+                {["PMP", "PMI-ACP", "CSPO", "CSM", "COBIT 5", "ITIL"].map((cert) => (
+                  <li
+                    key={cert}
+                    className="inline-flex items-center rounded-full border border-rule bg-card px-2.5 py-1 text-xs uppercase tracking-[0.14em] text-ink-soft font-mono-tech leading-none"
+                  >
+                    {cert}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Owned-audience capture in the first viewport (ISSUE-008) — the
+                essay search that used to sit here moved down into the Hot
+                topics / knowledge-base section, which is its real entry point.
+                Shared component keeps the Web3Forms wiring + newsletter_signup
+                analytics consistent site-wide. */}
+            <NewsletterSignup placement="hero" fromPage="/" className="mt-5 max-w-xl" />
           </div>
 
           {/* RIGHT — 42% (5/12). Portrait + premium depth backdrop. */}
@@ -500,6 +511,39 @@ function HomePage() {
                 Essays across payment infrastructure, settlement, risk, SWIFT, onboarding and
                 complex-market execution.
               </p>
+              {/* Knowledge-base search (ISSUE-008) — relocated from the hero;
+                  this section is its real entry point. The role="search" +
+                  data-analytics-* bridge attributes travel with it unchanged. */}
+              <form
+                action="/blog/"
+                method="get"
+                role="search"
+                data-analytics-event="site_search"
+                data-analytics-search-location="home"
+                onSubmit={(event) => {
+                  const q = new FormData(event.currentTarget).get("q");
+                  siteSearch(typeof q === "string" ? q : "", "home");
+                }}
+                className="home-search-panel mt-4 rounded-lg border border-rule bg-card/90 p-2 flex flex-col gap-2"
+                style={{ "--motion-delay": "220ms" } as CSSProperties}
+              >
+                <label htmlFor="home-blog-search" className="sr-only">
+                  Search payments essays
+                </label>
+                <input
+                  id="home-blog-search"
+                  name="q"
+                  type="search"
+                  placeholder="Search SWIFT, reconciliation, KYB..."
+                  className="min-w-0 flex-1 rounded-md border border-transparent bg-surface px-3 py-2.5 text-sm text-ink placeholder:text-ink-soft focus:outline-none focus:border-[var(--brand)]"
+                />
+                <button
+                  type="submit"
+                  className="rounded-md bg-ink px-4 py-2.5 text-sm font-medium text-background hover:bg-[var(--brand)] transition-colors"
+                >
+                  Search essays
+                </button>
+              </form>
             </div>
             <div className="md:col-span-8 grid grid-cols-2 sm:grid-cols-3 gap-3">
               {hotTopics.map((t, i) => (
@@ -521,9 +565,14 @@ function HomePage() {
                     <div className="font-instrument text-lg leading-tight group-hover:text-[var(--brand)] transition-colors">
                       {t.name}
                     </div>
-                    <div className="text-[10px] font-mono-tech uppercase tracking-[0.18em] mt-1 text-ink-soft">
-                      {t.count} {t.count === 1 ? "article" : "articles"} · Explore →
-                    </div>
+                    {/* One-line editorial summary (ISSUE-011) — what the
+                        cluster covers, never a metric or a claim. */}
+                    {t.blurb && (
+                      <p className="mt-1.5 text-[11px] text-ink-soft leading-snug">{t.blurb}</p>
+                    )}
+                  </div>
+                  <div className="relative text-[10px] font-mono-tech uppercase tracking-[0.18em] mt-3 text-ink-soft">
+                    {t.count} {t.count === 1 ? "article" : "articles"} · Explore →
                   </div>
                 </Link>
               ))}
