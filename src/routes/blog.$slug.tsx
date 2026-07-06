@@ -13,6 +13,8 @@ import { marked } from "marked";
 import authorPortrait from "@/assets/rizwan-zafar-cutout-460.webp";
 
 const OG_IMAGE_OVERRIDES: Record<string, string> = {
+  "cross-river-stripe-agentic-card-mandate-controls":
+    "/og/blog/cross-river-stripe-agentic-card-mandate-controls-v20260706.png",
   "amex-apple-pay-rewards-wallet-control-plane":
     "/og/blog/amex-apple-pay-rewards-wallet-control-plane-v20260705.png",
   "github-copilot-agent-session-streaming-governance":

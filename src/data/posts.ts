@@ -123,6 +123,30 @@ export const posts: Post[] = [
     ]
   },
   {
+    "slug": "cross-river-stripe-agentic-card-mandate-controls",
+    "title": "Cross River and Stripe Show Why Agentic Cards Need a Mandate Ledger",
+    "metaTitle": "Cross River + Stripe: Controls for Agentic Cards",
+    "date": "2026-07-06",
+    "category": "Payment Infrastructure",
+    "readingTime": "7 min read",
+    "description": "Cross River and Stripe are expanding agentic card issuing. The hard product problem is preserving user intent across auth, clearing, and disputes.",
+    "thesis": "A single-use virtual card can protect credentials. It cannot, by itself, prove that an agent stayed within the user's mandate.",
+    "tags": [
+      "Cross River",
+      "Stripe Issuing",
+      "agentic commerce",
+      "virtual cards",
+      "issuer processing",
+      "authorization controls"
+    ],
+    "relatedArticles": [
+      "/blog/processor-only-card-issuing-operating-model",
+      "/blog/financial-controls-are-product-requirements",
+      "/blog/chargebacks-product-problem",
+      "/blog/three-way-reconciliation-at-scale"
+    ]
+  },
+  {
     "slug": "amex-apple-pay-rewards-wallet-control-plane",
     "title": "Amex and Apple Pay Turn Rewards Into a Checkout Control Plane",
     "metaTitle": "Amex + Apple Pay: Rewards at Checkout",
