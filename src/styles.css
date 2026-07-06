@@ -375,6 +375,19 @@
     animation: rz-marquee 40s linear infinite;
     will-change: transform;
   }
+  /* Edge fade (pattern ref: 21st.dev dual-track marquee) — names crossing
+     the viewport edge dissolve instead of being cut mid-glyph, which read
+     as a layout break in review. */
+  .marquee-wrap {
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 7%,
+      black 93%,
+      transparent
+    );
+    mask-image: linear-gradient(to right, transparent, black 7%, black 93%, transparent);
+  }
   .marquee-wrap:hover .marquee-track,
   .marquee-wrap:focus-within .marquee-track {
     animation-play-state: paused;
@@ -382,6 +395,32 @@
   @media (prefers-reduced-motion: reduce) {
     .marquee-track {
       animation: none;
+      transform: none;
+    }
+  }
+
+  /* Scroll-driven section reveal (JS-less port of the IntersectionObserver
+     stagger pattern; ref 21st.dev "Stagger List"). Browsers without
+     animation-timeline (or with reduced motion) simply show the content —
+     the animation is pure enrichment. Stagger with --reveal-delay via
+     animation-range shifts is deliberately NOT used: view() timelines ignore
+     animation-delay, so stagger comes from each element's own position. */
+  @media (prefers-reduced-motion: no-preference) {
+    @supports (animation-timeline: view()) {
+      .rz-reveal {
+        animation: rz-reveal-up 1ms linear both;
+        animation-timeline: view();
+        animation-range: entry 4% entry 42%;
+      }
+    }
+  }
+  @keyframes rz-reveal-up {
+    from {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+    to {
+      opacity: 1;
       transform: none;
     }
   }
@@ -1983,6 +2022,25 @@ textarea:user-invalid {
       height: 100%;
     }
   }
+}
+
+/* Scrim behind the floating header pill: content scrolling beneath used to
+   collide crisply with the pill's rounded corners and the strip above it
+   (serif titles rendering through the gaps read as broken). A paper fade
+   keeps the floating look while everything under it recedes. Static rule on
+   purpose — legibility, not motion, so it must NOT sit in a motion query. */
+.site-header::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 -14px 0;
+  pointer-events: none;
+  z-index: -1;
+  background: linear-gradient(
+    to bottom,
+    var(--paper) 0%,
+    color-mix(in oklab, var(--paper) 82%, transparent) 62%,
+    transparent 100%
+  );
 }
 
 @keyframes rz-soft-reveal-lcp {

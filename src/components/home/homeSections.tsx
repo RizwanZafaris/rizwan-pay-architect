@@ -36,16 +36,25 @@ export const homeSectionsCss = `
     animation-delay: var(--proof-delay, 0ms);
   }
 }
-/* Industry pillar: left accent bar grows on hover; arrow nudges. Pure CSS. */
-.home-pillar-bar {
-  transform: scaleY(0.4);
-  transform-origin: top;
-  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+/* Card hover lift — shared by pillar/topic/doorway cards. The old left
+   accent bars were the design charter's banned callout pattern in diluted
+   form (QA 2026-07-06 P2) and are gone; differentiation now comes from the
+   numbered mono index + this lift. */
+.home-card-lift {
+  transition:
+    transform 0.22s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.22s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.22s ease;
 }
-.home-pillar-card:hover .home-pillar-bar,
-.home-pillar-card:focus-visible .home-pillar-bar { transform: scaleY(1); }
+.home-card-lift:hover,
+.home-card-lift:focus-visible {
+  transform: translateY(-3px);
+  border-color: color-mix(in oklab, var(--brand) 28%, var(--rule));
+  box-shadow: 0 14px 34px color-mix(in oklab, var(--ink) 9%, transparent);
+}
 @media (prefers-reduced-motion: reduce) {
-  .home-pillar-bar { transform: scaleY(1); transition: none; }
+  .home-card-lift { transition: none; }
+  .home-card-lift:hover, .home-card-lift:focus-visible { transform: none; }
 }
 /* Map strip: a slow drift on the caption underline tick. */
 .home-map-tick {
@@ -238,17 +247,19 @@ export function IndustryPillars() {
           <span className="italic text-[var(--brand)]">three arenas.</span>
         </h2>
         <div className="mt-10 grid md:grid-cols-3 gap-5">
-          {PILLARS.map((p) => (
+          {PILLARS.map((p, i) => (
             <a
               key={p.title}
               href={p.href}
-              className="home-pillar-card home-card group relative overflow-hidden rounded-lg border border-rule bg-card p-7 flex flex-col"
+              className="home-pillar-card home-card home-card-lift rz-reveal group relative overflow-hidden rounded-lg border border-rule bg-card p-7 flex flex-col"
             >
-              <span
-                className="home-pillar-bar absolute inset-y-0 left-0 w-1 bg-[var(--brand)]"
+              <div
+                className="font-mono-tech text-[11px] tracking-[0.22em] text-[var(--brand)]"
                 aria-hidden
-              />
-              <h3 className="font-instrument text-2xl text-ink leading-tight group-hover:text-[var(--brand)] transition-colors">
+              >
+                {String(i + 1).padStart(2, "0")}
+              </div>
+              <h3 className="mt-3 font-instrument text-2xl text-ink leading-tight group-hover:text-[var(--brand)] transition-colors">
                 {p.title}
               </h3>
               <p className="mt-3 text-sm text-ink-soft leading-relaxed flex-1">{p.body}</p>
@@ -355,7 +366,7 @@ export function GetInTouchBand() {
           {cards.map((c) => (
             <div
               key={c.eyebrow}
-              className="home-card rounded-lg border border-rule bg-card p-7 flex flex-col"
+              className="home-card home-card-lift rz-reveal rounded-lg border border-rule bg-card p-7 flex flex-col"
             >
               <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
                 {c.eyebrow}

@@ -429,10 +429,12 @@ function HomePage() {
               {(
                 [
                   // 3 pluses around the edges
+                  // Horizontal positions stay ≤88% — at 94%+ the glyph box
+                  // crossed the viewport edge at 1440px and rendered clipped.
                   {
                     type: "plus",
                     top: "-2%",
-                    left: "94%",
+                    left: "88%",
                     size: "text-4xl md:text-5xl",
                     color: "text-[var(--brand)]",
                     anim: "hero-float-a",
@@ -447,8 +449,8 @@ function HomePage() {
                   },
                   {
                     type: "plus",
-                    top: "98%",
-                    left: "92%",
+                    top: "94%",
+                    left: "86%",
                     size: "text-3xl md:text-4xl",
                     color: "text-[var(--brand)]",
                     anim: "hero-float-a",
@@ -551,13 +553,16 @@ function HomePage() {
                   key={t.name}
                   to="/topics/$hub"
                   params={{ hub: t.hub }}
-                  className="home-topic-card group relative overflow-hidden rounded-lg min-h-[132px] p-4 flex flex-col justify-between border border-rule bg-card text-ink"
+                  className="home-topic-card home-card-lift group relative overflow-hidden rounded-lg min-h-[132px] p-4 flex flex-col justify-between border border-rule bg-card text-ink"
                   style={{ "--motion-delay": `${220 + i * 45}ms` } as CSSProperties}
                 >
-                  <div className="absolute inset-y-0 left-0 w-1 bg-[var(--brand)]" aria-hidden />
+                  {/* Article-count watermark. Kept fully INSIDE the card and
+                      quiet — the old 110px corner numeral spilled past the
+                      card edge and dominated the (then-empty) body, which
+                      review read as broken. */}
                   <div
                     aria-hidden
-                    className="absolute -top-5 -right-2 font-instrument italic text-[var(--brand)]/10 text-[110px] leading-none select-none pointer-events-none tabular-nums"
+                    className="absolute bottom-1 right-3 font-instrument italic text-[var(--brand)]/8 text-[56px] leading-none select-none pointer-events-none tabular-nums"
                   >
                     {String(t.count).padStart(2, "0")}
                   </div>
@@ -654,7 +659,7 @@ function HomePage() {
                   <Link
                     key={p.slug}
                     to={p.link}
-                    className="home-card group block bg-surface border border-rule rounded-lg p-7"
+                    className="home-card home-card-lift rz-reveal group block bg-surface border border-rule rounded-lg p-7"
                   >
                     {CardInner}
                   </Link>
@@ -662,7 +667,7 @@ function HomePage() {
                   <a
                     key={p.slug}
                     href={p.link}
-                    className="home-card group block bg-surface border border-rule rounded-lg p-7"
+                    className="home-card home-card-lift rz-reveal group block bg-surface border border-rule rounded-lg p-7"
                   >
                     {CardInner}
                   </a>
@@ -790,7 +795,7 @@ function HomePage() {
         <div className="mx-auto max-w-6xl px-6 py-20 grid md:grid-cols-12 gap-10 items-center">
           <div className="md:col-span-4">
             <div
-              className="home-card rounded-lg p-8 text-background relative overflow-hidden"
+              className="home-card rz-reveal rounded-lg p-8 text-background relative overflow-hidden"
               style={{
                 background:
                   "linear-gradient(135deg, color-mix(in oklab, var(--brand) 80%, var(--ink)), color-mix(in oklab, var(--ink) 90%, var(--brand)))",
@@ -827,7 +832,7 @@ function HomePage() {
             <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4">
               {profile.metrics.slice(0, 4).map((m, i) => (
                 <Reveal key={m.label} delay={i * 80}>
-                  <div className="home-card rounded-lg border border-rule bg-card p-4 h-full">
+                  <div className="home-card rz-reveal rounded-lg border border-rule bg-card p-4 h-full">
                     <div className="font-mono-tech text-xl text-ink">
                       <AnimatedMetric value={m.value} />
                     </div>
@@ -871,7 +876,7 @@ function HomePage() {
                   <Link
                     to="/product-work/$slug"
                     params={{ slug: c.slug }}
-                    className="home-card group relative rounded-lg border border-rule bg-card p-6 flex flex-col h-full"
+                    className="home-card home-card-lift rz-reveal group relative rounded-lg border border-rule bg-card p-6 flex flex-col h-full"
                   >
                     {/* Card hero: Higgsfield-generated brand-coherent thumb
                         with the strongest metric overlaid in display serif. */}
