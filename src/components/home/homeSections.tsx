@@ -9,6 +9,7 @@ import { Link } from "@tanstack/react-router";
 import { profile } from "@/data/profile";
 import { WorldMap } from "@/components/WorldMap";
 import { RevealHeading } from "@/components/RevealHeading";
+import { BackgroundPaths } from "@/components/BackgroundPaths";
 import { testimonials } from "@/data/testimonials";
 
 // The industry-filter deep links (?industry=…) intentionally use a raw <a>,
@@ -382,8 +383,13 @@ export function GetInTouchBand() {
     },
   ];
   return (
-    <section>
-      <div className="mx-auto max-w-6xl px-5 sm:px-6 py-20 md:py-24">
+    <section className="relative overflow-hidden">
+      {/* kokonutd/background-paths, JS-less + brand-toned. Faint flowing teal
+          strokes behind the closing CTA; a paper wash fades the edges so the
+          copy stays crisp. */}
+      <BackgroundPaths />
+      <div className="bg-paths-mask" aria-hidden />
+      <div className="relative z-10 mx-auto max-w-6xl px-5 sm:px-6 py-20 md:py-24">
         <div className="text-center">
           <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
             ◆ Get in touch
