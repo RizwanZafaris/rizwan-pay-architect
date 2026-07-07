@@ -102,6 +102,53 @@ export const posts: Post[] = [
     ]
   },
   {
+    "slug": "agent-skills-ai-coding-operating-model",
+    "title": "Agent Skills Turn Prompting Into an Operating Model",
+    "metaTitle": "Agent Skills Need Exit Criteria",
+    "date": "2026-07-07",
+    "category": "AI & Product Operations",
+    "readingTime": "7 min read",
+    "description": "Agent-skills repositories show why AI coding agents need reusable workflows, verification gates, security review, and clear exit criteria.",
+    "thesis": "The useful part of agent skills is not better prompting. It is turning repeated engineering judgment into versioned operating procedure.",
+    "tags": [
+      "agent skills",
+      "AI coding agents",
+      "engineering operations",
+      "verification gates",
+      "AI governance"
+    ],
+    "relatedArticles": [
+      "/blog/github-copilot-agent-session-streaming-governance",
+      "/blog/github-desktop-worktrees-ai-agent-control",
+      "/blog/why-ai-ml-solutions-fail-production-payments",
+      "/blog/where-ml-beats-ai-payment-problems-llm-cant-touch"
+    ]
+  },
+  {
+    "slug": "checkout-unified-payin-payout-control-plane",
+    "title": "Checkout.com Shows Pay-In and Payout Need One Control Plane",
+    "metaTitle": "Checkout.com: Unified Pay-In and Payout Controls",
+    "date": "2026-07-07",
+    "category": "Payment Infrastructure",
+    "readingTime": "7 min read",
+    "description": "Checkout.com's issuing and acquiring push shows why platforms need one control plane for pay-in, payout, liquidity, risk, and reconciliation.",
+    "thesis": "The interesting move is not putting acquiring and issuing under one vendor. It is linking customer collection, supplier payout, liquidity, risk, and reconciliation in one operating loop.",
+    "tags": [
+      "Checkout.com",
+      "payment orchestration",
+      "payouts",
+      "acquiring",
+      "issuing",
+      "virtual cards"
+    ],
+    "relatedArticles": [
+      "/blog/three-way-reconciliation-at-scale",
+      "/blog/hosted-checkout-vs-direct-card-processing",
+      "/blog/processor-only-card-issuing-operating-model",
+      "/blog/reconciliation-is-product-infrastructure"
+    ]
+  },
+  {
     "slug": "swift-and-cryptocurrency-the-honest-take",
     "title": "SWIFT and Cryptocurrency: The Honest Take",
     "metaTitle": "SWIFT and Cryptocurrency: The Honest Take | Rizwan Zafar",
