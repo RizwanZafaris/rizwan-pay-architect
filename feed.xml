@@ -5,8 +5,24 @@
   <link>https://rzifi.com/blog/</link>
   <description>Essays on payment infrastructure, fintech product, risk, settlement, AI and program leadership.</description>
   <language>en</language>
-  <lastBuildDate>Tue, 07 Jul 2026 05:29:07 GMT</lastBuildDate>
+  <lastBuildDate>Tue, 07 Jul 2026 06:27:17 GMT</lastBuildDate>
   <item>
+    <title>Agent Skills Turn Prompting Into an Operating Model</title>
+    <link>https://rzifi.com/blog/agent-skills-ai-coding-operating-model/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/agent-skills-ai-coding-operating-model/</guid>
+    <pubDate>Tue, 07 Jul 2026 00:00:00 GMT</pubDate>
+    <category>AI &amp; Product Operations</category>
+    <description>Agent-skills repositories show why AI coding agents need reusable workflows, verification gates, security review, and clear exit criteria.</description>
+  </item>
+<item>
+    <title>Checkout.com Shows Pay-In and Payout Need One Control Plane</title>
+    <link>https://rzifi.com/blog/checkout-unified-payin-payout-control-plane/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/checkout-unified-payin-payout-control-plane/</guid>
+    <pubDate>Tue, 07 Jul 2026 00:00:00 GMT</pubDate>
+    <category>Payment Infrastructure</category>
+    <description>Checkout.com&apos;s issuing and acquiring push shows why platforms need one control plane for pay-in, payout, liquidity, risk, and reconciliation.</description>
+  </item>
+<item>
     <title>SWIFT and Cryptocurrency: The Honest Take</title>
     <link>https://rzifi.com/blog/swift-and-cryptocurrency-the-honest-take/</link>
     <guid isPermaLink="true">https://rzifi.com/blog/swift-and-cryptocurrency-the-honest-take/</guid>
@@ -229,22 +245,6 @@
     <pubDate>Thu, 25 Jun 2026 00:00:00 GMT</pubDate>
     <category>AI in Fintech</category>
     <description>GitHub Copilot BYOK turns coding agents into a model-routing, governance, cost, and data-boundary decision for product leaders.</description>
-  </item>
-<item>
-    <title>Stripe Shows Global Checkout Is a Product System</title>
-    <link>https://rzifi.com/blog/stripe-global-demand-product-system/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/stripe-global-demand-product-system/</guid>
-    <pubDate>Thu, 25 Jun 2026 00:00:00 GMT</pubDate>
-    <category>Product Strategy</category>
-    <description>Stripe&apos;s Sessions 2026 updates show global checkout is a product system across localization, pricing, auth, fraud, tax, and treasury.</description>
-  </item>
-<item>
-    <title>Thredd&apos;s Visa Cloud Connect Rollout Is a PMO Lesson</title>
-    <link>https://rzifi.com/blog/thredd-visa-cloud-connect-apac-rollout/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/thredd-visa-cloud-connect-apac-rollout/</guid>
-    <pubDate>Thu, 25 Jun 2026 00:00:00 GMT</pubDate>
-    <category>Program Management</category>
-    <description>Thredd&apos;s Visa Cloud Connect APAC rollout shows why payment infrastructure migrations need sequencing, resilience, data, and governance.</description>
   </item>
 </channel>
 </rss>
