@@ -5,8 +5,16 @@
   <link>https://rzifi.com/blog/</link>
   <description>Essays on payment infrastructure, fintech product, risk, settlement, AI and program leadership.</description>
   <language>en</language>
-  <lastBuildDate>Mon, 06 Jul 2026 11:27:13 GMT</lastBuildDate>
+  <lastBuildDate>Tue, 07 Jul 2026 01:16:20 GMT</lastBuildDate>
   <item>
+    <title>SWIFT and Cryptocurrency: The Honest Take</title>
+    <link>https://rzifi.com/blog/swift-and-cryptocurrency-the-honest-take/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/swift-and-cryptocurrency-the-honest-take/</guid>
+    <pubDate>Tue, 07 Jul 2026 00:00:00 GMT</pubDate>
+    <category>Cross-Border Payments</category>
+    <description>Will crypto and stablecoins replace SWIFT? The honest, operator-grade answer, what works, what does not, and where the two will coexist.</description>
+  </item>
+<item>
     <title>Cross River and Stripe Show Why Agentic Cards Need a Mandate Ledger</title>
     <link>https://rzifi.com/blog/cross-river-stripe-agentic-card-mandate-controls/</link>
     <guid isPermaLink="true">https://rzifi.com/blog/cross-river-stripe-agentic-card-mandate-controls/</guid>
@@ -237,14 +245,6 @@
     <pubDate>Thu, 25 Jun 2026 00:00:00 GMT</pubDate>
     <category>Program Management</category>
     <description>Thredd&apos;s Visa Cloud Connect APAC rollout shows why payment infrastructure migrations need sequencing, resilience, data, and governance.</description>
-  </item>
-<item>
-    <title>Project Pangea Shows Stablecoin FX Needs PvP, Not Hype</title>
-    <link>https://rzifi.com/blog/project-pangea-stablecoin-fx-settlement/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/project-pangea-stablecoin-fx-settlement/</guid>
-    <pubDate>Wed, 24 Jun 2026 00:00:00 GMT</pubDate>
-    <category>Cross-Border Payments</category>
-    <description>Project Pangea shows stablecoin FX needs PvP settlement, ISO 20022, Swift integration, liquidity controls, and bank-grade reconciliation.</description>
   </item>
 </channel>
 </rss>
