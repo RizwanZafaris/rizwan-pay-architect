@@ -304,8 +304,8 @@ export function SiteFooter() {
               </Link>
             </li>
             <li>
-              <Link to="/about" className="hover:text-ink text-ink-soft inline-block py-1">
-                <span className="rz-link">About</span>
+              <Link to="/resume" className="hover:text-ink text-ink-soft inline-block py-1">
+                <span className="rz-link">Resume</span>
               </Link>
             </li>
             <li>
@@ -333,11 +333,6 @@ export function SiteFooter() {
             <li>
               <Link to="/for" className="hover:text-ink text-ink-soft inline-block py-1">
                 <span className="rz-link">For recruiters</span>
-              </Link>
-            </li>
-            <li>
-              <Link to="/resume" className="hover:text-ink text-ink-soft inline-block py-1">
-                <span className="rz-link">Resume</span>
               </Link>
             </li>
             <li>

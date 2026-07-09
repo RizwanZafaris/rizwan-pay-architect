@@ -102,6 +102,149 @@ export const posts: Post[] = [
     ]
   },
   {
+    "slug": "baringa-uk-payments-migration-delivery-gates",
+    "title": "Baringa's UK Payments Migration Shows Why Delivery Gates Matter",
+    "metaTitle": "UK Payments Migration: Delivery Gates That Work",
+    "date": "2026-07-09",
+    "category": "Program Management",
+    "readingTime": "7 min read",
+    "description": "Baringa's UK payments-hub migration case shows why regulated programmes need delivery gates, dependency control, live proving, and exit plans.",
+    "thesis": "The useful lesson is not that a bank migrated a payments hub. It is that gates, evidence, dependencies, and exit planning made the change governable.",
+    "tags": [
+      "payments migration",
+      "programme governance",
+      "delivery gates",
+      "operational resilience",
+      "Faster Payments",
+      "PMO"
+    ],
+    "relatedArticles": [
+      "/blog/gov-uk-pay-adyen-1000-service-migration",
+      "/blog/raid-steerco-pmo-stack-that-ships",
+      "/blog/uk-retail-payments-core-product-programme-boundary",
+      "/blog/vendor-governance-fintech-pmo"
+    ]
+  },
+  {
+    "slug": "github-copilot-opentelemetry-agent-auditability",
+    "title": "GitHub Copilot OpenTelemetry Makes Agent Work Auditable",
+    "metaTitle": "GitHub Copilot OpenTelemetry: Agent Auditability",
+    "date": "2026-07-09",
+    "category": "AI & Product Operations",
+    "readingTime": "7 min read",
+    "description": "GitHub Copilot's managed OpenTelemetry export shows why AI coding agents need approved collectors, policy, traces, and evidence review.",
+    "thesis": "Telemetry is becoming the control plane for coding agents. The question is not whether agents ran, but whether teams can explain what they did.",
+    "tags": [
+      "GitHub Copilot",
+      "OpenTelemetry",
+      "AI coding agents",
+      "engineering operations",
+      "observability",
+      "governance"
+    ],
+    "relatedArticles": [
+      "/blog/github-copilot-agent-session-streaming-governance",
+      "/blog/agent-skills-ai-coding-operating-model",
+      "/blog/github-desktop-worktrees-ai-agent-control",
+      "/blog/github-models-retirement-ai-platform-exit-plan"
+    ]
+  },
+  {
+    "slug": "pnc-mobile-app-modernization-product-migration",
+    "title": "PNC's App Overhaul Is a Product Migration, Not a Redesign",
+    "metaTitle": "PNC Mobile App: Product Migration Lessons",
+    "date": "2026-07-09",
+    "category": "Product Management",
+    "readingTime": "7 min read",
+    "description": "PNC's mobile app overhaul shows why financial-app modernization needs phased rollout, migration metrics, support readiness, and quality gates.",
+    "thesis": "The app redesign is the visible part. The harder product work is moving millions of users to a new daily-money surface without breaking trust.",
+    "tags": [
+      "PNC",
+      "mobile banking",
+      "product management",
+      "app modernization",
+      "fintech UX",
+      "migration"
+    ],
+    "relatedArticles": [
+      "/blog/product-management-for-payments-platforms",
+      "/blog/kyc-conversion-designed-together",
+      "/blog/risk-adjusted-backlog-payments",
+      "/blog/stripe-global-demand-product-system"
+    ]
+  },
+  {
+    "slug": "satispay-mastercard-wallet-card-programme",
+    "title": "Satispay's Mastercard Cards Turn a Wallet Into a Card Programme",
+    "metaTitle": "Satispay Mastercard Cards: Wallet to Card Programme",
+    "date": "2026-07-09",
+    "category": "Payment Infrastructure",
+    "readingTime": "7 min read",
+    "description": "Satispay's Mastercard debit cards show how a wallet becomes a card programme across acceptance, funding, tiers, controls, fees, and disputes.",
+    "thesis": "The strategic move is not only global acceptance. It is the operating shift from a proprietary wallet network into a tiered debit-card programme.",
+    "tags": [
+      "Satispay",
+      "Mastercard",
+      "debit cards",
+      "card programmes",
+      "issuer processing",
+      "wallets"
+    ],
+    "relatedArticles": [
+      "/blog/processor-only-card-issuing-operating-model",
+      "/blog/amex-apple-pay-rewards-wallet-control-plane",
+      "/blog/virtual-card-accounts-product-guide",
+      "/blog/financial-controls-are-product-requirements"
+    ]
+  },
+  {
+    "slug": "agent-skills-ai-coding-operating-model",
+    "title": "Agent Skills Turn Prompting Into an Operating Model",
+    "metaTitle": "Agent Skills Need Exit Criteria",
+    "date": "2026-07-07",
+    "category": "AI & Product Operations",
+    "readingTime": "7 min read",
+    "description": "Agent-skills repositories show why AI coding agents need reusable workflows, verification gates, security review, and clear exit criteria.",
+    "thesis": "The useful part of agent skills is not better prompting. It is turning repeated engineering judgment into versioned operating procedure.",
+    "tags": [
+      "agent skills",
+      "AI coding agents",
+      "engineering operations",
+      "verification gates",
+      "AI governance"
+    ],
+    "relatedArticles": [
+      "/blog/github-copilot-agent-session-streaming-governance",
+      "/blog/github-desktop-worktrees-ai-agent-control",
+      "/blog/why-ai-ml-solutions-fail-production-payments",
+      "/blog/where-ml-beats-ai-payment-problems-llm-cant-touch"
+    ]
+  },
+  {
+    "slug": "checkout-unified-payin-payout-control-plane",
+    "title": "Checkout.com Shows Pay-In and Payout Need One Control Plane",
+    "metaTitle": "Checkout.com: Unified Pay-In and Payout Controls",
+    "date": "2026-07-07",
+    "category": "Payment Infrastructure",
+    "readingTime": "7 min read",
+    "description": "Checkout.com's issuing and acquiring push shows why platforms need one control plane for pay-in, payout, liquidity, risk, and reconciliation.",
+    "thesis": "The interesting move is not putting acquiring and issuing under one vendor. It is linking customer collection, supplier payout, liquidity, risk, and reconciliation in one operating loop.",
+    "tags": [
+      "Checkout.com",
+      "payment orchestration",
+      "payouts",
+      "acquiring",
+      "issuing",
+      "virtual cards"
+    ],
+    "relatedArticles": [
+      "/blog/three-way-reconciliation-at-scale",
+      "/blog/hosted-checkout-vs-direct-card-processing",
+      "/blog/processor-only-card-issuing-operating-model",
+      "/blog/reconciliation-is-product-infrastructure"
+    ]
+  },
+  {
     "slug": "swift-and-cryptocurrency-the-honest-take",
     "title": "SWIFT and Cryptocurrency: The Honest Take",
     "metaTitle": "SWIFT and Cryptocurrency: The Honest Take | Rizwan Zafar",
