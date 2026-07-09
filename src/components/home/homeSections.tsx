@@ -188,7 +188,7 @@ export function ProofBand() {
         : m,
     );
   return (
-    <section className="relative border-b border-rule bg-surface">
+    <section className="rz-beam relative border-b border-rule bg-surface">
       <div className="mx-auto max-w-6xl px-5 sm:px-6 py-[var(--space-section-sm)]">
         {/* Five premium counters. Large Instrument-serif numerals + count-up. */}
         <div className="relative">
@@ -199,12 +199,19 @@ export function ProofBand() {
               .rz-js-gated + position:absolute → invisible to no-JS /
               reduced-motion and CLS 0. */}
           <span aria-hidden className="rz-reveal rz-proof-sweep" />
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-y-12 md:gap-y-0 md:divide-x md:divide-[color:var(--rule)]">
-            {primary.map((s, i) => (
+          {/* data-rz-stagger: the reveal engine indexes the five tiles (--i)
+              and cascades them left→right when the grid gets .rz-in — the
+              tiles therefore must NOT also carry .rz-reveal (double-hide).
+              rz-proof-grid hooks the tabular-nums + narrow-width rebalance
+              rules in sections-next.css. */}
+          <div
+            data-rz-stagger
+            className="rz-proof-grid grid grid-cols-2 md:grid-cols-5 gap-y-12 md:gap-y-0 md:divide-x md:divide-[color:var(--rule)]"
+          >
+            {primary.map((s) => (
             <div
               key={s.label}
-              className="rz-reveal text-center md:px-8"
-              style={{ ["--rz-delay" as string]: `${i * 90}ms` }}
+              className="text-center md:px-8"
             >
               <div className="font-instrument text-[46px] sm:text-6xl lg:text-7xl text-ink leading-[0.88] tabular-nums">
                 <AnimatedMetric value={s.value} />
@@ -258,7 +265,9 @@ export function ProofBand() {
 // in" — Nigeria was pending owner confirmation of shipped status.
 export function MapStrip() {
   return (
-    <section className="relative border-b border-rule bg-background overflow-hidden">
+    // rz-beam-flush: this section is overflow-hidden, so the shared beam
+    // (top:-1px) would be clipped — sections-next.css pulls it to top:0.
+    <section className="rz-beam rz-beam-flush relative border-b border-rule bg-background overflow-hidden">
       <div className="mx-auto max-w-6xl px-5 sm:px-6 py-14 md:py-16">
         <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold text-center">
           ◆ The map
@@ -304,7 +313,7 @@ const PILLARS = [
 
 export function IndustryPillars() {
   return (
-    <section className="relative">
+    <section className="rz-beam relative">
       <div className="mx-auto max-w-6xl px-5 sm:px-6 py-[var(--space-section-md)]">
         <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
           ◆ Three industries
@@ -312,12 +321,18 @@ export function IndustryPillars() {
         <h2 className="font-instrument text-4xl md:text-6xl text-ink mt-3 leading-[1.02] max-w-3xl">
           <RevealHeading lead="One operating discipline," emphasis="three arenas." />
         </h2>
-        <div className="mt-10 grid md:grid-cols-3 gap-5">
+        {/* Stagger lives on the cards grid (never the whole section — the
+            heading must not be hidden by the stagger's child-hiding CSS).
+            Cards drop .rz-reveal so they aren't double-hidden; data-glow
+            composes with home-card-lift (glow ::after + lift transform touch
+            different properties, and neither card class owns a pseudo). */}
+        <div data-rz-stagger className="mt-10 grid md:grid-cols-3 gap-5">
           {PILLARS.map((p, i) => (
             <a
               key={p.title}
               href={p.href}
-              className="home-pillar-card home-card home-card-lift rz-reveal group relative overflow-hidden rounded-lg border border-rule bg-card p-7 flex flex-col"
+              data-glow
+              className="home-pillar-card home-card home-card-lift group relative overflow-hidden rounded-lg border border-rule bg-card p-7 flex flex-col"
             >
               <div
                 className="font-mono-tech text-[11px] tracking-[0.22em] text-[var(--brand)]"
@@ -359,7 +374,7 @@ export function CredentialsStrip() {
     "PCI-DSS L1 + ISO 27001 (platform)",
   ].filter(Boolean) as string[];
   return (
-    <section className="relative border-y border-rule bg-surface">
+    <section className="rz-beam relative border-y border-rule bg-surface">
       <div className="mx-auto max-w-6xl px-5 sm:px-6 py-6">
         <ul className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-[11px] md:text-xs uppercase tracking-[0.16em] text-ink-soft font-mono-tech">
           {items.map((it, i) => (
@@ -417,7 +432,8 @@ export function GetInTouchBand() {
     },
   ];
   return (
-    <section className="relative overflow-hidden">
+    // rz-beam-flush: overflow-hidden section — see MapStrip note.
+    <section className="rz-beam rz-beam-flush relative overflow-hidden">
       {/* kokonutd/background-paths, JS-less + brand-toned. Faint flowing teal
           strokes behind the closing CTA; a paper wash fades the edges so the
           copy stays crisp. */}
@@ -432,11 +448,15 @@ export function GetInTouchBand() {
             <RevealHeading lead="The right conversation depends on" emphasis="who you are." />
           </h2>
         </div>
-        <div className="mt-12 grid md:grid-cols-3 gap-5">
+        {/* Stagger on the cards grid only (heading stays visible); cards drop
+            .rz-reveal (double-hide) and pick up data-glow, which composes
+            with home-card-lift — see the IndustryPillars note. */}
+        <div data-rz-stagger className="mt-12 grid md:grid-cols-3 gap-5">
           {cards.map((c) => (
             <div
               key={c.eyebrow}
-              className="home-card home-card-lift rz-reveal rounded-lg border border-rule bg-card p-7 flex flex-col"
+              data-glow
+              className="home-card home-card-lift rounded-lg border border-rule bg-card p-7 flex flex-col"
             >
               <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
                 {c.eyebrow}
@@ -506,7 +526,7 @@ function initials(name: string) {
 export function Testimonials() {
   if (testimonials.length === 0) return null;
   return (
-    <section className="relative border-t border-rule">
+    <section className="rz-beam relative border-t border-rule">
       <div className="mx-auto max-w-5xl px-5 sm:px-6 py-20 md:py-24">
         <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
           ◆ In their words
@@ -514,7 +534,9 @@ export function Testimonials() {
         <h2 className="font-instrument text-4xl md:text-6xl text-ink mt-3 leading-[1.03] max-w-3xl">
           <RevealHeading lead="The people I've built with" emphasis="on the record." />
         </h2>
-        <ol className="mt-14 divide-y divide-rule">
+        {/* Ready for real quotes: the engine cascades <li> entries when data
+            lands. List items carry no reveal classes of their own. */}
+        <ol data-rz-stagger className="mt-14 divide-y divide-rule">
           {testimonials.map((t, i) => (
             <li
               key={`${t.author}-${i}`}
@@ -593,7 +615,9 @@ export const howIWorkFaqs: { q: string; a: string }[] = [
 
 export function HowIWorkFaq() {
   return (
-    <section className="relative border-t border-rule bg-surface">
+    // No data-glow on the <details> rows: they are flat divider rows (border-b
+    // only, no card surface), so the engine's card bloom doesn't apply.
+    <section className="rz-beam relative border-t border-rule bg-surface">
       <div className="mx-auto max-w-3xl px-5 sm:px-6 py-[var(--space-section-sm)]">
         <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
           ◆ How I work

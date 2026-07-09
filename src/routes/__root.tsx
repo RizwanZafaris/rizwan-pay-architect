@@ -199,7 +199,7 @@ n.textContent=f(0);requestAnimationFrame(k);
 /* Hard guarantee: whatever happens to rAF, snap to the real final value. The
    number can never strand at 0 — the whole site is built on exact numbers. */
 setTimeout(settle,du+800);}
-function boot(){var tg=d.querySelectorAll('[data-rz-reveal],.rz-reveal,[data-rz-words],.bg-paths,.rz-unveil,.home-soft-reveal,.home-card,.home-topic-card,.home-search-panel,.case-study-card,.case-soft-card,.case-metric-card'),ct=d.querySelectorAll('[data-rz-count]'),vh=window.innerHeight||el.clientHeight,seen=[];Array.prototype.forEach.call(tg,function(t){var r=t.getBoundingClientRect();if(r.top<vh*0.92&&r.bottom>0)seen.push(t);});seen.sort(function(a,b){return a.getBoundingClientRect().top-b.getBoundingClientRect().top;});seen.forEach(function(t,i){if(!t.style.getPropertyValue('--rz-delay'))t.style.setProperty('--rz-delay',Math.min(i*80,520)+'ms');});
+function boot(){var tg=d.querySelectorAll('[data-rz-reveal],.rz-reveal,[data-rz-words],.bg-paths,.rz-unveil,.home-soft-reveal,.home-card,.home-topic-card,.home-search-panel,.case-study-card,.case-soft-card,.case-metric-card,[data-rz-stagger],.rz-beam'),ct=d.querySelectorAll('[data-rz-count]'),vh=window.innerHeight||el.clientHeight,seen=[];Array.prototype.forEach.call(tg,function(t){var r=t.getBoundingClientRect();if(r.top<vh*0.92&&r.bottom>0)seen.push(t);});seen.sort(function(a,b){return a.getBoundingClientRect().top-b.getBoundingClientRect().top;});seen.forEach(function(t,i){if(!t.style.getPropertyValue('--rz-delay'))t.style.setProperty('--rz-delay',Math.min(i*80,520)+'ms');});
 var io=new IntersectionObserver(function(en,o){en.forEach(function(x){if(x.isIntersecting){x.target.classList.add('rz-in');o.unobserve(x.target);}});},{rootMargin:'0px 0px -8% 0px',threshold:0.08});Array.prototype.forEach.call(tg,function(t){io.observe(t);});
 var cio=new IntersectionObserver(function(en,o){en.forEach(function(x){if(x.isIntersecting){count(x.target);o.unobserve(x.target);}});},{threshold:0.6});Array.prototype.forEach.call(ct,function(c){cio.observe(c);});
 /* Catch-up safety net: reveal ONLY what is already in or above the viewport,
@@ -210,7 +210,24 @@ var cio=new IntersectionObserver(function(en,o){en.forEach(function(x){if(x.isIn
 setTimeout(function(){var v=window.innerHeight||el.clientHeight;Array.prototype.forEach.call(tg,function(t){if(t.getBoundingClientRect().top<v)t.classList.add('rz-in');});},1200);
 /* Hero entrance: fire two frames after boot so the H1 (LCP) has already
    painted, then the supporting cast + portrait stage in. */
-requestAnimationFrame(function(){requestAnimationFrame(function(){el.classList.add('rz-hero-go');});});}
+requestAnimationFrame(function(){requestAnimationFrame(function(){el.classList.add('rz-hero-go');});});
+/* --- Operator's Console modules (2026-07-09). Inherit the reduced-motion +
+   IO gates above; pointer modules additionally require a fine pointer. --- */
+Array.prototype.forEach.call(d.querySelectorAll('[data-rz-stagger]'),function(p){var i=0;Array.prototype.forEach.call(p.children,function(c){c.style.setProperty('--i',String(i++));});});
+var sc=false;function onSc(){var s=(window.scrollY||el.scrollTop||0)>24;if(s!==sc){sc=s;el.classList.toggle('rz-scrolled',s);}}
+window.addEventListener('scroll',onSc,{passive:true});onSc();
+if(window.matchMedia&&window.matchMedia('(hover: hover) and (pointer: fine)').matches){
+/* Probe glow: one delegated pointermove; rAF-throttled; a single
+   getBoundingClientRect per frame only while a [data-glow] card is hot. */
+var pe=null,px=0,py=0,praf=0;
+function probe(){praf=0;if(!pe)return;var r=pe.getBoundingClientRect();if(!r.width)return;pe.style.setProperty('--gx',(((px-r.left)/r.width)*100).toFixed(2)+'%');pe.style.setProperty('--gy',(((py-r.top)/r.height)*100).toFixed(2)+'%');}
+d.addEventListener('pointermove',function(e){px=e.clientX;py=e.clientY;var t=e.target&&e.target.closest?e.target.closest('[data-glow]'):null;if(t!==pe){if(pe)pe.classList.remove('rz-probe');pe=t;if(pe)pe.classList.add('rz-probe');}if(pe&&!praf)praf=requestAnimationFrame(probe);},{passive:true});
+/* Magnetic CTA: bounded pull toward the cursor, spring-back on leave. */
+Array.prototype.forEach.call(d.querySelectorAll('[data-magnetic]'),function(m){var r=null;
+m.addEventListener('pointerenter',function(){r=m.getBoundingClientRect();m.classList.add('rz-mag-live');});
+m.addEventListener('pointermove',function(e){if(!r)r=m.getBoundingClientRect();var dx=(e.clientX-(r.left+r.width/2))*0.18,dy=(e.clientY-(r.top+r.height/2))*0.22;dx=Math.max(-8,Math.min(8,dx));dy=Math.max(-6,Math.min(6,dy));m.style.setProperty('--mag-x',dx.toFixed(1)+'px');m.style.setProperty('--mag-y',dy.toFixed(1)+'px');},{passive:true});
+m.addEventListener('pointerleave',function(){r=null;m.classList.remove('rz-mag-live');m.style.setProperty('--mag-x','0px');m.style.setProperty('--mag-y','0px');});});
+}}
 if(d.readyState==='loading')d.addEventListener('DOMContentLoaded',boot);else boot();})();`;
 
 function NotFoundComponent() {

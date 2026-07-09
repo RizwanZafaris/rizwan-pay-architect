@@ -226,6 +226,28 @@ const picksRotationCss = `
 [data-picks-list][data-pick-slot="2"] [data-pick-alt="2"]{display:grid}
 `;
 
+// Hero cursor parallax — writes normalized --hx/--hy (-1..1, centered) onto
+// the hero stage so hero-next.css can "lean" the decorative depth layers
+// (rail field ±6px, plus-accents ±10px, portrait glow ±4px). Vanilla inline
+// script (no hydration), pointer-fine + hover only, reduced-motion off,
+// passive listener, rAF-throttled with a single rect read per frame. Never
+// touches the H1 or any text — CSS only transforms aria-hidden layers.
+const heroParallaxScript = `(function(){function init(){try{
+if(!window.matchMedia)return;
+if(!matchMedia('(hover: hover) and (pointer: fine)').matches)return;
+if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+var st=document.querySelector('[data-hero-stage]');if(!st)return;
+var px=0,py=0,raf=0;
+function apply(){raf=0;var r=st.getBoundingClientRect();if(!r.width||!r.height)return;
+var x=Math.max(-1,Math.min(1,((px-r.left)/r.width)*2-1));
+var y=Math.max(-1,Math.min(1,((py-r.top)/r.height)*2-1));
+st.style.setProperty('--hx',x.toFixed(3));st.style.setProperty('--hy',y.toFixed(3));}
+st.addEventListener('pointermove',function(e){px=e.clientX;py=e.clientY;if(!raf)raf=requestAnimationFrame(apply);},{passive:true});
+st.addEventListener('pointerleave',function(){if(raf){cancelAnimationFrame(raf);raf=0;}
+st.style.setProperty('--hx','0');st.style.setProperty('--hy','0');},{passive:true});
+}catch(e){}}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();})();`;
+
 function HomePage() {
   // ── Dynamic Editor's Picks ─────────────────────────────────────────────
   // The board refreshes 2-3× per day with zero frameworks, via two layers:
@@ -325,8 +347,11 @@ function HomePage() {
       <section className="home-signal-field relative overflow-hidden border-b border-rule">
         {/* Hero stage — bounds the WebGL nebula to the hero viewport only (the
             home-signal-field section wraps later blocks too, so an unbounded
-            canvas would render a full-page-tall shader). */}
-        <div className="relative overflow-hidden">
+            canvas would render a full-page-tall shader). data-hero-stage is
+            the cursor-parallax host: heroParallaxScript writes --hx/--hy here
+            and hero-next.css leans the decorative layers off those vars. */}
+        <div className="relative overflow-hidden" data-hero-stage>
+        <script dangerouslySetInnerHTML={{ __html: heroParallaxScript }} />
         {/* WebGL atmosphere backdrop — flowing brand-teal light (heroCanvasScript).
             Behind the grid + content; decorative, LCP-safe, reduced-motion-off. */}
         <canvas
@@ -434,6 +459,7 @@ function HomePage() {
             >
               <a
                 href="/contact/#book"
+                data-magnetic
                 data-analytics-event="cta_click"
                 data-analytics-cta-id="book_intro_call"
                 data-analytics-cta-location="hero"
@@ -519,12 +545,49 @@ function HomePage() {
             data-hero-portrait
             className="lg:col-span-5 order-2 relative min-w-0"
           >
+            {/* Payment-rail field — faint orthogonal circuit routes behind the
+                portrait with slow cyan light pulses travelling along them
+                (offset-path, styled in hero-next.css). Absolute + aria-hidden
+                + pointer-events-none → zero layout impact (CLS 0). Fades in
+                after the H1 via .rz-hero-go (+420ms) and is display:none below
+                md, where the portrait column collapses. Sits above the nebula
+                canvas / glow wash, below the z-10 portrait image. */}
+            <div
+              aria-hidden="true"
+              className="rz-rail-field pointer-events-none absolute -inset-x-6 -inset-y-4"
+            >
+              <svg
+                className="h-full w-full"
+                viewBox="0 0 520 640"
+                preserveAspectRatio="xMidYMid slice"
+                xmlns="http://www.w3.org/2000/svg"
+                focusable="false"
+              >
+                {/* Rails — 1px orthogonal polylines, rounded corners, mixed
+                    whisper opacities. Geometry bleeds past the viewBox edges
+                    so routes read as passing through, not starting/ending. */}
+                <path className="rz-rail" strokeOpacity={0.12} d="M -24 128 H 168 Q 178 128 178 138 V 356 Q 178 366 188 366 H 544" />
+                <path className="rz-rail" strokeOpacity={0.08} d="M 64 -24 V 186 Q 64 196 74 196 H 306 Q 316 196 316 206 V 664" />
+                <path className="rz-rail" strokeOpacity={0.14} d="M 544 84 H 396 Q 386 84 386 94 V 258 Q 386 268 376 268 H 128 Q 118 268 118 278 V 664" />
+                <path className="rz-rail" strokeOpacity={0.1} d="M -24 492 H 246 Q 256 492 256 482 V 336 Q 256 326 266 326 H 544" />
+                <path className="rz-rail" strokeOpacity={0.06} d="M 442 -24 V 142 Q 442 152 452 152 H 544" />
+                {/* Junction nodes — tiny solder points where routes turn. */}
+                <circle className="rz-rail-node" cx={178} cy={250} r={1.6} />
+                <circle className="rz-rail-node" cx={316} cy={330} r={1.6} />
+                <circle className="rz-rail-node rz-rail-node-hot" cx={386} cy={176} r={1.8} />
+                {/* Light pulses — each offset-path in hero-next.css matches
+                    one rail's d exactly; staggered delays feel asynchronous. */}
+                <circle className="rz-rail-pulse rz-rail-pulse-1" r={2.4} />
+                <circle className="rz-rail-pulse rz-rail-pulse-2" r={2.2} />
+                <circle className="rz-rail-pulse rz-rail-pulse-3" r={2.4} />
+              </svg>
+            </div>
             <div className="home-portrait-frame relative mx-auto w-full max-w-[260px] sm:max-w-[330px] lg:max-w-[400px] aspect-[4/5]">
               {/* Subtle depth: soft radial wash behind the portrait. Inset so
                   it can't touch the column edges and clip awkwardly. */}
               <div
                 aria-hidden
-                className="pointer-events-none absolute inset-x-4 inset-y-8 -z-10 rounded-[40%] blur-3xl opacity-60"
+                className="rz-glow-par pointer-events-none absolute inset-x-4 inset-y-8 -z-10 rounded-[40%] blur-3xl opacity-60"
                 style={{
                   background:
                     "radial-gradient(60% 60% at 50% 45%, color-mix(in oklab, var(--brand) 22%, transparent), transparent 75%)",
@@ -591,9 +654,12 @@ function HomePage() {
                   // 3 pluses around the edges
                   // Horizontal positions stay ≤88% — at 94%+ the glyph box
                   // crossed the viewport edge at 1440px and rendered clipped.
+                  // Vertical: the top-right plus sits at 34% (mid-right edge),
+                  // NOT near 0% — at -2% it collided with the "Dubai · UAE"
+                  // label (top-2 right-2) at 1280-1600px widths.
                   {
                     type: "plus",
-                    top: "-2%",
+                    top: "34%",
                     left: "88%",
                     size: "text-4xl md:text-5xl",
                     color: "text-[var(--brand)]",
@@ -634,22 +700,32 @@ function HomePage() {
                   },
                 ] as const
               ).map((g, i) =>
+                // Each accent is wrapped in a .rz-acc-par positioning shell so
+                // the cursor-parallax transform (hero-next.css, ±10px off
+                // --hx/--hy) can't fight the float/glow keyframe transforms,
+                // which stay on the inner span.
                 g.type === "plus" ? (
                   <span
                     key={i}
                     aria-hidden
-                    className={`absolute z-20 font-light leading-none select-none ${g.size} ${g.color} ${g.anim}`}
+                    className="rz-acc-par pointer-events-none absolute z-20"
                     style={{ top: g.top, left: g.left }}
                   >
-                    +
+                    <span
+                      className={`block font-light leading-none select-none ${g.size} ${g.color} ${g.anim}`}
+                    >
+                      +
+                    </span>
                   </span>
                 ) : (
                   <span
                     key={i}
                     aria-hidden
-                    className={`absolute z-20 ${g.size} ${g.color} ${g.anim}`}
+                    className="rz-acc-par pointer-events-none absolute z-20"
                     style={{ top: g.top, left: g.left }}
-                  />
+                  >
+                    <span className={`block ${g.size} ${g.color} ${g.anim}`} />
+                  </span>
                 ),
               )}
             </div>
@@ -667,7 +743,7 @@ function HomePage() {
       <IndustryPillars />
 
       {/* ============ PRODUCT WORK, selected cases ============ */}
-      <section>
+      <section className="rz-beam">
         <div className="mx-auto max-w-6xl px-5 sm:px-6 py-[var(--space-section-md)]">
           <div className="flex items-end justify-between mb-10 flex-wrap gap-6">
             <div>
@@ -686,7 +762,7 @@ function HomePage() {
               <span className="transition-transform group-hover:translate-x-1">→</span>
             </Link>
           </div>
-          <div className="grid md:grid-cols-3 gap-5">
+          <div className="grid md:grid-cols-3 gap-5" data-rz-stagger>
             {featuredCases.map((c, i) => {
               // Pull the strongest stat from the case study for the card "art"
               const heroStat = c.metrics?.[0];
@@ -696,7 +772,8 @@ function HomePage() {
                   to="/product-work/$slug"
                   params={{ slug: c.slug }}
                   style={{ ["--motion-delay" as string]: `${i * 120}ms` }}
-                  className="home-card home-card-lift rz-reveal group relative rounded-lg border border-rule bg-card p-7 flex flex-col h-full"
+                  data-glow
+                  className="home-card home-card-lift group relative rounded-lg border border-rule bg-card p-7 flex flex-col h-full"
                 >
                     {/* Card hero: Higgsfield-generated brand-coherent thumb
                         with the strongest metric overlaid in display serif. */}
@@ -752,7 +829,7 @@ function HomePage() {
           and an asymmetric 7/5 spread so the two products read as one editorial
           spread rather than two clones. Cards go bg-card (white) for contrast
           on the tint. No copy change. */}
-      <section className="relative bg-surface border-y border-rule">
+      <section className="relative bg-surface border-y border-rule rz-beam">
         <div className="mx-auto max-w-6xl px-5 sm:px-6 py-[var(--space-section-sm)]">
           <div className="flex items-end justify-between flex-wrap gap-6 mb-10">
             <div>
@@ -820,7 +897,8 @@ function HomePage() {
                   <Link
                     key={p.slug}
                     to={p.link}
-                    className={`home-card home-card-lift rz-reveal group block bg-card border border-rule rounded-lg p-7 ${span}`}
+                    data-glow
+                    className={`home-card home-card-lift rz-reveal group relative block bg-card border border-rule rounded-lg p-7 ${span}`}
                   >
                     {CardInner}
                   </Link>
@@ -828,7 +906,8 @@ function HomePage() {
                   <a
                     key={p.slug}
                     href={p.link}
-                    className={`home-card home-card-lift rz-reveal group block bg-card border border-rule rounded-lg p-7 ${span}`}
+                    data-glow
+                    className={`home-card home-card-lift rz-reveal group relative block bg-card border border-rule rounded-lg p-7 ${span}`}
                   >
                     {CardInner}
                   </a>
@@ -930,6 +1009,7 @@ function HomePage() {
                   key={t.name}
                   to="/topics/$hub"
                   params={{ hub: t.hub }}
+                  data-glow
                   className="home-topic-card home-card-lift group relative overflow-hidden rounded-lg min-h-[132px] p-4 flex flex-col justify-between border border-rule bg-card text-ink"
                   style={{ "--motion-delay": `${220 + i * 45}ms` } as CSSProperties}
                 >
@@ -964,7 +1044,7 @@ function HomePage() {
       </section>
 
       {/* ============ EDITOR'S PICKED ============ */}
-      <section className="relative">
+      <section className="relative rz-beam">
         <div className="mx-auto max-w-6xl px-5 sm:px-6 py-[var(--space-section-md)]">
           <div className="flex items-end justify-between flex-wrap gap-6 mb-10">
             <div>
@@ -1077,7 +1157,7 @@ function HomePage() {
       </section>
 
       {/* ============ ABOUT BAND, sticker style ============ */}
-      <section className="relative border-y border-rule bg-surface-2/60">
+      <section className="relative border-y border-rule bg-surface-2/60 rz-beam">
         <div className="mx-auto max-w-6xl px-5 sm:px-6 py-[var(--space-section-md)] grid md:grid-cols-12 gap-10 items-center">
           <div className="md:col-span-4">
             <div

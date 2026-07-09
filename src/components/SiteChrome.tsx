@@ -104,8 +104,11 @@ export function SiteHeader() {
   const bookingHref = hasLocalEmbed ? "#book" : "/contact/#book";
   return (
     <header className="site-header sticky top-0 z-40 px-3 sm:px-4 pt-3 sm:pt-4">
+      {/* Reading-depth hairline — pure CSS scroll-driven (chrome-next.css);
+          lives inside the header so it paints above the ::before scrim. */}
+      <div className="rz-scroll-progress" aria-hidden="true" />
       <div className="mx-auto max-w-6xl">
-        <div className="flex items-center justify-between gap-3 rounded-full border border-ink/10 bg-background/92 backdrop-blur-xl pl-3 pr-2 py-2 shadow-[0_1px_0_rgba(255,255,255,0.6)_inset,0_8px_30px_-12px_rgba(15,23,42,0.18)]">
+        <div className="header-pill flex items-center justify-between gap-3 rounded-full border border-ink/10 bg-background/92 backdrop-blur-xl pl-3 pr-2 py-2 shadow-[0_1px_0_rgba(255,255,255,0.6)_inset,0_8px_30px_-12px_rgba(15,23,42,0.18)]">
           <Link to="/" className="flex items-center gap-2.5 min-w-0 group">
             <span className="h-8 w-8 shrink-0 rounded-lg bg-ink text-background grid place-items-center font-display text-[13px] font-semibold tracking-tighter">
               RZ
@@ -262,8 +265,19 @@ export function SiteHeader() {
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-rule mt-32 bg-surface-2/60">
-      <div className="mx-auto max-w-6xl px-6 py-14 grid gap-10 md:grid-cols-4 text-sm">
+    // rz-beam: the engine runs a cyan light along the top border-rule once
+    // when the footer reveals (contract in next.css; observer in __root.tsx).
+    <footer className="site-footer rz-beam relative border-t border-rule mt-32 bg-surface-2/60">
+      {/* Ghost signature — decorative outline name behind the columns.
+          Clipped by its OWN wrapper (not the footer) so footer-link focus
+          rings are never cut. Rise/fade on reveal lives in chrome-next.css. */}
+      <div className="footer-ghost" aria-hidden="true">
+        <span className="footer-ghost-name">Rizwan Zafar</span>
+      </div>
+      <div
+        data-rz-stagger
+        className="footer-cols relative mx-auto max-w-6xl px-6 py-14 grid gap-10 md:grid-cols-4 text-sm"
+      >
         <div className="md:col-span-2">
           <div className="flex items-center gap-2.5">
             <span className="h-8 w-8 rounded-lg bg-ink text-background grid place-items-center font-display text-[13px] font-semibold">
@@ -362,7 +376,8 @@ export function SiteFooter() {
           </div>
         </div>
       </div>
-      <div className="border-t border-rule">
+      {/* relative: keeps the legal strip painting above the ghost layer */}
+      <div className="relative border-t border-rule">
         <div className="mx-auto max-w-6xl px-6 py-5 text-xs text-ink-soft flex flex-wrap justify-between gap-3 font-mono-tech">
           <span>
             © <span data-current-year>{new Date().getFullYear()}</span> {profile.name} · Dubai, UAE
@@ -386,8 +401,10 @@ export function CampaignHeader() {
   const calendarUrl = profile.calendarUrl;
   return (
     <header className="site-header sticky top-0 z-40 px-3 sm:px-4 pt-3 sm:pt-4">
+      {/* Same scroll-depth chrome as the primary header (chrome-next.css). */}
+      <div className="rz-scroll-progress" aria-hidden="true" />
       <div className="mx-auto max-w-6xl">
-        <div className="flex items-center justify-between gap-3 rounded-full border border-ink/10 bg-background/92 backdrop-blur-xl pl-3 pr-2 py-2 shadow-[0_1px_0_rgba(255,255,255,0.6)_inset,0_8px_30px_-12px_rgba(15,23,42,0.18)]">
+        <div className="header-pill flex items-center justify-between gap-3 rounded-full border border-ink/10 bg-background/92 backdrop-blur-xl pl-3 pr-2 py-2 shadow-[0_1px_0_rgba(255,255,255,0.6)_inset,0_8px_30px_-12px_rgba(15,23,42,0.18)]">
           <Link to="/" className="flex items-center gap-2.5 min-w-0 group">
             <span className="h-8 w-8 shrink-0 rounded-lg bg-ink text-background grid place-items-center font-display text-[13px] font-semibold tracking-tighter">
               RZ

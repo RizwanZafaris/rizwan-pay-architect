@@ -3,6 +3,12 @@
 @import "tailwindcss" source(none);
 @source "../src";
 @import "tw-animate-css";
+/* Operator's Console next-gen layer (2026-07-09): shared primitives + per-area
+   files. Unlayered on purpose — interaction states must beat Tailwind utils. */
+@import "./styles/next.css";
+@import "./styles/hero-next.css";
+@import "./styles/sections-next.css";
+@import "./styles/chrome-next.css";
 
 @custom-variant dark (&:is(.dark *));
 

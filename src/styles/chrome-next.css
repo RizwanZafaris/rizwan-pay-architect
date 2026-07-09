@@ -1,0 +1,157 @@
+/* ============================================================
+   chrome-next.css — CHROME workstream ("The Operator's Console")
+   Header depth response, scroll-progress hairline, footer finale.
+   Rules of the layer:
+   - one accent only: var(--signal);
+   - anything that moves is gated behind html.rz-js or html.rz-scrolled
+     (both set only by the engine, which never boots under
+     prefers-reduced-motion) — plus an explicit belt at the bottom;
+   - the .site-header::before paper scrim (styles.css) is legibility,
+     not motion: nothing here touches it and nothing here may sit
+     between it and the page in a way that breaks it.
+   ============================================================ */
+
+/* ---------- 1. Scroll-aware header pill ----------
+   html.rz-scrolled is toggled by the engine after 24px of scroll.
+   The pill acknowledges depth: ~19% less vertical padding (8px -> 6.5px),
+   a deeper glass fill (92% -> 97% paper + stronger blur/saturation via
+   the glass tokens), and a sharper hairline (--rule-hi). */
+.site-header .header-pill {
+  transition:
+    padding 260ms var(--ease-soft),
+    background-color 260ms var(--ease-soft),
+    border-color 260ms var(--ease-soft),
+    box-shadow 260ms var(--ease-soft);
+}
+html.rz-scrolled .site-header .header-pill {
+  padding-top: 0.40625rem; /* 6.5px, down from py-2's 8px */
+  padding-bottom: 0.40625rem;
+  background-color: color-mix(in srgb, var(--background) 97%, transparent);
+  border-color: var(--rule-hi);
+  -webkit-backdrop-filter: blur(calc(var(--glass-blur-lg, 18px) + 10px))
+    saturate(var(--glass-sat, 1.3));
+  backdrop-filter: blur(calc(var(--glass-blur-lg, 18px) + 10px))
+    saturate(var(--glass-sat, 1.3));
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.6) inset,
+    0 10px 34px -12px rgba(15, 23, 42, 0.3);
+}
+
+/* ---------- 2. Scroll progress hairline ----------
+   Fixed 2px signal line across the very top of the viewport; scaleX
+   tracks document scroll via a CSS scroll-driven animation. It renders
+   inside the header element so it paints above the header's ::before
+   scrim (z-index -1 in the same stacking context) while the pill —
+   later in the DOM and 12px lower — is never overlapped. Browsers
+   without animation-timeline simply never display it. */
+.rz-scroll-progress {
+  display: none;
+}
+@supports (animation-timeline: scroll()) {
+  .rz-scroll-progress {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    z-index: 1; /* above the scrim (-1), below the pill's row in paint order needs — no overlap by geometry */
+    pointer-events: none;
+    background: var(--signal);
+    opacity: 0.6;
+    transform: scaleX(0);
+    transform-origin: 0 50%;
+    animation: rz-scroll-progress linear both;
+    animation-timeline: scroll(root);
+  }
+}
+@keyframes rz-scroll-progress {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* ---------- 3. Footer finale: the ghost signature ----------
+   Outline-only display name behind the footer columns. The layer clips
+   itself (overflow hidden on .footer-ghost, NOT on the footer) so link
+   focus rings are never cut. Columns and the legal strip are positioned
+   (relative) after it in the DOM, so they always paint above it. */
+.footer-ghost {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.9; /* never brighter than 0.9 of the 0.07 stroke */
+}
+.footer-ghost-name {
+  position: absolute;
+  left: 50%;
+  bottom: -0.16em; /* baseline sinks past the edge — cropped-signature look */
+  transform: translate(-50%, 0);
+  white-space: nowrap;
+  font-family: var(--font-serif);
+  font-weight: 500;
+  /* Sized so the full name always fits the viewport (the serif name runs
+     ≈6em wide → 10.5vw × 6 ≈ 63vw at every breakpoint): monumental, never
+     accidentally cropped. */
+  font-size: min(10.5vw, 10rem);
+  line-height: 0.95;
+  letter-spacing: 0;
+  user-select: none;
+  /* Fallback where text-stroke is unsupported: solid ultra-faint ink. */
+  color: rgba(242, 240, 236, 0.045);
+}
+@supports (-webkit-text-stroke: 1px transparent) {
+  .footer-ghost-name {
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(242, 240, 236, 0.07);
+  }
+}
+/* Reveal: rises ~30px + fades in when the footer earns .rz-in (the same
+   observation that fires the rz-beam). Gated behind .rz-js so a no-JS
+   or reduced-motion visit sees the ghost fully rendered, statically. */
+.rz-js .site-footer .footer-ghost-name {
+  opacity: 0;
+  transform: translate(-50%, 30px);
+}
+.rz-js .site-footer.rz-in .footer-ghost-name {
+  opacity: 1;
+  transform: translate(-50%, 0);
+  transition:
+    opacity 1100ms var(--ease-expo) 150ms,
+    transform 1100ms var(--ease-expo) 150ms;
+}
+
+/* Room to breathe: the columns block reserves extra bottom padding at
+   md+ (static — zero CLS) so the signature has a stage. py-14's 3.5rem
+   bottom becomes 7rem: footer grows ~56px at desktop, within budget. */
+@media (min-width: 768px) {
+  .site-footer .footer-cols {
+    padding-bottom: 7rem;
+  }
+}
+
+/* ---------- Reduced-motion belt ----------
+   The engine never adds .rz-js / .rz-scrolled under reduced motion, so
+   the states above cannot fire — this belt is the redundant guarantee.
+   The .site-header::before scrim lives in styles.css and is untouched
+   by any motion query, as required. */
+@media (prefers-reduced-motion: reduce) {
+  .site-header .header-pill {
+    transition: none;
+  }
+  .rz-scroll-progress {
+    display: none;
+    animation: none;
+  }
+  .rz-js .site-footer .footer-ghost-name,
+  .rz-js .site-footer.rz-in .footer-ghost-name {
+    opacity: 1;
+    transform: translate(-50%, 0);
+    transition: none;
+  }
+}
