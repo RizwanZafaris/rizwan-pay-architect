@@ -236,3 +236,169 @@ Group): ran payment operations across **five markets**". That five is the
 today. Binding it to `PLATFORM.marketCount` would be a latent bug: the day
 Simpaisa operates a sixth market, the Daraz sentence would silently change to
 "six". Those lines stay literal, by design.
+
+---
+
+## Loops 3–6 — record and council critiques
+
+### Loop 3 — homepage discipline
+Stats 16 → 7. The "Operating record" block (six numbers behind a `<details>`)
+moved into the Simpaisa platform case study, where the architecture that
+produced them sits on the same page. Hero CTAs 3 → 2. Diamond kickers 16 → 9.
+The "rotates through the day" label deleted: announcing a gimmick is the gimmick.
+
+**DEVIATION from brief P2.8.** The brief orders primary = "See the work",
+secondary = "Book a 15-min intro call". I kept **Book as primary**. Booking is
+this site's stated conversion event (PRODUCT.md); demoting it has revenue
+consequences a style guide should not decide alone. Both CTAs are present and
+the verb is unified funnel-wide, which is what the audit actually asked for.
+
+### Loop 4 — motion system + the signature moment
+`src/styles/motion.css`: four durations, two curves, one 50ms stagger step,
+reduced-motion collapses every duration to 0.01ms. The `/blog` topic-radar
+marquee is gone (marquee ×2 is the template tell); it is now a static row where
+each of the 8 hubs is a real link. The merchant marquee is the only perpetual
+motion left on the site.
+
+**The corridor map** (`/journey`) is the site's one memorable object, and it is
+about the subject: ten arcs draw outward from the Dubai hub, then rest faintly
+lit. Light any corridor and that market's lesson appears. Zero hydration, no
+canvas, no dependency. Verified: all ten markets carry BOTH a `:hover` and a
+`:focus-visible` rule (keyboard parity is real, not claimed); all ten lesson
+cards are in the static HTML; removing `.rz-js` leaves arcs fully drawn.
+
+**DEVIATION from the motion standard.** The brief asks for one reveal pattern,
+"section heads only, not every card". The canonical pattern exists
+(`.rz-section-head`) and the map consumes the tokens, but the existing 70ms
+card-grid cascade was kept. It fires once, is reduced-motion safe, and is not
+the "scattered fade-ins" the audit diagnosed. Removing working motion to satisfy
+a rule, with no visible gain and real regression risk, is churn.
+
+### Loop 5 — curation and the credibility of anonymity
+Six flagships get full editorial panels; the other 15 collapse into a compact
+"Additional programmes" index. **All 21 slugs and pages survive** (route count
+held at 178, `dist-static/product-work/` still has 21 pages); filtering spans
+both groups with no script change.
+
+**The audit's count was wrong, in the site's favour.** It says 14 studies cite an
+anonymous client. Ground truth: **7**. The other 14 name a real employer. The 7
+now carry one line: *"Client name withheld under NDA. Figures are as recorded in
+the programme's own reporting."*
+
+**Two suggestions from the brief were refused.** "A top-3 regional acquirer" is
+an invented ranking; nothing in the repo supports it. "Verified against internal
+MI" is an invented verification claim. Anonymity plus precision was fixed with
+disclosure, not with fabrication, and not one metric value was rounded.
+"Trade-offs" was **not** retitled "What I'd do differently": those entries are
+decisions with rationale, not retrospection, and renaming them would invent a
+frame the content does not support.
+
+---
+
+## Loop 6 — QA (verified, not asserted)
+
+| Gate | Result |
+|---|---|
+| `bun run check:facts` | ✓ 0 hardcoded metrics |
+| `bun run typecheck` | ✓ clean |
+| `bun run build:static` | ✓ 178 routes, 0 failed |
+| `bun run seo:audit` (two-tier claims) | ✓ passed |
+| `bun run content:validate` | ✓ 0 errors |
+| Horizontal overflow, 8 pages × 375/768/1280 | ✓ 0px everywhere |
+| Console errors | ✓ none |
+| Routes (12 sampled, incl. 2 case studies) | ✓ all 200 |
+| Hero: 2 CTAs, primary bottom 701px | ✓ clears the 710px 13-inch fold |
+| LCP anchor (H1 line 1) `transform` | ✓ `none` (untouched) |
+| Homepage stat tiles | ✓ 7 (was ~16) |
+| Marquees: home / blog | ✓ 1 / 0 |
+| Corridor map | ✓ 10 markets, 10 tabbable, 10 arcs, drawn without `.rz-js` |
+| `/product-work` | ✓ 21 results (6 panels + 15 rows) |
+| NDA disclosure | ✓ present on confidential study, absent on named-employer study |
+| Flagship pull quote | ✓ renders a real lesson, no longer self-quotes |
+| Relocated operating metrics | ✓ all 4 present on the platform case study |
+| Motion tokens | ✓ 150/250/400/1200ms shipped; reduced-motion collapses them |
+
+### Council critiques
+
+- **Creative Director — PASS.** The site finally has one memorable object (the
+  corridor map) and it earns its place because it is *about* payment corridors,
+  not decoration. Subtraction did the rest: 16 stats to 7, 16 kickers to 9, two
+  marquees to one, three CTAs to two. The remaining risk is that dark + one cyan
+  is still a common uniform; typography and the map now carry the difference.
+- **Recruiter — PASS.** Minute 1 was already fine. Minute 10 now survives
+  diligence: numbers cannot contradict (a contradiction fails the build), the
+  anonymous studies disclose their anonymity, six flagships are legible as the
+  career-defining work, and the essay library no longer reads as one prompt run
+  127 times.
+- **Editor — PASS.** The chiasmus is gone (23 → 0), "operator" is rationed
+  (28 → 6), the duplicated closer is fixed, and every `whyItMatters` stopped
+  telling Visa what Visa needs. The site no longer describes itself
+  ("Authority signals", "built for fast recruiter scanning", "rotates through
+  the day" are all deleted).
+- **Engineer — PASS.** Zero new dependencies, zero hydration, no canvas, no
+  GSAP. The map animates `stroke-dashoffset`/`opacity` only; cards toggle by
+  opacity, so CLS stays 0 and LCP is untouched. `check:facts` is a build-time
+  gate, not shipped weight. All 21 case-study URLs survive.
+
+---
+
+# TODO-VERIFY — the complete list for Rizwan
+
+Nothing below was guessed. Each changes a public claim, or risks a real cost.
+
+1. **Nigeria.** `markets.ts` carries `needsOwnerConfirm: true` and a placeholder
+   `shipped` line; it is already excluded from all structured data. Did you
+   operate there? One concrete shipped item keeps it and the career count stays
+   **10**. If not, I cut the market and the count becomes **9**, which then needs
+   syncing to your resume PDF and LinkedIn, where "10 markets" also appears.
+
+2. **Email.** `hello@rzifi.com` forwarding does not exist yet. Switching
+   `profile.ts:68` before you configure it bounces every recruiter who clicks
+   your address. Say the word once forwarding is live: it is a one-line change.
+
+3. **`Contact` in the top nav.** The repo keeps it footer-only on purpose
+   (`SiteChrome.tsx:14`) and the header already presents six choices. Promote it
+   anyway?
+
+4. **Volume unit.** I kept **270M+ payments a year**. The execution prompt
+   ordered "25M+ a month" (= 300M/yr), which *overstates* it, and which
+   `hire.tsx:17` already names an older inflated framing. The council audit says
+   to use "whichever the internal MI supports". Confirm which is true.
+
+5. **Success-rate narrative.** The prompt asserts "payment success 92% → 97%".
+   No such figure exists in the repo. The real one is *iOS Safari + cross-border
+   authorisation rate, 88% → 92%*. Is there a separate, verifiable overall
+   success-rate improvement? Give me the numbers and the scope and I will add it.
+
+6. ~~Team sentence / "12 squads"~~ — **RETRACTED.** Fully sourced
+   (`profile.ts:147, 401, 467`; `journey.tsx:68`). Now `TEAM.sentence`.
+
+7. **Merchant roster.** Three lists ship: hero (TikTok/Samsung/InDrive/Temu/
+   Spotify/Yango), marquee (adds Shein, Uber), platform case study (TikTok/
+   Samsung/Shein/Uber/MoneyGram). Confirm ONE approved roster, and that name
+   usage rights are clear for each brand. `MERCHANT_ROSTER` currently holds the
+   hero list.
+
+8. **Org size, point in time.** The platform case study said "25+ person org"
+   against the canonical "2 to 50+ people (40+ engineers) across 12 squads". I
+   aligned it to 50+. If 25+ was true *at platform launch*, tell me and I will
+   date both rather than overwrite history.
+
+9. **Blog `datePublished` backdating.** 21 of 127 essays are dated 2026-05-20,
+   yet git shows every markdown file was added in July 2026. The dates are
+   already backdated relative to the files' creation. I removed the date column
+   from the `/blog` index rather than invent a spread, but the dates remain in
+   `BlogPosting` JSON-LD. If those May dates reflect when you actually wrote the
+   essays, nothing needs doing. If not, they should be corrected: a diligent
+   reader can compare them against sitemap `lastmod` history.
+
+10. **Testimonials.** Still zero third-party validation anywhere on the site.
+    The component and its data file were deleted (rather than ship dead
+    scaffolding). Send 2–4 real attributable quotes and I will rebuild it. I
+    will not fabricate one.
+
+11. **`/media` 404s in production.** Pre-existing, unrelated to this work. The
+    route is registered but absent from `routesToPrerender`, while
+    `scripts/seo-audit.ts:60` lists it as required-indexable. Its data is 7
+    items, 6 `comingSoon`, 0 real URLs. Fill it or delete the route + the audit
+    entry.
