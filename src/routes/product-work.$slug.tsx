@@ -175,7 +175,10 @@ function CaseStudyPage() {
   const diagram = caseStudyDiagrams[s.slug];
   const heroMetrics = s.metrics.slice(0, 4);
   const secondaryMetrics = s.metrics.slice(4);
-  const operatorLens = s.pullQuote ?? s.lessons[0] ?? s.executiveSummary;
+  // A pull quote must be a real third-party line or a genuine operating lesson.
+  // It must NEVER fall back to executiveSummary: that quoted the page's own
+  // description back at the reader, in quotation marks (council audit, B3).
+  const operatorLens = s.pullQuote ?? s.lessons[0] ?? null;
 
   // Per-case-study dim — fires after spa_pageview so GA4 can attribute the
   // specific study viewed.
@@ -270,17 +273,21 @@ function CaseStudyPage() {
           <p>{s.executiveSummary}</p>
         </Section>
 
-        {/* Operator lens: concise proof point without repeating the full hero copy. */}
-        <Reveal>
-          <aside className="case-soft-card mt-10 rounded-2xl border border-rule bg-surface p-5 sm:mt-12 sm:p-7">
-            <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--accent-emerald)] font-mono-tech">
-              ◆ Operator lens
-            </div>
-            <p className="mt-4 max-w-3xl break-words font-instrument text-2xl leading-[1.08] text-ink sm:text-3xl">
-              {operatorLens}
-            </p>
-          </aside>
-        </Reveal>
+        {/* Operator lens: a real pull quote or a genuine operating lesson. If a
+            study has neither, the block does not render at all — better silence
+            than the page quoting its own summary back at the reader. */}
+        {operatorLens && (
+          <Reveal>
+            <aside className="case-soft-card mt-10 rounded-2xl border border-rule bg-surface p-5 sm:mt-12 sm:p-7">
+              <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--accent-emerald)] font-mono-tech">
+                ◆ Operator lens
+              </div>
+              <p className="mt-4 max-w-3xl break-words font-instrument text-2xl leading-[1.08] text-ink sm:text-3xl">
+                {operatorLens}
+              </p>
+            </aside>
+          </Reveal>
+        )}
 
         {s.beforeAfter && s.beforeAfter.length > 0 && (
           <section className="case-soft-card mt-10 rounded-2xl border border-rule bg-surface p-5 sm:mt-12 sm:p-7 md:p-8">

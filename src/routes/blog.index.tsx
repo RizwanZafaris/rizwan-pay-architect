@@ -252,10 +252,12 @@ function BlogIndex() {
                 markets.
               </p>
             </div>
-            {/* Authority signals — ruled mono ledger, right column of the spread */}
+            {/* Ruled mono ledger, right column of the spread. Was labelled
+                "Authority signals" — naming your own authority is the opposite
+                of having it (council audit, B6). The counts speak. */}
             <div className="lg:col-span-3">
               <div className="text-[10px] uppercase tracking-[0.18em] text-ink-soft font-mono-tech">
-                Authority signals
+                The library
               </div>
               <dl className="mt-3 border-t border-rule">
                 {authoritySignals().map((s) => (
@@ -485,11 +487,13 @@ function BlogIndex() {
                   data-glow
                   className="group relative grid gap-y-2 border-b border-rule py-6 md:grid-cols-12 md:gap-x-8 md:py-7"
                 >
+                  {/* No date on the index. 21 of 127 essays share one date and
+                      no earlier honest date exists in git history, so a date
+                      column here only advertises batch publication. The date
+                      still appears on the essay itself and in BlogPosting
+                      JSON-LD, where it is structurally required. */}
                   <div className="flex items-baseline gap-x-4 md:col-span-2 md:block">
-                    <span className="block font-mono-tech text-[11px] tracking-[0.14em] text-ink-soft tabular-nums">
-                      {formatPostDate(p.date)}
-                    </span>
-                    <span className="block font-mono-tech text-[11px] tracking-[0.14em] text-ink-soft/70 md:mt-1">
+                    <span className="block font-mono-tech text-[11px] tracking-[0.14em] text-ink-soft/70">
                       {p.readingTime}
                     </span>
                   </div>

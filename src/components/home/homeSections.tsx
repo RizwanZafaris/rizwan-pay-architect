@@ -415,7 +415,7 @@ export function GetInTouchBand() {
     {
       eyebrow: "Building?",
       title: "Read the essays, get the notes.",
-      body: "Payment acceptance, settlement and delivery notes. Advisory conversations open Q4.",
+      body: "Payment acceptance, settlement and delivery notes. Advisory conversations open from October 2026.",
       links: [
         { label: "Read the essays →", to: "/blog", kind: "internal" as const },
         {
@@ -540,7 +540,7 @@ export const howIWorkFaqs: { q: string; a: string }[] = [
   },
   {
     q: "How do you use AI in delivery?",
-    a: "I run four production GenAI systems in a regulated payments environment — merchant-integration support, incident auto-escalation, partner-support automation, and a fraud/AML pilot with a banking partner — plus a multi-agent automation behind my own delivery work.",
+    a: "I run four production GenAI systems in a regulated payments environment — merchant-integration support, incident auto-escalation, partner-support automation, and a fraud/AML pilot with a banking partner.",
   },
   {
     q: "Where are you based and how do you work?",

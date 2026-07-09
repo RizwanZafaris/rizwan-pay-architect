@@ -336,7 +336,7 @@ function ForIndex() {
           aria-label="Recruiter summary"
         >
           <div className="text-[10px] uppercase tracking-[0.18em] text-ink-soft font-mono-tech">
-            Best used for
+            Strongest fit
           </div>
           <ul className="mt-4 space-y-2 text-sm text-ink">
             {[
@@ -447,7 +447,6 @@ function ForIndex() {
         <div className="md:col-span-3 recruiter-soft-reveal" style={delayStyle(0)}>
           <h2 className="font-instrument text-2xl text-ink">Where The Fit Is Strongest</h2>
           <p className="mt-3 text-sm text-ink-soft leading-relaxed">
-            This page is built for fast recruiter scanning, not biography browsing.
           </p>
         </div>
         <div className="md:col-span-9 grid sm:grid-cols-2 gap-4">
