@@ -1,0 +1,78 @@
+/* ============================================================
+   MOTION TOKENS — the whole site's timing vocabulary, in one place.
+
+   The council audit's motion verdict: "no evidence of a coherent motion
+   system, which usually means scattered fade-ins." This file is the system.
+
+   THE RULES (they are short on purpose)
+   1. Four durations. Nothing else.
+   2. Two curves. One for entrances (ease-out), one for morphs (ease-in-out).
+      No bounce. No elastic. Nothing overshoots.
+   3. Stagger step is 50ms, always.
+   4. Animate `transform` and `opacity` only. Never a layout property.
+      (`stroke-dashoffset` is the one sanctioned exception: the corridor map
+      draws with it, and it does not trigger layout.)
+   5. Nothing runs longer than 400ms except the map (1200ms) and the hero
+      sequence (900ms total, once per page load).
+   6. `prefers-reduced-motion` makes the site static. Opacity fades survive;
+      everything that moves does not.
+   ============================================================ */
+
+:root {
+  /* Durations. Four. */
+  --dur-micro: 150ms; /* hover, focus, colour, the cursor probe */
+  --dur-standard: 250ms; /* card lift, disclosure, most state changes */
+  --dur-section: 400ms; /* section reveals, staggered entrances */
+  --dur-map: 1200ms; /* the corridor map draw. The one long moment. */
+
+  /* Curves. Two. */
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
+
+  /* Stagger step. One. */
+  --stagger-step: 50ms;
+
+  /* The hero sequence: headline, then one number, then the CTA settles.
+     Budget is 900ms end-to-end and it plays once. */
+  --hero-line-1: 0ms;
+  --hero-line-2: 120ms;
+  --hero-count: 380ms;
+  --hero-cta: 640ms;
+  --hero-total: 900ms;
+}
+
+/* ── The single scroll-reveal pattern ─────────────────────────
+   14px rise + fade, fires once, applied to SECTION HEADINGS only.
+   Not to every card. A page where everything rises is a page where
+   nothing arrives. Requires `.rz-js` (engine present, motion allowed)
+   and `data-rz-reveal`; the engine adds `.rz-in` on intersection. */
+.rz-js [data-rz-reveal].rz-section-head {
+  opacity: 0;
+  transform: translateY(14px);
+}
+.rz-js [data-rz-reveal].rz-section-head.rz-in {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity var(--dur-section) var(--ease-out-quart),
+    transform var(--dur-section) var(--ease-out-quart);
+}
+
+/* ── Reduced motion: the site is static. ──────────────────────
+   Opacity may still fade (it does not move, and it prevents a jarring
+   pop-in). Everything else is instant, drawn, and still. */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-micro: 0.01ms;
+    --dur-standard: 0.01ms;
+    --dur-section: 0.01ms;
+    --dur-map: 0.01ms;
+    --stagger-step: 0ms;
+  }
+  .rz-js [data-rz-reveal].rz-section-head,
+  .rz-js [data-rz-reveal].rz-section-head.rz-in {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

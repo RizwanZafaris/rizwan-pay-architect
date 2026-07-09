@@ -277,23 +277,25 @@ function BlogIndex() {
             </div>
           </div>
         </div>
-        {/* Topic radar — kinetic strip rides the masthead's base rule */}
-        <div
-          className="blog-kinetic-strip overflow-hidden border-t border-rule bg-background"
-          aria-label="Key blog topics"
-        >
-          <span className="blog-kinetic-label" aria-hidden="true">
-            Topic radar
-          </span>
-          <div className="blog-kinetic-track flex w-max items-center gap-6 py-3 text-[10px] uppercase tracking-[0.2em] text-ink-soft font-mono-tech">
-            {[...hubs.slice(0, 8), ...hubs.slice(0, 8)].map((h, index) => (
-              <span key={`${h.slug}-${index}`} className="inline-flex items-center gap-6">
-                <span>{h.shortTitle}</span>
-                <span className="text-[var(--brand)]">◆</span>
-              </span>
+        {/* Was a second scrolling marquee ("Topic radar"). Marquee x2 is the
+            2024-template tell (council audit, motion section). The topics
+            matter; the motion did not. Now a static, linked topic row: it says
+            the same thing, and each hub is reachable. */}
+        <nav className="border-t border-rule bg-background" aria-label="Key blog topics">
+          <ul className="mx-auto flex max-w-[1400px] flex-wrap items-center gap-x-5 gap-y-2 px-5 py-3 sm:px-8 lg:px-12">
+            {hubs.slice(0, 8).map((h) => (
+              <li key={h.slug}>
+                <Link
+                  to="/topics/$hub"
+                  params={{ hub: h.slug }}
+                  className="inline-block py-1 -my-1 text-[10px] uppercase tracking-[0.2em] text-ink-soft transition-colors hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background font-mono-tech"
+                >
+                  <span className="rz-link">{h.shortTitle}</span>
+                </Link>
+              </li>
             ))}
-          </div>
-        </div>
+          </ul>
+        </nav>
       </header>
 
       {/* ============ FEATURED — the lead essay as an asymmetric spread ===== */}

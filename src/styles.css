@@ -5,6 +5,7 @@
 @import "tw-animate-css";
 /* Operator's Console next-gen layer (2026-07-09): shared primitives + per-area
    files. Unlayered on purpose — interaction states must beat Tailwind utils. */
+@import "./styles/motion.css";
 @import "./styles/next.css";
 @import "./styles/hero-next.css";
 @import "./styles/sections-next.css";
