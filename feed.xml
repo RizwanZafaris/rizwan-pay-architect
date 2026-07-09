@@ -5,8 +5,40 @@
   <link>https://rzifi.com/blog/</link>
   <description>Essays on payment infrastructure, fintech product, risk, settlement, AI and program leadership.</description>
   <language>en</language>
-  <lastBuildDate>Thu, 09 Jul 2026 01:09:39 GMT</lastBuildDate>
+  <lastBuildDate>Thu, 09 Jul 2026 06:40:57 GMT</lastBuildDate>
   <item>
+    <title>Baringa&apos;s UK Payments Migration Shows Why Delivery Gates Matter</title>
+    <link>https://rzifi.com/blog/baringa-uk-payments-migration-delivery-gates/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/baringa-uk-payments-migration-delivery-gates/</guid>
+    <pubDate>Thu, 09 Jul 2026 00:00:00 GMT</pubDate>
+    <category>Program Management</category>
+    <description>Baringa&apos;s UK payments-hub migration case shows why regulated programmes need delivery gates, dependency control, live proving, and exit plans.</description>
+  </item>
+<item>
+    <title>GitHub Copilot OpenTelemetry Makes Agent Work Auditable</title>
+    <link>https://rzifi.com/blog/github-copilot-opentelemetry-agent-auditability/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/github-copilot-opentelemetry-agent-auditability/</guid>
+    <pubDate>Thu, 09 Jul 2026 00:00:00 GMT</pubDate>
+    <category>AI &amp; Product Operations</category>
+    <description>GitHub Copilot&apos;s managed OpenTelemetry export shows why AI coding agents need approved collectors, policy, traces, and evidence review.</description>
+  </item>
+<item>
+    <title>PNC&apos;s App Overhaul Is a Product Migration, Not a Redesign</title>
+    <link>https://rzifi.com/blog/pnc-mobile-app-modernization-product-migration/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/pnc-mobile-app-modernization-product-migration/</guid>
+    <pubDate>Thu, 09 Jul 2026 00:00:00 GMT</pubDate>
+    <category>Product Management</category>
+    <description>PNC&apos;s mobile app overhaul shows why financial-app modernization needs phased rollout, migration metrics, support readiness, and quality gates.</description>
+  </item>
+<item>
+    <title>Satispay&apos;s Mastercard Cards Turn a Wallet Into a Card Programme</title>
+    <link>https://rzifi.com/blog/satispay-mastercard-wallet-card-programme/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/satispay-mastercard-wallet-card-programme/</guid>
+    <pubDate>Thu, 09 Jul 2026 00:00:00 GMT</pubDate>
+    <category>Payment Infrastructure</category>
+    <description>Satispay&apos;s Mastercard debit cards show how a wallet becomes a card programme across acceptance, funding, tiers, controls, fees, and disputes.</description>
+  </item>
+<item>
     <title>Agent Skills Turn Prompting Into an Operating Model</title>
     <link>https://rzifi.com/blog/agent-skills-ai-coding-operating-model/</link>
     <guid isPermaLink="true">https://rzifi.com/blog/agent-skills-ai-coding-operating-model/</guid>
@@ -213,38 +245,6 @@
     <pubDate>Fri, 26 Jun 2026 00:00:00 GMT</pubDate>
     <category>Payments Strategy</category>
     <description>Lean and Ziina&apos;s UAE one-tap Pay by Bank launch shows how Open Finance will be judged by conversion, trust, and settlement ops.</description>
-  </item>
-<item>
-    <title>SWIFT Payment Delays: What Actually Causes Them</title>
-    <link>https://rzifi.com/blog/swift-payment-delays-what-actually-causes-them/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/swift-payment-delays-what-actually-causes-them/</guid>
-    <pubDate>Fri, 26 Jun 2026 00:00:00 GMT</pubDate>
-    <category>Cross-Border Payments</category>
-    <description>The real reasons SWIFT payments are delayed, compliance review, correspondent chain length, cut-offs, holidays, weak data, and how to mitigate each.</description>
-  </item>
-<item>
-    <title>U.S. Bank and GigSafe Show Instant Payouts Need a PMO</title>
-    <link>https://rzifi.com/blog/us-bank-gigsafe-instant-payout-programme/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/us-bank-gigsafe-instant-payout-programme/</guid>
-    <pubDate>Fri, 26 Jun 2026 00:00:00 GMT</pubDate>
-    <category>Program Management</category>
-    <description>U.S. Bank and GigSafe&apos;s logistics payment partnership is a reminder that instant payouts need governance, controls, sequencing, and ops.</description>
-  </item>
-<item>
-    <title>AmEx and ABA Show Vertical Cards Are Infrastructure</title>
-    <link>https://rzifi.com/blog/amex-aba-professional-card-programs/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/amex-aba-professional-card-programs/</guid>
-    <pubDate>Thu, 25 Jun 2026 00:00:00 GMT</pubDate>
-    <category>Payment Infrastructure</category>
-    <description>AmEx, Mercantile and ABA show why vertical business cards need underwriting, rewards, network benefits, and cash-flow tooling.</description>
-  </item>
-<item>
-    <title>GitHub Copilot BYOK Makes Agents a Routing Problem</title>
-    <link>https://rzifi.com/blog/github-copilot-byok-agent-routing/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/github-copilot-byok-agent-routing/</guid>
-    <pubDate>Thu, 25 Jun 2026 00:00:00 GMT</pubDate>
-    <category>AI in Fintech</category>
-    <description>GitHub Copilot BYOK turns coding agents into a model-routing, governance, cost, and data-boundary decision for product leaders.</description>
   </item>
 </channel>
 </rss>
