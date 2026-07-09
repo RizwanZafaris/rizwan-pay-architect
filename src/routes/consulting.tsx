@@ -204,6 +204,19 @@ const consultingFaqJsonLd = {
   })),
 };
 
+// Print guard for the engine-staggered KPI grid: the global @media print rules
+// reset [class*="reveal"] / [class*="motion"] but not [data-rz-stagger]
+// children, whose hidden pre-reveal state lives in next.css.
+const consultingPrintCss = `
+@media print {
+  .consulting-page [data-rz-stagger] > * {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+`;
+
 const primaryCtaClass =
   "inline-flex items-center justify-center gap-2 rounded-full bg-ink text-background px-8 py-4 text-base font-medium shadow-sm transition duration-200 hover:bg-brand hover:text-[var(--brand-foreground)] hover:-translate-y-0.5 hover:shadow-md active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2";
 
@@ -262,13 +275,14 @@ export const Route = createFileRoute("/consulting")({
 function ConsultingPage() {
   const calendarUrl = profile.calendarUrl;
   return (
-    <div className="mx-auto max-w-5xl px-5 sm:px-6 py-16 md:py-24">
+    <div className="consulting-page mx-auto max-w-5xl px-5 sm:px-6 py-16 md:py-24">
+      <style dangerouslySetInnerHTML={{ __html: consultingPrintCss }} />
       {/* Hero — client intent, single action */}
       <section className="text-center">
-        <div className="text-[11px] uppercase tracking-[0.22em] text-ink-soft font-mono-tech">
-          Independent · operator-led · for founders and payment leaders
+        <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
+          ◆ Independent · operator-led · for founders and payment leaders
         </div>
-        <h1 className="font-instrument text-3xl sm:text-4xl md:text-5xl text-ink mt-5 leading-[1.08] max-w-3xl mx-auto">
+        <h1 className="font-instrument text-[clamp(2.25rem,4vw,3.5rem)] text-ink mt-5 leading-[1.08] max-w-3xl mx-auto">
           Payments &amp; Product Advisory
         </h1>
         <p className="mt-5 text-lg md:text-xl text-ink-soft leading-relaxed max-w-2xl mx-auto">
@@ -403,13 +417,15 @@ function ConsultingPage() {
           merchant strip. Framing matters: these are merchants served by
           platforms Rizwan led as an operator, NOT advisory clients. */}
       <section className="mt-16" aria-label="Proof points">
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+        {/* Flat bordered KPI tiles, mono tabular-nums, engine-staggered with a
+            single beam on this page's first ruled band. */}
+        <div
+          data-rz-stagger
+          className="rz-beam relative grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3"
+        >
           {proofMetrics.map((m) => (
-            <div
-              key={m.label}
-              className="rounded-lg border border-rule bg-surface px-4 py-3 text-center"
-            >
-              <div className="font-instrument text-xl md:text-2xl text-ink leading-none">
+            <div key={m.label} className="border border-rule bg-surface px-4 py-3 text-center">
+              <div className="font-mono-tech text-xl md:text-2xl text-ink leading-none tabular-nums">
                 {m.value}
               </div>
               <div className="mt-1.5 text-[10px] uppercase tracking-[0.14em] text-ink-soft font-mono-tech leading-tight">

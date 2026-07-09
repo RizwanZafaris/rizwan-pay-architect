@@ -167,6 +167,20 @@ export const Route = createFileRoute("/for/")({
 
 const delayStyle = (ms: number) => ({ "--motion-delay": `${ms}ms` }) as CSSProperties;
 
+// Print guard for the engine-staggered KPI grid: the global @media print rules
+// reset [class*="reveal"] / [class*="motion"] but not [data-rz-stagger]
+// children, whose hidden pre-reveal state lives in next.css. Route-scoped so a
+// recruiter printing the brief never gets blank KPI tiles.
+const recruiterPrintCss = `
+@media print {
+  .recruiter-page [data-rz-stagger] > * {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+`;
+
 const proofMetrics = [
   { value: "$1B+", label: "GTV scaled" },
   { value: "270M+", label: "Annual transactions" },
@@ -269,19 +283,15 @@ const recruiterSignals = [
 function ForIndex() {
   return (
     <div className="recruiter-page mx-auto max-w-6xl px-5 sm:px-6 py-10 md:py-14">
+      <style dangerouslySetInnerHTML={{ __html: recruiterPrintCss }} />
       <section className="priority-hero-shell relative overflow-hidden grid lg:grid-cols-[1fr_340px] gap-8 lg:gap-12 items-start border-b border-rule pb-10 md:pb-12">
         <span aria-hidden="true" className="priority-hero-rule priority-hero-rule-a" />
         <span aria-hidden="true" className="priority-hero-rule priority-hero-rule-b" />
         <div className="relative z-10 min-w-0 recruiter-soft-reveal" style={delayStyle(0)}>
-          <div className="flex items-center gap-4">
-            <span className="grid h-9 w-9 place-items-center bg-ink text-background text-sm font-semibold">
-              02
-            </span>
-            <span className="text-[11px] uppercase tracking-[0.22em] text-ink font-mono-tech">
-              Recruiter brief
-            </span>
+          <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
+            ◆ Recruiter brief
           </div>
-          <h1 className="mt-7 max-w-4xl font-instrument text-3xl sm:text-4xl md:text-6xl text-ink leading-[1.02] text-wrap">
+          <h1 className="mt-7 max-w-4xl font-instrument text-[clamp(2.25rem,4vw,3.5rem)] text-ink leading-[1.02] text-wrap">
             Product &amp; Program Executive for Payments Infrastructure
           </h1>
           <p className="mt-4 max-w-3xl text-lg md:text-xl text-ink-soft leading-relaxed">
@@ -360,18 +370,18 @@ function ForIndex() {
         </aside>
       </section>
 
+      {/* KPI tiles — flat bordered, mono tabular-nums values, engine-staggered
+          (the beam runs the hero's bottom rule once as the grid enters). */}
       <section
-        className="recruiter-soft-reveal grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4 border-b border-rule py-6"
-        style={delayStyle(140)}
+        data-rz-stagger
+        className="rz-beam relative grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4 border-b border-rule py-6"
         aria-label="Proof points"
       >
-        {proofMetrics.map((metric, index) => (
-          <div
-            key={metric.label}
-            className="recruiter-proof-card rounded-lg border border-rule bg-surface px-4 py-3"
-            style={delayStyle(180 + index * 45)}
-          >
-            <div className="font-instrument text-2xl text-ink leading-none">{metric.value}</div>
+        {proofMetrics.map((metric) => (
+          <div key={metric.label} className="border border-rule bg-surface px-4 py-3">
+            <div className="font-mono-tech text-xl md:text-2xl text-ink leading-none tabular-nums">
+              {metric.value}
+            </div>
             <div className="mt-1.5 text-[10px] uppercase tracking-[0.14em] text-ink-soft font-mono-tech leading-tight">
               {metric.label}
             </div>

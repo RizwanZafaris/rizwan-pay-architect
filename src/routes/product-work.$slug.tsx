@@ -3,7 +3,6 @@ import { useEffect } from "react";
 import {
   caseStudies,
   caseStudyHero,
-  caseStudyThumb,
   getCaseStudy,
   type CaseStudy,
 } from "@/data/caseStudies";
@@ -12,7 +11,6 @@ import { compactMetricValue } from "@/lib/case-study-ui";
 import { absUrl, SITE_URL, titleFor, trimToMax } from "@/lib/seo";
 import { DiagramFigure, caseStudyDiagrams } from "@/components/diagrams/Diagrams";
 import { ctaClick, resumeDownload, trackEvent } from "@/lib/analytics";
-import { AnimatedMetric } from "@/components/motion/AnimatedMetric";
 import { Reveal } from "@/components/motion/Reveal";
 
 const CASE_STUDY_SCHEMA_DATE = "2026-06-05";
@@ -157,15 +155,17 @@ function Section({
   title: string;
   children: React.ReactNode;
 }) {
+  // Editorial beat: every major section opens on a hairline rule the signal
+  // beam can run (rz-beam), then eyebrow -> statement serif -> ~65ch prose.
   return (
-    <section id={id} className="mt-12 scroll-mt-24 sm:mt-14">
-      <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--accent-emerald)] font-mono-tech">
+    <section id={id} className="rz-beam relative mt-12 scroll-mt-24 border-t border-rule pt-8 sm:mt-16 sm:pt-10">
+      <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
         ◆ {label}
       </div>
-      <h2 className="mt-2 break-words font-instrument text-2xl leading-tight text-ink sm:text-3xl">
+      <h2 className="mt-2 break-words font-instrument text-2xl leading-tight text-ink sm:text-3xl md:text-4xl">
         {title}
       </h2>
-      <div className="mt-5 prose-editorial">{children}</div>
+      <div className="mt-6 prose-editorial">{children}</div>
     </section>
   );
 }
@@ -217,45 +217,49 @@ function CaseStudyPage() {
             }}
           />
         </div>
-        <div className="relative mx-auto max-w-5xl px-5 pb-10 pt-12 sm:px-6 sm:pb-12 sm:pt-16">
+        <div className="relative mx-auto max-w-5xl px-5 pb-12 pt-12 sm:px-6 sm:pb-16 sm:pt-16">
           <Link
             to="/product-work"
-            className="text-[10px] uppercase tracking-[0.18em] text-ink-soft hover:text-ink font-mono-tech"
+            className="inline-flex py-1.5 -my-1.5 text-[10px] uppercase tracking-[0.18em] text-ink-soft hover:text-ink font-mono-tech"
           >
             ← Product Work
           </Link>
-          <div className="mt-6 text-[10px] font-medium uppercase tracking-[0.16em] text-[var(--accent-emerald)] font-mono-tech sm:tracking-[0.18em]">
-            {s.category}
+          <div className="mt-8 text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
+            ◆ {s.category}
           </div>
-          <h1 className="mt-3 max-w-4xl break-words font-instrument text-[clamp(2.15rem,8.6vw,4.7rem)] leading-[0.98] text-ink [overflow-wrap:anywhere]">
+          <h1 className="mt-3 max-w-4xl break-words font-instrument text-[clamp(2.5rem,5.5vw,5.5rem)] leading-[1.0] text-ink [overflow-wrap:anywhere]">
             {s.title}
           </h1>
-          <p className="mt-5 max-w-3xl break-words text-base leading-relaxed text-ink-soft sm:text-lg">
+          <p className="mt-6 max-w-3xl break-words text-base leading-relaxed text-ink-soft sm:text-lg">
             {s.tagline}
           </p>
           {s.engagement && (
-            <p className="mt-5 inline-flex items-center gap-2 rounded-full border border-rule bg-surface px-3.5 py-1.5 text-xs text-ink-soft font-mono-tech">
+            <p className="mt-6 inline-flex items-center gap-2 rounded-full border border-rule bg-surface px-3.5 py-1.5 text-xs text-ink-soft font-mono-tech">
               <span
                 aria-hidden="true"
-                className="h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--accent-emerald)]"
+                className="h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--brand)]"
               />
               {s.engagement}
             </p>
           )}
         </div>
+        {/* Metric strip — flat bordered ledger tiles, tabular mono numerals.
+            Staggered as one group by the reveal engine (children carry no
+            reveal classes of their own). */}
         <div className="bg-surface-2 border-t border-rule">
-          <div className="mx-auto grid max-w-5xl grid-cols-1 gap-3 px-5 py-5 sm:grid-cols-2 sm:px-6 md:grid-cols-4 md:gap-4">
-            {heroMetrics.map((m, i) => (
-              <Reveal key={m.label} delay={i * 80}>
-                <div className="case-metric-card min-w-0 rounded-xl border border-rule bg-background/70 p-4">
-                  <div className="break-words font-mono-tech text-base leading-snug text-ink sm:text-lg md:text-xl">
-                    <AnimatedMetric value={compactMetricValue(m)} />
-                  </div>
-                  <div className="mt-1 text-[9px] uppercase tracking-[0.08em] text-ink-soft font-mono-tech">
-                    {m.label}
-                  </div>
+          <div
+            data-rz-stagger
+            className="mx-auto grid max-w-5xl grid-cols-1 gap-3 px-5 py-5 sm:grid-cols-2 sm:px-6 md:grid-cols-4 md:gap-4"
+          >
+            {heroMetrics.map((m) => (
+              <div key={m.label} className="min-w-0 border border-rule bg-background/70 p-4">
+                <div className="break-words font-mono-tech text-base leading-snug text-ink tabular-nums sm:text-lg md:text-xl">
+                  {compactMetricValue(m)}
                 </div>
-              </Reveal>
+                <div className="mt-1 text-[9px] uppercase tracking-[0.08em] text-ink-soft font-mono-tech">
+                  {m.label}
+                </div>
+              </div>
             ))}
           </div>
         </div>
@@ -469,38 +473,45 @@ function CaseStudyPage() {
         </div>
       </div>
 
-      <section className="border-t border-rule bg-surface-2">
+      <section className="rz-beam relative border-t border-rule bg-surface-2">
         <div className="mx-auto max-w-6xl px-5 py-14 sm:px-6 sm:py-16">
-          <h2 className="font-instrument text-2xl text-ink mb-8">More case studies</h2>
-          <div className="grid gap-5 md:grid-cols-3">
+          <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
+            ◆ More case studies
+          </div>
+          <h2 className="mt-3 font-instrument text-3xl leading-tight text-ink md:text-4xl">
+            Adjacent builds in the same operating context.
+          </h2>
+          {/* Index rows, not a 3-up card wall — one stagger group, each row a
+              glow-tracking link (mirrors the /blog and /product-work indexes). */}
+          <div data-rz-stagger className="mt-8 border-t border-rule">
             {others.map((c) => (
               <Link
                 key={c.slug}
                 to="/product-work/$slug"
                 params={{ slug: c.slug }}
-                className="case-study-card group block min-w-0 overflow-hidden rounded-2xl border border-rule bg-surface transition-colors hover:border-ink/30"
+                data-glow
+                className="group relative grid gap-y-2 border-b border-rule py-6 md:grid-cols-12 md:gap-x-8 md:py-7"
               >
-                <div className="relative aspect-[16/9] overflow-hidden border-b border-rule">
-                  <img
-                    src={caseStudyThumb(c.slug)}
-                    alt={c.imageAlt ?? `${c.title} — abstract editorial illustration`}
-                    width={800}
-                    height={450}
-                    loading="lazy"
-                    decoding="async"
-                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-                  />
-                </div>
-                <div className="min-w-0 p-5">
-                  <div className="text-[10px] uppercase tracking-[0.14em] text-[var(--accent-emerald)] font-mono-tech">
+                <div className="md:col-span-3">
+                  <span className="text-[10px] uppercase tracking-[0.14em] text-[var(--accent-emerald)] font-mono-tech">
                     {c.category}
-                  </div>
-                  <div className="mt-2 break-words font-instrument text-lg leading-snug text-ink transition-colors group-hover:text-[var(--brand)]">
+                  </span>
+                </div>
+                <div className="md:col-span-7 min-w-0">
+                  <h3 className="break-words font-instrument text-2xl leading-[1.1] text-ink transition-all duration-300 [transition-timing-function:var(--ease-soft)] group-hover:translate-x-1.5 group-hover:text-[var(--brand)] md:text-[1.75rem]">
                     {c.title}
-                  </div>
-                  <p className="mt-2 text-sm leading-relaxed text-ink-soft">
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-ink-soft md:line-clamp-1">
                     {shortText(c.tagline, 150)}
                   </p>
+                </div>
+                <div className="flex items-center gap-4 md:col-span-2 md:justify-end md:self-center">
+                  <span
+                    className="hidden text-lg text-ink-soft transition-all duration-300 group-hover:translate-x-1 group-hover:text-[var(--brand)] md:inline"
+                    aria-hidden
+                  >
+                    →
+                  </span>
                 </div>
               </Link>
             ))}

@@ -196,13 +196,16 @@ const css = `
 }
 
 /* ── Market cards ─────────────────────────────────────────────────────────*/
+/* NB: the sheen overlay lives on ::before, NOT ::after — the cards now carry
+   data-glow and the global engine (next.css) owns [data-glow]::after for the
+   cursor bloom. Sharing ::after would let one rule clobber the other. */
 .journey-market-card {
   position: relative; overflow: hidden;
   transition:
     transform 180ms ease, border-color 180ms ease,
     box-shadow 180ms ease, background-color 180ms ease;
 }
-.journey-market-card::after {
+.journey-market-card::before {
   content: ""; position: absolute; inset: 0; pointer-events: none;
   background: linear-gradient(
     135deg,
@@ -226,6 +229,24 @@ const css = `
   font-size: 0.58rem; letter-spacing: 0.12em; line-height: 1; text-transform: uppercase;
 }
 
+/* Stagger/hover de-conflict for the market cards (same pattern the homepage
+   uses for .home-card in sections-next.css): the engine's stagger reveal is a
+   transition with a per-child delay, which would also lag every later hover
+   lift by that delay. Run the ENTRANCE as a backwards-filled animation and
+   hand the transition straight back to the card's own 180ms hover lift. */
+.rz-js [data-rz-stagger].rz-in > .journey-market-card {
+  transition:
+    transform 180ms ease, border-color 180ms ease,
+    box-shadow 180ms ease, background-color 180ms ease;
+  transition-delay: 0ms;
+  animation: journey-card-in 600ms var(--ease-expo) backwards;
+  animation-delay: calc(var(--i, 0) * 70ms);
+}
+@keyframes journey-card-in {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: none; }
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .journey-eyebrow::after { animation: journey-rule 5.5s ease-in-out infinite; }
   @supports (animation-timeline: scroll()) {
@@ -247,12 +268,15 @@ const css = `
 }
 @media (prefers-reduced-motion: reduce) {
   .journey-eyebrow::after { animation: none; }
+  .rz-js [data-rz-stagger].rz-in > .journey-market-card {
+    animation: none; transition: none; opacity: 1; transform: none;
+  }
 }
 `;
 
 function MarketCard({ m }: { m: Market }) {
   return (
-    <article className="journey-market-card rounded-2xl border border-rule bg-card p-6">
+    <article data-glow className="journey-market-card rounded-2xl border border-rule bg-card p-6">
       <div className="flex items-center justify-between gap-3">
         <span className="text-3xl leading-none" aria-hidden="true">
           {m.flag}
@@ -284,120 +308,152 @@ function JourneyPage() {
       <style dangerouslySetInnerHTML={{ __html: css }} />
 
       {/* ── Hero ──────────────────────────────────────────────────────── */}
-      <section className="mx-auto max-w-6xl px-6 pt-20 pb-8 sm:pt-24">
-        <div className="journey-eyebrow text-[10px] uppercase tracking-[0.32em] text-[var(--brand)] font-mono-tech font-semibold">
+      {/* Statement page header (Operator's Console language): ◆ mono eyebrow →
+          monument serif H1 with the signature italic-cyan close. Copy is the
+          same sentence; the em dash in the lede became a comma while
+          re-wrapping (design-charter ban). */}
+      <section className="mx-auto max-w-6xl px-5 sm:px-6 pt-20 pb-12 sm:pt-28 md:pb-16">
+        <div className="journey-eyebrow text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
           ◆ The operating map
         </div>
-        <h1 className="mt-8 font-instrument text-4xl leading-[1.05] text-ink sm:text-6xl">
-          Seventeen years. Ten markets. Three industries.
+        <h1 className="mt-9 font-instrument tracking-[-0.02em] text-[clamp(2.5rem,5.5vw,5.5rem)] leading-[1.0] text-ink">
+          Seventeen years. Ten markets.{" "}
+          <span className="italic text-[var(--brand)]">Three industries.</span>
         </h1>
-        <p className="mt-6 max-w-2xl text-lg leading-relaxed text-ink-soft">
-          I didn't study frontier markets — I shipped in them. This is the map: every market, what I
+        <p className="mt-8 max-w-2xl text-lg leading-relaxed text-ink-soft">
+          I didn't study frontier markets, I shipped in them. This is the map: every market, what I
           built there, and what it taught me about payments, product and the distance between a
           regulation and a working checkout.
         </p>
       </section>
 
       {/* ── Signature visual: the world map ───────────────────────────── */}
-      <section className="mx-auto max-w-6xl px-6 pb-16">
-        <div className="rounded-2xl border border-rule bg-surface p-4 sm:p-8">
-          <WorldMap showLabels />
+      <section className="rz-beam border-t border-rule">
+        <div className="mx-auto max-w-6xl px-5 sm:px-6 py-12 md:py-16">
+          <div className="rounded-2xl border border-rule bg-surface p-4 sm:p-8">
+            <WorldMap showLabels />
+          </div>
+          <p className="mt-4 text-center text-[10px] uppercase tracking-[0.22em] text-ink-soft font-mono-tech">
+            ◆ Ten operating markets · arcs originate from the Dubai hub
+          </p>
         </div>
-        <p className="mt-4 text-center text-[10px] uppercase tracking-[0.22em] text-ink-soft font-mono-tech">
-          ◆ Ten operating markets · arcs originate from the Dubai hub
-        </p>
       </section>
 
       {/* ── Timeline: three eras ──────────────────────────────────────── */}
-      <section className="mx-auto max-w-4xl px-6 py-8">
-        <div className="mb-12 text-center">
-          <div className="text-[10px] uppercase tracking-[0.28em] text-[var(--brand)] font-mono-tech font-semibold">
-            ◆ The arc
+      {/* LAYOUT IS LOAD-BEARING: left rail + one content column was the 3rd
+          attempt that finally worked — this pass changes type scale + motion
+          hooks only (header left-aligned to the console language, era content
+          gets a top rule so the shared beam runs between eras). */}
+      <section className="rz-beam border-t border-rule">
+        <div className="mx-auto max-w-4xl px-5 sm:px-6 py-14 md:py-20">
+          <div className="mb-12 md:mb-16">
+            <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
+              ◆ The arc
+            </div>
+            <h2 className="mt-3 font-instrument text-[clamp(2rem,4vw,3.5rem)] leading-[1.05] text-ink">
+              Three eras, <span className="italic text-[var(--brand)]">one throughline</span>
+            </h2>
+            <p className="mt-4 max-w-2xl text-ink-soft leading-relaxed">
+              Delivery discipline first, consumer scale next, then regulated payment
+              infrastructure: each era compounding into the one after it.
+            </p>
           </div>
-          <h2 className="mt-4 font-instrument text-3xl text-ink sm:text-4xl">
-            Three eras, one throughline
-          </h2>
-          <p className="mx-auto mt-3 max-w-xl text-ink-soft">
-            Delivery discipline first, consumer scale next, then regulated payment infrastructure —
-            each era compounding into the one after it.
-          </p>
-        </div>
 
-        <div className="journey-timeline">
-          <div className="journey-rail" aria-hidden="true">
-            <div className="journey-rail-beam" />
-          </div>
+          <div className="journey-timeline">
+            <div className="journey-rail" aria-hidden="true">
+              <div className="journey-rail-beam" />
+            </div>
 
-          <ol className="space-y-16 md:space-y-24">
-            {eras.map((era) => (
-              <li key={era.id} className="relative pl-8 md:pl-16">
-                <span className="journey-era-node" aria-hidden="true" />
-                <div className="journey-era-content">
-                  <div className="journey-era-label">
-                    <span className="font-mono-tech text-[11px] uppercase tracking-[0.2em] text-[var(--brand)]">
-                      {era.span}
-                    </span>
-                    <span className="font-instrument text-xl text-ink">{era.title}</span>
+            <ol className="space-y-16 md:space-y-24">
+              {eras.map((era, i) => (
+                <li key={era.id} className="relative pl-8 md:pl-16">
+                  <span className="journey-era-node" aria-hidden="true" />
+                  <div
+                    className={`journey-era-content${
+                      i > 0 ? " rz-beam border-t border-rule pt-8" : ""
+                    }`}
+                  >
+                    <div className="journey-era-label">
+                      <span className="font-mono-tech text-[11px] uppercase tracking-[0.2em] text-[var(--brand)]">
+                        {era.span}
+                      </span>
+                      <span className="font-instrument text-xl md:text-2xl text-ink">
+                        {era.title}
+                      </span>
+                    </div>
+                    <p className="mt-5 text-base md:text-lg leading-relaxed text-ink">
+                      {era.lede}
+                    </p>
+                    <ul className="mt-5 space-y-3">
+                      {era.points.map((point) => (
+                        <li
+                          key={point}
+                          className="journey-point text-sm leading-relaxed text-ink-soft"
+                        >
+                          {point}
+                        </li>
+                      ))}
+                    </ul>
                   </div>
-                  <p className="mt-5 text-base leading-relaxed text-ink">{era.lede}</p>
-                  <ul className="mt-5 space-y-3">
-                    {era.points.map((point) => (
-                      <li
-                        key={point}
-                        className="journey-point text-sm leading-relaxed text-ink-soft"
-                      >
-                        {point}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </li>
-            ))}
-          </ol>
+                </li>
+              ))}
+            </ol>
+          </div>
         </div>
       </section>
 
       {/* ── Per-market cards ──────────────────────────────────────────── */}
-      <section className="mx-auto max-w-6xl px-6 py-16">
-        <div className="mb-10">
-          <div className="text-[10px] uppercase tracking-[0.28em] text-[var(--brand)] font-mono-tech font-semibold">
-            ◆ Every stop on the map
+      {/* Cards keep their grid per the elevation brief (stagger + glow, not a
+          re-layout): data-rz-stagger cascades them in; each card carries
+          data-glow for the cursor bloom, composing with its hover lift. */}
+      <section className="rz-beam border-t border-rule">
+        <div className="mx-auto max-w-6xl px-5 sm:px-6 py-14 md:py-20">
+          <div className="mb-10 md:mb-14">
+            <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
+              ◆ Every stop on the map
+            </div>
+            <h2 className="mt-3 font-instrument text-[clamp(2rem,4vw,3.5rem)] leading-[1.05] text-ink">
+              Ten markets, <span className="italic text-[var(--brand)]">ten lessons</span>
+            </h2>
+            <p className="mt-4 max-w-2xl text-ink-soft leading-relaxed">
+              What shipped in each market, and the operating lesson it left behind.
+            </p>
           </div>
-          <h2 className="mt-4 font-instrument text-3xl text-ink sm:text-4xl">
-            Ten markets, ten lessons
-          </h2>
-          <p className="mt-3 max-w-2xl text-ink-soft">
-            What shipped in each market — and the operating lesson it left behind.
-          </p>
-        </div>
 
-        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {markets.map((m) => (
-            <MarketCard key={m.key} m={m} />
-          ))}
+          <div data-rz-stagger className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {markets.map((m) => (
+              <MarketCard key={m.key} m={m} />
+            ))}
+          </div>
         </div>
       </section>
 
       {/* ── Close / CTA ───────────────────────────────────────────────── */}
-      <section className="mx-auto max-w-6xl px-6 pb-24">
-        <div className="rounded-2xl border border-rule bg-surface-2 p-8 text-center sm:p-12">
-          <h2 className="font-instrument text-2xl text-ink sm:text-3xl">
-            The map is the story. The work is the proof.
-          </h2>
-          <p className="mx-auto mt-3 max-w-xl text-ink-soft">
-            See the case studies behind these markets, or start a conversation about what comes
-            next.
-          </p>
-          <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+      {/* Centered card → asymmetric console close: statement heading left,
+          CTA pair right, beam on the top rule. CTAs match the homepage hero
+          grammar (h-12 pills, ink primary, focus-visible rings). */}
+      <section className="rz-beam border-t border-rule">
+        <div className="mx-auto flex max-w-6xl flex-wrap items-end justify-between gap-x-12 gap-y-8 px-5 sm:px-6 py-16 md:py-24">
+          <div>
+            <h2 className="font-instrument text-[clamp(2rem,4.5vw,4rem)] leading-[1.05] text-ink max-w-2xl">
+              The map is the story.{" "}
+              <span className="italic text-[var(--brand)]">The work is the proof.</span>
+            </h2>
+            <p className="mt-4 max-w-xl text-ink-soft leading-relaxed">
+              See the case studies behind these markets, or start a conversation about what comes
+              next.
+            </p>
+          </div>
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
             <Link
               to="/product-work"
-              className="inline-flex items-center justify-center rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-transform hover:-translate-y-0.5"
+              className="inline-flex h-12 items-center justify-center rounded-full bg-ink px-6 text-sm font-semibold text-background transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background"
             >
               See the product work →
             </Link>
             <a
               href="/contact/#book"
-              className="inline-flex items-center justify-center rounded-full border border-input px-6 py-3 text-sm font-semibold text-ink transition-colors hover:border-[color-mix(in_oklab,var(--signal)_40%,var(--rule))]"
+              className="inline-flex h-12 items-center justify-center rounded-full border border-ink/20 px-6 text-sm font-semibold text-ink transition-colors hover:border-ink/50 hover:bg-ink/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background"
             >
               Book a conversation
             </a>

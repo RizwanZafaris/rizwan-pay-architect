@@ -273,14 +273,14 @@ const PW_FILTER_SCRIPT = `
 function ProductWorkIndex() {
   return (
     <div className="mx-auto max-w-6xl overflow-x-clip px-4 py-12 sm:px-6 sm:py-20">
-      <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--accent-emerald)] font-mono-tech">
+      <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
         ◆ Product work
       </div>
-      <h1 className="mt-3 max-w-4xl break-words font-instrument text-[clamp(2.15rem,9vw,4.75rem)] leading-[0.98] text-ink [overflow-wrap:anywhere]">
+      <h1 className="mt-3 max-w-4xl break-words font-instrument text-[clamp(2.5rem,5.5vw,5.5rem)] leading-[1.0] text-ink [overflow-wrap:anywhere]">
         Case studies in{" "}
-        <span className="italic text-ink-soft">regulated payments infrastructure.</span>
+        <span className="italic text-[var(--brand)]">regulated payments infrastructure.</span>
       </h1>
-      <p className="mt-5 max-w-2xl text-base leading-relaxed text-ink-soft sm:text-lg">
+      <p className="mt-6 max-w-2xl text-base leading-relaxed text-ink-soft sm:text-lg">
         Real systems shipped at $1B+ GTV scale. Filter by industry, by the companies this work is
         most relevant to, or by compliance theme.
       </p>
@@ -307,8 +307,8 @@ function ProductWorkIndex() {
         </div>
       </div>
 
-      {/* Filters */}
-      <div className="mt-6 grid gap-4 rounded-2xl border border-rule bg-surface p-4 sm:grid-cols-2 sm:p-5">
+      {/* Filters — flat console rail, no card chrome */}
+      <div className="mt-6 grid gap-4 border-y border-rule py-5 sm:grid-cols-2">
         <FilterSelect id="pw-company" label="Relevant company" options={companies} />
         <FilterSelect
           id="pw-theme"
@@ -331,92 +331,112 @@ function ProductWorkIndex() {
         </button>
       </div>
 
-      <div className="mt-8 grid gap-5">
-        <div
-          hidden
-          data-pw-empty
-          className="rounded-2xl border border-dashed border-rule p-10 text-center text-ink-soft"
-        >
-          No case studies match those filters.{" "}
-          <button
-            type="button"
-            data-pw-clear
-            className="underline text-ink hover:text-[var(--brand)]"
-          >
-            Clear filters
-          </button>
+      <div
+        hidden
+        data-pw-empty
+        className="mt-8 border border-dashed border-rule p-10 text-center text-ink-soft"
+      >
+        No case studies match those filters.{" "}
+        <button type="button" data-pw-clear className="underline text-ink hover:text-[var(--brand)]">
+          Clear filters
+        </button>
+      </div>
+      {/* Index — alternating editorial panels (homepage "Selected work"
+          language): image field one side, display-scale hero metric + title
+          the other, direction flipping per row. The panels stay flat DOM
+          children of one stagger group so PW_FILTER_SCRIPT's hidden-toggle
+          keeps working unchanged. The signal beam runs the section's top rule. */}
+      <section className="rz-beam relative mt-12 border-t border-rule pt-10 md:mt-16 md:pt-12">
+        <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
+          ◆ Selected work
         </div>
-        {caseStudies.map((c, i) => (
-          <Link
-            key={c.slug}
-            to="/product-work/$slug"
-            params={{ slug: c.slug }}
-            data-pw-result
-            data-pw-companies={(c.relevantFor ?? []).join("|")}
-            data-pw-themes={themeIdsFor(c)}
-            data-pw-industries={industryIdsFor(c)}
-            className="case-study-card group grid min-w-0 items-stretch overflow-hidden rounded-2xl border border-ink/10 bg-surface transition-all duration-200 hover:border-ink/30 lg:grid-cols-12"
-          >
-            {/* Abstract symbolic thumb — Higgsfield-generated, brand-coherent. */}
-            <div className="relative min-w-0 aspect-[16/9] overflow-hidden border-b border-rule lg:col-span-4 lg:aspect-auto lg:border-b-0 lg:border-r">
-              <img
-                src={caseStudyThumb(c.slug)}
-                alt={c.imageAlt ?? `${c.title} — abstract editorial illustration`}
-                width={800}
-                height={450}
-                loading={i < 3 ? "eager" : "lazy"}
-                decoding="async"
-                className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
-              />
-            </div>
-            <div className="grid min-w-0 gap-5 p-5 sm:p-7 lg:col-span-8 lg:grid-cols-10 lg:p-8">
-              <div className="min-w-0 lg:col-span-7">
-                <div className="flex flex-wrap items-center gap-2 sm:gap-3">
-                  <span className="text-[10px] font-medium uppercase tracking-[0.14em] text-[var(--accent-emerald)] font-mono-tech sm:tracking-[0.18em]">
-                    {c.category}
-                  </span>
-                  <span className="font-mono-tech text-xs text-ink-soft">
-                    /{String(i + 1).padStart(2, "0")}
-                  </span>
+        <h2 className="mt-3 font-instrument text-3xl leading-tight text-ink md:text-4xl">
+          Infrastructure shipped at scale.
+        </h2>
+        <div data-rz-stagger className="mt-10 flex flex-col gap-14 md:mt-14 md:gap-24">
+        {caseStudies.map((c, i) => {
+          const heroStat = c.metrics?.[0];
+          const flip = i % 2 === 1;
+          return (
+            <Link
+              key={c.slug}
+              to="/product-work/$slug"
+              params={{ slug: c.slug }}
+              data-pw-result
+              data-pw-companies={(c.relevantFor ?? []).join("|")}
+              data-pw-themes={themeIdsFor(c)}
+              data-pw-industries={industryIdsFor(c)}
+              data-glow
+              className="group relative grid min-w-0 items-center gap-6 md:grid-cols-12 md:gap-12"
+            >
+              {/* Abstract symbolic image field — Higgsfield-generated, brand-coherent. */}
+              <div
+                className={`rz-unveil relative aspect-[16/10] min-w-0 overflow-hidden rounded-lg bg-ink md:col-span-7 ${
+                  flip ? "md:order-2" : ""
+                }`}
+              >
+                <img
+                  src={caseStudyThumb(c.slug)}
+                  alt={c.imageAlt ?? `${c.title} — abstract editorial illustration`}
+                  width={800}
+                  height={450}
+                  loading={i < 2 ? "eager" : "lazy"}
+                  decoding="async"
+                  className="absolute inset-0 h-full w-full object-cover opacity-90 transition-transform duration-700 [transition-timing-function:var(--ease-soft)] group-hover:scale-[1.035]"
+                />
+                <div
+                  className="absolute inset-0"
+                  style={{
+                    background:
+                      "linear-gradient(180deg, color-mix(in oklab, var(--background) 40%, transparent) 0%, transparent 40%, color-mix(in oklab, var(--background) 55%, transparent) 100%)",
+                  }}
+                />
+                <div className="absolute top-4 left-5 z-10 font-mono-tech text-[10px] tracking-[0.18em] text-ink uppercase">
+                  ◆ Case study /{String(i + 1).padStart(2, "0")}
                 </div>
-                <h2 className="mt-2 break-words font-instrument text-[1.6rem] leading-[1.08] text-ink transition-colors group-hover:text-[var(--brand)] sm:text-2xl">
+              </div>
+              <div className={`min-w-0 md:col-span-5 ${flip ? "md:order-1" : ""}`}>
+                <span className="text-[10px] font-mono-tech uppercase tracking-[0.18em] text-[var(--brand)]">
+                  {c.category}
+                </span>
+                {heroStat && (
+                  <div className="mt-4">
+                    <div className="break-words font-instrument italic leading-none tracking-tight text-ink text-4xl sm:text-5xl lg:text-6xl tabular-nums">
+                      {compactMetricValue(heroStat)}
+                    </div>
+                    <div className="mt-2 text-[10px] uppercase tracking-[0.22em] text-ink-soft font-mono-tech">
+                      {heroStat.label}
+                    </div>
+                  </div>
+                )}
+                <h2 className="mt-5 break-words font-instrument text-2xl leading-tight text-ink transition-colors group-hover:text-[var(--brand)] md:text-3xl">
                   {c.title}
                 </h2>
-                <p className="mt-3 max-w-2xl text-sm leading-relaxed text-ink-soft">
+                <p className="mt-3 max-w-md text-sm leading-relaxed text-ink-soft md:text-[15px]">
                   {cardSummary(c.tagline)}
                 </p>
                 <div className="mt-4 flex flex-wrap gap-2">
                   {c.keywords.slice(0, 4).map((k) => (
                     <span
                       key={k}
-                      className="rounded-full border border-rule bg-background px-2 py-0.5 text-[10px] uppercase tracking-[0.08em] text-ink-soft font-mono-tech"
+                      className="rounded-full border border-rule bg-surface px-2 py-0.5 text-[10px] uppercase tracking-[0.08em] text-ink-soft font-mono-tech"
                     >
                       {k}
                     </span>
                   ))}
                 </div>
+                <span className="mt-5 inline-flex items-center gap-1.5 text-sm text-ink transition-colors group-hover:text-[var(--brand)]">
+                  Read case study
+                  <span className="transition-transform group-hover:translate-x-1" aria-hidden>
+                    →
+                  </span>
+                </span>
               </div>
-              <div className="min-w-0 lg:col-span-3">
-                <div className="grid grid-cols-2 gap-3 lg:grid-cols-1">
-                  {c.metrics.slice(0, 2).map((m) => (
-                    <div
-                      key={m.label}
-                      className="case-metric-card min-w-0 rounded-xl border border-rule bg-background p-3"
-                    >
-                      <div className="break-words font-mono-tech text-sm leading-snug text-ink sm:text-base">
-                        {compactMetricValue(m)}
-                      </div>
-                      <div className="mt-1 text-[9px] uppercase tracking-[0.08em] text-ink-soft font-mono-tech">
-                        {m.label}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </Link>
-        ))}
-      </div>
+            </Link>
+          );
+        })}
+        </div>
+      </section>
       <script dangerouslySetInnerHTML={{ __html: PW_FILTER_SCRIPT }} />
     </div>
   );

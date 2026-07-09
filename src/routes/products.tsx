@@ -48,110 +48,158 @@ export const Route = createFileRoute("/products")({
 
 function ProductsPage() {
   return (
-    <div className="mx-auto max-w-6xl px-6 py-20">
-      <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
-        ◆ Products
-      </div>
-      <h1 className="font-instrument text-4xl md:text-6xl text-ink mt-3 leading-[1.05] max-w-3xl">
-        Products I have built, and products I am building.
-      </h1>
-      <p className="mt-5 max-w-2xl text-lg text-ink-soft">
-        Shipped payment infrastructure, card acquiring, wallets, cross-border corridors, settlement
-        and reconciliation, KYC/KYB, AML/CFT and fraud, that has cleared $1B+ in annual GTV across
-        five regulated markets. Plus a small portfolio of new products in quiet build from the
-        product lab.
-      </p>
-      <ul className="mt-6 grid sm:grid-cols-2 lg:grid-cols-4 gap-3 max-w-4xl">
-        {[
-          { v: "$1B+", l: "annual GTV cleared" },
-          { v: "270M+", l: "annual transactions" },
-          { v: "5", l: "regulated markets" },
-          { v: "99.95%", l: "settlement SLA" },
-        ].map((p) => (
-          <li key={p.l} className="rounded-xl border border-rule bg-surface p-4">
-            <div className="font-mono-tech text-lg text-ink">{p.v}</div>
-            <div className="text-[10px] uppercase tracking-[0.14em] text-ink-soft mt-1 font-mono-tech">
-              {p.l}
-            </div>
-          </li>
-        ))}
-      </ul>
-
-      <div className="mt-14 grid md:grid-cols-2 gap-6">
-        {products.map((p) => (
-          <article
-            key={p.slug}
-            className="group flex flex-col bg-surface border border-rule rounded-2xl p-7 hover:border-ink/30 transition-colors"
-          >
-            <div className="flex items-center justify-between gap-3">
-              <h2 className="font-instrument text-2xl text-ink">{p.name}</h2>
-              <span
-                className={`text-[10px] uppercase tracking-[0.18em] font-mono-tech px-2.5 py-1 rounded-full border ${
-                  p.status === "coming-soon"
-                    ? "border-rule text-ink-soft"
-                    : "border-[var(--accent-emerald)]/30 text-[var(--accent-emerald)]"
-                }`}
-              >
-                {p.statusLabel}
-              </span>
-            </div>
-            <p className="mt-3 text-ink-soft leading-relaxed">{p.oneLiner}</p>
-            <p className="mt-3 text-sm text-ink-soft/90 leading-relaxed">{p.description}</p>
-
-            {p.metrics && p.metrics.length > 0 && (
-              <dl className="mt-5 grid grid-cols-[repeat(3,minmax(0,1fr))] gap-2 sm:gap-3">
-                {p.metrics.slice(0, 3).map((m) => (
-                  <div key={m.label} className="min-w-0 border-l border-rule pl-2.5 sm:pl-3">
-                    <dt className="text-[9px] sm:text-[10px] uppercase tracking-[0.08em] sm:tracking-[0.16em] text-ink-soft font-mono-tech leading-tight">
-                      {m.label}
-                    </dt>
-                    <dd className="font-instrument text-lg text-ink mt-0.5">{m.value}</dd>
-                  </div>
-                ))}
-              </dl>
-            )}
-
-            <div className="mt-6 pt-5 border-t border-rule">
-              {p.link.startsWith("/") ? (
-                <Link
-                  to={p.link}
-                  className="inline-flex items-center gap-1.5 text-sm font-medium text-ink hover:text-[var(--brand)] transition-colors"
-                >
-                  {p.ctaLabel ?? "Learn more"}
-                  <span className="transition-transform group-hover:translate-x-1">→</span>
-                </Link>
-              ) : (
-                <a
-                  href={p.link}
-                  className="inline-flex items-center gap-1.5 text-sm font-medium text-ink hover:text-[var(--brand)] transition-colors"
-                >
-                  {p.ctaLabel ?? "Learn more"} →
-                </a>
-              )}
-            </div>
-          </article>
-        ))}
-      </div>
-
-      <div className="mt-16 pt-8 border-t border-rule flex flex-wrap gap-3 items-center justify-between">
-        <p className="text-ink-soft">
-          Discussing senior payments product roles or a build partnership?
-        </p>
-        <div className="flex gap-3">
-          <Link
-            to="/contact"
-            className="inline-flex rounded-md bg-ink text-background px-4 py-2 text-sm hover:bg-brand transition-colors"
-          >
-            Contact
-          </Link>
-          <Link
-            to="/resume"
-            className="inline-flex rounded-md border border-ink/20 px-4 py-2 text-sm text-ink hover:border-ink/40"
-          >
-            Resume
-          </Link>
+    <div className="overflow-x-clip">
+      {/* ── Page header: statement type over the console ground ── */}
+      <header className="border-b border-rule">
+        <div className="mx-auto max-w-6xl px-5 sm:px-6 pt-16 pb-12 md:pt-24 md:pb-16">
+          <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
+            ◆ Products
+          </div>
+          <h1 className="font-instrument text-[clamp(2.5rem,5.5vw,5.5rem)] text-ink mt-3 leading-[1.0] max-w-4xl">
+            Products I have built, and products I am{" "}
+            <span className="italic text-[var(--brand)]">building.</span>
+          </h1>
+          <p className="mt-6 max-w-2xl text-base leading-relaxed text-ink-soft md:text-lg">
+            Shipped payment infrastructure, card acquiring, wallets, cross-border corridors,
+            settlement and reconciliation, KYC/KYB, AML/CFT and fraud, that has cleared $1B+ in
+            annual GTV across five regulated markets. Plus a small portfolio of new products in
+            quiet build from the product lab.
+          </p>
         </div>
-      </div>
+        {/* Ledger strip: flat bordered tiles, tabular mono numerals. */}
+        <div className="border-t border-rule bg-surface">
+          <ul
+            data-rz-stagger
+            className="mx-auto grid max-w-6xl grid-cols-2 md:grid-cols-4 md:divide-x md:divide-[color:var(--rule)]"
+          >
+            {[
+              { v: "$1B+", l: "annual GTV cleared" },
+              { v: "270M+", l: "annual transactions" },
+              { v: "5", l: "regulated markets" },
+              { v: "99.95%", l: "settlement SLA" },
+            ].map((p) => (
+              <li key={p.l} className="px-5 py-6 sm:px-6 md:py-8">
+                <div className="font-mono-tech text-xl md:text-2xl text-ink leading-none tabular-nums">
+                  {p.v}
+                </div>
+                <div className="text-[10px] uppercase tracking-[0.14em] text-ink-soft mt-2 font-mono-tech">
+                  {p.l}
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </header>
+
+      {/* ── Portfolio: asymmetric 7/5 editorial spread, not a uniform grid ── */}
+      <section className="rz-beam relative border-b border-rule">
+        <div className="mx-auto max-w-6xl px-5 sm:px-6 py-[var(--space-section-sm)]">
+          <div data-rz-stagger className="grid gap-5 md:grid-cols-12">
+            {products.map((p, i) => {
+              // Alternating asymmetry: 7/5 then 5/7 so no two rows read as clones.
+              const wide = i % 4 === 0 || i % 4 === 3;
+              return (
+                <article
+                  key={p.slug}
+                  data-glow
+                  className={`group relative flex flex-col bg-card border border-rule rounded-lg p-6 sm:p-7 transition-colors hover:border-ink/30 ${
+                    wide ? "md:col-span-7" : "md:col-span-5"
+                  }`}
+                >
+                  <div className="flex items-start justify-between gap-3">
+                    <div>
+                      <span
+                        className="font-mono-tech text-[11px] tracking-[0.22em] text-[var(--brand)]"
+                        aria-hidden
+                      >
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
+                      <h2 className="font-instrument text-2xl md:text-3xl text-ink mt-2 leading-tight">
+                        {p.name}
+                      </h2>
+                    </div>
+                    <span
+                      className={`text-[10px] uppercase tracking-[0.18em] font-mono-tech px-2.5 py-1 rounded-full border ${
+                        p.status === "coming-soon"
+                          ? "border-rule text-ink-soft"
+                          : "border-[var(--accent-emerald)]/30 text-[var(--accent-emerald)]"
+                      }`}
+                    >
+                      {p.statusLabel}
+                    </span>
+                  </div>
+                  <p className="mt-3 text-ink-soft leading-relaxed">{p.oneLiner}</p>
+                  <p className="mt-3 text-sm text-ink-soft/90 leading-relaxed flex-1">
+                    {p.description}
+                  </p>
+
+                  {p.metrics && p.metrics.length > 0 && (
+                    <dl className="mt-6 grid grid-cols-[repeat(3,minmax(0,1fr))] gap-3 border-t border-rule pt-4">
+                      {p.metrics.slice(0, 3).map((m) => (
+                        <div key={m.label} className="min-w-0">
+                          <dt className="text-[9px] sm:text-[10px] uppercase tracking-[0.08em] sm:tracking-[0.14em] text-ink-soft font-mono-tech leading-tight">
+                            {m.label}
+                          </dt>
+                          <dd className="font-mono-tech text-base sm:text-lg text-ink mt-1 tabular-nums leading-snug">
+                            {m.value}
+                          </dd>
+                        </div>
+                      ))}
+                    </dl>
+                  )}
+
+                  <div className="mt-6 pt-5 border-t border-rule">
+                    {p.link.startsWith("/") ? (
+                      <Link
+                        to={p.link}
+                        className="inline-flex items-center gap-1.5 py-1.5 -my-1.5 text-sm font-medium text-ink hover:text-[var(--brand)] transition-colors"
+                      >
+                        <span className="rz-link">{p.ctaLabel ?? "Learn more"}</span>
+                        <span className="transition-transform group-hover:translate-x-1" aria-hidden>
+                          →
+                        </span>
+                      </Link>
+                    ) : (
+                      <a
+                        href={p.link}
+                        className="inline-flex items-center gap-1.5 py-1.5 -my-1.5 text-sm font-medium text-ink hover:text-[var(--brand)] transition-colors"
+                      >
+                        <span className="rz-link">{p.ctaLabel ?? "Learn more"}</span>
+                        <span className="transition-transform group-hover:translate-x-1" aria-hidden>
+                          →
+                        </span>
+                      </a>
+                    )}
+                  </div>
+                </article>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Closing rail ── */}
+      <section className="rz-beam relative">
+        <div className="mx-auto max-w-6xl px-5 sm:px-6 py-12 md:py-16 flex flex-wrap gap-x-8 gap-y-5 items-center justify-between">
+          <p className="max-w-xl font-instrument text-xl md:text-2xl text-ink leading-snug">
+            Discussing senior payments product roles or a build partnership?
+          </p>
+          <div className="flex flex-wrap gap-3">
+            <Link
+              to="/contact"
+              className="inline-flex h-11 items-center rounded-full bg-ink text-background px-5 text-sm font-medium hover:bg-brand transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+            >
+              Contact
+            </Link>
+            <Link
+              to="/resume"
+              className="inline-flex h-11 items-center rounded-full border border-ink/20 px-5 text-sm text-ink hover:border-ink/50 hover:bg-ink/5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+            >
+              Resume
+            </Link>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

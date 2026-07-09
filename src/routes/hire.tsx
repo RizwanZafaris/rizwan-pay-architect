@@ -73,6 +73,19 @@ const hireJsonLd = {
   },
 };
 
+// Print guard for the engine-staggered KPI grid: the global @media print rules
+// reset [class*="reveal"] / [class*="motion"] but not [data-rz-stagger]
+// children, whose hidden pre-reveal state lives in next.css.
+const hirePrintCss = `
+@media print {
+  .hire-page [data-rz-stagger] > * {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+`;
+
 const primaryCtaClass =
   "inline-flex items-center justify-center gap-2 rounded-full bg-ink text-background px-8 py-4 text-base font-medium shadow-sm transition duration-200 hover:bg-brand hover:text-[var(--brand-foreground)] hover:-translate-y-0.5 hover:shadow-md active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2";
 
@@ -127,13 +140,14 @@ function HirePage() {
   // itself forwards the same params via Cal.config.forwardQueryParams.
   const calendarUrl = profile.calendarUrl;
   return (
-    <div className="mx-auto max-w-4xl px-5 sm:px-6 py-16 md:py-24">
+    <div className="hire-page mx-auto max-w-4xl px-5 sm:px-6 py-16 md:py-24">
+      <style dangerouslySetInnerHTML={{ __html: hirePrintCss }} />
       {/* Hero — single intent, single action */}
       <section className="text-center">
-        <div className="text-[11px] uppercase tracking-[0.22em] text-ink-soft font-mono-tech">
-          For hiring teams in payments, fintech &amp; financial institutions
+        <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
+          ◆ For hiring teams in payments, fintech &amp; financial institutions
         </div>
-        <h1 className="font-instrument text-3xl sm:text-4xl md:text-5xl text-ink mt-5 leading-[1.08] max-w-3xl mx-auto">
+        <h1 className="font-instrument text-[clamp(2.25rem,4vw,3.5rem)] text-ink mt-5 leading-[1.08] max-w-3xl mx-auto">
           Hiring a payments product and program leader who&apos;s scaled $1B+ in frontier and
           emerging markets?
         </h1>
@@ -166,14 +180,16 @@ function HirePage() {
         </div>
       </section>
 
-      {/* Proof strip — verified figures spanning product scale + delivery leadership */}
-      <section className="mt-14 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+      {/* Proof strip — verified figures spanning product scale + delivery
+          leadership. Flat bordered KPI tiles, mono tabular-nums, engine-
+          staggered with a single beam on this page's first ruled band. */}
+      <section
+        data-rz-stagger
+        className="rz-beam relative mt-14 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3"
+      >
         {proofMetrics.map((m) => (
-          <div
-            key={m.label}
-            className="rounded-lg border border-rule bg-surface px-4 py-3 text-center"
-          >
-            <div className="font-instrument text-xl md:text-2xl text-ink leading-none">
+          <div key={m.label} className="border border-rule bg-surface px-4 py-3 text-center">
+            <div className="font-mono-tech text-xl md:text-2xl text-ink leading-none tabular-nums">
               {m.value}
             </div>
             <div className="mt-1.5 text-[10px] uppercase tracking-[0.14em] text-ink-soft font-mono-tech leading-tight">

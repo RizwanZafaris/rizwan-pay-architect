@@ -102,3 +102,85 @@ CTA top 731px @ 375×812 ✓).
 
 Gates re-run: tsc clean, build:static 178/0, seo:audit clean, overflow 0 at
 375/1280, 0 console errors.
+
+---
+
+# V3 addendum — End-to-end inner-page revamp (2026-07-10)
+
+Phases 1-8 of the full-site brief. The homepage monument language now runs
+across every route; the "two different websites" split is closed.
+
+## Scope
+
+| Register | Pages | Treatment |
+|---|---|---|
+| Brand | journey, about, media, topics x3, blog x2, product-work x2, products x2 | Statement scale (clamp 2.5-5.5rem), index rows / editorial panels / divide-y indexes, beams + staggers + probe glow |
+| Product-utility | resume, contact, for x2, hire, consulting | ◆ eyebrows unified, titles CAPPED at clamp(2.25rem,4vw,3.5rem), flat bordered KPI tiles w/ mono tabular-nums, one beam per page |
+
+Delivered by 4 parallel agents + integration. Uniform 3-col card grids
+eliminated from the brand register; the KPI tile grid survives as the one
+sanctioned exception (DESIGN.md).
+
+## Gates
+| Check | Result |
+|---|---|
+| `bun run typecheck` | clean |
+| `bun run build:static` | 178 routes, 0 failed |
+| `bun run seo:audit` (claims two-tier + TODO gates) | passed |
+| `bun run content:validate` | exit 0, 0 errors (80 pre-existing markdown warnings) |
+| Horizontal overflow 375 / 768 / 1280, 10 pages | 0px everywhere |
+| Console errors | 0 |
+| Contract sweep (gradient-text / side-stripes / raw #fff-#000) | 0 occurrences site-wide |
+| Stagger double-hide bug (`rz-reveal` on stagger children) | 0 occurrences |
+
+## Defects found and fixed this round
+1. **`/blog` topic-radar label leak** — the opaque "Topic radar" chip sat at
+   `left:0.75rem`, so the scrolling marquee showed through the 12px gap beside
+   it. Moved to `left:0` with the inset relocated into `padding-left`.
+2. **`/about` lost its layout container** — the killed agent left sections 2-5
+   with no `mx-auto max-w-6xl px-*` wrapper; they would have rendered
+   full-bleed with zero horizontal padding. Restored, plus a missing `<h2>`
+   that broke heading order, and its bespoke parallel motion system was
+   replaced with the global engine.
+3. **`/products/$slug` dead end** — shipped products rendered no metrics (the
+   data existed) and had no link to their case study. Both wired.
+4. **KPI print regression** — staggered tiles printed blank on `/resume`,
+   `/for`, `/hire`, `/consulting`. Route-scoped `@media print` guards added.
+5. Case-study index, blog related-reading, product-work "more studies", and
+   the topics hub listing all still carried uniform card grids. Converted.
+
+## Verified untouched (functional freezes)
+cal.com `<BookingSection/>` x4 + `#book` anchors x11 · all `data-analytics-*`
+IDs (12 `book_intro_call`, 5 `download_resume`, +4) · Web3Forms contact wiring ·
+`profile.resumeHref` PDF links · `/resume` print styles · `noindex` on `/hire`
+and `/consulting` (still unlinked/parked) · all JSON-LD blocks · consent stack.
+
+## Findings NOT fixed (deliberate, owner decisions)
+1. **`/media` 404s in production — pre-existing, not a regression.** The route
+   is registered and its JS chunk builds, but it is absent from
+   `routesToPrerender` (derived from sitemap entries; `/media` is `noindex`),
+   so it has never been prerendered. Meanwhile `scripts/seo-audit.ts:60` lists
+   `/media` in `REQUIRED_INDEXABLE`, which contradicts the route's own
+   `noindex`. The page's data is 7 items, 6 `comingSoon`, **0 real URLs** —
+   prerendering it would publish an empty page. Left alone and flagged: decide
+   whether to fill it with real media, or delete the route + the audit entry.
+2. **80 `content:validate` warnings** on blog markdown (22 posts with 0 tags,
+   24 over-long meta descriptions, 20 thin posts, 7 long titles, 7 missing
+   FAQ). All pre-existing on content files the revamp never touched. Tags and
+   descriptions are authoring decisions, not fabricable.
+3. **Testimonials still empty.** `src/data/testimonials.ts` awaits 2-4 real
+   attributable quotes. Section is pre-wired; renders null until then.
+4. `/hire` + `/consulting` keep narrower shells (max-w-4xl / 5xl): widening
+   would alter a conversion layout under freeze.
+5. Card-internal category labels stay on `--accent-emerald` (intentional
+   product/program colour coding); only page/section eyebrows were unified.
+6. Em dashes left in place site-wide: the `seo:audit` claims gate treats clause
+   boundaries as significant, and a mass replace risks tripping the two-tier
+   check. PRODUCT.md's no-em-dash rule needs a scoped, per-sentence pass.
+
+## Also this round
+`DESIGN.md` rewritten: it documented the retired light "Quiet Daylight" theme.
+It now encodes the live Operator's Console system (six source tokens, three
+motion verbs, the no-uniform-grid rule, the KPI exception, and the hard bans:
+no hydration, no motion library, no fabricated testimonials, no merged claim
+clauses).

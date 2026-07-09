@@ -1,14 +1,13 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import type { CSSProperties } from "react";
 import { profile, personSchemaAwards, personSchemaCredentials } from "@/data/profile";
 import { absUrl, OG_IMAGE_URL, SITE_URL } from "@/lib/seo";
 
 // Operator-story /about page (brand-rebuild strategy doc §5). Replaces the
-// old /resume redirect stub. JS-less: motion is a single inline <style> block
-// (CSS-only, honours prefers-reduced-motion). Two-tier claims gate (career arc
-// vs Simpaisa platform metrics) is respected — the two scopes never share a
-// clause; see scripts/seo-audit.ts. No fabricated quotes/talks; every fact
-// traces to src/data/profile.ts.
+// old /resume redirect stub. JS-less: motion is the global vanilla engine only
+// (rz-beam / data-rz-stagger / data-glow — attributes, no hydration, reduced-
+// motion safe). Two-tier claims gate (career arc vs Simpaisa platform metrics)
+// is respected — the two scopes never share a clause; see scripts/seo-audit.ts.
+// No fabricated quotes/talks; every fact traces to src/data/profile.ts.
 
 // AboutPage → the canonical #person node (defined site-wide in __root.tsx).
 // We reference by @id instead of forking a second Person entity, and only
@@ -46,25 +45,6 @@ const aboutPageJsonLd = {
     knowsAbout: profile.entityKnowsAbout,
   },
 };
-
-// Local, self-contained motion. Namespaced to this page so it never collides
-// with the global soft-reveal classes and needs no edit to styles.css. Motion
-// is opt-in under prefers-reduced-motion: no-preference; otherwise content is
-// fully visible with zero transform.
-const aboutMotionCss = `
-.about-page [data-reveal]{opacity:1}
-@media (prefers-reduced-motion: no-preference){
-  .about-page [data-reveal]{
-    opacity:0;
-    transform:translateY(12px);
-    animation:about-reveal 620ms cubic-bezier(0.2,0.8,0.2,1) forwards;
-    animation-delay:var(--motion-delay,0ms);
-  }
-  @keyframes about-reveal{to{opacity:1;transform:none}}
-}
-`;
-
-const delayStyle = (ms: number) => ({ "--motion-delay": `${ms}ms` }) as CSSProperties;
 
 // Three operating beliefs (strategy doc §5). Each gloss is grounded in real
 // work from profile.experience — no invented claims.
@@ -182,211 +162,227 @@ export const Route = createFileRoute("/about")({
 });
 
 function AboutPage() {
+  // Shared chip-link grammar for the header CTAs: ≥24px tap target,
+  // focus-visible ring parity with the homepage CTAs.
+  const chipClass =
+    "inline-flex items-center gap-1 rounded-full border border-ink/20 px-3.5 py-1.5 text-xs font-medium text-ink hover:border-ink/50 hover:bg-ink/5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background";
+  // Text-link grammar for the doorway columns — mirrors the homepage
+  // GetInTouchBand (py/-my grows the hit area past 24px without shifting layout).
+  const doorLinkClass =
+    "group/link inline-flex items-center gap-1.5 py-1.5 -my-1.5 text-sm text-ink hover:text-[var(--brand)] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-sm";
   return (
-    <div className="about-page mx-auto max-w-3xl px-5 sm:px-6 py-12 md:py-16">
-      <style>{aboutMotionCss}</style>
-
-      {/* 1 — Cold open */}
-      <header data-reveal style={delayStyle(0)}>
-        <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
-          ◆ The operator story
-        </div>
-        <h1 className="mt-5 font-instrument tracking-tight leading-[1.08] text-[28px] sm:text-[36px] md:text-[44px] text-ink text-wrap">
-          The first payment system I ran was judged by whether failure had consequences —
-          reliability wasn't a metric, it was the job.
-        </h1>
-        <p className="mt-5 text-lg text-ink-soft leading-relaxed">
-          That standard came from before payments. My career started on power-utility infrastructure
-          — five substations, field operations, downtime monitoring — where a system that fell over
-          had immediate, physical consequences. I have carried that definition of "done" through
-          every role since.
-        </p>
-        <div className="mt-6 flex flex-wrap gap-2">
-          <Link
-            to="/resume"
-            className="inline-flex items-center gap-1 rounded-full border border-ink/20 px-3.5 py-1.5 text-xs font-medium text-ink hover:border-ink/50 hover:bg-ink/5 transition-colors"
-          >
-            View resume
-          </Link>
-          <a
-            href="/Rizwan_Zafar_Resume.pdf"
-            className="inline-flex items-center gap-1 rounded-full border border-ink/20 px-3.5 py-1.5 text-xs font-medium text-ink hover:border-ink/50 hover:bg-ink/5 transition-colors"
-          >
-            Download PDF
-          </a>
-        </div>
-      </header>
-
-      {/* 2 — The arc */}
-      <section
-        className="mt-12 md:mt-14 border-t border-rule pt-10"
-        data-reveal
-        style={delayStyle(60)}
-      >
-        <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
-          ◆ The arc
-        </div>
-        <h2 className="mt-3 font-instrument text-2xl md:text-3xl text-ink leading-tight">
-          Engineering → delivery → product
-        </h2>
-        <div className="mt-5 space-y-4 text-ink-soft leading-relaxed">
-          <p>
-            I began as a planning engineer on utility and power infrastructure in Karachi (PESCO,
-            2009), then moved into programme delivery — a $15M engineering portfolio at DS
-            Engineering, ERP and IT projects in the Democratic Republic of the Congo at CIMKO, and
-            my first Dubai role building a PMO from nothing for a $12M+ portfolio at Wing Logic.
-            Different industries, one thread: plan for the day nothing is reliable.
+    <div className="pt-14 md:pt-20 pb-16 md:pb-24">
+      <div className="mx-auto max-w-6xl px-5 sm:px-6">
+        {/* 1 — Cold open. Statement page header in the console language: ◆ mono
+            eyebrow → monument serif H1 with the italic-cyan signature close.
+            Same sentence; the em dash became a colon while re-wrapping (charter
+            ban). Long prose below stays on a max-w-3xl serif measure. */}
+        <header>
+          <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
+            ◆ The operator story
+          </div>
+          <h1 className="mt-6 font-instrument tracking-[-0.02em] leading-[1.0] text-[clamp(2.5rem,5.5vw,5.5rem)] text-ink">
+            The first payment system I ran was judged by whether failure had consequences:
+            reliability wasn't a metric,{" "}
+            <span className="italic text-[var(--brand)]">it was the job.</span>
+          </h1>
+          <p className="mt-8 max-w-3xl font-serif text-[17px] md:text-lg text-ink-soft leading-[1.75]">
+            That standard came from before payments. My career started on power-utility
+            infrastructure — five substations, field operations, downtime monitoring — where a
+            system that fell over had immediate, physical consequences. I have carried that
+            definition of "done" through every role since.
           </p>
-          <p>
-            Product followed delivery. At Tapmad I owned monetization for Pakistan's leading OTT
-            platform and built the billing that turned it into a business. At Daraz (Alibaba Group)
-            I ran payment operations across five markets through a COVID volume surge. Then at
-            Simpaisa I became Chief Product Officer, building full-stack payment infrastructure —
-            card acquiring, wallets, cross-border corridors, settlement and the risk controls
-            underneath.
-          </p>
-          <p>
-            Frontier markets became the specialty on purpose. Constraint breeds operators: when the
-            rails are fragmented, the regulator is watching and the infrastructure is unreliable,
-            you learn to build products that survive contact with reality. That is the work I am
-            best at, and the work I chose.
-          </p>
-        </div>
+          <div className="mt-7 flex flex-wrap gap-2">
+            <Link to="/resume" className={chipClass}>
+              View resume
+            </Link>
+            <a href="/Rizwan_Zafar_Resume.pdf" className={chipClass}>
+              Download PDF
+            </a>
+          </div>
+        </header>
 
-        {/* Compact career spine — honest, role-scoped, no platform metrics here. */}
-        <ol className="mt-7 space-y-3">
-          {[
-            { years: "2009", label: "PESCO — Sr. Planning Engineer (power infrastructure)" },
-            { years: "2012", label: "DS Engineering — Project Manager, PMO" },
-            { years: "2016", label: "CIMKO — Asst. Manager, Projects (DR Congo)" },
-            { years: "2017", label: "Wing Logic — PMO & Project Manager (first Dubai role)" },
-            { years: "2017", label: "Tapmad — Sr. Project & Product Manager (OTT billing)" },
-            { years: "2020", label: "Daraz (Alibaba Group) — PM, Payments Operations" },
-            { years: "2020", label: "Simpaisa — Chief Product Officer (acting CTO, 2024)" },
-          ].map((step, i) => (
-            <li key={`${step.years}-${i}`} className="flex gap-4">
-              <span className="font-mono-tech text-xs text-[var(--brand)] tabular-nums pt-0.5 w-12 shrink-0">
-                {step.years}
-              </span>
-              <span className="text-sm text-ink leading-snug">{step.label}</span>
-            </li>
-          ))}
-        </ol>
-      </section>
+        {/* 2 — The arc */}
+        <section className="rz-beam mt-14 md:mt-20 border-t border-rule pt-10 md:pt-12">
+          <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
+            ◆ The arc
+          </div>
+          <h2 className="mt-3 font-instrument text-[clamp(1.75rem,3.4vw,3rem)] text-ink leading-[1.08]">
+            Engineering → delivery → product
+          </h2>
+          <div className="mt-6 max-w-3xl space-y-5 font-serif text-[17px] text-ink-soft leading-[1.75]">
+            <p>
+              I began as a planning engineer on utility and power infrastructure in Karachi (PESCO,
+              2009), then moved into programme delivery — a $15M engineering portfolio at DS
+              Engineering, ERP and IT projects in the Democratic Republic of the Congo at CIMKO, and
+              my first Dubai role building a PMO from nothing for a $12M+ portfolio at Wing Logic.
+              Different industries, one thread: plan for the day nothing is reliable.
+            </p>
+            <p>
+              Product followed delivery. At Tapmad I owned monetization for Pakistan's leading OTT
+              platform and built the billing that turned it into a business. At Daraz (Alibaba
+              Group) I ran payment operations across five markets through a COVID volume surge. Then
+              at Simpaisa I became Chief Product Officer, building full-stack payment infrastructure
+              — card acquiring, wallets, cross-border corridors, settlement and the risk controls
+              underneath.
+            </p>
+            <p>
+              Frontier markets became the specialty on purpose. Constraint breeds operators: when
+              the rails are fragmented, the regulator is watching and the infrastructure is
+              unreliable, you learn to build products that survive contact with reality. That is the
+              work I am best at, and the work I chose.
+            </p>
+          </div>
 
-      {/* 3 — Three operating beliefs */}
-      <section
-        className="mt-12 md:mt-14 rounded-lg border border-rule bg-surface p-6 md:p-8"
-        data-reveal
-        style={delayStyle(90)}
-      >
-        <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
-          ◆ Three operating beliefs
-        </div>
-        <div className="mt-6 space-y-6">
-          {beliefs.map((belief, i) => (
-            <div key={belief.claim} className={i > 0 ? "border-t border-rule pt-6" : undefined}>
-              <h3 className="font-instrument text-xl md:text-2xl text-ink leading-snug">
-                <span className="text-[var(--brand)]" aria-hidden>
-                  {String(i + 1).padStart(2, "0")}.{" "}
+          {/* Compact career spine — honest, role-scoped, no platform metrics here.
+              data-rz-stagger cascades the rows in; the ◆ eyebrow + h2 sit OUTSIDE
+              this wrapper so the child-hiding CSS never touches the heading. */}
+          <ol data-rz-stagger className="mt-9 border-t border-rule">
+            {[
+              { years: "2009", label: "PESCO — Sr. Planning Engineer (power infrastructure)" },
+              { years: "2012", label: "DS Engineering — Project Manager, PMO" },
+              { years: "2016", label: "CIMKO — Asst. Manager, Projects (DR Congo)" },
+              { years: "2017", label: "Wing Logic — PMO & Project Manager (first Dubai role)" },
+              { years: "2017", label: "Tapmad — Sr. Project & Product Manager (OTT billing)" },
+              { years: "2020", label: "Daraz (Alibaba Group) — PM, Payments Operations" },
+              { years: "2020", label: "Simpaisa — Chief Product Officer (acting CTO, 2024)" },
+            ].map((step, i) => (
+              <li
+                key={`${step.years}-${i}`}
+                className="flex items-baseline gap-5 border-b border-rule py-3.5"
+              >
+                <span className="font-mono-tech text-xs text-[var(--brand)] tabular-nums w-12 shrink-0">
+                  {step.years}
                 </span>
-                {belief.claim}
-              </h3>
-              <p className="mt-2.5 text-sm md:text-base text-ink-soft leading-relaxed">
-                {belief.gloss}
-              </p>
-            </div>
-          ))}
-        </div>
-      </section>
+                <span className="text-sm md:text-[15px] text-ink leading-snug">{step.label}</span>
+              </li>
+            ))}
+          </ol>
+        </section>
 
-      {/* 4 — Credentials, scope-tagged */}
-      <section
-        className="mt-12 md:mt-14 border-t border-rule pt-10"
-        data-reveal
-        style={delayStyle(60)}
-      >
-        <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
-          ◆ Credentials
-        </div>
-        <h2 className="mt-3 font-instrument text-2xl md:text-3xl text-ink leading-tight">
-          The paper trail
-        </h2>
-        <p className="mt-3 text-sm text-ink-soft leading-relaxed">
-          Executive education, professional certifications, recognition, chapter service, and the
-          compliance programmes I stood up. The last line is Simpaisa-platform scope.
-        </p>
-        <dl className="mt-6 grid sm:grid-cols-2 gap-x-8 gap-y-6">
-          {credentialGroups.map((group) => (
-            <div key={group.label}>
-              <dt className="text-[10px] uppercase tracking-[0.16em] text-ink-soft font-mono-tech">
-                {group.label}
-              </dt>
-              <dd className="mt-2.5">
-                <ul className="flex flex-wrap gap-2">
-                  {group.items.map((item) => (
-                    <li
-                      key={item}
-                      className="rounded-md border border-rule bg-background px-2.5 py-1 text-xs text-ink leading-snug"
-                    >
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </dd>
-            </div>
-          ))}
-        </dl>
-      </section>
+        {/* 3 — Three operating beliefs. Numbered editorial index (statement
+            numerals) on a divide-y list, not a callout card. */}
+        <section className="rz-beam mt-14 md:mt-20 border-t border-rule pt-10 md:pt-12">
+          <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
+            ◆ Operating beliefs
+          </div>
+          <h2 className="mt-3 font-instrument text-[clamp(1.75rem,3.4vw,3rem)] text-ink leading-[1.08]">
+            Three operating beliefs
+          </h2>
+          <div data-rz-stagger className="mt-9 border-t border-rule divide-y divide-rule">
+            {beliefs.map((belief, i) => (
+              <div key={belief.claim} className="grid gap-3 py-7 md:grid-cols-12 md:gap-8">
+                <div
+                  className="font-mono-tech text-4xl md:text-5xl leading-none text-[var(--brand)]/25 tabular-nums select-none md:col-span-2"
+                  aria-hidden
+                >
+                  {String(i + 1).padStart(2, "0")}
+                </div>
+                <div className="md:col-span-10">
+                  <h3 className="font-instrument text-xl md:text-2xl text-ink leading-snug">
+                    {belief.claim}
+                  </h3>
+                  <p className="mt-3 max-w-2xl font-serif text-[15px] md:text-base text-ink-soft leading-[1.7]">
+                    {belief.gloss}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
 
-      {/* 5 — Multi-audience close */}
-      <section
-        className="mt-12 md:mt-14 border-t border-rule pt-10"
-        data-reveal
-        style={delayStyle(60)}
-      >
-        <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
-          ◆ Three doorways
-        </div>
-        <h2 className="mt-3 font-instrument text-2xl md:text-3xl text-ink leading-tight">
-          Where to go next
-        </h2>
-        <div className="mt-6 grid gap-4 md:grid-cols-3">
-          {doorways.map((door) => (
-            <article
-              key={door.eyebrow}
-              className="flex flex-col rounded-lg border border-rule bg-surface p-5"
-            >
-              <div className="text-[10px] uppercase tracking-[0.18em] text-[var(--accent-emerald)] font-mono-tech">
-                {door.eyebrow}
+        {/* 4 — Credentials, scope-tagged */}
+        <section className="rz-beam mt-14 md:mt-20 border-t border-rule pt-10 md:pt-12">
+          <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
+            ◆ Credentials
+          </div>
+          <h2 className="mt-3 font-instrument text-[clamp(1.75rem,3.4vw,3rem)] text-ink leading-[1.08]">
+            The paper trail
+          </h2>
+          <p className="mt-4 max-w-3xl font-serif text-[17px] text-ink-soft leading-[1.7]">
+            Executive education, professional certifications, recognition, chapter service, and the
+            compliance programmes I stood up. The last line is Simpaisa-platform scope.
+          </p>
+          <dl className="mt-8 grid sm:grid-cols-2 gap-x-8 gap-y-8">
+            {credentialGroups.map((group) => (
+              <div key={group.label}>
+                <dt className="text-[10px] uppercase tracking-[0.16em] text-ink-soft font-mono-tech">
+                  {group.label}
+                </dt>
+                <dd className="mt-3">
+                  <ul className="flex flex-wrap gap-2">
+                    {group.items.map((item) => (
+                      <li
+                        key={item}
+                        className="rounded-md border border-rule bg-surface px-2.5 py-1 text-xs text-ink leading-snug"
+                      >
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </dd>
               </div>
-              <h3 className="mt-2 font-instrument text-lg text-ink leading-snug">{door.title}</h3>
-              <p className="mt-2 text-sm text-ink-soft leading-relaxed">{door.body}</p>
-              <div className="mt-4 flex flex-wrap gap-2 mt-auto pt-2">
-                {door.links.map((link) =>
-                  "to" in link ? (
-                    <Link
-                      key={link.label}
-                      to={link.to}
-                      className="inline-flex items-center gap-1 rounded-full border border-ink/20 px-3.5 py-1.5 text-xs font-medium text-ink hover:border-ink/50 hover:bg-ink/5 transition-colors"
-                    >
-                      {link.label}
-                    </Link>
-                  ) : (
-                    <a
-                      key={link.label}
-                      href={link.href}
-                      className="inline-flex items-center gap-1 rounded-full border border-ink/20 px-3.5 py-1.5 text-xs font-medium text-ink hover:border-ink/50 hover:bg-ink/5 transition-colors"
-                    >
-                      {link.label}
-                    </a>
-                  ),
-                )}
+            ))}
+          </dl>
+        </section>
+
+        {/* 5 — Multi-audience close. Divided columns (homepage GetInTouchBand
+            grammar), not a uniform card grid. Stagger on the columns wrapper
+            only; each column carries data-glow (composes with the divide-x). */}
+        <section className="rz-beam mt-14 md:mt-20 border-t border-rule pt-10 md:pt-12">
+          <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
+            ◆ Three doorways
+          </div>
+          <h2 className="mt-3 font-instrument text-[clamp(1.75rem,3.4vw,3rem)] text-ink leading-[1.08]">
+            Where to go next
+          </h2>
+          <div
+            data-rz-stagger
+            className="mt-9 grid gap-y-10 border-t border-rule pt-8 md:grid-cols-3 md:gap-0 md:divide-x md:divide-[color:var(--rule)] md:pt-0"
+          >
+            {doorways.map((door) => (
+              <div
+                key={door.eyebrow}
+                data-glow
+                className="relative flex flex-col md:px-8 md:py-8 md:first:pl-0 md:last:pr-0"
+              >
+                <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
+                  {door.eyebrow}
+                </div>
+                <h3 className="mt-3 font-instrument text-xl md:text-2xl text-ink leading-snug">
+                  {door.title}
+                </h3>
+                <p className="mt-2 flex-1 text-sm text-ink-soft leading-relaxed">{door.body}</p>
+                <div className="mt-6 flex flex-col gap-2.5">
+                  {door.links.map((link) =>
+                    "to" in link ? (
+                      <Link key={link.label} to={link.to} className={doorLinkClass}>
+                        {link.label}
+                        <span
+                          className="transition-transform group-hover/link:translate-x-0.5"
+                          aria-hidden
+                        >
+                          →
+                        </span>
+                      </Link>
+                    ) : (
+                      <a key={link.label} href={link.href} className={doorLinkClass}>
+                        {link.label}
+                        <span
+                          className="transition-transform group-hover/link:translate-x-0.5"
+                          aria-hidden
+                        >
+                          →
+                        </span>
+                      </a>
+                    ),
+                  )}
+                </div>
               </div>
-            </article>
-          ))}
-        </div>
-      </section>
+            ))}
+          </div>
+        </section>
+      </div>
     </div>
   );
 }

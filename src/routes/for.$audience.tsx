@@ -3,6 +3,19 @@ import { getAudience, postsForHub, caseStudiesForHub, getHub, type Audience } fr
 import { profile } from "@/data/profile";
 import { absUrl, SITE_URL } from "@/lib/seo";
 
+// Print guard for the engine-staggered proof strip: the global @media print
+// rules reset [class*="reveal"] / [class*="motion"] but not [data-rz-stagger]
+// children, whose hidden pre-reveal state lives in next.css.
+const audiencePrintCss = `
+@media print {
+  .recruiter-page [data-rz-stagger] > * {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+`;
+
 export const Route = createFileRoute("/for/$audience")({
   loader: ({ params }) => {
     const audience = getAudience(params.audience);
@@ -85,17 +98,18 @@ function AudiencePage() {
   });
 
   return (
-    <div className="mx-auto max-w-6xl px-6 py-20">
+    <div className="recruiter-page mx-auto max-w-6xl px-6 py-20">
+      <style dangerouslySetInnerHTML={{ __html: audiencePrintCss }} />
       <Link
         to="/for"
         className="text-[10px] uppercase tracking-[0.18em] text-ink-soft hover:text-ink font-mono-tech"
       >
         ← For recruiters
       </Link>
-      <div className="mt-6 text-[10px] uppercase tracking-[0.22em] text-[var(--accent-emerald)] font-mono-tech">
+      <div className="mt-6 text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
         ◆ {audience.shortTitle}
       </div>
-      <h1 className="font-instrument text-4xl md:text-6xl text-ink mt-3 max-w-3xl leading-[1.05]">
+      <h1 className="font-instrument text-[clamp(2.25rem,4vw,3.5rem)] text-ink mt-3 max-w-3xl leading-[1.05]">
         {audience.title}
       </h1>
       <p className="mt-5 max-w-2xl text-lg text-ink-soft">{audience.intro}</p>
@@ -111,12 +125,16 @@ function AudiencePage() {
         ))}
       </div>
 
-      {/* Proof strip */}
-      <div className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-6 rounded-2xl border border-rule bg-surface-2 p-6">
+      {/* Proof strip — flat bordered KPI tiles, mono tabular-nums, engine-
+          staggered with a single beam on this page's first ruled band. */}
+      <div
+        data-rz-stagger
+        className="rz-beam relative mt-10 grid grid-cols-2 md:grid-cols-4 gap-3"
+      >
         {profile.metrics.slice(0, 4).map((m) => (
-          <div key={m.label}>
-            <div className="font-mono-tech text-xl text-ink">{m.value}</div>
-            <div className="text-[10px] uppercase tracking-[0.14em] text-ink-soft mt-1 font-mono-tech">
+          <div key={m.label} className="border border-rule bg-surface px-4 py-3">
+            <div className="font-mono-tech text-xl text-ink leading-none tabular-nums">{m.value}</div>
+            <div className="text-[10px] uppercase tracking-[0.14em] text-ink-soft mt-1.5 font-mono-tech leading-tight">
               {m.label}
             </div>
           </div>
@@ -127,7 +145,7 @@ function AudiencePage() {
         <section key={hub.slug} className="mt-14 border-t border-rule pt-10">
           <div className="flex items-end justify-between gap-4 flex-wrap">
             <div>
-              <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--accent-emerald)] font-mono-tech">
+              <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
                 ◆ {hub.shortTitle}
               </div>
               <h2 className="font-instrument text-3xl text-ink mt-2 leading-tight">{hub.title}</h2>
@@ -149,7 +167,8 @@ function AudiencePage() {
                   key={c.slug}
                   to="/product-work/$slug"
                   params={{ slug: c.slug }}
-                  className="group block bg-surface border border-rule rounded-2xl p-5 hover:border-ink/30 transition-colors"
+                  data-glow
+                  className="group block bg-surface border border-rule rounded-lg p-5 hover:border-ink/30 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)]"
                 >
                   <div className="text-[10px] uppercase tracking-[0.18em] text-[var(--accent-emerald)] font-mono-tech">
                     Case study · {c.category}
@@ -187,24 +206,24 @@ function AudiencePage() {
       ))}
 
       {/* CTA */}
-      <div className="mt-20 rounded-3xl border border-ink/10 bg-surface p-10 md:p-12">
+      <div className="mt-20 rounded-lg border border-rule bg-surface p-10 md:p-12">
         <h2 className="font-instrument text-3xl text-ink leading-tight">
           Open to senior Product &amp; Program roles in fintech.
         </h2>
         <p className="mt-4 text-ink-soft max-w-2xl">
           Based in {profile.location}. Reference-available. Resume below or get in touch directly.
         </p>
-        <div className="mt-6 flex flex-wrap gap-3">
+        <div className="mt-6 flex flex-wrap gap-2.5">
           <a
             href={profile.resumeHref}
             download
-            className="inline-flex rounded-md bg-ink text-background px-5 py-2.5 text-sm font-medium hover:bg-brand transition-colors"
+            className="inline-flex items-center justify-center rounded-full bg-ink text-background px-5 py-2.5 text-sm font-medium hover:bg-brand hover:text-[var(--brand-foreground)] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2"
           >
             Download résumé (PDF)
           </a>
           <Link
             to="/contact"
-            className="inline-flex rounded-md border border-ink/20 px-5 py-2.5 text-sm font-medium text-ink hover:border-ink/40"
+            className="inline-flex items-center justify-center rounded-full border border-ink/20 px-5 py-2.5 text-sm font-medium text-ink hover:bg-ink/5 transition-colors"
           >
             Discuss a role
           </Link>

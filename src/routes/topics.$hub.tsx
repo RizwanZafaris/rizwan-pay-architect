@@ -68,100 +68,158 @@ function HubPage() {
   };
 
   return (
-    <div className="mx-auto max-w-6xl px-6 py-20">
-      <Link
-        to="/topics"
-        className="text-[10px] uppercase tracking-[0.18em] text-ink-soft hover:text-ink font-mono-tech"
-      >
-        ← Topics
-      </Link>
-      <div className="mt-6 text-[10px] uppercase tracking-[0.22em] text-[var(--accent-emerald)] font-mono-tech">
-        ◆ {hub.shortTitle}
-      </div>
-      <h1 className="font-instrument text-4xl md:text-6xl text-ink mt-3 max-w-3xl leading-[1.05]">
-        {hub.title}
-      </h1>
-      <p className="mt-5 max-w-2xl text-lg text-ink-soft">{hub.intro}</p>
+    <div className="topics-hub-page">
+      {/* ============ MASTHEAD — statement page title + hub intro =========== */}
+      <header className="rz-beam relative border-b border-rule bg-background">
+        <div className="mx-auto max-w-6xl px-5 sm:px-6 pt-16 md:pt-24 pb-10 md:pb-14">
+          <Link
+            to="/topics"
+            className="inline-flex items-center gap-1.5 py-1.5 -my-1.5 text-[10px] uppercase tracking-[0.18em] text-ink-soft hover:text-ink font-mono-tech focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-sm"
+          >
+            <span aria-hidden>←</span> Topics
+          </Link>
+          <div className="mt-6 text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
+            ◆ {hub.shortTitle}
+          </div>
+          <h1 className="font-instrument text-[clamp(2.5rem,5.5vw,5.5rem)] leading-[1.0] text-ink mt-4 max-w-4xl">
+            {hub.title}
+          </h1>
+          <p className="mt-6 max-w-2xl text-base md:text-lg text-ink-soft leading-relaxed">
+            {hub.intro}
+          </p>
+        </div>
+      </header>
 
+      {/* ============ CASE STUDIES — editorial index rows ================== */}
       {studies.length > 0 && (
-        <section className="mt-14">
-          <h2 className="font-instrument text-2xl text-ink mb-6">Case studies</h2>
-          <div className="grid md:grid-cols-2 gap-5">
-            {studies.map((c) => (
-              <Link
-                key={c.slug}
-                to="/product-work/$slug"
-                params={{ slug: c.slug }}
-                className="group block bg-surface border border-rule rounded-2xl p-6 hover:border-ink/30 transition-colors"
-              >
-                <div className="text-[10px] uppercase tracking-[0.18em] text-[var(--accent-emerald)] font-mono-tech">
-                  {c.category}
-                </div>
-                <div className="font-instrument text-xl text-ink mt-2 leading-snug group-hover:text-[var(--brand)] transition-colors">
-                  {c.title}
-                </div>
-                <p className="text-sm text-ink-soft mt-2">{c.tagline}</p>
-              </Link>
-            ))}
+        <section className="rz-beam relative border-b border-rule bg-surface">
+          <div className="mx-auto max-w-6xl px-5 sm:px-6 py-12 md:py-16">
+            <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
+              ◆ Case studies
+            </div>
+            <h2 className="mt-3 font-instrument text-3xl md:text-4xl text-ink leading-[1.05]">
+              Shipped in this domain.
+            </h2>
+            <div data-rz-stagger className="mt-8 border-t border-rule">
+              {studies.map((c) => (
+                <Link
+                  key={c.slug}
+                  to="/product-work/$slug"
+                  params={{ slug: c.slug }}
+                  data-glow
+                  className="group relative grid gap-y-1 border-b border-rule py-6 md:grid-cols-12 md:gap-x-8 md:py-7"
+                >
+                  <div className="md:col-span-3 text-[10px] uppercase tracking-[0.16em] text-[var(--brand)] font-mono-tech md:self-center">
+                    {c.category}
+                  </div>
+                  <div className="md:col-span-8">
+                    <h3 className="font-instrument text-2xl md:text-[1.65rem] leading-[1.1] text-ink transition-all duration-300 [transition-timing-function:var(--ease-soft)] group-hover:translate-x-1.5 group-hover:text-[var(--brand)]">
+                      {c.title}
+                    </h3>
+                    <p className="mt-2 text-sm text-ink-soft leading-relaxed">{c.tagline}</p>
+                  </div>
+                  <span
+                    className="hidden self-center justify-self-end text-lg text-ink-soft transition-all duration-300 group-hover:translate-x-1 group-hover:text-[var(--brand)] md:col-span-1 md:inline"
+                    aria-hidden
+                  >
+                    →
+                  </span>
+                </Link>
+              ))}
+            </div>
           </div>
         </section>
       )}
 
-      <section className="mt-14">
-        <h2 className="font-instrument text-2xl text-ink mb-6">
-          Essays{" "}
-          {essays.length > 0 && <span className="text-ink-soft text-base">· {essays.length}</span>}
-        </h2>
-        {essays.length === 0 ? (
-          <p className="text-ink-soft">More essays coming to this hub soon.</p>
-        ) : (
-          <div className="divide-y divide-rule border-y border-rule">
-            {essays.map((p) => (
-              <Link
-                key={p.slug}
-                to="/blog/$slug"
-                params={{ slug: p.slug }}
-                className="group grid md:grid-cols-12 gap-6 py-6 hover:bg-surface-2 px-2 -mx-2 rounded transition-colors"
-              >
-                <div className="md:col-span-3 text-xs text-ink-soft font-mono-tech">
-                  <div>
-                    {new Date(p.date).toLocaleDateString("en-US", {
-                      year: "numeric",
-                      month: "short",
-                      day: "numeric",
-                    })}
-                  </div>
-                  <div className="mt-1">{p.readingTime}</div>
-                </div>
-                <div className="md:col-span-9">
-                  <h3 className="font-instrument text-xl text-ink group-hover:text-[var(--brand)] transition-colors leading-snug">
-                    {p.title}
-                  </h3>
-                  <p className="mt-2 text-ink-soft leading-relaxed">{p.thesis ?? p.description}</p>
-                </div>
-              </Link>
-            ))}
+      {/* ============ ESSAYS — divide-y editorial index ==================== */}
+      <section className="rz-beam relative border-b border-rule bg-background">
+        <div className="mx-auto max-w-6xl px-5 sm:px-6 py-12 md:py-16">
+          <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
+            <div>
+              <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
+                ◆ Essays
+              </div>
+              <h2 className="mt-3 font-instrument text-3xl md:text-4xl text-ink leading-[1.05]">
+                Field notes for this hub.
+              </h2>
+            </div>
+            {essays.length > 0 && (
+              <div className="text-xs text-ink-soft font-mono-tech">
+                {essays.length} essay{essays.length === 1 ? "" : "s"}
+              </div>
+            )}
           </div>
-        )}
+          {essays.length === 0 ? (
+            <p className="mt-8 border-y border-rule px-6 py-14 text-center text-ink-soft">
+              More essays coming to this hub soon.
+            </p>
+          ) : (
+            <div data-rz-stagger className="mt-8 border-t border-rule">
+              {essays.map((p) => (
+                <Link
+                  key={p.slug}
+                  to="/blog/$slug"
+                  params={{ slug: p.slug }}
+                  data-glow
+                  className="group relative grid gap-y-2 border-b border-rule py-6 md:grid-cols-12 md:gap-x-8 md:py-7"
+                >
+                  <div className="flex items-baseline gap-x-4 md:col-span-3 md:block">
+                    <span className="block font-mono-tech text-[11px] tracking-[0.14em] text-ink-soft tabular-nums">
+                      {formatHubDate(p.date)}
+                    </span>
+                    <span className="block font-mono-tech text-[11px] tracking-[0.14em] text-ink-soft/70 md:mt-1">
+                      {p.readingTime}
+                    </span>
+                  </div>
+                  <div className="md:col-span-8">
+                    <h3 className="font-instrument text-2xl md:text-[1.65rem] leading-[1.1] text-ink transition-all duration-300 [transition-timing-function:var(--ease-soft)] group-hover:translate-x-1.5 group-hover:text-[var(--brand)]">
+                      {p.title}
+                    </h3>
+                    <p className="mt-2 text-sm text-ink-soft leading-relaxed">
+                      {p.thesis ?? p.description}
+                    </p>
+                  </div>
+                  <span
+                    className="hidden self-center justify-self-end text-lg text-ink-soft transition-all duration-300 group-hover:translate-x-1 group-hover:text-[var(--brand)] md:col-span-1 md:inline"
+                    aria-hidden
+                  >
+                    →
+                  </span>
+                </Link>
+              ))}
+            </div>
+          )}
+        </div>
       </section>
 
-      <div className="mt-16 pt-8 border-t border-rule flex flex-wrap gap-3 items-center justify-between">
-        <p className="text-ink-soft">Discussing senior payments product roles? Get in touch.</p>
-        <div className="flex gap-3">
-          <Link
-            to="/contact"
-            className="inline-flex rounded-md bg-ink text-background px-4 py-2 text-sm hover:bg-brand transition-colors"
-          >
-            Contact
-          </Link>
-          <Link
-            to="/resume"
-            className="inline-flex rounded-md border border-ink/20 px-4 py-2 text-sm text-ink hover:border-ink/40"
-          >
-            Resume
-          </Link>
+      {/* ============ CTA — flat ruled band ================================ */}
+      <section className="bg-surface">
+        <div className="mx-auto max-w-6xl px-5 sm:px-6 py-12 md:py-14 flex flex-wrap gap-4 items-center justify-between">
+          <p className="text-ink-soft">Discussing senior payments product roles? Get in touch.</p>
+          <div className="flex gap-3">
+            <Link
+              to="/contact"
+              className="inline-flex items-center rounded-full bg-ink text-background px-5 py-2.5 text-sm hover:bg-[var(--brand)] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+            >
+              Contact
+            </Link>
+            <Link
+              to="/resume"
+              className="inline-flex items-center rounded-full border border-rule px-5 py-2.5 text-sm text-ink hover:border-ink/40 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+            >
+              Resume
+            </Link>
+          </div>
         </div>
-      </div>
+      </section>
     </div>
   );
+}
+
+function formatHubDate(date: string) {
+  return new Date(date).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  });
 }

@@ -362,7 +362,7 @@ function EssayFooterCTA({ post }: { post: Post }) {
     caseStudies.find((c) => c.category === post.category) ??
     caseStudies.find((c) => c.keywords?.some((k) => post.tags.includes(k)));
   return (
-    <section className="border-t border-rule">
+    <section className="rz-beam relative border-t border-rule">
       <div className="mx-auto max-w-3xl px-6 py-12">
         {(hub || caseStudy) && (
           <div className="grid sm:grid-cols-2 gap-4">
@@ -372,7 +372,8 @@ function EssayFooterCTA({ post }: { post: Post }) {
                 data-analytics-event="cta_click"
                 data-analytics-placement="essay_footer"
                 data-analytics-target="hub"
-                className="group block rounded-2xl border border-rule p-5 hover:border-ink/30 transition-colors"
+                data-glow
+                className="group relative block rounded-2xl border border-rule p-5 hover:border-ink/30 transition-colors"
               >
                 <div className="text-[10px] uppercase tracking-[0.18em] text-ink-soft font-mono-tech">
                   Topic hub
@@ -388,7 +389,8 @@ function EssayFooterCTA({ post }: { post: Post }) {
                 data-analytics-event="cta_click"
                 data-analytics-placement="essay_footer"
                 data-analytics-target="case_study"
-                className="group block rounded-2xl border border-rule p-5 hover:border-ink/30 transition-colors"
+                data-glow
+                className="group relative block rounded-2xl border border-rule p-5 hover:border-ink/30 transition-colors"
               >
                 <div className="text-[10px] uppercase tracking-[0.18em] text-ink-soft font-mono-tech">
                   Related case study
@@ -528,51 +530,46 @@ function BlogPostPage() {
 
   return (
     <article className="blog-article-page overflow-x-clip">
-      <header className="article-hero-shell relative overflow-hidden border-b border-rule bg-surface/45">
-        <span aria-hidden="true" className="article-hero-rule article-hero-rule-a" />
-        <span aria-hidden="true" className="article-hero-rule article-hero-rule-b" />
-        <div className="mx-auto max-w-6xl px-5 sm:px-6 pt-14 pb-12">
+      <header className="rz-beam relative overflow-hidden border-b border-rule bg-surface">
+        <div className="mx-auto max-w-6xl px-5 sm:px-6 pt-14 pb-12 md:pt-16 md:pb-16">
           <Link
             to="/blog"
-            className="text-[10px] uppercase tracking-[0.18em] text-ink-soft hover:text-ink font-mono-tech"
+            className="inline-flex py-2 -my-2 text-[10px] uppercase tracking-[0.18em] text-ink-soft hover:text-ink font-mono-tech"
           >
             ← Essays
           </Link>
-          <div className="mt-8 grid gap-8 lg:grid-cols-12 lg:items-end">
+          <div className="mt-8 grid gap-10 lg:grid-cols-12 lg:items-end lg:gap-12">
             <div className="lg:col-span-8 min-w-0">
-              <div className="flex flex-wrap items-center gap-2">
+              {/* Mono eyebrow: ◆ hub (linked) · category · date · reading time */}
+              <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-[10px] uppercase tracking-[0.18em] font-mono-tech">
                 {hub ? (
                   <Link
                     to="/topics/$hub"
                     params={{ hub: hub.slug }}
-                    className="rounded-full border border-[var(--accent-emerald)]/25 bg-background px-3 py-1 text-[10px] uppercase tracking-[0.16em] text-[var(--accent-emerald)] font-mono-tech font-medium hover:border-[var(--accent-emerald)]"
+                    className="inline-flex py-2 -my-2 items-center gap-2 text-[var(--brand)] font-semibold hover:opacity-80 transition-opacity"
                   >
-                    {hub.shortTitle}
+                    ◆ {hub.shortTitle}
                   </Link>
                 ) : (
-                  <span className="rounded-full border border-[var(--accent-emerald)]/25 bg-background px-3 py-1 text-[10px] uppercase tracking-[0.16em] text-[var(--accent-emerald)] font-mono-tech font-medium">
-                    {p.category}
-                  </span>
+                  <span className="text-[var(--brand)] font-semibold">◆ {p.category}</span>
                 )}
-                <span className="text-[10px] uppercase tracking-[0.16em] text-ink-soft font-mono-tech">
-                  {p.category}
+                <span className="text-ink-soft">{p.category}</span>
+                <span className="text-ink-soft">
+                  {formatArticleDate(p.date)} · {p.readingTime}
                 </span>
               </div>
-              <h1 className="font-instrument text-[2rem] sm:text-4xl md:text-6xl text-ink mt-5 leading-[1.04] max-w-4xl text-wrap">
+              <h1 className="font-instrument text-[clamp(2.25rem,4.6vw,4.25rem)] text-ink mt-5 leading-[1.03] max-w-4xl text-wrap">
                 {p.title}
               </h1>
-              <p className="mt-5 max-w-3xl text-lg leading-relaxed text-ink-soft">
+              <p className="mt-6 max-w-3xl text-lg leading-relaxed text-ink-soft">
                 {p.thesis ?? p.description}
               </p>
-              <div className="mt-6 text-xs sm:text-sm text-ink-soft flex flex-wrap gap-x-3 sm:gap-x-4 gap-y-1 font-mono-tech">
-                <span>{formatArticleDate(p.date)}</span>
-                <span>·</span>
-                <span>{p.readingTime}</span>
-                <span>·</span>
-                <span>By {profile.name}</span>
+              <div className="mt-6 text-[10px] uppercase tracking-[0.18em] text-ink-soft font-mono-tech">
+                By {profile.name}
               </div>
             </div>
-            <div className="article-brief-card lg:col-span-4 min-w-0 rounded-lg border border-rule bg-background/90 p-5">
+            {/* Briefing note — flat ruled column, no card box */}
+            <div className="lg:col-span-4 min-w-0 border-t border-rule pt-6 lg:border-t-0 lg:border-l lg:pl-10 lg:pt-1">
               <div className="text-[10px] uppercase tracking-[0.18em] text-ink-soft mb-3 font-mono-tech">
                 Briefing note
               </div>
@@ -597,12 +594,12 @@ function BlogPostPage() {
         {/* TOC */}
         <aside className="lg:col-span-3 order-1">
           {toc.length > 0 && (
-            <div className="article-rail-card lg:sticky lg:top-24 rounded-lg border border-rule bg-surface p-5">
+            <div className="relative lg:sticky lg:top-24 pl-5">
               <div className="article-rail-progress" aria-hidden="true">
                 <span />
               </div>
-              <div className="text-[10px] uppercase tracking-[0.18em] text-ink-soft mb-3 font-mono-tech">
-                Article map
+              <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] mb-3 font-mono-tech font-semibold">
+                ◆ Article map
               </div>
               <ul className="space-y-2 text-sm leading-snug">
                 {toc.map((t) => (
@@ -683,12 +680,12 @@ function BlogPostPage() {
       <EssayFooterCTA post={p} />
 
       {related.length > 0 && (
-        <section className="border-t border-rule bg-surface-2/70">
+        <section className="rz-beam relative border-t border-rule bg-surface-2/70">
           <div className="mx-auto max-w-6xl px-6 py-16">
             <div className="mb-8 flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
               <div>
-                <div className="text-[10px] uppercase tracking-[0.18em] text-ink-soft font-mono-tech">
-                  Related reading
+                <div className="text-[10px] uppercase tracking-[0.18em] text-[var(--brand)] font-mono-tech font-semibold">
+                  ◆ Related reading
                 </div>
                 <h2 className="mt-1 font-instrument text-3xl text-ink">
                   Essays in the same operating context.
@@ -696,30 +693,43 @@ function BlogPostPage() {
               </div>
               <Link
                 to="/blog"
-                className="text-xs uppercase tracking-[0.14em] text-ink-soft hover:text-ink font-mono-tech"
+                className="inline-flex py-1.5 -my-1.5 text-xs uppercase tracking-[0.14em] text-ink-soft hover:text-ink font-mono-tech"
               >
                 View all essays →
               </Link>
             </div>
-            <div className="grid md:grid-cols-3 gap-5">
+            {/* Index rows, not a uniform card wall — one stagger group, each row
+                a glow-tracking link (mirrors the /blog journal index). */}
+            <div data-rz-stagger className="border-t border-rule">
               {related.map((r) => (
                 <Link
                   key={r.slug}
                   to="/blog/$slug"
                   params={{ slug: r.slug }}
-                  className="blog-result-card group flex min-h-[220px] flex-col rounded-lg bg-surface border border-rule p-6 hover:border-ink/30 transition-colors"
+                  data-glow
+                  className="group relative grid gap-y-2 border-b border-rule py-6 md:grid-cols-12 md:gap-x-8 md:py-7"
                 >
-                  <div className="text-[10px] uppercase tracking-[0.18em] text-[var(--accent-emerald)] font-mono-tech">
-                    {r.category}
+                  <div className="md:col-span-3">
+                    <span className="text-[10px] uppercase tracking-[0.14em] text-[var(--accent-emerald)] font-mono-tech">
+                      {r.category}
+                    </span>
                   </div>
-                  <div className="font-instrument text-xl text-ink mt-3 leading-snug group-hover:text-[var(--brand)] transition-colors">
-                    {r.title}
+                  <div className="md:col-span-7">
+                    <h3 className="font-instrument text-2xl leading-[1.1] text-ink transition-all duration-300 [transition-timing-function:var(--ease-soft)] group-hover:translate-x-1.5 group-hover:text-[var(--brand)] md:text-[1.75rem]">
+                      {r.title}
+                    </h3>
+                    <p className="mt-2 text-sm leading-relaxed text-ink-soft md:line-clamp-1">
+                      {r.thesis ?? r.description}
+                    </p>
                   </div>
-                  <p className="text-sm text-ink-soft mt-2">{r.thesis ?? r.description}</p>
-                  <span className="mt-auto pt-5 text-xs text-ink-soft group-hover:text-ink inline-flex items-center gap-1">
-                    Read essay{" "}
-                    <span className="transition-transform group-hover:translate-x-1">→</span>
-                  </span>
+                  <div className="flex items-center gap-4 md:col-span-2 md:justify-end md:self-center">
+                    <span className="inline-flex items-center gap-1 text-xs text-ink-soft group-hover:text-ink">
+                      Read essay{" "}
+                      <span className="transition-transform group-hover:translate-x-1" aria-hidden>
+                        →
+                      </span>
+                    </span>
+                  </div>
                 </Link>
               ))}
             </div>

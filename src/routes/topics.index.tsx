@@ -45,48 +45,71 @@ export const Route = createFileRoute("/topics/")({
 
 function TopicsIndex() {
   return (
-    <div className="mx-auto max-w-6xl px-6 py-20">
-      <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--accent-emerald)] font-mono-tech">
-        ◆ Topic hubs
-      </div>
-      <h1 className="font-instrument text-4xl md:text-6xl text-ink mt-3 max-w-3xl leading-[1.05]">
-        {hubs.length} hubs for <span className="italic text-ink-soft">regulated payments.</span>
-      </h1>
-      <p className="mt-5 max-w-2xl text-lg text-ink-soft">
-        Every essay and case study is grouped under a topic hub. Pick a hub to see the working
-        knowledge base for that domain.
-      </p>
+    <section className="rz-beam relative border-b border-rule bg-background">
+      <div className="mx-auto max-w-6xl px-5 sm:px-6 pt-16 md:pt-24 pb-14 md:pb-20">
+        {/* Page header — ◆ mono eyebrow → statement title with trailing italic
+            cyan emphasis (Operator's Console masthead). Copy unchanged. */}
+        <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
+          ◆ Topic hubs
+        </div>
+        <h1 className="font-instrument text-[clamp(2.5rem,5.5vw,5.5rem)] leading-[1.0] text-ink mt-4 max-w-4xl">
+          {hubs.length} hubs for{" "}
+          <span className="italic text-[var(--brand)]">regulated payments.</span>
+        </h1>
+        <p className="mt-6 max-w-2xl text-base md:text-lg text-ink-soft leading-relaxed">
+          Every essay and case study is grouped under a topic hub. Pick a hub to see the working
+          knowledge base for that domain.
+        </p>
 
-      <div className="mt-14 grid sm:grid-cols-2 gap-5">
-        {hubs.map((h) => {
-          const essays = postsForHub(h.slug).length;
-          const studies = caseStudiesForHub(h.slug).length;
-          return (
-            <Link
-              key={h.slug}
-              to="/topics/$hub"
-              params={{ hub: h.slug }}
-              className="group rounded-2xl border border-ink/10 bg-surface p-7 hover:border-ink/30 transition-colors"
-            >
-              <div className="text-[10px] uppercase tracking-[0.18em] text-[var(--accent-emerald)] font-mono-tech">
-                {h.shortTitle}
-              </div>
-              <h2 className="font-instrument text-2xl text-ink mt-2 leading-snug group-hover:text-[var(--brand)] transition-colors">
-                {h.title}
-              </h2>
-              <p className="text-sm text-ink-soft mt-2 leading-relaxed">{h.description}</p>
-              <div className="mt-5 flex gap-4 text-xs text-ink-soft font-mono-tech">
-                <span>{essays} essays</span>
-                <span>·</span>
-                <span>{studies} case studies</span>
-                <span className="ml-auto text-ink group-hover:text-[var(--brand)]">
-                  Explore hub →
+        {/* The hubs — full-width editorial index rows (mirrors the homepage
+            IndustryPillars pattern): mono index numeral, statement serif hub
+            title, right-column description + article counts, whole row is the
+            link, arrow slides on hover. Stagger rides the list wrapper only
+            (never the heading); children carry data-glow, not rz-reveal. */}
+        <div data-rz-stagger className="mt-12 border-t border-rule md:mt-16">
+          {hubs.map((h, i) => {
+            const essays = postsForHub(h.slug).length;
+            const studies = caseStudiesForHub(h.slug).length;
+            return (
+              <Link
+                key={h.slug}
+                to="/topics/$hub"
+                params={{ hub: h.slug }}
+                data-glow
+                className="group relative grid grid-cols-[auto_1fr] items-center gap-x-5 border-b border-rule py-7 md:grid-cols-12 md:gap-x-10 md:py-9"
+              >
+                <span
+                  className="font-mono-tech text-[11px] tracking-[0.22em] text-[var(--brand)] md:col-span-1"
+                  aria-hidden
+                >
+                  {String(i + 1).padStart(2, "0")}
                 </span>
-              </div>
-            </Link>
-          );
-        })}
+                <h2 className="font-instrument text-3xl leading-[1.02] text-ink transition-transform duration-300 [transition-timing-function:var(--ease-soft)] group-hover:translate-x-2 sm:text-4xl md:col-span-6 md:text-5xl">
+                  {h.title}
+                </h2>
+                <div className="col-span-2 mt-4 md:col-span-4 md:mt-0">
+                  <p className="text-sm leading-relaxed text-ink-soft md:text-[15px]">
+                    {h.description}
+                  </p>
+                  <div className="mt-3 flex items-center gap-3 text-[10px] uppercase tracking-[0.14em] text-ink-soft font-mono-tech">
+                    <span>{essays} essays</span>
+                    <span className="text-[var(--brand)]/50" aria-hidden>
+                      ·
+                    </span>
+                    <span>{studies} case studies</span>
+                  </div>
+                </div>
+                <span
+                  className="hidden self-center justify-self-end text-2xl text-ink-soft transition-all duration-300 group-hover:translate-x-1 group-hover:text-[var(--brand)] md:col-span-1 md:inline-flex"
+                  aria-hidden
+                >
+                  →
+                </span>
+              </Link>
+            );
+          })}
+        </div>
       </div>
-    </div>
+    </section>
   );
 }

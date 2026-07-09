@@ -1260,12 +1260,15 @@
   .blog-kinetic-label {
     position: absolute;
     top: 50%;
-    left: 0.75rem;
+    /* Flush to the strip's edge: at left:0.75rem the scrolling track showed
+       through the 12px gap beside the opaque chip. The inset lives in the
+       left padding instead, so nothing renders to the label's left. */
+    left: 0;
     z-index: 3;
     transform: translateY(-50%);
     border-right: 1px solid var(--rule);
     background: var(--paper);
-    padding: 0.18rem 0.8rem 0.18rem 0.2rem;
+    padding: 0.18rem 0.8rem 0.18rem 1.25rem;
     color: var(--ink);
     font-family: "JetBrains Mono", ui-monospace, monospace;
     font-size: 0.62rem;

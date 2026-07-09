@@ -253,6 +253,20 @@ const resumeSignals = [
 
 const delayStyle = (ms: number) => ({ "--motion-delay": `${ms}ms` }) as CSSProperties;
 
+// Print guard for the engine-staggered KPI grid: the global @media print rules
+// reset [class*="reveal"] / [class*="motion"] but not [data-rz-stagger]
+// children, whose hidden pre-reveal state lives in next.css. Route-scoped so
+// the frozen print block in styles.css stays untouched.
+const resumePrintCss = `
+@media print {
+  .resume-page [data-rz-stagger] > * {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+`;
+
 export const Route = createFileRoute("/resume")({
   head: () => ({
     meta: [
@@ -310,20 +324,16 @@ function ResumePage() {
 
   return (
     <div className="resume-page mx-auto max-w-6xl px-5 sm:px-6 py-10 md:py-14">
+      <style dangerouslySetInnerHTML={{ __html: resumePrintCss }} />
       <section className="priority-hero-shell relative overflow-hidden grid lg:grid-cols-[1fr_320px] gap-8 lg:gap-12 items-start border-b border-rule pb-10 md:pb-12">
         <span aria-hidden="true" className="priority-hero-rule priority-hero-rule-a" />
         <span aria-hidden="true" className="priority-hero-rule priority-hero-rule-b" />
         <div className="resume-soft-reveal relative z-10 min-w-0" style={delayStyle(0)}>
-          <div className="flex items-center gap-4">
-            <span className="grid h-9 w-9 place-items-center bg-ink text-background text-sm font-semibold">
-              01
-            </span>
-            <span className="text-[11px] uppercase tracking-[0.22em] text-ink font-mono-tech">
-              Executive resume
-            </span>
+          <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
+            ◆ Executive resume
           </div>
           <h1
-            className="font-instrument text-4xl sm:text-5xl md:text-6xl text-ink mt-7 leading-[1.02] max-w-4xl text-wrap"
+            className="font-instrument text-[clamp(2.25rem,4vw,3.5rem)] text-ink mt-7 leading-[1.02] max-w-4xl text-wrap"
             aria-label="Rizwan Zafar, Product and Program Executive scaling fintech infrastructure"
           >
             <span className="block">Rizwan Zafar</span>
@@ -428,17 +438,17 @@ function ResumePage() {
         </aside>
       </section>
 
+      {/* KPI tiles — flat bordered, mono tabular-nums values, engine-staggered
+          (the beam runs the hero's bottom rule once as the grid enters). */}
       <section
-        className="resume-soft-reveal grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4 border-b border-rule py-6"
-        style={delayStyle(140)}
+        data-rz-stagger
+        className="rz-beam relative grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4 border-b border-rule py-6"
       >
-        {proofMetrics.map((m, index) => (
-          <div
-            key={m.label}
-            className="resume-proof-card rounded-lg border border-rule bg-surface px-4 py-3"
-            style={delayStyle(180 + index * 45)}
-          >
-            <div className="font-instrument text-2xl text-ink leading-none">{m.value}</div>
+        {proofMetrics.map((m) => (
+          <div key={m.label} className="border border-rule bg-surface px-4 py-3">
+            <div className="font-mono-tech text-xl md:text-2xl text-ink leading-none tabular-nums">
+              {m.value}
+            </div>
             <div className="mt-1.5 text-[10px] uppercase tracking-[0.14em] text-ink-soft font-mono-tech leading-tight">
               {m.label}
             </div>
@@ -473,6 +483,7 @@ function ResumePage() {
                 key={proof.slug}
                 to="/product-work/$slug"
                 params={{ slug: proof.slug }}
+                data-glow
                 className="resume-soft-reveal group rounded-lg border border-rule bg-card p-4 transition-colors hover:border-ink/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)]"
                 style={delayStyle(120 + index * 50)}
               >
@@ -563,8 +574,8 @@ function ResumePage() {
         aria-labelledby="resume-markets-heading"
       >
         <div className="resume-soft-reveal md:col-span-3" style={delayStyle(0)}>
-          <div className="text-[10px] uppercase tracking-[0.18em] text-ink-soft font-mono-tech">
-            Region coverage
+          <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
+            ◆ Region coverage
           </div>
           <h2 id="resume-markets-heading" className="mt-2 font-instrument text-2xl text-ink">
             MARKETS
