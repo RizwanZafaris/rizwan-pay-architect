@@ -181,25 +181,71 @@ var c=document.querySelector('[data-hero-canvas]');if(!c)return;
 if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
 var gl=c.getContext('webgl2',{antialias:true,alpha:false});if(!gl)return;
 var VS='#version 300 es\\nprecision highp float;\\nin vec4 position;void main(){gl_Position=position;}';
-var FS='#version 300 es\\nprecision highp float;\\nout vec4 O;\\nuniform vec2 resolution;\\nuniform float time;\\n#define FC gl_FragCoord.xy\\n#define T time\\n#define R resolution\\n#define MN min(R.x,R.y)\\n'+
-'float rnd(vec2 p){p=fract(p*vec2(12.9898,78.233));p+=dot(p,p+34.56);return fract(p.x*p.y);}'+
-'float noise(in vec2 p){vec2 i=floor(p),f=fract(p),u=f*f*(3.-2.*f);float a=rnd(i),b=rnd(i+vec2(1,0)),c=rnd(i+vec2(0,1)),d=rnd(i+1.);return mix(mix(a,b,u.x),mix(c,d,u.x),u.y);}'+
-'float fbm(vec2 p){float t=.0,a=1.;mat2 m=mat2(1.,-.5,.2,1.2);for(int i=0;i<5;i++){t+=a*noise(p);p*=2.*m;a*=.5;}return t;}'+
-'float clouds(vec2 p){float d=1.,t=.0;for(float i=.0;i<3.;i++){float a=d*fbm(i*10.+p.x*.2+.2*(1.+i)*p.y+d+i*i+p);t=mix(t,d,a);d=a;p*=2./(i+1.);}return t;}'+
-'void main(void){vec2 uv=(FC-.5*R)/MN,st=uv*vec2(2,1);float bg=clouds(vec2(st.x+T*.13,-st.y));'+
-'float g=0.;vec2 uw=uv*(1.-.16*(sin(T*.11)*.5+.5));'+
-'for(float i=1.;i<9.;i++){uw+=.1*cos(i*vec2(.1+.01*i,.8)+i*i+T*.17+.1*uw.x);vec2 p=uw;float d=length(p);'+
-'g+=.0013/d;float b=noise(i+p+bg*1.731);g+=.0013*b/length(max(p,vec2(b*p.x*.02,p.y)));}'+
-/* DARK nebula: near-black base, teal troughs -> cyan ridges ADDED on top,
-   sparse cyan filaments; radial vignette drops corners to pure ink so the
-   centered H1 keeps its ~18:1 contrast. */
-'vec3 base=vec3(0.039,0.039,0.043);vec3 teal=vec3(0.055,0.310,0.310);vec3 cyan=vec3(0.176,0.831,0.749);'+
-'float field=clamp(bg*0.40+g*0.55,0.0,1.0);'+
-'vec3 glow=mix(teal,cyan,clamp(g*2.4,0.,1.));'+
-'vec3 col=base+glow*field*0.42;'+
-'col+=cyan*clamp(g,0.,1.)*0.20;'+
-'float vig=smoothstep(1.34,0.16,length(uv));col=mix(base,col,vig);'+
-'O=vec4(col,1.0);}';
+var FS='#version 300 es\\n'+
+'precision highp float;\\n'+
+'out vec4 O;\\n'+
+'uniform vec2 resolution;\\n'+
+'uniform float time;\\n'+
+/* 21st.dev shader-background port (plasma lines + light dots riding them),
+   recolored: purple/indigo -> brand teal/cyan on warm near-black. Grid
+   branch of the original removed (unused). Lines read as living payment
+   rails behind the monument type. */
+'const float overallSpeed=0.2;\\n'+
+'const float gridSmoothWidth=0.015;\\n'+
+'const float minLineWidth=0.01;\\n'+
+'const float maxLineWidth=0.2;\\n'+
+'const float lineSpeed=1.0*overallSpeed;\\n'+
+'const float lineAmplitude=1.0;\\n'+
+'const float lineFrequency=0.2;\\n'+
+'const float warpSpeed=0.2*overallSpeed;\\n'+
+'const float warpFrequency=0.5;\\n'+
+'const float warpAmplitude=1.0;\\n'+
+'const float offsetFrequency=0.5;\\n'+
+'const float offsetSpeed=1.33*overallSpeed;\\n'+
+'const float minOffsetSpread=0.6;\\n'+
+'const float maxOffsetSpread=2.0;\\n'+
+'const int linesPerGroup=16;\\n'+
+'const vec4 lineColor=vec4(0.11,0.52,0.47,1.0);\\n'+
+'const vec4 bgColor1=vec4(0.039,0.039,0.043,1.0);\\n'+
+'const vec4 bgColor2=vec4(0.045,0.106,0.104,1.0);\\n'+
+'#define drawCircle(pos,radius,coord) smoothstep(radius+gridSmoothWidth,radius,length(coord-(pos)))\\n'+
+'#define drawSmoothLine(pos,halfWidth,t) smoothstep(halfWidth,0.0,abs(pos-(t)))\\n'+
+'#define drawCrispLine(pos,halfWidth,t) smoothstep(halfWidth+gridSmoothWidth,halfWidth,abs(pos-(t)))\\n'+
+'float random(float t){return (cos(t)+cos(t*1.3+1.3)+cos(t*1.4+1.4))/3.0;}\\n'+
+'float getPlasmaY(float x,float horizontalFade,float offset){return random(x*lineFrequency+time*lineSpeed)*horizontalFade*lineAmplitude+offset;}\\n'+
+'void main(void){\\n'+
+'vec2 fragCoord=gl_FragCoord.xy;\\n'+
+'vec2 uv=fragCoord.xy/resolution.xy;\\n'+
+'vec2 space=(fragCoord-resolution.xy/2.0)/resolution.x*2.0*5.0;\\n'+
+'float horizontalFade=1.0-(cos(uv.x*6.28)*0.5+0.5);\\n'+
+'float verticalFade=1.0-(cos(uv.y*6.28)*0.5+0.5);\\n'+
+'space.y+=random(space.x*warpFrequency+time*warpSpeed)*warpAmplitude*(0.5+horizontalFade);\\n'+
+'space.x+=random(space.y*warpFrequency+time*warpSpeed+2.0)*warpAmplitude*horizontalFade;\\n'+
+'vec4 lines=vec4(0.0);\\n'+
+'for(int l=0;l<linesPerGroup;l++){\\n'+
+'float normalizedLineIndex=float(l)/float(linesPerGroup);\\n'+
+'float offsetTime=time*offsetSpeed;\\n'+
+'float offsetPosition=float(l)+space.x*offsetFrequency;\\n'+
+'float rand=random(offsetPosition+offsetTime)*0.5+0.5;\\n'+
+'float halfWidth=mix(minLineWidth,maxLineWidth,rand*horizontalFade)/2.0;\\n'+
+'float offset=random(offsetPosition+offsetTime*(1.0+normalizedLineIndex))*mix(minOffsetSpread,maxOffsetSpread,horizontalFade);\\n'+
+'float linePosition=getPlasmaY(space.x,horizontalFade,offset);\\n'+
+'float line=drawSmoothLine(linePosition,halfWidth,space.y)/2.0+drawCrispLine(linePosition,halfWidth*0.15,space.y);\\n'+
+'float circleX=mod(float(l)+time*lineSpeed,25.0)-12.0;\\n'+
+'vec2 circlePosition=vec2(circleX,getPlasmaY(circleX,horizontalFade,offset));\\n'+
+'float circle=drawCircle(circlePosition,0.01,space)*4.0;\\n'+
+'line=line+circle;\\n'+
+'lines+=line*lineColor*rand;}\\n'+
+'vec4 col=mix(bgColor1,bgColor2,uv.x);\\n'+
+'col*=(0.55+0.45*verticalFade);\\n'+
+'col+=lines*0.85;\\n'+
+/* cyan lift on the brightest cores so dots read as signal, then a radial
+   vignette drops the corners to ink for the monument type contrast. */
+'col.rgb+=vec3(0.176,0.831,0.749)*clamp(lines.g-0.55,0.0,1.0)*0.5;\\n'+
+'vec2 cuv=(fragCoord-0.5*resolution.xy)/min(resolution.x,resolution.y);\\n'+
+'float vig=smoothstep(1.42,0.2,length(cuv));\\n'+
+'col.rgb=mix(bgColor1.rgb,col.rgb,vig);\\n'+
+'O=vec4(col.rgb,1.0);}';
 function sh(t,s){var o=gl.createShader(t);gl.shaderSource(o,s);gl.compileShader(o);if(!gl.getShaderParameter(o,gl.COMPILE_STATUS)){return null;}return o;}
 var vs=sh(gl.VERTEX_SHADER,VS),fs=sh(gl.FRAGMENT_SHADER,FS);if(!vs||!fs)return;
 var pr=gl.createProgram();gl.attachShader(pr,vs);gl.attachShader(pr,fs);gl.linkProgram(pr);if(!gl.getProgramParameter(pr,gl.LINK_STATUS))return;gl.useProgram(pr);
@@ -225,6 +271,79 @@ const picksRotationCss = `
 [data-picks-list][data-pick-slot="1"] [data-pick-alt="1"],
 [data-picks-list][data-pick-slot="2"] [data-pick-alt="2"]{display:grid}
 `;
+
+// 21st.dev "particle-text-effect" port — vanilla canvas (the site ships no
+// hydration, so the original React/useEffect component would never run).
+// Faithful physics (steering particles, proximity slow-down, color blending,
+// hold-to-scatter) with brand adaptations: teal/cyan/off-white particle ramp
+// instead of random RGB, warm near-black motion-blur trail, IO play/pause,
+// reduced-motion = static first word, resize re-targets the current word.
+const particleWordsScript = `(function(){function init(){try{
+var c=document.querySelector('[data-particle-words]');if(!c)return;
+var ctx=c.getContext('2d');if(!ctx)return;
+var WORDS=['PAYMENTS','WALLETS','CROSS-BORDER','SETTLEMENT','FRONTIER MARKETS'];
+var reduced=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+function size(){var w=c.clientWidth|0,h=c.clientHeight|0;if(w&&h&&(c.width!==w||c.height!==h)){c.width=w;c.height=h;return true;}return false;}
+size();
+function drawStatic(){ctx.fillStyle='#0a0a0b';ctx.fillRect(0,0,c.width,c.height);ctx.fillStyle='#2dd4bf';ctx.font='800 '+Math.min(150,c.width/(WORDS[0].length*0.62))+'px Inter,Arial,sans-serif';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(WORDS[0],c.width/2,c.height/2);}
+if(reduced){drawStatic();return;}
+var parts=[],frame=0,wi=0,run=false,raf=0,mouse={x:0,y:0,down:false};
+function rand(a,b){return a+Math.random()*(b-a);}
+function pickColor(){var t=Math.random();return t<0.55?{r:45,g:212,b:191}:(t<0.85?{r:94,g:234,b:212}:{r:242,g:240,b:236});}
+function edgePos(){var cx=c.width/2,cy=c.height/2,m=(c.width+c.height)/2;var dx=Math.random()*c.width-cx,dy=Math.random()*c.height-cy;var mg=Math.sqrt(dx*dx+dy*dy)||1;return{x:cx+dx/mg*m,y:cy+dy/mg*m};}
+function makeP(){var ms=rand(4,10);var p={x:0,y:0,vx:0,vy:0,tx:0,ty:0,ms:ms,mf:ms*0.05,cw:0,cb:rand(0.0025,0.03),sr:10,sg:10,sb:11,tr:10,tg:10,tb:11,dead:false};var rp=edgePos();p.x=rp.x;p.y=rp.y;return p;}
+function blendStart(p){p.sr=p.sr+(p.tr-p.sr)*p.cw;p.sg=p.sg+(p.tg-p.sg)*p.cw;p.sb=p.sb+(p.tb-p.sb)*p.cw;p.cw=0;}
+function kill(p){if(!p.dead){var rp=edgePos();p.tx=rp.x;p.ty=rp.y;blendStart(p);p.tr=10;p.tg=10;p.tb=11;p.dead=true;}}
+function nextWord(word){var oc=document.createElement('canvas');oc.width=c.width;oc.height=c.height;var o=oc.getContext('2d');
+o.fillStyle='#fff';o.font='800 '+Math.min(150,c.width/(word.length*0.62))+'px Inter,Arial,sans-serif';o.textAlign='center';o.textBaseline='middle';o.fillText(word,c.width/2,c.height/2);
+var px=o.getImageData(0,0,c.width,c.height).data;var col=pickColor();var idx=0;var step=c.width<640?5:6;
+var coords=[];for(var i=0;i<px.length;i+=step*4)coords.push(i);
+for(var i=coords.length-1;i>0;i--){var j=(Math.random()*(i+1))|0;var t=coords[i];coords[i]=coords[j];coords[j]=t;}
+for(var k=0;k<coords.length;k++){var ci=coords[k];if(px[ci+3]>0){var x=(ci/4)%c.width,y=((ci/4)/c.width)|0,p;
+if(idx<parts.length){p=parts[idx];p.dead=false;idx++;}else{p=makeP();parts.push(p);}
+blendStart(p);p.tr=col.r;p.tg=col.g;p.tb=col.b;p.tx=x;p.ty=y;}}
+for(var k2=idx;k2<parts.length;k2++)kill(parts[k2]);}
+function loop(){if(!run)return;
+ctx.fillStyle='rgba(10,10,11,0.12)';ctx.fillRect(0,0,c.width,c.height);
+for(var i=parts.length-1;i>=0;i--){var p=parts[i];
+var dx=p.tx-p.x,dy=p.ty-p.y,d=Math.sqrt(dx*dx+dy*dy),prox=d<100?d/100:1;
+if(d>0){dx=dx/d*p.ms*prox;dy=dy/d*p.ms*prox;}
+var sx=dx-p.vx,sy=dy-p.vy,sm=Math.sqrt(sx*sx+sy*sy);
+if(sm>0){sx=sx/sm*p.mf;sy=sy/sm*p.mf;}
+p.vx+=sx;p.vy+=sy;p.x+=p.vx;p.y+=p.vy;
+if(p.cw<1)p.cw=Math.min(p.cw+p.cb,1);
+ctx.fillStyle='rgb('+((p.sr+(p.tr-p.sr)*p.cw)|0)+','+((p.sg+(p.tg-p.sg)*p.cw)|0)+','+((p.sb+(p.tb-p.sb)*p.cw)|0)+')';
+ctx.fillRect(p.x,p.y,2,2);
+if(p.dead&&(p.x<-4||p.x>c.width+4||p.y<-4||p.y>c.height+4))parts.splice(i,1);}
+if(mouse.down){for(var m=0;m<parts.length;m++){var q=parts[m],qx=q.x-mouse.x,qy=q.y-mouse.y;if(qx*qx+qy*qy<2500)kill(q);}}
+frame++;if(frame%240===0){wi=(wi+1)%WORDS.length;nextWord(WORDS[wi]);}
+raf=requestAnimationFrame(loop);}
+function play(){if(run)return;run=true;raf=requestAnimationFrame(loop);}
+function stop(){run=false;cancelAnimationFrame(raf);}
+ctx.fillStyle='#0a0a0b';ctx.fillRect(0,0,c.width,c.height);
+nextWord(WORDS[0]);
+if(window.matchMedia&&matchMedia('(hover: hover) and (pointer: fine)').matches){
+c.addEventListener('pointerdown',function(e){mouse.down=true;var r=c.getBoundingClientRect();mouse.x=e.clientX-r.left;mouse.y=e.clientY-r.top;},{passive:true});
+c.addEventListener('pointermove',function(e){var r=c.getBoundingClientRect();mouse.x=e.clientX-r.left;mouse.y=e.clientY-r.top;},{passive:true});
+window.addEventListener('pointerup',function(){mouse.down=false;},{passive:true});}
+var rt;window.addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(function(){if(size())nextWord(WORDS[wi]);},200);});
+if('IntersectionObserver'in window){var io=new IntersectionObserver(function(e){if(e[0]&&e[0].isIntersecting)play();else stop();},{threshold:0.05});io.observe(c);}else{play();}
+document.addEventListener('visibilitychange',function(){if(document.hidden)stop();else if(c.getBoundingClientRect().bottom>0)play();});
+}catch(e){}}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();})();`;
+
+// 21st.dev "the-infinite-grid" port — the framer-motion cursor-mask reveal
+// becomes CSS mask vars driven by one rAF-throttled pointermove (fine
+// pointers only); the grid drift is a pure CSS background-position loop.
+const gridRevealScript = `(function(){function init(){try{
+if(!window.matchMedia)return;
+if(!matchMedia('(hover: hover) and (pointer: fine)').matches)return;
+if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+var s=document.querySelector('[data-igrid]');if(!s)return;var raf=0,x=0,y=0;
+function up(){raf=0;s.style.setProperty('--gmx',x+'px');s.style.setProperty('--gmy',y+'px');}
+s.addEventListener('pointermove',function(e){var r=s.getBoundingClientRect();x=e.clientX-r.left;y=e.clientY-r.top;if(!raf)raf=requestAnimationFrame(up);},{passive:true});
+}catch(e){}}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();})();`;
 
 // Hero cursor parallax — writes normalized --hx/--hy (-1..1, centered) onto
 // the hero stage so hero-next.css can "lean" the decorative depth layers
@@ -612,6 +731,30 @@ function HomePage() {
       {/* ============ B. PROOF BAND ============ */}
       <ProofBand />
 
+      {/* ============ SIGNAL WORDS (21st.dev particle-text port) ============ */}
+      {/* Domain vocabulary forming and dissolving as steering particles —
+          words trace to site content (no new claims). Decorative: canvas is
+          aria-hidden with an sr-only list mirror; reduced-motion renders the
+          first word statically; no-JS shows the ink ground only. */}
+      <section className="rz-beam relative overflow-hidden border-b border-rule bg-background">
+        <canvas
+          data-particle-words
+          aria-hidden
+          className="block h-[280px] w-full md:h-[360px]"
+        />
+        <ul className="sr-only" aria-label="Operating domains">
+          <li>Payments</li>
+          <li>Wallets</li>
+          <li>Cross-border</li>
+          <li>Settlement</li>
+          <li>Frontier markets</li>
+        </ul>
+        <div className="pointer-events-none absolute bottom-3 left-0 right-0 hidden text-center text-[9px] uppercase tracking-[0.22em] text-ink-soft/70 font-mono-tech md:block">
+          Hold and drag to scatter
+        </div>
+        <script dangerouslySetInnerHTML={{ __html: particleWordsScript }} />
+      </section>
+
       {/* ============ D. INDUSTRY PILLARS ============ */}
       {/* Homepage map strip (doc §4C) removed per owner call 2026-07-06 —
           the map lives on /journey only now. MapStrip component kept in
@@ -721,8 +864,18 @@ function HomePage() {
           and an asymmetric 7/5 spread so the two products read as one editorial
           spread rather than two clones. Cards go bg-card (white) for contrast
           on the tint. No copy change. */}
-      <section className="relative bg-surface border-y border-rule rz-beam">
-        <div className="mx-auto max-w-6xl px-5 sm:px-6 py-[var(--space-section-sm)]">
+      <section data-igrid className="relative bg-surface border-y border-rule rz-beam overflow-hidden">
+        {/* 21st.dev infinite-grid port: drifting base grid + cursor-revealed
+            cyan grid (CSS mask at --gmx/--gmy) + brand glow field. All
+            aria-hidden, pointer-events-none, behind the z-10 content. */}
+        <div aria-hidden className="pointer-events-none absolute inset-0">
+          <div className="rz-igrid-base" />
+          <div className="rz-igrid-reveal" />
+          <div className="rz-igrid-glow rz-igrid-glow-a" />
+          <div className="rz-igrid-glow rz-igrid-glow-b" />
+        </div>
+        <script dangerouslySetInnerHTML={{ __html: gridRevealScript }} />
+        <div className="relative z-10 mx-auto max-w-6xl px-5 sm:px-6 py-[var(--space-section-sm)]">
           <div className="flex items-end justify-between flex-wrap gap-6 mb-10">
             <div>
               <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
