@@ -16,10 +16,14 @@ import {
   IndustryPillars,
   CredentialsStrip,
   GetInTouchBand,
-  Testimonials,
   HowIWorkFaq,
   howIWorkFaqs,
 } from "@/components/home/homeSections";
+import {
+  RailsMapDiagram,
+  OnboardingFlowDiagram,
+  ReconciliationFlowDiagram,
+} from "@/components/diagrams/Diagrams";
 import { RevealHeading } from "@/components/RevealHeading";
 import { NewsletterSignup } from "@/components/NewsletterSignup";
 import portraitPng from "@/assets/rizwan-zafar-cutout.png";
@@ -272,79 +276,6 @@ const picksRotationCss = `
 [data-picks-list][data-pick-slot="2"] [data-pick-alt="2"]{display:grid}
 `;
 
-// 21st.dev "particle-text-effect" port — vanilla canvas (the site ships no
-// hydration, so the original React/useEffect component would never run).
-// Faithful physics (steering particles, proximity slow-down, color blending,
-// hold-to-scatter) with brand adaptations: teal/cyan/off-white particle ramp
-// instead of random RGB, warm near-black motion-blur trail, IO play/pause,
-// reduced-motion = static first word, resize re-targets the current word.
-const particleWordsScript = `(function(){function init(){try{
-var c=document.querySelector('[data-particle-words]');if(!c)return;
-var ctx=c.getContext('2d');if(!ctx)return;
-var WORDS=['PAYMENTS','WALLETS','CROSS-BORDER','SETTLEMENT','FRONTIER MARKETS'];
-var reduced=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
-function size(){var w=c.clientWidth|0,h=c.clientHeight|0;if(w&&h&&(c.width!==w||c.height!==h)){c.width=w;c.height=h;return true;}return false;}
-size();
-function drawStatic(){ctx.fillStyle='#0a0a0b';ctx.fillRect(0,0,c.width,c.height);ctx.fillStyle='#2dd4bf';ctx.font='800 '+Math.min(150,c.width/(WORDS[0].length*0.62))+'px Inter,Arial,sans-serif';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(WORDS[0],c.width/2,c.height/2);}
-if(reduced){drawStatic();return;}
-var parts=[],frame=0,wi=0,run=false,raf=0,mouse={x:0,y:0,down:false};
-function rand(a,b){return a+Math.random()*(b-a);}
-function pickColor(){var t=Math.random();return t<0.55?{r:45,g:212,b:191}:(t<0.85?{r:94,g:234,b:212}:{r:242,g:240,b:236});}
-function edgePos(){var cx=c.width/2,cy=c.height/2,m=(c.width+c.height)/2;var dx=Math.random()*c.width-cx,dy=Math.random()*c.height-cy;var mg=Math.sqrt(dx*dx+dy*dy)||1;return{x:cx+dx/mg*m,y:cy+dy/mg*m};}
-function makeP(){var ms=rand(4,10);var p={x:0,y:0,vx:0,vy:0,tx:0,ty:0,ms:ms,mf:ms*0.05,cw:0,cb:rand(0.0025,0.03),sr:10,sg:10,sb:11,tr:10,tg:10,tb:11,dead:false};var rp=edgePos();p.x=rp.x;p.y=rp.y;return p;}
-function blendStart(p){p.sr=p.sr+(p.tr-p.sr)*p.cw;p.sg=p.sg+(p.tg-p.sg)*p.cw;p.sb=p.sb+(p.tb-p.sb)*p.cw;p.cw=0;}
-function kill(p){if(!p.dead){var rp=edgePos();p.tx=rp.x;p.ty=rp.y;blendStart(p);p.tr=10;p.tg=10;p.tb=11;p.dead=true;}}
-function nextWord(word){var oc=document.createElement('canvas');oc.width=c.width;oc.height=c.height;var o=oc.getContext('2d');
-o.fillStyle='#fff';o.font='800 '+Math.min(150,c.width/(word.length*0.62))+'px Inter,Arial,sans-serif';o.textAlign='center';o.textBaseline='middle';o.fillText(word,c.width/2,c.height/2);
-var px=o.getImageData(0,0,c.width,c.height).data;var col=pickColor();var idx=0;var step=c.width<640?5:6;
-var coords=[];for(var i=0;i<px.length;i+=step*4)coords.push(i);
-for(var i=coords.length-1;i>0;i--){var j=(Math.random()*(i+1))|0;var t=coords[i];coords[i]=coords[j];coords[j]=t;}
-for(var k=0;k<coords.length;k++){var ci=coords[k];if(px[ci+3]>0){var x=(ci/4)%c.width,y=((ci/4)/c.width)|0,p;
-if(idx<parts.length){p=parts[idx];p.dead=false;idx++;}else{p=makeP();parts.push(p);}
-blendStart(p);p.tr=col.r;p.tg=col.g;p.tb=col.b;p.tx=x;p.ty=y;}}
-for(var k2=idx;k2<parts.length;k2++)kill(parts[k2]);}
-function loop(){if(!run)return;
-ctx.fillStyle='rgba(10,10,11,0.12)';ctx.fillRect(0,0,c.width,c.height);
-for(var i=parts.length-1;i>=0;i--){var p=parts[i];
-var dx=p.tx-p.x,dy=p.ty-p.y,d=Math.sqrt(dx*dx+dy*dy),prox=d<100?d/100:1;
-if(d>0){dx=dx/d*p.ms*prox;dy=dy/d*p.ms*prox;}
-var sx=dx-p.vx,sy=dy-p.vy,sm=Math.sqrt(sx*sx+sy*sy);
-if(sm>0){sx=sx/sm*p.mf;sy=sy/sm*p.mf;}
-p.vx+=sx;p.vy+=sy;p.x+=p.vx;p.y+=p.vy;
-if(p.cw<1)p.cw=Math.min(p.cw+p.cb,1);
-ctx.fillStyle='rgb('+((p.sr+(p.tr-p.sr)*p.cw)|0)+','+((p.sg+(p.tg-p.sg)*p.cw)|0)+','+((p.sb+(p.tb-p.sb)*p.cw)|0)+')';
-ctx.fillRect(p.x,p.y,2,2);
-if(p.dead&&(p.x<-4||p.x>c.width+4||p.y<-4||p.y>c.height+4))parts.splice(i,1);}
-if(mouse.down){for(var m=0;m<parts.length;m++){var q=parts[m],qx=q.x-mouse.x,qy=q.y-mouse.y;if(qx*qx+qy*qy<2500)kill(q);}}
-frame++;if(frame%240===0){wi=(wi+1)%WORDS.length;nextWord(WORDS[wi]);}
-raf=requestAnimationFrame(loop);}
-function play(){if(run)return;run=true;raf=requestAnimationFrame(loop);}
-function stop(){run=false;cancelAnimationFrame(raf);}
-ctx.fillStyle='#0a0a0b';ctx.fillRect(0,0,c.width,c.height);
-nextWord(WORDS[0]);
-if(window.matchMedia&&matchMedia('(hover: hover) and (pointer: fine)').matches){
-c.addEventListener('pointerdown',function(e){mouse.down=true;var r=c.getBoundingClientRect();mouse.x=e.clientX-r.left;mouse.y=e.clientY-r.top;},{passive:true});
-c.addEventListener('pointermove',function(e){var r=c.getBoundingClientRect();mouse.x=e.clientX-r.left;mouse.y=e.clientY-r.top;},{passive:true});
-window.addEventListener('pointerup',function(){mouse.down=false;},{passive:true});}
-var rt;window.addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(function(){if(size())nextWord(WORDS[wi]);},200);});
-if('IntersectionObserver'in window){var io=new IntersectionObserver(function(e){if(e[0]&&e[0].isIntersecting)play();else stop();},{threshold:0.05});io.observe(c);}else{play();}
-document.addEventListener('visibilitychange',function(){if(document.hidden)stop();else if(c.getBoundingClientRect().bottom>0)play();});
-}catch(e){}}
-if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();})();`;
-
-// 21st.dev "the-infinite-grid" port — the framer-motion cursor-mask reveal
-// becomes CSS mask vars driven by one rAF-throttled pointermove (fine
-// pointers only); the grid drift is a pure CSS background-position loop.
-const gridRevealScript = `(function(){function init(){try{
-if(!window.matchMedia)return;
-if(!matchMedia('(hover: hover) and (pointer: fine)').matches)return;
-if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
-var s=document.querySelector('[data-igrid]');if(!s)return;var raf=0,x=0,y=0;
-function up(){raf=0;s.style.setProperty('--gmx',x+'px');s.style.setProperty('--gmy',y+'px');}
-s.addEventListener('pointermove',function(e){var r=s.getBoundingClientRect();x=e.clientX-r.left;y=e.clientY-r.top;if(!raf)raf=requestAnimationFrame(up);},{passive:true});
-}catch(e){}}
-if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();})();`;
-
 // Hero cursor parallax — writes normalized --hx/--hy (-1..1, centered) onto
 // the hero stage so hero-next.css can "lean" the decorative depth layers
 // (rail field ±6px, plus-accents ±10px, portrait glow ±4px). Vanilla inline
@@ -366,6 +297,15 @@ st.addEventListener('pointerleave',function(){if(raf){cancelAnimationFrame(raf);
 st.style.setProperty('--hx','0');st.style.setProperty('--hy','0');},{passive:true});
 }catch(e){}}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();})();`;
+
+// Real architecture drawings, one per featured case. These SVGs are the
+// artefacts of the work (named rails, named partners, real flows) and had been
+// sitting unused in the repo while generated abstract art fronted the homepage.
+const CASE_DIAGRAMS: Record<string, () => React.JSX.Element> = {
+  "simpaisa-payment-infrastructure": RailsMapDiagram,
+  "merchant-onboarding-kyc": OnboardingFlowDiagram,
+  "settlement-reconciliation": ReconciliationFlowDiagram,
+};
 
 function HomePage() {
   // ── Dynamic Editor's Picks ─────────────────────────────────────────────
@@ -558,7 +498,11 @@ function HomePage() {
         {/* ── Monument content: top status rail / full-width H1 / grounded
             subline+CTA row / bottom hairline rail. flex-col justify-between
             fills the 100svh stage. ── */}
-        <div className="relative z-10 mx-auto flex w-full max-w-[1400px] flex-1 flex-col justify-between px-5 sm:px-8 lg:px-12 pt-28 md:min-h-[100svh] md:pt-36 pb-6 md:pb-8">
+        {/* Hero fits one viewport. `justify-between` + min-h:100svh used to
+            spread the rows apart, pushing the primary CTA to y=835 — below the
+            fold on a 13" MacBook (~710px usable), 1366x768 and 1440x900. The
+            rows now stack naturally; the stage still dominates without voids. */}
+        <div className="relative z-10 mx-auto flex w-full max-w-[1400px] flex-1 flex-col px-5 sm:px-8 lg:px-12 pt-20 md:pt-[5.5rem] pb-6 md:pb-8">
           {/* TOP — status rail: eyebrow left, location + availability right. */}
           <div
             data-hero-in
@@ -592,7 +536,7 @@ function HomePage() {
           {/* CENTER — the monument. Same sentence, recomposed to four short
               lines so the face can run at 7.4vw full-bleed. sr-only spaces
               keep the H1 extracting as one readable sentence. */}
-          <h1 className="font-instrument tracking-[-0.02em] leading-[0.95] text-ink text-[clamp(2.75rem,7vw,8.5rem)] py-6 md:py-10">
+          <h1 className="font-instrument tracking-[-0.02em] leading-[0.95] text-ink text-[clamp(2.5rem,5.6vw,6.75rem)] py-4">
             {/* Line 1 = LCP anchor. NEVER wrapped/transformed/clipped. */}
             <span className="block">
               I build payment<span className="sr-only"> </span>
@@ -628,7 +572,7 @@ function HomePage() {
               <p
                 data-hero-in
                 style={{ ["--i" as string]: 1 }}
-                className="max-w-xl text-[15px] leading-relaxed text-ink-soft md:text-base"
+                className="max-w-xl text-[15px] leading-[1.6] text-ink-soft md:text-base"
               >
                 Product &amp; program executive with{" "}
                 <span className="text-ink font-medium">
@@ -644,7 +588,7 @@ function HomePage() {
               <div
                 data-hero-in
                 style={{ ["--i" as string]: 2 }}
-                className="mt-6 flex flex-col gap-2.5 sm:flex-row sm:flex-wrap sm:items-center"
+                className="mt-4 flex flex-col gap-2.5 sm:flex-row sm:flex-wrap sm:items-center"
               >
                 <a
                   href="/contact/#book"
@@ -696,7 +640,7 @@ function HomePage() {
             <div
               data-hero-in
               style={{ ["--i" as string]: 3 }}
-              className="mt-8 flex flex-wrap items-center justify-between gap-x-6 gap-y-3 border-t border-rule pt-4 md:mt-10"
+              className="mt-6 flex flex-wrap items-center justify-between gap-x-6 gap-y-3 border-t border-rule pt-4 md:mt-8"
             >
               <span className="inline-flex flex-wrap items-center gap-x-2 gap-y-1.5">
                 <span className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
@@ -730,30 +674,6 @@ function HomePage() {
 
       {/* ============ B. PROOF BAND ============ */}
       <ProofBand />
-
-      {/* ============ SIGNAL WORDS (21st.dev particle-text port) ============ */}
-      {/* Domain vocabulary forming and dissolving as steering particles —
-          words trace to site content (no new claims). Decorative: canvas is
-          aria-hidden with an sr-only list mirror; reduced-motion renders the
-          first word statically; no-JS shows the ink ground only. */}
-      <section className="rz-beam relative overflow-hidden border-b border-rule bg-background">
-        <canvas
-          data-particle-words
-          aria-hidden
-          className="block h-[280px] w-full md:h-[360px]"
-        />
-        <ul className="sr-only" aria-label="Operating domains">
-          <li>Payments</li>
-          <li>Wallets</li>
-          <li>Cross-border</li>
-          <li>Settlement</li>
-          <li>Frontier markets</li>
-        </ul>
-        <div className="pointer-events-none absolute bottom-3 left-0 right-0 hidden text-center text-[9px] uppercase tracking-[0.22em] text-ink-soft/70 font-mono-tech md:block">
-          Hold and drag to scatter
-        </div>
-        <script dangerouslySetInnerHTML={{ __html: particleWordsScript }} />
-      </section>
 
       {/* ============ D. INDUSTRY PILLARS ============ */}
       {/* Homepage map strip (doc §4C) removed per owner call 2026-07-06 —
@@ -796,29 +716,39 @@ function HomePage() {
                   params={{ slug: c.slug }}
                   className="group relative grid items-center gap-6 md:grid-cols-12 md:gap-12"
                 >
+                  {/* The panel art is the REAL architecture drawing for this
+                      case, not decoration. It used to be a generated abstract
+                      render (teal wireframes on black) — the single strongest
+                      "AI made this" tell on the page, and it proved nothing.
+                      These SVGs name actual rails and partners (MPGS/MDES,
+                      JazzCash/Easypaisa, 1Link/NIFT, DLocal/Thunes/Boku/Coda).
+                      They already existed in the repo, unused. Static SVG, so
+                      no hydration and no image request. */}
                   <div
-                    className={`rz-unveil relative aspect-[16/10] overflow-hidden rounded-lg bg-ink md:col-span-7 ${
+                    className={`rz-unveil relative overflow-hidden rounded-lg border border-rule bg-surface-2/60 md:col-span-7 ${
                       flip ? "md:order-2" : ""
                     }`}
                   >
-                    <img
-                      src={caseStudyThumb(c.slug)}
-                      alt={c.imageAlt ?? `${c.title} — abstract editorial illustration`}
-                      width={800}
-                      height={450}
-                      loading="lazy"
-                      decoding="async"
-                      className="absolute inset-0 h-full w-full object-cover opacity-90 transition-transform duration-700 [transition-timing-function:var(--ease-soft)] group-hover:scale-[1.035]"
-                    />
-                    <div
-                      className="absolute inset-0"
-                      style={{
-                        background:
-                          "linear-gradient(180deg, color-mix(in oklab, #000 32%, transparent) 0%, transparent 40%, color-mix(in oklab, #000 45%, transparent) 100%)",
-                      }}
-                    />
-                    <div className="absolute top-4 left-5 z-10 font-mono-tech text-[10px] tracking-[0.18em] text-background/95 uppercase">
-                      ◆ Case study /0{i + 1}
+                    <div className="flex items-baseline justify-between px-4 pt-4 sm:px-5">
+                      <span className="font-mono-tech text-[10px] uppercase tracking-[0.18em] text-[var(--brand)]">
+                        ◆ Case study /0{i + 1}
+                      </span>
+                      <span className="font-mono-tech text-[10px] uppercase tracking-[0.18em] text-ink-soft">
+                        fig.
+                      </span>
+                    </div>
+                    <div className="px-3 pb-5 pt-3 sm:px-5 [&_svg]:h-auto [&_svg]:w-full">
+                      {CASE_DIAGRAMS[c.slug]?.() ?? (
+                        <img
+                          src={caseStudyThumb(c.slug)}
+                          alt={c.imageAlt ?? `${c.title} — editorial illustration`}
+                          width={800}
+                          height={450}
+                          loading="lazy"
+                          decoding="async"
+                          className="aspect-[16/10] w-full rounded object-cover opacity-90"
+                        />
+                      )}
                     </div>
                   </div>
                   <div className={`md:col-span-5 ${flip ? "md:order-1" : ""}`}>
@@ -864,17 +794,11 @@ function HomePage() {
           and an asymmetric 7/5 spread so the two products read as one editorial
           spread rather than two clones. Cards go bg-card (white) for contrast
           on the tint. No copy change. */}
-      <section data-igrid className="relative bg-surface border-y border-rule rz-beam overflow-hidden">
-        {/* 21st.dev infinite-grid port: drifting base grid + cursor-revealed
-            cyan grid (CSS mask at --gmx/--gmy) + brand glow field. All
-            aria-hidden, pointer-events-none, behind the z-10 content. */}
-        <div aria-hidden className="pointer-events-none absolute inset-0">
-          <div className="rz-igrid-base" />
-          <div className="rz-igrid-reveal" />
-          <div className="rz-igrid-glow rz-igrid-glow-a" />
-          <div className="rz-igrid-glow rz-igrid-glow-b" />
-        </div>
-        <script dangerouslySetInnerHTML={{ __html: gridRevealScript }} />
+      {/* One world, one ambient system: the hero's payment rails. The
+          infinite-grid backdrop that used to sit here was a second, unrelated
+          metaphor (and a 21st.dev port) — removed 2026-07-10 so the rails
+          carry the whole page. */}
+      <section className="relative bg-surface border-y border-rule rz-beam overflow-hidden">
         <div className="relative z-10 mx-auto max-w-6xl px-5 sm:px-6 py-[var(--space-section-sm)]">
           <div className="flex items-end justify-between flex-wrap gap-6 mb-10">
             <div>
@@ -1263,7 +1187,6 @@ function HomePage() {
       <CredentialsStrip />
 
       {/* ============ TESTIMONIALS (renders only with real quotes) ======= */}
-      <Testimonials />
 
       {/* ============ HOW I WORK / FAQ ============ */}
       <HowIWorkFaq />

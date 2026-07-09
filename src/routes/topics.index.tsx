@@ -79,7 +79,7 @@ function TopicsIndex() {
                 className="group relative grid grid-cols-[auto_1fr] items-center gap-x-5 border-b border-rule py-7 md:grid-cols-12 md:gap-x-10 md:py-9"
               >
                 <span
-                  className="font-mono-tech text-[11px] tracking-[0.22em] text-[var(--brand)] md:col-span-1"
+                  className="font-mono-tech text-[10px] tracking-[0.22em] text-[var(--brand)] md:col-span-1"
                   aria-hidden
                 >
                   {String(i + 1).padStart(2, "0")}
@@ -88,7 +88,7 @@ function TopicsIndex() {
                   {h.title}
                 </h2>
                 <div className="col-span-2 mt-4 md:col-span-4 md:mt-0">
-                  <p className="text-sm leading-relaxed text-ink-soft md:text-[15px]">
+                  <p className="text-sm leading-relaxed text-ink-soft md:text-base">
                     {h.description}
                   </p>
                   <div className="mt-3 flex items-center gap-3 text-[10px] uppercase tracking-[0.14em] text-ink-soft font-mono-tech">

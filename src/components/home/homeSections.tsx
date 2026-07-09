@@ -11,7 +11,6 @@ import { WorldMap } from "@/components/WorldMap";
 import { RevealHeading } from "@/components/RevealHeading";
 import { AnimatedMetric } from "@/components/motion/AnimatedMetric";
 import { BackgroundPaths } from "@/components/BackgroundPaths";
-import { testimonials } from "@/data/testimonials";
 
 // The industry-filter deep links (?industry=…) intentionally use a raw <a>,
 // not TanStack's typed <Link>. Two reasons: (1) the target route's search
@@ -510,78 +509,6 @@ export function GetInTouchBand() {
             </div>
           ))}
         </div>
-      </div>
-    </section>
-  );
-}
-
-// ── TESTIMONIALS ──────────────────────────────────────────────────────────
-// Editorial pull-quote list — the JS-less port of the 21st.dev "Editorial
-// Testimonial" (oversized light index numeral, light quote, monogram +
-// attribution). No carousel state (the site never hydrates); the quotes
-// simply stack. Renders nothing until src/data/testimonials.ts has a real
-// entry, so no placeholder ever ships. The route also guards on length.
-function initials(name: string) {
-  return name
-    .trim()
-    .split(/\s+/)
-    .slice(0, 2)
-    .map((p) => p[0]?.toUpperCase() ?? "")
-    .join("");
-}
-
-export function Testimonials() {
-  if (testimonials.length === 0) return null;
-  return (
-    <section className="rz-beam relative border-t border-rule">
-      <div className="mx-auto max-w-5xl px-5 sm:px-6 py-20 md:py-24">
-        <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
-          ◆ In their words
-        </div>
-        <h2 className="font-instrument text-[clamp(2.5rem,5.5vw,5.5rem)] text-ink mt-3 leading-[1.03] max-w-3xl">
-          <RevealHeading lead="The people I've built with" emphasis="on the record." />
-        </h2>
-        {/* Ready for real quotes: the engine cascades <li> entries when data
-            lands. List items carry no reveal classes of their own. */}
-        <ol data-rz-stagger className="mt-14 divide-y divide-rule">
-          {testimonials.map((t, i) => (
-            <li
-              key={`${t.author}-${i}`}
-              className="grid gap-6 py-10 first:pt-0 md:grid-cols-[auto_1fr] md:gap-10"
-            >
-              <div
-                className="font-mono-tech text-5xl md:text-6xl leading-none text-[var(--brand)]/15 tabular-nums select-none"
-                aria-hidden
-              >
-                {String(i + 1).padStart(2, "0")}
-              </div>
-              <figure>
-                <blockquote className="font-instrument text-2xl md:text-3xl font-light leading-snug text-ink">
-                  &ldquo;{t.quote}&rdquo;
-                </blockquote>
-                <figcaption className="mt-6 flex items-center gap-4">
-                  <span
-                    className="grid h-11 w-11 flex-none place-items-center rounded-full bg-ink text-background font-display text-sm font-semibold tracking-tight"
-                    aria-hidden
-                  >
-                    {initials(t.author)}
-                  </span>
-                  <span className="text-sm text-ink-soft leading-tight">
-                    <span className="font-medium text-ink">{t.author}</span>
-                    <br />
-                    {t.role} · {t.org}
-                    {t.relationship ? (
-                      <>
-                        <span className="mx-1.5 text-[var(--brand)]/40">/</span>
-                        {t.relationship}
-                      </>
-                    ) : null}
-                  </span>
-                </figcaption>
-              </figure>
-            </li>
-          ))}
-        </ol>
       </div>
     </section>
   );

@@ -15,7 +15,7 @@ colors:
 typography:
   monument:
     fontFamily: "Instrument Serif, Source Serif 4, Georgia, serif"
-    fontSize: "clamp(2.75rem, 7vw, 8.5rem)"
+    fontSize: "clamp(2.5rem, 5.6vw, 6.75rem)"
     fontWeight: 400
     lineHeight: 0.95
     letterSpacing: "-0.02em"
@@ -36,7 +36,7 @@ typography:
     fontWeight: 500
     lineHeight: 1.25
   body:
-    fontFamily: "Inter, ui-sans-serif, system-ui, sans-serif"
+    fontFamily: "Geist, ui-sans-serif, system-ui, sans-serif"
     fontSize: "1rem"
     fontWeight: 400
     lineHeight: 1.5
@@ -140,11 +140,20 @@ No neutral greys, no pure black, no pure white.
 ## 3. Typography
 
 **Display:** Instrument Serif. **Editorial body:** Source Serif 4. **UI body:**
-Inter. **Data / labels:** JetBrains Mono.
+Geist. **Data / labels:** JetBrains Mono.
 
-- **Monument** `clamp(2.75rem, 7vw, 8.5rem)` — the homepage H1 only. Four short
+> **Note (2026-07):** the UI body sans is **Geist**. It replaced Inter, which had
+> been the body face only as a training-data default, not a deliberate brand
+> choice. Instrument Serif (display) and JetBrains Mono (data/labels) are
+> unchanged.
+
+- **Monument** `clamp(2.5rem, 5.6vw, 6.75rem)` — the homepage H1 only. Four short
   lines, full-bleed. Line 1 is the LCP anchor: never wrapped, transformed, or
-  clipped.
+  clipped. Sized down from `7vw` on 2026-07-10: at `7vw` the hero ran 892px tall
+  and pushed the primary CTA to y=835, below the fold on a 13" MacBook (~710px
+  usable), 1366x768 and 1440x900. **The fold rule: the hero must fit 710px, with
+  the primary CTA fully visible.** A recruiter deciding in 40 seconds must be
+  able to act without scrolling. Scale serves conversion, not the reverse.
 - **Statement** `clamp(2.5rem, 5.5vw, 5.5rem)` — every brand-register section
   and inner-page title.
 - **Utility title** `clamp(2.25rem, 4vw, 3.5rem)` — `/resume`, `/for`, `/hire`.

@@ -5,7 +5,7 @@ import { ctaClick, outboundClick, resumeDownload } from "@/lib/analytics";
 import { SocialIconRow } from "@/components/SocialIcons";
 
 // Brand-rebuild primary nav (strategy doc §3): a narrative scan path that
-// leads with the work and the arc. Order is Work → Journey → Insights →
+// leads with the work and the arc. Order is Work → Journey → Writing →
 // Resume, with the persistent "Book a 15-min intro call" pill carrying the
 // single CTA. (Audit sprint 2026-07, ISSUE-001: Resume promoted into the
 // top bar in place of About; About stays reachable in the footer.)
@@ -22,7 +22,7 @@ import { SocialIconRow } from "@/components/SocialIcons";
 const nav = [
   { to: "/product-work", label: "Work" },
   { to: "/journey", label: "Journey" },
-  { to: "/blog", label: "Insights" },
+  { to: "/blog", label: "Writing" },
   { to: "/resume", label: "Resume" },
   { to: "/for", label: "For recruiters" },
 ] as const;
@@ -314,7 +314,7 @@ export function SiteFooter() {
             </li>
             <li>
               <Link to="/blog" className="hover:text-ink text-ink-soft inline-block py-1">
-                <span className="rz-link">Insights</span>
+                <span className="rz-link">Writing</span>
               </Link>
             </li>
             <li>

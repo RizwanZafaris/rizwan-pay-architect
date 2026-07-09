@@ -113,7 +113,7 @@ function HubPage() {
                     {c.category}
                   </div>
                   <div className="md:col-span-8">
-                    <h3 className="font-instrument text-2xl md:text-[1.65rem] leading-[1.1] text-ink transition-all duration-300 [transition-timing-function:var(--ease-soft)] group-hover:translate-x-1.5 group-hover:text-[var(--brand)]">
+                    <h3 className="font-instrument text-2xl leading-[1.1] text-ink transition-all duration-300 [transition-timing-function:var(--ease-soft)] group-hover:translate-x-1.5 group-hover:text-[var(--brand)]">
                       {c.title}
                     </h3>
                     <p className="mt-2 text-sm text-ink-soft leading-relaxed">{c.tagline}</p>
@@ -164,15 +164,15 @@ function HubPage() {
                   className="group relative grid gap-y-2 border-b border-rule py-6 md:grid-cols-12 md:gap-x-8 md:py-7"
                 >
                   <div className="flex items-baseline gap-x-4 md:col-span-3 md:block">
-                    <span className="block font-mono-tech text-[11px] tracking-[0.14em] text-ink-soft tabular-nums">
+                    <span className="block font-mono-tech text-[10px] tracking-[0.14em] text-ink-soft tabular-nums">
                       {formatHubDate(p.date)}
                     </span>
-                    <span className="block font-mono-tech text-[11px] tracking-[0.14em] text-ink-soft/70 md:mt-1">
+                    <span className="block font-mono-tech text-[10px] tracking-[0.14em] text-ink-soft/70 md:mt-1">
                       {p.readingTime}
                     </span>
                   </div>
                   <div className="md:col-span-8">
-                    <h3 className="font-instrument text-2xl md:text-[1.65rem] leading-[1.1] text-ink transition-all duration-300 [transition-timing-function:var(--ease-soft)] group-hover:translate-x-1.5 group-hover:text-[var(--brand)]">
+                    <h3 className="font-instrument text-2xl leading-[1.1] text-ink transition-all duration-300 [transition-timing-function:var(--ease-soft)] group-hover:translate-x-1.5 group-hover:text-[var(--brand)]">
                       {p.title}
                     </h3>
                     <p className="mt-2 text-sm text-ink-soft leading-relaxed">

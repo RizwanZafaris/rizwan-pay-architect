@@ -45,7 +45,7 @@
   --color-brand: var(--brand);
   --color-brand-foreground: var(--brand-foreground);
   --color-accent-emerald: var(--accent-emerald);
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Geist", ui-sans-serif, system-ui, sans-serif;
   --font-serif: "Source Serif 4", "Source Serif Pro", Georgia, serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
 }
@@ -82,31 +82,25 @@
   --space-section-md: clamp(5rem, 9vw, 9rem);
   --space-section-lg: clamp(6.5rem, 12vw, 11rem);
 
-  /* Dark-glassmorphism system (2026-07-09 inversion). Raised panels sit on the
-     near-black base as faint-lit dark glass — white hairline ring, deep black
-     drop shadow, a whisper of cyan tint + top highlight. Blur is budgeted:
-     at most ~1 live backdrop-blur surface per viewport (perf on dark). */
-  --cyan: #2dd4bf;
-  --cyan-edge: #5eead4;
-  --ink-muted-glass: #c9c7c2;   /* light secondary text on dark glass */
-  --glass-fill: rgba(22, 22, 27, 0.55);
-  --glass-fill-hi: rgba(26, 26, 31, 0.68);
-  --glass-fill-solid: rgba(16, 16, 19, 0.92);
-  --glass-body: rgba(12, 12, 15, 0.95);
-  --glass-tint: rgba(45, 212, 191, 0.06);
-  --glass-ring: rgba(255, 255, 255, 0.1);
-  --glass-edge: rgba(255, 255, 255, 0.06);
-  --glass-shadow: 0 1px 2px rgba(0, 0, 0, 0.45), 0 12px 32px rgba(0, 0, 0, 0.5),
-    0 30px 70px -18px rgba(0, 0, 0, 0.6);
-  --glass-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.06);
-  --glass-blur: 14px;
-  --glass-blur-sm: 10px;
-  --glass-blur-lg: 18px;
-  --glass-sat: 1.3;
-  --glass-radius: 16px;
+  /* Raised-surface material (2026-07-10 — promoted from the retired dark-glass
+     system, which shipped zero glass-panel nodes; DESIGN.md bans decorative
+     glassmorphism). Card fill LIFTED from the old rgba(16,16,19,0.92) so panels
+     separate from the near-black page: composited luma ~21.8 vs page ~10.1
+     (was ~15.8, a ~6pt gap that merged in bright rooms). Hairline strengthened
+     0.10 → 0.14 white. Still warm near-black, restrained — not grey. */
+  --surface-raised: rgba(22, 22, 26, 0.95);          /* solid card fill */
+  --surface-raised-hi: rgba(30, 30, 35, 0.72);       /* pillar-card blur fill */
+  --surface-raised-edge: rgba(255, 255, 255, 0.14);  /* card hairline */
+  --surface-raised-tint: rgba(45, 212, 191, 0.06);   /* whisper of cyan cast */
+  --surface-raised-shadow: 0 1px 2px rgba(0, 0, 0, 0.45),
+    0 12px 32px rgba(0, 0, 0, 0.5), 0 30px 70px -18px rgba(0, 0, 0, 0.6);
+  --surface-raised-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  --surface-blur: 14px;
+  --surface-sat: 1.3;
+
+  /* Gradient-mesh substrate drift durations (live: .rz-substrate). */
   --mesh-a: 52s;
   --mesh-b: 67s;
-  --ease-glass: cubic-bezier(0.32, 0.72, 0, 1);
 
   --card: var(--paper);
   --card-foreground: var(--ink);
@@ -677,131 +671,43 @@
     }
   }
 
-  /* Glass panels — base look is opaque-first (safe if blur never applies). */
-  .rz-glass,
-  .rz-glass-lite {
-    position: relative;
-    border-radius: var(--glass-radius);
-    background: var(--glass-fill-solid);
-    border: 1px solid var(--glass-ring);
-    box-shadow: var(--glass-highlight), var(--glass-shadow);
-  }
-  .rz-glass::before,
-  .rz-glass-lite::before {
-    content: "";
-    position: absolute;
-    inset: 0 0 auto 0;
-    height: 32%;
-    border-radius: inherit;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), transparent);
-    pointer-events: none;
-  }
-  .rz-glass--reading,
-  .rz-glass-lite--reading {
-    background: var(--glass-fill-hi);
-  }
-
-  /* Tier A: real blur — only when supported. */
-  @supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-    .rz-glass {
-      background: linear-gradient(135deg, var(--glass-tint), transparent 55%), var(--glass-fill);
-      -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-sat));
-      backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-sat));
-    }
-    .rz-glass--reading {
-      background: linear-gradient(135deg, var(--glass-tint), transparent 55%), var(--glass-fill-hi);
-    }
-    .rz-glass--nav {
-      -webkit-backdrop-filter: blur(var(--glass-blur-lg)) saturate(1.2);
-      backdrop-filter: blur(var(--glass-blur-lg)) saturate(1.2);
-    }
-  }
-
-  /* Mobile / coarse pointer: drop live blur to solid — identical look, no cost. */
-  @media (max-width: 768px), (pointer: coarse) {
-    .rz-glass {
-      -webkit-backdrop-filter: none !important;
-      backdrop-filter: none !important;
-      background: var(--glass-fill-solid) !important;
-    }
-  }
-  @media (prefers-reduced-transparency: reduce) {
-    .rz-glass,
-    .rz-glass-lite {
-      background: var(--glass-fill-solid);
-      -webkit-backdrop-filter: none;
-      backdrop-filter: none;
-    }
-  }
-  @media (forced-colors: active) {
-    .rz-glass,
-    .rz-glass-lite {
-      background: Canvas;
-      border: 1px solid CanvasText;
-      -webkit-backdrop-filter: none;
-      backdrop-filter: none;
-    }
-  }
-
-  /* Glass hover — transform/shadow/border only (never animate blur). */
-  .rz-glass-card {
-    transition:
-      transform 260ms var(--ease-soft),
-      box-shadow 320ms var(--ease-soft),
-      border-color 320ms var(--ease-soft);
-  }
-  .rz-glass-card:hover,
-  .rz-glass-card:focus-within {
-    transform: translateY(-6px);
-    border-color: color-mix(in oklab, var(--signal) 45%, var(--glass-ring));
-    box-shadow:
-      0 30px 60px -24px rgba(0, 0, 0, 0.6),
-      0 0 0 1px rgba(45, 212, 191, 0.25),
-      0 0 32px -8px rgba(45, 212, 191, 0.18);
-  }
+  /* Retired dark-glass panel + hover rules removed 2026-07-10 (shipped zero
+     glass-panel nodes; DESIGN.md bans decorative glassmorphism). The card
+     surfaces below inherit the promoted --surface-raised material directly. */
   @media (prefers-reduced-motion: reduce) {
     .rz-substrate::before,
     .rz-substrate::after {
       animation: none !important;
     }
-    .rz-glass-card {
-      transition: border-color 320ms linear;
-    }
-    .rz-glass-card:hover,
-    .rz-glass-card:focus-within {
-      transform: none;
-      box-shadow: var(--glass-highlight), var(--glass-shadow);
-    }
   }
 
-  /* Apply the light-glass material to the existing card surfaces (CSS-only
-     tiering, no markup change). LITE by default = solid-translucent fill +
-     light ring + layered teal-cast shadow (reads as glass floating over the
-     mesh, zero blur cost). */
+  /* Raised-surface material on the card surfaces (CSS-only tiering, no markup
+     change). Solid lifted fill + strengthened hairline + layered shadow so
+     panels sit clearly above the near-black page. */
   .home-pillar-card,
   .home-card,
   .home-topic-card,
   .case-study-card,
   .case-soft-card,
   .blog-result-card {
-    background: var(--glass-fill-solid);
-    border-color: var(--glass-ring);
-    box-shadow: var(--glass-highlight), var(--glass-shadow);
+    background: var(--surface-raised);
+    border-color: var(--surface-raised-edge);
+    box-shadow: var(--surface-raised-highlight), var(--surface-raised-shadow);
   }
   /* The one live-blur moment: the three "Where I operate" cards actually
      refract the drifting mesh behind them. */
   @supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
     .home-pillar-card {
-      background: linear-gradient(135deg, var(--glass-tint), transparent 55%), var(--glass-fill-hi);
-      -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-sat));
-      backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-sat));
+      background: linear-gradient(135deg, var(--surface-raised-tint), transparent 55%), var(--surface-raised-hi);
+      -webkit-backdrop-filter: blur(var(--surface-blur)) saturate(var(--surface-sat));
+      backdrop-filter: blur(var(--surface-blur)) saturate(var(--surface-sat));
     }
   }
   @media (max-width: 768px), (pointer: coarse) {
     .home-pillar-card {
       -webkit-backdrop-filter: none !important;
       backdrop-filter: none !important;
-      background: var(--glass-fill-solid) !important;
+      background: var(--surface-raised) !important;
     }
   }
 

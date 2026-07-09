@@ -1,6 +1,5 @@
 import type { CSSProperties } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { CalendarDays, Download, Linkedin, Mail } from "lucide-react";
 import { personSchemaAwards, personSchemaCredentials, profile } from "@/data/profile";
 import { BookingSection } from "@/components/BookingSection";
 import { absUrl, GOOGLE_ADS_PAGE_VIEW_CONVERSION_SEND_TO, OG_IMAGE_URL, SITE_URL } from "@/lib/seo";
@@ -267,6 +266,21 @@ const resumePrintCss = `
 }
 `;
 
+// Site-vocabulary marker, replacing the former lucide-react icon set (the only
+// page that pulled in an external icon vocabulary, breaking the ◆/mono system —
+// see DESIGN.md §3). The ◆ glyph is the site's signature; here it leads each
+// control's own text label, so it is purely decorative and aria-hidden. It is a
+// plain text glyph in currentColor, so it inherits the control's colour on every
+// surface (dark pill, ghost button, cyan CTA panel) and prints cleanly under the
+// route's @media print rules — no SVG box or missing-glyph artifact.
+function Mark() {
+  return (
+    <span aria-hidden="true" className="font-mono-tech text-[0.7em] leading-none opacity-80">
+      ◆
+    </span>
+  );
+}
+
 export const Route = createFileRoute("/resume")({
   head: () => ({
     meta: [
@@ -371,7 +385,7 @@ function ResumePage() {
               data-analytics-cta-destination="#book"
               className="inline-flex items-center justify-center gap-2 rounded-full bg-ink text-background px-5 py-2.5 text-sm font-medium hover:bg-brand hover:text-[var(--brand-foreground)] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2"
             >
-              <CalendarDays aria-hidden="true" className="h-4 w-4" />
+              <Mark />
               Book a 15-min intro call
             </a>
             <a
@@ -384,7 +398,7 @@ function ResumePage() {
               data-analytics-placement="resume_page"
               className="inline-flex items-center justify-center gap-2 rounded-full border border-ink/20 px-5 py-2.5 text-sm font-medium text-ink hover:bg-ink/5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2"
             >
-              <Download aria-hidden="true" className="h-4 w-4" />
+              <Mark />
               Download PDF
             </a>
             <a
@@ -393,7 +407,7 @@ function ResumePage() {
               rel="noreferrer"
               className="inline-flex items-center justify-center gap-2 rounded-full border border-ink/20 px-5 py-2.5 text-sm font-medium text-ink hover:bg-ink/5 transition-colors"
             >
-              <Linkedin aria-hidden="true" className="h-4 w-4" />
+              <Mark />
               LinkedIn
             </a>
           </div>
@@ -709,14 +723,14 @@ function ResumePage() {
               data-analytics-cta-location="resume_contact"
               data-analytics-cta-destination="#book"
             >
-              <CalendarDays aria-hidden="true" className="h-4 w-4" />
+              <Mark />
               Book a 15-min intro call
             </a>
             <a
               className="flex w-fit items-center gap-2 text-ink underline underline-offset-4"
               href={`mailto:${profile.email}`}
             >
-              <Mail aria-hidden="true" className="h-4 w-4" />
+              <Mark />
               {profile.email}
             </a>
             <a
@@ -725,7 +739,7 @@ function ResumePage() {
               target="_blank"
               rel="noreferrer"
             >
-              <Linkedin aria-hidden="true" className="h-4 w-4" />
+              <Mark />
               LinkedIn profile
             </a>
           </div>
@@ -751,7 +765,7 @@ function ResumePage() {
             data-analytics-cta-destination="#book"
             className="inline-flex items-center justify-center gap-2 rounded-full bg-background text-ink px-5 py-2.5 text-sm font-medium hover:bg-[var(--brand)] hover:text-background transition-colors"
           >
-            <CalendarDays aria-hidden="true" className="h-4 w-4" />
+            <Mark />
             Book a 15-min intro call
           </a>
           <a
@@ -764,7 +778,7 @@ function ResumePage() {
             data-analytics-placement="resume_page"
             className="inline-flex items-center justify-center gap-2 rounded-full border border-background/25 px-5 py-2.5 text-sm font-medium text-background hover:bg-background/10 transition-colors"
           >
-            <Download aria-hidden="true" className="h-4 w-4" />
+            <Mark />
             Download PDF
           </a>
         </div>
