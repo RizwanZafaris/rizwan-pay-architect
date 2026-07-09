@@ -10,6 +10,7 @@
 @import "./styles/hero-next.css";
 @import "./styles/sections-next.css";
 @import "./styles/chrome-next.css";
+@import "./styles/corridor-map.css";
 
 @custom-variant dark (&:is(.dark *));
 

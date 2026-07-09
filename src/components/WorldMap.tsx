@@ -1,15 +1,31 @@
 import { worldMap } from "@/data/world-map.generated";
+import { markets } from "@/data/markets";
 import { CAREER } from "@/content/facts";
 
 // Signature brand visual: a dotted world map with the ten operating markets
-// lit and connection arcs drawn from the Dubai hub. SHIPS AS STATIC SVG — no
-// client JS, nothing hydrates. Only the arcs (stroke-dashoffset draw-in) and
-// pins (pulse) animate, both pure CSS, both gated on prefers-reduced-motion.
+// lit and connection arcs drawn from the Dubai hub.
+//
+// SHIPS AS STATIC SVG — nothing hydrates, no client JS runs here. The living
+// behaviour is 100% CSS (styles in src/styles/corridor-map.css) hung off the
+// zero-hydration reveal engine in __root.tsx:
+//   • On /journey (showLabels ⇒ `interactive`) the arcs DRAW from the Dubai
+//     hub when the map's wrapper gets `.rz-in`, and a visitor can light a
+//     single corridor — with hover OR keyboard — to read that market's lesson.
+//   • The ten lesson cards are always in the DOM (crawlable + in the a11y
+//     tree); CSS reveals the engaged one. Nothing is hidden behind JS.
+//   • Reduced-motion / no-JS: arcs render fully drawn and static; identical
+//     content, no dash animation.
+// Only per-market rules (which depend on the market keys) are generated below
+// as a tiny <style>; everything structural lives in corridor-map.css.
 //
 // The dot grid + projected coordinates come from src/data/world-map.generated.ts
-// (built by scripts/gen-map.mjs from src/data/markets.ts).
+// (built by scripts/gen-map.mjs from src/data/markets.ts); the per-market copy
+// (city/years/brand/shipped/lesson/needsOwnerConfirm) comes from markets.ts and
+// is rendered verbatim — no data, name, lesson or Nigeria handling is changed.
 
 const { viewBox, dots, hub, pins } = worldMap;
+
+const marketByKey = new Map(markets.map((m) => [m.key, m]));
 
 // Map-only display names. "United Arab Emirates" is so long it dominated the
 // tight MENA cluster (QA 2026-07-06); the map shows the universally-read
@@ -158,47 +174,28 @@ function intersects(a: Box, b: Box) {
 const desktopLayout = layoutLabels(pins, { fontSize: 1.35, scale: 1 });
 const mobileLayout = layoutLabels(pins, { fontSize: 2.2, scale: 1.7 });
 
-const css = `
-.worldmap { --dot: color-mix(in oklab, var(--ink) 16%, transparent); }
-.worldmap .wm-dots { fill: var(--dot); }
-.worldmap .wm-arc {
-  fill: none; stroke: var(--signal); stroke-width: .45; opacity: .55;
-  stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 1;
-}
-.worldmap .wm-pin { fill: var(--signal); }
-.worldmap .wm-pin-halo { fill: var(--signal); opacity: .5; transform-box: fill-box; transform-origin: center; }
-.worldmap .wm-label {
-  fill: var(--ink-soft); letter-spacing: .04px;
-  /* Paper halo: keeps the text legible when it crosses the dot grid or an
-     arc stroke (paint-order is SVG-safe in all evergreen browsers). */
-  paint-order: stroke fill;
-  stroke: var(--paper); stroke-width: .55px; stroke-linejoin: round;
-}
-.worldmap .wm-labels-desktop .wm-label { font-size: 1.35px; }
-.worldmap .wm-labels-mobile .wm-label { font-size: 2.2px; }
-.worldmap .wm-leader {
-  stroke: color-mix(in oklab, var(--ink) 34%, transparent);
-  stroke-width: .14; fill: none;
-}
-.worldmap .wm-labels-mobile { display: none; }
-@media (max-width: 640px) {
-  .worldmap .wm-labels-desktop { display: none; }
-  .worldmap .wm-labels-mobile { display: block; }
-}
-@media (prefers-reduced-motion: no-preference) {
-  .worldmap .wm-arc { animation: wm-draw 1.5s cubic-bezier(.4,0,.2,1) forwards; }
-  .worldmap .wm-pin-halo { animation: wm-pulse 2.6s ease-out infinite; }
-  ${pins.map((_, i) => `.worldmap .wm-arc:nth-of-type(${i + 1}){animation-delay:${0.12 * i}s}`).join("")}
-  ${pins.map((_, i) => `.worldmap .wm-pin-halo:nth-of-type(${i + 1}){animation-delay:${0.12 * i}s}`).join("")}
-}
-@supports (animation-timeline: view()) {
-  @media (prefers-reduced-motion: no-preference) {
-    .worldmap .wm-arc { animation-timeline: view(); animation-range: entry 15% entry 70%; }
-  }
-}
-@keyframes wm-draw { to { stroke-dashoffset: 0 } }
-@keyframes wm-pulse { 0% { transform: scale(1); opacity: .5 } 100% { transform: scale(3.4); opacity: 0 } }
-`;
+// Per-market CSS. Everything structural is in corridor-map.css; only the rules
+// that name a specific market key are generated here. Because this <style>
+// renders in <body> (after the head stylesheet), the per-key "light" rules win
+// the specificity tie against the generic "dim all" rule in corridor-map.css.
+// Both `:hover` and `:focus-visible` are listed, so pointer and keyboard light
+// a corridor identically — the whole moment works with zero JS.
+const perKeyCss = pins
+  .map((p) => {
+    const k = p.key;
+    return (
+      `.wm-interactive:has(.wm-m-${k}:hover) .wm-arc-${k},` +
+      `.wm-interactive:has(.wm-m-${k}:focus-visible) .wm-arc-${k}` +
+      `{opacity:var(--wm-arc-lit);stroke-width:var(--wm-arc-w-lit);stroke:var(--signal-soft)}` +
+      `.wm-interactive:has(.wm-m-${k}:hover) .wm-label-${k},` +
+      `.wm-interactive:has(.wm-m-${k}:focus-visible) .wm-label-${k}` +
+      `{fill:var(--signal-soft);stroke-width:.62px}` +
+      `.wm-interactive:has(.wm-m-${k}:hover) .wm-card-${k},` +
+      `.wm-interactive:has(.wm-m-${k}:focus-visible) .wm-card-${k}` +
+      `{opacity:1;transform:none;pointer-events:auto}`
+    );
+  })
+  .join("");
 
 function LabelGroup({ layout, group }: { layout: typeof desktopLayout; group: string }) {
   return (
@@ -207,7 +204,7 @@ function LabelGroup({ layout, group }: { layout: typeof desktopLayout; group: st
         l.leader ? (
           <line
             key={`lead-${l.key}`}
-            className="wm-leader"
+            className={`wm-leader wm-leader-${l.key}`}
             x1={l.leader.x1}
             y1={l.leader.y1}
             x2={l.leader.x2}
@@ -216,7 +213,13 @@ function LabelGroup({ layout, group }: { layout: typeof desktopLayout; group: st
         ) : null,
       )}
       {layout.map((l) => (
-        <text key={`t-${l.key}`} className="wm-label" x={l.tx} y={l.ty} textAnchor={l.anchor}>
+        <text
+          key={`t-${l.key}`}
+          className={`wm-label wm-label-${l.key}`}
+          x={l.tx}
+          y={l.ty}
+          textAnchor={l.anchor}
+        >
           {l.name}
         </text>
       ))}
@@ -231,29 +234,71 @@ export function WorldMap({
   showLabels?: boolean;
   className?: string;
 }) {
+  // The labelled map is the /journey signature — that is where the corridor
+  // interaction (focusable markets + lesson cards) belongs. The unlabelled map
+  // (home strip) stays a decorative, non-interactive graphic: no extra tab
+  // stops, no card stack, but it still gets the scroll-driven arc draw-in.
+  const interactive = showLabels;
+
   return (
-    <div className={`worldmap ${className}`}>
-      <style dangerouslySetInnerHTML={{ __html: css }} />
+    <div className={`worldmap ${interactive ? "wm-interactive " : ""}${className}`} data-rz-reveal>
+      {interactive && <style dangerouslySetInnerHTML={{ __html: perKeyCss }} />}
       <svg
         viewBox={viewBox}
-        role="img"
-        aria-label={`World map highlighting ${CAREER.marketsWord} operating markets across MENA, South Asia and West Africa`}
+        role={interactive ? "group" : "img"}
+        aria-label={
+          interactive
+            ? `Operating map — ${CAREER.marketsWord} markets radiating from the Dubai hub. Focus a market to light its corridor and read the lesson it left.`
+            : `World map highlighting ${CAREER.marketsWord} operating markets across MENA, South Asia and West Africa`
+        }
         className="w-full h-auto"
         preserveAspectRatio="xMidYMid meet"
       >
         <g className="wm-dots" dangerouslySetInnerHTML={{ __html: dots }} />
-        {/* Arcs first so pins render on top. */}
-        {pins.map((p) => (
-          <path key={`arc-${p.key}`} className="wm-arc" pathLength={1} d={arcPath(p.x, p.y)} />
-        ))}
-        {/* Pulsing halos. */}
-        {pins.map((p) => (
-          <circle key={`halo-${p.key}`} className="wm-pin-halo" cx={p.x} cy={p.y} r={0.5} />
-        ))}
-        {/* Solid pins. */}
-        {pins.map((p) => (
-          <circle key={`pin-${p.key}`} className="wm-pin" cx={p.x} cy={p.y} r={0.5} />
-        ))}
+
+        {/* Arc layer (bottom): every corridor draws hub→pin. pathLength=1 so one
+            dasharray value fits them all. --arc-i drives the draw stagger. */}
+        <g className="wm-arcs">
+          {pins.map((p, i) => (
+            <path
+              key={`arc-${p.key}`}
+              className={`wm-arc wm-arc-${p.key}`}
+              pathLength={1}
+              d={arcPath(p.x, p.y)}
+              style={{ "--arc-i": i } as React.CSSProperties}
+            />
+          ))}
+        </g>
+
+        {/* Marker layer (top): pins sit above all arcs. When interactive each
+            group is a focusable button (real tabindex → keyboard reaches all
+            ten) with an enlarged transparent hit target for the pointer. */}
+        <g className="wm-marks">
+          {pins.map((p, i) => {
+            const m = marketByKey.get(p.key);
+            const label = m ? `${m.name} — ${m.lesson}` : p.name;
+            return (
+              <g
+                key={`mk-${p.key}`}
+                className={`wm-market wm-m-${p.key}`}
+                style={{ "--arc-i": i } as React.CSSProperties}
+                {...(interactive
+                  ? { tabIndex: 0, role: "button" as const, "aria-label": label }
+                  : {})}
+              >
+                {interactive && (
+                  <circle className="wm-hit-target" cx={p.x} cy={p.y} r={1.3} fill="transparent" />
+                )}
+                <circle className="wm-pin-halo" cx={p.x} cy={p.y} r={0.5} />
+                {interactive && (
+                  <circle className="wm-focusring" cx={p.x} cy={p.y} r={1.15} />
+                )}
+                <circle className="wm-pin" cx={p.x} cy={p.y} r={0.5} />
+              </g>
+            );
+          })}
+        </g>
+
         {showLabels && (
           <>
             <LabelGroup layout={desktopLayout} group="wm-labels-desktop" />
@@ -261,6 +306,40 @@ export function WorldMap({
           </>
         )}
       </svg>
+
+      {/* Lesson cards — all ten always in the DOM (crawlable + in the a11y
+          tree; toggled by opacity only, never display/visibility/JS). CSS
+          reveals the engaged market's card; the idle legend shows otherwise.
+          The reserved min-height (corridor-map.css) keeps CLS at 0. */}
+      {interactive && (
+        <div className="wm-cards">
+          <div className="wm-idle" aria-hidden="true">
+            <span className="wm-idle-eyebrow">◆ {CAREER.marketsWordCap} corridors</span>
+            <p className="wm-idle-text">
+              Every arc is a market I shipped in, drawn from the Dubai hub.{" "}
+              <b>Hover or tab to a market</b> to light its corridor and read the lesson it left.
+            </p>
+          </div>
+          {markets.map((m) => (
+            <article key={`card-${m.key}`} id={`wm-card-${m.key}`} className={`wm-card wm-card-${m.key}`}>
+              <div className="wm-card-head">
+                <h3 className="wm-card-name">{m.name}</h3>
+                <span className="wm-card-meta">
+                  {m.city} · {m.years}
+                </span>
+              </div>
+              <div className="wm-card-brand">{m.brand}</div>
+              <p className="wm-card-shipped">{m.shipped}</p>
+              {m.needsOwnerConfirm && (
+                <p>
+                  <span className="wm-pending">◇ Detail pending</span>
+                </p>
+              )}
+              <p className="wm-card-lesson">{m.lesson}</p>
+            </article>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
