@@ -4,7 +4,7 @@ slug: "project-management-fintech-regulatory-programmes"
 category: "Program Management"
 metaTitle: "Project Management for Fintech Regulatory Programmes (PCI, ISO, SOC 2, AML) | Rizwan Zafar"
 metaDescription: "How to run regulatory programmes (PCI DSS, ISO 27001, SOC 2, AML/CFT) as actual projects with hard audit dates: scope, evidence, remediation, audit handling, document control, and the operational handoff that decides whether the certification survives."
-excerpt: "A regulatory programme is not a compliance exercise. It is a project with an immovable deadline (the audit), an external grader (the auditor), and a delivery cost (remediation) that gets paid up front or many times over."
+excerpt: "Six weeks before the audit, every troubled regulatory programme looks identical: forgotten Confluence pages, evidence requests rotting in inboxes, a year of work crammed into six weeks of theatre. Run it as delivery with an immovable deadline and an external grader, or pay remediation many times over."
 publishDate: "2026-05-14"
 readingTime: "11 min read"
 tags:

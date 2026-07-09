@@ -4,7 +4,7 @@ slug: "finastra-core-banking-sale-product-focus"
 category: "Product Strategy"
 metaTitle: "Finastra Core Sale: Product Focus Lesson"
 metaDescription: "Finastra's Universal Banking sale shows why fintech platforms need sharper product focus, cleaner ownership, and fewer strategy-adjacent bundles."
-excerpt: "Finastra's Universal Banking sale is not only M&A news. It is a product-focus lesson for fintech leaders managing broad platforms, legacy modernization, and delivery risk."
+excerpt: "Which product lines actually deserve executive focus? Finastra answered by selling Universal Banking to Pollen Street, and the move is a sharper lesson on platform sprawl than it looks."
 publishDate: "2026-06-21"
 readingTime: "6 min read"
 tags:

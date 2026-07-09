@@ -3,8 +3,8 @@ title: "MPGS Architecture: How Mastercard Payment Gateway Services Actually Work
 slug: "mpges-mastercard-payment-gateway-services-architecture"
 category: "Payment Infrastructure"
 metaTitle: "MPGS Architecture: How Mastercard Payment Gateway Services Works | Rizwan Zafar"
-metaDescription: "An operator's guide to MPGS — Hosted Checkout vs. Hosted Session, 3DS2 step-up, tokenisation, recurring, the integration patterns that scale, and the failure modes nobody warns you about."
-excerpt: "MPGS is a payment gateway the way SAP is an ERP — vast, powerful, and indifferent to whether you understand it. The integration choices you make in the first sprint decide whether the platform scales for five years or rots for five."
+metaDescription: "A field guide to MPGS: Hosted Checkout vs Hosted Session, 3DS2 step-up, tokenisation, recurring, the patterns that scale, and the failure modes nobody warns about."
+excerpt: "MPGS is a payment gateway the way SAP is an ERP: vast, powerful, and indifferent to whether you understand it. The integration choices you make in the first sprint decide whether the platform scales for five years or rots for five."
 publishDate: "2026-05-19"
 readingTime: "12 min read"
 featured: true
@@ -39,7 +39,7 @@ relatedArticles:
 
 # MPGS Architecture: How Mastercard Payment Gateway Services Actually Works (and Where It Breaks)
 
-MPGS is a payment gateway the way SAP is an ERP — vast, powerful, and indifferent to whether you understand it. The integration choices you make in the first sprint decide whether the platform scales for five years or rots for five.
+MPGS is a payment gateway the way SAP is an ERP: vast, powerful, and indifferent to whether you understand it. The integration choices you make in the first sprint decide whether the platform scales for five years or rots for five.
 
 This is the operator-grade map of what MPGS actually is, the integration patterns that work, the patterns that don't, and the eight specific failure modes that show up in every MPGS rollout I've watched.
 

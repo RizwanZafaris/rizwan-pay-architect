@@ -3,7 +3,7 @@ title: "Compelling Evidence 3.0 (Visa): What Changed, and How To Actually Win Di
 slug: "compelling-evidence-3-0-visa-disputes"
 category: "Payment Infrastructure"
 metaTitle: "Compelling Evidence 3.0 (Visa): What Changed and How To Win | Rizwan Zafar"
-metaDescription: "An operator's read of Visa Compelling Evidence 3.0, the new evidence rules, the prior-undisputed-transaction lookback, the data fields acquirers must capture, and the seven moves that flip the dispute win rate."
+metaDescription: "Visa Compelling Evidence 3.0 in practice: the prior-transaction lookback, the fields acquirers must capture, and the seven moves that flip dispute win rate."
 excerpt: "Compelling Evidence 3.0 is the most consequential dispute-rule change Visa has shipped in a decade. The mechanics look like a documentation update; the operating implication is a complete rework of how acquirers capture, store and present transaction evidence."
 publishDate: "2026-05-20"
 readingTime: "11 min read"

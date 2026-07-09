@@ -3,8 +3,8 @@ title: "Click to Pay (VCTP / MCTP): The Scheme-Led Checkout Standard, How It Act
 slug: "click-to-pay-vctp-mctp-scheme-led-checkout"
 category: "Payment Infrastructure"
 metaTitle: "Click to Pay (VCTP / MCTP): A Product Guide | Rizwan Zafar"
-metaDescription: "Click to Pay explained from the operator's lens — what VCTP and MCTP actually are, the merchant + issuer + consumer surface, why it shipped, where it works, where it's still patchy."
-excerpt: "Click to Pay is the schemes' answer to Apple Pay and Google Pay — a scheme-owned consumer checkout standard that lifts authorisation rate and removes card-number entry. It works. It's just under-marketed. This is the operator-grade map."
+metaDescription: "Click to Pay in practice: what VCTP and MCTP actually are, the merchant, issuer, and consumer surface, why it shipped, where it works, and where it is still patchy."
+excerpt: "Click to Pay is the schemes' answer to Apple Pay and Google Pay: a scheme-owned checkout standard that lifts authorisation rate and removes card-number entry. It works. It is just badly marketed. This is the practical map."
 publishDate: "2026-05-20"
 readingTime: "11 min read"
 tags:

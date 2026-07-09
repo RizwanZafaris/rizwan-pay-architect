@@ -4,7 +4,7 @@ slug: "payment-cost-50-to-1"
 category: "Product Strategy"
 metaTitle: "Payment Cost: From 50% to 1% | Rizwan Zafar"
 metaDescription: "How a subscription business cut payment cost from ~50% of revenue to ~1% by treating cost as a product variable, rail mix, dunning, smart retries."
-excerpt: "Payment cost is not procurement. It is product architecture. Here is the rail-mix playbook that pulled a subscription business from 50% to 1% cost-of-revenue."
+excerpt: "Tapmad was losing roughly half its revenue to payment cost. The rail-mix, dunning, and smart-retry rebuild took it to about 1%, past 5M subscribers, and 70% higher ARPU, with no new vendors."
 publishDate: "2026-05-29"
 readingTime: "11 min read"
 tags: ["billing", "DCB", "wallets", "unit economics", "subscription", "OTT", "dunning"]

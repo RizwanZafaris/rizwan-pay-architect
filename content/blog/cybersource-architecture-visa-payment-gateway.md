@@ -3,8 +3,8 @@ title: "CyberSource Architecture: The Visa-Owned Payment Gateway, How It Differs
 slug: "cybersource-architecture-visa-payment-gateway"
 category: "Payment Infrastructure"
 metaTitle: "CyberSource Architecture: How Visa's Payment Gateway Works | Rizwan Zafar"
-metaDescription: "An operator's guide to CyberSource — Decision Manager, Token Management Service, Flex Microform, Payouts, and where the architecture differs meaningfully from MPGS."
-excerpt: "CyberSource is the gateway Visa wants you to standardise on. The product surface is broader than MPGS — Decision Manager and Flex Microform have no Mastercard equivalents — but the integration patterns and lifecycle traps are different in important ways."
+metaDescription: "A field guide to CyberSource: Decision Manager, Token Management Service, Flex Microform, Payouts, and where the architecture differs meaningfully from MPGS."
+excerpt: "CyberSource is the gateway Visa wants you to standardise on. The product surface is broader than MPGS: Decision Manager and Flex Microform have no Mastercard equivalents, but the integration patterns and lifecycle traps are different in important ways."
 publishDate: "2026-05-20"
 readingTime: "12 min read"
 tags:

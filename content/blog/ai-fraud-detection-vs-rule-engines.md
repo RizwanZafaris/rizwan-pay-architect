@@ -4,7 +4,7 @@ slug: "ai-fraud-detection-vs-rule-engines"
 category: "AI in Fintech"
 metaTitle: "AI Fraud Detection vs Rule Engines: Field Comparison | Rizwan Zafar"
 metaDescription: "When does AI fraud detection beat a tuned rule engine in payments? A field comparison based on running both at $1B+ GTV, false positives, drift, explainability, regulator posture and the hybrid model that actually wins."
-excerpt: "AI fraud detection beats rule engines on novel-attack detection. Rule engines beat AI on explainability and ops cost. The right answer is almost always a hybrid, and the design of the hybrid is the actual work."
+excerpt: "ML catches novel attacks; rule engines win on explainability, ops cost, and the regulator conversation. In regulated payments the answer is a hybrid, and designing where each one fires is the whole job."
 publishDate: "2026-05-07"
 readingTime: "10 min read"
 tags:

@@ -2,7 +2,7 @@
 title: "MDES + Network Tokenisation: How It Actually Works (and Why You Should Default to It)"
 slug: "mdes-network-tokenisation-how-it-actually-works"
 category: "Payment Infrastructure"
-metaTitle: "MDES + Network Tokenisation: An Operator's Guide | Rizwan Zafar"
+metaTitle: "MDES + Network Tokenisation: A Field Guide | Rizwan Zafar"
 metaDescription: "MDES, Visa Token Service, network tokens vs gateway tokens, the lifecycle the schemes own, Apple/Google Pay plumbing, and why every new card-on-file integration should default to network tokens."
 excerpt: "Network tokens are the most under-explained product in payments. They are the difference between a 60% authorisation rate and a 90% authorisation rate on stored cards. Default to them. Build for them. Migrate to them."
 publishDate: "2026-05-19"

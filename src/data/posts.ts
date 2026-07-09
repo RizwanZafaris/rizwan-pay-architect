@@ -109,7 +109,7 @@ export const posts: Post[] = [
     "category": "Program Management",
     "readingTime": "7 min read",
     "description": "Baringa's UK payments-hub migration case shows why regulated programmes need delivery gates, dependency control, live proving, and exit plans.",
-    "thesis": "The useful lesson is not that a bank migrated a payments hub. It is that gates, evidence, dependencies, and exit planning made the change governable.",
+    "thesis": "Seven delivery gates, roughly 30 million monthly payments, PRA-grade exit planning. Baringa's UK payments-hub migration is a lesson in making change provable at each gate, not a cloud story.",
     "tags": [
       "payments migration",
       "programme governance",
@@ -181,7 +181,7 @@ export const posts: Post[] = [
     "category": "Payment Infrastructure",
     "readingTime": "7 min read",
     "description": "Satispay's Mastercard debit cards show how a wallet becomes a card programme across acceptance, funding, tiers, controls, fees, and disputes.",
-    "thesis": "The strategic move is not only global acceptance. It is the operating shift from a proprietary wallet network into a tiered debit-card programme.",
+    "thesis": "Satispay is turning a closed-loop wallet into an open-loop card programme with Mastercard. The hard part is keeping the wallet's simplicity while absorbing card tiers, FX rules, disputes, and scheme discipline.",
     "tags": [
       "Satispay",
       "Mastercard",
@@ -205,7 +205,7 @@ export const posts: Post[] = [
     "category": "AI & Product Operations",
     "readingTime": "7 min read",
     "description": "Agent-skills repositories show why AI coding agents need reusable workflows, verification gates, security review, and clear exit criteria.",
-    "thesis": "The useful part of agent skills is not better prompting. It is turning repeated engineering judgment into versioned operating procedure.",
+    "thesis": "Treat an agent skill as a runbook, not a clever prompt. The value shows up when repeated engineering judgment becomes a versioned procedure with exit criteria a reviewer can check.",
     "tags": [
       "agent skills",
       "AI coding agents",
@@ -228,7 +228,7 @@ export const posts: Post[] = [
     "category": "Payment Infrastructure",
     "readingTime": "7 min read",
     "description": "Checkout.com's issuing and acquiring push shows why platforms need one control plane for pay-in, payout, liquidity, risk, and reconciliation.",
-    "thesis": "The interesting move is not putting acquiring and issuing under one vendor. It is linking customer collection, supplier payout, liquidity, risk, and reconciliation in one operating loop.",
+    "thesis": "One vendor for acquiring and issuing removes handoffs, but the value only lands when customer collection, supplier payout, liquidity, risk, and reconciliation agree in one control plane. Travel exposes the gap first.",
     "tags": [
       "Checkout.com",
       "payment orchestration",
@@ -251,7 +251,7 @@ export const posts: Post[] = [
     "date": "2026-07-07",
     "category": "Cross-Border Payments",
     "readingTime": "8 min read",
-    "description": "Will crypto and stablecoins replace SWIFT? The honest, operator-grade answer, what works, what does not, and where the two will coexist.",
+    "description": "Will crypto and stablecoins replace SWIFT? The honest, practitioner answer: what works, what does not, and where the two will coexist.",
     "thesis": "Stablecoins solve a real cross-border problem in specific corridors. They do not solve every cross-border problem in every corridor.",
     "tags": [
       "SWIFT",
@@ -342,7 +342,7 @@ export const posts: Post[] = [
     "date": "2026-07-04",
     "category": "Fraud & Risk",
     "readingTime": "7 min read",
-    "description": "Adyen says 3% of identities drove half of refund value on its platform. The operator response is lifecycle controls, not more checkout friction.",
+    "description": "Adyen says 3% of identities drove half of refund value on its platform. The right response is lifecycle controls, not more checkout friction.",
     "thesis": "Refund and policy abuse can come from verified customers. Payment teams need controls across account, order, fulfilment, refund, and dispute events.",
     "tags": [
       "first-party fraud",
@@ -456,7 +456,7 @@ export const posts: Post[] = [
     "category": "Payment Infrastructure",
     "readingTime": "7 min read",
     "description": "Processor-only card issuing offers control, but shifts licensing, ledger, compliance, fraud, disputes, and bank management back to your team.",
-    "thesis": "Choosing processor-only issuing is not a narrower vendor contract. It is a decision to own the regulated and operational machinery around the processor.",
+    "thesis": "Processor-only issuing hands you the ledger, regulatory reporting, dispute operations, fraud policy, and the sponsor-bank relationship. If you cannot name who owns each one, you are not ready for it.",
     "tags": [
       "issuer processing",
       "card programmes",
@@ -480,7 +480,7 @@ export const posts: Post[] = [
     "category": "Crypto & Stablecoins",
     "readingTime": "8 min read",
     "description": "Open USD brings Visa, Mastercard, Stripe and 140+ partners into a shared stablecoin model built around distribution, governance and reserve economics.",
-    "thesis": "Open USD is not only a new token. It is a consortium bet that shared distribution, governance, and reserve economics can outperform a single stablecoin issuer.",
+    "thesis": "Forget the 140-partner logo wall. Open USD's real move is sharing reserve earnings with everyone who distributes the token, and Visa and Mastercard joining that compact rather than fighting it.",
     "tags": [
       "Open USD",
       "Open Standard",
@@ -551,7 +551,7 @@ export const posts: Post[] = [
     "category": "AI & Product Operations",
     "readingTime": "8 min read",
     "description": "Mercado Pago's Claude Code plugin shows where payment integration agents help—and why versioning, evidence, security, and human review still matter.",
-    "thesis": "The useful shift is not faster code generation. It is moving official payment knowledge, webhook testing, credential checks, and production review into the developer workflow.",
+    "thesis": "Faster scaffolding is easy; faster confidence is the real product. Mercado Pago's four Claude Code workflows move payment rules, webhook tests, credential checks, and review into the developer's path, as long as version drift is governed.",
     "tags": [
       "Mercado Pago",
       "Claude Code",
@@ -668,7 +668,7 @@ export const posts: Post[] = [
     "category": "Payment Infrastructure",
     "readingTime": "7 min read",
     "description": "Thredd and Sutton Bank show why card launches need explicit ownership across BIN sponsorship, issuer processing, risk, settlement, and operations.",
-    "thesis": "Thredd and Sutton Bank's US partnership is a reminder that BIN sponsorship is not a launch shortcut. It is an operating model for control, risk, processing, and accountability.",
+    "thesis": "A BIN sponsor shortens the route to a US card launch; it does not shorten the list of decisions someone must own. Thredd and Sutton Bank make the three-party split, sponsor, processor, and programme manager, explicit.",
     "tags": [
       "Thredd",
       "Sutton Bank",
@@ -691,7 +691,7 @@ export const posts: Post[] = [
     "date": "2026-06-27",
     "category": "AI & Product Operations",
     "readingTime": "7 min read",
-    "description": "GitHub Desktop 3.6 brings worktrees and AI-assisted conflicts together. The operator lesson is isolation, review, and controlled parallelism.",
+    "description": "GitHub Desktop 3.6 brings worktrees and AI-assisted conflict resolution together. The lesson for engineering leads is isolation, review, and controlled parallelism.",
     "thesis": "GitHub Desktop 3.6 makes worktrees accessible beside Copilot-assisted commits and conflict resolution, turning branch isolation into an operating control for parallel AI work.",
     "tags": [
       "GitHub Desktop",
@@ -912,7 +912,7 @@ export const posts: Post[] = [
     "category": "Product Strategy",
     "readingTime": "7 min read",
     "description": "Stripe's Sessions 2026 updates show global checkout is a product system across localization, pricing, auth, fraud, tax, and treasury.",
-    "thesis": "Stripe's global-demand update is not a list of feature launches. It is a map of how product teams should think about converting international demand into retained revenue.",
+    "thesis": "Stripe found that even one geographically irrelevant payment method can dent conversion. That is the tell: global checkout is a system of localisation, authorisation, fraud, tax, and treasury, not a country toggle.",
     "tags": [
       "Stripe",
       "checkout conversion",
@@ -937,7 +937,7 @@ export const posts: Post[] = [
     "category": "Program Management",
     "readingTime": "6 min read",
     "description": "Thredd's Visa Cloud Connect APAC rollout shows why payment infrastructure migrations need sequencing, resilience, data, and governance.",
-    "thesis": "Thredd bringing Visa Cloud Connect live in APAC is not only an issuer-processing milestone. It is a useful case study in how to govern cloud payment infrastructure rollouts.",
+    "thesis": "Thredd's Visa Cloud Connect go-live in APAC reads as infrastructure news, but the real lesson is sequencing: certification, resilience, data residency, and release cadence run as one governed programme through a Singapore hub.",
     "tags": [
       "Thredd",
       "Visa Cloud Connect",
@@ -962,7 +962,7 @@ export const posts: Post[] = [
     "category": "Cross-Border Payments",
     "readingTime": "6 min read",
     "description": "Project Pangea shows stablecoin FX needs PvP settlement, ISO 20022, Swift integration, liquidity controls, and bank-grade reconciliation.",
-    "thesis": "Project Pangea is not just another stablecoin announcement. It is a useful test of whether banks can move FX from T+2 messaging into T+0 payment-versus-payment settlement without losing controls.",
+    "thesis": "More than 50 banks holding over $10 trillion in assets are testing whether FX can move from T+2 to T+0 without losing the controls the delay quietly buys. Project Pangea's PvP design, on Swift and ISO 20022, is the part worth reading.",
     "tags": [
       "Project Pangea",
       "Chainlink",
@@ -1031,7 +1031,7 @@ export const posts: Post[] = [
     "category": "Cross-Border Payments",
     "readingTime": "6 min read",
     "description": "Swift's November 2026 structured-address cutoff turns ISO 20022 from a bank-format project into a capture-side product requirement.",
-    "thesis": "Swift's November 2026 structured-address cutoff is not a standards-team footnote. It is a product requirement for every cross-border payment surface that still accepts weak beneficiary data.",
+    "thesis": "In April, 61% of cross-border payments still carried unstructured debtor addresses. After 14 November 2026 Swift rejects them, and no mapper can recover data the origination screen never captured. This is a capture problem, not a standards footnote.",
     "tags": [
       "Swift",
       "ISO 20022",
@@ -1055,7 +1055,7 @@ export const posts: Post[] = [
     "category": "Product Strategy",
     "readingTime": "6 min read",
     "description": "Finastra's Universal Banking sale shows why fintech platforms need sharper product focus, cleaner ownership, and fewer strategy-adjacent bundles.",
-    "thesis": "Finastra's Universal Banking sale is not only M&A news. It is a product-focus lesson for fintech leaders managing broad platforms, legacy modernization, and delivery risk.",
+    "thesis": "Which product lines actually deserve executive focus? Finastra answered by selling Universal Banking to Pollen Street, and the move is a sharper lesson on platform sprawl than it looks.",
     "tags": [
       "Finastra",
       "product strategy",
@@ -1079,7 +1079,7 @@ export const posts: Post[] = [
     "category": "Crypto & Stablecoins",
     "readingTime": "6 min read",
     "description": "Zodia's Luxembourg licence shows why stablecoin custody, EMT transfer, settlement, treasury, and reconciliation are now one product surface.",
-    "thesis": "Zodia's Luxembourg Payment Institution licence is not just a custody headline. It is a signal that regulated stablecoin custody, EMT transfer, settlement, treasury, and reconciliation are becoming one institutional product surface.",
+    "thesis": "Zodia's new Luxembourg Payment Institution licence lets it custody and transfer stablecoins under one roof. Custody, EMT transfer, settlement, treasury, and reconciliation are collapsing into a single institutional product surface.",
     "tags": [
       "Zodia Custody",
       "stablecoins",
@@ -1125,7 +1125,7 @@ export const posts: Post[] = [
     "category": "Cross-Border Payments",
     "readingTime": "6 min read",
     "description": "Mollie's EUR350M EEA expansion shows why cross-border merchants need local payment methods, onboarding, support, and reconciliation as one stack.",
-    "thesis": "Mollie's EEA expansion is not just country coverage. It is a bet that local payment methods, onboarding, support, settlement and reconciliation have to be shipped as one merchant operating system.",
+    "thesis": "Mollie is committing EUR350 million over five years to ship local payment methods, onboarding, support, settlement, and reconciliation as one merchant operating system. Country coverage was always the weak proxy.",
     "tags": [
       "Mollie",
       "EEA payments",
@@ -1197,7 +1197,7 @@ export const posts: Post[] = [
     "category": "Cross-Border Payments",
     "readingTime": "6 min read",
     "description": "Nuvei's $2.75B Payoneer deal is a bet on owning acceptance, FX, payouts, settlement and compliance across cross-border corridors.",
-    "thesis": "The Nuvei-Payoneer deal is not just payments consolidation. It is a signal that cross-border platforms are trying to own more of the corridor stack.",
+    "thesis": "The $2.75 billion Nuvei-Payoneer tie-up is a bet on owning the corridor stack: acceptance, FX, accounts, payouts, and cards inside one shorter control loop, across more than 150 markets.",
     "tags": [
       "Nuvei",
       "Payoneer",
@@ -1242,7 +1242,7 @@ export const posts: Post[] = [
     "date": "2026-06-15",
     "category": "Cross-Border Payments",
     "readingTime": "6 min read",
-    "description": "mBridge is not a SWIFT replacement. It is a settlement experiment product leaders should read as corridor infrastructure, not messaging.",
+    "description": "mBridge will not replace SWIFT, but it shifts cross-border strategy from messaging to settlement architecture. Read it as a warning shot, not a headline.",
     "thesis": "mBridge matters less as a headline about replacing SWIFT and more as a practical warning: cross-border product teams now need to design for multiple settlement regimes, not one universal rail.",
     "tags": [
       "mBridge",
@@ -1265,8 +1265,8 @@ export const posts: Post[] = [
     "date": "2026-06-13",
     "category": "AI in Fintech",
     "readingTime": "13 min read",
-    "description": "A researched operator view of agentic commerce, Visa Intelligent Commerce, Mastercard Agent Pay, use cases, risks, and what AI shopping agents change in payments.",
-    "thesis": "Agentic commerce is not a better checkout button. It is the arrival of a new economic actor: software that can discover, decide, and pay under human-defined authority.",
+    "description": "A researched field view of agentic commerce: Visa Intelligent Commerce, Mastercard Agent Pay, the use cases, the risks, and what AI agents change in payments.",
+    "thesis": "A shopping agent that compares, selects, and pays under authority you set is a new economic actor. Visa, Mastercard, OpenAI, and Stripe are racing to build the trust layer that lets merchants and issuers accept it.",
     "tags": [
       "agentic commerce",
       "AI payments",
@@ -1510,7 +1510,7 @@ export const posts: Post[] = [
     "category": "Product Strategy",
     "readingTime": "11 min read",
     "description": "How a subscription business cut payment cost from ~50% of revenue to ~1% by treating cost as a product variable, rail mix, dunning, smart retries.",
-    "thesis": "Payment cost is not procurement. It is product architecture. Here is the rail-mix playbook that pulled a subscription business from 50% to 1% cost-of-revenue.",
+    "thesis": "Tapmad was losing roughly half its revenue to payment cost. The rail-mix, dunning, and smart-retry rebuild took it to about 1%, past 5M subscribers, and 70% higher ARPU, with no new vendors.",
     "featured": true,
     "tags": [
       "billing",
@@ -1658,7 +1658,7 @@ export const posts: Post[] = [
     "date": "2026-05-26",
     "category": "Cross-Border Payments",
     "readingTime": "11 min read",
-    "description": "A corridor is not a partner integration. It is a product with its own success rate, FX behavior, compliance overlay, and unit economics. A practitioner view from MENA and South Asia.",
+    "description": "A corridor behaves like an operating system: its own success rate, FX behaviour, compliance overlay, unit economics. A practitioner view from MENA and South Asia.",
     "thesis": "Cards-first thinking breaks at the border. Owning the corridor abstraction is owning the margin in cross-border payments.",
     "featured": true,
     "tags": [],
@@ -1805,7 +1805,7 @@ export const posts: Post[] = [
     "category": "Merchant Onboarding",
     "readingTime": "9 min read",
     "description": "How to automate KYB onboarding for merchants without inflating fraud, sanctions, or default rates, tiering, data sources, and the review queue that scales.",
-    "thesis": "Automated KYB is not about removing humans. It is about putting them where they actually add risk-adjusted value.",
+    "thesis": "Automate KYB well and activation drops from weeks to minutes; automate it badly and fraud and default rates climb while nobody watches. The teams that win automate each step to its ceiling and route the rest to a tiered queue.",
     "tags": [
       "KYB",
       "merchant onboarding",
@@ -1846,7 +1846,7 @@ export const posts: Post[] = [
     "date": "2026-05-23",
     "category": "Fraud & Risk",
     "readingTime": "9 min read",
-    "description": "An operator essay on regulatory UX, why the words, names, and disclosures on a payment screen can be the difference between a launch and a six-month delay.",
+    "description": "A field essay on regulatory UX: why the words, names, and disclosures on a payment screen can be the difference between a launch and a six-month delay.",
     "thesis": "Regulators do not read your roadmap. They read your screen.",
     "tags": [
       "regulatory UX",
@@ -1950,7 +1950,7 @@ export const posts: Post[] = [
     "date": "2026-05-20",
     "category": "Payment Infrastructure",
     "readingTime": "11 min read",
-    "description": "The operator's guide to BIN routing, co-badged cards, scheme selection logic, regulator pressure on choice of brand, the four override patterns that move auth rate, and the six failure modes acquirers ship without realising.",
+    "description": "A field guide to BIN routing: co-badged cards, scheme selection, the four override patterns that lift auth rate, and the six failure modes acquirers ship.",
     "thesis": "BIN routing is the last unglamorous lever in card acquiring. It sits below product, below 3DS2, below tokenisation, and on a portfolio the size of a billion, it moves more authorisation rate than most things the team will ship this year.",
     "featured": true,
     "tags": [
@@ -1976,8 +1976,8 @@ export const posts: Post[] = [
     "date": "2026-05-20",
     "category": "Payment Infrastructure",
     "readingTime": "11 min read",
-    "description": "Click to Pay explained from the operator's lens — what VCTP and MCTP actually are, the merchant + issuer + consumer surface, why it shipped, where it works, where it's still patchy.",
-    "thesis": "Click to Pay is the schemes' answer to Apple Pay and Google Pay — a scheme-owned consumer checkout standard that lifts authorisation rate and removes card-number entry. It works. It's just under-marketed. This is the operator-grade map.",
+    "description": "Click to Pay in practice: what VCTP and MCTP actually are, the merchant, issuer, and consumer surface, why it shipped, where it works, and where it is still patchy.",
+    "thesis": "Click to Pay is the schemes' answer to Apple Pay and Google Pay: a scheme-owned checkout standard that lifts authorisation rate and removes card-number entry. It works. It is just badly marketed. This is the practical map.",
     "tags": [
       "Click to Pay",
       "VCTP",
@@ -2003,7 +2003,7 @@ export const posts: Post[] = [
     "date": "2026-05-20",
     "category": "Payment Infrastructure",
     "readingTime": "11 min read",
-    "description": "An operator's read of Visa Compelling Evidence 3.0, the new evidence rules, the prior-undisputed-transaction lookback, the data fields acquirers must capture, and the seven moves that flip the dispute win rate.",
+    "description": "Visa Compelling Evidence 3.0 in practice: the prior-transaction lookback, the fields acquirers must capture, and the seven moves that flip dispute win rate.",
     "thesis": "Compelling Evidence 3.0 is the most consequential dispute-rule change Visa has shipped in a decade. The mechanics look like a documentation update; the operating implication is a complete rework of how acquirers capture, store and present transaction evidence.",
     "featured": true,
     "tags": [
@@ -2055,8 +2055,8 @@ export const posts: Post[] = [
     "date": "2026-05-20",
     "category": "Payment Infrastructure",
     "readingTime": "12 min read",
-    "description": "An operator's guide to CyberSource — Decision Manager, Token Management Service, Flex Microform, Payouts, and where the architecture differs meaningfully from MPGS.",
-    "thesis": "CyberSource is the gateway Visa wants you to standardise on. The product surface is broader than MPGS — Decision Manager and Flex Microform have no Mastercard equivalents — but the integration patterns and lifecycle traps are different in important ways.",
+    "description": "A field guide to CyberSource: Decision Manager, Token Management Service, Flex Microform, Payouts, and where the architecture differs meaningfully from MPGS.",
+    "thesis": "CyberSource is the gateway Visa wants you to standardise on. The product surface is broader than MPGS: Decision Manager and Flex Microform have no Mastercard equivalents, but the integration patterns and lifecycle traps are different in important ways.",
     "tags": [
       "CyberSource",
       "Visa",
@@ -2081,8 +2081,8 @@ export const posts: Post[] = [
     "date": "2026-05-20",
     "category": "Payment Infrastructure",
     "readingTime": "11 min read",
-    "description": "An operator's guide to EMV 3DS2 — the three flows (frictionless, attempt, challenge), the exemption logic that decides which flow fires, and how to lift auth rate without breaking PSD2 SCA.",
-    "thesis": "3DS2 is the most consequential auth-rate lever most merchants don't touch. Default config gives you maximum step-up and minimum conversion. This is the operator's guide to the exemption logic that lifts auth rate without breaking compliance.",
+    "description": "A field guide to EMV 3DS2: the three flows, the exemption logic that decides which one fires, and how to lift auth rate without breaking PSD2 SCA.",
+    "thesis": "3DS2 is the most consequential auth-rate lever most merchants never touch. Default config gives you maximum step-up and minimum conversion. This is the field guide to the exemption logic that lifts auth rate without breaking compliance.",
     "tags": [
       "EMV 3DS",
       "3DS2",
@@ -2132,7 +2132,7 @@ export const posts: Post[] = [
     "date": "2026-05-20",
     "category": "Product Strategy",
     "readingTime": "13 min read",
-    "description": "The twelve interview questions a senior payments leader uses to distinguish operator-grade PM hires from candidates with strong CVs and shallow practice, what each one tests, what good and bad answers sound like.",
+    "description": "The twelve interview questions a senior payments leader uses to separate strong PM hires from strong CVs, what each tests, and what good and bad answers sound like.",
     "thesis": "Most fintech PM interviews still draw from the same SaaS-PM rubric the candidate practiced for. The questions that actually separate senior from junior are the ones that cannot be prepared for from a YouTube series. These are twelve I have used to hire payments product managers, with what each one tests and what the answers reveal.",
     "featured": true,
     "tags": [
@@ -2158,8 +2158,8 @@ export const posts: Post[] = [
     "date": "2026-05-20",
     "category": "Payment Infrastructure",
     "readingTime": "12 min read",
-    "description": "An operator's view of credit scoring, the feature pipeline, the model family, the bureau reporting cycle, the governance overlay, and the four failure modes that produce regulator findings.",
-    "thesis": "Most fintech operators reach for the off-the-shelf credit-scoring vendor and stop thinking about it. The vendor's output is a number; the substance is the pipeline that produces the number, the governance that protects it, and the bureau reporting cycle that updates it.",
+    "description": "How credit scoring actually works: the feature pipeline, the model family, the bureau reporting cycle, and the four failure modes behind regulator findings.",
+    "thesis": "Reaching for an off-the-shelf credit-scoring vendor is easy; the trap is stopping there. The vendor's output is a number. The substance an operator has to own is the pipeline that produces it, the governance that protects it, and the bureau reporting cycle that keeps it current.",
     "featured": true,
     "tags": [
       "credit scoring",
@@ -2210,7 +2210,7 @@ export const posts: Post[] = [
     "date": "2026-05-20",
     "category": "Emerging Markets",
     "readingTime": "14 min read",
-    "description": "An operator's country-by-country map of payment infrastructure across UAE, KSA, Pakistan, Bangladesh, Nepal, Iraq, and Egypt, the regulators, the rails, the wallets, the dominant flows, and what actually ships.",
+    "description": "A country-by-country map of payments across UAE, KSA, Pakistan, Bangladesh, Nepal, Iraq, and Egypt: the regulators, the rails, the wallets, and what actually ships.",
     "thesis": "Every operator entering MENA or South Asia gets a market deck from the local consulting partner. The deck is well-presented and operationally useless. This is the deck that would actually have helped, the regulators, the rails, the wallets, the flows that matter, and the launch sequence that does not collapse.",
     "featured": true,
     "tags": [
@@ -2236,8 +2236,8 @@ export const posts: Post[] = [
     "date": "2026-05-20",
     "category": "Emerging Markets",
     "readingTime": "12 min read",
-    "description": "Operator's read on the Nigerian payments stack, NIBSS, NIP, NQR, eNaira, Verve, the CBN's role, and what actually ships for a fintech entering the market.",
-    "thesis": "Nigeria has built one of the most ambitious public-rail payment infrastructures of any emerging market, NIBSS, NIP, BVN, NQR, eNaira, all interlinked under the CBN's direction. The operator entering Nigeria gets a stack deeper than the deck suggests and a regulator more active than they expect.",
+    "description": "A field read on the Nigerian payments stack: NIBSS, NIP, NQR, eNaira, Verve, the CBN's role, and what actually ships for a fintech entering the market.",
+    "thesis": "Nigeria has built one of the most ambitious public-rail payment stacks of any emerging market: NIBSS, NIP, BVN, NQR, eNaira, all interlinked under the CBN. Anyone entering Nigeria gets a stack deeper than the deck suggests and a regulator more active than they expect.",
     "featured": true,
     "tags": [
       "Nigeria payments",
@@ -2431,8 +2431,8 @@ export const posts: Post[] = [
     "date": "2026-05-20",
     "category": "Payment Infrastructure",
     "readingTime": "12 min read",
-    "description": "An operator's view of the core banking system, what it actually does, the four eras of core platforms (mainframe, distributed, modular, headless), the six signs you should replace it, and the brutal truth about replacement programmes.",
-    "thesis": "Most fintech operators inherit a core banking decision rather than make one. The decision shapes the next decade of the company. This is the operator's view, what cores actually do, when to replace them, and why the marketing-deck quotes on replacement timelines are nearly always wrong.",
+    "description": "What a core banking system actually does, the four eras of core platforms, the six signs you should replace it, and the hard truth about replacement programmes.",
+    "thesis": "A core banking decision is usually inherited, not made, and it shapes the next decade of the company. This is the operator's view: what cores actually do, when to replace them, and why marketing-deck replacement timelines are nearly always wrong.",
     "featured": true,
     "tags": [
       "core banking",
@@ -2479,7 +2479,7 @@ export const posts: Post[] = [
   {
     "slug": "mdes-network-tokenisation-how-it-actually-works",
     "title": "MDES + Network Tokenisation: How It Actually Works (and Why You Should Default to It)",
-    "metaTitle": "MDES + Network Tokenisation: An Operator's Guide | Rizwan Zafar",
+    "metaTitle": "MDES + Network Tokenisation: A Field Guide | Rizwan Zafar",
     "date": "2026-05-19",
     "category": "Payment Infrastructure",
     "readingTime": "11 min read",
@@ -2511,8 +2511,8 @@ export const posts: Post[] = [
     "date": "2026-05-19",
     "category": "Payment Infrastructure",
     "readingTime": "12 min read",
-    "description": "An operator's guide to MPGS — Hosted Checkout vs. Hosted Session, 3DS2 step-up, tokenisation, recurring, the integration patterns that scale, and the failure modes nobody warns you about.",
-    "thesis": "MPGS is a payment gateway the way SAP is an ERP — vast, powerful, and indifferent to whether you understand it. The integration choices you make in the first sprint decide whether the platform scales for five years or rots for five.",
+    "description": "A field guide to MPGS: Hosted Checkout vs Hosted Session, 3DS2 step-up, tokenisation, recurring, the patterns that scale, and the failure modes nobody warns about.",
+    "thesis": "MPGS is a payment gateway the way SAP is an ERP: vast, powerful, and indifferent to whether you understand it. The integration choices you make in the first sprint decide whether the platform scales for five years or rots for five.",
     "featured": true,
     "tags": [
       "MPGS",
@@ -2562,7 +2562,7 @@ export const posts: Post[] = [
     "date": "2026-05-19",
     "category": "AI in Fintech",
     "readingTime": "10 min read",
-    "description": "An operator's argument for picking classical ML over LLMs in payments. Six problems where a gradient-boosted model still wins, and why throwing a transformer at them is the wrong move.",
+    "description": "The case for classical ML over LLMs in payments: six problems where a gradient-boosted model still wins, and why reaching for a transformer is the wrong move.",
     "thesis": "There is a quiet AI-in-fintech mistake teams keep making: reaching for an LLM the moment the word 'AI' shows up on the roadmap. Sometimes the right answer is a gradient-boosted tree and a clean feature pipeline. This is the operator's argument for the boring choice.",
     "featured": true,
     "tags": [
@@ -2642,7 +2642,7 @@ export const posts: Post[] = [
     "category": "Payment Infrastructure",
     "readingTime": "11 min read",
     "description": "The product architecture of open banking: aggregator vs direct, AISP vs PISP scope, authentication UX as the entire product, A2A vs card-rail economics, and where the durable value lives beyond data access.",
-    "thesis": "Open banking is not a data product. It is a workflow product that happens to use bank data as its raw material. Teams that miss this build pretty dashboards and weak businesses.",
+    "thesis": "Teams that treat open banking as data access ship pretty dashboards and weak businesses. The ones who treat it as a workflow product, with bank data as raw material, build category leaders.",
     "featured": true,
     "tags": [
       "open banking",
@@ -2721,7 +2721,7 @@ export const posts: Post[] = [
     "category": "Program Management",
     "readingTime": "11 min read",
     "description": "How to run regulatory programmes (PCI DSS, ISO 27001, SOC 2, AML/CFT) as actual projects with hard audit dates: scope, evidence, remediation, audit handling, document control, and the operational handoff that decides whether the certification survives.",
-    "thesis": "A regulatory programme is not a compliance exercise. It is a project with an immovable deadline (the audit), an external grader (the auditor), and a delivery cost (remediation) that gets paid up front or many times over.",
+    "thesis": "Six weeks before the audit, every troubled regulatory programme looks identical: forgotten Confluence pages, evidence requests rotting in inboxes, a year of work crammed into six weeks of theatre. Run it as delivery with an immovable deadline and an external grader, or pay remediation many times over.",
     "tags": [
       "project management",
       "PCI DSS",
@@ -2842,7 +2842,7 @@ export const posts: Post[] = [
     "category": "AI in Fintech",
     "readingTime": "10 min read",
     "description": "When does AI fraud detection beat a tuned rule engine in payments? A field comparison based on running both at $1B+ GTV, false positives, drift, explainability, regulator posture and the hybrid model that actually wins.",
-    "thesis": "AI fraud detection beats rule engines on novel-attack detection. Rule engines beat AI on explainability and ops cost. The right answer is almost always a hybrid, and the design of the hybrid is the actual work.",
+    "thesis": "ML catches novel attacks; rule engines win on explainability, ops cost, and the regulator conversation. In regulated payments the answer is a hybrid, and designing where each one fires is the whole job.",
     "tags": [
       "AI fraud detection",
       "rule engine",
@@ -2915,7 +2915,7 @@ export const posts: Post[] = [
     "date": "2026-05-01",
     "category": "Crypto & Stablecoins",
     "readingTime": "10 min read",
-    "description": "Operator view of where stablecoins fit in payments strategy: B2B settlement, treasury, payouts, merchant acceptance, FX, compliance and reconciliation.",
+    "description": "A practitioner view of where stablecoins fit in payments strategy: B2B settlement, treasury, payouts, merchant acceptance, FX, compliance, and reconciliation.",
     "thesis": "The useful stablecoin work is less dramatic than the headlines: B2B settlement, treasury movement, and payout corridors where fiat rails still create avoidable delay.",
     "tags": [
       "stablecoin",
@@ -2966,7 +2966,7 @@ export const posts: Post[] = [
     "category": "Program Management",
     "readingTime": "8 min read",
     "description": "Why payments organisations need hybrid PMBOK + Agile delivery frameworks, Agile sprints for product, PMBOK stage gates for capital and regulatory workstreams. The practitioner playbook.",
-    "thesis": "Pure Agile breaks on regulatory capital projects. Pure PMBOK breaks on product velocity. The right answer is a hybrid, and the design of the hybrid is the actual work.",
+    "thesis": "A regulator wants a stage-gated evidence trail; a product team wants two-week cycles. At Simpaisa I ran 12 squads by classifying each workstream as Agile or Capital and applying the framework that fits. This is that operating model.",
     "tags": [
       "PMBOK",
       "Agile",

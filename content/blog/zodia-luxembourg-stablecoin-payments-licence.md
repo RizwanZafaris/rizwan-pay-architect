@@ -4,7 +4,7 @@ slug: "zodia-luxembourg-stablecoin-payments-licence"
 category: "Crypto & Stablecoins"
 metaTitle: "Zodia Luxembourg Licence: Stablecoin Payment Infrastructure"
 metaDescription: "Zodia's Luxembourg licence shows why stablecoin custody, EMT transfer, settlement, treasury, and reconciliation are now one product surface."
-excerpt: "Zodia's Luxembourg Payment Institution licence is not just a custody headline. It is a signal that regulated stablecoin custody, EMT transfer, settlement, treasury, and reconciliation are becoming one institutional product surface."
+excerpt: "Zodia's new Luxembourg Payment Institution licence lets it custody and transfer stablecoins under one roof. Custody, EMT transfer, settlement, treasury, and reconciliation are collapsing into a single institutional product surface."
 publishDate: "2026-06-20"
 readingTime: "6 min read"
 tags:
