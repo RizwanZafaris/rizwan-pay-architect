@@ -184,6 +184,32 @@ const industryIdsFor = (c: CaseStudy) =>
     .map((t) => t.id)
     .join("|");
 
+// Flagship curation (council audit 2026-07: "nineteen case studies is dilution,
+// not proof"). Six deep studies render as full editorial panels, in this exact
+// order; the remaining fifteen collapse into the compact "Additional
+// programmes" index below. This is a LAYOUT change only — every slug keeps its
+// own detail page and URL (see product-work.$slug.tsx), and the CollectionPage
+// JSON-LD above still lists all of them, so no SEO equity is lost. The order
+// here is the render order and does not have to match the data order; the
+// `flagship: true` flag in caseStudies.ts is the single source of which six.
+const FLAGSHIP_SLUGS = [
+  "simpaisa-payment-infrastructure",
+  "settlement-reconciliation",
+  "merchant-onboarding-kyc",
+  "mdes-network-tokenisation-rollout",
+  "tapmad-dcb-monetisation-wallet-migration",
+  "simpaisa-ai-solutions-suite",
+] as const;
+const bySlug = new Map(caseStudies.map((c) => [c.slug, c]));
+// Ordered flagship panels. Falls back to the data-flagged set if a slug ever
+// drifts, so the two never silently disagree.
+const flagships: CaseStudy[] = FLAGSHIP_SLUGS.map((slug) => bySlug.get(slug)).filter(
+  (c): c is CaseStudy => Boolean(c?.flagship),
+);
+const flagshipSlugSet = new Set<string>(flagships.map((c) => c.slug));
+// Everything else keeps its original data order.
+const additional = caseStudies.filter((c) => !flagshipSlugSet.has(c.slug));
+
 const PW_FILTER_SCRIPT = `
 (() => {
   if (window.__rzPwFilterBound) return;
@@ -340,20 +366,24 @@ function ProductWorkIndex() {
           Clear filters
         </button>
       </div>
-      {/* Index — alternating editorial panels (homepage "Selected work"
-          language): image field one side, display-scale hero metric + title
-          the other, direction flipping per row. The panels stay flat DOM
-          children of one stagger group so PW_FILTER_SCRIPT's hidden-toggle
-          keeps working unchanged. The signal beam runs the section's top rule. */}
+      {/* Flagships — six deep case studies as alternating editorial panels
+          (homepage "Selected work" language): image field one side,
+          display-scale hero metric + title the other, direction flipping per
+          row. The panels stay flat DOM children of one stagger group so
+          PW_FILTER_SCRIPT's hidden-toggle keeps working unchanged. Both this
+          group AND the "Additional programmes" index below carry
+          [data-pw-result] + the three data-pw-* attributes, so the inline
+          vanilla filter spans both groups with zero script changes. The signal
+          beam runs the section's top rule. */}
       <section className="rz-beam relative mt-12 border-t border-rule pt-10 md:mt-16 md:pt-12">
         <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
           ◆ Selected work
         </div>
         <h2 className="mt-3 font-instrument text-3xl leading-tight text-ink md:text-4xl">
-          Infrastructure shipped at scale.
+          Six flagship builds, in depth.
         </h2>
         <div data-rz-stagger className="mt-10 flex flex-col gap-14 md:mt-14 md:gap-24">
-        {caseStudies.map((c, i) => {
+        {flagships.map((c, i) => {
           const heroStat = c.metrics?.[0];
           const flip = i % 2 === 1;
           return (
@@ -436,6 +466,72 @@ function ProductWorkIndex() {
         })}
         </div>
       </section>
+
+      {/* Additional programmes — the remaining fifteen studies as a compact
+          divide-y index. No images, no metric tiles: title + one-line tagline
+          + category/market tags, the whole row links to the full study (every
+          detail page still exists). Plain mono label, no ◆ diamond (overused).
+          Each row carries [data-pw-result] + the three data-pw-* attributes so
+          PW_FILTER_SCRIPT filters this group alongside the flagships. */}
+      {additional.length > 0 && (
+        <section className="rz-beam relative mt-16 border-t border-rule pt-10 md:mt-20 md:pt-12">
+          <div className="text-[10px] uppercase tracking-[0.22em] text-ink-soft font-mono-tech font-semibold">
+            Additional programmes
+          </div>
+          <h2 className="mt-3 font-instrument text-3xl leading-tight text-ink md:text-4xl">
+            The rest of the record, in brief.
+          </h2>
+          <div data-rz-stagger className="mt-10 divide-y divide-rule border-t border-rule">
+            {additional.map((c) => (
+              <Link
+                key={c.slug}
+                to="/product-work/$slug"
+                params={{ slug: c.slug }}
+                data-pw-result
+                data-pw-companies={(c.relevantFor ?? []).join("|")}
+                data-pw-themes={themeIdsFor(c)}
+                data-pw-industries={industryIdsFor(c)}
+                data-glow
+                className="group relative grid min-w-0 gap-y-2 py-6 md:grid-cols-12 md:gap-x-8 md:py-7"
+              >
+                <div className="md:col-span-3">
+                  <span className="text-[10px] uppercase tracking-[0.14em] text-[var(--brand)] font-mono-tech">
+                    {c.category}
+                  </span>
+                </div>
+                <div className="min-w-0 md:col-span-7">
+                  <h3 className="break-words font-instrument text-xl leading-[1.15] text-ink transition-all duration-300 [transition-timing-function:var(--ease-soft)] group-hover:translate-x-1.5 group-hover:text-[var(--brand)] md:text-2xl">
+                    {c.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-ink-soft md:line-clamp-1">
+                    {cardSummary(c.tagline)}
+                  </p>
+                  {c.markets && c.markets.length > 0 && (
+                    <div className="mt-3 flex flex-wrap gap-1.5">
+                      {c.markets.slice(0, 5).map((m) => (
+                        <span
+                          key={m}
+                          className="rounded-full border border-rule bg-surface px-2 py-0.5 text-[10px] uppercase tracking-[0.08em] text-ink-soft font-mono-tech"
+                        >
+                          {m}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                </div>
+                <div className="flex items-center gap-4 md:col-span-2 md:justify-end md:self-center">
+                  <span
+                    className="hidden text-lg text-ink-soft transition-all duration-300 group-hover:translate-x-1 group-hover:text-[var(--brand)] md:inline"
+                    aria-hidden
+                  >
+                    →
+                  </span>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
       <script dangerouslySetInnerHTML={{ __html: PW_FILTER_SCRIPT }} />
     </div>
   );

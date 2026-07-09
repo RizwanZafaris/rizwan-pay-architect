@@ -244,6 +244,16 @@ function CaseStudyPage() {
               {s.engagement}
             </p>
           )}
+          {/* NDA disclosure — for confidential consulting engagements only.
+              States the client is withheld and that figures are the
+              programme's own reported numbers, so hyper-precise metrics beside
+              an unnamed client read as sourced, not invented. Named-employer
+              studies (Simpaisa, Tapmad, Daraz) carry no clientDisclosure. */}
+          {s.clientDisclosure && (
+            <p className="mt-4 max-w-2xl text-[11px] leading-relaxed text-ink-soft font-mono-tech">
+              {s.clientDisclosure}
+            </p>
+          )}
         </div>
         {/* Metric strip — flat bordered ledger tiles, tabular mono numerals.
             Staggered as one group by the reveal engine (children carry no
@@ -347,7 +357,7 @@ function CaseStudyPage() {
           <p>{s.problem}</p>
         </Section>
 
-        <Section id="built" label="System built" title="What we shipped.">
+        <Section id="built" label="What I built" title="What I shipped.">
           <ul>
             {s.built.map((b) => (
               <li key={b}>{b}</li>
@@ -388,7 +398,7 @@ function CaseStudyPage() {
         </Section>
 
         {s.tradeoffs && (
-          <Section id="tradeoffs" label="Trade-offs" title="What we chose against.">
+          <Section id="tradeoffs" label="Trade-offs" title="What I chose against.">
             <ul>
               {s.tradeoffs.map((b) => (
                 <li key={b}>{b}</li>
