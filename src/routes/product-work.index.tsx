@@ -4,6 +4,7 @@ import { z } from "zod";
 import { caseStudies, caseStudyThumb, type CaseStudy } from "@/data/caseStudies";
 import { compactMetricValue } from "@/lib/case-study-ui";
 import { profile } from "@/data/profile";
+import { PLATFORM } from "@/content/facts";
 import { absUrl } from "@/lib/seo";
 
 const searchSchema = z.object({
@@ -21,8 +22,7 @@ export const Route = createFileRoute("/product-work/")({
       { title: "Product Work, Payments Case Studies | Rizwan Zafar" },
       {
         name: "description",
-        content:
-          "Case studies in regulated payments infrastructure: cross-border corridors, settlement, merchant onboarding, KYC/KYB, fraud and risk, from $1B+ GTV platforms.",
+        content: `Case studies in regulated payments infrastructure: cross-border corridors, settlement, merchant onboarding, KYC/KYB, fraud and risk, from ${PLATFORM.gtv} GTV platforms.`,
       },
       { property: "og:title", content: "Product Work, Rizwan Zafar" },
       {
@@ -34,8 +34,7 @@ export const Route = createFileRoute("/product-work/")({
       { name: "twitter:title", content: "Product Work, Rizwan Zafar" },
       {
         name: "twitter:description",
-        content:
-          "Case studies from $1B+ GTV platforms: infrastructure, settlement, cross-border, fraud, KYC/KYB.",
+        content: `Case studies from ${PLATFORM.gtv} GTV platforms: infrastructure, settlement, cross-border, fraud, KYC/KYB.`,
       },
     ],
     links: [{ rel: "canonical", href: absUrl("/product-work") }],
@@ -281,7 +280,7 @@ function ProductWorkIndex() {
         <span className="italic text-[var(--brand)]">regulated payments infrastructure.</span>
       </h1>
       <p className="mt-6 max-w-2xl text-base leading-relaxed text-ink-soft sm:text-lg">
-        Real systems shipped at $1B+ GTV scale. Filter by industry, by the companies this work is
+        Real systems shipped at {PLATFORM.gtv} GTV scale. Filter by industry, by the companies this work is
         most relevant to, or by compliance theme.
       </p>
 

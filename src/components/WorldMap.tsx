@@ -1,4 +1,5 @@
 import { worldMap } from "@/data/world-map.generated";
+import { CAREER } from "@/content/facts";
 
 // Signature brand visual: a dotted world map with the ten operating markets
 // lit and connection arcs drawn from the Dubai hub. SHIPS AS STATIC SVG — no
@@ -236,7 +237,7 @@ export function WorldMap({
       <svg
         viewBox={viewBox}
         role="img"
-        aria-label="World map highlighting ten operating markets across MENA, South Asia and West Africa"
+        aria-label={`World map highlighting ${CAREER.marketsWord} operating markets across MENA, South Asia and West Africa`}
         className="w-full h-auto"
         preserveAspectRatio="xMidYMid meet"
       >

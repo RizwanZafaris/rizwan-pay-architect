@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { products } from "@/data/products";
+import { PLATFORM } from "@/content/facts";
 import { absUrl } from "@/lib/seo";
 
 export const Route = createFileRoute("/products")({
@@ -61,8 +62,9 @@ function ProductsPage() {
           </h1>
           <p className="mt-6 max-w-2xl text-base leading-relaxed text-ink-soft md:text-lg">
             Shipped payment infrastructure, card acquiring, wallets, cross-border corridors,
-            settlement and reconciliation, KYC/KYB, AML/CFT and fraud, that has cleared $1B+ in
-            annual GTV across five regulated markets. Plus a small portfolio of new products in
+            settlement and reconciliation, KYC/KYB, AML/CFT and fraud, that has cleared{" "}
+            {PLATFORM.gtv} in annual GTV across {PLATFORM.marketsWord} regulated markets. Plus a small portfolio of new
+            products in
             quiet build from the product lab.
           </p>
         </div>
@@ -73,10 +75,10 @@ function ProductsPage() {
             className="mx-auto grid max-w-6xl grid-cols-2 md:grid-cols-4 md:divide-x md:divide-[color:var(--rule)]"
           >
             {[
-              { v: "$1B+", l: "annual GTV cleared" },
-              { v: "270M+", l: "annual transactions" },
-              { v: "5", l: "regulated markets" },
-              { v: "99.95%", l: "settlement SLA" },
+              { v: PLATFORM.gtv, l: "annual GTV cleared" },
+              { v: PLATFORM.annualPayments, l: "annual transactions" },
+              { v: String(PLATFORM.marketCount), l: "regulated markets" },
+              { v: PLATFORM.settlementSla, l: "settlement SLA" },
             ].map((p) => (
               <li key={p.l} className="px-5 py-6 sm:px-6 md:py-8">
                 <div className="font-mono-tech text-xl md:text-2xl text-ink leading-none tabular-nums">

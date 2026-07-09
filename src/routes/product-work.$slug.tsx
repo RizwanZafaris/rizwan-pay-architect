@@ -51,7 +51,6 @@ export const Route = createFileRoute("/product-work/$slug")({
       meta: [
         { title: titleTag },
         { name: "description", content: metaDescription },
-        { name: "keywords", content: s.keywords.join(", ") },
         { property: "og:title", content: s.title },
         { property: "og:description", content: s.tagline },
         { property: "og:type", content: "article" },
@@ -407,21 +406,6 @@ function CaseStudyPage() {
           <p>{s.whyItMatters}</p>
         </Section>
 
-        <div className="mt-14 border-t border-rule pt-8">
-          <div className="text-[10px] uppercase tracking-[0.18em] text-ink-soft mb-3 font-mono-tech">
-            Keywords
-          </div>
-          <div className="flex flex-wrap gap-2">
-            {s.keywords.map((k) => (
-              <span
-                key={k}
-                className="rounded-full border border-rule bg-surface px-2.5 py-1 text-xs text-ink-soft"
-              >
-                {k}
-              </span>
-            ))}
-          </div>
-        </div>
         {/* CTA strip */}
         <div className="case-soft-card mt-14 rounded-2xl border border-ink/10 bg-surface p-5 sm:mt-16 sm:p-8 md:p-10">
           <h2 className="break-words font-instrument text-2xl leading-tight text-ink">

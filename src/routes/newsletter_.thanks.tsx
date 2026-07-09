@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { PLATFORM } from "@/content/facts";
 import { absUrl } from "@/lib/seo";
 
 // Subscriber confirmation — the NewsletterSignup forms' native (no-JS) POST
@@ -32,8 +33,8 @@ function NewsletterThanksPage() {
       </h1>
       <p className="mt-5 text-ink-soft leading-relaxed max-w-md mx-auto">
         One operator email a week — payment acceptance, settlement and product delivery notes from
-        running $1B+ annual GTV across frontier markets. Weekly at most, unsubscribe with one
-        reply.
+        running {PLATFORM.gtv} annual GTV across frontier markets. Weekly at most, unsubscribe with
+        one reply.
       </p>
       <div className="mt-9 flex flex-col sm:flex-row items-center justify-center gap-4">
         <Link

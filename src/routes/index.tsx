@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import type { CSSProperties } from "react";
 import { profile } from "@/data/profile";
+import { CAREER, PLATFORM, MERCHANT_ROSTER } from "@/content/facts";
 import { caseStudies, caseStudyThumb } from "@/data/caseStudies";
 // publishedPosts, not posts: the homepage must never surface a future-dated
 // drip essay (raw `posts` made the featured slot and counts drip-leaky).
@@ -111,7 +112,7 @@ export const Route = createFileRoute("/")({
       { title: "Rizwan Zafar | Product, Program & Payments Executive, Frontier Markets" },
       {
         name: "description",
-        content: `Product & program executive with ${profile.career.years} years of experience across ten markets. Today I run payments moving $1B+ a year for 150+ global merchants.`,
+        content: `Product & program executive with ${profile.career.years} years of experience across ${CAREER.marketsWord} markets. Today I run payments moving ${PLATFORM.gtv} a year for ${PLATFORM.merchants} global merchants.`,
       },
       {
         property: "og:title",
@@ -119,8 +120,7 @@ export const Route = createFileRoute("/")({
       },
       {
         property: "og:description",
-        content:
-          "I build payment and product infrastructure for the markets most operators avoid. Simpaisa platform: $1B+ a year, 150+ global merchants including TikTok, Samsung, InDrive, Temu, Spotify and Yango.",
+        content: `I build payment and product infrastructure for the markets most operators avoid. Simpaisa platform: ${PLATFORM.gtv} a year, ${PLATFORM.merchants} global merchants including ${MERCHANT_ROSTER.slice(0, -1).join(", ")} and ${MERCHANT_ROSTER[MERCHANT_ROSTER.length - 1]}.`,
       },
       { property: "og:url", content: absUrl("/") },
       { property: "og:type", content: "profile" },
@@ -130,8 +130,7 @@ export const Route = createFileRoute("/")({
       },
       {
         name: "twitter:description",
-        content:
-          "Payment infrastructure for the markets most operators avoid. Simpaisa platform: $1B+ a year, 270M+ payments a year, 150+ merchants.",
+        content: `Payment infrastructure for the markets most operators avoid. Simpaisa platform: ${PLATFORM.gtv} a year, ${PLATFORM.annualPayments} payments a year, ${PLATFORM.merchants} merchants.`,
       },
     ],
     links: [
@@ -566,9 +565,10 @@ function HomePage() {
           <div>
             <div className="max-w-2xl">
               {/* Two-tier safe: sentence 1 carries only career-scope markers
-                  ("17 years", "ten markets"); sentence 2 carries only platform
-                  metrics ("$1B+", "150+ merchants"). The full stop between them
-                  is a clause boundary for the seo-audit gate — do not merge. */}
+                  (years of experience, ten markets); sentence 2 carries only
+                  platform metrics (PLATFORM.gtv, PLATFORM.merchants). The full
+                  stop between them is a clause boundary for the seo-audit gate —
+                  do not merge. */}
               <p
                 data-hero-in
                 style={{ ["--i" as string]: 1 }}
@@ -578,12 +578,13 @@ function HomePage() {
                 <span className="text-ink font-medium">
                   {profile.career.years} years of experience
                 </span>{" "}
-                — ten markets across MENA and South Asia, from Daraz&rsquo;s marketplaces to
+                — {CAREER.marketsWord} markets across MENA and South Asia, from Daraz&rsquo;s marketplaces to
                 Tapmad&rsquo;s streaming business to Simpaisa&rsquo;s cross-border acquiring, payouts
                 &amp; gateway. Today I run payments moving{" "}
-                <span className="text-ink font-medium">$1B+ a year</span> for{" "}
-                <span className="text-ink font-medium">150+ global merchants</span> including TikTok,
-                Samsung, InDrive, Temu, Spotify and Yango.
+                <span className="text-ink font-medium">{PLATFORM.gtv} a year</span> for{" "}
+                <span className="text-ink font-medium">{PLATFORM.merchants} global merchants</span>{" "}
+                including {MERCHANT_ROSTER.slice(0, -1).join(", ")} and{" "}
+                {MERCHANT_ROSTER[MERCHANT_ROSTER.length - 1]}.
               </p>
               <div
                 data-hero-in
@@ -1136,7 +1137,7 @@ function HomePage() {
                 ◆ About me
               </div>
               {/* Career-scope only, each on its own line (two-tier clean). The
-                  platform "$1B+" appears below in the band prose in its own
+                  platform GTV figure appears below in the band prose in its own
                   sentence, never joined to a career marker in one clause. */}
               <div className="font-instrument text-ink mt-5 leading-[1.08] text-[clamp(2.5rem,4.2vw,4rem)]">
                 {profile.career.years} <span className="text-ink-soft">years.</span>
@@ -1163,7 +1164,7 @@ function HomePage() {
               <span className="italic text-[var(--brand)]">
                 controlled, scalable, auditable, and resilient.
               </span>{" "}
-              At Simpaisa today that platform moves $1B+ a year.
+              At Simpaisa today that platform moves {PLATFORM.gtv} a year.
             </p>
             <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4">
               {profile.metrics.slice(0, 4).map((m, i) => (

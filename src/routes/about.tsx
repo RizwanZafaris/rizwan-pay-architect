@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { profile, personSchemaAwards, personSchemaCredentials } from "@/data/profile";
 import { absUrl, OG_IMAGE_URL, SITE_URL } from "@/lib/seo";
+import { DARAZ } from "@/content/facts";
 
 // Operator-story /about page (brand-rebuild strategy doc §5). Replaces the
 // old /resume redirect stub. JS-less: motion is the global vanilla engine only
@@ -221,7 +222,7 @@ function AboutPage() {
             <p>
               Product followed delivery. At Tapmad I owned monetization for Pakistan's leading OTT
               platform and built the billing that turned it into a business. At Daraz (Alibaba
-              Group) I ran payment operations across five markets through a COVID volume surge. Then
+              Group) I ran payment operations across {DARAZ.marketsWord} markets through a COVID volume surge. Then
               at Simpaisa I became Chief Product Officer, building full-stack payment infrastructure
               — card acquiring, wallets, cross-border corridors, settlement and the risk controls
               underneath.

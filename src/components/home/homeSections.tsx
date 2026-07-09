@@ -7,6 +7,7 @@
 // gate in scripts/seo-audit.ts stays green.
 import { Link } from "@tanstack/react-router";
 import { profile } from "@/data/profile";
+import { CAREER, PLATFORM, DARAZ } from "@/content/facts";
 import { WorldMap } from "@/components/WorldMap";
 import { RevealHeading } from "@/components/RevealHeading";
 import { AnimatedMetric } from "@/components/motion/AnimatedMetric";
@@ -294,13 +295,13 @@ export function MapStrip() {
 const PILLARS = [
   {
     title: "Payments & cross-border",
-    // Platform-scope sentence: $1B+ stands alone, no career marker in-clause.
-    body: "A $1B+/yr gateway across five frontier markets: acceptance, wallets, settlement, compliance.",
+    // Platform-scope sentence: GTV stands alone, no career marker in-clause.
+    body: `A ${PLATFORM.gtv}/yr gateway across ${PLATFORM.marketsWord} frontier markets: acceptance, wallets, settlement, compliance.`,
     href: "/product-work?industry=payments",
   },
   {
     title: "E-commerce & marketplaces",
-    body: "Daraz (Alibaba Group): payments and conversion across five South-Asian markets — +15% checkout conversion, −20% false declines.",
+    body: `Daraz (Alibaba Group): payments and conversion across ${DARAZ.marketsWord} South-Asian markets — +15% checkout conversion, −20% false declines.`,
     href: "/product-work?industry=ecommerce",
   },
   {
@@ -527,7 +528,7 @@ export const howIWorkFaqs: { q: string; a: string }[] = [
   },
   {
     q: "Which markets have you worked across?",
-    a: "Ten markets across MENA and South Asia over my career, spanning payments, e-commerce and streaming. At Simpaisa specifically, I run the platform across five regulated frontier markets.",
+    a: `${CAREER.marketsWordCap} markets across MENA and South Asia over my career, spanning payments, e-commerce and streaming. At Simpaisa specifically, I run the platform across ${PLATFORM.marketsWord} regulated frontier markets.`,
   },
   {
     q: "How technical are you?",

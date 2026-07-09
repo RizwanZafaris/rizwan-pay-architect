@@ -1,6 +1,7 @@
 import type { CSSProperties } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { personSchemaAwards, personSchemaCredentials, profile } from "@/data/profile";
+import { PLATFORM, DARAZ } from "@/content/facts";
 import { BookingSection } from "@/components/BookingSection";
 import { absUrl, GOOGLE_ADS_PAGE_VIEW_CONVERSION_SEND_TO, OG_IMAGE_URL, SITE_URL } from "@/lib/seo";
 
@@ -84,10 +85,10 @@ const googleAdsResumeConversionScript = GOOGLE_ADS_PAGE_VIEW_CONVERSION_SEND_TO
   : "";
 
 const proofMetrics = [
-  { value: "$1B+", label: "Annual GTV" },
-  { value: "270M+", label: "Payments a year" },
+  { value: PLATFORM.gtv, label: "Annual GTV" },
+  { value: PLATFORM.annualPayments, label: "Payments a year" },
   { value: "5", label: "Frontier markets" },
-  { value: "99.95%", label: "Settlement SLA" },
+  { value: PLATFORM.settlementSla, label: "Settlement SLA" },
   { value: "40+", label: "Engineers led" },
   { value: "4", label: "Production AI deployments" },
 ] as const;
@@ -123,8 +124,8 @@ const recruiterSearchFit = [
 // fully-resolved literal path, so we pass the pattern + params instead.
 const selectedProofLinks = [
   {
-    title: "$1B+ regulated payment infrastructure",
-    body: "Multi-rail pay-in, payout, wallet, card acquiring, settlement and cross-border infrastructure across five frontier markets.",
+    title: `${PLATFORM.gtv} regulated payment infrastructure`,
+    body: `Multi-rail pay-in, payout, wallet, card acquiring, settlement and cross-border infrastructure across ${PLATFORM.marketsWord} frontier markets.`,
     slug: "simpaisa-payment-infrastructure",
   },
   {
@@ -134,7 +135,7 @@ const selectedProofLinks = [
   },
   {
     title: "Settlement and reconciliation at scale",
-    body: "Canonical ledger, three-way reconciliation and 99.95% settlement SLA across fragmented rails and partners.",
+    body: `Canonical ledger, three-way reconciliation and ${PLATFORM.settlementSla} settlement SLA across fragmented rails and partners.`,
     slug: "settlement-reconciliation",
   },
   {
@@ -158,10 +159,10 @@ const resumeExperience = [
     location: "Dubai, UAE",
     bullets: [
       "Owned product strategy and program execution for a regulated multi-rail payments platform spanning pay-in, payouts, wallets, DCB, IBFT, card acquiring, settlement, FX and cross-border corridors.",
-      "Helped scale infrastructure from $0 to $1B+ GTV and 270M+ payments a year, working with leading global PSPs across 5 frontier markets.",
-      "Built merchant onboarding, KYC/KYB, risk-tiering and category pricing flows that cut standard-risk activation from weeks to hours and supported 150+ merchant integrations.",
+      `Helped scale infrastructure from $0 to ${PLATFORM.gtv} GTV and ${PLATFORM.annualPayments} payments a year, working with leading global PSPs across 5 frontier markets.`,
+      `Built merchant onboarding, KYC/KYB, risk-tiering and category pricing flows that cut standard-risk activation from weeks to hours and supported ${PLATFORM.merchants} merchant integrations.`,
       "Led a 40-engineer payments organization across 12 squads; managed $5M+ technology budget, 15+ vendor relationships, PCI DSS, ISO/IEC 27001 and multi-jurisdiction reporting programs.",
-      "Improved platform economics and control: 97% payment success at 90% straight-through processing, 99.95% settlement SLA, fraud loss below 0.1% of GTV and downtime down 90%.",
+      `Improved platform economics and control: 97% payment success at 90% straight-through processing, ${PLATFORM.settlementSla} settlement SLA, fraud loss below 0.1% of GTV and downtime down 90%.`,
       "Deployed four production AI/GenAI solutions across merchant support, incident auto-escalation, partner operations and fraud/AML decisioning.",
     ],
   },
@@ -171,7 +172,7 @@ const resumeExperience = [
     period: "Mar 2020 - Sep 2020",
     location: "Karachi, Pakistan",
     bullets: [
-      "Ran payment operations governance across five markets during a COVID-driven volume surge, covering settlement cycles, disputes, fraud rules and COD-to-digital conversion.",
+      `Ran payment operations governance across ${DARAZ.marketsWord} markets during a COVID-driven volume surge, covering settlement cycles, disputes, fraud rules and COD-to-digital conversion.`,
       "Coordinated multi-country reconciliation, vendor management and Alipay localization with Alibaba teams; expanded payment coverage on checkout by ~40%.",
     ],
   },
@@ -245,8 +246,8 @@ const prioritySkills = [
 
 const resumeSignals = [
   "Recruiter scan-ready",
-  "$1B+ scale validated",
-  "Schedule call ready",
+  `${PLATFORM.gtv} scale validated`,
+  "Intro call ready",
   "Global fintech ready",
 ] as const;
 
@@ -287,8 +288,7 @@ export const Route = createFileRoute("/resume")({
       { title: "Product & Program Executive Resume | Rizwan Zafar" },
       {
         name: "description",
-        content:
-          "Rizwan Zafar resume: Product & Program Executive for fintech infrastructure, payments, PMO and AI operations. $1B+ GTV, 270M+ payments a year, 5 markets.",
+        content: `Rizwan Zafar resume: Product & Program Executive for fintech infrastructure, payments, PMO and AI operations. ${PLATFORM.gtv} GTV, ${PLATFORM.annualPayments} payments a year, ${PLATFORM.marketCount} markets.`,
       },
       { name: "keywords", content: resumeKeywords.join(", ") },
       {
@@ -543,8 +543,9 @@ function ResumePage() {
             className="resume-soft-reveal text-base text-ink-soft leading-relaxed max-w-3xl"
             style={delayStyle(120)}
           >
-            Currently CPO at Simpaisa, where I helped scale regulated payment infrastructure to $1B+
-            GTV, 270M+ payments a year, working with leading global PSPs. My operating lane sits
+            Currently CPO at Simpaisa, where I helped scale regulated payment infrastructure to{" "}
+            {PLATFORM.gtv} GTV, {PLATFORM.annualPayments} payments a year, working with leading global
+            PSPs. My operating lane sits
             between product strategy, program delivery, compliance, risk, engineering leadership,
             partner ecosystems and market expansion, with adjacent work across BNPL, OTT
             subscription billing and crypto on/off-ramp product strategy.

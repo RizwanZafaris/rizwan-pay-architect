@@ -131,7 +131,11 @@ export const caseStudies: CaseStudy[] = [
       "Event-driven webhooks; idempotency, retries and DLQs are first-class",
     ],
     operatingModel: [
-      "25+ person org across product, engineering, ops, risk and compliance",
+      // Was "25+ person org" — contradicted the owner-ruled bio in profile.ts
+      // ("2 to 50+ people (40+ engineers) across 12 cross-functional squads").
+      // Aligned to canonical. TODO-VERIFY(owner): if 25+ was a point-in-time
+      // figure, say so and we date it ("25+ at launch, 50+ today").
+      "50+ person org across product, engineering, ops, risk and compliance — 40+ engineers in 12 squads",
       "Weekly rail health reviews, success rate, cost, latency, dispute rate per partner",
       "Joint risk + product council owning the risk taxonomy and false-positive budget",
       "Regulator-facing reporting pipeline owned by product, not finance",

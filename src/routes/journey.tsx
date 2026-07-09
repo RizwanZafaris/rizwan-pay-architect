@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { markets, type Market } from "@/data/markets";
 import { profile } from "@/data/profile";
+import { CAREER, PLATFORM, DARAZ } from "@/content/facts";
 import { WorldMap } from "@/components/WorldMap";
 import { absUrl } from "@/lib/seo";
 
@@ -51,7 +52,7 @@ const eras: Era[] = [
       "Tapmad (OTT): launched Direct Carrier Billing across all four telcos and grew from 0 to 5M paid subscribers.",
       "Tapmad: cut payment cost from 50% of revenue to about 1% and lifted ARPU by 70%, on the way to $10M+ ARR.",
       "Tapmad: expanded DCB and wallet billing into the UAE and KSA with regional telco and wallet partners.",
-      "Daraz (Alibaba Group): ran payment operations across five markets — +15% checkout conversion, −20% false declines, 99.5% settlement.",
+      `Daraz (Alibaba Group): ran payment operations across ${DARAZ.marketsWord} markets — +15% checkout conversion, −20% false declines, 99.5% settlement.`,
       "Daraz: widened payment coverage by roughly 40% by localising regional methods on checkout.",
     ],
   },
@@ -63,8 +64,8 @@ const eras: Era[] = [
     // Each string below is a standalone clause with NO career marker, so the
     // platform metrics never mix tiers. Do not merge these into one sentence.
     points: [
-      "Built a $1B+ GTV gateway processing 270M+ payments a year.",
-      "Reached 150+ merchants at a 99.95% settlement SLA.",
+      `Built a ${PLATFORM.gtv} GTV gateway processing ${PLATFORM.annualPayments} payments a year.`,
+      `Reached ${PLATFORM.merchants} merchants at a ${PLATFORM.settlementSla} settlement SLA.`,
       "Shipped four market launches in 2024, and grew the product org from 2 to 8 PMs across a 50+ team.",
       "Led PCI-DSS Level 1 and ISO 27001 from scratch.",
     ],
@@ -95,16 +96,16 @@ export const Route = createFileRoute("/journey")({
   head: () => ({
     meta: [
       {
-        title: `${profile.career.years} Years, 10 Markets: A Payments Operator's Journey | Rizwan Zafar`,
+        title: `${profile.career.years} Years, ${CAREER.marketCount} Markets: A Payments Operator's Journey | Rizwan Zafar`,
       },
       {
         name: "description",
         content:
-          "Seventeen years, ten markets, three industries — from Daraz's marketplaces to Tapmad's streaming business to Simpaisa's cross-border gateway.",
+          `Seventeen years, ${CAREER.marketsWord} markets, three industries — from Daraz's marketplaces to Tapmad's streaming business to Simpaisa's cross-border gateway.`,
       },
       {
         property: "og:title",
-        content: `${profile.career.years} Years, 10 Markets — A Payments Operator's Journey`,
+        content: `${profile.career.years} Years, ${CAREER.marketCount} Markets — A Payments Operator's Journey`,
       },
       {
         property: "og:description",
@@ -115,7 +116,7 @@ export const Route = createFileRoute("/journey")({
       { property: "og:type", content: "profile" },
       {
         name: "twitter:title",
-        content: `${profile.career.years} Years, 10 Markets — A Payments Operator's Journey`,
+        content: `${profile.career.years} Years, ${CAREER.marketCount} Markets — A Payments Operator's Journey`,
       },
       {
         name: "twitter:description",
@@ -434,7 +435,7 @@ function JourneyPage() {
           ◆ The operating map
         </div>
         <h1 className="mt-9 font-instrument tracking-[-0.02em] text-[clamp(2.5rem,5.5vw,5.5rem)] leading-[1.0] text-ink">
-          Seventeen years. Ten markets.{" "}
+          Seventeen years. {CAREER.marketsWordCap} markets.{" "}
           <span className="italic text-[var(--brand)]">Three industries.</span>
         </h1>
         <p className="mt-8 max-w-2xl text-lg leading-relaxed text-ink-soft">
@@ -451,7 +452,7 @@ function JourneyPage() {
             <WorldMap showLabels />
           </div>
           <p className="mt-4 text-center text-[10px] uppercase tracking-[0.22em] text-ink-soft font-mono-tech">
-            ◆ Ten operating markets · arcs originate from the Dubai hub
+            ◆ {CAREER.marketsWordCap} operating markets · arcs originate from the Dubai hub
           </p>
         </div>
       </section>
@@ -530,7 +531,7 @@ function JourneyPage() {
               ◆ Every stop on the map
             </div>
             <h2 className="mt-3 font-instrument text-[clamp(2rem,4vw,3.5rem)] leading-[1.05] text-ink">
-              Ten markets, <span className="italic text-[var(--brand)]">ten lessons</span>
+              {CAREER.marketsWordCap} markets, <span className="italic text-[var(--brand)]">ten lessons</span>
             </h2>
             <p className="mt-4 max-w-2xl text-ink-soft leading-relaxed">
               What shipped in each market, and the operating lesson it left behind.

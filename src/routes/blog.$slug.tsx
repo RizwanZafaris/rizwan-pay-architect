@@ -2,6 +2,7 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { useEffect, type CSSProperties } from "react";
 import { getPost, getRelated, isPostPublished, publishedPosts, type Post } from "@/data/posts";
 import { profile } from "@/data/profile";
+import { PLATFORM } from "@/content/facts";
 import { caseStudies } from "@/data/caseStudies";
 import { hubForPost } from "@/data/hubs";
 import { absUrl, SITE_URL, OG_IMAGE_URL, titleFor, trimToMax } from "@/lib/seo";
@@ -482,8 +483,8 @@ function EssayAuthorBox() {
           <p className="mt-0.5 text-sm text-ink-soft">{profile.role}</p>
           <p className="mt-3 text-sm leading-relaxed text-ink-soft">
             Payments product &amp; program leader &mdash; scaled a regulated multi-rail platform
-            from $0 to $1B+ GTV across five frontier markets. These essays are the public version of
-            how I think through the work.
+            from $0 to {PLATFORM.gtv} GTV across {PLATFORM.marketsWord} frontier markets. These essays are the public
+            version of how I think through the work.
           </p>
           <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm">
             <Link to="/resume" className="text-ink underline-offset-4 hover:underline">

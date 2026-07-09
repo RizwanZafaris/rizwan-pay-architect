@@ -3,6 +3,7 @@ import { zodValidator, fallback } from "@tanstack/zod-adapter";
 import { z } from "zod";
 import { publishedPosts as posts } from "@/data/posts";
 import { hubs, hubForPost } from "@/data/hubs";
+import { PLATFORM } from "@/content/facts";
 import { absUrl } from "@/lib/seo";
 import { siteSearch } from "@/lib/analytics";
 
@@ -199,7 +200,7 @@ function authoritySignals() {
   return [
     { value: String(posts.length), label: "Essays" },
     { value: String(hubs.length), label: "Hubs" },
-    { value: "$1B+", label: "GTV lens" },
+    { value: PLATFORM.gtv, label: "GTV lens" },
   ];
 }
 

@@ -2,6 +2,7 @@ import type { CSSProperties } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { audiences, getHub, postsForHub, caseStudiesForHub, type Audience } from "@/data/hubs";
 import { personSchemaAwards, personSchemaCredentials, profile } from "@/data/profile";
+import { PLATFORM } from "@/content/facts";
 import { absUrl, OG_IMAGE_URL, SITE_URL } from "@/lib/seo";
 
 const recruiterKeywords = [
@@ -90,7 +91,7 @@ const recruiterFaqJsonLd = {
       name: "What payment markets has Rizwan Zafar worked in?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Pakistan, Bangladesh, Nepal, Iraq and Egypt — 5 regulated frontier markets processing $1B+ annual GTV and 270M+ payments a year.",
+        text: `Pakistan, Bangladesh, Nepal, Iraq and Egypt — 5 regulated frontier markets processing ${PLATFORM.gtv} annual GTV and ${PLATFORM.annualPayments} payments a year.`,
       },
     },
     {
@@ -98,7 +99,7 @@ const recruiterFaqJsonLd = {
       name: "What is Rizwan Zafar's experience with payment infrastructure?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: `${profile.career.years} years in fintech and payments. As CPO at SimPaisa, Rizwan scaled a multi-rail payment platform to $1B+ GTV, 270M+ payments a year, PCI DSS Level 1 and ISO/IEC 27001 certified, serving TikTok, Samsung, Shein, Uber and MoneyGram.`,
+        text: `${profile.career.years} years in fintech and payments. As CPO at SimPaisa, Rizwan scaled a multi-rail payment platform to ${PLATFORM.gtv} GTV, ${PLATFORM.annualPayments} payments a year, PCI DSS Level 1 and ISO/IEC 27001 certified, serving TikTok, Samsung, Shein, Uber and MoneyGram.`,
       },
     },
     {
@@ -126,8 +127,7 @@ export const Route = createFileRoute("/for/")({
       { title: "Recruiter Brief | Rizwan Zafar, Product & Program Executive" },
       {
         name: "description",
-        content:
-          "Recruiter-ready brief for Rizwan Zafar: senior product and program leader in payments infrastructure, $1B+ GTV, 270M+ payments a year and 5 frontier markets.",
+        content: `Recruiter-ready brief for Rizwan Zafar: senior product and program leader in payments infrastructure, ${PLATFORM.gtv} GTV, ${PLATFORM.annualPayments} payments a year and 5 frontier markets.`,
       },
       {
         property: "og:title",
@@ -182,10 +182,10 @@ const recruiterPrintCss = `
 `;
 
 const proofMetrics = [
-  { value: "$1B+", label: "GTV scaled" },
-  { value: "270M+", label: "Annual transactions" },
+  { value: PLATFORM.gtv, label: "GTV scaled" },
+  { value: PLATFORM.annualPayments, label: "Annual transactions" },
   { value: "5", label: "Markets" },
-  { value: "99.95%", label: "Settlement SLA" },
+  { value: PLATFORM.settlementSla, label: "Settlement SLA" },
   { value: "40+", label: "Engineers led" },
   { value: "4", label: "Production AI deployments" },
 ] as const;
@@ -216,7 +216,7 @@ const roleLanes = [
     fit: "Payment infrastructure, payment orchestration, cross-border corridors, settlement and reconciliation.",
     proof: [
       "Built regulated rails across local methods, cards, wallets, payout flows, FX and partner routing.",
-      "Held 97% payment success at 90% straight-through processing and a 99.95% settlement SLA.",
+      `Held 97% payment success at 90% straight-through processing and a ${PLATFORM.settlementSla} settlement SLA.`,
       "Worked where compliance, risk, bank partnerships and market operations are part of the product.",
     ],
   },
@@ -255,14 +255,14 @@ const targetRoles: Record<Audience["slug"], string[]> = {
 const audienceProof: Record<Audience["slug"], { label: string; value: string }[]> = {
   "visa-mastercard": [
     { label: "Acceptance & acquiring", value: "MPGS · MDES · 3DS" },
-    { label: "Scale", value: "$1B+ GTV" },
+    { label: "Scale", value: `${PLATFORM.gtv} GTV` },
     { label: "Controls", value: "<0.1% fraud loss" },
     { label: "Markets", value: "MENA · South Asia" },
   ],
   "stripe-adyen-wise-thunes": [
     { label: "Rails", value: "Cards · wallets · DCB · IBFT" },
     { label: "Partner stack", value: "DLocal · Thunes · Boku · Coda" },
-    { label: "Transactions", value: "270M+ / year" },
+    { label: "Transactions", value: `${PLATFORM.annualPayments} / year` },
     { label: "Developer surface", value: "APIs · webhooks · routing" },
   ],
   "banks-fintechs": [

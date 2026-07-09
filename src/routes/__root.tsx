@@ -72,6 +72,7 @@ import { SiteHeader, SiteFooter, CampaignHeader, CampaignFooter } from "@/compon
 import { calendarCampaignParamsScript } from "@/lib/campaign";
 import { personSchemaAwards, personSchemaCredentials, profile } from "@/data/profile";
 import { markets } from "@/data/markets";
+import { PLATFORM } from "@/content/facts";
 import {
   absUrl,
   SITE_URL,
@@ -328,7 +329,7 @@ const personJsonLd = {
   jobTitle: "Chief Product Officer, Payments Infrastructure",
   // Duration is computed (owner ruling 2026-07-06) so it can't go stale. The
   // sentence break before the platform metrics keeps the two-tier gate green.
-  description: `Fintech CPO with ${profile.career.years} years scaling regulated payment infrastructure. $1B+ GTV, 270M+ payments a year, 5 frontier markets. Dubai, UAE.`,
+  description: `Fintech CPO with ${profile.career.years} years scaling regulated payment infrastructure. ${PLATFORM.gtv} GTV, ${PLATFORM.annualPayments} payments a year, ${PLATFORM.marketCount} frontier markets. Dubai, UAE.`,
   disambiguatingDescription: profile.entityDisambiguation,
   url: SITE_URL,
   image: `${SITE_URL}/og-default.png`,
@@ -474,8 +475,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:title", content: "Rizwan Zafar, Payments Product Executive | Dubai" },
       {
         property: "og:description",
-        content:
-          "Product & Program Executive scaling fintech infrastructure in complex markets. $1B+ GTV, 270M+ payments a year, 5 frontier markets. Acceptance, cross-border, settlement, KYC/KYB, AML and fraud.",
+        content: `Product & Program Executive scaling fintech infrastructure in complex markets. ${PLATFORM.gtv} GTV, ${PLATFORM.annualPayments} payments a year, ${PLATFORM.marketCount} frontier markets. Acceptance, cross-border, settlement, KYC/KYB, AML and fraud.`,
       },
       { property: "og:image", content: OG_IMAGE_URL },
       { property: "og:image:width", content: "1200" },
@@ -487,8 +487,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:title", content: "Rizwan Zafar, Payments Product Executive | Dubai" },
       {
         name: "twitter:description",
-        content:
-          "Product & Program Executive scaling fintech infrastructure in complex markets. $1B+ GTV, 270M+ payments a year, 5 frontier markets.",
+        content: `Product & Program Executive scaling fintech infrastructure in complex markets. ${PLATFORM.gtv} GTV, ${PLATFORM.annualPayments} payments a year, ${PLATFORM.marketCount} frontier markets.`,
       },
       { name: "twitter:image", content: OG_IMAGE_URL },
       { name: "twitter:image:alt", content: `${profile.name}, Payments Product Executive` },
