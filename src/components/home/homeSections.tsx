@@ -314,42 +314,46 @@ const PILLARS = [
 export function IndustryPillars() {
   return (
     <section className="rz-beam relative">
-      <div className="mx-auto max-w-6xl px-5 sm:px-6 py-[var(--space-section-md)]">
+      <div className="mx-auto max-w-[1400px] px-5 sm:px-8 lg:px-12 py-[var(--space-section-md)]">
         <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
           ◆ Three industries
         </div>
-        <h2 className="font-instrument text-4xl md:text-6xl text-ink mt-3 leading-[1.02] max-w-3xl">
+        <h2 className="font-instrument text-[clamp(2.5rem,5.5vw,5.5rem)] text-ink mt-3 leading-[1.0] max-w-4xl">
           <RevealHeading lead="One operating discipline," emphasis="three arenas." />
         </h2>
-        {/* Stagger lives on the cards grid (never the whole section — the
-            heading must not be hidden by the stagger's child-hiding CSS).
-            Cards drop .rz-reveal so they aren't double-hidden; data-glow
-            composes with home-card-lift (glow ::after + lift transform touch
-            different properties, and neither card class owns a pseudo). */}
-        <div data-rz-stagger className="mt-10 grid md:grid-cols-3 gap-5">
+        {/* V2 monument pass: the 3-card grid is gone. Each arena is a
+            full-width index row — huge mono index, statement serif title,
+            right-column body. The whole row is the link (title = accessible
+            name); hover slides the title and lights the row via data-glow.
+            Stagger stays on the list wrapper, never the section (heading
+            must not be hidden by the child-hiding CSS). */}
+        <div data-rz-stagger className="mt-12 border-t border-rule md:mt-16">
           {PILLARS.map((p, i) => (
             <a
               key={p.title}
               href={p.href}
               data-glow
-              className="home-pillar-card home-card home-card-lift group relative overflow-hidden rounded-lg border border-rule bg-card p-7 flex flex-col"
+              className="home-pillar-row group relative grid grid-cols-[auto_1fr] items-center gap-x-5 border-b border-rule py-7 md:grid-cols-12 md:gap-x-10 md:py-10"
             >
-              <div
-                className="font-mono-tech text-[11px] tracking-[0.22em] text-[var(--brand)]"
+              <span
+                className="font-mono-tech text-[11px] tracking-[0.22em] text-[var(--brand)] md:col-span-1"
                 aria-hidden
               >
                 {String(i + 1).padStart(2, "0")}
-              </div>
-              <h3 className="mt-3 font-instrument text-2xl text-ink leading-tight group-hover:text-[var(--brand)] transition-colors">
+              </span>
+              <h3 className="font-instrument text-3xl leading-[1.02] text-ink transition-transform duration-300 [transition-timing-function:var(--ease-soft)] group-hover:translate-x-2 sm:text-4xl md:col-span-6 md:text-5xl lg:text-6xl">
                 {p.title}
               </h3>
-              <p className="mt-3 text-sm text-ink-soft leading-relaxed flex-1">{p.body}</p>
-              <div className="mt-6 text-sm text-ink group-hover:text-[var(--brand)] inline-flex items-center gap-1.5 transition-colors">
-                See the case studies
-                <span className="transition-transform group-hover:translate-x-1" aria-hidden>
-                  →
-                </span>
-              </div>
+              <p className="col-span-2 mt-4 text-sm leading-relaxed text-ink-soft md:col-span-4 md:mt-0 md:text-[15px]">
+                {p.body}
+              </p>
+              <span
+                className="hidden self-center justify-self-end text-2xl text-ink-soft transition-all duration-300 group-hover:translate-x-1 group-hover:text-[var(--brand)] md:col-span-1 md:inline-flex"
+                aria-hidden
+              >
+                →
+              </span>
+              <span className="sr-only"> — see the case studies</span>
             </a>
           ))}
         </div>
@@ -444,24 +448,27 @@ export function GetInTouchBand() {
           <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
             ◆ Get in touch
           </div>
-          <h2 className="font-instrument text-4xl md:text-6xl text-ink mt-3 leading-[1.05] max-w-3xl mx-auto">
+          <h2 className="font-instrument text-[clamp(2.5rem,5.5vw,5.5rem)] text-ink mt-3 leading-[1.05] max-w-3xl mx-auto">
             <RevealHeading lead="The right conversation depends on" emphasis="who you are." />
           </h2>
         </div>
         {/* Stagger on the cards grid only (heading stays visible); cards drop
             .rz-reveal (double-hide) and pick up data-glow, which composes
             with home-card-lift — see the IndustryPillars note. */}
-        <div data-rz-stagger className="mt-12 grid md:grid-cols-3 gap-5">
+        <div
+          data-rz-stagger
+          className="mt-12 grid gap-y-10 border-t border-rule pt-10 md:grid-cols-3 md:gap-0 md:divide-x md:divide-[color:var(--rule)] md:pt-0"
+        >
           {cards.map((c) => (
             <div
               key={c.eyebrow}
               data-glow
-              className="home-card home-card-lift rounded-lg border border-rule bg-card p-7 flex flex-col"
+              className="relative flex flex-col md:px-10 md:py-10 md:first:pl-0 md:last:pr-0"
             >
               <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
                 {c.eyebrow}
               </div>
-              <h3 className="font-instrument text-xl text-ink mt-3 leading-snug">{c.title}</h3>
+              <h3 className="font-instrument text-2xl md:text-[1.7rem] text-ink mt-3 leading-snug">{c.title}</h3>
               <p className="mt-2 text-sm text-ink-soft leading-relaxed flex-1">{c.body}</p>
               <div className="mt-6 flex flex-col gap-2.5">
                 {/* Tap targets (Gate-A 2026-07-08, WCAG 2.5.8): py + negative
@@ -531,7 +538,7 @@ export function Testimonials() {
         <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
           ◆ In their words
         </div>
-        <h2 className="font-instrument text-4xl md:text-6xl text-ink mt-3 leading-[1.03] max-w-3xl">
+        <h2 className="font-instrument text-[clamp(2.5rem,5.5vw,5.5rem)] text-ink mt-3 leading-[1.03] max-w-3xl">
           <RevealHeading lead="The people I've built with" emphasis="on the record." />
         </h2>
         {/* Ready for real quotes: the engine cascades <li> entries when data
@@ -622,7 +629,7 @@ export function HowIWorkFaq() {
         <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
           ◆ How I work
         </div>
-        <h2 className="font-instrument text-4xl md:text-6xl text-ink mt-3 leading-[1.05]">
+        <h2 className="font-instrument text-[clamp(2.5rem,5.5vw,5.5rem)] text-ink mt-3 leading-[1.05]">
           <RevealHeading lead="The questions I get" emphasis="most." />
         </h2>
         <div className="mt-10 border-t border-rule">

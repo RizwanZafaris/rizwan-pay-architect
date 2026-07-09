@@ -71,3 +71,34 @@ style for screenshots; mechanics verified via DOM/computed-style.
 5. `.claude/launch.json` local preview change intentionally uncommitted.
 6. In-browser eyeball at localhost:8788 recommended (hidden-tab capture
    can't show live motion): `python3 -m http.server 8788 -d dist-static`.
+
+---
+
+# V2 addendum — Monument teardown (2026-07-10)
+
+Owner rejected v1 as "same as the old one" — correct: v1 layered motion on
+the old skeleton. V2 tears down the homepage composition:
+
+- Hero: split portrait-grid replaced by a full-viewport typographic monument
+  (4-line H1 at clamp(2.75rem,7vw,8.5rem), portrait as a cinematic cut-out
+  layer behind a legibility scrim, top status rail, bottom cert/scroll rail).
+  Same sentence, same claims, same analytics IDs; LCP anchor still line 1.
+- Pillars: 3-card grid → full-width index rows (mono index, 6xl serif title,
+  right-column body, whole row is the link).
+- Case studies: 3-up cards → alternating 12-col editorial panels with the
+  hero metric at 7xl display scale in the text column.
+- Doorways: boxed cards → open hairline-divided columns.
+- About: mint gradient card → stacked statement numerals on open ground.
+- Headings: text-4xl/6xl → clamp(2.5rem,5.5vw,5.5rem) sweep (6 sections).
+- Hero newsletter instance removed (monument decluttering; capture remains
+  in knowledge-base + get-in-touch band). Supersedes ISSUE-008 placement.
+
+Defects caught & fixed in QA: literal ◆/→ escapes rendered as text
+in pillars (python splice artifact); proof numerals at 5.5rem overflowed the
+5-col grid (reverted to 7xl); status rail hidden under header scrim (pt-36);
+CTAs collided with portrait (stacked left, portrait narrowed to 40vw);
+mobile hero pushed CTA below fold (md-only 100svh, tighter mobile padding —
+CTA top 731px @ 375×812 ✓).
+
+Gates re-run: tsc clean, build:static 178/0, seo:audit clean, overflow 0 at
+375/1280, 0 console errors.

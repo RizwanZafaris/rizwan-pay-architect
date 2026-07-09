@@ -359,27 +359,94 @@ function HomePage() {
           aria-hidden
           className="pointer-events-none absolute inset-0 -z-20 h-full w-full"
         />
-        {/* Studio-light scrim: dims the left (keeps the H1 at ~18:1) and leaves a
-            controlled glow pocket on the right where the nebula + portrait sit,
-            then vignettes the edges to ink. Sits above the canvas, below content. */}
+        {/* Payment-rail field — now a full-bleed stage layer (v2 monument
+            hero): faint circuit routes with cyan pulses travelling them,
+            scaled-and-cropped by preserveAspectRatio slice. The pulses'
+            offset-paths in hero-next.css use viewBox units, so they scale
+            with the SVG untouched. Under the portrait and scrim. */}
+        <div
+          aria-hidden="true"
+          className="rz-rail-field pointer-events-none absolute inset-0 z-0"
+        >
+          <svg
+            className="h-full w-full"
+            viewBox="0 0 520 640"
+            preserveAspectRatio="xMidYMid slice"
+            xmlns="http://www.w3.org/2000/svg"
+            focusable="false"
+          >
+            <path className="rz-rail" strokeOpacity={0.12} d="M -24 128 H 168 Q 178 128 178 138 V 356 Q 178 366 188 366 H 544" />
+            <path className="rz-rail" strokeOpacity={0.08} d="M 64 -24 V 186 Q 64 196 74 196 H 306 Q 316 196 316 206 V 664" />
+            <path className="rz-rail" strokeOpacity={0.14} d="M 544 84 H 396 Q 386 84 386 94 V 258 Q 386 268 376 268 H 128 Q 118 268 118 278 V 664" />
+            <path className="rz-rail" strokeOpacity={0.1} d="M -24 492 H 246 Q 256 492 256 482 V 336 Q 256 326 266 326 H 544" />
+            <path className="rz-rail" strokeOpacity={0.06} d="M 442 -24 V 142 Q 442 152 452 152 H 544" />
+            <circle className="rz-rail-node" cx={178} cy={250} r={1.6} />
+            <circle className="rz-rail-node" cx={316} cy={330} r={1.6} />
+            <circle className="rz-rail-node rz-rail-node-hot" cx={386} cy={176} r={1.8} />
+            <circle className="rz-rail-pulse rz-rail-pulse-1" r={2.4} />
+            <circle className="rz-rail-pulse rz-rail-pulse-2" r={2.2} />
+            <circle className="rz-rail-pulse rz-rail-pulse-3" r={2.4} />
+          </svg>
+        </div>
+        {/* Cinematic scrim — darkens the left/text field, seats the portrait
+            into the stage, and fades the base so the monument type stays at
+            AA+ everywhere it crosses the portrait. Above portrait (z-[1]),
+            below content (z-10). */}
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-0 -z-10"
+          className="pointer-events-none absolute inset-0 z-[1]"
           style={{
             background:
-              "linear-gradient(90deg, rgba(10,10,11,0.86) 0%, rgba(10,10,11,0.5) 38%, rgba(10,10,11,0) 66%), radial-gradient(135% 105% at 68% 38%, transparent 38%, rgba(10,10,11,0.74) 100%)",
+              "linear-gradient(90deg, rgba(10,10,11,0.9) 0%, rgba(10,10,11,0.62) 46%, rgba(10,10,11,0.22) 76%, rgba(10,10,11,0.05) 100%), linear-gradient(180deg, rgba(10,10,11,0.4) 0%, transparent 26%, transparent 70%, rgba(10,10,11,0.85) 100%)",
           }}
         />
-        <div className="relative z-[1] mx-auto max-w-6xl px-5 sm:px-6 pt-7 md:pt-9 pb-8 md:pb-12 grid lg:grid-cols-12 gap-6 lg:gap-10 items-center">
-          {/* LEFT — 58% (7/12). Narrative + proof. Children stage in
-              individually (data-hero-in + --i) for a choreographed entrance;
-              the H1 stays un-staged so the LCP element paints immediately. */}
-          <div className="lg:col-span-7 order-1 relative z-10 min-w-0">
-            <div
-              data-hero-in
-              style={{ ["--i" as string]: 0 }}
-              className="inline-flex items-center gap-4 mb-3 md:mb-4"
-            >
+
+        {/* Portrait — no longer a framed column: a cinematic cut-out layer
+            anchored to the stage's bottom-right, BEHIND the monument type
+            (z-0, under the scrim). Eager + high priority: it is part of the
+            first paint. Hidden below md, where type carries the viewport. */}
+        <div
+          data-hero-portrait
+          className="pointer-events-none absolute bottom-0 right-0 z-0 hidden md:block h-[62svh] lg:h-[70svh] aspect-[4/5] max-w-[40vw]"
+        >
+          <div
+            aria-hidden
+            className="rz-glow-par pointer-events-none absolute inset-x-[8%] inset-y-[14%] -z-10 rounded-[45%] blur-3xl opacity-70"
+            style={{
+              background:
+                "radial-gradient(60% 60% at 55% 42%, color-mix(in oklab, var(--brand) 24%, transparent), transparent 74%)",
+            }}
+          />
+          <picture>
+            <source
+              type="image/webp"
+              srcSet={`${portraitWebpSmall} 460w, ${portraitWebp} 920w`}
+              sizes="(max-width: 1024px) 44vw, 40vw"
+            />
+            <img
+              src={portraitPng}
+              alt="Portrait of Rizwan Zafar, Chief Product Officer, Payments"
+              width={920}
+              height={1150}
+              loading="eager"
+              decoding="async"
+              fetchPriority="high"
+              className="h-full w-full object-contain object-bottom"
+            />
+          </picture>
+        </div>
+
+        {/* ── Monument content: top status rail / full-width H1 / grounded
+            subline+CTA row / bottom hairline rail. flex-col justify-between
+            fills the 100svh stage. ── */}
+        <div className="relative z-10 mx-auto flex w-full max-w-[1400px] flex-1 flex-col justify-between px-5 sm:px-8 lg:px-12 pt-28 md:min-h-[100svh] md:pt-36 pb-6 md:pb-8">
+          {/* TOP — status rail: eyebrow left, location + availability right. */}
+          <div
+            data-hero-in
+            style={{ ["--i" as string]: 0 }}
+            className="flex flex-wrap items-center justify-between gap-x-6 gap-y-2"
+          >
+            <span className="inline-flex items-center gap-4">
               <span className="home-rule-animate h-px w-10 bg-[var(--brand)]" />
               <span className="text-[10px] uppercase tracking-[0.32em] text-[var(--brand)] font-mono-tech font-semibold">
                 ◆{" "}
@@ -390,344 +457,153 @@ function HomePage() {
                   |
                 </span>
               </span>
-            </div>
-
-            <h1 className="font-instrument tracking-[-0.015em] leading-[0.98] text-[38px] sm:text-[52px] md:text-[62px] lg:text-[74px] text-ink">
-              {/* sr-only spaces keep the H1 extracting as readable text for
-                  screen readers and AI crawlers — block spans alone concatenate
-                  words (same fix as the resume H1). */}
-              {/* Line 1 = LCP anchor. NEVER wrapped/transformed/clipped — it
-                  paints in place at ~180ms and stays the largest contentful
-                  paint. Do not add masks here. */}
-              <span className="block">
-                I build payment and product infrastructure<span className="sr-only"> </span>
+            </span>
+            <span className="hidden sm:inline-flex items-center gap-6 text-[10px] uppercase tracking-[0.22em] text-ink-soft font-mono-tech">
+              <span>Dubai · UAE</span>
+              <span className="inline-flex items-center gap-2">
+                <span
+                  aria-hidden
+                  className="h-1.5 w-1.5 rounded-full bg-[var(--brand)] animate-pulse"
+                />
+                Open to senior roles
               </span>
-              {/* Line 2 = signature line-mask. .rz-line-clip is the overflow edge
-                  (net-zero guards → no CLS); .rz-line-rise is the transform-only
-                  riser. Both inert without .rz-js, so no-JS / reduced-motion see
-                  the final line. Screen-reader text + scramble span intact. */}
-              <span className="block rz-line-clip">
-                <span className="rz-line-rise">
-                  for the markets most operators{" "}
-                  <span
-                    className="text-scramble italic text-[var(--brand)]"
-                    data-text-scramble="avoid."
-                    tabIndex={0}
-                  >
-                    avoid.
+            </span>
+          </div>
+
+          {/* CENTER — the monument. Same sentence, recomposed to four short
+              lines so the face can run at 7.4vw full-bleed. sr-only spaces
+              keep the H1 extracting as one readable sentence. */}
+          <h1 className="font-instrument tracking-[-0.02em] leading-[0.95] text-ink text-[clamp(2.75rem,7vw,8.5rem)] py-6 md:py-10">
+            {/* Line 1 = LCP anchor. NEVER wrapped/transformed/clipped. */}
+            <span className="block">
+              I build payment<span className="sr-only"> </span>
+            </span>
+            <span className="block">
+              and product infrastructure<span className="sr-only"> </span>
+            </span>
+            <span className="block">
+              for the markets<span className="sr-only"> </span>
+            </span>
+            {/* Final line = signature line-mask rise, carries the scramble. */}
+            <span className="block rz-line-clip">
+              <span className="rz-line-rise">
+                most operators{" "}
+                <span
+                  className="text-scramble italic text-[var(--brand)]"
+                  data-text-scramble="avoid."
+                  tabIndex={0}
+                >
+                  avoid.
+                </span>
+              </span>
+            </span>
+          </h1>
+
+          {/* GROUND — subline left, CTAs right, then the hairline rail. */}
+          <div>
+            <div className="max-w-2xl">
+              {/* Two-tier safe: sentence 1 carries only career-scope markers
+                  ("17 years", "ten markets"); sentence 2 carries only platform
+                  metrics ("$1B+", "150+ merchants"). The full stop between them
+                  is a clause boundary for the seo-audit gate — do not merge. */}
+              <p
+                data-hero-in
+                style={{ ["--i" as string]: 1 }}
+                className="max-w-xl text-[15px] leading-relaxed text-ink-soft md:text-base"
+              >
+                Product &amp; program executive with{" "}
+                <span className="text-ink font-medium">
+                  {profile.career.years} years of experience
+                </span>{" "}
+                — ten markets across MENA and South Asia, from Daraz&rsquo;s marketplaces to
+                Tapmad&rsquo;s streaming business to Simpaisa&rsquo;s cross-border acquiring, payouts
+                &amp; gateway. Today I run payments moving{" "}
+                <span className="text-ink font-medium">$1B+ a year</span> for{" "}
+                <span className="text-ink font-medium">150+ global merchants</span> including TikTok,
+                Samsung, InDrive, Temu, Spotify and Yango.
+              </p>
+              <div
+                data-hero-in
+                style={{ ["--i" as string]: 2 }}
+                className="mt-6 flex flex-col gap-2.5 sm:flex-row sm:flex-wrap sm:items-center"
+              >
+                <a
+                  href="/contact/#book"
+                  data-magnetic
+                  data-analytics-event="cta_click"
+                  data-analytics-cta-id="book_intro_call"
+                  data-analytics-cta-location="hero"
+                  data-analytics-cta-destination="/contact/#book"
+                  className="rz-cta-primary group inline-flex h-12 items-center justify-center gap-2 rounded-full px-6 text-base font-medium text-background bg-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background transition-colors"
+                >
+                  Book a 15-min intro call
+                  <span className="transition-transform group-hover:translate-x-1" aria-hidden>
+                    →
                   </span>
-                </span>
-              </span>
-            </h1>
-
-            {/* Two-tier safe: sentence 1 carries only career-scope markers
-                ("17 years", "ten markets"); sentence 2 carries only platform
-                metrics ("$1B+", "150+ merchants"). The full stop between them is
-                a clause boundary for the seo-audit gate — do not merge. Duration
-                framing per owner ruling 2026-07-06; the number is computed in
-                profile.ts so it can't go stale. */}
-            <p
-              data-hero-in
-              style={{ ["--i" as string]: 1 }}
-              className="mt-3.5 md:mt-4 max-w-xl text-[15px] md:text-base text-ink-soft leading-relaxed"
-            >
-              Product &amp; program executive with{" "}
-              <span className="text-ink font-medium">
-                {profile.career.years} years of experience
-              </span>{" "}
-              — ten markets across MENA and South Asia, from Daraz&rsquo;s marketplaces to
-              Tapmad&rsquo;s streaming business to Simpaisa&rsquo;s cross-border acquiring, payouts
-              &amp; gateway. Today I run payments moving{" "}
-              <span className="text-ink font-medium">$1B+ a year</span> for{" "}
-              <span className="text-ink font-medium">150+ global merchants</span> including TikTok,
-              Samsung, InDrive, Temu, Spotify and Yango.
-            </p>
-
-            {/* CTAs — visible in first viewport (ISSUE-006). Strict hierarchy:
-                PRIMARY solid-ink pill, SECONDARY outline pill, TERTIARY bare
-                text link. All three share the same fixed h-12 row height so
-                they sit on one baseline at 320/768/1440 (the old third pill
-                was py-2.5/text-sm and broke alignment at 768px). On mobile the
-                stack keeps one solid pill only, so the primary stays dominant.
-                Gate-A audit 2026-07-08: the booking CTA IS the conversion
-                event (PRODUCT.md), so it takes the primary pill; the work and
-                journey read paths demote to secondary/tertiary. */}
-            <div
-              data-hero-in
-              style={{ ["--i" as string]: 2 }}
-              className="mt-5 md:mt-6 flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-2.5"
-            >
-              <a
-                href="/contact/#book"
-                data-magnetic
-                data-analytics-event="cta_click"
-                data-analytics-cta-id="book_intro_call"
-                data-analytics-cta-location="hero"
-                data-analytics-cta-destination="/contact/#book"
-                className="rz-cta-primary group inline-flex h-12 items-center justify-center gap-2 rounded-full px-6 text-base font-medium text-background bg-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background transition-colors"
-              >
-                Book a 15-min intro call
-                <span className="transition-transform group-hover:translate-x-1" aria-hidden>
-                  →
-                </span>
-              </a>
-              <Link
-                to="/product-work"
-                data-analytics-event="cta_click"
-                data-analytics-cta-id="see_case_studies"
-                data-analytics-cta-location="hero"
-                data-analytics-cta-destination="/product-work"
-                onClick={() => ctaClick("see_case_studies", "hero", "/product-work")}
-                className="inline-flex h-12 items-center justify-center gap-2 rounded-full px-6 text-base text-ink border border-ink/20 hover:border-ink/50 hover:bg-ink/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background transition-colors"
-              >
-                See the work
-              </Link>
-              {/* Journey CTA: no typed ctaClick() call because the analytics
-                  CtaId union has no journey id and that lib is out of scope to
-                  extend. The DOM bridge in __root.tsx fires cta_click from the
-                  data-analytics-* attributes below, so tracking still works. */}
-              <Link
-                to="/journey"
-                data-analytics-event="cta_click"
-                data-analytics-cta-id="the_journey"
-                data-analytics-cta-location="hero"
-                data-analytics-cta-destination="/journey"
-                className="group inline-flex h-12 items-center justify-center gap-1.5 rounded-full px-4 text-[15px] font-medium text-ink-soft hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background transition-colors"
-              >
-                <span className="rz-link">The 17-year journey</span>{" "}
-                <span className="transition-transform group-hover:translate-x-1" aria-hidden>
-                  →
-                </span>
-              </Link>
+                </a>
+                <Link
+                  to="/product-work"
+                  data-analytics-event="cta_click"
+                  data-analytics-cta-id="see_case_studies"
+                  data-analytics-cta-location="hero"
+                  data-analytics-cta-destination="/product-work"
+                  onClick={() => ctaClick("see_case_studies", "hero", "/product-work")}
+                  className="inline-flex h-12 items-center justify-center gap-2 rounded-full px-6 text-base text-ink border border-ink/20 hover:border-ink/50 hover:bg-ink/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background transition-colors"
+                >
+                  See the work
+                </Link>
+                {/* Journey CTA: no typed ctaClick() call — the DOM bridge in
+                    __root.tsx fires cta_click from the data-analytics-*
+                    attributes (the CtaId union has no journey id). */}
+                <Link
+                  to="/journey"
+                  data-analytics-event="cta_click"
+                  data-analytics-cta-id="the_journey"
+                  data-analytics-cta-location="hero"
+                  data-analytics-cta-destination="/journey"
+                  className="group inline-flex h-12 items-center justify-center gap-1.5 rounded-full px-4 text-[15px] font-medium text-ink-soft hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background transition-colors"
+                >
+                  <span className="rz-link">The 17-year journey</span>{" "}
+                  <span className="transition-transform group-hover:translate-x-1" aria-hidden>
+                    →
+                  </span>
+                </Link>
+              </div>
             </div>
 
-            {/* Certification chip row (ISSUE-007) — upgraded from the old 10px
-                mono string to visible bordered text chips (12px, ink-soft on
-                paper). Same ◆ mono-label design language; text chips only, no
-                fabricated badge icons. Names trace to profile.certifications. */}
+            {/* Bottom hairline rail: certifications left, scroll cue right.
+                Same ◆ mono language; text chips only, no fabricated badges.
+                Names trace to profile.certifications. */}
             <div
               data-hero-in
               style={{ ["--i" as string]: 3 }}
-              className="mt-4 flex flex-wrap items-center gap-x-2 gap-y-1.5"
+              className="mt-8 flex flex-wrap items-center justify-between gap-x-6 gap-y-3 border-t border-rule pt-4 md:mt-10"
             >
-              <span className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
-                ◆ Certified
-              </span>
-              <ul
-                className="flex flex-wrap items-center gap-1.5"
-                aria-label="Professional certifications"
-              >
-                {["PMP", "PMI-ACP", "CSPO", "CSM", "COBIT 5", "ITIL"].map((cert) => (
-                  <li
-                    key={cert}
-                    className="inline-flex items-center rounded-full border border-rule bg-card px-2.5 py-1 text-xs uppercase tracking-[0.14em] text-ink-soft font-mono-tech leading-none"
-                  >
-                    {cert}
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Owned-audience capture in the first viewport (ISSUE-008) — the
-                essay search that used to sit here moved down into the Hot
-                topics / knowledge-base section, which is its real entry point.
-                Shared component keeps the Web3Forms wiring + newsletter_signup
-                analytics consistent site-wide. */}
-            <div data-hero-in style={{ ["--i" as string]: 4 }}>
-              <NewsletterSignup placement="hero" fromPage="/" className="mt-5 max-w-xl" />
-            </div>
-          </div>
-
-          {/* RIGHT — 42% (5/12). Portrait + premium depth backdrop. Enters via a
-              transform-only settle (opacity stays 1) so the eager portrait image
-              paints immediately and the LCP is unaffected. */}
-          <div
-            data-hero-portrait
-            className="lg:col-span-5 order-2 relative min-w-0"
-          >
-            {/* Payment-rail field — faint orthogonal circuit routes behind the
-                portrait with slow cyan light pulses travelling along them
-                (offset-path, styled in hero-next.css). Absolute + aria-hidden
-                + pointer-events-none → zero layout impact (CLS 0). Fades in
-                after the H1 via .rz-hero-go (+420ms) and is display:none below
-                md, where the portrait column collapses. Sits above the nebula
-                canvas / glow wash, below the z-10 portrait image. */}
-            <div
-              aria-hidden="true"
-              className="rz-rail-field pointer-events-none absolute -inset-x-6 -inset-y-4"
-            >
-              <svg
-                className="h-full w-full"
-                viewBox="0 0 520 640"
-                preserveAspectRatio="xMidYMid slice"
-                xmlns="http://www.w3.org/2000/svg"
-                focusable="false"
-              >
-                {/* Rails — 1px orthogonal polylines, rounded corners, mixed
-                    whisper opacities. Geometry bleeds past the viewBox edges
-                    so routes read as passing through, not starting/ending. */}
-                <path className="rz-rail" strokeOpacity={0.12} d="M -24 128 H 168 Q 178 128 178 138 V 356 Q 178 366 188 366 H 544" />
-                <path className="rz-rail" strokeOpacity={0.08} d="M 64 -24 V 186 Q 64 196 74 196 H 306 Q 316 196 316 206 V 664" />
-                <path className="rz-rail" strokeOpacity={0.14} d="M 544 84 H 396 Q 386 84 386 94 V 258 Q 386 268 376 268 H 128 Q 118 268 118 278 V 664" />
-                <path className="rz-rail" strokeOpacity={0.1} d="M -24 492 H 246 Q 256 492 256 482 V 336 Q 256 326 266 326 H 544" />
-                <path className="rz-rail" strokeOpacity={0.06} d="M 442 -24 V 142 Q 442 152 452 152 H 544" />
-                {/* Junction nodes — tiny solder points where routes turn. */}
-                <circle className="rz-rail-node" cx={178} cy={250} r={1.6} />
-                <circle className="rz-rail-node" cx={316} cy={330} r={1.6} />
-                <circle className="rz-rail-node rz-rail-node-hot" cx={386} cy={176} r={1.8} />
-                {/* Light pulses — each offset-path in hero-next.css matches
-                    one rail's d exactly; staggered delays feel asynchronous. */}
-                <circle className="rz-rail-pulse rz-rail-pulse-1" r={2.4} />
-                <circle className="rz-rail-pulse rz-rail-pulse-2" r={2.2} />
-                <circle className="rz-rail-pulse rz-rail-pulse-3" r={2.4} />
-              </svg>
-            </div>
-            <div className="home-portrait-frame relative mx-auto w-full max-w-[260px] sm:max-w-[330px] lg:max-w-[400px] aspect-[4/5]">
-              {/* Subtle depth: soft radial wash behind the portrait. Inset so
-                  it can't touch the column edges and clip awkwardly. */}
-              <div
-                aria-hidden
-                className="rz-glow-par pointer-events-none absolute inset-x-4 inset-y-8 -z-10 rounded-[40%] blur-3xl opacity-60"
-                style={{
-                  background:
-                    "radial-gradient(60% 60% at 50% 45%, color-mix(in oklab, var(--brand) 22%, transparent), transparent 75%)",
-                }}
-              />
-              {/* Thin brand ring behind the portrait — premium framing without
-                  a hard card edge. Slow breathing animation gives the hero a
-                  pulse without distracting the viewer. */}
-              <div
-                aria-hidden
-                className="hero-ring-breathe pointer-events-none absolute inset-2 -z-10 rounded-[36%]"
-                style={{
-                  border: "1px solid color-mix(in oklab, var(--brand) 40%, transparent)",
-                  boxShadow:
-                    "0 0 0 1px color-mix(in oklab, var(--brand) 10%, transparent), 0 0 40px 4px color-mix(in oklab, var(--brand) 15%, transparent)",
-                }}
-              />
-
-              <picture>
-                <source
-                  type="image/webp"
-                  srcSet={`${portraitWebpSmall} 460w, ${portraitWebp} 920w`}
-                  sizes="(max-width: 640px) 280px, (max-width: 1024px) 360px, 440px"
-                />
-                <img
-                  src={portraitPng}
-                  alt="Portrait of Rizwan Zafar, Chief Product Officer, Payments"
-                  width={920}
-                  height={1150}
-                  loading="eager"
-                  decoding="async"
-                  fetchPriority="high"
-                  className="relative z-10 h-full w-full object-contain object-bottom"
-                />
-              </picture>
-
-              {/* Dubai tag — anchored to the top-right of the portrait box,
-                  inset so it doesn't float off the column edge. */}
-              <div className="absolute top-2 right-2 z-20 bg-card border border-rule px-2.5 py-1 text-[10px] tracking-[0.22em] font-bold uppercase text-ink font-mono-tech shadow-sm">
-                Dubai · UAE
-              </div>
-
-              {/* Floating signature card — a small crafted personality detail
-                  overlapping the lower-left of the portrait. */}
-              <div
-                data-hero-in
-                style={{ ["--i" as string]: 5 }}
-                className="home-signature-card absolute -left-3 sm:-left-5 bottom-8 z-20 hidden sm:block rounded-lg border border-rule bg-card px-3.5 py-2.5"
-              >
-                <div className="text-[9px] uppercase tracking-[0.22em] text-ink-soft font-mono-tech">
-                  ◆ Signature
-                </div>
-                <div className="font-instrument italic text-[19px] leading-tight mt-0.5 text-[var(--brand)]">
-                  Rizwan Zafar
-                </div>
-              </div>
-
-              {/* Decorative accents — positioned at the portrait box's EDGES
-                  so they never overlap the face. Each carries a CSS-only
-                  ease-in-out animation; prefers-reduced-motion: reduce
-                  suppresses all of them. */}
-              {(
-                [
-                  // 3 pluses around the edges
-                  // Horizontal positions stay ≤88% — at 94%+ the glyph box
-                  // crossed the viewport edge at 1440px and rendered clipped.
-                  // Vertical: the top-right plus sits at 34% (mid-right edge),
-                  // NOT near 0% — at -2% it collided with the "Dubai · UAE"
-                  // label (top-2 right-2) at 1280-1600px widths.
-                  {
-                    type: "plus",
-                    top: "34%",
-                    left: "88%",
-                    size: "text-4xl md:text-5xl",
-                    color: "text-[var(--brand)]",
-                    anim: "hero-float-a",
-                  },
-                  {
-                    type: "plus",
-                    top: "60%",
-                    left: "-4%",
-                    size: "text-3xl md:text-4xl",
-                    color: "text-[var(--brand)]/80",
-                    anim: "hero-float-b",
-                  },
-                  {
-                    type: "plus",
-                    top: "94%",
-                    left: "86%",
-                    size: "text-3xl md:text-4xl",
-                    color: "text-[var(--brand)]",
-                    anim: "hero-float-a",
-                  },
-                  // Thin ticks for rhythm, avoiding decorative blobs.
-                  {
-                    type: "tick",
-                    top: "14%",
-                    left: "-3%",
-                    size: "h-px w-10",
-                    color: "bg-[var(--brand)]",
-                    anim: "hero-glow-a",
-                  },
-                  {
-                    type: "tick",
-                    top: "92%",
-                    left: "44%",
-                    size: "h-px w-12",
-                    color: "bg-[var(--brand)]",
-                    anim: "hero-glow-b",
-                  },
-                ] as const
-              ).map((g, i) =>
-                // Each accent is wrapped in a .rz-acc-par positioning shell so
-                // the cursor-parallax transform (hero-next.css, ±10px off
-                // --hx/--hy) can't fight the float/glow keyframe transforms,
-                // which stay on the inner span.
-                g.type === "plus" ? (
-                  <span
-                    key={i}
-                    aria-hidden
-                    className="rz-acc-par pointer-events-none absolute z-20"
-                    style={{ top: g.top, left: g.left }}
-                  >
-                    <span
-                      className={`block font-light leading-none select-none ${g.size} ${g.color} ${g.anim}`}
+              <span className="inline-flex flex-wrap items-center gap-x-2 gap-y-1.5">
+                <span className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
+                  ◆ Certified
+                </span>
+                <ul
+                  className="flex flex-wrap items-center gap-1.5"
+                  aria-label="Professional certifications"
+                >
+                  {["PMP", "PMI-ACP", "CSPO", "CSM", "COBIT 5", "ITIL"].map((cert) => (
+                    <li
+                      key={cert}
+                      className="inline-flex items-center rounded-full border border-rule bg-card/60 px-2.5 py-1 text-xs uppercase tracking-[0.14em] text-ink-soft font-mono-tech leading-none"
                     >
-                      +
-                    </span>
-                  </span>
-                ) : (
-                  <span
-                    key={i}
-                    aria-hidden
-                    className="rz-acc-par pointer-events-none absolute z-20"
-                    style={{ top: g.top, left: g.left }}
-                  >
-                    <span className={`block ${g.size} ${g.color} ${g.anim}`} />
-                  </span>
-                ),
-              )}
+                      {cert}
+                    </li>
+                  ))}
+                </ul>
+              </span>
+              <span
+                aria-hidden
+                className="hidden items-center gap-2.5 text-[10px] uppercase tracking-[0.22em] text-ink-soft font-mono-tech md:inline-flex"
+              >
+                Scroll
+                <span className="rz-scroll-cue text-[var(--brand)]">↓</span>
+              </span>
             </div>
           </div>
         </div>
@@ -750,7 +626,7 @@ function HomePage() {
               <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
                 ◆ Selected work
               </div>
-              <h2 className="font-instrument text-4xl md:text-6xl text-ink mt-3 leading-[1.02]">
+              <h2 className="font-instrument text-[clamp(2.5rem,5.5vw,5.5rem)] text-ink mt-3 leading-[1.02]">
                 <RevealHeading lead="Infrastructure shipped" emphasis="at scale." />
               </h2>
             </div>
@@ -762,60 +638,76 @@ function HomePage() {
               <span className="transition-transform group-hover:translate-x-1">→</span>
             </Link>
           </div>
-          <div className="grid md:grid-cols-3 gap-5" data-rz-stagger>
+          {/* V2 monument pass: the 3-up card grid is gone. Each featured
+              case is a full-width editorial panel — image field one side,
+              display-scale hero metric + title the other, alternating
+              direction. Same data, links and rz-unveil image treatment. */}
+          <div data-rz-stagger className="flex flex-col gap-14 md:gap-24">
             {featuredCases.map((c, i) => {
-              // Pull the strongest stat from the case study for the card "art"
               const heroStat = c.metrics?.[0];
+              const flip = i % 2 === 1;
               return (
                 <Link
                   key={c.slug}
                   to="/product-work/$slug"
                   params={{ slug: c.slug }}
-                  style={{ ["--motion-delay" as string]: `${i * 120}ms` }}
-                  data-glow
-                  className="home-card home-card-lift group relative rounded-lg border border-rule bg-card p-7 flex flex-col h-full"
+                  className="group relative grid items-center gap-6 md:grid-cols-12 md:gap-12"
                 >
-                    {/* Card hero: Higgsfield-generated brand-coherent thumb
-                        with the strongest metric overlaid in display serif. */}
-                    <div className="rz-unveil aspect-[5/3] rounded-md mb-5 relative overflow-hidden bg-ink">
-                      <img
-                        src={caseStudyThumb(c.slug)}
-                        alt={c.imageAlt ?? `${c.title} — abstract editorial illustration`}
-                        width={800}
-                        height={450}
-                        loading="lazy"
-                        decoding="async"
-                        className="absolute inset-0 h-full w-full object-cover opacity-90 transition-transform duration-500 group-hover:scale-[1.04]"
-                      />
-                      {/* Dark gradient overlay so the stat reads cleanly. */}
-                      <div
-                        className="absolute inset-0"
-                        style={{
-                          background:
-                            "linear-gradient(180deg, color-mix(in oklab, #000 30%, transparent) 0%, transparent 35%, color-mix(in oklab, #000 70%, transparent) 100%)",
-                        }}
-                      />
-                      <div className="absolute top-3 left-4 z-10 font-mono-tech text-[10px] tracking-[0.18em] text-background/95 uppercase">
-                        ◆ Case study /0{i + 1}
-                      </div>
-                      {heroStat && (
-                        <div className="absolute inset-x-0 bottom-3 z-10 flex flex-col items-center text-center px-4 pointer-events-none">
-                          <div className="font-instrument italic text-background text-4xl md:text-5xl leading-none tracking-tight drop-shadow-lg">
-                            {heroStat.value}
-                          </div>
-                          <div className="mt-2 text-[9px] uppercase tracking-[0.22em] text-background/80 font-mono-tech">
-                            {heroStat.label}
-                          </div>
-                        </div>
-                      )}
+                  <div
+                    className={`rz-unveil relative aspect-[16/10] overflow-hidden rounded-lg bg-ink md:col-span-7 ${
+                      flip ? "md:order-2" : ""
+                    }`}
+                  >
+                    <img
+                      src={caseStudyThumb(c.slug)}
+                      alt={c.imageAlt ?? `${c.title} — abstract editorial illustration`}
+                      width={800}
+                      height={450}
+                      loading="lazy"
+                      decoding="async"
+                      className="absolute inset-0 h-full w-full object-cover opacity-90 transition-transform duration-700 [transition-timing-function:var(--ease-soft)] group-hover:scale-[1.035]"
+                    />
+                    <div
+                      className="absolute inset-0"
+                      style={{
+                        background:
+                          "linear-gradient(180deg, color-mix(in oklab, #000 32%, transparent) 0%, transparent 40%, color-mix(in oklab, #000 45%, transparent) 100%)",
+                      }}
+                    />
+                    <div className="absolute top-4 left-5 z-10 font-mono-tech text-[10px] tracking-[0.18em] text-background/95 uppercase">
+                      ◆ Case study /0{i + 1}
                     </div>
+                  </div>
+                  <div className={`md:col-span-5 ${flip ? "md:order-1" : ""}`}>
                     <span className="text-[10px] font-mono-tech uppercase tracking-[0.18em] text-[var(--brand)]">
                       {c.category}
                     </span>
-                    <h3 className="font-instrument text-xl text-ink mt-2 leading-snug group-hover:text-[var(--brand)] transition-colors">
+                    {heroStat && (
+                      <div className="mt-4">
+                        <div className="font-instrument italic leading-none tracking-tight text-ink text-5xl md:text-6xl lg:text-7xl">
+                          {heroStat.value}
+                        </div>
+                        <div className="mt-2 text-[10px] uppercase tracking-[0.22em] text-ink-soft font-mono-tech">
+                          {heroStat.label}
+                        </div>
+                      </div>
+                    )}
+                    <h3 className="font-instrument text-2xl md:text-3xl text-ink mt-5 leading-tight transition-colors group-hover:text-[var(--brand)]">
                       {c.title}
                     </h3>
-                    <p className="text-sm text-ink-soft mt-2 leading-relaxed flex-1">{c.tagline}</p>
+                    <p className="text-sm md:text-[15px] text-ink-soft mt-3 leading-relaxed max-w-md">
+                      {c.tagline}
+                    </p>
+                    <span className="mt-5 inline-flex items-center gap-1.5 text-sm text-ink transition-colors group-hover:text-[var(--brand)]">
+                      Read case study
+                      <span
+                        className="transition-transform group-hover:translate-x-1"
+                        aria-hidden
+                      >
+                        →
+                      </span>
+                    </span>
+                  </div>
                 </Link>
               );
             })}
@@ -836,7 +728,7 @@ function HomePage() {
               <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
                 ◆ Products
               </div>
-              <h2 className="font-instrument text-4xl md:text-6xl text-ink mt-3 leading-[1.02] max-w-3xl">
+              <h2 className="font-instrument text-[clamp(2.5rem,5.5vw,5.5rem)] text-ink mt-3 leading-[1.02] max-w-3xl">
                 <RevealHeading
                   lead="Products I have built, and products I am"
                   emphasis="building."
@@ -1051,7 +943,7 @@ function HomePage() {
               <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
                 ◆ Editor's picks · rotates through the day
               </div>
-              <h2 className="font-instrument text-4xl md:text-6xl text-ink mt-3 leading-[1.02]">
+              <h2 className="font-instrument text-[clamp(2.5rem,5.5vw,5.5rem)] text-ink mt-3 leading-[1.02]">
                 <RevealHeading lead="The posts I'd read" emphasis="first." />
               </h2>
             </div>
@@ -1160,39 +1052,35 @@ function HomePage() {
       <section className="relative border-y border-rule bg-surface-2/60 rz-beam">
         <div className="mx-auto max-w-6xl px-5 sm:px-6 py-[var(--space-section-md)] grid md:grid-cols-12 gap-10 items-center">
           <div className="md:col-span-4">
-            <div
-              className="home-card rz-reveal rounded-lg p-8 text-background relative overflow-hidden"
-              style={{
-                background:
-                  "linear-gradient(135deg, color-mix(in oklab, var(--brand) 80%, var(--ink)), color-mix(in oklab, var(--ink) 90%, var(--brand)))",
-              }}
-            >
-              <div className="text-[10px] font-mono-tech uppercase tracking-[0.22em] opacity-80">
+            {/* V2 monument pass: the mint gradient card is gone — the career
+                scope reads as stacked statement numerals on the open ground. */}
+            <div className="rz-reveal">
+              <div className="text-[10px] font-mono-tech uppercase tracking-[0.22em] text-[var(--brand)] font-semibold">
                 ◆ About me
               </div>
               {/* Career-scope only, each on its own line (two-tier clean). The
                   platform "$1B+" appears below in the band prose in its own
                   sentence, never joined to a career marker in one clause. */}
-              <div className="font-instrument text-3xl mt-3 leading-tight">
-                {profile.career.years} years.
+              <div className="font-instrument text-ink mt-5 leading-[1.08] text-[clamp(2.5rem,4.2vw,4rem)]">
+                {profile.career.years} <span className="text-ink-soft">years.</span>
                 <br />
-                {profile.career.marketCount} markets.
+                {profile.career.marketCount} <span className="text-ink-soft">markets.</span>
                 <br />
-                {profile.career.industryCount} industries.
+                {profile.career.industryCount} <span className="text-ink-soft">industries.</span>
               </div>
-              {/* mt-[18px] + py-1.5 keeps the visual 24px gap while growing
-                  the hit area to 32px (Gate-A 2026-07-08, WCAG 2.5.8). */}
+              {/* py-1.5 keeps the visual gap while growing the hit area to
+                  32px (Gate-A 2026-07-08, WCAG 2.5.8). */}
               <Link
                 to="/resume"
-                className="mt-[18px] py-1.5 -mb-1.5 inline-flex items-center gap-1.5 text-sm group"
+                className="mt-6 py-1.5 -mb-1.5 inline-flex items-center gap-1.5 text-sm text-ink group"
               >
-                View resume{" "}
+                <span className="rz-link">View resume</span>{" "}
                 <span className="transition-transform group-hover:translate-x-1">→</span>
               </Link>
             </div>
           </div>
           <div className="md:col-span-8">
-            <p className="font-instrument text-2xl md:text-[34px] text-ink leading-[1.25]">
+            <p className="font-instrument text-[26px] md:text-[38px] lg:text-[42px] text-ink leading-[1.22]">
               Before payments, I learned reliability in systems where failure had real consequences.
               That operating discipline now shapes how I build financial infrastructure:{" "}
               <span className="italic text-[var(--brand)]">
