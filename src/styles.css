@@ -47,19 +47,60 @@
 :root {
   --radius: 0.75rem;
 
-  /* RZ editorial palette: six colors, mostly white. */
-  --paper: #ffffff;
-  --paper-2: #fafaf8;
-  --paper-3: #f2f0ea;
-  --ink: #111111;
-  --signal: #0e4f4f;
-  --rule: #e0ddd5;
+  /* RZ dark-cinematic palette (2026-07-09 inversion). Near-black warm base,
+     warm off-white text, chroma quarantined to the teal→cyan accent (<5% of
+     surface). "paper" now reads near-black; downstream color-mix greys
+     auto-recompute against the dark base so the whole system flips at once. */
+  --paper: #0a0a0b;   /* page base — warm near-black (not #000) */
+  --paper-2: #0c0c0e;  /* alt section bg */
+  --paper-3: #101013;  /* raised panels / surface-2 */
+  --ink: #f2f0ec;      /* headlines / body — warm off-white (NOT #fff) */
+  --signal: #2dd4bf;   /* THE visible accent: links/rings/brand — cyan-glow, 9.6:1 on base */
+  --signal-deep: #0e4f4f;  /* teal-core — gradients & glows ONLY, never text (1.5:1) */
+  --signal-soft: #5eead4;  /* hover-bright cyan rim */
+  --rule: rgba(255, 255, 255, 0.1);   /* hairlines */
+  --rule-hi: rgba(255, 255, 255, 0.16);
 
   --background: var(--paper);
   --foreground: var(--ink);
-  --ink-soft: color-mix(in oklab, var(--ink) 58%, var(--paper));
+  --ink-soft: color-mix(in oklab, var(--ink) 66%, var(--paper));   /* secondary text ~#b7b6b0, ~8:1 */
   --surface: var(--paper-2);
   --surface-2: var(--paper-3);
+
+  /* Press Run motion/spacing tokens (redesign 2026-07-08). Two easing curves
+     only; a section-spacing scale assigned by editorial WEIGHT (not uniform)
+     so ten repeated skeletons read as a paced bound volume. */
+  --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-soft: cubic-bezier(0.22, 1, 0.36, 1);
+  --space-section-sm: clamp(3.5rem, 6vw, 6rem);
+  --space-section-md: clamp(5rem, 9vw, 9rem);
+  --space-section-lg: clamp(6.5rem, 12vw, 11rem);
+
+  /* Dark-glassmorphism system (2026-07-09 inversion). Raised panels sit on the
+     near-black base as faint-lit dark glass — white hairline ring, deep black
+     drop shadow, a whisper of cyan tint + top highlight. Blur is budgeted:
+     at most ~1 live backdrop-blur surface per viewport (perf on dark). */
+  --cyan: #2dd4bf;
+  --cyan-edge: #5eead4;
+  --ink-muted-glass: #c9c7c2;   /* light secondary text on dark glass */
+  --glass-fill: rgba(22, 22, 27, 0.55);
+  --glass-fill-hi: rgba(26, 26, 31, 0.68);
+  --glass-fill-solid: rgba(16, 16, 19, 0.92);
+  --glass-body: rgba(12, 12, 15, 0.95);
+  --glass-tint: rgba(45, 212, 191, 0.06);
+  --glass-ring: rgba(255, 255, 255, 0.1);
+  --glass-edge: rgba(255, 255, 255, 0.06);
+  --glass-shadow: 0 1px 2px rgba(0, 0, 0, 0.45), 0 12px 32px rgba(0, 0, 0, 0.5),
+    0 30px 70px -18px rgba(0, 0, 0, 0.6);
+  --glass-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  --glass-blur: 14px;
+  --glass-blur-sm: 10px;
+  --glass-blur-lg: 18px;
+  --glass-sat: 1.3;
+  --glass-radius: 16px;
+  --mesh-a: 52s;
+  --mesh-b: 67s;
+  --ease-glass: cubic-bezier(0.32, 0.72, 0, 1);
 
   --card: var(--paper);
   --card-foreground: var(--ink);
@@ -342,6 +383,18 @@
   .bg-noise {
     background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.5 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
   }
+  /* Site-wide film grain (Press Run 2026-07-08). A fixed, whisper-faint noise
+     overlay that gives the whole surface printed-paper texture and depth. Pure
+     CSS, pointer-events-none, static (not motion, so no reduced-motion gate). */
+  .rz-grain {
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    pointer-events: none;
+    opacity: 0.05;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='g'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23g)' opacity='0.7'/></svg>");
+  }
   .glow-emerald {
     box-shadow: 0 0 0 4px color-mix(in oklab, var(--accent-emerald) 18%, transparent);
   }
@@ -399,61 +452,376 @@
     }
   }
 
-  /* Scroll-driven section reveal (JS-less port of the IntersectionObserver
-     stagger pattern; ref 21st.dev "Stagger List"). Browsers without
-     animation-timeline (or with reduced motion) simply show the content —
-     the animation is pure enrichment. Stagger with --reveal-delay via
-     animation-range shifts is deliberately NOT used: view() timelines ignore
-     animation-delay, so stagger comes from each element's own position. */
-  @media (prefers-reduced-motion: no-preference) {
-    @supports (animation-timeline: view()) {
-      .rz-reveal {
-        animation: rz-reveal-up 1ms linear both;
-        animation-timeline: view();
-        animation-range: entry 4% entry 42%;
-      }
-    }
+  /* Section reveal — driven by the inline IntersectionObserver (rzRevealScript
+     in __root.tsx), so the motion runs on the zero-hydration static build in
+     EVERY browser (the old version was Chromium-only via animation-timeline,
+     which is why the site read as static in Safari/Firefox and never animated
+     the React <Reveal> wrappers in production). The `.rz-js` gate is added by
+     the script only when motion is allowed, so no-JS and reduced-motion
+     visitors keep the content fully visible with no hidden state. Premium
+     pacing: 22px lift over 800ms ease-out, per-element stagger via --rz-delay. */
+  .rz-js [data-rz-reveal],
+  .rz-js .rz-reveal {
+    opacity: 0;
+    transform: translateY(22px);
+    transition:
+      opacity 800ms cubic-bezier(0.22, 1, 0.36, 1),
+      transform 800ms cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: var(--rz-delay, 0ms);
   }
-  @keyframes rz-reveal-up {
-    from {
-      opacity: 0;
-      transform: translateY(24px);
-    }
-    to {
-      opacity: 1;
-      transform: none;
-    }
+  .rz-js [data-rz-reveal].rz-in,
+  .rz-js .rz-reveal.rz-in {
+    opacity: 1;
+    transform: none;
   }
 
-  /* Kinetic headline (JS-less port of 21st.dev "Auto Revealing Heading").
-     Each word rises as the heading scrolls in; the per-word stagger comes
-     from shifting each word's animation-range by its index (--i), since
-     scroll timelines ignore animation-delay. Base state is fully visible so
-     no-support / reduced-motion browsers get plain, static text. The words
-     are real DOM text in order — SEO and a11y unchanged. */
+  /* Kinetic headline — per-word rise on the same IO mechanism (the `.rz-words`
+     container gets `.rz-in`, cascading its words by index). Base state fully
+     visible; hidden only under `.rz-js`. Words are real DOM text in order, so
+     SEO and a11y are unchanged. */
   .rz-word {
     display: inline-block;
   }
-  @media (prefers-reduced-motion: no-preference) {
-    @supports (animation-timeline: view()) {
-      .rz-words .rz-word {
-        opacity: 0;
-        transform: translateY(0.42em);
-        animation: rz-word-rise 1ms linear both;
-        animation-timeline: view();
-        animation-range: entry calc(2% + var(--i, 0) * 2.5%) entry
-          calc(24% + var(--i, 0) * 2.5%);
-      }
+  .rz-js .rz-words[data-rz-words] .rz-word {
+    opacity: 0;
+    transform: translateY(0.5em);
+    transition:
+      opacity 620ms cubic-bezier(0.22, 1, 0.36, 1),
+      transform 620ms cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: calc(var(--i, 0) * 55ms);
+  }
+  .rz-js .rz-words.rz-in .rz-word {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* UNVEIL — the single site-wide image wipe ("pulled off the plate"). One
+     left→right direction only. The image sits in a reserved aspect box so the
+     wipe is composited and CLS-free. Driven by the IO (.rz-in). No-JS /
+     reduced-motion: no clip, fully shown. */
+  .rz-js .rz-unveil {
+    clip-path: inset(0 100% 0 0);
+  }
+  /* Driven by the nearest revealing ancestor's `.rz-in` (a self-clipped element
+     has ~0 intersection ratio, so observing the thumb directly never fires;
+     the parent card reveal is the reliable trigger). Self `.rz-in` also opens
+     it for any standalone use. */
+  .rz-js .rz-unveil.rz-in,
+  .rz-js .rz-in .rz-unveil {
+    clip-path: inset(0 0 0 0);
+    transition: clip-path 920ms var(--ease-expo);
+  }
+
+  /* REGISTER — the spot-colour plate lands last: the italic accent word in a
+     section H2 ignites ink→brand and draws a 1px underline a beat AFTER its
+     words rise. Default (no-JS / reduced-motion) = final brand colour, no
+     motion, so meaning never depends on the animation. */
+  .rz-register {
+    color: var(--brand);
+  }
+  .rz-js .rz-words[data-rz-words] .rz-register {
+    color: var(--ink);
+    background-image: linear-gradient(var(--brand), var(--brand));
+    background-repeat: no-repeat;
+    background-position: 0 0.94em;
+    background-size: 0% 1px;
+    transition:
+      color 520ms var(--ease-expo) 380ms,
+      background-size 660ms var(--ease-expo) 440ms;
+  }
+  .rz-js .rz-words[data-rz-words].rz-in .rz-register {
+    color: var(--brand);
+    background-size: 100% 1px;
+  }
+
+  /* HERO ENTRANCE — first-paint choreography (Press Run 2026-07-08). The H1
+     (LCP element) and the portrait paint immediately: the H1 is never touched,
+     and the portrait animates transform-only (opacity stays 1) so LCP is
+     unaffected. The supporting cast (eyebrow, subhead, CTAs, chips, newsletter)
+     stages in on a soft stagger once `.rz-hero-go` lands one frame after paint.
+     No-JS / reduced-motion → everything final instantly. */
+  .rz-js [data-hero-in] {
+    opacity: 0;
+    transform: translateY(24px);
+    transition:
+      opacity 880ms var(--ease-expo),
+      transform 880ms var(--ease-expo);
+    transition-delay: calc(var(--i, 0) * 95ms + 140ms);
+  }
+  .rz-js.rz-hero-go [data-hero-in] {
+    opacity: 1;
+    transform: none;
+  }
+  .rz-js [data-hero-portrait] {
+    transform: translateY(28px) scale(0.985);
+    transition: transform 1150ms var(--ease-expo) 160ms;
+  }
+  .rz-js.rz-hero-go [data-hero-portrait] {
+    transform: none;
+  }
+
+  /* HERO H1 LINE-MASK — line 2 ONLY. Line 1 is the untouched LCP anchor and is
+     never selected here, so it keeps painting in place at ~180ms. Line 2 rises
+     out from behind an overflow:hidden edge; opacity stays 1 throughout (LCP
+     never sees opacity:0). Reuses the existing .rz-hero-go class (no new JS /
+     observer). Gated on .rz-js → no-JS / reduced-motion get the final line. */
+  .rz-js .rz-line-clip {
+    display: block;
+    overflow: hidden;
+    /* Net-zero vertical guards: grow the clip top (leading-[0.98] ascender
+       overflow) and bottom (descenders + focus ring), pull back with equal
+       negative margins so the layout box is UNCHANGED → CLS 0. */
+    padding-top: 0.16em;
+    margin-top: -0.16em;
+    padding-bottom: 0.16em;
+    margin-bottom: -0.16em;
+  }
+  .rz-js .rz-line-rise {
+    display: block;
+    /* Start fully below the PADDED clip so no glyph-top sliver peeks at t=0.
+       100% clears the line box; +0.34em clears the guards. */
+    transform: translateY(calc(100% + 0.34em));
+    transition: transform 760ms var(--ease-expo);
+    transition-delay: 200ms;
+  }
+  .rz-js.rz-hero-go .rz-line-rise {
+    transform: none;
+  }
+  /* Release the clip AFTER the rise (~960ms) so the focusable "avoid." span's
+     :focus-visible ring is never permanently shaved. overflow animates as a
+     discrete property (flips at 100%); if unsupported it simply stays hidden. */
+  @keyframes rz-line-unclip {
+    0%,
+    99% {
+      overflow: hidden;
+    }
+    100% {
+      overflow: visible;
     }
   }
-  @keyframes rz-word-rise {
-    from {
+  .rz-js.rz-hero-go .rz-line-clip {
+    animation: rz-line-unclip 1100ms linear forwards;
+  }
+
+  /* Typewriter caret for the hero eyebrow. */
+  .rz-caret {
+    display: inline-block;
+    margin-left: 1px;
+    color: var(--brand);
+    opacity: 0.7;
+    animation: rz-caret-blink 1.05s step-end infinite;
+  }
+  @keyframes rz-caret-blink {
+    50% {
       opacity: 0;
-      transform: translateY(0.42em);
     }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .rz-caret {
+      display: none;
+    }
+  }
+
+  /* ============ LIGHT-GLASS SYSTEM (glass redesign 2026-07-08) ============ */
+  /* Animated brand gradient-mesh substrate — fixed behind everything, the thing
+     glass refracts. Transform-only animation, contain:strict (CLS-safe), never
+     blurred. Two moving blobs only; strongest hue <=14% alpha. */
+  .rz-substrate {
+    position: fixed;
+    inset: -20%;
+    z-index: -2;
+    pointer-events: none;
+    background: var(--paper-2);
+    overflow: hidden;
+    contain: strict;
+  }
+  .rz-substrate::before,
+  .rz-substrate::after {
+    content: "";
+    position: absolute;
+    width: 78vmax;
+    height: 78vmax;
+    border-radius: 50%;
+    will-change: transform;
+    /* screen so faint teal/cyan glows ADD light onto the near-black base
+       (multiply would erase them). Kept low-alpha — the hero WebGL nebula is
+       the real light source; this only stops the flat black from banding. */
+    mix-blend-mode: screen;
+  }
+  .rz-substrate::before {
+    top: -12%;
+    left: -8%;
+    background: radial-gradient(circle at center, rgba(14, 79, 79, 0.42) 0%, transparent 62%);
+    animation: rz-drift-a var(--mesh-a) var(--ease-soft) infinite alternate;
+  }
+  .rz-substrate::after {
+    bottom: -16%;
+    right: -12%;
+    background: radial-gradient(circle at center, rgba(45, 212, 191, 0.16) 0%, transparent 64%);
+    animation: rz-drift-b var(--mesh-b) var(--ease-soft) infinite alternate;
+  }
+  @keyframes rz-drift-a {
     to {
-      opacity: 1;
+      transform: translate3d(8vw, 6vh, 0) scale(1.12);
+    }
+  }
+  @keyframes rz-drift-b {
+    to {
+      transform: translate3d(-7vw, -5vh, 0) scale(1.1);
+    }
+  }
+
+  /* Glass panels — base look is opaque-first (safe if blur never applies). */
+  .rz-glass,
+  .rz-glass-lite {
+    position: relative;
+    border-radius: var(--glass-radius);
+    background: var(--glass-fill-solid);
+    border: 1px solid var(--glass-ring);
+    box-shadow: var(--glass-highlight), var(--glass-shadow);
+  }
+  .rz-glass::before,
+  .rz-glass-lite::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 32%;
+    border-radius: inherit;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), transparent);
+    pointer-events: none;
+  }
+  .rz-glass--reading,
+  .rz-glass-lite--reading {
+    background: var(--glass-fill-hi);
+  }
+
+  /* Tier A: real blur — only when supported. */
+  @supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    .rz-glass {
+      background: linear-gradient(135deg, var(--glass-tint), transparent 55%), var(--glass-fill);
+      -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-sat));
+      backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-sat));
+    }
+    .rz-glass--reading {
+      background: linear-gradient(135deg, var(--glass-tint), transparent 55%), var(--glass-fill-hi);
+    }
+    .rz-glass--nav {
+      -webkit-backdrop-filter: blur(var(--glass-blur-lg)) saturate(1.2);
+      backdrop-filter: blur(var(--glass-blur-lg)) saturate(1.2);
+    }
+  }
+
+  /* Mobile / coarse pointer: drop live blur to solid — identical look, no cost. */
+  @media (max-width: 768px), (pointer: coarse) {
+    .rz-glass {
+      -webkit-backdrop-filter: none !important;
+      backdrop-filter: none !important;
+      background: var(--glass-fill-solid) !important;
+    }
+  }
+  @media (prefers-reduced-transparency: reduce) {
+    .rz-glass,
+    .rz-glass-lite {
+      background: var(--glass-fill-solid);
+      -webkit-backdrop-filter: none;
+      backdrop-filter: none;
+    }
+  }
+  @media (forced-colors: active) {
+    .rz-glass,
+    .rz-glass-lite {
+      background: Canvas;
+      border: 1px solid CanvasText;
+      -webkit-backdrop-filter: none;
+      backdrop-filter: none;
+    }
+  }
+
+  /* Glass hover — transform/shadow/border only (never animate blur). */
+  .rz-glass-card {
+    transition:
+      transform 260ms var(--ease-soft),
+      box-shadow 320ms var(--ease-soft),
+      border-color 320ms var(--ease-soft);
+  }
+  .rz-glass-card:hover,
+  .rz-glass-card:focus-within {
+    transform: translateY(-6px);
+    border-color: color-mix(in oklab, var(--signal) 45%, var(--glass-ring));
+    box-shadow:
+      0 30px 60px -24px rgba(0, 0, 0, 0.6),
+      0 0 0 1px rgba(45, 212, 191, 0.25),
+      0 0 32px -8px rgba(45, 212, 191, 0.18);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .rz-substrate::before,
+    .rz-substrate::after {
+      animation: none !important;
+    }
+    .rz-glass-card {
+      transition: border-color 320ms linear;
+    }
+    .rz-glass-card:hover,
+    .rz-glass-card:focus-within {
       transform: none;
+      box-shadow: var(--glass-highlight), var(--glass-shadow);
+    }
+  }
+
+  /* Apply the light-glass material to the existing card surfaces (CSS-only
+     tiering, no markup change). LITE by default = solid-translucent fill +
+     light ring + layered teal-cast shadow (reads as glass floating over the
+     mesh, zero blur cost). */
+  .home-pillar-card,
+  .home-card,
+  .home-topic-card,
+  .case-study-card,
+  .case-soft-card,
+  .blog-result-card {
+    background: var(--glass-fill-solid);
+    border-color: var(--glass-ring);
+    box-shadow: var(--glass-highlight), var(--glass-shadow);
+  }
+  /* The one live-blur moment: the three "Where I operate" cards actually
+     refract the drifting mesh behind them. */
+  @supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    .home-pillar-card {
+      background: linear-gradient(135deg, var(--glass-tint), transparent 55%), var(--glass-fill-hi);
+      -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-sat));
+      backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-sat));
+    }
+  }
+  @media (max-width: 768px), (pointer: coarse) {
+    .home-pillar-card {
+      -webkit-backdrop-filter: none !important;
+      backdrop-filter: none !important;
+      background: var(--glass-fill-solid) !important;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    /* Belt-and-braces: even if `.rz-js` were somehow present, never hide. */
+    [data-rz-reveal],
+    .rz-reveal,
+    .rz-words[data-rz-words] .rz-word,
+    [data-hero-in],
+    [data-hero-portrait] {
+      opacity: 1 !important;
+      transform: none !important;
+    }
+    .rz-unveil {
+      clip-path: none !important;
+    }
+    .rz-register {
+      color: var(--brand) !important;
+      background-size: 0 0 !important;
+    }
+    .rz-line-rise {
+      transform: none !important;
+    }
+    .rz-line-clip {
+      overflow: visible !important;
+      animation: none !important;
     }
   }
 
@@ -536,28 +904,28 @@
       var(--paper) 100%
     );
   }
+  /* Closing-band paths, redesigned (Gate-B motion pass 2026-07-08). The old
+     infinite marching-dash loop read as busy and cheap. Now each stroke is a
+     full-length dash that DRAWS ITSELF IN ONCE, as one soft sweep, when the
+     band scrolls into view, then holds as a still line field. Default state
+     (no-JS / reduced-motion) is the finished field, fully visible. */
   .bg-paths-line {
-    stroke-dasharray: 0.32 0.68;
+    stroke-dasharray: 1;
+    stroke-dashoffset: 0;
+  }
+  /* Only when the reveal engine is active do we hide-then-draw. */
+  .rz-js .bg-paths:not(.rz-in) .bg-paths-line {
     stroke-dashoffset: 1;
   }
-  @media (prefers-reduced-motion: no-preference) {
-    .bg-paths-line {
-      animation: bg-paths-flow var(--dur, 24s) linear infinite;
-      animation-delay: var(--delay, 0s);
-    }
+  .rz-js .bg-paths.rz-in .bg-paths-line {
+    animation: bg-paths-draw 2600ms cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation-delay: var(--delay, 0s);
   }
-  @keyframes bg-paths-flow {
+  @keyframes bg-paths-draw {
     from {
       stroke-dashoffset: 1;
     }
     to {
-      stroke-dashoffset: 0;
-    }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    /* No travel — draw the strokes solid and faint as a static line field. */
-    .bg-paths-line {
-      stroke-dasharray: none;
       stroke-dashoffset: 0;
     }
   }
@@ -668,7 +1036,7 @@
     position: absolute;
     inset: 0;
     pointer-events: none;
-    opacity: 0.38;
+    opacity: 0.2;
     background-image:
       linear-gradient(
         to right,
@@ -689,7 +1057,7 @@
     position: absolute;
     inset: 0;
     pointer-events: none;
-    opacity: 0.48;
+    opacity: 0.28;
     background:
       linear-gradient(
         110deg,
@@ -706,7 +1074,25 @@
   }
 
   .home-portrait-frame {
-    filter: drop-shadow(0 22px 38px color-mix(in oklab, var(--ink) 12%, transparent));
+    /* Layered premium depth (Press Run 2026-07-08): a soft near shadow, a
+       long ambient cast, and a faint brand-tinted glow, so the portrait reads
+       lifted off the page rather than pasted onto it. */
+    filter: drop-shadow(0 18px 30px color-mix(in oklab, var(--ink) 10%, transparent))
+      drop-shadow(0 44px 80px color-mix(in oklab, var(--ink) 14%, transparent))
+      drop-shadow(0 10px 40px color-mix(in oklab, var(--signal) 12%, transparent));
+  }
+
+  /* Floating "signature" card overlapping the portrait — a small crafted
+     personality detail (ported from the 21st.dev premium hero take). */
+  .home-signature-card {
+    transition:
+      transform 400ms var(--ease-expo),
+      box-shadow 400ms var(--ease-expo);
+    box-shadow: 0 18px 40px -22px color-mix(in oklab, var(--ink) 34%, transparent);
+  }
+  .home-signature-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 26px 54px -24px color-mix(in oklab, var(--ink) 40%, transparent);
   }
 
   .blog-hero-shell {
@@ -1283,11 +1669,13 @@
   .case-study-card,
   .case-soft-card,
   .case-metric-card {
+    /* Premium hover easing (Gate-B 2026-07-08): ease-out curve + slightly
+       longer duration so the lift settles rather than snaps. */
     transition:
-      transform 180ms ease,
-      border-color 180ms ease,
-      box-shadow 180ms ease,
-      background-color 180ms ease;
+      transform 260ms cubic-bezier(0.22, 1, 0.36, 1),
+      border-color 260ms cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 260ms cubic-bezier(0.22, 1, 0.36, 1),
+      background-color 260ms cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   .blog-feature-card {
@@ -1450,14 +1838,20 @@
     background-color: color-mix(in oklab, var(--paper) 68%, var(--signal) 4%);
   }
 
-  .home-card:hover,
+  .home-card-lift:hover,
   .home-topic-card:hover,
   .blog-result-card:hover,
   .case-study-card:hover,
   .case-soft-card:hover {
-    transform: translateY(-2px);
-    border-color: color-mix(in oklab, var(--ink) 22%, var(--rule));
-    box-shadow: 0 14px 34px color-mix(in oklab, var(--ink) 8%, transparent);
+    /* Premium lift (Press Run 2026-07-08): deeper rise, a soft brand-tinted
+       cast, and a teal-warmed border — the crafted card-hover from the 21st
+       reference. Gated on `.home-card-lift` so static display tiles (About
+       metric tiles, sticker) never get a clickable affordance. */
+    transform: translateY(-6px);
+    border-color: color-mix(in oklab, var(--signal) 35%, var(--rule));
+    box-shadow:
+      0 30px 60px -30px color-mix(in oklab, var(--ink) 22%, transparent),
+      0 8px 24px -16px color-mix(in oklab, var(--signal) 30%, transparent);
   }
 
   .blog-result-card:hover {
@@ -1830,6 +2224,33 @@
       will-change: transform, opacity, filter;
     }
 
+    /* On-scroll conversion (Gate-B motion pass 2026-07-08). The soft-reveal
+       above fires on page LOAD, so below-fold cards had already finished
+       animating by the time the reader scrolled to them — which is exactly
+       why the landing page felt static on scroll. When the reveal engine is
+       active (`.rz-js`), hold each homepage card at the first frame (paused =
+       opacity 0) until the IntersectionObserver adds `.rz-in`, so the cards
+       animate as they enter view. No `.rz-js` (no-JS) keeps the original
+       on-load behaviour, so content is never stranded invisible. */
+    .rz-js .home-soft-reveal,
+    .rz-js .home-card,
+    .rz-js .home-topic-card,
+    .rz-js .home-search-panel,
+    .rz-js .case-study-card,
+    .rz-js .case-soft-card,
+    .rz-js .case-metric-card {
+      animation-play-state: paused;
+    }
+    .rz-js .home-soft-reveal.rz-in,
+    .rz-js .home-card.rz-in,
+    .rz-js .home-topic-card.rz-in,
+    .rz-js .home-search-panel.rz-in,
+    .rz-js .case-study-card.rz-in,
+    .rz-js .case-soft-card.rz-in,
+    .rz-js .case-metric-card.rz-in {
+      animation-play-state: running;
+    }
+
     .resume-divider::before {
       content: "";
       position: absolute;
@@ -2197,5 +2618,121 @@ textarea:user-invalid {
   }
   to {
     transform: scaleY(1);
+  }
+}
+
+/* ── Consent banner (vanilla-cookieconsent v3) ─────────────────────────────
+   Gate-A 2026-07-08. Themed to the site tokens so the banner reads as part
+   of the editorial system: pill buttons in the ink/brand vocabulary, card
+   radius, ruled borders. Vendored assets live in public/vendor/ (refresh
+   with `bun run vendor:consent` after upgrading the package). */
+#cc-main {
+  --cc-font-family: var(--font-sans);
+  --cc-bg: var(--paper);
+  --cc-primary-color: var(--ink);
+  --cc-secondary-color: var(--ink-soft);
+  --cc-btn-primary-bg: var(--ink);
+  --cc-btn-primary-border-color: var(--ink);
+  --cc-btn-primary-color: var(--paper);
+  --cc-btn-primary-hover-bg: var(--brand);
+  --cc-btn-primary-hover-border-color: var(--brand);
+  --cc-btn-primary-hover-color: var(--paper);
+  --cc-btn-secondary-bg: transparent;
+  --cc-btn-secondary-border-color: color-mix(in oklab, var(--ink) 20%, transparent);
+  --cc-btn-secondary-color: var(--ink);
+  --cc-btn-secondary-hover-bg: color-mix(in oklab, var(--ink) 5%, transparent);
+  --cc-btn-secondary-hover-border-color: color-mix(in oklab, var(--ink) 50%, transparent);
+  --cc-btn-secondary-hover-color: var(--ink);
+  --cc-btn-border-radius: 9999px;
+  --cc-modal-border-radius: 16px;
+  --cc-separator-border-color: var(--rule);
+  --cc-section-category-border: var(--rule);
+  --cc-cookie-category-block-bg: color-mix(in oklab, var(--ink) 3%, var(--paper));
+  --cc-cookie-category-block-border: var(--rule);
+  --cc-cookie-category-block-hover-bg: color-mix(in oklab, var(--ink) 6%, var(--paper));
+  --cc-toggle-on-bg: var(--brand);
+  --cc-link-color: var(--brand);
+  --cc-overlay-bg: rgba(17, 17, 17, 0.35);
+  --cc-modal-margin: 1rem;
+}
+#cc-main .cm__title,
+#cc-main .pm__title {
+  font-family: var(--font-sans);
+  letter-spacing: -0.01em;
+}
+
+/* ============ SOBER MICRO-MOTION (2026-07-09, unlayered so it wins over
+   Tailwind utilities + @layer utilities). Pure CSS, one easing curve, cyan
+   accent only. No hidden state → no-JS unaffected; reduced-motion neutralised
+   below. Deliberately NO magnetic cursor, split-text, tilt, or scramble. */
+
+/* (1) Link underline-wipe — background layer, no reflow (CLS 0). .rz-link is a
+   non-focusable inner span, so keyboard focus is matched on the FOCUSED
+   ancestor anchor / group. */
+.rz-link {
+  background-image: linear-gradient(var(--brand), var(--brand));
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 0% 1px;
+  transition:
+    background-size 0.4s var(--ease-expo),
+    color 0.4s var(--ease-expo);
+}
+.rz-link:hover,
+a:focus-visible .rz-link,
+.group:focus-visible .rz-link {
+  background-size: 100% 1px;
+}
+
+/* (2) Primary CTA glow-ring — HOVER ONLY. Keyboard focus keeps the existing
+   Tailwind focus-visible:ring (do NOT clobber that box-shadow). */
+.rz-cta-primary {
+  box-shadow: 0 0 0 0 color-mix(in oklab, var(--brand) 0%, transparent);
+  transition: box-shadow 0.4s var(--ease-expo);
+}
+.rz-cta-primary:hover {
+  box-shadow:
+    0 0 0 4px color-mix(in oklab, var(--brand) 22%, transparent),
+    0 10px 34px -10px color-mix(in oklab, var(--brand) 45%, transparent);
+}
+
+/* (3) Card keyboard-focus parity — crisp cyan ring + border + shadow (no lift;
+   rz-soft-reveal ...forwards pins reveal-card transforms). No blanket card
+   `transition` is added here (that would clobber the Gate-B card easing). */
+.home-card-lift:focus-visible,
+.home-topic-card:focus-visible,
+.case-study-card:focus-visible,
+.case-soft-card:focus-visible,
+.blog-result-card:focus-visible {
+  outline: none;
+  border-color: color-mix(in oklab, var(--signal) 35%, var(--rule));
+  box-shadow:
+    0 0 0 3px color-mix(in oklab, var(--signal) 45%, transparent),
+    0 30px 60px -30px color-mix(in oklab, var(--ink) 22%, transparent),
+    0 8px 24px -16px color-mix(in oklab, var(--signal) 30%, transparent);
+}
+
+/* Reduced-motion: instant state changes, zero motion, every lifted card. */
+@media (prefers-reduced-motion: reduce) {
+  .rz-link,
+  .rz-cta-primary,
+  .home-card-lift,
+  .home-topic-card,
+  .case-study-card,
+  .case-soft-card,
+  .blog-result-card {
+    transition: none;
+  }
+  .home-card-lift:hover,
+  .home-card-lift:focus-visible,
+  .home-topic-card:hover,
+  .home-topic-card:focus-visible,
+  .case-study-card:hover,
+  .case-study-card:focus-visible,
+  .case-soft-card:hover,
+  .case-soft-card:focus-visible,
+  .blog-result-card:hover,
+  .blog-result-card:focus-visible {
+    transform: none;
   }
 }

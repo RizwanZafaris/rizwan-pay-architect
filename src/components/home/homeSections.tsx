@@ -9,6 +9,7 @@ import { Link } from "@tanstack/react-router";
 import { profile } from "@/data/profile";
 import { WorldMap } from "@/components/WorldMap";
 import { RevealHeading } from "@/components/RevealHeading";
+import { AnimatedMetric } from "@/components/motion/AnimatedMetric";
 import { BackgroundPaths } from "@/components/BackgroundPaths";
 import { testimonials } from "@/data/testimonials";
 
@@ -95,6 +96,48 @@ export const homeSectionsCss = `
   .faq-sign::after { transition: none; }
   .faq-item[open] .faq-answer-inner { animation: none; }
 }
+
+/* PROOF-BAND GLOW-SWEEP — one-shot cyan spotlight across the 5 numbers, keyed to
+   the existing IO adding .rz-in to the .rz-proof-sweep overlay. ::before content
+   exists ONLY under .rz-js, so no-JS / reduced-motion never render the sweep. */
+.rz-proof-sweep {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+/* Neutralise the generic .rz-reveal rise on the overlay itself (3 classes +
+   unlayered component <style> beats @layer utilities' .rz-js .rz-reveal). */
+.rz-js .rz-proof-sweep.rz-reveal {
+  opacity: 1;
+  transform: none;
+  transition: none;
+}
+.rz-js .rz-proof-sweep::before {
+  content: "";
+  position: absolute;
+  top: -40%;
+  bottom: -40%;
+  left: 0;
+  width: 38%;
+  background: radial-gradient(closest-side at 50% 50%,
+    color-mix(in oklab, var(--brand) 24%, transparent),
+    color-mix(in oklab, var(--brand) 9%, transparent) 55%,
+    transparent 80%);
+  mix-blend-mode: screen;
+  opacity: 0;
+  transform: translateX(-130%);
+}
+.rz-js .rz-proof-sweep.rz-in::before {
+  animation: rz-proof-glow 1100ms var(--ease-expo) forwards;
+  will-change: transform, opacity;
+}
+@keyframes rz-proof-glow {
+  0%   { opacity: 0; transform: translateX(-130%); }
+  12%  { opacity: 1; }
+  80%  { opacity: 1; }
+  100% { opacity: 0; transform: translateX(290%); }
+}
 `;
 
 // ── B. PROOF BAND ─────────────────────────────────────────────────────────
@@ -119,23 +162,20 @@ type SpotlightMetric = (typeof profile.metrics)[number];
 
 export function ProofBand() {
   const { career, platform } = profile;
-  const stats: { value: string; label: string; scoped?: boolean }[] = [
-    // Career-scope (the arc) — no asterisk. Duration framing per owner
-    // ruling 2026-07-06 ("17 years", never "since 2009"); the number is
-    // computed in profile.ts so it can't go stale.
-    { value: `${career.years}`, label: "Years experience" },
+  // PRIMARY proof — the five headline numbers only, as premium counters, so
+  // the homepage's first proof beat is scannable in two seconds (Press Run
+  // 2026-07-08: reduced from a 12-tile wall). Each counts up on scroll.
+  const primary: { value: string; label: string }[] = [
+    { value: `${career.years}+`, label: "Years" },
+    { value: platform.gtv, label: "Annual GTV" },
+    { value: platform.annualPayments, label: "Payments / yr" },
+    { value: platform.merchants, label: "Merchants" },
     { value: `${career.marketCount}`, label: "Markets" },
-    { value: `${career.industryCount}`, label: "Industries" },
-    // Platform-scope (Simpaisa, current role) — asterisked.
-    { value: platform.gtv, label: "Annual GTV", scoped: true },
-    { value: platform.annualPayments, label: "Payments / yr", scoped: true },
-    { value: platform.merchants, label: "Merchants", scoped: true },
   ];
-  // ALL spotlight metrics are Simpaisa platform scope → every cell is
-  // asterisked and covered by the shared footnote below. Order is the
-  // display order, so map-then-find (a bare .filter() would re-order to
-  // profile.metrics order).
-  const spotlight = SPOTLIGHT_METRIC_LABELS.map((label) =>
+  // SECONDARY proof — the operating record, moved behind a native <details> so
+  // the homepage stays elegant while the deep reliability metrics stay one
+  // click (and fully no-JS) away. Order preserved via map-then-find.
+  const operating = SPOTLIGHT_METRIC_LABELS.map((label) =>
     profile.metrics.find((m) => m.label === label),
   )
     .filter((m): m is SpotlightMetric => Boolean(m))
@@ -149,53 +189,54 @@ export function ProofBand() {
     );
   return (
     <section className="relative border-b border-rule bg-surface">
-      <div className="mx-auto max-w-6xl px-5 sm:px-6 py-10 md:py-12">
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-x-6 gap-y-8">
-          {stats.map((s, i) => (
-            // Each stat is a separate cell — a career stat and a platform stat
-            // never share a text node (two-tier gate safety).
+      <div className="mx-auto max-w-6xl px-5 sm:px-6 py-[var(--space-section-sm)]">
+        {/* Five premium counters. Large Instrument-serif numerals + count-up. */}
+        <div className="relative">
+          {/* One-shot cyan spotlight that sweeps L→R across the numbers as the
+              band enters view. Reuses the EXISTING IntersectionObserver via
+              .rz-reveal (gets .rz-in once — no new JS/observer). Sibling of the
+              grid so divide-x can't paint a stray divider on it. aria-hidden +
+              .rz-js-gated + position:absolute → invisible to no-JS /
+              reduced-motion and CLS 0. */}
+          <span aria-hidden className="rz-reveal rz-proof-sweep" />
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-y-12 md:gap-y-0 md:divide-x md:divide-[color:var(--rule)]">
+            {primary.map((s, i) => (
             <div
               key={s.label}
-              className="home-proof-cell text-center lg:text-left"
-              style={{ ["--proof-delay" as string]: `${i * 70}ms` }}
+              className="rz-reveal text-center md:px-8"
+              style={{ ["--rz-delay" as string]: `${i * 90}ms` }}
             >
-              <div className="font-mono-tech text-2xl sm:text-3xl md:text-4xl text-ink leading-none tabular-nums">
-                {s.value}
-                {s.scoped && (
-                  <span className="text-[var(--brand)]" aria-hidden>
-                    {" "}
-                    *
-                  </span>
-                )}
+              <div className="font-instrument text-[46px] sm:text-6xl lg:text-7xl text-ink leading-[0.88] tabular-nums">
+                <AnimatedMetric value={s.value} />
               </div>
-              <div className="mt-2 text-[10px] uppercase tracking-[0.22em] text-ink-soft font-mono-tech">
+              <div className="mt-3 md:mt-4 text-[10px] uppercase tracking-[0.22em] text-ink-soft font-mono-tech">
                 {s.label}
               </div>
             </div>
-          ))}
+            ))}
+          </div>
         </div>
-        {/* ── Operating record (ISSUE-004) — second row of the proof band. ──
-            Six platform-scope reliability/performance metrics, each its own
-            cell (never two metrics or a career marker in one text node). */}
-        {spotlight.length > 0 && (
-          <div className="mt-10 border-t border-rule pt-8">
-            <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
-              ◆ Operating record
-            </div>
-            <div className="mt-6 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-x-6 gap-y-8">
-              {spotlight.map((m, i) => (
-                <div
-                  key={m.label}
-                  className="home-proof-cell text-center lg:text-left"
-                  style={{ ["--proof-delay" as string]: `${420 + i * 70}ms` }}
-                >
-                  <div className="font-mono-tech text-2xl sm:text-3xl md:text-4xl text-ink leading-[1.05] tabular-nums">
+
+        {/* Operating record: secondary, expandable (native details, no JS). */}
+        {operating.length > 0 && (
+          <details className="rz-reveal group mt-14 md:mt-20 border-t border-rule pt-6">
+            <summary className="flex cursor-pointer list-none items-center gap-2 text-[10px] uppercase tracking-[0.22em] font-mono-tech text-ink-soft hover:text-ink transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-sm">
+              <span className="text-[var(--brand)]" aria-hidden>
+                &#9670;
+              </span>
+              Operating record
+              <span className="ml-auto inline-flex items-center gap-1 normal-case tracking-normal text-ink-soft/70">
+                {platform.company} platform
+                <span className="transition-transform group-open:rotate-90" aria-hidden>
+                  &rsaquo;
+                </span>
+              </span>
+            </summary>
+            <div className="mt-8 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-x-6 gap-y-8">
+              {operating.map((m) => (
+                <div key={m.label} className="text-center lg:text-left">
+                  <div className="font-mono-tech text-xl sm:text-2xl text-ink leading-none tabular-nums">
                     {m.value}
-                    {/* NBSP glues the scope asterisk to the value so it can
-                        never wrap onto a line of its own in narrow cells. */}
-                    <span className="text-[var(--brand)]" aria-hidden>
-                      {" "}*
-                    </span>
                   </div>
                   <div className="mt-2 text-[10px] uppercase tracking-[0.22em] text-ink-soft font-mono-tech">
                     {m.label}
@@ -203,14 +244,8 @@ export function ProofBand() {
                 </div>
               ))}
             </div>
-          </div>
+          </details>
         )}
-        <p className="mt-8 text-[10px] uppercase tracking-[0.18em] text-ink-soft font-mono-tech">
-          <span className="text-[var(--brand)]" aria-hidden>
-            *{" "}
-          </span>
-          {platform.company} platform, current role
-        </p>
       </div>
     </section>
   );
@@ -270,13 +305,12 @@ const PILLARS = [
 export function IndustryPillars() {
   return (
     <section className="relative">
-      <div className="mx-auto max-w-6xl px-5 sm:px-6 py-16 md:py-20">
+      <div className="mx-auto max-w-6xl px-5 sm:px-6 py-[var(--space-section-md)]">
         <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
           ◆ Three industries
         </div>
         <h2 className="font-instrument text-4xl md:text-6xl text-ink mt-3 leading-[1.02] max-w-3xl">
-          One operating discipline,{" "}
-          <span className="italic text-[var(--brand)]">three arenas.</span>
+          <RevealHeading lead="One operating discipline," emphasis="three arenas." />
         </h2>
         <div className="mt-10 grid md:grid-cols-3 gap-5">
           {PILLARS.map((p, i) => (
@@ -410,12 +444,16 @@ export function GetInTouchBand() {
               <h3 className="font-instrument text-xl text-ink mt-3 leading-snug">{c.title}</h3>
               <p className="mt-2 text-sm text-ink-soft leading-relaxed flex-1">{c.body}</p>
               <div className="mt-6 flex flex-col gap-2.5">
+                {/* Tap targets (Gate-A 2026-07-08, WCAG 2.5.8): py + negative
+                    my grows each link's hit area past 24px (44px on the
+                    booking CTA) without moving a pixel of the rendered
+                    layout — the gap-2.5 rhythm stays as designed. */}
                 {c.links.map((l) =>
                   l.kind === "internal" ? (
                     <Link
                       key={l.label}
                       to={l.to}
-                      className="text-sm text-ink hover:text-[var(--brand)] transition-colors inline-flex items-center gap-1.5"
+                      className="text-sm text-ink hover:text-[var(--brand)] transition-colors inline-flex items-center gap-1.5 py-1.5 -my-1.5"
                     >
                       {l.label}
                     </Link>
@@ -427,7 +465,7 @@ export function GetInTouchBand() {
                       data-analytics-cta-id="book_intro_call"
                       data-analytics-cta-location="home_get_in_touch"
                       data-analytics-cta-destination="/contact/#book"
-                      className="text-sm font-medium text-[var(--brand)] hover:opacity-80 transition-opacity inline-flex items-center gap-1.5"
+                      className="text-sm font-medium text-[var(--brand)] hover:opacity-80 transition-opacity inline-flex items-center gap-1.5 py-3 -my-3"
                     >
                       {l.label}
                     </a>
@@ -435,7 +473,7 @@ export function GetInTouchBand() {
                     <a
                       key={l.label}
                       href={l.to}
-                      className="text-sm text-ink hover:text-[var(--brand)] transition-colors inline-flex items-center gap-1.5"
+                      className="text-sm text-ink hover:text-[var(--brand)] transition-colors inline-flex items-center gap-1.5 py-1.5 -my-1.5"
                     >
                       {l.label}
                     </a>
@@ -556,11 +594,11 @@ export const howIWorkFaqs: { q: string; a: string }[] = [
 export function HowIWorkFaq() {
   return (
     <section className="relative border-t border-rule bg-surface">
-      <div className="mx-auto max-w-3xl px-5 sm:px-6 py-20 md:py-24">
+      <div className="mx-auto max-w-3xl px-5 sm:px-6 py-[var(--space-section-sm)]">
         <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
           ◆ How I work
         </div>
-        <h2 className="font-instrument text-4xl md:text-5xl text-ink mt-3 leading-[1.05]">
+        <h2 className="font-instrument text-4xl md:text-6xl text-ink mt-3 leading-[1.05]">
           <RevealHeading lead="The questions I get" emphasis="most." />
         </h2>
         <div className="mt-10 border-t border-rule">

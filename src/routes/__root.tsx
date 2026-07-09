@@ -85,6 +85,8 @@ import {
   PLAUSIBLE_DOMAIN,
   PLAUSIBLE_SRC,
   LINKEDIN_PARTNER_IDS,
+  POSTHOG_KEY,
+  POSTHOG_HOST,
 } from "@/lib/seo";
 
 // Google Tag Manager was retired 2026-06-12 — the container's UI-built tags
@@ -92,6 +94,15 @@ import {
 // Direct gtag is the single pipeline now (see docs/ANALYTICS_SETUP.md).
 
 const googleTagLoaderId = GOOGLE_ADS_ID || GA_MEASUREMENT_ID;
+
+// Consent Mode v2 (Gate-A 2026-07-08). Defaults are DENIED for every
+// storage category before gtag.js loads, so EU/UK visitors get cookieless
+// pings only until they opt in via the banner below. The banner's
+// onConsent/onChange hook flips these with gtag("consent","update",...).
+// This script MUST render before the gtag.js loader tag.
+const consentDefaultScript = googleTagLoaderId
+  ? `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("consent","default",{ad_storage:"denied",ad_user_data:"denied",ad_personalization:"denied",analytics_storage:"denied",wait_for_update:500});gtag("set","url_passthrough",true);`
+  : "";
 
 const gaBootstrapScript = googleTagLoaderId
   ? [
@@ -105,12 +116,46 @@ const clarityScript = MICROSOFT_CLARITY_ID
   ? `(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script",${JSON.stringify(MICROSOFT_CLARITY_ID)});`
   : "";
 
-// LinkedIn Insight Tag — official snippet. Fires site-wide so the LinkedIn
-// retargeting audience builds from all traffic; conversions (e.g. booked-call
-// page actions) are defined on top of it in Campaign Manager. Partner id in
-// src/lib/seo.ts.
+// LinkedIn Insight Tag — official snippet, wrapped in a consent gate
+// (Gate-A 2026-07-08). Unlike gtag, LinkedIn has no cookieless consent
+// mode, so the loader is exposed as window.__rzLoadLinkedIn and only
+// invoked by the consent banner once the visitor accepts the marketing
+// category. Retargeting audiences and Campaign Manager conversions build
+// from consented traffic only. Partner id in src/lib/seo.ts.
 const linkedInInsightScript = LINKEDIN_PARTNER_IDS.length
-  ? `window._linkedin_data_partner_ids=window._linkedin_data_partner_ids||[];${LINKEDIN_PARTNER_IDS.map((id) => `window._linkedin_data_partner_ids.push("${id}");`).join("")}(function(l){if(!l){window.lintrk=function(a,b){window.lintrk.q.push([a,b])};window.lintrk.q=[]}var s=document.getElementsByTagName("script")[0];var b=document.createElement("script");b.type="text/javascript";b.async=true;b.src="https://snap.licdn.com/li.lms-analytics/insight.min.js";s.parentNode.insertBefore(b,s)})(window.lintrk);`
+  ? `window.__rzLoadLinkedIn=function(){if(window.__rzLinkedInLoaded)return;window.__rzLinkedInLoaded=1;window._linkedin_data_partner_ids=window._linkedin_data_partner_ids||[];${LINKEDIN_PARTNER_IDS.map((id) => `window._linkedin_data_partner_ids.push("${id}");`).join("")}(function(l){if(!l){window.lintrk=function(a,b){window.lintrk.q.push([a,b])};window.lintrk.q=[]}var s=document.getElementsByTagName("script")[0];var b=document.createElement("script");b.type="text/javascript";b.async=true;b.src="https://snap.licdn.com/li.lms-analytics/insight.min.js";s.parentNode.insertBefore(b,s)})(window.lintrk);};`
+  : "";
+
+// PostHog product analytics — official array-stub snippet wrapped in a consent
+// gate (like LinkedIn above). The loader is exposed as window.__rzLoadPostHog
+// and invoked by the consent banner only once the visitor accepts the
+// "analytics" category, so no PostHog request fires for visitors who decline.
+// Modern defaults bundle (2025-05-24): autocapture + pageview/pageleave, and
+// person_profiles "identified_only". Key/host in src/lib/seo.ts.
+const postHogLoaderScript = POSTHOG_KEY
+  ? `window.__rzLoadPostHog=function(){if(window.__rzPostHogLoaded)return;window.__rzPostHogLoaded=1;!function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture register register_once register_for_session unregister unregister_for_session getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty createPersonProfile opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing debug getPageViewId captureTraceFeedback captureTraceMetric".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);window.posthog.init(${JSON.stringify(POSTHOG_KEY)},{api_host:${JSON.stringify(POSTHOG_HOST)},defaults:"2025-05-24"});};`
+  : "";
+
+// Consent banner boot (vanilla-cookieconsent v3, vendored under
+// /vendor/ — run `bun run vendor:consent` after upgrading the package).
+// Maps the two optional categories onto Consent Mode v2 and the LinkedIn
+// loader. Copy follows PRODUCT.md register: specific, no urgency, no
+// exclamation marks, no em dashes.
+const consentInitScript = googleTagLoaderId
+  ? `document.addEventListener("DOMContentLoaded",function(){var CC=window.CookieConsent;if(!CC)return;
+function apply(){var an=CC.acceptedCategory("analytics"),mk=CC.acceptedCategory("marketing");
+if(window.gtag){window.gtag("consent","update",{analytics_storage:an?"granted":"denied",ad_storage:mk?"granted":"denied",ad_user_data:mk?"granted":"denied",ad_personalization:mk?"granted":"denied"});}
+if(mk&&window.__rzLoadLinkedIn)window.__rzLoadLinkedIn();
+if(an){if(window.__rzLoadPostHog)window.__rzLoadPostHog();}else if(window.posthog&&window.posthog.opt_out_capturing){window.posthog.opt_out_capturing();}}
+CC.run({guiOptions:{consentModal:{layout:"box inline",position:"bottom right",equalWeightButtons:true,flipButtons:false},preferencesModal:{layout:"box",equalWeightButtons:true}},
+categories:{necessary:{enabled:true,readOnly:true},analytics:{},marketing:{}},
+language:{default:"en",translations:{en:{
+consentModal:{title:"Cookies, kept honest",description:"A few cookies measure which essays and case studies get read, and whether outreach converts. Decline and the site works exactly the same.",acceptAllBtn:"Accept all",acceptNecessaryBtn:"Essential only",showPreferencesBtn:"Choose per category"},
+preferencesModal:{title:"Cookie preferences",acceptAllBtn:"Accept all",acceptNecessaryBtn:"Essential only",savePreferencesBtn:"Save choices",closeIconLabel:"Close",sections:[
+{title:"Essential",description:"Required for the site to function. Always on.",linkedCategory:"necessary"},
+{title:"Analytics",description:"GA4 and PostHog product analytics: which essays, case studies and CTAs get attention.",linkedCategory:"analytics"},
+{title:"Marketing",description:"Google Ads and LinkedIn conversion measurement for outreach campaigns.",linkedCategory:"marketing"}]}}}},
+onConsent:apply,onChange:apply});});`
   : "";
 
 const analyticsBridgeScript =
@@ -128,6 +173,45 @@ document.addEventListener("focusin",function(e){var el=e.target.closest&&e.targe
 document.addEventListener("submit",function(e){var f=e.target;if(!f||!f.matches||!f.matches("form"))return;if(f.dataset.analyticsForm==="newsletter"){p("newsletter_signup",{placement:f.dataset.analyticsPlacement||place()});return}var ev=f.dataset.analyticsEvent;if(!ev&&f.getAttribute("role")==="search")ev="site_search";if(ev==="site_search"){var fd=new FormData(f);p("site_search",{search_term:String(fd.get("q")||"").trim().slice(0,120),search_location:f.dataset.analyticsSearchLocation||"blog",search_filter:f.dataset.analyticsSearchFilter||""})}});
 document.addEventListener("DOMContentLoaded",function(){var path=location.pathname,slug;if(path.indexOf("/blog/")===0&&path!=="/blog/"){slug=path.split("/").filter(Boolean).pop();p("blog_view",{blog_slug:slug||"",blog_category:(document.querySelector('meta[property="article:section"]')||{}).content||"",blog_reading_time:""})}if(path.indexOf("/product-work/")===0&&path!=="/product-work/"){slug=path.split("/").filter(Boolean).pop();p("case_study_view",{case_study_slug:slug||"",case_study_category:""})}})}();`
     : "";
+
+// Universal scroll-reveal + count-up engine (Gate-B motion pass 2026-07-08).
+// The production build ships zero React hydration, so the old React <Reveal>/
+// <CountUp> components never animated in production and the CSS reveals were
+// Chromium-only (animation-timeline). This single inline script drives every
+// reveal from one IntersectionObserver, cross-browser, no hydration needed:
+//   1. Adds `.rz-js` to <html> ONLY when motion is allowed (IO supported and
+//      reduced-motion not set) so the CSS hidden state is gated safely — no-JS
+//      and reduced-motion visitors keep content fully visible.
+//   2. Elements in view on load reveal in a short top-to-bottom cascade
+//      (the "alive from first view" entrance); below-fold reveal on scroll.
+//   3. [data-rz-count] tiles count 0 → value on an ease-out-quart curve when
+//      they enter view, then restore the exact server text (never drift).
+//   4. A 2.6s safety timer force-reveals everything so content is never stuck.
+const rzRevealScript = `(function(){var d=document,el=d.documentElement;try{if(!('IntersectionObserver'in window))return;if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;el.classList.add('rz-js');}catch(e){return;}
+function count(n){var t=parseFloat(n.getAttribute('data-rz-count'));if(isNaN(t))return;var tpl=n.getAttribute('data-rz-count-tpl')||'{n}',dc=parseInt(n.getAttribute('data-rz-count-dec')||'0',10),du=parseInt(n.getAttribute('data-rz-count-dur')||'1400',10),fin=n.textContent,s=0,done=false;
+/* The server-rendered text is already the correct final value. If the tab is
+   hidden (rAF would be throttled), leave it untouched — never reset to 0. */
+if(document.hidden)return;
+function f(v){var x=dc===0?Math.round(v).toLocaleString('en-US'):v.toFixed(dc);return tpl.replace('{n}',x);}
+function settle(){if(done)return;done=true;n.textContent=fin;}
+function k(now){if(done)return;if(!s)s=now;var p=Math.min((now-s)/du,1),e=1-Math.pow(1-p,4);n.textContent=f(t*e);if(p<1)requestAnimationFrame(k);else settle();}
+n.textContent=f(0);requestAnimationFrame(k);
+/* Hard guarantee: whatever happens to rAF, snap to the real final value. The
+   number can never strand at 0 — the whole site is built on exact numbers. */
+setTimeout(settle,du+800);}
+function boot(){var tg=d.querySelectorAll('[data-rz-reveal],.rz-reveal,[data-rz-words],.bg-paths,.rz-unveil,.home-soft-reveal,.home-card,.home-topic-card,.home-search-panel,.case-study-card,.case-soft-card,.case-metric-card'),ct=d.querySelectorAll('[data-rz-count]'),vh=window.innerHeight||el.clientHeight,seen=[];Array.prototype.forEach.call(tg,function(t){var r=t.getBoundingClientRect();if(r.top<vh*0.92&&r.bottom>0)seen.push(t);});seen.sort(function(a,b){return a.getBoundingClientRect().top-b.getBoundingClientRect().top;});seen.forEach(function(t,i){if(!t.style.getPropertyValue('--rz-delay'))t.style.setProperty('--rz-delay',Math.min(i*80,520)+'ms');});
+var io=new IntersectionObserver(function(en,o){en.forEach(function(x){if(x.isIntersecting){x.target.classList.add('rz-in');o.unobserve(x.target);}});},{rootMargin:'0px 0px -8% 0px',threshold:0.08});Array.prototype.forEach.call(tg,function(t){io.observe(t);});
+var cio=new IntersectionObserver(function(en,o){en.forEach(function(x){if(x.isIntersecting){count(x.target);o.unobserve(x.target);}});},{threshold:0.6});Array.prototype.forEach.call(ct,function(c){cio.observe(c);});
+/* Catch-up safety net: reveal ONLY what is already in or above the viewport,
+   in case the observer lagged on first paint. Below-fold elements stay hidden
+   and wait for the scroll observer, so lingering on the hero never burns the
+   reveals further down. IO is gated on support above, so below-fold reveals
+   are never at risk of getting stuck. */
+setTimeout(function(){var v=window.innerHeight||el.clientHeight;Array.prototype.forEach.call(tg,function(t){if(t.getBoundingClientRect().top<v)t.classList.add('rz-in');});},1200);
+/* Hero entrance: fire two frames after boot so the H1 (LCP) has already
+   painted, then the supporting cast + portrait stage in. */
+requestAnimationFrame(function(){requestAnimationFrame(function(){el.classList.add('rz-hero-go');});});}
+if(d.readyState==='loading')d.addEventListener('DOMContentLoaded',boot);else boot();})();`;
 
 function NotFoundComponent() {
   useEffect(() => {
@@ -436,6 +520,14 @@ function RootShell({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <head>
+        {/* Reveal engine first: adds `.rz-js` during head parse so the CSS
+            hidden state is set before the body paints (no flash-of-visible
+            then hide). Gated on IO support + reduced-motion inside the script. */}
+        <script dangerouslySetInnerHTML={{ __html: rzRevealScript }} />
+        {/* Consent defaults MUST precede the gtag.js loader (Consent Mode v2). */}
+        {consentDefaultScript && (
+          <script dangerouslySetInnerHTML={{ __html: consentDefaultScript }} />
+        )}
         {googleTagLoaderId && (
           <script async src={`https://www.googletagmanager.com/gtag/js?id=${googleTagLoaderId}`} />
         )}
@@ -448,10 +540,30 @@ function RootShell({ children }: { children: React.ReactNode }) {
         {linkedInInsightScript && (
           <script dangerouslySetInnerHTML={{ __html: linkedInInsightScript }} />
         )}
+        {postHogLoaderScript && (
+          <script dangerouslySetInnerHTML={{ __html: postHogLoaderScript }} />
+        )}
+        {consentInitScript && (
+          <>
+            <link rel="stylesheet" href="/vendor/cookieconsent.css" media="print" data-cc-css />
+            <script
+              dangerouslySetInnerHTML={{
+                __html: `(function(){var l=document.querySelector("link[data-cc-css]");if(l)l.media="all";})();`,
+              }}
+            />
+            <script defer src="/vendor/cookieconsent.umd.js" />
+            <script dangerouslySetInnerHTML={{ __html: consentInitScript }} />
+          </>
+        )}
         {PLAUSIBLE_DOMAIN && <script defer data-domain={PLAUSIBLE_DOMAIN} src={PLAUSIBLE_SRC} />}
         <HeadContent />
       </head>
       <body>
+        {/* Animated brand gradient-mesh substrate — the field the light-glass
+            panels refract. Fixed behind everything, decorative, non-interactive. */}
+        <div className="rz-substrate" aria-hidden />
+        {/* Site-wide film-grain texture overlay (decorative, non-interactive). */}
+        <div className="rz-grain" aria-hidden />
         {LINKEDIN_PARTNER_IDS.length > 0 && (
           <noscript>
             <img

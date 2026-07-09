@@ -9,9 +9,11 @@ import { SocialIconRow } from "@/components/SocialIcons";
 // Resume, with the persistent "Book a 15-min intro call" pill carrying the
 // single CTA. (Audit sprint 2026-07, ISSUE-001: Resume promoted into the
 // top bar in place of About; About stays reachable in the footer.)
-// De-emphasised surfaces (For recruiters, Contact) live in the footer so
-// they stay reachable without diluting the senior narrative when scanned
-// in 5 seconds. /products, /media, /topics stay off the top bar too and
+// Gate-A audit 2026-07-08 reversed the original footer-only call on /for:
+// the recruiter brief is the highest-intent surface for the primary
+// audience, so it earns the last top-bar slot. Contact stays footer-only —
+// the header booking pill already carries that intent. /products, /media,
+// /topics stay off the top bar too and
 // remain reachable via the footer, homepage sections and blog links.
 // Advisory (/consulting) stays out of the nav — PARKED until 2026-10-02.
 // Speaking (/speaking) stays out of the nav too — PARKED until 2027-01-06
@@ -22,6 +24,7 @@ const nav = [
   { to: "/journey", label: "Journey" },
   { to: "/blog", label: "Insights" },
   { to: "/resume", label: "Resume" },
+  { to: "/for", label: "For recruiters" },
 ] as const;
 
 // Nav label with a vertical slide-swap on hover/focus — the JS-less port of a
@@ -145,7 +148,7 @@ export function SiteHeader() {
               onClick={() => {
                 ctaClick("book_intro_call", "header", bookingHref);
               }}
-              className="inline-flex items-center justify-center gap-1.5 rounded-full bg-ink text-background px-3.5 sm:px-4 py-2.5 min-h-[44px] min-w-[44px] sm:min-w-0 text-[12px] font-medium hover:bg-brand transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+              className="rz-cta-primary inline-flex items-center justify-center gap-1.5 rounded-full bg-ink text-background px-3.5 sm:px-4 py-2.5 min-h-[44px] min-w-[44px] sm:min-w-0 text-[12px] font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background"
             >
               <CalendarDays aria-hidden="true" className="h-3.5 w-3.5" />
               <span className="hidden sm:inline">Book a 15-min intro call</span>
@@ -287,37 +290,37 @@ export function SiteFooter() {
           <ul className="space-y-2">
             <li>
               <Link to="/product-work" className="hover:text-ink text-ink-soft inline-block py-1">
-                Work
+                <span className="rz-link">Work</span>
               </Link>
             </li>
             <li>
               <Link to="/journey" className="hover:text-ink text-ink-soft inline-block py-1">
-                Journey
+                <span className="rz-link">Journey</span>
               </Link>
             </li>
             <li>
               <Link to="/blog" className="hover:text-ink text-ink-soft inline-block py-1">
-                Insights
+                <span className="rz-link">Insights</span>
               </Link>
             </li>
             <li>
               <Link to="/resume" className="hover:text-ink text-ink-soft inline-block py-1">
-                Resume
+                <span className="rz-link">Resume</span>
               </Link>
             </li>
             <li>
               <Link to="/products" className="hover:text-ink text-ink-soft inline-block py-1">
-                Products
+                <span className="rz-link">Products</span>
               </Link>
             </li>
             <li>
               <Link to="/topics" className="hover:text-ink text-ink-soft inline-block py-1">
-                Topics
+                <span className="rz-link">Topics</span>
               </Link>
             </li>
             <li>
               <Link to="/sitemap" className="hover:text-ink text-ink-soft inline-block py-1">
-                Sitemap
+                <span className="rz-link">Sitemap</span>
               </Link>
             </li>
           </ul>
@@ -329,12 +332,12 @@ export function SiteFooter() {
           <ul className="space-y-2">
             <li>
               <Link to="/for" className="hover:text-ink text-ink-soft inline-block py-1">
-                For recruiters
+                <span className="rz-link">For recruiters</span>
               </Link>
             </li>
             <li>
               <Link to="/contact" className="hover:text-ink text-ink-soft inline-block py-1">
-                Contact
+                <span className="rz-link">Contact</span>
               </Link>
             </li>
             <li>
@@ -345,9 +348,9 @@ export function SiteFooter() {
                 data-analytics-outbound-url={`mailto:${profile.email}`}
                 data-analytics-outbound-location="footer"
                 onClick={() => outboundClick(`mailto:${profile.email}`, "footer")}
-                className="hover:text-ink text-ink-soft break-all"
+                className="hover:text-ink text-ink-soft break-all inline-block py-1"
               >
-                {profile.email}
+                <span className="rz-link">{profile.email}</span>
               </a>
             </li>
           </ul>
@@ -408,7 +411,7 @@ export function CampaignHeader() {
             onClick={() => {
               ctaClick("book_intro_call", "campaign_header", "#book");
             }}
-            className="inline-flex items-center gap-1.5 rounded-full bg-ink text-background px-3.5 sm:px-4 py-2.5 text-[12px] font-medium hover:bg-brand transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+            className="rz-cta-primary inline-flex items-center gap-1.5 rounded-full bg-ink text-background px-3.5 sm:px-4 py-2.5 text-[12px] font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background"
           >
             <CalendarDays aria-hidden="true" className="h-3.5 w-3.5" />
             <span>Book a 15-min intro call</span>
