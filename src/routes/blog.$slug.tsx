@@ -13,6 +13,14 @@ import { marked } from "marked";
 import authorPortrait from "@/assets/rizwan-zafar-cutout-460.webp";
 
 const OG_IMAGE_OVERRIDES: Record<string, string> = {
+  "satispay-mastercard-wallet-card-programme":
+    "/og/blog/satispay-mastercard-wallet-card-programme-v20260709.png",
+  "pnc-mobile-app-modernization-product-migration":
+    "/og/blog/pnc-mobile-app-modernization-product-migration-v20260709.png",
+  "baringa-uk-payments-migration-delivery-gates":
+    "/og/blog/baringa-uk-payments-migration-delivery-gates-v20260709.png",
+  "github-copilot-opentelemetry-agent-auditability":
+    "/og/blog/github-copilot-opentelemetry-agent-auditability-v20260709.png",
   "checkout-unified-payin-payout-control-plane":
     "/og/blog/checkout-unified-payin-payout-control-plane-v20260707.png",
   "agent-skills-ai-coding-operating-model":
