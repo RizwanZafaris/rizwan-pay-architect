@@ -110,6 +110,26 @@ export const caseStudies: CaseStudy[] = [
         label: "Enterprise wallet adoption",
         value: "30%",
       },
+      // Relocated from the homepage "Operating record" block (Loop 3). On the
+      // homepage these were six more digits with no context; here they sit
+      // beside the architecture that produced them. Values unchanged, sourced
+      // from profile.metrics.
+      {
+        label: "Payment success",
+        value: "97%",
+      },
+      {
+        label: "Straight-through processing",
+        value: "90%",
+      },
+      {
+        label: "Uptime",
+        value: "99.9%",
+      },
+      {
+        label: "Authorization uplift",
+        value: "+14%",
+      },
     ],
     executiveSummary:
       "Owned the product, architecture and operating model of a five-market payments platform serving global enterprises and local merchants. Took a fragmented integration estate and turned it into a single regulated rail with shared APIs, ledger, settlement and risk, through a CTO departure and a regulatory tightening.",

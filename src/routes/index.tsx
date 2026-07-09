@@ -616,22 +616,9 @@ function HomePage() {
                 >
                   See the work
                 </Link>
-                {/* Journey CTA: no typed ctaClick() call — the DOM bridge in
-                    __root.tsx fires cta_click from the data-analytics-*
-                    attributes (the CtaId union has no journey id). */}
-                <Link
-                  to="/journey"
-                  data-analytics-event="cta_click"
-                  data-analytics-cta-id="the_journey"
-                  data-analytics-cta-location="hero"
-                  data-analytics-cta-destination="/journey"
-                  className="group inline-flex h-12 items-center justify-center gap-1.5 rounded-full px-4 text-[15px] font-medium text-ink-soft hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background transition-colors"
-                >
-                  <span className="rz-link">The 17-year journey</span>{" "}
-                  <span className="transition-transform group-hover:translate-x-1" aria-hidden>
-                    →
-                  </span>
-                </Link>
+                {/* Two CTAs, not three. "The 17-year journey" was a third
+                    competing choice in the decisive first viewport; /journey is
+                    one click away in the nav. Council audit B1 + P2.8. */}
               </div>
             </div>
 
@@ -804,7 +791,7 @@ function HomePage() {
           <div className="flex items-end justify-between flex-wrap gap-6 mb-10">
             <div>
               <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
-                ◆ Products
+                Products
               </div>
               <h2 className="font-instrument text-[clamp(2.5rem,5.5vw,5.5rem)] text-ink mt-3 leading-[1.02] max-w-3xl">
                 <RevealHeading
@@ -894,7 +881,7 @@ function HomePage() {
       <div className="border-t border-rule bg-surface">
         <Reveal className="mx-auto max-w-6xl px-5 sm:px-6 pt-12 md:pt-16 pb-6">
           <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
-            ◆ Ecosystem
+            Ecosystem
           </div>
           <h2 className="font-instrument text-2xl md:text-3xl text-ink mt-2 leading-tight">
             Merchants served by platforms I&rsquo;ve led.
@@ -930,7 +917,7 @@ function HomePage() {
               style={{ "--motion-delay": "180ms" } as CSSProperties}
             >
               <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
-                ◆ Hot topics
+                Hot topics
               </div>
               <h2 className="font-instrument text-2xl md:text-3xl text-ink mt-3 leading-tight">
                 Search the payments knowledge base.
@@ -1019,7 +1006,7 @@ function HomePage() {
           <div className="flex items-end justify-between flex-wrap gap-6 mb-10">
             <div>
               <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
-                ◆ Editor's picks · rotates through the day
+                Editor's picks
               </div>
               <h2 className="font-instrument text-[clamp(2.5rem,5.5vw,5.5rem)] text-ink mt-3 leading-[1.02]">
                 <RevealHeading lead="The posts I'd read" emphasis="first." />

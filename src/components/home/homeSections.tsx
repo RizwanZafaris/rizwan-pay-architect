@@ -150,15 +150,6 @@ export const homeSectionsCss = `
 // `metricsSpotlight` export contract in src/data/profile.ts; the lookup goes
 // through profile.metrics BY LABEL so this renders the exact same entries
 // whether or not that named export has landed yet (parallel workstream).
-const SPOTLIGHT_METRIC_LABELS = [
-  "Payment success",
-  "Straight-through processing",
-  "Settlement SLA",
-  "Uptime",
-  "Fraud loss",
-  "Authorization uplift",
-] as const;
-type SpotlightMetric = (typeof profile.metrics)[number];
 
 export function ProofBand() {
   const { career, platform } = profile;
@@ -169,24 +160,8 @@ export function ProofBand() {
     { value: `${career.years}+`, label: "Years" },
     { value: platform.gtv, label: "Annual GTV" },
     { value: platform.annualPayments, label: "Payments / yr" },
-    { value: platform.merchants, label: "Merchants" },
     { value: `${career.marketCount}`, label: "Markets" },
   ];
-  // SECONDARY proof — the operating record, moved behind a native <details> so
-  // the homepage stays elegant while the deep reliability metrics stay one
-  // click (and fully no-JS) away. Order preserved via map-then-find.
-  const operating = SPOTLIGHT_METRIC_LABELS.map((label) =>
-    profile.metrics.find((m) => m.label === label),
-  )
-    .filter((m): m is SpotlightMetric => Boolean(m))
-    // Display-only reshape: a value like "<0.1% GTV" wraps to two lines in a
-    // 1/6 column at desktop numeral sizes and breaks the row baseline. Move
-    // the unit into the label; the canonical metric in profile.ts is untouched.
-    .map((m) =>
-      m.value.endsWith(" GTV")
-        ? { ...m, value: m.value.slice(0, -4), label: `${m.label}, % of GTV` }
-        : m,
-    );
   return (
     <section className="rz-beam relative border-b border-rule bg-surface">
       <div className="mx-auto max-w-6xl px-5 sm:px-6 py-[var(--space-section-sm)]">
@@ -224,35 +199,10 @@ export function ProofBand() {
           </div>
         </div>
 
-        {/* Operating record: secondary, expandable (native details, no JS). */}
-        {operating.length > 0 && (
-          <details className="rz-reveal group mt-14 md:mt-20 border-t border-rule pt-6">
-            <summary className="flex cursor-pointer list-none items-center gap-2 text-[10px] uppercase tracking-[0.22em] font-mono-tech text-ink-soft hover:text-ink transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-sm">
-              <span className="text-[var(--brand)]" aria-hidden>
-                &#9670;
-              </span>
-              Operating record
-              <span className="ml-auto inline-flex items-center gap-1 normal-case tracking-normal text-ink-soft/70">
-                {platform.company} platform
-                <span className="transition-transform group-open:rotate-90" aria-hidden>
-                  &rsaquo;
-                </span>
-              </span>
-            </summary>
-            <div className="mt-8 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-x-6 gap-y-8">
-              {operating.map((m) => (
-                <div key={m.label} className="text-center lg:text-left">
-                  <div className="font-mono-tech text-xl sm:text-2xl text-ink leading-none tabular-nums">
-                    {m.value}
-                  </div>
-                  <div className="mt-2 text-[10px] uppercase tracking-[0.22em] text-ink-soft font-mono-tech">
-                    {m.label}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </details>
-        )}
+        {/* The Operating record block used to live here: six more numbers,
+            collapsed behind a <details>. They moved to the Simpaisa platform
+            case study (Loop 3), where the architecture that produced them is
+            on the same page. The homepage now shows four. */}
       </div>
     </section>
   );
@@ -446,7 +396,7 @@ export function GetInTouchBand() {
       <div className="relative z-10 mx-auto max-w-6xl px-5 sm:px-6 py-20 md:py-24">
         <div className="text-center">
           <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
-            ◆ Get in touch
+            Get in touch
           </div>
           <h2 className="font-instrument text-[clamp(2.5rem,5.5vw,5.5rem)] text-ink mt-3 leading-[1.05] max-w-3xl mx-auto">
             <RevealHeading lead="The right conversation depends on" emphasis="who you are." />
@@ -555,7 +505,7 @@ export function HowIWorkFaq() {
     <section className="rz-beam relative border-t border-rule bg-surface">
       <div className="mx-auto max-w-3xl px-5 sm:px-6 py-[var(--space-section-sm)]">
         <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
-          ◆ How I work
+          How I work
         </div>
         <h2 className="font-instrument text-[clamp(2.5rem,5.5vw,5.5rem)] text-ink mt-3 leading-[1.05]">
           <RevealHeading lead="The questions I get" emphasis="most." />
