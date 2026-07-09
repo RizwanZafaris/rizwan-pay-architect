@@ -85,6 +85,22 @@ const heroScrambleScript = `
 })();
 `;
 
+// Hero eyebrow typewriter — cycles the label phrases after the ◆ signature
+// glyph (which stays fixed). Vanilla, no-JS/reduced-motion safe: the first
+// phrase is the static default and the effect simply never starts.
+const heroTypewriterScript = `(function(){function init(){try{
+if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+var el=document.querySelector('[data-typewriter]');if(!el)return;
+var phrases=(el.getAttribute('data-typewriter')||'').split('|').filter(Boolean);if(phrases.length<2)return;
+var pi=0,ci=phrases[0].length,del=false;
+function tick(){var cur=phrases[pi];
+if(!del){ci++;el.textContent=cur.slice(0,ci);if(ci>=cur.length){del=true;setTimeout(tick,2800);return;}}
+else{ci--;el.textContent=cur.slice(0,ci);if(ci<=0){del=false;pi=(pi+1)%phrases.length;setTimeout(tick,340);return;}}
+setTimeout(tick,del?26:64);}
+setTimeout(tick,2800);
+}catch(e){}}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();})();`;
+
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
@@ -132,6 +148,8 @@ export const Route = createFileRoute("/")({
       { type: "application/ld+json", children: JSON.stringify(profilePageJsonLd) },
       { type: "application/ld+json", children: JSON.stringify(faqJsonLd) },
       { children: heroScrambleScript },
+      { children: heroCanvasScript },
+      { children: heroTypewriterScript },
     ],
   }),
   component: HomePage,
@@ -150,6 +168,55 @@ function pickSeed(s: string) {
 // list so the CSS below reveals that slot's alternates. Runs without
 // hydration (same inline-script pattern as the rest of the site); no-JS
 // visitors keep the build-time slot.
+// Hero atmosphere — a WebGL2 fragment shader (Matthias Hurrle's fbm "cosmic
+// clouds", recoloured to the brand: a light paper base with slow flowing teal
+// nebula + soft glow, kept subtle so the ink H1 stays readable). Ported to
+// vanilla WebGL2 (no React) for the hydration-stripped build. Decorative +
+// aria-hidden, LCP-safe: lazy-inits on the hero canvas, pauses when the hero
+// scrolls out of view and when the tab is hidden, caps DPR, and is skipped
+// under reduced-motion / when WebGL2 is unavailable (the CSS gradient remains
+// the static fallback). Zero dependencies.
+const heroCanvasScript = `(function(){function init(){try{
+var c=document.querySelector('[data-hero-canvas]');if(!c)return;
+if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+var gl=c.getContext('webgl2',{antialias:true,alpha:false});if(!gl)return;
+var VS='#version 300 es\\nprecision highp float;\\nin vec4 position;void main(){gl_Position=position;}';
+var FS='#version 300 es\\nprecision highp float;\\nout vec4 O;\\nuniform vec2 resolution;\\nuniform float time;\\n#define FC gl_FragCoord.xy\\n#define T time\\n#define R resolution\\n#define MN min(R.x,R.y)\\n'+
+'float rnd(vec2 p){p=fract(p*vec2(12.9898,78.233));p+=dot(p,p+34.56);return fract(p.x*p.y);}'+
+'float noise(in vec2 p){vec2 i=floor(p),f=fract(p),u=f*f*(3.-2.*f);float a=rnd(i),b=rnd(i+vec2(1,0)),c=rnd(i+vec2(0,1)),d=rnd(i+1.);return mix(mix(a,b,u.x),mix(c,d,u.x),u.y);}'+
+'float fbm(vec2 p){float t=.0,a=1.;mat2 m=mat2(1.,-.5,.2,1.2);for(int i=0;i<5;i++){t+=a*noise(p);p*=2.*m;a*=.5;}return t;}'+
+'float clouds(vec2 p){float d=1.,t=.0;for(float i=.0;i<3.;i++){float a=d*fbm(i*10.+p.x*.2+.2*(1.+i)*p.y+d+i*i+p);t=mix(t,d,a);d=a;p*=2./(i+1.);}return t;}'+
+'void main(void){vec2 uv=(FC-.5*R)/MN,st=uv*vec2(2,1);float bg=clouds(vec2(st.x+T*.13,-st.y));'+
+'float g=0.;vec2 uw=uv*(1.-.16*(sin(T*.11)*.5+.5));'+
+'for(float i=1.;i<9.;i++){uw+=.1*cos(i*vec2(.1+.01*i,.8)+i*i+T*.17+.1*uw.x);vec2 p=uw;float d=length(p);'+
+'g+=.0013/d;float b=noise(i+p+bg*1.731);g+=.0013*b/length(max(p,vec2(b*p.x*.02,p.y)));}'+
+/* DARK nebula: near-black base, teal troughs -> cyan ridges ADDED on top,
+   sparse cyan filaments; radial vignette drops corners to pure ink so the
+   centered H1 keeps its ~18:1 contrast. */
+'vec3 base=vec3(0.039,0.039,0.043);vec3 teal=vec3(0.055,0.310,0.310);vec3 cyan=vec3(0.176,0.831,0.749);'+
+'float field=clamp(bg*0.40+g*0.55,0.0,1.0);'+
+'vec3 glow=mix(teal,cyan,clamp(g*2.4,0.,1.));'+
+'vec3 col=base+glow*field*0.42;'+
+'col+=cyan*clamp(g,0.,1.)*0.20;'+
+'float vig=smoothstep(1.34,0.16,length(uv));col=mix(base,col,vig);'+
+'O=vec4(col,1.0);}';
+function sh(t,s){var o=gl.createShader(t);gl.shaderSource(o,s);gl.compileShader(o);if(!gl.getShaderParameter(o,gl.COMPILE_STATUS)){return null;}return o;}
+var vs=sh(gl.VERTEX_SHADER,VS),fs=sh(gl.FRAGMENT_SHADER,FS);if(!vs||!fs)return;
+var pr=gl.createProgram();gl.attachShader(pr,vs);gl.attachShader(pr,fs);gl.linkProgram(pr);if(!gl.getProgramParameter(pr,gl.LINK_STATUS))return;gl.useProgram(pr);
+var b=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,b);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,1,-1,-1,1,1,1,-1]),gl.STATIC_DRAW);
+var loc=gl.getAttribLocation(pr,'position');gl.enableVertexAttribArray(loc);gl.vertexAttribPointer(loc,2,gl.FLOAT,false,0,0);
+var uR=gl.getUniformLocation(pr,'resolution'),uT=gl.getUniformLocation(pr,'time');
+function rs(){var d=Math.min(window.devicePixelRatio||1,1.5);var w=Math.max(1,(c.clientWidth*d)|0),h=Math.max(1,(c.clientHeight*d)|0);if(c.width!==w||c.height!==h){c.width=w;c.height=h;gl.viewport(0,0,w,h);}}
+var raf=0,run=false,st=null;
+function fr(ts){if(!run)return;if(st===null)st=ts;rs();gl.uniform2f(uR,c.width,c.height);gl.uniform1f(uT,(ts-st)/1000);gl.drawArrays(gl.TRIANGLE_STRIP,0,4);raf=requestAnimationFrame(fr);}
+function play(){if(run)return;run=true;raf=requestAnimationFrame(fr);}
+function stop(){run=false;cancelAnimationFrame(raf);}
+var rt;window.addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(rs,180);});
+var io=new IntersectionObserver(function(e){if(e[0]&&e[0].isIntersecting)play();else stop();},{threshold:0.01});io.observe(c);
+document.addEventListener('visibilitychange',function(){if(document.hidden)stop();else if(c.getBoundingClientRect().bottom>0)play();});
+}catch(e){}}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();})();`;
+
 const picksRotationScript = `!function(){try{var s=Math.floor(new Date().getUTCHours()/8);var el=document.querySelector("[data-picks-list]");if(el)el.setAttribute("data-pick-slot",String(s))}catch(e){}}();`;
 
 const picksRotationCss = `
@@ -256,31 +323,74 @@ function HomePage() {
       <style dangerouslySetInnerHTML={{ __html: homeSectionsCss }} />
       {/* ============ HERO ============ */}
       <section className="home-signal-field relative overflow-hidden border-b border-rule">
-        <div className="relative mx-auto max-w-7xl px-5 sm:px-6 pt-7 md:pt-9 pb-8 md:pb-12 grid lg:grid-cols-12 gap-6 lg:gap-10 items-center">
-          {/* LEFT — 58% (7/12). Narrative + proof. */}
-          <div className="home-soft-reveal lg:col-span-7 order-1 relative z-10 min-w-0">
-            <div className="inline-flex items-center gap-4 mb-3 md:mb-4">
+        {/* Hero stage — bounds the WebGL nebula to the hero viewport only (the
+            home-signal-field section wraps later blocks too, so an unbounded
+            canvas would render a full-page-tall shader). */}
+        <div className="relative overflow-hidden">
+        {/* WebGL atmosphere backdrop — flowing brand-teal light (heroCanvasScript).
+            Behind the grid + content; decorative, LCP-safe, reduced-motion-off. */}
+        <canvas
+          data-hero-canvas
+          aria-hidden
+          className="pointer-events-none absolute inset-0 -z-20 h-full w-full"
+        />
+        {/* Studio-light scrim: dims the left (keeps the H1 at ~18:1) and leaves a
+            controlled glow pocket on the right where the nebula + portrait sit,
+            then vignettes the edges to ink. Sits above the canvas, below content. */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 -z-10"
+          style={{
+            background:
+              "linear-gradient(90deg, rgba(10,10,11,0.86) 0%, rgba(10,10,11,0.5) 38%, rgba(10,10,11,0) 66%), radial-gradient(135% 105% at 68% 38%, transparent 38%, rgba(10,10,11,0.74) 100%)",
+          }}
+        />
+        <div className="relative z-[1] mx-auto max-w-6xl px-5 sm:px-6 pt-7 md:pt-9 pb-8 md:pb-12 grid lg:grid-cols-12 gap-6 lg:gap-10 items-center">
+          {/* LEFT — 58% (7/12). Narrative + proof. Children stage in
+              individually (data-hero-in + --i) for a choreographed entrance;
+              the H1 stays un-staged so the LCP element paints immediately. */}
+          <div className="lg:col-span-7 order-1 relative z-10 min-w-0">
+            <div
+              data-hero-in
+              style={{ ["--i" as string]: 0 }}
+              className="inline-flex items-center gap-4 mb-3 md:mb-4"
+            >
               <span className="home-rule-animate h-px w-10 bg-[var(--brand)]" />
               <span className="text-[10px] uppercase tracking-[0.32em] text-[var(--brand)] font-mono-tech font-semibold">
-                ◆ Product · Program · Payments
+                ◆{" "}
+                <span data-typewriter="Product · Program · Payments|Frontier markets · Scale|Fintech · Infrastructure">
+                  Product · Program · Payments
+                </span>
+                <span className="rz-caret" aria-hidden>
+                  |
+                </span>
               </span>
             </div>
 
-            <h1 className="font-instrument tracking-tight leading-[1.06] text-[28px] sm:text-[34px] md:text-[40px] lg:text-[46px] text-ink">
+            <h1 className="font-instrument tracking-[-0.015em] leading-[0.98] text-[38px] sm:text-[52px] md:text-[62px] lg:text-[74px] text-ink">
               {/* sr-only spaces keep the H1 extracting as readable text for
                   screen readers and AI crawlers — block spans alone concatenate
                   words (same fix as the resume H1). */}
+              {/* Line 1 = LCP anchor. NEVER wrapped/transformed/clipped — it
+                  paints in place at ~180ms and stays the largest contentful
+                  paint. Do not add masks here. */}
               <span className="block">
                 I build payment and product infrastructure<span className="sr-only"> </span>
               </span>
-              <span className="block">
-                for the markets most operators{" "}
-                <span
-                  className="text-scramble italic text-[var(--brand)]"
-                  data-text-scramble="avoid."
-                  tabIndex={0}
-                >
-                  avoid.
+              {/* Line 2 = signature line-mask. .rz-line-clip is the overflow edge
+                  (net-zero guards → no CLS); .rz-line-rise is the transform-only
+                  riser. Both inert without .rz-js, so no-JS / reduced-motion see
+                  the final line. Screen-reader text + scramble span intact. */}
+              <span className="block rz-line-clip">
+                <span className="rz-line-rise">
+                  for the markets most operators{" "}
+                  <span
+                    className="text-scramble italic text-[var(--brand)]"
+                    data-text-scramble="avoid."
+                    tabIndex={0}
+                  >
+                    avoid.
+                  </span>
                 </span>
               </span>
             </h1>
@@ -291,7 +401,11 @@ function HomePage() {
                 a clause boundary for the seo-audit gate — do not merge. Duration
                 framing per owner ruling 2026-07-06; the number is computed in
                 profile.ts so it can't go stale. */}
-            <p className="mt-3.5 md:mt-4 max-w-xl text-[15px] md:text-base text-ink-soft leading-relaxed">
+            <p
+              data-hero-in
+              style={{ ["--i" as string]: 1 }}
+              className="mt-3.5 md:mt-4 max-w-xl text-[15px] md:text-base text-ink-soft leading-relaxed"
+            >
               Product &amp; program executive with{" "}
               <span className="text-ink font-medium">
                 {profile.career.years} years of experience
@@ -310,9 +424,27 @@ function HomePage() {
                 they sit on one baseline at 320/768/1440 (the old third pill
                 was py-2.5/text-sm and broke alignment at 768px). On mobile the
                 stack keeps one solid pill only, so the primary stays dominant.
-                The header already carries the brand booking pill site-wide,
-                so the hero booking action reads as the tertiary shortcut. */}
-            <div className="mt-5 md:mt-6 flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-2.5">
+                Gate-A audit 2026-07-08: the booking CTA IS the conversion
+                event (PRODUCT.md), so it takes the primary pill; the work and
+                journey read paths demote to secondary/tertiary. */}
+            <div
+              data-hero-in
+              style={{ ["--i" as string]: 2 }}
+              className="mt-5 md:mt-6 flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-2.5"
+            >
+              <a
+                href="/contact/#book"
+                data-analytics-event="cta_click"
+                data-analytics-cta-id="book_intro_call"
+                data-analytics-cta-location="hero"
+                data-analytics-cta-destination="/contact/#book"
+                className="rz-cta-primary group inline-flex h-12 items-center justify-center gap-2 rounded-full px-6 text-base font-medium text-background bg-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background transition-colors"
+              >
+                Book a 15-min intro call
+                <span className="transition-transform group-hover:translate-x-1" aria-hidden>
+                  →
+                </span>
+              </a>
               <Link
                 to="/product-work"
                 data-analytics-event="cta_click"
@@ -320,12 +452,9 @@ function HomePage() {
                 data-analytics-cta-location="hero"
                 data-analytics-cta-destination="/product-work"
                 onClick={() => ctaClick("see_case_studies", "hero", "/product-work")}
-                className="group inline-flex h-12 items-center justify-center gap-2 rounded-full px-6 text-base font-medium text-background bg-ink hover:bg-[var(--brand)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background transition-colors"
+                className="inline-flex h-12 items-center justify-center gap-2 rounded-full px-6 text-base text-ink border border-ink/20 hover:border-ink/50 hover:bg-ink/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background transition-colors"
               >
                 See the work
-                <span className="transition-transform group-hover:translate-x-1" aria-hidden>
-                  →
-                </span>
               </Link>
               {/* Journey CTA: no typed ctaClick() call because the analytics
                   CtaId union has no journey id and that lib is out of scope to
@@ -337,30 +466,24 @@ function HomePage() {
                 data-analytics-cta-id="the_journey"
                 data-analytics-cta-location="hero"
                 data-analytics-cta-destination="/journey"
-                className="inline-flex h-12 items-center justify-center gap-2 rounded-full px-6 text-base text-ink border border-ink/20 hover:border-ink/50 hover:bg-ink/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background transition-colors"
+                className="group inline-flex h-12 items-center justify-center gap-1.5 rounded-full px-4 text-[15px] font-medium text-ink-soft hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background transition-colors"
               >
-                The 17-year journey
-              </Link>
-              <a
-                href="/contact/#book"
-                data-analytics-event="cta_click"
-                data-analytics-cta-id="book_intro_call"
-                data-analytics-cta-location="hero"
-                data-analytics-cta-destination="/contact/#book"
-                className="group inline-flex h-12 items-center justify-center gap-1.5 rounded-full px-4 text-[15px] font-medium text-[var(--brand)] hover:underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background transition-colors"
-              >
-                Book a 15-min intro call{" "}
+                <span className="rz-link">The 17-year journey</span>{" "}
                 <span className="transition-transform group-hover:translate-x-1" aria-hidden>
                   →
                 </span>
-              </a>
+              </Link>
             </div>
 
             {/* Certification chip row (ISSUE-007) — upgraded from the old 10px
                 mono string to visible bordered text chips (12px, ink-soft on
                 paper). Same ◆ mono-label design language; text chips only, no
                 fabricated badge icons. Names trace to profile.certifications. */}
-            <div className="mt-4 flex flex-wrap items-center gap-x-2 gap-y-1.5">
+            <div
+              data-hero-in
+              style={{ ["--i" as string]: 3 }}
+              className="mt-4 flex flex-wrap items-center gap-x-2 gap-y-1.5"
+            >
               <span className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
                 ◆ Certified
               </span>
@@ -384,13 +507,17 @@ function HomePage() {
                 topics / knowledge-base section, which is its real entry point.
                 Shared component keeps the Web3Forms wiring + newsletter_signup
                 analytics consistent site-wide. */}
-            <NewsletterSignup placement="hero" fromPage="/" className="mt-5 max-w-xl" />
+            <div data-hero-in style={{ ["--i" as string]: 4 }}>
+              <NewsletterSignup placement="hero" fromPage="/" className="mt-5 max-w-xl" />
+            </div>
           </div>
 
-          {/* RIGHT — 42% (5/12). Portrait + premium depth backdrop. */}
+          {/* RIGHT — 42% (5/12). Portrait + premium depth backdrop. Enters via a
+              transform-only settle (opacity stays 1) so the eager portrait image
+              paints immediately and the LCP is unaffected. */}
           <div
-            className="home-soft-reveal lg:col-span-5 order-2 relative min-w-0"
-            style={{ "--motion-delay": "120ms" } as CSSProperties}
+            data-hero-portrait
+            className="lg:col-span-5 order-2 relative min-w-0"
           >
             <div className="home-portrait-frame relative mx-auto w-full max-w-[260px] sm:max-w-[330px] lg:max-w-[400px] aspect-[4/5]">
               {/* Subtle depth: soft radial wash behind the portrait. Inset so
@@ -438,6 +565,21 @@ function HomePage() {
                   inset so it doesn't float off the column edge. */}
               <div className="absolute top-2 right-2 z-20 bg-card border border-rule px-2.5 py-1 text-[10px] tracking-[0.22em] font-bold uppercase text-ink font-mono-tech shadow-sm">
                 Dubai · UAE
+              </div>
+
+              {/* Floating signature card — a small crafted personality detail
+                  overlapping the lower-left of the portrait. */}
+              <div
+                data-hero-in
+                style={{ ["--i" as string]: 5 }}
+                className="home-signature-card absolute -left-3 sm:-left-5 bottom-8 z-20 hidden sm:block rounded-lg border border-rule bg-card px-3.5 py-2.5"
+              >
+                <div className="text-[9px] uppercase tracking-[0.22em] text-ink-soft font-mono-tech">
+                  ◆ Signature
+                </div>
+                <div className="font-instrument italic text-[19px] leading-tight mt-0.5 text-[var(--brand)]">
+                  Rizwan Zafar
+                </div>
               </div>
 
               {/* Decorative accents — positioned at the portrait box's EDGES
@@ -513,9 +655,226 @@ function HomePage() {
             </div>
           </div>
         </div>
+        </div>
+
+      {/* ============ B. PROOF BAND ============ */}
+      <ProofBand />
+
+      {/* ============ D. INDUSTRY PILLARS ============ */}
+      {/* Homepage map strip (doc §4C) removed per owner call 2026-07-06 —
+          the map lives on /journey only now. MapStrip component kept in
+          homeSections.tsx in case this gets revisited. */}
+      <IndustryPillars />
+
+      {/* ============ PRODUCT WORK, selected cases ============ */}
+      <section>
+        <div className="mx-auto max-w-6xl px-5 sm:px-6 py-[var(--space-section-md)]">
+          <div className="flex items-end justify-between mb-10 flex-wrap gap-6">
+            <div>
+              <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
+                ◆ Selected work
+              </div>
+              <h2 className="font-instrument text-4xl md:text-6xl text-ink mt-3 leading-[1.02]">
+                <RevealHeading lead="Infrastructure shipped" emphasis="at scale." />
+              </h2>
+            </div>
+            <Link
+              to="/product-work"
+              className="text-sm text-ink-soft hover:text-ink inline-flex items-center gap-1.5 group py-1.5 -my-1.5"
+            >
+              <span className="rz-link">All case studies</span>{" "}
+              <span className="transition-transform group-hover:translate-x-1">→</span>
+            </Link>
+          </div>
+          <div className="grid md:grid-cols-3 gap-5">
+            {featuredCases.map((c, i) => {
+              // Pull the strongest stat from the case study for the card "art"
+              const heroStat = c.metrics?.[0];
+              return (
+                <Link
+                  key={c.slug}
+                  to="/product-work/$slug"
+                  params={{ slug: c.slug }}
+                  style={{ ["--motion-delay" as string]: `${i * 120}ms` }}
+                  className="home-card home-card-lift rz-reveal group relative rounded-lg border border-rule bg-card p-7 flex flex-col h-full"
+                >
+                    {/* Card hero: Higgsfield-generated brand-coherent thumb
+                        with the strongest metric overlaid in display serif. */}
+                    <div className="rz-unveil aspect-[5/3] rounded-md mb-5 relative overflow-hidden bg-ink">
+                      <img
+                        src={caseStudyThumb(c.slug)}
+                        alt={c.imageAlt ?? `${c.title} — abstract editorial illustration`}
+                        width={800}
+                        height={450}
+                        loading="lazy"
+                        decoding="async"
+                        className="absolute inset-0 h-full w-full object-cover opacity-90 transition-transform duration-500 group-hover:scale-[1.04]"
+                      />
+                      {/* Dark gradient overlay so the stat reads cleanly. */}
+                      <div
+                        className="absolute inset-0"
+                        style={{
+                          background:
+                            "linear-gradient(180deg, color-mix(in oklab, #000 30%, transparent) 0%, transparent 35%, color-mix(in oklab, #000 70%, transparent) 100%)",
+                        }}
+                      />
+                      <div className="absolute top-3 left-4 z-10 font-mono-tech text-[10px] tracking-[0.18em] text-background/95 uppercase">
+                        ◆ Case study /0{i + 1}
+                      </div>
+                      {heroStat && (
+                        <div className="absolute inset-x-0 bottom-3 z-10 flex flex-col items-center text-center px-4 pointer-events-none">
+                          <div className="font-instrument italic text-background text-4xl md:text-5xl leading-none tracking-tight drop-shadow-lg">
+                            {heroStat.value}
+                          </div>
+                          <div className="mt-2 text-[9px] uppercase tracking-[0.22em] text-background/80 font-mono-tech">
+                            {heroStat.label}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                    <span className="text-[10px] font-mono-tech uppercase tracking-[0.18em] text-[var(--brand)]">
+                      {c.category}
+                    </span>
+                    <h3 className="font-instrument text-xl text-ink mt-2 leading-snug group-hover:text-[var(--brand)] transition-colors">
+                      {c.title}
+                    </h3>
+                    <p className="text-sm text-ink-soft mt-2 leading-relaxed flex-1">{c.tagline}</p>
+                </Link>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* ============ PRODUCTS, built & building ============ */}
+      {/* Press Run 2026-07-08: tinted "signature" ground + more air so this
+          featured beat breaks the Pillars→Products→Editor's-Picks paper run,
+          and an asymmetric 7/5 spread so the two products read as one editorial
+          spread rather than two clones. Cards go bg-card (white) for contrast
+          on the tint. No copy change. */}
+      <section className="relative bg-surface border-y border-rule">
+        <div className="mx-auto max-w-6xl px-5 sm:px-6 py-[var(--space-section-sm)]">
+          <div className="flex items-end justify-between flex-wrap gap-6 mb-10">
+            <div>
+              <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
+                ◆ Products
+              </div>
+              <h2 className="font-instrument text-4xl md:text-6xl text-ink mt-3 leading-[1.02] max-w-3xl">
+                <RevealHeading
+                  lead="Products I have built, and products I am"
+                  emphasis="building."
+                />
+              </h2>
+            </div>
+            <Link
+              to="/products"
+              className="text-sm text-ink-soft hover:text-ink inline-flex items-center gap-1.5 group py-1.5 -my-1.5"
+            >
+              <span className="rz-link">All products</span> <span className="transition-transform group-hover:translate-x-1">→</span>
+            </Link>
+          </div>
+
+          {/* Homepage shows only PROVEN products. The coming-soon items
+              (Felo App, Job Hunt) live at /products in the full pipeline view —
+              on the executive scan path they read as off-narrative noise. */}
+          <div className="grid md:grid-cols-12 gap-5">
+            {products
+              .filter((p) => p.status === "shipped-scaled")
+              .map((p, i) => {
+                const isInternal = p.link.startsWith("/");
+                // Asymmetric spread: first (flagship) product takes the wide
+                // 7-col field, the second the narrower 5-col field.
+                const span = i === 0 ? "md:col-span-7" : "md:col-span-5";
+                const CardInner = (
+                  <>
+                    <div className="flex items-center justify-between gap-3">
+                      <div className="font-instrument text-2xl text-ink">{p.name}</div>
+                      <span
+                        className={`text-[10px] uppercase tracking-[0.18em] font-mono-tech px-2.5 py-1 rounded-full border ${
+                          p.status === "coming-soon"
+                            ? "border-rule text-ink-soft"
+                            : "border-[var(--accent-emerald)]/30 text-[var(--accent-emerald)]"
+                        }`}
+                      >
+                        {p.statusLabel}
+                      </span>
+                    </div>
+                    <p className="mt-3 text-ink-soft leading-relaxed">{p.oneLiner}</p>
+                    {p.metrics && p.metrics.length > 0 && (
+                      <div className="mt-5 flex flex-wrap gap-x-6 gap-y-2 text-xs text-ink-soft font-mono-tech">
+                        {p.metrics.slice(0, 3).map((m) => (
+                          <span key={m.label}>
+                            <span className="text-ink font-semibold">{m.value}</span>{" "}
+                            <span className="uppercase tracking-[0.12em]">{m.label}</span>
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                    <div className="mt-5 text-sm text-ink group-hover:text-[var(--brand)] inline-flex items-center gap-1.5 transition-colors">
+                      {p.ctaLabel ?? "Learn more"}
+                      <span className="transition-transform group-hover:translate-x-1">→</span>
+                    </div>
+                  </>
+                );
+                return isInternal ? (
+                  <Link
+                    key={p.slug}
+                    to={p.link}
+                    className={`home-card home-card-lift rz-reveal group block bg-card border border-rule rounded-lg p-7 ${span}`}
+                  >
+                    {CardInner}
+                  </Link>
+                ) : (
+                  <a
+                    key={p.slug}
+                    href={p.link}
+                    className={`home-card home-card-lift rz-reveal group block bg-card border border-rule rounded-lg p-7 ${span}`}
+                  >
+                    {CardInner}
+                  </a>
+                );
+              })}
+          </div>
+        </div>
+      </section>
+
+      {/* ============ J. LOGO MARQUEE, ecosystem ============ */}
+      {/* Borrowed-authority heading: these are merchants served by the
+          platforms Rizwan has led, not personal clients — the wording keeps
+          that distinction honest. */}
+      <div className="border-t border-rule bg-surface">
+        <Reveal className="mx-auto max-w-6xl px-5 sm:px-6 pt-12 md:pt-16 pb-6">
+          <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
+            ◆ Ecosystem
+          </div>
+          <h2 className="font-instrument text-2xl md:text-3xl text-ink mt-2 leading-tight">
+            Merchants served by platforms I&rsquo;ve led.
+          </h2>
+        </Reveal>
+      </div>
+      <section
+        className="marquee-wrap border-b border-rule bg-surface overflow-hidden py-6 md:py-7 w-full max-w-full outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-inset"
+        aria-label="Partner ecosystem, scrolling. Hover or focus to pause."
+        tabIndex={0}
+      >
+        <div className="flex gap-12 marquee-track whitespace-nowrap w-max">
+          {[...profile.partners, ...profile.partners].map((p, i) => (
+            <span
+              key={`${p}-${i}`}
+              // The second half is a visual loop duplicate — hide it from
+              // screen readers so the brand list isn't announced twice.
+              aria-hidden={i >= profile.partners.length || undefined}
+              className="font-instrument text-xl sm:text-2xl md:text-4xl text-ink/70 tracking-tight inline-flex items-center gap-12"
+            >
+              {p}
+              <span className="text-[var(--brand)]">✦</span>
+            </span>
+          ))}
+        </div>
+      </section>
 
         {/* ============ HOT TOPICS, horizontal cards ============ */}
-        <div className="relative mx-auto max-w-6xl px-6 pb-14">
+        <div className="relative mx-auto max-w-6xl px-5 sm:px-6 pt-[var(--space-section-md)] pb-14">
           <div className="grid md:grid-cols-12 gap-6 items-start">
             <div
               className="home-soft-reveal md:col-span-4"
@@ -604,116 +963,23 @@ function HomePage() {
         </div>
       </section>
 
-      {/* ============ B. PROOF BAND ============ */}
-      <ProofBand />
-
-      {/* ============ D. INDUSTRY PILLARS ============ */}
-      {/* Homepage map strip (doc §4C) removed per owner call 2026-07-06 —
-          the map lives on /journey only now. MapStrip component kept in
-          homeSections.tsx in case this gets revisited. */}
-      <IndustryPillars />
-
-      {/* ============ PRODUCTS, built & building ============ */}
-      <section className="relative">
-        <div className="mx-auto max-w-6xl px-6 pt-10 pb-4">
-          <div className="flex items-end justify-between flex-wrap gap-6 mb-10">
-            <div>
-              <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
-                ◆ Products
-              </div>
-              <h2 className="font-instrument text-4xl md:text-6xl text-ink mt-3 leading-[1.02] max-w-3xl">
-                <RevealHeading
-                  lead="Products I have built, and products I am"
-                  emphasis="building."
-                />
-              </h2>
-            </div>
-            <Link
-              to="/products"
-              className="text-sm text-ink-soft hover:text-ink inline-flex items-center gap-1.5 group"
-            >
-              All products <span className="transition-transform group-hover:translate-x-1">→</span>
-            </Link>
-          </div>
-
-          {/* Homepage shows only PROVEN products. The coming-soon items
-              (Felo App, Job Hunt) live at /products in the full pipeline view —
-              on the executive scan path they read as off-narrative noise. */}
-          <div className="grid md:grid-cols-2 gap-5">
-            {products
-              .filter((p) => p.status === "shipped-scaled")
-              .map((p) => {
-                const isInternal = p.link.startsWith("/");
-                const CardInner = (
-                  <>
-                    <div className="flex items-center justify-between gap-3">
-                      <div className="font-instrument text-2xl text-ink">{p.name}</div>
-                      <span
-                        className={`text-[10px] uppercase tracking-[0.18em] font-mono-tech px-2.5 py-1 rounded-full border ${
-                          p.status === "coming-soon"
-                            ? "border-rule text-ink-soft"
-                            : "border-[var(--accent-emerald)]/30 text-[var(--accent-emerald)]"
-                        }`}
-                      >
-                        {p.statusLabel}
-                      </span>
-                    </div>
-                    <p className="mt-3 text-ink-soft leading-relaxed">{p.oneLiner}</p>
-                    {p.metrics && p.metrics.length > 0 && (
-                      <div className="mt-5 flex flex-wrap gap-x-6 gap-y-2 text-xs text-ink-soft font-mono-tech">
-                        {p.metrics.slice(0, 3).map((m) => (
-                          <span key={m.label}>
-                            <span className="text-ink font-semibold">{m.value}</span>{" "}
-                            <span className="uppercase tracking-[0.12em]">{m.label}</span>
-                          </span>
-                        ))}
-                      </div>
-                    )}
-                    <div className="mt-5 text-sm text-ink group-hover:text-[var(--brand)] inline-flex items-center gap-1.5 transition-colors">
-                      {p.ctaLabel ?? "Learn more"}
-                      <span className="transition-transform group-hover:translate-x-1">→</span>
-                    </div>
-                  </>
-                );
-                return isInternal ? (
-                  <Link
-                    key={p.slug}
-                    to={p.link}
-                    className="home-card home-card-lift rz-reveal group block bg-surface border border-rule rounded-lg p-7"
-                  >
-                    {CardInner}
-                  </Link>
-                ) : (
-                  <a
-                    key={p.slug}
-                    href={p.link}
-                    className="home-card home-card-lift rz-reveal group block bg-surface border border-rule rounded-lg p-7"
-                  >
-                    {CardInner}
-                  </a>
-                );
-              })}
-          </div>
-        </div>
-      </section>
-
       {/* ============ EDITOR'S PICKED ============ */}
       <section className="relative">
-        <div className="mx-auto max-w-6xl px-6 py-20">
+        <div className="mx-auto max-w-6xl px-5 sm:px-6 py-[var(--space-section-md)]">
           <div className="flex items-end justify-between flex-wrap gap-6 mb-10">
             <div>
               <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
                 ◆ Editor's picks · rotates through the day
               </div>
               <h2 className="font-instrument text-4xl md:text-6xl text-ink mt-3 leading-[1.02]">
-                The posts I'd read <span className="italic text-[var(--brand)]">first.</span>
+                <RevealHeading lead="The posts I'd read" emphasis="first." />
               </h2>
             </div>
             <Link
               to="/blog"
-              className="text-sm text-ink-soft hover:text-ink inline-flex items-center gap-1.5 group"
+              className="text-sm text-ink-soft hover:text-ink inline-flex items-center gap-1.5 group py-1.5 -my-1.5"
             >
-              All posts <span className="transition-transform group-hover:translate-x-1">→</span>
+              <span className="rz-link">All posts</span> <span className="transition-transform group-hover:translate-x-1">→</span>
             </Link>
           </div>
 
@@ -812,7 +1078,7 @@ function HomePage() {
 
       {/* ============ ABOUT BAND, sticker style ============ */}
       <section className="relative border-y border-rule bg-surface-2/60">
-        <div className="mx-auto max-w-6xl px-6 py-20 grid md:grid-cols-12 gap-10 items-center">
+        <div className="mx-auto max-w-6xl px-5 sm:px-6 py-[var(--space-section-md)] grid md:grid-cols-12 gap-10 items-center">
           <div className="md:col-span-4">
             <div
               className="home-card rz-reveal rounded-lg p-8 text-background relative overflow-hidden"
@@ -834,7 +1100,12 @@ function HomePage() {
                 <br />
                 {profile.career.industryCount} industries.
               </div>
-              <Link to="/resume" className="mt-6 inline-flex items-center gap-1.5 text-sm group">
+              {/* mt-[18px] + py-1.5 keeps the visual 24px gap while growing
+                  the hit area to 32px (Gate-A 2026-07-08, WCAG 2.5.8). */}
+              <Link
+                to="/resume"
+                className="mt-[18px] py-1.5 -mb-1.5 inline-flex items-center gap-1.5 text-sm group"
+              >
                 View resume{" "}
                 <span className="transition-transform group-hover:translate-x-1">→</span>
               </Link>
@@ -867,123 +1138,8 @@ function HomePage() {
         </div>
       </section>
 
-      {/* ============ PRODUCT WORK, selected cases ============ */}
-      <section>
-        <div className="mx-auto max-w-6xl px-6 py-20">
-          <div className="flex items-end justify-between mb-10 flex-wrap gap-6">
-            <div>
-              <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
-                ◆ Selected work
-              </div>
-              <h2 className="font-instrument text-4xl md:text-6xl text-ink mt-3 leading-[1.02]">
-                Infrastructure shipped <span className="italic text-[var(--brand)]">at scale.</span>
-              </h2>
-            </div>
-            <Link
-              to="/product-work"
-              className="text-sm text-ink-soft hover:text-ink inline-flex items-center gap-1.5 group"
-            >
-              All case studies{" "}
-              <span className="transition-transform group-hover:translate-x-1">→</span>
-            </Link>
-          </div>
-          <div className="grid md:grid-cols-3 gap-5">
-            {featuredCases.map((c, i) => {
-              // Pull the strongest stat from the case study for the card "art"
-              const heroStat = c.metrics?.[0];
-              return (
-                <Reveal key={c.slug} delay={i * 120}>
-                  <Link
-                    to="/product-work/$slug"
-                    params={{ slug: c.slug }}
-                    className="home-card home-card-lift rz-reveal group relative rounded-lg border border-rule bg-card p-6 flex flex-col h-full"
-                  >
-                    {/* Card hero: Higgsfield-generated brand-coherent thumb
-                        with the strongest metric overlaid in display serif. */}
-                    <div className="aspect-[5/3] rounded-md mb-5 relative overflow-hidden bg-ink">
-                      <img
-                        src={caseStudyThumb(c.slug)}
-                        alt={c.imageAlt ?? `${c.title} — abstract editorial illustration`}
-                        width={800}
-                        height={450}
-                        loading="lazy"
-                        decoding="async"
-                        className="absolute inset-0 h-full w-full object-cover opacity-90 transition-transform duration-500 group-hover:scale-[1.04]"
-                      />
-                      {/* Dark gradient overlay so the stat reads cleanly. */}
-                      <div
-                        className="absolute inset-0"
-                        style={{
-                          background:
-                            "linear-gradient(180deg, color-mix(in oklab, #000 30%, transparent) 0%, transparent 35%, color-mix(in oklab, #000 70%, transparent) 100%)",
-                        }}
-                      />
-                      <div className="absolute top-3 left-4 z-10 font-mono-tech text-[10px] tracking-[0.18em] text-background/95 uppercase">
-                        ◆ Case study /0{i + 1}
-                      </div>
-                      {heroStat && (
-                        <div className="absolute inset-x-0 bottom-3 z-10 flex flex-col items-center text-center px-4 pointer-events-none">
-                          <div className="font-instrument italic text-background text-4xl md:text-5xl leading-none tracking-tight drop-shadow-lg">
-                            {heroStat.value}
-                          </div>
-                          <div className="mt-2 text-[9px] uppercase tracking-[0.22em] text-background/80 font-mono-tech">
-                            {heroStat.label}
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                    <span className="text-[10px] font-mono-tech uppercase tracking-[0.18em] text-[var(--brand)]">
-                      {c.category}
-                    </span>
-                    <h3 className="font-instrument text-xl text-ink mt-2 leading-snug group-hover:text-[var(--brand)] transition-colors">
-                      {c.title}
-                    </h3>
-                    <p className="text-sm text-ink-soft mt-2 leading-relaxed flex-1">{c.tagline}</p>
-                  </Link>
-                </Reveal>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
       {/* ============ G. CREDENTIALS STRIP ============ */}
       <CredentialsStrip />
-
-      {/* ============ J. LOGO MARQUEE, ecosystem ============ */}
-      {/* Borrowed-authority heading: these are merchants served by the
-          platforms Rizwan has led, not personal clients — the wording keeps
-          that distinction honest. */}
-      <div className="border-t border-rule bg-surface">
-        <div className="mx-auto max-w-6xl px-5 sm:px-6 pt-8 pb-1">
-          <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
-            ◆ Ecosystem
-          </div>
-          <h2 className="font-instrument text-2xl md:text-3xl text-ink mt-2 leading-tight">
-            Merchants served by platforms I&rsquo;ve led.
-          </h2>
-        </div>
-      </div>
-      <section
-        className="marquee-wrap border-b border-rule bg-surface overflow-hidden py-6 md:py-7 w-full max-w-full outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-inset"
-        aria-label="Partner ecosystem, scrolling. Hover or focus to pause."
-        tabIndex={0}
-      >
-        <div className="flex gap-12 marquee-track whitespace-nowrap w-max">
-          {[...profile.partners, ...profile.partners].map((p, i) => (
-            <span
-              key={`${p}-${i}`}
-              // The second half is a visual loop duplicate — hide it from
-              // screen readers so the brand list isn't announced twice.
-              aria-hidden={i >= profile.partners.length || undefined}
-              className="font-instrument text-xl sm:text-2xl md:text-4xl text-ink/70 tracking-tight inline-flex items-center gap-12"
-            >
-              {p}
-              <span className="text-[var(--brand)]">✦</span>
-            </span>
-          ))}
-        </div>
-      </section>
 
       {/* ============ TESTIMONIALS (renders only with real quotes) ======= */}
       <Testimonials />

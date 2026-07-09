@@ -18,6 +18,8 @@ type ViteEnv = {
   VITE_MICROSOFT_CLARITY_ID?: string;
   VITE_PLAUSIBLE_DOMAIN?: string;
   VITE_PLAUSIBLE_SRC?: string;
+  VITE_POSTHOG_KEY?: string;
+  VITE_POSTHOG_HOST?: string;
 };
 const env: ViteEnv =
   typeof import.meta !== "undefined" && (import.meta as ImportMeta & { env?: ViteEnv }).env
@@ -109,6 +111,14 @@ export const BING_SITE_VERIFICATION =
 export const MICROSOFT_CLARITY_ID = env.VITE_MICROSOFT_CLARITY_ID || "";
 export const PLAUSIBLE_DOMAIN = env.VITE_PLAUSIBLE_DOMAIN || "";
 export const PLAUSIBLE_SRC = env.VITE_PLAUSIBLE_SRC || "https://plausible.io/js/script.js";
+
+// PostHog product analytics. Loaded ONLY after the visitor accepts the
+// "analytics" consent category (see __rzLoadPostHog in __root.tsx), matching
+// the LinkedIn/GA consent gating. Project (phc_) keys are public/client-side.
+// US Cloud host; EU projects: set VITE_POSTHOG_HOST=https://eu.i.posthog.com.
+export const POSTHOG_KEY =
+  env.VITE_POSTHOG_KEY ?? "phc_AhzCVT6JkC86fttuSSBnKFqaFowmkPsPvjd4PQ6sQFQN";
+export const POSTHOG_HOST = env.VITE_POSTHOG_HOST ?? "https://us.i.posthog.com";
 
 /**
  * Smart-truncate a string at a word / sentence boundary.

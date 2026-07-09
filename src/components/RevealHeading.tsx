@@ -27,7 +27,7 @@ function words(text: string) {
 export function RevealHeading({
   lead,
   emphasis,
-  emphasisClassName = "italic text-[var(--brand)]",
+  emphasisClassName = "italic",
 }: RevealHeadingProps) {
   const leadWords = words(lead);
   const emphWords = emphasis ? words(emphasis) : [];
@@ -38,12 +38,12 @@ export function RevealHeading({
     </span>
   );
   return (
-    <span className="rz-words">
+    <span className="rz-words" data-rz-words>
       {leadWords.map((w, k) => (
         <span key={`l${k}`}>{word(w)} </span>
       ))}
       {emphWords.length > 0 && (
-        <span className={emphasisClassName}>
+        <span className={`${emphasisClassName} rz-register`}>
           {emphWords.map((w, k) => (
             <span key={`e${k}`}>
               {word(w)}

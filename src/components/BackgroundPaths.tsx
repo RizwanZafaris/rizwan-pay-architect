@@ -19,9 +19,11 @@ function field(position: number) {
     width: 0.5 + i * 0.03,
     // Faint at the front, a touch stronger with depth — capped low for paper.
     opacity: 0.05 + i * 0.016,
-    // Desynced so the two fields weave instead of pulsing in lockstep.
-    dur: 20 + (i % 6) * 4,
-    delay: -((i % 10) * 2.2),
+    // Soft positive stagger so the strokes draw in as one gentle sweep when
+    // the closing band scrolls into view (see .bg-paths draw-in in styles.css),
+    // instead of the old infinite marching-dash loop that read as busy.
+    dur: 2 + (i % 5) * 0.3,
+    delay: (i % 12) * 0.05,
   }));
 }
 
