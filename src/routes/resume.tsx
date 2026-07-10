@@ -1,7 +1,7 @@
 import type { CSSProperties } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { CalendarDays, Download, Linkedin, Mail } from "lucide-react";
 import { personSchemaAwards, personSchemaCredentials, profile } from "@/data/profile";
+import { PLATFORM, DARAZ } from "@/content/facts";
 import { BookingSection } from "@/components/BookingSection";
 import { absUrl, GOOGLE_ADS_PAGE_VIEW_CONVERSION_SEND_TO, OG_IMAGE_URL, SITE_URL } from "@/lib/seo";
 
@@ -85,10 +85,10 @@ const googleAdsResumeConversionScript = GOOGLE_ADS_PAGE_VIEW_CONVERSION_SEND_TO
   : "";
 
 const proofMetrics = [
-  { value: "$1B+", label: "Annual GTV" },
-  { value: "270M+", label: "Payments a year" },
+  { value: PLATFORM.gtv, label: "Annual GTV" },
+  { value: PLATFORM.annualPayments, label: "Payments a year" },
   { value: "5", label: "Frontier markets" },
-  { value: "99.95%", label: "Settlement SLA" },
+  { value: PLATFORM.settlementSla, label: "Settlement SLA" },
   { value: "40+", label: "Engineers led" },
   { value: "4", label: "Production AI deployments" },
 ] as const;
@@ -124,8 +124,8 @@ const recruiterSearchFit = [
 // fully-resolved literal path, so we pass the pattern + params instead.
 const selectedProofLinks = [
   {
-    title: "$1B+ regulated payment infrastructure",
-    body: "Multi-rail pay-in, payout, wallet, card acquiring, settlement and cross-border infrastructure across five frontier markets.",
+    title: `${PLATFORM.gtv} regulated payment infrastructure`,
+    body: `Multi-rail pay-in, payout, wallet, card acquiring, settlement and cross-border infrastructure across ${PLATFORM.marketsWord} frontier markets.`,
     slug: "simpaisa-payment-infrastructure",
   },
   {
@@ -135,7 +135,7 @@ const selectedProofLinks = [
   },
   {
     title: "Settlement and reconciliation at scale",
-    body: "Canonical ledger, three-way reconciliation and 99.95% settlement SLA across fragmented rails and partners.",
+    body: `Canonical ledger, three-way reconciliation and ${PLATFORM.settlementSla} settlement SLA across fragmented rails and partners.`,
     slug: "settlement-reconciliation",
   },
   {
@@ -159,10 +159,10 @@ const resumeExperience = [
     location: "Dubai, UAE",
     bullets: [
       "Owned product strategy and program execution for a regulated multi-rail payments platform spanning pay-in, payouts, wallets, DCB, IBFT, card acquiring, settlement, FX and cross-border corridors.",
-      "Helped scale infrastructure from $0 to $1B+ GTV and 270M+ payments a year, working with leading global PSPs across 5 frontier markets.",
-      "Built merchant onboarding, KYC/KYB, risk-tiering and category pricing flows that cut standard-risk activation from weeks to hours and supported 150+ merchant integrations.",
+      `Helped scale infrastructure from $0 to ${PLATFORM.gtv} GTV and ${PLATFORM.annualPayments} payments a year, working with leading global PSPs across 5 frontier markets.`,
+      `Built merchant onboarding, KYC/KYB, risk-tiering and category pricing flows that cut standard-risk activation from weeks to hours and supported ${PLATFORM.merchants} merchant integrations.`,
       "Led a 40-engineer payments organization across 12 squads; managed $5M+ technology budget, 15+ vendor relationships, PCI DSS, ISO/IEC 27001 and multi-jurisdiction reporting programs.",
-      "Improved platform economics and control: 97% payment success at 90% straight-through processing, 99.95% settlement SLA, fraud loss below 0.1% of GTV and downtime down 90%.",
+      `Improved platform economics and control: 97% payment success at 90% straight-through processing, ${PLATFORM.settlementSla} settlement SLA, fraud loss below 0.1% of GTV and downtime down 90%.`,
       "Deployed four production AI/GenAI solutions across merchant support, incident auto-escalation, partner operations and fraud/AML decisioning.",
     ],
   },
@@ -172,7 +172,7 @@ const resumeExperience = [
     period: "Mar 2020 - Sep 2020",
     location: "Karachi, Pakistan",
     bullets: [
-      "Ran payment operations governance across five markets during a COVID-driven volume surge, covering settlement cycles, disputes, fraud rules and COD-to-digital conversion.",
+      `Ran payment operations governance across ${DARAZ.marketsWord} markets during a COVID-driven volume surge, covering settlement cycles, disputes, fraud rules and COD-to-digital conversion.`,
       "Coordinated multi-country reconciliation, vendor management and Alipay localization with Alibaba teams; expanded payment coverage on checkout by ~40%.",
     ],
   },
@@ -246,12 +246,41 @@ const prioritySkills = [
 
 const resumeSignals = [
   "Recruiter scan-ready",
-  "$1B+ scale validated",
-  "Schedule call ready",
+  `${PLATFORM.gtv} scale validated`,
+  "Intro call ready",
   "Global fintech ready",
 ] as const;
 
 const delayStyle = (ms: number) => ({ "--motion-delay": `${ms}ms` }) as CSSProperties;
+
+// Print guard for the engine-staggered KPI grid: the global @media print rules
+// reset [class*="reveal"] / [class*="motion"] but not [data-rz-stagger]
+// children, whose hidden pre-reveal state lives in next.css. Route-scoped so
+// the frozen print block in styles.css stays untouched.
+const resumePrintCss = `
+@media print {
+  .resume-page [data-rz-stagger] > * {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+`;
+
+// Site-vocabulary marker, replacing the former lucide-react icon set (the only
+// page that pulled in an external icon vocabulary, breaking the ◆/mono system —
+// see DESIGN.md §3). The ◆ glyph is the site's signature; here it leads each
+// control's own text label, so it is purely decorative and aria-hidden. It is a
+// plain text glyph in currentColor, so it inherits the control's colour on every
+// surface (dark pill, ghost button, cyan CTA panel) and prints cleanly under the
+// route's @media print rules — no SVG box or missing-glyph artifact.
+function Mark() {
+  return (
+    <span aria-hidden="true" className="font-mono-tech text-[0.7em] leading-none opacity-80">
+      ◆
+    </span>
+  );
+}
 
 export const Route = createFileRoute("/resume")({
   head: () => ({
@@ -259,8 +288,7 @@ export const Route = createFileRoute("/resume")({
       { title: "Product & Program Executive Resume | Rizwan Zafar" },
       {
         name: "description",
-        content:
-          "Rizwan Zafar resume: Product & Program Executive for fintech infrastructure, payments, PMO and AI operations. $1B+ GTV, 270M+ payments a year, 5 markets.",
+        content: `Rizwan Zafar resume: Product & Program Executive for fintech infrastructure, payments, PMO and AI operations. ${PLATFORM.gtv} GTV, ${PLATFORM.annualPayments} payments a year, ${PLATFORM.marketCount} markets.`,
       },
       { name: "keywords", content: resumeKeywords.join(", ") },
       {
@@ -310,20 +338,16 @@ function ResumePage() {
 
   return (
     <div className="resume-page mx-auto max-w-6xl px-5 sm:px-6 py-10 md:py-14">
+      <style dangerouslySetInnerHTML={{ __html: resumePrintCss }} />
       <section className="priority-hero-shell relative overflow-hidden grid lg:grid-cols-[1fr_320px] gap-8 lg:gap-12 items-start border-b border-rule pb-10 md:pb-12">
         <span aria-hidden="true" className="priority-hero-rule priority-hero-rule-a" />
         <span aria-hidden="true" className="priority-hero-rule priority-hero-rule-b" />
         <div className="resume-soft-reveal relative z-10 min-w-0" style={delayStyle(0)}>
-          <div className="flex items-center gap-4">
-            <span className="grid h-9 w-9 place-items-center bg-ink text-background text-sm font-semibold">
-              01
-            </span>
-            <span className="text-[11px] uppercase tracking-[0.22em] text-ink font-mono-tech">
-              Executive resume
-            </span>
+          <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
+            ◆ Executive resume
           </div>
           <h1
-            className="font-instrument text-4xl sm:text-5xl md:text-6xl text-ink mt-7 leading-[1.02] max-w-4xl text-wrap"
+            className="font-instrument text-[clamp(2.25rem,4vw,3.5rem)] text-ink mt-7 leading-[1.02] max-w-4xl text-wrap"
             aria-label="Rizwan Zafar, Product and Program Executive scaling fintech infrastructure"
           >
             <span className="block">Rizwan Zafar</span>
@@ -361,7 +385,7 @@ function ResumePage() {
               data-analytics-cta-destination="#book"
               className="inline-flex items-center justify-center gap-2 rounded-full bg-ink text-background px-5 py-2.5 text-sm font-medium hover:bg-brand hover:text-[var(--brand-foreground)] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2"
             >
-              <CalendarDays aria-hidden="true" className="h-4 w-4" />
+              <Mark />
               Book a 15-min intro call
             </a>
             <a
@@ -374,7 +398,7 @@ function ResumePage() {
               data-analytics-placement="resume_page"
               className="inline-flex items-center justify-center gap-2 rounded-full border border-ink/20 px-5 py-2.5 text-sm font-medium text-ink hover:bg-ink/5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2"
             >
-              <Download aria-hidden="true" className="h-4 w-4" />
+              <Mark />
               Download PDF
             </a>
             <a
@@ -383,7 +407,7 @@ function ResumePage() {
               rel="noreferrer"
               className="inline-flex items-center justify-center gap-2 rounded-full border border-ink/20 px-5 py-2.5 text-sm font-medium text-ink hover:bg-ink/5 transition-colors"
             >
-              <Linkedin aria-hidden="true" className="h-4 w-4" />
+              <Mark />
               LinkedIn
             </a>
           </div>
@@ -428,17 +452,17 @@ function ResumePage() {
         </aside>
       </section>
 
+      {/* KPI tiles — flat bordered, mono tabular-nums values, engine-staggered
+          (the beam runs the hero's bottom rule once as the grid enters). */}
       <section
-        className="resume-soft-reveal grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4 border-b border-rule py-6"
-        style={delayStyle(140)}
+        data-rz-stagger
+        className="rz-beam relative grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4 border-b border-rule py-6"
       >
-        {proofMetrics.map((m, index) => (
-          <div
-            key={m.label}
-            className="resume-proof-card rounded-lg border border-rule bg-surface px-4 py-3"
-            style={delayStyle(180 + index * 45)}
-          >
-            <div className="font-instrument text-2xl text-ink leading-none">{m.value}</div>
+        {proofMetrics.map((m) => (
+          <div key={m.label} className="border border-rule bg-surface px-4 py-3">
+            <div className="font-mono-tech text-xl md:text-2xl text-ink leading-none tabular-nums">
+              {m.value}
+            </div>
             <div className="mt-1.5 text-[10px] uppercase tracking-[0.14em] text-ink-soft font-mono-tech leading-tight">
               {m.label}
             </div>
@@ -473,6 +497,7 @@ function ResumePage() {
                 key={proof.slug}
                 to="/product-work/$slug"
                 params={{ slug: proof.slug }}
+                data-glow
                 className="resume-soft-reveal group rounded-lg border border-rule bg-card p-4 transition-colors hover:border-ink/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)]"
                 style={delayStyle(120 + index * 50)}
               >
@@ -518,8 +543,9 @@ function ResumePage() {
             className="resume-soft-reveal text-base text-ink-soft leading-relaxed max-w-3xl"
             style={delayStyle(120)}
           >
-            Currently CPO at Simpaisa, where I helped scale regulated payment infrastructure to $1B+
-            GTV, 270M+ payments a year, working with leading global PSPs. My operating lane sits
+            Currently CPO at Simpaisa, where I helped scale regulated payment infrastructure to{" "}
+            {PLATFORM.gtv} GTV, {PLATFORM.annualPayments} payments a year, working with leading global
+            PSPs. My operating lane sits
             between product strategy, program delivery, compliance, risk, engineering leadership,
             partner ecosystems and market expansion, with adjacent work across BNPL, OTT
             subscription billing and crypto on/off-ramp product strategy.
@@ -563,8 +589,8 @@ function ResumePage() {
         aria-labelledby="resume-markets-heading"
       >
         <div className="resume-soft-reveal md:col-span-3" style={delayStyle(0)}>
-          <div className="text-[10px] uppercase tracking-[0.18em] text-ink-soft font-mono-tech">
-            Region coverage
+          <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
+            ◆ Region coverage
           </div>
           <h2 id="resume-markets-heading" className="mt-2 font-instrument text-2xl text-ink">
             MARKETS
@@ -698,14 +724,14 @@ function ResumePage() {
               data-analytics-cta-location="resume_contact"
               data-analytics-cta-destination="#book"
             >
-              <CalendarDays aria-hidden="true" className="h-4 w-4" />
+              <Mark />
               Book a 15-min intro call
             </a>
             <a
               className="flex w-fit items-center gap-2 text-ink underline underline-offset-4"
               href={`mailto:${profile.email}`}
             >
-              <Mail aria-hidden="true" className="h-4 w-4" />
+              <Mark />
               {profile.email}
             </a>
             <a
@@ -714,7 +740,7 @@ function ResumePage() {
               target="_blank"
               rel="noreferrer"
             >
-              <Linkedin aria-hidden="true" className="h-4 w-4" />
+              <Mark />
               LinkedIn profile
             </a>
           </div>
@@ -740,7 +766,7 @@ function ResumePage() {
             data-analytics-cta-destination="#book"
             className="inline-flex items-center justify-center gap-2 rounded-full bg-background text-ink px-5 py-2.5 text-sm font-medium hover:bg-[var(--brand)] hover:text-background transition-colors"
           >
-            <CalendarDays aria-hidden="true" className="h-4 w-4" />
+            <Mark />
             Book a 15-min intro call
           </a>
           <a
@@ -753,7 +779,7 @@ function ResumePage() {
             data-analytics-placement="resume_page"
             className="inline-flex items-center justify-center gap-2 rounded-full border border-background/25 px-5 py-2.5 text-sm font-medium text-background hover:bg-background/10 transition-colors"
           >
-            <Download aria-hidden="true" className="h-4 w-4" />
+            <Mark />
             Download PDF
           </a>
         </div>

@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { markets, type Market } from "@/data/markets";
 import { profile } from "@/data/profile";
+import { CAREER, PLATFORM, DARAZ } from "@/content/facts";
 import { WorldMap } from "@/components/WorldMap";
 import { absUrl } from "@/lib/seo";
 
@@ -51,7 +52,7 @@ const eras: Era[] = [
       "Tapmad (OTT): launched Direct Carrier Billing across all four telcos and grew from 0 to 5M paid subscribers.",
       "Tapmad: cut payment cost from 50% of revenue to about 1% and lifted ARPU by 70%, on the way to $10M+ ARR.",
       "Tapmad: expanded DCB and wallet billing into the UAE and KSA with regional telco and wallet partners.",
-      "Daraz (Alibaba Group): ran payment operations across five markets — +15% checkout conversion, −20% false declines, 99.5% settlement.",
+      `Daraz (Alibaba Group): ran payment operations across ${DARAZ.marketsWord} markets — +15% checkout conversion, −20% false declines, 99.5% settlement.`,
       "Daraz: widened payment coverage by roughly 40% by localising regional methods on checkout.",
     ],
   },
@@ -63,8 +64,8 @@ const eras: Era[] = [
     // Each string below is a standalone clause with NO career marker, so the
     // platform metrics never mix tiers. Do not merge these into one sentence.
     points: [
-      "Built a $1B+ GTV gateway processing 270M+ payments a year.",
-      "Reached 150+ merchants at a 99.95% settlement SLA.",
+      `Built a ${PLATFORM.gtv} GTV gateway processing ${PLATFORM.annualPayments} payments a year.`,
+      `Reached ${PLATFORM.merchants} merchants at a ${PLATFORM.settlementSla} settlement SLA.`,
       "Shipped four market launches in 2024, and grew the product org from 2 to 8 PMs across a 50+ team.",
       "Led PCI-DSS Level 1 and ISO 27001 from scratch.",
     ],
@@ -95,16 +96,16 @@ export const Route = createFileRoute("/journey")({
   head: () => ({
     meta: [
       {
-        title: `${profile.career.years} Years, 10 Markets: A Payments Operator's Journey | Rizwan Zafar`,
+        title: `${profile.career.years} Years, ${CAREER.marketCount} Markets: A Payments Operator's Journey | Rizwan Zafar`,
       },
       {
         name: "description",
         content:
-          "Seventeen years, ten markets, three industries — from Daraz's marketplaces to Tapmad's streaming business to Simpaisa's cross-border gateway.",
+          `Seventeen years, ${CAREER.marketsWord} markets, three industries — from Daraz's marketplaces to Tapmad's streaming business to Simpaisa's cross-border gateway.`,
       },
       {
         property: "og:title",
-        content: `${profile.career.years} Years, 10 Markets — A Payments Operator's Journey`,
+        content: `${profile.career.years} Years, ${CAREER.marketCount} Markets — A Payments Operator's Journey`,
       },
       {
         property: "og:description",
@@ -115,7 +116,7 @@ export const Route = createFileRoute("/journey")({
       { property: "og:type", content: "profile" },
       {
         name: "twitter:title",
-        content: `${profile.career.years} Years, 10 Markets — A Payments Operator's Journey`,
+        content: `${profile.career.years} Years, ${CAREER.marketCount} Markets — A Payments Operator's Journey`,
       },
       {
         name: "twitter:description",
@@ -147,11 +148,6 @@ const css = `
    unsupported or motion is reduced. Era labels stick under the floating pill
    header via position: sticky (pure CSS, no JS). */
 .journey-timeline { position: relative; }
-.journey-rail {
-  position: absolute; top: 0; bottom: 0; left: 0; width: 2px;
-  background: color-mix(in oklab, var(--rule) 78%, transparent);
-  overflow: hidden;
-}
 .journey-rail-beam {
   position: absolute; inset: 0 0 auto 0; width: 100%; transform-origin: top;
   /* Fallback: a fixed gradient that reads as a lit rail even with no motion. */
@@ -196,27 +192,141 @@ const css = `
 }
 
 /* ── Market cards ─────────────────────────────────────────────────────────*/
-.journey-market-card {
-  position: relative; overflow: hidden;
-  transition:
-    transform 180ms ease, border-color 180ms ease,
-    box-shadow 180ms ease, background-color 180ms ease;
+/* NB: the sheen overlay lives on ::before, NOT ::after — the cards now carry
+   data-glow and the global engine (next.css) owns [data-glow]::after for the
+   cursor bloom. Sharing ::after would let one rule clobber the other. */
+/* The timeline's vertical hairline. NOT dead: the element is
+   <div className="journey-rail"> in the era timeline. */
+.journey-rail {
+  position: absolute; top: 0; bottom: 0; left: 0; width: 2px;
+  background: color-mix(in oklab, var(--rule) 78%, transparent);
+  overflow: hidden;
 }
-.journey-market-card::after {
-  content: ""; position: absolute; inset: 0; pointer-events: none;
-  background: linear-gradient(
-    135deg,
-    color-mix(in oklab, var(--paper) 60%, transparent),
-    transparent 44%,
-    color-mix(in oklab, var(--signal) 6%, transparent)
-  );
+
+/* ── Expanding market rail ─────────────────────────────────────────────
+   Ported from the 21st.dev "expanding cards" interaction, minus everything
+   that made it a stock component: no photography (we have none, and stock
+   is banned by PRODUCT.md), no icon library, no JS. The original drives the
+   grid template from React state; here flex-grow does it, so it survives the
+   zero-hydration build and works with JS disabled.
+
+   Below lg: a plain stacked list, every panel open. Scanning beats
+   interaction for a recruiter on a phone.
+   At lg+: ten collapsed name-plates; hover or keyboard focus expands one. */
+.journey-market-rail {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  list-style: none;
+  padding: 0;
 }
-.journey-market-card > * { position: relative; z-index: 1; }
-.journey-market-card:hover {
-  transform: translateY(-3px);
-  border-color: color-mix(in oklab, var(--signal) 30%, var(--rule));
-  box-shadow: 0 16px 40px color-mix(in oklab, var(--ink) 9%, transparent);
+.journey-panel-plate { display: none; }
+.journey-panel-inner {
+  position: relative;
+  border: 1px solid var(--rule);
+  border-radius: 16px;
+  background: var(--surface-raised);
+  padding: 1.5rem;
+  height: 100%;
 }
+.journey-panel-inner:focus-visible {
+  outline: none;
+  border-color: color-mix(in oklab, var(--signal) 45%, var(--rule));
+}
+.journey-panel-head { display: flex; align-items: baseline; justify-content: space-between; gap: 0.75rem; }
+
+@media (min-width: 1024px) {
+  .journey-market-rail {
+    flex-direction: row;
+    gap: 0.5rem;
+    height: 27rem;
+  }
+  .journey-panel {
+    flex: 1 1 0;
+    min-width: 0;
+    display: flex;
+    transition: flex-grow 500ms var(--ease-soft);
+  }
+  .journey-panel-inner {
+    overflow: hidden;
+    width: 100%;
+    padding: 1.25rem;
+    cursor: pointer;
+  }
+
+  /* The first panel is open by default (the component's defaultActiveIndex).
+     Once the pointer or focus enters the rail, it yields unless it is itself
+     the target — the CSS equivalent of the original's activeIndex state. */
+  .journey-panel:first-child { flex-grow: 5; }
+  .journey-market-rail:hover .journey-panel:first-child,
+  .journey-market-rail:focus-within .journey-panel:first-child { flex-grow: 1; }
+  .journey-panel:hover,
+  .journey-panel:focus-within,
+  .journey-market-rail:hover .journey-panel:hover,
+  .journey-market-rail:focus-within .journey-panel:focus-within { flex-grow: 5; }
+
+  /* Collapsed: a vertical name-plate. */
+  .journey-panel-plate {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    height: 100%;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    opacity: 1;
+    transition: opacity 220ms var(--ease-soft);
+  }
+  .journey-panel-name {
+    font-family: var(--font-serif);
+    font-size: 1.35rem;
+    color: var(--ink);
+    white-space: nowrap;
+  }
+  .journey-panel-years {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    white-space: nowrap;
+  }
+
+  /* Expanded content: present in the DOM always, revealed on expand. */
+  .journey-panel-body {
+    position: absolute;
+    inset: 1.25rem;
+    width: 22rem;
+    max-width: calc(100% - 2.5rem);
+    opacity: 0;
+    transform: translateY(6px);
+    transition:
+      opacity 260ms var(--ease-soft) 120ms,
+      transform 260ms var(--ease-soft) 120ms;
+    pointer-events: none;
+  }
+  .journey-panel:hover .journey-panel-plate,
+  .journey-panel:focus-within .journey-panel-plate { opacity: 0; }
+  .journey-panel:hover .journey-panel-body,
+  .journey-panel:focus-within .journey-panel-body {
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+  }
+  /* Default-open first panel shows its body until the rail is engaged. */
+  .journey-market-rail:not(:hover):not(:focus-within) .journey-panel:first-child .journey-panel-plate { opacity: 0; }
+  .journey-market-rail:not(:hover):not(:focus-within) .journey-panel:first-child .journey-panel-body {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .journey-panel,
+  .journey-panel-plate,
+  .journey-panel-body { transition: none; }
+}
+
 .journey-pending {
   display: inline-flex; align-items: center; gap: 0.35rem;
   border: 1px dashed color-mix(in oklab, var(--ink) 30%, var(--rule));
@@ -224,6 +334,27 @@ const css = `
   color: var(--ink-soft);
   font-family: "JetBrains Mono", ui-monospace, monospace;
   font-size: 0.58rem; letter-spacing: 0.12em; line-height: 1; text-transform: uppercase;
+}
+
+/* The global stagger rule (.rz-js [data-rz-stagger].rz-in > *) is a TRANSITION
+   with a per-child delay, and it out-specifies .journey-panel. Left alone it
+   would clobber the rail's flex-grow transition and lag every hover expand by
+   that child's delay. Run the ENTRANCE as a backwards-filled animation, and
+   hand the transition back to the rail at lg. */
+.rz-js [data-rz-stagger].rz-in > .journey-panel {
+  transition: none;
+  transition-delay: 0ms;
+  animation: journey-card-in 600ms var(--ease-expo) backwards;
+  animation-delay: calc(var(--i, 0) * 70ms);
+}
+@media (min-width: 1024px) {
+  .rz-js [data-rz-stagger].rz-in > .journey-panel {
+    transition: flex-grow 500ms var(--ease-soft);
+  }
+}
+@keyframes journey-card-in {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: none; }
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -247,34 +378,45 @@ const css = `
 }
 @media (prefers-reduced-motion: reduce) {
   .journey-eyebrow::after { animation: none; }
+  .rz-js [data-rz-stagger].rz-in > .journey-panel {
+    animation: none; transition: none; opacity: 1; transform: none;
+  }
 }
 `;
 
-function MarketCard({ m }: { m: Market }) {
+function MarketPanel({ m }: { m: Market }) {
   return (
-    <article className="journey-market-card rounded-2xl border border-rule bg-card p-6">
-      <div className="flex items-center justify-between gap-3">
-        <span className="text-3xl leading-none" aria-hidden="true">
-          {m.flag}
-        </span>
-        <span className="text-[10px] uppercase tracking-[0.18em] text-ink-soft font-mono-tech">
-          {m.years}
-        </span>
-      </div>
-      <h3 className="mt-4 font-instrument text-2xl text-ink">{m.name}</h3>
-      <div className="mt-1 text-[11px] uppercase tracking-[0.16em] text-[var(--brand)] font-mono-tech font-semibold">
-        {m.brand}
-      </div>
-      <p className="mt-4 text-sm leading-relaxed text-ink">{m.shipped}</p>
-      {m.needsOwnerConfirm && (
-        <p className="mt-3">
-          <span className="journey-pending">◇ Detail pending</span>
-        </p>
-      )}
-      <p className="mt-4 border-t border-rule pt-4 text-sm italic leading-relaxed text-ink-soft">
-        {m.lesson}
-      </p>
-    </article>
+    <li className="journey-panel" data-glow>
+      {/* tabIndex makes the panel focusable so keyboard users can expand it;
+          :focus-within drives the same CSS as :hover. aria-label names the
+          panel because the visible <h3> is rotated when collapsed. */}
+      <article tabIndex={0} aria-label={m.name} className="journey-panel-inner">
+        <div className="journey-panel-plate">
+          <span className="journey-panel-name">{m.name}</span>
+          <span className="journey-panel-years">{m.years}</span>
+        </div>
+        <div className="journey-panel-body">
+          <div className="journey-panel-head">
+            <h3 className="font-instrument text-2xl text-ink">{m.name}</h3>
+            <span className="text-[10px] uppercase tracking-[0.18em] text-ink-soft font-mono-tech">
+              {m.city} · {m.years}
+            </span>
+          </div>
+          <div className="mt-1 text-[10px] uppercase tracking-[0.16em] text-[var(--brand)] font-mono-tech font-semibold">
+            {m.brand}
+          </div>
+          <p className="mt-4 text-sm leading-relaxed text-ink">{m.shipped}</p>
+          {m.needsOwnerConfirm && (
+            <p className="mt-3">
+              <span className="journey-pending">◇ Detail pending</span>
+            </p>
+          )}
+          <p className="mt-4 border-t border-rule pt-4 text-sm italic leading-relaxed text-ink-soft">
+            {m.lesson}
+          </p>
+        </div>
+      </article>
+    </li>
   );
 }
 
@@ -284,120 +426,159 @@ function JourneyPage() {
       <style dangerouslySetInnerHTML={{ __html: css }} />
 
       {/* ── Hero ──────────────────────────────────────────────────────── */}
-      <section className="mx-auto max-w-6xl px-6 pt-20 pb-8 sm:pt-24">
-        <div className="journey-eyebrow text-[10px] uppercase tracking-[0.32em] text-[var(--brand)] font-mono-tech font-semibold">
+      {/* Statement page header (Operator's Console language): ◆ mono eyebrow →
+          monument serif H1 with the signature italic-cyan close. Copy is the
+          same sentence; the em dash in the lede became a comma while
+          re-wrapping (design-charter ban). */}
+      <section className="mx-auto max-w-6xl px-5 sm:px-6 pt-20 pb-12 sm:pt-28 md:pb-16">
+        <div className="journey-eyebrow text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
           ◆ The operating map
         </div>
-        <h1 className="mt-8 font-instrument text-4xl leading-[1.05] text-ink sm:text-6xl">
-          Seventeen years. Ten markets. Three industries.
+        <h1 className="mt-9 font-instrument tracking-[-0.02em] text-[clamp(2.5rem,5.5vw,5.5rem)] leading-[1.0] text-ink">
+          Seventeen years. {CAREER.marketsWordCap} markets.{" "}
+          <span className="italic text-[var(--brand)]">Three industries.</span>
         </h1>
-        <p className="mt-6 max-w-2xl text-lg leading-relaxed text-ink-soft">
-          I didn't study frontier markets — I shipped in them. This is the map: every market, what I
+        <p className="mt-8 max-w-2xl text-lg leading-relaxed text-ink-soft">
+          I didn't study frontier markets, I shipped in them. This is the map: every market, what I
           built there, and what it taught me about payments, product and the distance between a
           regulation and a working checkout.
         </p>
       </section>
 
       {/* ── Signature visual: the world map ───────────────────────────── */}
-      <section className="mx-auto max-w-6xl px-6 pb-16">
-        <div className="rounded-2xl border border-rule bg-surface p-4 sm:p-8">
-          <WorldMap showLabels />
+      <section className="rz-beam border-t border-rule">
+        <div className="mx-auto max-w-6xl px-5 sm:px-6 py-12 md:py-16">
+          <div className="rounded-2xl border border-rule bg-surface p-4 sm:p-8">
+            <WorldMap showLabels />
+          </div>
+          <p className="mt-4 text-center text-[10px] uppercase tracking-[0.22em] text-ink-soft font-mono-tech">
+            ◆ {CAREER.marketsWordCap} operating markets · arcs originate from the Dubai hub
+          </p>
         </div>
-        <p className="mt-4 text-center text-[10px] uppercase tracking-[0.22em] text-ink-soft font-mono-tech">
-          ◆ Ten operating markets · arcs originate from the Dubai hub
-        </p>
       </section>
 
       {/* ── Timeline: three eras ──────────────────────────────────────── */}
-      <section className="mx-auto max-w-4xl px-6 py-8">
-        <div className="mb-12 text-center">
-          <div className="text-[10px] uppercase tracking-[0.28em] text-[var(--brand)] font-mono-tech font-semibold">
-            ◆ The arc
+      {/* LAYOUT IS LOAD-BEARING: left rail + one content column was the 3rd
+          attempt that finally worked — this pass changes type scale + motion
+          hooks only (header left-aligned to the console language, era content
+          gets a top rule so the shared beam runs between eras). */}
+      <section className="rz-beam border-t border-rule">
+        <div className="mx-auto max-w-4xl px-5 sm:px-6 py-14 md:py-20">
+          <div className="mb-12 md:mb-16">
+            <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
+              ◆ The arc
+            </div>
+            <h2 className="mt-3 font-instrument text-[clamp(2rem,4vw,3.5rem)] leading-[1.05] text-ink">
+              Three eras, <span className="italic text-[var(--brand)]">one throughline</span>
+            </h2>
+            <p className="mt-4 max-w-2xl text-ink-soft leading-relaxed">
+              Delivery discipline first, consumer scale next, then regulated payment
+              infrastructure: each era compounding into the one after it.
+            </p>
           </div>
-          <h2 className="mt-4 font-instrument text-3xl text-ink sm:text-4xl">
-            Three eras, one throughline
-          </h2>
-          <p className="mx-auto mt-3 max-w-xl text-ink-soft">
-            Delivery discipline first, consumer scale next, then regulated payment infrastructure —
-            each era compounding into the one after it.
-          </p>
-        </div>
 
-        <div className="journey-timeline">
-          <div className="journey-rail" aria-hidden="true">
-            <div className="journey-rail-beam" />
-          </div>
+          <div className="journey-timeline">
+            <div className="journey-rail" aria-hidden="true">
+              <div className="journey-rail-beam" />
+            </div>
 
-          <ol className="space-y-16 md:space-y-24">
-            {eras.map((era) => (
-              <li key={era.id} className="relative pl-8 md:pl-16">
-                <span className="journey-era-node" aria-hidden="true" />
-                <div className="journey-era-content">
-                  <div className="journey-era-label">
-                    <span className="font-mono-tech text-[11px] uppercase tracking-[0.2em] text-[var(--brand)]">
-                      {era.span}
-                    </span>
-                    <span className="font-instrument text-xl text-ink">{era.title}</span>
+            <ol className="space-y-16 md:space-y-24">
+              {eras.map((era, i) => (
+                <li key={era.id} className="relative pl-8 md:pl-16">
+                  <span className="journey-era-node" aria-hidden="true" />
+                  <div
+                    className={`journey-era-content${
+                      i > 0 ? " rz-beam border-t border-rule pt-8" : ""
+                    }`}
+                  >
+                    <div className="journey-era-label">
+                      <span className="font-mono-tech text-[11px] uppercase tracking-[0.2em] text-[var(--brand)]">
+                        {era.span}
+                      </span>
+                      <span className="font-instrument text-xl md:text-2xl text-ink">
+                        {era.title}
+                      </span>
+                    </div>
+                    <p className="mt-5 text-base md:text-lg leading-relaxed text-ink">
+                      {era.lede}
+                    </p>
+                    <ul className="mt-5 space-y-3">
+                      {era.points.map((point) => (
+                        <li
+                          key={point}
+                          className="journey-point text-sm leading-relaxed text-ink-soft"
+                        >
+                          {point}
+                        </li>
+                      ))}
+                    </ul>
                   </div>
-                  <p className="mt-5 text-base leading-relaxed text-ink">{era.lede}</p>
-                  <ul className="mt-5 space-y-3">
-                    {era.points.map((point) => (
-                      <li
-                        key={point}
-                        className="journey-point text-sm leading-relaxed text-ink-soft"
-                      >
-                        {point}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </li>
-            ))}
-          </ol>
+                </li>
+              ))}
+            </ol>
+          </div>
         </div>
       </section>
 
       {/* ── Per-market cards ──────────────────────────────────────────── */}
-      <section className="mx-auto max-w-6xl px-6 py-16">
-        <div className="mb-10">
-          <div className="text-[10px] uppercase tracking-[0.28em] text-[var(--brand)] font-mono-tech font-semibold">
-            ◆ Every stop on the map
+      {/* Cards keep their grid per the elevation brief (stagger + glow, not a
+          re-layout): data-rz-stagger cascades them in; each card carries
+          data-glow for the cursor bloom, composing with its hover lift. */}
+      <section className="rz-beam border-t border-rule">
+        <div className="mx-auto max-w-6xl px-5 sm:px-6 py-14 md:py-20">
+          <div className="mb-10 md:mb-14">
+            <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
+              ◆ Every stop on the map
+            </div>
+            <h2 className="mt-3 font-instrument text-[clamp(2rem,4vw,3.5rem)] leading-[1.05] text-ink">
+              {CAREER.marketsWordCap} markets, <span className="italic text-[var(--brand)]">ten lessons</span>
+            </h2>
+            <p className="mt-4 max-w-2xl text-ink-soft leading-relaxed">
+              What shipped in each market, and the operating lesson it left behind.
+            </p>
           </div>
-          <h2 className="mt-4 font-instrument text-3xl text-ink sm:text-4xl">
-            Ten markets, ten lessons
-          </h2>
-          <p className="mt-3 max-w-2xl text-ink-soft">
-            What shipped in each market — and the operating lesson it left behind.
-          </p>
-        </div>
 
-        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {markets.map((m) => (
-            <MarketCard key={m.key} m={m} />
-          ))}
+          {/* Expanding market rail. Below lg it is a plain stacked list with
+              every panel open (scannable). At lg+ the ten markets collapse to
+              a rail of vertical name-plates; hovering or keyboard-focusing one
+              grows it to reveal what shipped there. Pure CSS (flex-grow), so
+              it works with zero hydration and with JS off. All copy stays in
+              the DOM at every width — nothing is hidden from screen readers or
+              from Google, only visually collapsed. */}
+          <ul data-rz-stagger className="journey-market-rail">
+            {markets.map((m) => (
+              <MarketPanel key={m.key} m={m} />
+            ))}
+          </ul>
         </div>
       </section>
 
       {/* ── Close / CTA ───────────────────────────────────────────────── */}
-      <section className="mx-auto max-w-6xl px-6 pb-24">
-        <div className="rounded-2xl border border-rule bg-surface-2 p-8 text-center sm:p-12">
-          <h2 className="font-instrument text-2xl text-ink sm:text-3xl">
-            The map is the story. The work is the proof.
-          </h2>
-          <p className="mx-auto mt-3 max-w-xl text-ink-soft">
-            See the case studies behind these markets, or start a conversation about what comes
-            next.
-          </p>
-          <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+      {/* Centered card → asymmetric console close: statement heading left,
+          CTA pair right, beam on the top rule. CTAs match the homepage hero
+          grammar (h-12 pills, ink primary, focus-visible rings). */}
+      <section className="rz-beam border-t border-rule">
+        <div className="mx-auto flex max-w-6xl flex-wrap items-end justify-between gap-x-12 gap-y-8 px-5 sm:px-6 py-16 md:py-24">
+          <div>
+            <h2 className="font-instrument text-[clamp(2rem,4.5vw,4rem)] leading-[1.05] text-ink max-w-2xl">
+              The map is the story.{" "}
+              <span className="italic text-[var(--brand)]">The work is the proof.</span>
+            </h2>
+            <p className="mt-4 max-w-xl text-ink-soft leading-relaxed">
+              See the case studies behind these markets, or start a conversation about what comes
+              next.
+            </p>
+          </div>
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
             <Link
               to="/product-work"
-              className="inline-flex items-center justify-center rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-transform hover:-translate-y-0.5"
+              className="inline-flex h-12 items-center justify-center rounded-full bg-ink px-6 text-sm font-semibold text-background transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background"
             >
               See the product work →
             </Link>
             <a
               href="/contact/#book"
-              className="inline-flex items-center justify-center rounded-full border border-input px-6 py-3 text-sm font-semibold text-ink transition-colors hover:border-[color-mix(in_oklab,var(--signal)_40%,var(--rule))]"
+              className="inline-flex h-12 items-center justify-center rounded-full border border-ink/20 px-6 text-sm font-semibold text-ink transition-colors hover:border-ink/50 hover:bg-ink/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background"
             >
               Book a conversation
             </a>

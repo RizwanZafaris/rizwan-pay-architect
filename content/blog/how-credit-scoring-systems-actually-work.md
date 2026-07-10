@@ -3,8 +3,8 @@ title: "How Credit Scoring Systems Actually Work: From Feature Pipeline to Burea
 slug: "how-credit-scoring-systems-actually-work"
 category: "Payment Infrastructure"
 metaTitle: "How Credit Scoring Systems Actually Work | Rizwan Zafar"
-metaDescription: "An operator's view of credit scoring, the feature pipeline, the model family, the bureau reporting cycle, the governance overlay, and the four failure modes that produce regulator findings."
-excerpt: "Most fintech operators reach for the off-the-shelf credit-scoring vendor and stop thinking about it. The vendor's output is a number; the substance is the pipeline that produces the number, the governance that protects it, and the bureau reporting cycle that updates it."
+metaDescription: "How credit scoring actually works: the feature pipeline, the model family, the bureau reporting cycle, and the four failure modes behind regulator findings."
+excerpt: "Reaching for an off-the-shelf credit-scoring vendor is easy; the trap is stopping there. The vendor's output is a number. The substance an operator has to own is the pipeline that produces it, the governance that protects it, and the bureau reporting cycle that keeps it current."
 publishDate: "2026-05-20"
 readingTime: "12 min read"
 featured: true

@@ -3,8 +3,8 @@ title: "Nigerian Payment Rails: NIBSS, NQR, eNaira: How the Stack Actually Works
 slug: "nigerian-payment-rails-nibss-nqr-enaira"
 category: "Emerging Markets"
 metaTitle: "Nigerian Payment Rails: NIBSS, NQR, eNaira | Rizwan Zafar"
-metaDescription: "Operator's read on the Nigerian payments stack, NIBSS, NIP, NQR, eNaira, Verve, the CBN's role, and what actually ships for a fintech entering the market."
-excerpt: "Nigeria has built one of the most ambitious public-rail payment infrastructures of any emerging market, NIBSS, NIP, BVN, NQR, eNaira, all interlinked under the CBN's direction. The operator entering Nigeria gets a stack deeper than the deck suggests and a regulator more active than they expect."
+metaDescription: "A field read on the Nigerian payments stack: NIBSS, NIP, NQR, eNaira, Verve, the CBN's role, and what actually ships for a fintech entering the market."
+excerpt: "Nigeria has built one of the most ambitious public-rail payment stacks of any emerging market: NIBSS, NIP, BVN, NQR, eNaira, all interlinked under the CBN. Anyone entering Nigeria gets a stack deeper than the deck suggests and a regulator more active than they expect."
 publishDate: "2026-05-20"
 readingTime: "12 min read"
 featured: true

@@ -72,6 +72,7 @@ import { SiteHeader, SiteFooter, CampaignHeader, CampaignFooter } from "@/compon
 import { calendarCampaignParamsScript } from "@/lib/campaign";
 import { personSchemaAwards, personSchemaCredentials, profile } from "@/data/profile";
 import { markets } from "@/data/markets";
+import { PLATFORM } from "@/content/facts";
 import {
   absUrl,
   SITE_URL,
@@ -179,6 +180,31 @@ document.addEventListener("DOMContentLoaded",function(){var path=location.pathna
 // <CountUp> components never animated in production and the CSS reveals were
 // Chromium-only (animation-timeline). This single inline script drives every
 // reveal from one IntersectionObserver, cross-browser, no hydration needed:
+/* Theme bootstrap. Runs synchronously in <head>, before first paint.
+ *
+ * Precedence: an explicit stored choice wins; otherwise follow the OS. Dark is
+ * the fallback — it is the brand's default palette, and it is what `:root`
+ * carries, so if this script never runs (JS off) the page still renders
+ * correctly in dark rather than half-themed.
+ *
+ * The server cannot know the visitor's theme (no cookie is set), so the SSR
+ * markup has no `data-theme` and this script adds it before paint. React DOES
+ * diff <html> attributes on hydration, so <html> carries
+ * `suppressHydrationWarning` — the standard, and only, way to reconcile a
+ * pre-paint theme script with SSR. The suppression is one level deep: it covers
+ * <html>'s own attributes, not its subtree.
+ *
+ * `rz-theme-js` reveals the toggle. A theme switch is meaningless without JS,
+ * so the control stays hidden rather than sitting there inert.
+ */
+const THEME_STORAGE_KEY = "rz-theme";
+const themeBootstrapScript = `(function(){var e=document.documentElement;var t;try{t=localStorage.getItem('${THEME_STORAGE_KEY}');}catch(_){}
+if(t!=='light'&&t!=='dark'){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches)?'light':'dark';}
+e.setAttribute('data-theme',t);e.classList.add('rz-theme-js');
+try{var m=window.matchMedia('(prefers-color-scheme: light)');var h=function(ev){var s=null;try{s=localStorage.getItem('${THEME_STORAGE_KEY}');}catch(_){}
+if(s==='light'||s==='dark')return;e.setAttribute('data-theme',ev.matches?'light':'dark');};
+if(m.addEventListener)m.addEventListener('change',h);}catch(_){}})();`;
+
 //   1. Adds `.rz-js` to <html> ONLY when motion is allowed (IO supported and
 //      reduced-motion not set) so the CSS hidden state is gated safely — no-JS
 //      and reduced-motion visitors keep content fully visible.
@@ -199,7 +225,7 @@ n.textContent=f(0);requestAnimationFrame(k);
 /* Hard guarantee: whatever happens to rAF, snap to the real final value. The
    number can never strand at 0 — the whole site is built on exact numbers. */
 setTimeout(settle,du+800);}
-function boot(){var tg=d.querySelectorAll('[data-rz-reveal],.rz-reveal,[data-rz-words],.bg-paths,.rz-unveil,.home-soft-reveal,.home-card,.home-topic-card,.home-search-panel,.case-study-card,.case-soft-card,.case-metric-card'),ct=d.querySelectorAll('[data-rz-count]'),vh=window.innerHeight||el.clientHeight,seen=[];Array.prototype.forEach.call(tg,function(t){var r=t.getBoundingClientRect();if(r.top<vh*0.92&&r.bottom>0)seen.push(t);});seen.sort(function(a,b){return a.getBoundingClientRect().top-b.getBoundingClientRect().top;});seen.forEach(function(t,i){if(!t.style.getPropertyValue('--rz-delay'))t.style.setProperty('--rz-delay',Math.min(i*80,520)+'ms');});
+function boot(){var tg=d.querySelectorAll('[data-rz-reveal],.rz-reveal,[data-rz-words],.bg-paths,.rz-unveil,.home-soft-reveal,.home-card,.home-topic-card,.home-search-panel,.case-study-card,.case-soft-card,.case-metric-card,[data-rz-stagger],.rz-beam'),ct=d.querySelectorAll('[data-rz-count]'),vh=window.innerHeight||el.clientHeight,seen=[];Array.prototype.forEach.call(tg,function(t){var r=t.getBoundingClientRect();if(r.top<vh*0.92&&r.bottom>0)seen.push(t);});seen.sort(function(a,b){return a.getBoundingClientRect().top-b.getBoundingClientRect().top;});seen.forEach(function(t,i){if(!t.style.getPropertyValue('--rz-delay'))t.style.setProperty('--rz-delay',Math.min(i*80,520)+'ms');});
 var io=new IntersectionObserver(function(en,o){en.forEach(function(x){if(x.isIntersecting){x.target.classList.add('rz-in');o.unobserve(x.target);}});},{rootMargin:'0px 0px -8% 0px',threshold:0.08});Array.prototype.forEach.call(tg,function(t){io.observe(t);});
 var cio=new IntersectionObserver(function(en,o){en.forEach(function(x){if(x.isIntersecting){count(x.target);o.unobserve(x.target);}});},{threshold:0.6});Array.prototype.forEach.call(ct,function(c){cio.observe(c);});
 /* Catch-up safety net: reveal ONLY what is already in or above the viewport,
@@ -210,7 +236,24 @@ var cio=new IntersectionObserver(function(en,o){en.forEach(function(x){if(x.isIn
 setTimeout(function(){var v=window.innerHeight||el.clientHeight;Array.prototype.forEach.call(tg,function(t){if(t.getBoundingClientRect().top<v)t.classList.add('rz-in');});},1200);
 /* Hero entrance: fire two frames after boot so the H1 (LCP) has already
    painted, then the supporting cast + portrait stage in. */
-requestAnimationFrame(function(){requestAnimationFrame(function(){el.classList.add('rz-hero-go');});});}
+requestAnimationFrame(function(){requestAnimationFrame(function(){el.classList.add('rz-hero-go');});});
+/* --- Operator's Console modules (2026-07-09). Inherit the reduced-motion +
+   IO gates above; pointer modules additionally require a fine pointer. --- */
+Array.prototype.forEach.call(d.querySelectorAll('[data-rz-stagger]'),function(p){var i=0;Array.prototype.forEach.call(p.children,function(c){c.style.setProperty('--i',String(i++));});});
+var sc=false;function onSc(){var s=(window.scrollY||el.scrollTop||0)>24;if(s!==sc){sc=s;el.classList.toggle('rz-scrolled',s);}}
+window.addEventListener('scroll',onSc,{passive:true});onSc();
+if(window.matchMedia&&window.matchMedia('(hover: hover) and (pointer: fine)').matches){
+/* Probe glow: one delegated pointermove; rAF-throttled; a single
+   getBoundingClientRect per frame only while a [data-glow] card is hot. */
+var pe=null,px=0,py=0,praf=0;
+function probe(){praf=0;if(!pe)return;var r=pe.getBoundingClientRect();if(!r.width)return;pe.style.setProperty('--gx',(((px-r.left)/r.width)*100).toFixed(2)+'%');pe.style.setProperty('--gy',(((py-r.top)/r.height)*100).toFixed(2)+'%');}
+d.addEventListener('pointermove',function(e){px=e.clientX;py=e.clientY;var t=e.target&&e.target.closest?e.target.closest('[data-glow]'):null;if(t!==pe){if(pe)pe.classList.remove('rz-probe');pe=t;if(pe)pe.classList.add('rz-probe');}if(pe&&!praf)praf=requestAnimationFrame(probe);},{passive:true});
+/* Magnetic CTA: bounded pull toward the cursor, spring-back on leave. */
+Array.prototype.forEach.call(d.querySelectorAll('[data-magnetic]'),function(m){var r=null;
+m.addEventListener('pointerenter',function(){r=m.getBoundingClientRect();m.classList.add('rz-mag-live');});
+m.addEventListener('pointermove',function(e){if(!r)r=m.getBoundingClientRect();var dx=(e.clientX-(r.left+r.width/2))*0.18,dy=(e.clientY-(r.top+r.height/2))*0.22;dx=Math.max(-8,Math.min(8,dx));dy=Math.max(-6,Math.min(6,dy));m.style.setProperty('--mag-x',dx.toFixed(1)+'px');m.style.setProperty('--mag-y',dy.toFixed(1)+'px');},{passive:true});
+m.addEventListener('pointerleave',function(){r=null;m.classList.remove('rz-mag-live');m.style.setProperty('--mag-x','0px');m.style.setProperty('--mag-y','0px');});});
+}}
 if(d.readyState==='loading')d.addEventListener('DOMContentLoaded',boot);else boot();})();`;
 
 function NotFoundComponent() {
@@ -311,7 +354,7 @@ const personJsonLd = {
   jobTitle: "Chief Product Officer, Payments Infrastructure",
   // Duration is computed (owner ruling 2026-07-06) so it can't go stale. The
   // sentence break before the platform metrics keeps the two-tier gate green.
-  description: `Fintech CPO with ${profile.career.years} years scaling regulated payment infrastructure. $1B+ GTV, 270M+ payments a year, 5 frontier markets. Dubai, UAE.`,
+  description: `Fintech CPO with ${profile.career.years} years scaling regulated payment infrastructure. ${PLATFORM.gtv} GTV, ${PLATFORM.annualPayments} payments a year, ${PLATFORM.marketCount} frontier markets. Dubai, UAE.`,
   disambiguatingDescription: profile.entityDisambiguation,
   url: SITE_URL,
   image: `${SITE_URL}/og-default.png`,
@@ -457,8 +500,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:title", content: "Rizwan Zafar, Payments Product Executive | Dubai" },
       {
         property: "og:description",
-        content:
-          "Product & Program Executive scaling fintech infrastructure in complex markets. $1B+ GTV, 270M+ payments a year, 5 frontier markets. Acceptance, cross-border, settlement, KYC/KYB, AML and fraud.",
+        content: `Product & Program Executive scaling fintech infrastructure in complex markets. ${PLATFORM.gtv} GTV, ${PLATFORM.annualPayments} payments a year, ${PLATFORM.marketCount} frontier markets. Acceptance, cross-border, settlement, KYC/KYB, AML and fraud.`,
       },
       { property: "og:image", content: OG_IMAGE_URL },
       { property: "og:image:width", content: "1200" },
@@ -470,8 +512,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:title", content: "Rizwan Zafar, Payments Product Executive | Dubai" },
       {
         name: "twitter:description",
-        content:
-          "Product & Program Executive scaling fintech infrastructure in complex markets. $1B+ GTV, 270M+ payments a year, 5 frontier markets.",
+        content: `Product & Program Executive scaling fintech infrastructure in complex markets. ${PLATFORM.gtv} GTV, ${PLATFORM.annualPayments} payments a year, ${PLATFORM.marketCount} frontier markets.`,
       },
       { name: "twitter:image", content: OG_IMAGE_URL },
       { name: "twitter:image:alt", content: `${profile.name}, Payments Product Executive` },
@@ -493,7 +534,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap",
         media: "(min-width: 768px)",
       },
       { rel: "stylesheet", href: appCss },
@@ -518,9 +559,16 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    // suppressHydrationWarning: the theme script stamps `data-theme` (and the
+    // reveal engine stamps `.rz-js`) onto <html> before React hydrates. The
+    // server cannot predict either. This suppresses the diff for <html>'s own
+    // attributes only — it does not extend to the subtree.
+    <html lang="en" suppressHydrationWarning>
       <head>
-        {/* Reveal engine first: adds `.rz-js` during head parse so the CSS
+        {/* Theme FIRST — before any stylesheet resolves and before paint, or the
+            page renders in the default (dark) palette and then snaps to light. */}
+        <script dangerouslySetInnerHTML={{ __html: themeBootstrapScript }} />
+        {/* Reveal engine next: adds `.rz-js` during head parse so the CSS
             hidden state is set before the body paints (no flash-of-visible
             then hide). Gated on IO support + reduced-motion inside the script. */}
         <script dangerouslySetInnerHTML={{ __html: rzRevealScript }} />

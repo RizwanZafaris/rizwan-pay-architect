@@ -4,7 +4,7 @@ slug: "pmbok-plus-agile-hybrid-frameworks"
 category: "Program Management"
 metaTitle: "PMBOK + Agile Hybrid for Payments Teams | Rizwan Zafar"
 metaDescription: "Why payments organisations need hybrid PMBOK + Agile delivery frameworks, Agile sprints for product, PMBOK stage gates for capital and regulatory workstreams. The practitioner playbook."
-excerpt: "Pure Agile breaks on regulatory capital projects. Pure PMBOK breaks on product velocity. The right answer is a hybrid, and the design of the hybrid is the actual work."
+excerpt: "A regulator wants a stage-gated evidence trail; a product team wants two-week cycles. At Simpaisa I ran 12 squads by classifying each workstream as Agile or Capital and applying the framework that fits. This is that operating model."
 publishDate: "2026-04-25"
 readingTime: "8 min read"
 tags:

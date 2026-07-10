@@ -4,7 +4,7 @@ slug: "nuvei-payoneer-corridor-stack-bet"
 category: "Cross-Border Payments"
 metaTitle: "Nuvei-Payoneer Is a Corridor Stack Bet | Rizwan Zafar"
 metaDescription: "Nuvei's $2.75B Payoneer deal is a bet on owning acceptance, FX, payouts, settlement and compliance across cross-border corridors."
-excerpt: "The Nuvei-Payoneer deal is not just payments consolidation. It is a signal that cross-border platforms are trying to own more of the corridor stack."
+excerpt: "The $2.75 billion Nuvei-Payoneer tie-up is a bet on owning the corridor stack: acceptance, FX, accounts, payouts, and cards inside one shorter control loop, across more than 150 markets."
 publishDate: "2026-06-16"
 readingTime: "6 min read"
 tags:

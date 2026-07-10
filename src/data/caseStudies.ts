@@ -34,6 +34,15 @@ export type CaseStudy = {
    *  consulting for a confidential client). Rendered in the hero so a reader
    *  never has to guess whether a case study is employer or advisory work. */
   engagement?: string;
+  /** When true, this study renders as a full editorial flagship panel on
+   *  /product-work; the remaining studies collapse into the compact
+   *  "Additional programmes" index below. Exactly six are marked. Every slug
+   *  keeps its own detail page and URL regardless of this flag. */
+  flagship?: boolean;
+  /** Rendered near the top of the detail page for studies whose client is
+   *  under NDA (the confidential consulting engagements). Named-employer
+   *  studies (Simpaisa, Tapmad, Daraz) do not carry this. */
+  clientDisclosure?: string;
 };
 
 // Hero image paths follow a strict convention so routes don't need to look
@@ -62,6 +71,7 @@ export const caseStudyThumb = (slug: string) => `/cs/${caseStudyImageSlug(slug)}
 export const caseStudies: CaseStudy[] = [
   {
     slug: "simpaisa-payment-infrastructure",
+    flagship: true,
     title: "Simpaisa Payment Infrastructure Platform",
     tagline:
       "A regulated, multi-rail payments platform processing $1B+ annual GTV and 270M+ payments a year across pay-in, payout, wallets (DCB/IBFT), card acquiring (MPGS/MDES), settlement, FX and cross-border corridors, PCI DSS and ISO/IEC 27001 certified.",
@@ -110,6 +120,26 @@ export const caseStudies: CaseStudy[] = [
         label: "Enterprise wallet adoption",
         value: "30%",
       },
+      // Relocated from the homepage "Operating record" block (Loop 3). On the
+      // homepage these were six more digits with no context; here they sit
+      // beside the architecture that produced them. Values unchanged, sourced
+      // from profile.metrics.
+      {
+        label: "Payment success",
+        value: "97%",
+      },
+      {
+        label: "Straight-through processing",
+        value: "90%",
+      },
+      {
+        label: "Uptime",
+        value: "99.9%",
+      },
+      {
+        label: "Authorization uplift",
+        value: "+14%",
+      },
     ],
     executiveSummary:
       "Owned the product, architecture and operating model of a five-market payments platform serving global enterprises and local merchants. Took a fragmented integration estate and turned it into a single regulated rail with shared APIs, ledger, settlement and risk, through a CTO departure and a regulatory tightening.",
@@ -131,7 +161,11 @@ export const caseStudies: CaseStudy[] = [
       "Event-driven webhooks; idempotency, retries and DLQs are first-class",
     ],
     operatingModel: [
-      "25+ person org across product, engineering, ops, risk and compliance",
+      // Was "25+ person org" — contradicted the owner-ruled bio in profile.ts
+      // ("2 to 50+ people (40+ engineers) across 12 cross-functional squads").
+      // Aligned to canonical. TODO-VERIFY(owner): if 25+ was a point-in-time
+      // figure, say so and we date it ("25+ at launch, 50+ today").
+      "50+ person org across product, engineering, ops, risk and compliance — 40+ engineers in 12 squads",
       "Weekly rail health reviews, success rate, cost, latency, dispute rate per partner",
       "Joint risk + product council owning the risk taxonomy and false-positive budget",
       "Regulator-facing reporting pipeline owned by product, not finance",
@@ -155,7 +189,7 @@ export const caseStudies: CaseStudy[] = [
       "Compliance posture (PCI DSS, ISO 27001, AML/CFT) is a sales asset, not a cost line.",
     ],
     whyItMatters:
-      "Visa, Mastercard, Stripe, Wise, Adyen, Thunes and DLocal need leaders who can stand up regulated multi-rail infrastructure across non-trivial markets and run it under regulator scrutiny. This is the full job, partner enablement, scheme readiness, settlement, risk, reporting, done at $1B+ GTV.",
+      "The transferable core: standing up regulated multi-rail infrastructure across non-trivial markets and running it under regulator scrutiny, with partner enablement, scheme readiness, settlement, risk and reporting owned as one job at $1B+ GTV. The same job exists inside every network, PSP and cross-border platform; only the logo on the door changes.",
     keywords: [
       "payment infrastructure",
       "cross-border payments",
@@ -167,6 +201,7 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "merchant-onboarding-kyc",
+    flagship: true,
     title: "Merchant Onboarding + KYC/KYB Automation",
     tagline:
       "Automated merchant onboarding pipeline, KYC/KYB, UBO discovery, sanctions and PEP screening, risk-tiered decisioning with full audit trail. Activation cut from weeks to hours; manual review load down 70%.",
@@ -238,11 +273,12 @@ export const caseStudies: CaseStudy[] = [
       "Most KYB delays are document quality issues, not policy issues. Fix capture first.",
     ],
     whyItMatters:
-      "Acquirers, PSPs and cross-border networks live or die on activation speed and risk posture moving together. The useful signal is not that onboarding became faster; it is that faster onboarding did not weaken the bank, scheme or regulator evidence trail.",
+      "The transferable core: making activation speed and risk posture move together, so faster onboarding never weakens the bank, scheme or regulator evidence trail. Acquirers, PSPs and cross-border networks all live or die on that same balance; only the logo changes.",
     keywords: ["KYC KYB automation", "merchant onboarding", "AML CFT", "fintech compliance"],
   },
   {
     slug: "settlement-reconciliation",
+    flagship: true,
     title: "Settlement + Reconciliation Engine: 99.95% Accuracy at $1B+ GTV",
     tagline:
       "A multi-rail settlement and reconciliation engine, canonical double-entry ledger, three-way auto-reconciliation, exception management and corridor-aware payout windows. Closed the gap between treasury, finance and product at $1B+ GTV.",
@@ -313,7 +349,7 @@ export const caseStudies: CaseStudy[] = [
       "If finance is your reconciliation system, you don't have one.",
     ],
     whyItMatters:
-      "Acceptance, scheme settlement and treasury teams at Visa/Mastercard/Stripe/Adyen are essentially recon products. This is exactly that work, in production.",
+      "The transferable core: a canonical ledger, three-way reconciliation and an exception taxonomy that make settlement observable per rail and per corridor. Acceptance, scheme settlement and treasury teams are recon products at heart, inside every network, PSP and cross-border platform; only the logo changes.",
     keywords: ["settlement reconciliation", "payments ledger", "treasury", "fintech operations"],
   },
   {
@@ -368,7 +404,7 @@ export const caseStudies: CaseStudy[] = [
       "AML/CFT scenarios decay, they need a feedback loop with analysts, not just a launch.",
     ],
     whyItMatters:
-      "Every payments network has the same job here: keep loss below benchmark without strangling acceptance. The product playbook is identical.",
+      "The transferable core: keeping fraud loss below benchmark without strangling acceptance, through a decisioning layer that fuses vendor signals, velocity rules and SAR-ready audit trails. Every network, PSP and cross-border platform runs that identical playbook; only the logo changes.",
     keywords: ["payment fraud risk", "AML CFT payments", "transaction monitoring", "chargebacks"],
   },
   {
@@ -430,7 +466,7 @@ export const caseStudies: CaseStudy[] = [
       "Local methods plus FX, not cards alone, win cross-border in emerging markets.",
     ],
     whyItMatters:
-      "The relevant signal for Wise, Thunes, DLocal, Stripe Connect or Adyen-style platform work is corridor ownership: partner selection, FX exposure, payout reliability, compliance overlays and merchant-facing economics managed as one product.",
+      "The transferable core: corridor ownership as one product, partner selection, FX exposure, payout reliability, compliance overlays and merchant-facing economics managed together. That is the same job inside every network, PSP and cross-border platform; only the logo changes.",
     keywords: ["cross-border payments", "FX infrastructure", "remittance", "MENA fintech"],
   },
   {
@@ -501,7 +537,7 @@ export const caseStudies: CaseStudy[] = [
       "Retries and dunning are growth levers when rail economics are understood.",
     ],
     whyItMatters:
-      "Every subscription, marketplace and creator platform inside Visa/Mastercard/Stripe portfolios eventually faces this. The playbook ports directly.",
+      "The transferable core: treating payment cost as a product variable, rebuilding rail mix, retries and dunning around wallet and DCB economics. Every subscription, marketplace and creator platform hits this wall eventually, inside every network, PSP and cross-border platform; only the logo changes.",
     keywords: ["subscription billing", "DCB", "wallet payments", "fintech product strategy"],
   },
   {
@@ -581,7 +617,7 @@ export const caseStudies: CaseStudy[] = [
       "Fraud rules age fast on marketplaces. Per-category × geography × cohort segmentation beats a global threshold by a wide margin.",
     ],
     whyItMatters:
-      "Marketplace and platform payments orgs at Stripe Connect, Adyen for Platforms, Wise Business, MercadoPago and Shopee operate exactly this surface: multi-country pay-in/payout, per-category fraud, settlement-side seller trust, and a COD-to-digital wedge in emerging markets. The playbook ports directly.",
+      "The transferable core: running multi-country pay-in and payout, per-category fraud, settlement-side seller trust and a COD-to-digital wedge in emerging markets as one operating surface. Marketplace and platform payment orgs everywhere operate exactly that surface; only the logo changes.",
     keywords: [
       "marketplace payment operations",
       "COD to digital conversion",
@@ -658,7 +694,7 @@ export const caseStudies: CaseStudy[] = [
       "RAID is only useful if every entry has an owner, a date and a decision path. Otherwise it is a log, not a register.",
     ],
     whyItMatters:
-      "Banks, regulated fintechs and central-bank-licensed platforms run programmes that look exactly like this, capital workstreams, vendor stacks, regulator-facing launch dates, hybrid governance. This is the operating model that ships them.",
+      "The transferable core: a PMO that carries capital workstreams, vendor stacks, regulator-facing launch dates and hybrid governance to a fixed launch. Banks, regulated fintechs and central-bank-licensed platforms all run programmes shaped exactly like this; only the logo changes.",
     keywords: [
       "programme management",
       "PMO",
@@ -672,6 +708,7 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "simpaisa-ai-solutions-suite",
+    flagship: true,
     title: "Production GenAI Suite at Simpaisa, 4 Deployments in Regulated Payments",
     tagline:
       "Identified, value-modeled and deployed 4 production GenAI solutions across merchant integration support, incident auto-escalation, partner support automation, and a fraud/AML AI pilot with a major banking partner.",
@@ -744,7 +781,7 @@ export const caseStudies: CaseStudy[] = [
       "The fraud/AML use case has the highest stated ROI and the longest validation timeline. Plan for that.",
     ],
     whyItMatters:
-      "The signal for a payments or banking employer is not that AI was used. It is that four use cases made it through value modelling, data-readiness review, risk sign-off, production fallback design and post-launch measurement.",
+      "The transferable core: getting four use cases through value modelling, data-readiness review, risk sign-off, production fallback design and post-launch measurement, not the fact that AI was used. Every network, PSP and cross-border platform needs exactly that discipline; only the logo changes.",
     keywords: [
       "AI in payments",
       "GenAI fintech",
@@ -828,7 +865,7 @@ export const caseStudies: CaseStudy[] = [
       "Regulator engagement should start before discovery, not after, especially in markets with developing consumer-credit law.",
     ],
     whyItMatters:
-      "Tabby, Tamara, BNPL-curious banks and BaaS providers in MENA all face the same question: how do you ship BNPL inside a regulated payments org, fast, without taking unmanaged credit risk? This is what that looks like in production.",
+      "The transferable core: shipping BNPL inside a regulated payments org, fast, without taking unmanaged credit risk, with underwriting and cohort discipline built in from the first cohort. Tabby, Tamara, BNPL-curious banks and BaaS providers all face that same question; only the logo changes.",
     keywords: [
       "BNPL launch",
       "buy now pay later",
@@ -935,7 +972,7 @@ export const caseStudies: CaseStudy[] = [
       "Sanctions screening tuning is a continuous product job, not a configuration. Per-corridor false-positive rates diverge fast.",
     ],
     whyItMatters:
-      "This matters for any bank, PSP or remittance platform still carrying MT-era assumptions. The useful signal is operational: MX-shaped data, gpi visibility, sanctions checks and CSP evidence became part of the product rhythm instead of a migration afterthought.",
+      "The transferable core: making MX-shaped data, gpi visibility, sanctions checks and CSP evidence part of the product rhythm rather than a migration afterthought. Any bank, PSP or remittance platform still carrying MT-era assumptions faces the same work; only the logo changes.",
     keywords: [
       "SWIFT MT MX implementation",
       "ISO 20022 migration",
@@ -949,6 +986,8 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "mpgs-acquirer-integration-programme",
+    clientDisclosure:
+      "Client name withheld under NDA. Figures are as recorded in the programme's own reporting.",
     engagement:
       "Independent consulting engagement · regional acquirer-processor (client confidential).",
     title:
@@ -1066,7 +1105,7 @@ export const caseStudies: CaseStudy[] = [
       "Migration governance is the actual product. A per-merchant flag, a dry-run mode, a rollback, and a named ops owner per merchant tier, these are the artefacts that decided whether the programme shipped clean or shipped incidents",
     ],
     whyItMatters:
-      "For an acquirer-processor, this is the difference between reselling a gateway flow and owning the payments surface. The evidence is in the migration control, auth-rate lift, dispute ingestion, tokenisation coverage and settlement break discipline.",
+      "The transferable core: owning the payments surface instead of reselling a gateway flow, proven in migration control, auth-rate lift, dispute ingestion, tokenisation coverage and settlement break discipline. Every acquirer-processor, network and PSP faces the same choice; only the logo changes.",
     keywords: [
       "MPGS integration programme",
       "MasterCard Payment Gateway Services",
@@ -1082,6 +1121,9 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "mdes-network-tokenisation-rollout",
+    flagship: true,
+    clientDisclosure:
+      "Client name withheld under NDA. Figures are as recorded in the programme's own reporting.",
     engagement:
       "Independent consulting engagement · regional acquirer-processor (client confidential).",
     title:
@@ -1199,7 +1241,7 @@ export const caseStudies: CaseStudy[] = [
       "Vault decommissioning is a separate programme. Building it as the final step of tokenisation produces a clean attestation; building it into the migration plan as 'phase 4' produces an audit observation.",
     ],
     whyItMatters:
-      "The hiring signal is credential-lifecycle ownership. Tokenisation only pays back when lifecycle webhooks, recurring logic, dispute evidence, vault retirement and merchant migration governance are designed together.",
+      "The transferable core: credential-lifecycle ownership, lifecycle webhooks, recurring logic, dispute evidence, vault retirement and merchant migration governance designed as one system so tokenisation actually pays back. Every network, acquirer and subscription platform needs that same ownership; only the logo changes.",
     keywords: [
       "MDES network tokenisation",
       "Visa Token Service VTS",
@@ -1215,6 +1257,8 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "3ds2-sca-step-up-optimisation-programme",
+    clientDisclosure:
+      "Client name withheld under NDA. Figures are as recorded in the programme's own reporting.",
     engagement:
       "Independent consulting engagement · regional acquirer-processor (client confidential).",
     title: "3DS2 Step-Up Optimisation: From 38% Frictionless to 73% Without Lifting Fraud",
@@ -1332,7 +1376,7 @@ export const caseStudies: CaseStudy[] = [
       "Per-merchant authentication profiles are not optional. Portfolio defaults produce mediocre frictionless rates everywhere; per-merchant profiles produce category-best on the cohorts where the merchant mix supports it.",
     ],
     whyItMatters:
-      "For CNP businesses, the commercial value sits in the uncomfortable middle: issuer scoring, authentication-path choice, fraud-rate guard rails and abandoned-challenge recovery. This case shows that friction can be reduced without treating fraud tolerance as a rounding error — under scheme and local-regulator rules, not PSD2.",
+      "The transferable core: winning the uncomfortable middle of CNP, issuer scoring, authentication-path choice, fraud-rate guard rails and abandoned-challenge recovery, reducing friction without treating fraud tolerance as a rounding error, under scheme and local-regulator rules rather than PSD2. Every network, acquirer and PSP fights for that same middle; only the logo changes.",
     keywords: [
       "3DS2 optimisation",
       "EMV 3DS2 risk-based authentication",
@@ -1348,6 +1392,8 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "click-to-pay-vctp-mctp-programme",
+    clientDisclosure:
+      "Client name withheld under NDA. Figures are as recorded in the programme's own reporting.",
     engagement: "Independent consulting engagement · regional acquirer (client confidential).",
     title:
       "Click to Pay (VCTP + MCTP) Programme: Scheme-Led Checkout, Recognised Cardholders, and 7.2pt Conversion Lift",
@@ -1460,7 +1506,7 @@ export const caseStudies: CaseStudy[] = [
       "Cross-merchant reuse rate is the leading indicator of programme success. 44% reuse on a regional cohort proved the scheme-led wallet thesis; below ~25% reuse and the programme is just an alternative checkout button.",
     ],
     whyItMatters:
-      "The useful signal is not that Click to Pay was integrated; it is that the programme produced funnel evidence, enrolment discipline, button-placement learning and network-token auth lift across a real merchant cohort.",
+      "The transferable core: turning Click to Pay into funnel evidence, enrolment discipline, button-placement learning and network-token auth lift across a real merchant cohort, not just an integration. Every network, acquirer and checkout platform needs that same evidence; only the logo changes.",
     keywords: [
       "Click to Pay programme",
       "VCTP rollout",
@@ -1476,6 +1522,8 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "aml-cft-sanctions-engine-implementation",
+    clientDisclosure:
+      "Client name withheld under NDA. Figures are as recorded in the programme's own reporting.",
     engagement:
       "Independent consulting engagement · regional acquirer-processor (client confidential).",
     title:
@@ -1597,7 +1645,7 @@ export const caseStudies: CaseStudy[] = [
       "List ingestion monitoring is the under-invested guard rail. A list update that arrived in a new format on a Friday afternoon and silently failed to ingest is how sanctions hits get missed.",
     ],
     whyItMatters:
-      "The hiring signal is operating control. Real-time screening, market-specific list coverage, explainable suppression rules and analyst throughput improved together, which is what sponsor banks and regulators care about when volumes scale.",
+      "The transferable core: operating control, real-time screening, market-specific list coverage, explainable suppression rules and analyst throughput improved together as volumes scale. Every network, sponsor bank and cross-border platform answers to the same regulators; only the logo changes.",
     keywords: [
       "AML CFT sanctions engine",
       "real-time sanctions screening",
@@ -1613,6 +1661,8 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "regional-wallet-integration-easypaisa-jazzcash-sadad",
+    clientDisclosure:
+      "Client name withheld under NDA. Figures are as recorded in the programme's own reporting.",
     engagement: "Independent consulting engagement · regional acquirer (client confidential).",
     title:
       "Regional Wallet Integration: Easypaisa + JazzCash + SADAD + STC Pay Across MENA + South Asia",
@@ -1725,7 +1775,7 @@ export const caseStudies: CaseStudy[] = [
       "Wallet-partner relationships are an ongoing operating function, not a one-time integration. The quarterly partner alignment is what keeps the integration current as wallet partners change their own APIs.",
     ],
     whyItMatters:
-      "This is relevant to any MENA or South Asia acceptance team trying to move beyond card-first assumptions. The durable work is the adapter layer, same-session fallback, wallet-partner cadence, reconciliation and uniform AML posture.",
+      "The transferable core: moving beyond card-first assumptions through an adapter layer, same-session fallback, wallet-partner cadence, reconciliation and a uniform AML posture. Every acceptance team, PSP and cross-border platform in a wallet-led market faces the same work; only the logo changes.",
     keywords: [
       "regional wallet integration",
       "Easypaisa JazzCash integration",
@@ -1741,6 +1791,8 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "pmo-risk-council-operating-model",
+    clientDisclosure:
+      "Client name withheld under NDA. Figures are as recorded in the programme's own reporting.",
     engagement:
       "Independent consulting engagement · regional acquirer-processor (client confidential).",
     title:
@@ -1858,7 +1910,7 @@ export const caseStudies: CaseStudy[] = [
       "Forward-looking programme prioritisation is the test of the governance maturity. If the top 5 enterprise risks do not appear in the top 5 programmes, the organisation is running audit-reactive regardless of how strong the artefacts look.",
     ],
     whyItMatters:
-      "The signal for senior programme roles is governance that changes operating behaviour: one register, one council rhythm, evidence produced during delivery and regulator inquiries answered from a maintained system rather than a scramble.",
+      "The transferable core: governance that changes operating behaviour, one register, one council rhythm, evidence produced during delivery and regulator inquiries answered from a maintained system rather than a scramble. Every regulated fintech, bank and cross-border platform needs that same governance; only the logo changes.",
     keywords: [
       "PMO Risk Council operating model",
       "joint PMO Risk governance",
@@ -1943,7 +1995,7 @@ export const caseStudies: CaseStudy[] = [
       "Fraud rules age fast on marketplaces. Per-category × geography segmentation beats a global threshold by a wide margin.",
     ],
     whyItMatters:
-      "Marketplace and platform payment orgs at Stripe Connect, Adyen for Platforms, Wise Business and regional PSPs run exactly this surface: multi-country acceptance, false-decline recovery, per-category fraud, and a COD-to-digital wedge in emerging markets. The playbook ports directly.",
+      "The transferable core: multi-country acceptance, false-decline recovery, per-category fraud and a COD-to-digital wedge in emerging markets, run as one surface. Marketplace and platform payment orgs everywhere run exactly that surface; only the logo changes.",
     keywords: [
       "checkout conversion optimisation",
       "false decline reduction",
@@ -2026,7 +2078,7 @@ export const caseStudies: CaseStudy[] = [
       "Payment coverage is a localisation problem, not a feature list. Regional methods, added with the local product team, widen acceptance faster than card features.",
     ],
     whyItMatters:
-      "Settlement, treasury and platform-payment teams at Stripe Connect, Adyen for Platforms, Wise Business, DLocal and Thunes run exactly this: multi-country pay-in/payout, reconciliation accuracy, method localisation and settlement-side seller trust. This is that work, in production at marketplace scale.",
+      "The transferable core: multi-country pay-in and payout, reconciliation accuracy, method localisation and settlement-side seller trust held together at marketplace scale. Settlement, treasury and platform-payment teams everywhere run exactly that; only the logo changes.",
     keywords: [
       "settlement reconciliation",
       "multi-country reconciliation",
@@ -2040,6 +2092,7 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "tapmad-dcb-monetisation-wallet-migration",
+    flagship: true,
     title: "Tapmad OTT: 0→5M Subscribers, Payment Cost 50% → ~1%",
     tagline:
       "Built the billing engine for Pakistan's leading OTT platform — Direct Carrier Billing across all four telcos, wallet-billing migration that pulled payment cost from 50% of revenue to ~1%, 0→5M paid subscribers, ARPU +70%, $10M+ ARR, expanded into UAE and KSA.",
@@ -2109,7 +2162,7 @@ export const caseStudies: CaseStudy[] = [
       "Retention levers — faster refunds, wallet-native management, fewer failures — compound with ARPU pricing to make the model work.",
     ],
     whyItMatters:
-      "Every subscription, streaming and creator platform inside Visa, Mastercard, Stripe and Adyen portfolios eventually faces this: reach users without cards, then fix the rail economics before margin disappears. The playbook ports directly.",
+      "The transferable core: reaching users without cards through DCB, then fixing the rail economics with wallet billing before margin disappears. Every subscription, streaming and creator platform hits that same wall, inside every network, PSP and cross-border platform; only the logo changes.",
     keywords: [
       "subscription billing",
       "Direct Carrier Billing",

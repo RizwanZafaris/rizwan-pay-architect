@@ -1,0 +1,206 @@
+/* ============================================================
+   focus-press.css — SECTION 22: the interaction safety net.
+
+   The audit found `:active` defined exactly zero times sitewide, and
+   `:focus-visible` defined only per-component (nav links, cards, the map,
+   the skip link). A bare <button> — a consent control, a form submit, a
+   disclosure summary — had neither a focus ring nor a press response.
+
+   This file is the base layer that guarantees both, for everything.
+
+   WHY :where()
+   Every selector below is wrapped in :where(), which contributes ZERO
+   specificity. A rule here therefore lands at (0,1,0) — the weight of its
+   lone pseudo-class. Consequences, both intentional:
+
+     - `.blog-result-card:focus-visible` (0,2,0) still wins. Bespoke rings
+       are preserved exactly as designed; this is a fallback, not a reset.
+     - `.home-card-lift:hover` (0,2,0) still wins over the press transform
+       (0,1,0). Cards keep their hover lift instead of fighting it; they
+       already carry their own feedback. Press lands on the elements that
+       had none.
+
+   It also means we never clobber Tailwind's `focus-visible:ring` box-shadow
+   (styles.css:2608 warns about this): `outline` and `box-shadow` are
+   different properties and coexist.
+
+   CONTRACT COMPLIANCE
+   - Press is `transform: translateY(1px)` — transform only, no layout.
+   - Timed at --dur-micro (150ms) with --ease-out-quart. Nothing else.
+   - prefers-reduced-motion: the ring survives (it does not move), the
+     translate does not. Per motion.css rule 6.
+   ============================================================ */
+
+/* ---------- 0. Form-field boundaries: the --input token, finally wired ------
+   styles.css defines `--input` in BOTH themes with the comment
+   "3:1 non-text contrast for form-field boundaries (was --rule ~= 1.36:1)",
+   exports it as `--color-input`, and then applies it to NOTHING. Every visible
+   input/select/textarea on /contact, /blog and the newsletter still drew its
+   border from `--rule` — a 10%-alpha hairline that fails WCAG 1.4.11 (3:1 for
+   non-text UI boundaries). The token was written to fix exactly this.
+
+   Wired here rather than by editing 14 `border-rule` class sites, so it also
+   covers fields nobody remembered to annotate. This file is UNLAYERED, and
+   unlayered CSS outranks every @layer including Tailwind's `utilities` — which
+   is what lets a zero-specificity :where() override `border-rule`.
+
+   Hidden/checkbox/radio inputs are excluded: they have no drawn box here. */
+:where(
+    input:not([type="hidden"]):not([type="checkbox"]):not([type="radio"]):not(
+        [type="submit"]
+      ):not([type="button"]),
+    select,
+    textarea
+  ) {
+  border-color: var(--input);
+}
+
+/* ---------- 1. Focus ring: the guaranteed fallback ----------
+   `outline` (not box-shadow) so it follows border-radius, never triggers
+   layout, and cannot be clipped by an ancestor's overflow. */
+:where(
+    a[href],
+    button,
+    [role="button"],
+    input,
+    select,
+    textarea,
+    summary,
+    [tabindex]:not([tabindex="-1"])
+  ):focus-visible {
+  outline: 2px solid var(--signal);
+  outline-offset: 2px;
+  border-radius: inherit;
+}
+
+/* Pointer users never see it; only keyboard/AT focus does. Belt-and-braces
+   for the handful of UA styles that still paint a focus ring on :focus. */
+:where(a[href], button, [role="button"], summary):focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* ---------- 2. Press: 150ms of physical acknowledgement ----------
+   CAREFUL — this file is unlayered, and unlayered CSS outranks every
+   @layer (including Tailwind's `utilities`). A naive
+   `transition-property: transform` here therefore SILENTLY DELETES the
+   colour fade of anything carrying Tailwind's `transition-colors`
+   (`.nav-link` was the casualty: its hover colour began snapping).
+
+   So we declare a SUPERSET, not a replacement: Tailwind's default
+   transition-property list plus `transform`. Nothing that used to fade
+   stops fading; `transform` is merely added so the press can animate.
+
+   Longhands, never the `transition` shorthand — the shorthand would also
+   reset transition-delay/behavior on components that set their own. */
+:where(
+    a[href],
+    button,
+    [role="button"],
+    summary,
+    input[type="submit"],
+    input[type="button"]
+  ) {
+  transition-property:
+    transform, color, background-color, border-color, text-decoration-color,
+    fill, stroke, opacity, box-shadow, filter, backdrop-filter;
+  transition-duration: var(--dur-micro);
+  transition-timing-function: var(--ease-out-quart);
+}
+
+:where(
+    a[href],
+    button,
+    [role="button"],
+    summary,
+    input[type="submit"],
+    input[type="button"]
+  ):active {
+  transform: translateY(1px);
+}
+
+/* Disabled controls do not respond to a press they will not honour. */
+:where(button, input, select, textarea):disabled:active {
+  transform: none;
+}
+
+/* ---------- 3. Reduced motion ----------
+   The outline stays (an outline does not move). The press translate goes. */
+@media (prefers-reduced-motion: reduce) {
+  :where(
+      a[href],
+      button,
+      [role="button"],
+      summary,
+      input[type="submit"],
+      input[type="button"]
+    ) {
+    transition-property: none;
+  }
+  :where(
+      a[href],
+      button,
+      [role="button"],
+      summary,
+      input[type="submit"],
+      input[type="button"]
+    ):active {
+    transform: none;
+  }
+}
+
+/* ============================================================
+   THEME TOGGLE
+   The control is stateless in React (see components/SiteChrome.tsx): both
+   icons render on the server, and CSS picks one off html[data-theme]. That is
+   what keeps the server and client markup identical.
+   ============================================================ */
+
+/* Hidden until the bootstrap script proves JS is alive. A theme switch cannot
+   work without JS, and an inert control is worse than no control. */
+[data-theme-toggle] {
+  display: none;
+}
+html.rz-theme-js [data-theme-toggle] {
+  display: inline-flex;
+}
+
+/* Show the theme you would switch TO. Dark is the default, so the sun is the
+   default icon — correct even before the attribute lands. */
+.rz-theme-icon-sun {
+  display: block;
+}
+.rz-theme-icon-moon {
+  display: none;
+}
+html[data-theme="light"] .rz-theme-icon-sun {
+  display: none;
+}
+html[data-theme="light"] .rz-theme-icon-moon {
+  display: block;
+}
+
+/* Cross-fade the palette on switch ONLY.
+   The class is added for 300ms around the flip, so the whole document is never
+   permanently carrying a universal transition (which would tax every paint and
+   make unrelated hover states feel laggy). Colour properties only — no
+   transform, no layout. */
+html.rz-theme-switching,
+html.rz-theme-switching *,
+html.rz-theme-switching *::before,
+html.rz-theme-switching *::after {
+  transition:
+    background-color var(--dur-standard) var(--ease-out-quart),
+    border-color var(--dur-standard) var(--ease-out-quart),
+    color var(--dur-standard) var(--ease-out-quart),
+    fill var(--dur-standard) var(--ease-out-quart),
+    stroke var(--dur-standard) var(--ease-out-quart) !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.rz-theme-switching,
+  html.rz-theme-switching *,
+  html.rz-theme-switching *::before,
+  html.rz-theme-switching *::after {
+    transition: none !important;
+  }
+}

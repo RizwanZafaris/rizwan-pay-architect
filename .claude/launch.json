@@ -4,7 +4,7 @@
     {
       "name": "static-dist",
       "runtimeExecutable": "python3",
-      "runtimeArgs": ["-m", "http.server", "8788", "-d", "/tmp/rzifi-hire/dist-static"],
+      "runtimeArgs": ["-m", "http.server", "8788", "-d", "/Users/rizwanzafar/rzifi-live/dist-static"],
       "port": 8788
     },
     {

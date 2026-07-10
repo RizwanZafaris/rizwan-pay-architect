@@ -1,0 +1,106 @@
+/* ============================================================
+   MOTION TOKENS — the whole site's timing vocabulary, in one place.
+
+   The council audit's motion verdict: "no evidence of a coherent motion
+   system, which usually means scattered fade-ins." This file is the system.
+
+   THE RULES (they are short on purpose)
+   0. This file is the ONLY motion vocabulary. It once had a rival: styles.css
+      declared its own "two easing curves only" pair (--ease-expo/--ease-soft)
+      and 38 call sites used them against this file's 14. Those two names now
+      alias into --ease-out-quart and are deprecated. Do not start a third.
+   1. Four durations for state changes. Nothing else. (Pointer-tracking
+      smoothers are not state changes — see the tracking constants below.)
+   2. Two curves. One for entrances (ease-out), one for morphs (ease-in-out).
+      No bounce. No elastic. Nothing overshoots.
+   3. Stagger step is 50ms, always.
+   4. Animate `transform` and `opacity` only. Never a layout property.
+      (`stroke-dashoffset` is the one sanctioned exception: the corridor map
+      draws with it, and it does not trigger layout.)
+   5. Nothing runs longer than 400ms except the map (1200ms) and the hero
+      sequence (900ms total, once per page load).
+   6. `prefers-reduced-motion` makes the site static. Opacity fades survive;
+      everything that moves does not.
+   ============================================================ */
+
+:root {
+  /* Durations. Four. */
+  --dur-micro: 150ms; /* hover, focus, colour, the cursor probe */
+  --dur-standard: 250ms; /* card lift, disclosure, most state changes */
+  --dur-section: 400ms; /* section reveals, staggered entrances */
+  --dur-map: 1200ms; /* the corridor map draw. The one long moment. */
+
+  /* Curves. Two. */
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
+
+  /* Stagger step. One. */
+  --stagger-step: 50ms;
+
+  /* ── Tracking constants — NOT state durations ──────────────
+     A transition that runs every time a pointer moves is not a state change;
+     it is a low-pass filter on cursor input, and its number is a time
+     constant, not a duration. Forcing these onto the four-duration grid makes
+     the magnet feel elastic and the parallax feel like it is tracking rather
+     than leaning.
+
+     They live here, named, so they are part of the system instead of the
+     scattered 60ms/220ms/600ms literals they used to be. Rule 1 ("four
+     durations") governs state transitions; these are a separate category and
+     the only two members are allowed to exist.
+
+     Both are dead under prefers-reduced-motion: the engine never writes the
+     --hx/--hy/--mag-* vars, so the transforms resolve to translate3d(0,0,0). */
+  --track-magnet: 60ms; /* cursor capture — must feel welded to the pointer */
+  --track-lean: 600ms; /* scene parallax — the room leans, slowly */
+
+  /* The hero sequence: headline, then one number, then the CTA settles.
+     Budget is 900ms end-to-end and it plays once. */
+  --hero-line-1: 0ms;
+  --hero-line-2: 120ms;
+  --hero-count: 380ms;
+  --hero-cta: 640ms;
+  --hero-total: 900ms;
+}
+
+/* ── The single scroll-reveal pattern ─────────────────────────
+   14px rise + fade, fires once, applied to SECTION HEADINGS only.
+   Not to every card. A page where everything rises is a page where
+   nothing arrives. Requires `.rz-js` (engine present, motion allowed)
+   and `data-rz-reveal`; the engine adds `.rz-in` on intersection. */
+.rz-js [data-rz-reveal].rz-section-head {
+  opacity: 0;
+  transform: translateY(14px);
+}
+.rz-js [data-rz-reveal].rz-section-head.rz-in {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity var(--dur-section) var(--ease-out-quart),
+    transform var(--dur-section) var(--ease-out-quart);
+}
+
+/* ── Reduced motion: the site is static. ──────────────────────
+   Opacity may still fade (it does not move, and it prevents a jarring
+   pop-in). Everything else is instant, drawn, and still. */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-micro: 0.01ms;
+    --dur-standard: 0.01ms;
+    --dur-section: 0.01ms;
+    --dur-map: 0.01ms;
+    --stagger-step: 0ms;
+    /* Belt AND braces. The engine already refuses to write --hx/--hy/--mag-*
+       under reduced motion, so these transitions have nothing to interpolate;
+       zeroing them means that even if a future script forgets that contract,
+       the tracking still cannot move. */
+    --track-magnet: 0.01ms;
+    --track-lean: 0.01ms;
+  }
+  .rz-js [data-rz-reveal].rz-section-head,
+  .rz-js [data-rz-reveal].rz-section-head.rz-in {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

@@ -4,7 +4,7 @@ slug: "open-banking-product-architecture"
 category: "Payment Infrastructure"
 metaTitle: "Open Banking Product Architecture (PSD2, AISP, PISP, A2A) | Rizwan Zafar"
 metaDescription: "The product architecture of open banking: aggregator vs direct, AISP vs PISP scope, authentication UX as the entire product, A2A vs card-rail economics, and where the durable value lives beyond data access."
-excerpt: "Open banking is not a data product. It is a workflow product that happens to use bank data as its raw material. Teams that miss this build pretty dashboards and weak businesses."
+excerpt: "Teams that treat open banking as data access ship pretty dashboards and weak businesses. The ones who treat it as a workflow product, with bank data as raw material, build category leaders."
 publishDate: "2026-05-17"
 readingTime: "11 min read"
 featured: true

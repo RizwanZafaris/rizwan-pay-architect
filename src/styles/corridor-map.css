@@ -1,0 +1,337 @@
+/* ==========================================================================
+   CORRIDOR MAP — the /journey signature interactive moment (council audit P2.1).
+
+   Brief: make the arcs DRAW from the Dubai hub when the map scrolls into view,
+   and let a visitor light a single corridor and read that market's lesson.
+
+   HARD CONSTRAINTS honoured here:
+   - ZERO hydration. No React runtime, no handlers. Every state is CSS: the
+     reveal engine adds `.rz-in` to `[data-rz-reveal]` on scroll and `.rz-js`
+     to <html> only when motion is allowed; we hang everything off those.
+   - Arcs use pathLength="1", so one stroke-dasharray / -dashoffset value draws
+     every arc regardless of real length.
+   - Hover AND keyboard: each market is a focusable <g role="button" tabindex>.
+     `:hover` and `:focus-visible` produce the SAME lit state (per-key rules are
+     generated in WorldMap.tsx and live in a <style> after this file, so they
+     win the specificity tie against the generic dim rule below).
+   - The lesson card for every market is always in the DOM (crawlable + in the
+     a11y tree via opacity only — never display:none / visibility:hidden / JS).
+   - Idle: all arcs stay faintly drawn (proof of a ten-market footprint).
+   - Reduced-motion / no-JS: arcs render fully drawn, static; content identical.
+   - Tokens only (var(--brand)/--signal/--ink/--ink-soft/--rule/--paper …) and
+     the motion tokens from motion.css, referenced WITH fallbacks so this file
+     is safe whatever order it lands in.
+   - Perf: only stroke-dashoffset / opacity / transform animate. No layout
+     property is ever animated; the card area reserves height, so CLS = 0.
+   ========================================================================== */
+
+.worldmap {
+  --dot: color-mix(in oklab, var(--ink) 16%, transparent);
+  --wm-arc-idle: 0.34; /* faint, always-drawn footprint (req 5) */
+  --wm-arc-dim: 0.12; /* corridors that are NOT the lit one */
+  --wm-arc-lit: 0.98; /* the one lit corridor */
+  --wm-arc-w: 0.45;
+  --wm-arc-w-lit: 0.95;
+  /* Whole draw sequence must finish inside --dur-map (req 2: total <= 1200ms).
+     Ten arcs stagger by --stagger-step, so the last one starts at 9 steps in;
+     subtract that from the budget and every arc still lands by --dur-map. */
+  --wm-arc-dur: calc(var(--dur-map, 1200ms) - 9 * var(--stagger-step, 50ms));
+}
+
+/* Dotted world grid. */
+.worldmap .wm-dots {
+  fill: var(--dot);
+}
+
+/* ── Arcs ───────────────────────────────────────────────────────────────── */
+.worldmap .wm-arc {
+  fill: none;
+  stroke: var(--signal);
+  stroke-width: var(--wm-arc-w);
+  opacity: var(--wm-arc-idle);
+  stroke-linecap: round;
+  pointer-events: none; /* the pin/hit group above owns the pointer */
+  stroke-dasharray: 1; /* pathLength="1" → the whole arc is one dash unit */
+  stroke-dashoffset: 0; /* DEFAULT = fully drawn (no-JS / reduced motion) */
+  transition:
+    opacity var(--dur-standard, 250ms) var(--ease-out-quart, cubic-bezier(0.25, 1, 0.5, 1)),
+    stroke-width var(--dur-standard, 250ms) var(--ease-out-quart, cubic-bezier(0.25, 1, 0.5, 1)),
+    stroke var(--dur-standard, 250ms) var(--ease-out-quart, cubic-bezier(0.25, 1, 0.5, 1));
+}
+
+/* Draw-in only when the reveal engine is live (`.rz-js`). Hidden until the
+   wrapper is in view, then each arc draws hub→pin, staggered 50ms apart. */
+.rz-js .worldmap:not(.rz-in) .wm-arc {
+  stroke-dashoffset: 1;
+}
+.rz-js .worldmap.rz-in .wm-arc {
+  animation: wm-draw var(--wm-arc-dur) var(--ease-out-quart, cubic-bezier(0.25, 1, 0.5, 1)) both;
+  animation-delay: calc(var(--arc-i, 0) * var(--stagger-step, 50ms));
+}
+@keyframes wm-draw {
+  from {
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* ── Pins, halos, focus ring ─────────────────────────────────────────────── */
+.worldmap .wm-pin {
+  fill: var(--signal);
+  transform-box: fill-box;
+  transform-origin: center;
+  transition:
+    transform var(--dur-micro, 150ms) var(--ease-out-quart, cubic-bezier(0.25, 1, 0.5, 1)),
+    fill var(--dur-micro, 150ms) var(--ease-out-quart, cubic-bezier(0.25, 1, 0.5, 1));
+}
+.worldmap .wm-pin-halo {
+  fill: var(--signal);
+  opacity: 0.5;
+  transform-box: fill-box;
+  transform-origin: center;
+  pointer-events: none;
+}
+.worldmap .wm-focusring {
+  fill: none;
+  stroke: var(--signal);
+  stroke-width: 0.26;
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+  pointer-events: none;
+  transition: opacity var(--dur-micro, 150ms) var(--ease-out-quart, cubic-bezier(0.25, 1, 0.5, 1));
+}
+.worldmap .wm-hit-target {
+  cursor: pointer;
+}
+/* Our SVG group is the focusable control; we paint our own ring, so drop the
+   inconsistent native SVG outline. */
+.worldmap .wm-market:focus,
+.worldmap .wm-market:focus-visible {
+  outline: none;
+}
+
+/* ── Interactive lighting (journey only: `.wm-interactive`) ───────────────── */
+/* The lit pin grows + brightens. Generic — the group IS the hit target, so
+   hovering or keyboard-focusing it lights its own pin. */
+.wm-interactive .wm-market:hover .wm-pin,
+.wm-interactive .wm-market:focus-visible .wm-pin {
+  transform: scale(1.5);
+  fill: var(--signal-soft);
+}
+/* Keyboard focus ring (only on :focus-visible — not on mouse hover). */
+.wm-interactive .wm-market:focus-visible .wm-focusring {
+  opacity: 0.9;
+}
+
+/* Dim EVERY corridor the moment any market is engaged; the per-key light rules
+   (generated in WorldMap.tsx, injected AFTER this file) re-raise the one that
+   is hovered/focused. Same specificity → later-in-DOM wins the tie. */
+.wm-interactive:has(.wm-market:hover) .wm-arc,
+.wm-interactive:has(.wm-market:focus-visible) .wm-arc {
+  opacity: var(--wm-arc-dim);
+}
+
+/* ── Labels (unchanged behaviour: two build-time layouts, halo, leaders) ──── */
+.worldmap .wm-label {
+  fill: var(--ink-soft);
+  letter-spacing: 0.04px;
+  /* Paper halo keeps text legible over the dot grid / arcs (SVG-safe). */
+  paint-order: stroke fill;
+  stroke: var(--paper);
+  stroke-width: 0.55px;
+  stroke-linejoin: round;
+  transition: fill var(--dur-micro, 150ms) var(--ease-out-quart, cubic-bezier(0.25, 1, 0.5, 1));
+}
+.worldmap .wm-labels-desktop .wm-label {
+  font-size: 1.35px;
+}
+.worldmap .wm-labels-mobile .wm-label {
+  font-size: 2.2px;
+}
+.worldmap .wm-leader {
+  stroke: color-mix(in oklab, var(--ink) 34%, transparent);
+  stroke-width: 0.14;
+  fill: none;
+}
+.worldmap .wm-labels-mobile {
+  display: none;
+}
+@media (max-width: 640px) {
+  .worldmap .wm-labels-desktop {
+    display: none;
+  }
+  .worldmap .wm-labels-mobile {
+    display: block;
+  }
+}
+
+/* ── Lesson cards ─────────────────────────────────────────────────────────
+   All ten are in the DOM at all times (crawlable + in the a11y tree). Only
+   opacity/transform toggle them, so nothing is hidden from SR or Google, and
+   the reserved min-height means revealing one causes no layout shift (CLS 0).
+   The idle legend shows until a corridor is engaged. */
+.worldmap .wm-cards {
+  position: relative;
+  margin-top: 1.25rem;
+  min-height: 12.5rem;
+}
+@media (min-width: 640px) {
+  .worldmap .wm-cards {
+    min-height: 10.5rem;
+  }
+}
+
+.worldmap .wm-idle,
+.worldmap .wm-card {
+  position: absolute;
+  inset: 0;
+  border: 1px solid var(--rule);
+  border-radius: 16px;
+  background: var(--surface-raised, var(--surface));
+  padding: 1.25rem 1.4rem;
+  transition:
+    opacity var(--dur-standard, 250ms) var(--ease-out-quart, cubic-bezier(0.25, 1, 0.5, 1)),
+    transform var(--dur-standard, 250ms) var(--ease-out-quart, cubic-bezier(0.25, 1, 0.5, 1));
+}
+
+/* Idle legend — visible by default, hidden the moment a corridor is engaged. */
+.worldmap .wm-idle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.5rem;
+  opacity: 1;
+  transform: none;
+}
+.wm-interactive:has(.wm-market:hover) .wm-idle,
+.wm-interactive:has(.wm-market:focus-visible) .wm-idle {
+  opacity: 0;
+}
+.worldmap .wm-idle-eyebrow {
+  color: var(--brand);
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.worldmap .wm-idle-text {
+  color: var(--ink-soft);
+  font-family: var(--font-serif, Georgia, serif);
+  font-size: 1.05rem;
+  line-height: 1.5;
+  max-width: 34rem;
+}
+.worldmap .wm-idle-text b {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+/* Market cards — hidden by default (opacity only), revealed by the generated
+   per-key rules. pointer-events:none keeps the stacked cards inert until lit. */
+.worldmap .wm-card {
+  opacity: 0;
+  transform: translateY(8px);
+  pointer-events: none;
+}
+.worldmap .wm-card-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+.worldmap .wm-card-name {
+  font-family: "Instrument Serif", var(--font-serif, Georgia, serif);
+  font-size: clamp(1.4rem, 3.4vw, 1.9rem);
+  line-height: 1.05;
+  color: var(--ink);
+}
+.worldmap .wm-card-meta {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  white-space: nowrap;
+}
+.worldmap .wm-card-brand {
+  margin-top: 0.35rem;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--brand);
+}
+.worldmap .wm-card-shipped {
+  margin-top: 0.9rem;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--ink);
+}
+.worldmap .wm-card-lesson {
+  margin-top: 0.9rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--rule);
+  font-family: var(--font-serif, Georgia, serif);
+  font-style: italic;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+.worldmap .wm-pending {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 0.7rem;
+  border: 1px dashed color-mix(in oklab, var(--ink) 30%, var(--rule));
+  border-radius: 999px;
+  padding: 0.2rem 0.5rem;
+  color: var(--ink-soft);
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 0.55rem;
+  letter-spacing: 0.12em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+/* ── Ambient pin pulse (motion allowed only). ────────────────────────────── */
+@media (prefers-reduced-motion: no-preference) {
+  .worldmap .wm-pin-halo {
+    animation: wm-pulse 2.6s ease-out infinite;
+    animation-delay: calc(var(--arc-i, 0) * 0.16s);
+  }
+}
+@keyframes wm-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(3.4);
+    opacity: 0;
+  }
+}
+
+/* ── Reduced motion: static, drawn, still. Content identical. ─────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .worldmap .wm-arc {
+    animation: none !important;
+    stroke-dashoffset: 0 !important;
+  }
+  .worldmap .wm-pin-halo {
+    animation: none !important;
+  }
+  .worldmap .wm-arc,
+  .worldmap .wm-pin,
+  .worldmap .wm-focusring,
+  .worldmap .wm-label,
+  .worldmap .wm-idle,
+  .worldmap .wm-card {
+    transition-duration: 0.01ms;
+  }
+}

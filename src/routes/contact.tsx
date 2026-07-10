@@ -314,15 +314,10 @@ function ContactPage() {
         <span aria-hidden="true" className="priority-hero-rule priority-hero-rule-a" />
         <span aria-hidden="true" className="priority-hero-rule priority-hero-rule-b" />
         <div className="contact-soft-reveal relative z-10 min-w-0">
-          <div className="flex items-center gap-4">
-            <span className="grid h-9 w-9 place-items-center bg-ink text-background text-sm font-semibold">
-              03
-            </span>
-            <span className="text-[11px] uppercase tracking-[0.22em] text-ink font-mono-tech">
-              Contact
-            </span>
+          <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
+            ◆ Contact
           </div>
-          <h1 className="mt-7 max-w-4xl font-instrument text-[2rem] sm:text-5xl md:text-6xl text-ink leading-[1.04] text-wrap">
+          <h1 className="mt-7 max-w-4xl font-instrument text-[clamp(2.25rem,4vw,3.5rem)] text-ink leading-[1.04] text-wrap">
             Contact Rizwan Zafar for Senior Product &amp; Program Roles
           </h1>
           <p className="mt-5 max-w-3xl text-lg md:text-xl text-ink-soft leading-relaxed">
@@ -331,16 +326,16 @@ function ContactPage() {
             Europe and global fintech.
           </p>
           <div
+            data-rz-stagger
             className="mt-7 grid grid-cols-[repeat(3,minmax(0,1fr))] gap-2 sm:gap-3 max-w-2xl"
             aria-label="Contact proof points"
           >
-            {contactProof.map((item, index) => (
+            {contactProof.map((item) => (
               <div
                 key={item.label}
-                className="contact-proof-card min-w-0 border border-rule bg-surface px-2.5 sm:px-3 py-3"
-                style={{ "--motion-delay": `${120 + index * 45}ms` } as CSSProperties}
+                className="min-w-0 border border-rule bg-surface px-2.5 sm:px-3 py-3"
               >
-                <div className="font-instrument text-xl sm:text-2xl text-ink leading-none truncate">
+                <div className="font-mono-tech text-xl sm:text-2xl text-ink leading-none tabular-nums truncate">
                   {item.value}
                 </div>
                 <div className="mt-1.5 text-[9px] sm:text-[10px] uppercase tracking-[0.08em] sm:tracking-[0.12em] text-ink-soft font-mono-tech leading-tight">
@@ -433,7 +428,8 @@ function ContactPage() {
         </aside>
       </section>
 
-      <section className="grid lg:grid-cols-12 gap-8 lg:gap-12 py-10 md:py-12">
+      {/* First ruled section below the hero — the beam runs its top rule once. */}
+      <section className="rz-beam relative grid lg:grid-cols-12 gap-8 lg:gap-12 py-10 md:py-12">
         <div
           className="lg:col-span-5 contact-soft-reveal"
           style={{ "--motion-delay": "120ms" } as CSSProperties}
@@ -476,6 +472,7 @@ function ContactPage() {
                       ctaClick(channel.id, "contact_page", channel.href);
                       outboundClick(channel.href, "contact_page");
                     }}
+                    data-glow
                     className="contact-card flex items-center justify-between gap-4 border border-rule bg-background px-5 py-4 hover:border-ink/30 focus:outline-none focus:ring-2 focus:ring-[var(--brand)] transition-colors group"
                   >
                     <span className="min-w-0">

@@ -13,6 +13,7 @@
 // Analytics: data-analytics-form="newsletter" is picked up by the inline
 // bridge in src/routes/__root.tsx, which fires `newsletter_signup` with the
 // GA4 event param `placement` (never `source` — reserved param).
+import { PLATFORM } from "@/content/facts";
 import { absUrl } from "@/lib/seo";
 
 const CONTACT_ENDPOINT = "https://api.web3forms.com/submit";
@@ -39,8 +40,8 @@ export function NewsletterSignup({
         One operator email a week. No filler.
       </h2>
       <p className="mt-2 text-sm text-ink-soft leading-relaxed">
-        Payment acceptance, settlement and product delivery notes from running $1B+ annual GTV
-        across frontier markets — written for founders and payment leaders.
+        Payment acceptance, settlement and product delivery notes from running {PLATFORM.gtv} annual
+        GTV across frontier markets — written for founders and payment leaders.
       </p>
       <form
         method="post"

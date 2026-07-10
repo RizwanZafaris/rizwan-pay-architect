@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, CalendarDays, Linkedin } from "lucide-react";
 import { profile } from "@/data/profile";
+import { PLATFORM } from "@/content/facts";
 import { BookingSection } from "@/components/BookingSection";
 import { absUrl, OG_IMAGE_URL, SITE_URL } from "@/lib/seo";
 
@@ -35,9 +36,9 @@ import { absUrl, OG_IMAGE_URL, SITE_URL } from "@/lib/seo";
 // blocked-iframe/no-JS visitors; the link rewriter above still decorates it.
 
 const proofMetrics = [
-  { value: "$1B+", label: "Annual GTV" },
-  { value: "270M+", label: "Payments a year" },
-  { value: "99.95%", label: "Settlement SLA" },
+  { value: PLATFORM.gtv, label: "Annual GTV" },
+  { value: PLATFORM.annualPayments, label: "Payments a year" },
+  { value: PLATFORM.settlementSla, label: "Settlement SLA" },
   { value: "12", label: "Squads led" },
   { value: "40+", label: "Engineers led" },
 ] as const;
@@ -52,7 +53,7 @@ const programPoints = [
   "Built the PMO and delivery methodology from scratch; ran 12 cross-functional squads",
   "SteerCo & board governance, RAID logs, OKRs, RICE/MoSCoW; $5M+ budget, 15+ vendors",
   "Led PCI-DSS L1 & ISO 27001 certification programs — both audited without findings",
-  `Dual CPO + acting CTO in 2024; shipped 4 market launches; ${profile.career.years} years delivery`,
+  `Dual CPO + acting CTO in 2024; shipped four market launches; ${profile.career.years} years delivery`,
 ] as const;
 
 const hireJsonLd = {
@@ -73,6 +74,19 @@ const hireJsonLd = {
   },
 };
 
+// Print guard for the engine-staggered KPI grid: the global @media print rules
+// reset [class*="reveal"] / [class*="motion"] but not [data-rz-stagger]
+// children, whose hidden pre-reveal state lives in next.css.
+const hirePrintCss = `
+@media print {
+  .hire-page [data-rz-stagger] > * {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+`;
+
 const primaryCtaClass =
   "inline-flex items-center justify-center gap-2 rounded-full bg-ink text-background px-8 py-4 text-base font-medium shadow-sm transition duration-200 hover:bg-brand hover:text-[var(--brand-foreground)] hover:-translate-y-0.5 hover:shadow-md active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2";
 
@@ -85,8 +99,7 @@ export const Route = createFileRoute("/hire")({
       { title: "Book a 15-min call | Rizwan Zafar, Product & Program Exec" },
       {
         name: "description",
-        content:
-          "Hiring a payments product & program leader? Book a 15-minute intro call with Rizwan Zafar - $1B+ GTV, 270M+ payments a year, 5 frontier markets, MIT Sloan.",
+        content: `Hiring a payments product & program leader? Book a 15-minute intro call with Rizwan Zafar - ${PLATFORM.gtv} GTV, ${PLATFORM.annualPayments} payments a year, 5 frontier markets, MIT Sloan.`,
       },
       // Paid landing page — keep it out of organic search so it never competes
       // with the indexable /resume page.
@@ -105,8 +118,7 @@ export const Route = createFileRoute("/hire")({
       { name: "twitter:title", content: "Book a 15-min intro call with Rizwan Zafar" },
       {
         name: "twitter:description",
-        content:
-          "Hiring a payments product & program leader? Book a 15-min intro call - $1B+ GTV, 270M+ payments a year, PMO at scale, MIT Sloan.",
+        content: `Hiring a payments product & program leader? Book a 15-min intro call - ${PLATFORM.gtv} GTV, ${PLATFORM.annualPayments} payments a year, PMO at scale, MIT Sloan.`,
       },
       { name: "twitter:image", content: OG_IMAGE_URL },
     ],
@@ -127,20 +139,21 @@ function HirePage() {
   // itself forwards the same params via Cal.config.forwardQueryParams.
   const calendarUrl = profile.calendarUrl;
   return (
-    <div className="mx-auto max-w-4xl px-5 sm:px-6 py-16 md:py-24">
+    <div className="hire-page mx-auto max-w-4xl px-5 sm:px-6 py-16 md:py-24">
+      <style dangerouslySetInnerHTML={{ __html: hirePrintCss }} />
       {/* Hero — single intent, single action */}
       <section className="text-center">
-        <div className="text-[11px] uppercase tracking-[0.22em] text-ink-soft font-mono-tech">
-          For hiring teams in payments, fintech &amp; financial institutions
+        <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
+          ◆ For hiring teams in payments, fintech &amp; financial institutions
         </div>
-        <h1 className="font-instrument text-3xl sm:text-4xl md:text-5xl text-ink mt-5 leading-[1.08] max-w-3xl mx-auto">
-          Hiring a payments product and program leader who&apos;s scaled $1B+ in frontier and
+        <h1 className="font-instrument text-[clamp(2.25rem,4vw,3.5rem)] text-ink mt-5 leading-[1.08] max-w-3xl mx-auto">
+          Hiring a payments product and program leader who&apos;s scaled {PLATFORM.gtv} in frontier and
           emerging markets?
         </h1>
         <p className="mt-5 text-lg md:text-xl text-ink-soft leading-relaxed max-w-2xl mx-auto">
           I&apos;m {profile.name}, CPO at Simpaisa. I pair payments{" "}
-          <span className="text-ink font-medium">product</span> leadership &mdash; 270M+ payments a
-          year across 5 regulated markets &mdash; with the{" "}
+          <span className="text-ink font-medium">product</span> leadership &mdash;{" "}
+          {PLATFORM.annualPayments} payments a year across 5 regulated markets &mdash; with the{" "}
           <span className="text-ink font-medium">program &amp; PMO</span> discipline that delivers
           it: multi-squad execution, SteerCo governance, vendor management and PCI-DSS / ISO 27001
           programs run from scratch. MIT Sloan &middot; Dubai &middot; open globally.
@@ -166,14 +179,16 @@ function HirePage() {
         </div>
       </section>
 
-      {/* Proof strip — verified figures spanning product scale + delivery leadership */}
-      <section className="mt-14 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+      {/* Proof strip — verified figures spanning product scale + delivery
+          leadership. Flat bordered KPI tiles, mono tabular-nums, engine-
+          staggered with a single beam on this page's first ruled band. */}
+      <section
+        data-rz-stagger
+        className="rz-beam relative mt-14 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3"
+      >
         {proofMetrics.map((m) => (
-          <div
-            key={m.label}
-            className="rounded-lg border border-rule bg-surface px-4 py-3 text-center"
-          >
-            <div className="font-instrument text-xl md:text-2xl text-ink leading-none">
+          <div key={m.label} className="border border-rule bg-surface px-4 py-3 text-center">
+            <div className="font-mono-tech text-xl md:text-2xl text-ink leading-none tabular-nums">
               {m.value}
             </div>
             <div className="mt-1.5 text-[10px] uppercase tracking-[0.14em] text-ink-soft font-mono-tech leading-tight">

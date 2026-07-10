@@ -3,7 +3,7 @@ title: "BIN Routing and Scheme Selection: When To Override the Card-Brand Defaul
 slug: "bin-routing-scheme-selection-override-default"
 category: "Payment Infrastructure"
 metaTitle: "BIN Routing and Scheme Selection: When To Override Defaults | Rizwan Zafar"
-metaDescription: "The operator's guide to BIN routing, co-badged cards, scheme selection logic, regulator pressure on choice of brand, the four override patterns that move auth rate, and the six failure modes acquirers ship without realising."
+metaDescription: "A field guide to BIN routing: co-badged cards, scheme selection, the four override patterns that lift auth rate, and the six failure modes acquirers ship."
 excerpt: "BIN routing is the last unglamorous lever in card acquiring. It sits below product, below 3DS2, below tokenisation, and on a portfolio the size of a billion, it moves more authorisation rate than most things the team will ship this year."
 publishDate: "2026-05-20"
 readingTime: "11 min read"

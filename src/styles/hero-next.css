@@ -1,0 +1,176 @@
+/* hero-next.css — written by the hero workstream
+   ─────────────────────────────────────────────────────────────────────────
+   "The Operator's Console" hero layers:
+     1. .rz-rail-field  — faint payment-rail circuit SVG behind the portrait
+                          with cyan light pulses travelling the routes
+                          (offset-path / offset-distance).
+     2. Cursor parallax — heroParallaxScript (inline, no hydration) writes
+                          normalized --hx/--hy (-1..1) onto [data-hero-stage];
+                          three decorative depths lean off those vars.
+   Contracts honoured:
+     - Every layer is absolute + aria-hidden + pointer-events-none → CLS 0.
+     - The H1 / any text is never transformed or animated here.
+     - .rz-js / .rz-hero-go come from the global engine; no-JS and
+       reduced-motion visitors never get .rz-js (static fallback below),
+       plus an explicit prefers-reduced-motion belt at the end.
+     - One accent only: var(--signal) (pulse fill), var(--signal-deep)
+       (glow fill only), white hairlines at 0.06–0.14. */
+
+/* ---------- Rail field: hidden below md (portrait column collapses) ------ */
+.rz-rail-field {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .rz-rail-field {
+    display: block;
+    /* Parallax depth 1 — deepest layer leans the least (±6px). --hx/--hy
+       default to 0, so with no script (no-JS, touch, reduced-motion) this
+       resolves to translate3d(0,0,0). */
+    transform: translate3d(calc(var(--hx, 0) * 6px), calc(var(--hy, 0) * 6px), 0);
+    transition: transform var(--track-lean) var(--ease-out-quart);
+  }
+}
+
+/* Rails — 1px orthogonal hairlines; per-path stroke-opacity is set in the
+   markup (0.06–0.14 whispers). non-scaling-stroke keeps a true 1px at every
+   portrait-column width. */
+.rz-rail {
+  fill: none;
+  /* was #fff — invisible on a light page. Ink-derived so it inverts. */
+  stroke: var(--ink);
+  stroke-width: 1;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+
+/* Junction nodes — tiny solder points where routes turn. */
+.rz-rail-node {
+  fill: color-mix(in srgb, var(--ink) 14%, transparent);
+}
+.rz-rail-node-hot {
+  fill: var(--signal);
+  opacity: 0.3;
+}
+
+/* Light pulses — invisible unless the browser supports offset-path, so no
+   orphaned dot ever sits at the SVG origin on older engines. Soft glow via
+   drop-shadow: tight signal ring + wider signal-deep halo. Opacity peaks at
+   0.7 (≤0.8 budget). */
+.rz-rail-pulse {
+  fill: var(--signal);
+  opacity: 0;
+  filter: drop-shadow(0 0 5px var(--signal)) drop-shadow(0 0 12px var(--signal-deep));
+}
+
+@supports (offset-path: path("M 0 0 H 10")) {
+  /* Each offset-path is byte-identical to its rail's `d` in index.tsx, so
+     the pulse rides exactly on the drawn route (SVG children resolve
+     offset-path in the same user units as the viewBox). Durations 7–9s,
+     staggered delays → asynchronous, living-infrastructure feel. */
+  .rz-rail-pulse-1 {
+    offset-path: path(
+      "M 544 84 H 396 Q 386 84 386 94 V 258 Q 386 268 376 268 H 128 Q 118 268 118 278 V 664"
+    );
+    animation: rz-rail-run 8.5s linear 0.6s infinite;
+  }
+  .rz-rail-pulse-2 {
+    offset-path: path("M -24 128 H 168 Q 178 128 178 138 V 356 Q 178 366 188 366 H 544");
+    animation: rz-rail-run 7.2s linear 3.1s infinite;
+  }
+  .rz-rail-pulse-3 {
+    offset-path: path("M -24 492 H 246 Q 256 492 256 482 V 336 Q 256 326 266 326 H 544");
+    animation: rz-rail-run 9s linear 5.4s infinite;
+  }
+}
+
+@keyframes rz-rail-run {
+  0% {
+    offset-distance: 0%;
+    opacity: 0;
+  }
+  7% {
+    opacity: 0.7;
+  }
+  88% {
+    opacity: 0.7;
+  }
+  100% {
+    offset-distance: 100%;
+    opacity: 0;
+  }
+}
+
+/* ---------- Entrance: fade in AFTER the H1 (.rz-hero-go + --hero-count) ---
+   Gated on .rz-js so no-JS / reduced-motion / crawler visitors simply see
+   the static field — never opacity:0 with no path back. .rz-hero-go lands
+   one frame after paint (existing engine contract), so the field starts its
+   fade on the --hero-count beat (380ms), after the line-2 mask-rise. */
+.rz-js .rz-rail-field {
+  opacity: 0;
+}
+/* Was `opacity 1100ms ... 420ms`, i.e. the rails finished at 1520ms inside a
+   hero sequence that motion.css budgets at 900ms end-to-end. Now it starts on
+   the --hero-count beat (380ms) and completes at 780ms, comfortably inside the
+   budget and landing just before the CTA settles at 640ms + its own fade.
+   The transform is parallax lean, not a state change → --track-lean. */
+.rz-js.rz-hero-go .rz-rail-field {
+  opacity: 1;
+  transition:
+    opacity var(--dur-section) var(--ease-out-quart) var(--hero-count),
+    transform var(--track-lean) var(--ease-out-quart);
+}
+
+/* ---------- Cursor parallax depths (vars written by heroParallaxScript) --
+   The script only runs on hover:hover + pointer:fine and never under
+   prefers-reduced-motion; everywhere else the vars stay unset → calc()
+   resolves to 0px → zero shift. ~600ms soft ease so the scene "leans"
+   rather than tracks the cursor. Text is never a parallax target. */
+
+/* Depth 2 — decorative plus/tick accents (±10px). The parallax transform
+   lives on this positioning shell; the float/glow keyframes keep their own
+   transform on the inner span, so neither overrides the other. */
+.rz-acc-par {
+  transform: translate3d(calc(var(--hx, 0) * 10px), calc(var(--hy, 0) * 10px), 0);
+  transition: transform var(--track-lean) var(--ease-out-quart);
+}
+
+/* Depth 3 — portrait radial glow scrim (±4px), the subtlest layer. */
+.rz-glow-par {
+  transform: translate3d(calc(var(--hx, 0) * 4px), calc(var(--hy, 0) * 4px), 0);
+  transition: transform var(--track-lean) var(--ease-out-quart);
+}
+
+/* ---------- Reduced-motion belt ------------------------------------------
+   The engine already withholds .rz-js and both inline scripts self-disable
+   under prefers-reduced-motion, but belt-and-braces: kill every animation
+   and lean this file defines. Rails + nodes remain as static decoration. */
+@media (prefers-reduced-motion: reduce) {
+  .rz-rail-pulse {
+    animation: none;
+    opacity: 0;
+  }
+  .rz-rail-field,
+  .rz-acc-par,
+  .rz-glow-par {
+    transform: none;
+    transition: none;
+  }
+  .rz-js .rz-rail-field {
+    opacity: 1;
+  }
+}
+
+/* ── V2 monument hero: scroll cue ─────────────────────────────── */
+.rz-scroll-cue {
+  display: inline-block;
+  animation: rz-cue-drop 2.2s var(--ease-soft) infinite;
+}
+@keyframes rz-cue-drop {
+  0%, 100% { transform: translateY(0); opacity: 0.9; }
+  55% { transform: translateY(5px); opacity: 0.4; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .rz-scroll-cue { animation: none; }
+}

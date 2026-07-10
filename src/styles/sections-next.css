@@ -1,0 +1,105 @@
+/* ============================================================
+   SECTIONS-NEXT — homepage section wiring for "The Operator's
+   Console" pass (2026-07-09). Composes with the global engine
+   primitives in src/styles/next.css ([data-glow], [data-rz-stagger],
+   .rz-beam) — this file only adds section-specific glue:
+   - proof-band tabular numerals + narrow-width tile rebalance,
+   - entrance/hover de-conflict for staggered .home-card tiles,
+   - beam inset for overflow-hidden sections,
+   - ecosystem-marquee pause on hover/focus.
+   All motion is .rz-js-gated; reduced-motion belt at the bottom.
+   ============================================================ */
+
+/* ---------- Proof band ("the ledger") ---------- */
+/* Tabular numerals so the count-up ([data-rz-count]) never jitters
+   horizontally while digits roll. Inherited by every numeral in the grid;
+   the mono labels are unaffected visually. */
+.rz-proof-grid {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Narrow-width rebalance: below md the grid is 2-col, which stranded the
+   5th tile alone next to an empty hole. 2 + 2 + 1(full-width) instead —
+   no widow, no hole. md+ keeps the original 5-across ledger row. */
+@media (max-width: 767.98px) {
+  .rz-proof-grid > :nth-child(5) {
+    grid-column: 1 / -1;
+  }
+}
+
+/* ---------- Staggered cards that already own a hover lift ----------
+   Two composition fixes for .home-card tiles inside [data-rz-stagger]
+   groups (pillars, get-in-touch doorways):
+
+   1. .home-card carries its own on-load rz-soft-reveal animation
+      (styles.css) — kill it inside stagger groups so a card is never
+      revealed twice by two different systems.
+   2. The engine's stagger reveal is a TRANSITION with a per-child
+      transition-delay; left in place it would also lag every later
+      hover lift by that delay. So the ENTRANCE here runs as a
+      backwards-filled animation (the same grammar as the engine) and the
+      transition is handed back to the hover lift.
+
+   All four numbers are now tokens: the entrance matches the ONE reveal
+   pattern (14px / --dur-section / --ease-out-quart / 50ms step) instead of
+   the near-miss 18px/600ms/70ms it used to copy, and the hover lift sits on
+   --dur-standard rather than a bespoke 260ms. */
+.rz-js [data-rz-stagger] > .home-card {
+  animation: none;
+}
+.rz-js [data-rz-stagger].rz-in > .home-card {
+  transition:
+    transform var(--dur-standard) var(--ease-out-quart),
+    border-color var(--dur-standard) var(--ease-out-quart),
+    box-shadow var(--dur-standard) var(--ease-out-quart),
+    background-color var(--dur-standard) var(--ease-out-quart);
+  transition-delay: 0ms;
+  animation: rzs-card-in var(--dur-section) var(--ease-out-quart) backwards;
+  animation-delay: calc(var(--i, 0) * var(--stagger-step));
+}
+@keyframes rzs-card-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ---------- Beam on overflow-hidden sections ---------- */
+/* MapStrip and GetInTouchBand clip at their box edge, so the shared
+   .rz-beam::before (top: -1px) would be invisible. Pull the light onto
+   the inside edge of the top rule instead. */
+.rz-beam-flush.rz-beam::before {
+  top: 0;
+}
+
+/* ---------- Ecosystem marquee: pause on hover / focus ---------- */
+/* Source: .marquee-track (animation: rz-marquee, src/styles.css) inside
+   the focusable .marquee-wrap <section> in src/routes/index.tsx — whose
+   aria-label already promises "Hover or focus to pause". No .rz-js gate:
+   the marquee itself is a CSS-only loop that runs without JS, and pausing
+   is a restraint, not new motion. */
+.marquee-wrap:hover .marquee-track,
+.marquee-wrap:focus-within .marquee-track {
+  animation-play-state: paused;
+}
+
+/* ---------- Reduced motion: kill everything this file adds ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .rz-js [data-rz-stagger] > .home-card,
+  .rz-js [data-rz-stagger].rz-in > .home-card {
+    animation: none;
+    transition: none;
+    opacity: 1;
+    transform: none;
+  }
+  /* Beam/glow/stagger belts for the shared primitives live in next.css;
+     the marquee pause is itself a motion reduction and stays active. */
+}
+
+/* 21st.dev "the-infinite-grid" ambient system removed 2026-07-10 — the markup
+   + gridRevealScript that drove the infinite-grid layers were deleted from
+   index.tsx (concurrent change). */

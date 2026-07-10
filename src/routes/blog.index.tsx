@@ -1,9 +1,9 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
-import type { CSSProperties } from "react";
 import { zodValidator, fallback } from "@tanstack/zod-adapter";
 import { z } from "zod";
 import { publishedPosts as posts } from "@/data/posts";
 import { hubs, hubForPost } from "@/data/hubs";
+import { PLATFORM } from "@/content/facts";
 import { absUrl } from "@/lib/seo";
 import { siteSearch } from "@/lib/analytics";
 
@@ -194,6 +194,16 @@ const BLOG_FILTER_SCRIPT = `
 })();
 `;
 
+// Authority ledger rows — same three signals the old boxed panel carried,
+// recomposed as a ruled mono ledger for the journal masthead.
+function authoritySignals() {
+  return [
+    { value: String(posts.length), label: "Essays" },
+    { value: String(hubs.length), label: "Hubs" },
+    { value: PLATFORM.gtv, label: "GTV lens" },
+  ];
+}
+
 function BlogIndex() {
   const { q, hub, reader, company } = Route.useSearch();
   const navigate = useNavigate({ from: "/blog/" });
@@ -223,333 +233,318 @@ function BlogIndex() {
   const activeHub = hub ? hubs.find((h) => h.slug === hub) : null;
 
   return (
-    <div className="blog-page mx-auto max-w-6xl px-6 py-16 md:py-20">
-      <section className="blog-hero-shell relative grid gap-10 overflow-hidden rounded-lg border border-rule bg-surface px-5 py-7 md:px-7 md:py-8 lg:grid-cols-12 lg:items-end">
-        <span aria-hidden="true" className="blog-signal-mark blog-signal-mark-a" />
-        <span aria-hidden="true" className="blog-signal-mark blog-signal-mark-b" />
-        <div className="relative z-10 lg:col-span-8">
-          <div className="blog-soft-reveal blog-eyebrow text-[10px] uppercase tracking-[0.22em] text-[var(--accent-emerald)] font-mono-tech">
-            ◆ Payments essays
+    <div className="blog-page">
+      {/* ============ MASTHEAD — journal front page, not a boxed hero ======= */}
+      <header className="rz-beam relative border-b border-rule bg-background">
+        <div className="mx-auto max-w-6xl px-5 sm:px-6 pt-16 md:pt-24 pb-10 md:pb-14">
+          <div className="grid gap-x-12 gap-y-10 lg:grid-cols-12 lg:items-end">
+            <div className="lg:col-span-9">
+              <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
+                ◆ Payments essays
+              </div>
+              <h1 className="font-instrument text-[clamp(2.5rem,5.5vw,5.5rem)] leading-[1.0] text-ink mt-4 max-w-5xl">
+                Essays on regulated payments infrastructure{" "}
+                <span className="italic text-[var(--brand)]">from the operator's seat.</span>
+              </h1>
+              <p className="mt-6 max-w-2xl text-base md:text-lg text-ink-soft leading-relaxed">
+                Field notes on payment rails, cross-border corridors, settlement, risk, onboarding,
+                AI in fintech and the programme discipline required to scale them in complex
+                markets.
+              </p>
+            </div>
+            {/* Ruled mono ledger, right column of the spread. Was labelled
+                "Authority signals" — naming your own authority is the opposite
+                of having it (council audit, B6). The counts speak. */}
+            <div className="lg:col-span-3">
+              <div className="text-[10px] uppercase tracking-[0.18em] text-ink-soft font-mono-tech">
+                The library
+              </div>
+              <dl className="mt-3 border-t border-rule">
+                {authoritySignals().map((s) => (
+                  <div
+                    key={s.label}
+                    className="flex items-baseline justify-between gap-4 border-b border-rule py-3"
+                  >
+                    <dt className="text-[10px] uppercase tracking-[0.18em] text-ink-soft font-mono-tech">
+                      {s.label}
+                    </dt>
+                    <dd className="font-instrument text-2xl leading-none text-ink tabular-nums">
+                      {s.value}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
           </div>
-          <h1
-            className="blog-soft-reveal font-instrument text-4xl md:text-6xl text-ink mt-3 max-w-4xl leading-[1.02]"
-            style={{ "--motion-delay": "60ms" } as CSSProperties}
-          >
-            Essays on regulated payments infrastructure{" "}
-            <span className="blog-title-accent italic text-ink-soft">
-              from the operator's seat.
-            </span>
-          </h1>
-          <p
-            className="blog-soft-reveal mt-5 max-w-2xl text-lg text-ink-soft leading-relaxed"
-            style={{ "--motion-delay": "120ms" } as CSSProperties}
-          >
-            Field notes on payment rails, cross-border corridors, settlement, risk, onboarding, AI
-            in fintech and the programme discipline required to scale them in complex markets.
-          </p>
         </div>
-        <div
-          className="blog-soft-reveal blog-authority-panel relative z-10 lg:col-span-4 rounded-lg border border-rule bg-background/90 p-5"
-          style={{ "--motion-delay": "160ms" } as CSSProperties}
-        >
-          <div className="text-[10px] uppercase tracking-[0.18em] text-ink-soft font-mono-tech">
-            Authority signals
+        {/* Was a second scrolling marquee ("Topic radar"). Marquee x2 is the
+            2024-template tell (council audit, motion section). The topics
+            matter; the motion did not. Now a static, linked topic row: it says
+            the same thing, and each hub is reachable. */}
+        <nav className="border-t border-rule bg-background" aria-label="Key blog topics">
+          <ul className="mx-auto flex max-w-[1400px] flex-wrap items-center gap-x-5 gap-y-2 px-5 py-3 sm:px-8 lg:px-12">
+            {hubs.slice(0, 8).map((h) => (
+              <li key={h.slug}>
+                <Link
+                  to="/topics/$hub"
+                  params={{ hub: h.slug }}
+                  className="inline-block py-1 -my-1 text-[10px] uppercase tracking-[0.2em] text-ink-soft transition-colors hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background font-mono-tech"
+                >
+                  <span className="rz-link">{h.shortTitle}</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </header>
+
+      {/* ============ FEATURED — the lead essay as an asymmetric spread ===== */}
+      {featured && (
+        <section className="rz-beam relative border-b border-rule bg-surface">
+          <div className="mx-auto max-w-6xl px-5 sm:px-6 py-12 md:py-16">
+            <Link
+              to="/blog/$slug"
+              params={{ slug: featured.slug }}
+              {...blogFilterAttrs(featured, true)}
+              data-glow
+              className="group relative grid gap-8 lg:grid-cols-12 lg:gap-12"
+            >
+              <div className="lg:col-span-8">
+                <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-[10px] uppercase tracking-[0.18em] font-mono-tech">
+                  <span className="text-[var(--brand)] font-semibold">◆ Featured essay</span>
+                  <span className="text-ink-soft">{featured.category}</span>
+                  <span className="text-ink-soft">
+                    {formatPostDate(featured.date)} · {featured.readingTime}
+                  </span>
+                </div>
+                <h2 className="font-instrument text-[clamp(2rem,4.4vw,4rem)] text-ink mt-5 leading-[1.03] transition-colors group-hover:text-[var(--brand)] max-w-4xl">
+                  {featured.title}
+                </h2>
+                <p className="mt-5 text-ink-soft text-base md:text-lg leading-relaxed max-w-3xl">
+                  {featured.thesis ?? featured.description}
+                </p>
+                <span className="mt-7 inline-flex items-center gap-1.5 text-sm font-medium text-ink">
+                  <span className="rz-link">Read the featured essay</span>
+                  <span className="transition-transform group-hover:translate-x-1" aria-hidden>
+                    →
+                  </span>
+                </span>
+              </div>
+              <div className="lg:col-span-4 border-t border-rule pt-6 lg:border-l lg:border-t-0 lg:pl-10 lg:pt-1">
+                <div className="text-[10px] uppercase tracking-[0.18em] text-ink-soft font-mono-tech">
+                  Strongest lens
+                </div>
+                <ul className="mt-2 divide-y divide-rule">
+                  {postReaders(featured)
+                    .slice(0, 3)
+                    .map((r) => (
+                      <li key={r} className="py-2.5 text-sm text-ink">
+                        {r}
+                      </li>
+                    ))}
+                </ul>
+                <div className="mt-6 text-[10px] uppercase tracking-[0.18em] text-ink-soft font-mono-tech">
+                  Related signals
+                </div>
+                <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1.5">
+                  {featured.tags.slice(0, 4).map((t) => (
+                    <span
+                      key={t}
+                      className="text-[10px] uppercase tracking-[0.14em] text-ink-soft font-mono-tech"
+                    >
+                      {t}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </Link>
           </div>
-          <div className="mt-4 grid grid-cols-[repeat(3,minmax(0,1fr))] gap-2 sm:gap-3">
-            <div className="min-w-0">
-              <div className="font-mono-tech text-xl text-ink">{posts.length}</div>
-              <div className="mt-1 text-[9px] sm:text-[10px] uppercase tracking-[0.08em] sm:tracking-[0.12em] text-ink-soft font-mono-tech leading-tight">
-                Essays
+        </section>
+      )}
+
+      {/* ============ SEARCH + FILTERS — flat ruled band =================== */}
+      <section className="border-b border-rule bg-background">
+        <div className="mx-auto max-w-6xl px-5 sm:px-6 py-10 md:py-12">
+          <div className="mb-6 flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
+            <div>
+              <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
+                ◆ Search the library
               </div>
+              <p className="mt-2 max-w-2xl text-sm text-ink-soft">
+                Payments infrastructure writing mapped to topic, audience and company context.
+              </p>
             </div>
-            <div className="min-w-0">
-              <div className="font-mono-tech text-xl text-ink">{hubs.length}</div>
-              <div className="mt-1 text-[9px] sm:text-[10px] uppercase tracking-[0.08em] sm:tracking-[0.12em] text-ink-soft font-mono-tech leading-tight">
-                Hubs
-              </div>
+            <div className="text-xs text-ink-soft font-mono-tech">
+              {filtered.length} available essay{filtered.length === 1 ? "" : "s"}
             </div>
-            <div className="min-w-0">
-              <div className="font-mono-tech text-xl text-ink">$1B+</div>
-              <div className="mt-1 text-[9px] sm:text-[10px] uppercase tracking-[0.08em] sm:tracking-[0.12em] text-ink-soft font-mono-tech leading-tight">
-                GTV lens
-              </div>
+          </div>
+          {/* Real <form>: Enter submits a GET back to /blog/ (which the inline
+              filter script reads from the URL on load), no-JS visitors get a
+              working filter, and role="search" lets the analytics bridge fire
+              site_search on submit. */}
+          <form role="search" action="/blog/" method="get" className="grid md:grid-cols-12 gap-3">
+            <div className="md:col-span-5">
+              <label
+                className="text-[10px] uppercase tracking-[0.18em] text-ink-soft font-mono-tech"
+                htmlFor="blog-q"
+              >
+                Search
+              </label>
+              <input
+                id="blog-q"
+                name="q"
+                type="search"
+                value={q}
+                onChange={(e) => setParam("q", e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key !== "Enter") return;
+                  siteSearch(e.currentTarget.value, "blog", hub || reader || company || undefined);
+                }}
+                onBlur={(e) => {
+                  siteSearch(e.currentTarget.value, "blog", hub || reader || company || undefined);
+                }}
+                placeholder="Reconciliation, onboarding, fraud…"
+                className="blog-filter-input mt-1 w-full border border-rule bg-surface px-3 py-2.5 rounded-md text-ink placeholder:text-ink-soft/70 focus:outline-none focus:ring-2 focus:ring-[var(--brand)]/20 focus:border-[var(--brand)]"
+              />
             </div>
+            <Select
+              id="blog-hub"
+              label="Topic"
+              value={hub}
+              onChange={(v) => setParam("hub", v)}
+              options={[
+                ["", "All topics"],
+                ...hubs.map((h): [string, string] => [h.slug, h.shortTitle]),
+              ]}
+            />
+            <Select
+              id="blog-reader"
+              label="Reader lens"
+              value={reader}
+              onChange={(v) => setParam("reader", v)}
+              options={[["", "Any"], ...READERS.map((r): [string, string] => [r, r])]}
+            />
+            <Select
+              id="blog-company"
+              label="Company lens"
+              value={company}
+              onChange={(v) => setParam("company", v)}
+              options={[["", "Any"], ...COMPANIES.map((c): [string, string] => [c, c])]}
+            />
+          </form>
+          <div
+            data-blog-filter-status
+            role="status"
+            aria-live="polite"
+            className={`mt-3 flex items-center justify-between gap-4 text-xs text-ink-soft ${
+              q || hub || reader || company ? "" : "hidden"
+            }`}
+          >
+            <span data-blog-match-count>
+              {list.length} match{list.length === 1 ? "" : "es"}
+              {activeHub && ` · ${activeHub.title}`}
+            </span>
+            <button
+              type="button"
+              data-blog-clear
+              onClick={() => navigate({ search: { q: "", hub: "", reader: "", company: "" } })}
+              className="rounded-full border border-rule px-3 py-1.5 text-[10px] uppercase tracking-[0.14em] hover:border-ink/40 hover:text-ink"
+            >
+              Clear filters
+            </button>
           </div>
         </div>
       </section>
 
-      <div
-        className="blog-kinetic-strip mt-5 overflow-hidden rounded-lg border border-rule bg-background"
-        aria-label="Key blog topics"
-      >
-        <span className="blog-kinetic-label" aria-hidden="true">
-          Topic radar
-        </span>
-        <div className="blog-kinetic-track flex w-max items-center gap-6 py-3 text-[10px] uppercase tracking-[0.2em] text-ink-soft font-mono-tech">
-          {[...hubs.slice(0, 8), ...hubs.slice(0, 8)].map((h, index) => (
-            <span key={`${h.slug}-${index}`} className="inline-flex items-center gap-6">
-              <span>{h.shortTitle}</span>
-              <span className="text-[var(--accent-emerald)]">◆</span>
-            </span>
-          ))}
-        </div>
-      </div>
-
-      {/* Featured */}
-      {featured && (
-        <Link
-          to="/blog/$slug"
-          params={{ slug: featured.slug }}
-          {...blogFilterAttrs(featured, true)}
-          className="blog-result-card blog-feature-card group mt-12 grid gap-8 rounded-lg border border-ink/10 bg-surface p-6 md:p-9 lg:grid-cols-12 lg:items-stretch"
-          style={{ "--motion-delay": "180ms" } as CSSProperties}
-        >
-          <div className="lg:col-span-8">
-            <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
-              <span className="rounded-full border border-[var(--accent-emerald)]/25 bg-background px-3 py-1 text-[10px] font-mono-tech uppercase tracking-[0.18em] text-[var(--accent-emerald)]">
-                Featured essay
-              </span>
-              <span className="text-[10px] font-mono-tech uppercase tracking-[0.16em] text-ink-soft">
-                {featured.category}
-              </span>
-              <span className="text-[10px] font-mono-tech text-ink-soft">
-                {formatPostDate(featured.date)} · {featured.readingTime}
-              </span>
+      {/* ============ THE INDEX — divide-y journal entries, no card wall ==== */}
+      <section className="rz-beam relative border-b border-rule bg-background">
+        <div className="mx-auto max-w-6xl px-5 sm:px-6 py-12 md:py-16">
+          <div className="mb-8 flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
+            <div>
+              <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
+                ◆ Latest field notes
+              </div>
+              <h2 className="mt-3 font-instrument text-3xl md:text-4xl text-ink leading-[1.05]">
+                Practical essays for payments leaders.
+              </h2>
             </div>
-            <h2 className="font-instrument text-3xl md:text-5xl text-ink mt-5 leading-[1.04] group-hover:text-[var(--brand)] transition-colors max-w-4xl">
-              {featured.title}
-            </h2>
-            <p className="mt-5 text-ink-soft text-base md:text-lg leading-relaxed max-w-3xl">
-              {featured.thesis ?? featured.description}
-            </p>
-            <span className="inline-flex items-center gap-1.5 mt-7 text-sm font-medium text-ink">
-              Read the featured essay
-              <span className="transition-transform group-hover:translate-x-1">→</span>
-            </span>
+            <div className="text-xs text-ink-soft font-mono-tech">Sorted newest first</div>
           </div>
-          <div className="lg:col-span-4 border-t border-rule pt-5 lg:border-l lg:border-t-0 lg:pl-7 lg:pt-0">
-            <div className="text-[10px] uppercase tracking-[0.18em] text-ink-soft font-mono-tech">
-              Strongest lens
-            </div>
-            <div className="mt-4 space-y-3">
-              {postReaders(featured)
-                .slice(0, 3)
-                .map((r) => (
-                  <div
-                    key={r}
-                    className="rounded-md border border-rule bg-background px-3 py-2 text-sm text-ink"
-                  >
-                    {r}
-                  </div>
-                ))}
-            </div>
-            <div className="mt-6 text-[10px] uppercase tracking-[0.18em] text-ink-soft font-mono-tech">
-              Related signals
-            </div>
-            <div className="mt-3 flex flex-wrap gap-2">
-              {featured.tags.slice(0, 4).map((t) => (
-                <span
-                  key={t}
-                  className="blog-tag-chip rounded-full border border-rule bg-background px-2.5 py-1 text-[10px] uppercase tracking-[0.1em] text-ink-soft font-mono-tech"
-                >
-                  {t}
-                </span>
-              ))}
-            </div>
-          </div>
-        </Link>
-      )}
-
-      {/* Search + filters */}
-      <div
-        className="blog-search-panel mt-10 rounded-lg border border-rule bg-background p-5 md:p-6"
-        style={{ "--motion-delay": "220ms" } as CSSProperties}
-      >
-        <div className="mb-5 flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
-          <div>
-            <div className="text-[10px] uppercase tracking-[0.18em] text-ink-soft font-mono-tech">
-              Search the library
-            </div>
-            <p className="mt-1 max-w-2xl text-sm text-ink-soft">
-              Payments infrastructure writing mapped to topic, audience and company context.
-            </p>
-          </div>
-          <div className="text-xs text-ink-soft font-mono-tech">
-            {filtered.length} available essay{filtered.length === 1 ? "" : "s"}
-          </div>
-        </div>
-        {/* Real <form>: Enter submits a GET back to /blog/ (which the inline
-            filter script reads from the URL on load), no-JS visitors get a
-            working filter, and role="search" lets the analytics bridge fire
-            site_search on submit. */}
-        <form
-          role="search"
-          action="/blog/"
-          method="get"
-          className="grid md:grid-cols-12 gap-3"
-        >
-          <div className="md:col-span-5">
-            <label
-              className="text-[10px] uppercase tracking-[0.18em] text-ink-soft font-mono-tech"
-              htmlFor="blog-q"
-            >
-              Search
-            </label>
-            <input
-              id="blog-q"
-              name="q"
-              type="search"
-              value={q}
-              onChange={(e) => setParam("q", e.target.value)}
-              onKeyDown={(e) => {
-                if (e.key !== "Enter") return;
-                siteSearch(e.currentTarget.value, "blog", hub || reader || company || undefined);
-              }}
-              onBlur={(e) => {
-                siteSearch(e.currentTarget.value, "blog", hub || reader || company || undefined);
-              }}
-              placeholder="Reconciliation, onboarding, fraud…"
-              className="blog-filter-input mt-1 w-full border border-rule bg-surface px-3 py-2.5 rounded-md text-ink placeholder:text-ink-soft/70 focus:outline-none focus:ring-2 focus:ring-[var(--brand)]/20 focus:border-[var(--brand)]"
-            />
-          </div>
-          <Select
-            id="blog-hub"
-            label="Topic"
-            value={hub}
-            onChange={(v) => setParam("hub", v)}
-            options={[
-              ["", "All topics"],
-              ...hubs.map((h): [string, string] => [h.slug, h.shortTitle]),
-            ]}
-          />
-          <Select
-            id="blog-reader"
-            label="Reader lens"
-            value={reader}
-            onChange={(v) => setParam("reader", v)}
-            options={[["", "Any"], ...READERS.map((r): [string, string] => [r, r])]}
-          />
-          <Select
-            id="blog-company"
-            label="Company lens"
-            value={company}
-            onChange={(v) => setParam("company", v)}
-            options={[["", "Any"], ...COMPANIES.map((c): [string, string] => [c, c])]}
-          />
-        </form>
-        <div
-          data-blog-filter-status
-          role="status"
-          aria-live="polite"
-          className={`mt-3 flex items-center justify-between gap-4 text-xs text-ink-soft ${
-            q || hub || reader || company ? "" : "hidden"
-          }`}
-        >
-          <span data-blog-match-count>
-            {list.length} match{list.length === 1 ? "" : "es"}
-            {activeHub && ` · ${activeHub.title}`}
-          </span>
-          <button
-            type="button"
-            data-blog-clear
-            onClick={() => navigate({ search: { q: "", hub: "", reader: "", company: "" } })}
-            className="rounded-full border border-rule px-3 py-1 text-[10px] uppercase tracking-[0.14em] hover:border-ink/40 hover:text-ink"
-          >
-            Clear filters
-          </button>
-        </div>
-      </div>
-
-      {/* List */}
-      <section className="blog-list-shell mt-10">
-        <div className="mb-5 flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
-          <div>
-            <div className="text-[10px] uppercase tracking-[0.18em] text-ink-soft font-mono-tech">
-              Latest field notes
-            </div>
-            <h2 className="mt-1 font-instrument text-3xl text-ink">
-              Practical essays for payments leaders.
-            </h2>
-          </div>
-          <div className="text-xs text-ink-soft font-mono-tech">Sorted newest first</div>
-        </div>
-        <div className="grid gap-4 md:grid-cols-2">
           <div
             data-blog-empty
-            className={`md:col-span-2 rounded-lg border border-rule bg-surface px-6 py-12 text-center text-ink-soft ${
+            className={`border-y border-rule px-6 py-14 text-center text-ink-soft ${
               list.length === 0 ? "" : "hidden"
             }`}
           >
             No essays match these filters.
           </div>
-          {list.length > 0 &&
-            list.map((p, index) => (
-              <Link
-                key={p.slug}
-                to="/blog/$slug"
-                params={{ slug: p.slug }}
-                {...blogFilterAttrs(p)}
-                className="blog-result-card group flex min-h-[260px] flex-col rounded-lg border border-rule bg-surface p-5 transition-colors hover:bg-background"
-                style={{ "--motion-delay": `${260 + Math.min(index, 10) * 35}ms` } as CSSProperties}
-              >
-                <div className="flex flex-wrap items-center justify-between gap-3 text-xs text-ink-soft font-mono-tech">
-                  <div className="rounded-full border border-[var(--accent-emerald)]/20 bg-background px-2.5 py-1 uppercase tracking-[0.12em] text-[10px] text-[var(--accent-emerald)] font-medium">
-                    {p.category}
-                  </div>
-                  <div>
-                    {formatPostDate(p.date)} · {p.readingTime}
-                  </div>
-                </div>
-                <h3 className="mt-5 font-instrument text-2xl md:text-[1.7rem] text-ink group-hover:text-[var(--brand)] transition-colors leading-[1.12]">
-                  {p.title}
-                </h3>
-                <p className="mt-3 text-sm text-ink-soft leading-relaxed">
-                  {p.thesis ?? p.description}
-                </p>
-                <div className="mt-auto pt-5">
-                  <div className="flex flex-wrap gap-2">
-                    {p.tags.slice(0, 3).map((t) => (
-                      <span
-                        key={t}
-                        className="blog-tag-chip text-[10px] px-2 py-0.5 border border-rule rounded-full text-ink-soft bg-background font-mono-tech uppercase tracking-[0.1em]"
-                      >
-                        {t}
-                      </span>
-                    ))}
-                  </div>
-                  <div className="mt-4 flex items-center justify-between gap-4 border-t border-rule pt-4">
-                    <span className="blog-card-number text-xs text-ink-soft font-mono-tech">
-                      /{String(index + 1).padStart(2, "0")}
-                    </span>
-                    <span className="blog-card-arrow text-xs text-ink-soft group-hover:text-ink inline-flex items-center gap-1">
-                      Read essay
-                      <span className="transition-transform group-hover:translate-x-1">→</span>
+          {list.length > 0 && (
+            <div data-rz-stagger className="border-t border-rule">
+              {list.map((p) => (
+                <Link
+                  key={p.slug}
+                  to="/blog/$slug"
+                  params={{ slug: p.slug }}
+                  {...blogFilterAttrs(p)}
+                  data-glow
+                  className="group relative grid gap-y-2 border-b border-rule py-6 md:grid-cols-12 md:gap-x-8 md:py-7"
+                >
+                  {/* No date on the index. 21 of 127 essays share one date and
+                      no earlier honest date exists in git history, so a date
+                      column here only advertises batch publication. The date
+                      still appears on the essay itself and in BlogPosting
+                      JSON-LD, where it is structurally required. */}
+                  <div className="flex items-baseline gap-x-4 md:col-span-2 md:block">
+                    <span className="block font-mono-tech text-[11px] tracking-[0.14em] text-ink-soft/70">
+                      {p.readingTime}
                     </span>
                   </div>
-                </div>
-              </Link>
-            ))}
+                  <div className="md:col-span-7">
+                    <h3 className="font-instrument text-2xl md:text-[1.75rem] leading-[1.1] text-ink transition-all duration-300 [transition-timing-function:var(--ease-soft)] group-hover:translate-x-1.5 group-hover:text-[var(--brand)]">
+                      {p.title}
+                    </h3>
+                    <p className="mt-2 text-sm text-ink-soft leading-relaxed md:line-clamp-1">
+                      {p.thesis ?? p.description}
+                    </p>
+                  </div>
+                  <div className="flex items-center justify-between gap-4 md:col-span-3 md:justify-end md:gap-6 md:self-center">
+                    <span className="text-[10px] uppercase tracking-[0.14em] text-[var(--brand)] font-mono-tech">
+                      {p.category}
+                    </span>
+                    <span
+                      className="hidden text-lg text-ink-soft transition-all duration-300 group-hover:translate-x-1 group-hover:text-[var(--brand)] md:inline"
+                      aria-hidden
+                    >
+                      →
+                    </span>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
-      {/* Topic hub links */}
-      <div className="mt-14 pt-8 border-t border-rule">
-        <div className="text-[10px] uppercase tracking-[0.18em] text-ink-soft font-mono-tech mb-3">
-          Browse by topic hub
+      {/* ============ TOPIC HUBS ============================================ */}
+      <section className="bg-background">
+        <div className="mx-auto max-w-6xl px-5 sm:px-6 py-12 md:py-14">
+          <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold mb-4">
+            ◆ Browse by topic hub
+          </div>
+          <div className="flex flex-wrap gap-2">
+            {hubs.map((h) => (
+              <Link
+                key={h.slug}
+                to="/topics/$hub"
+                params={{ hub: h.slug }}
+                className="text-xs px-3 py-1.5 rounded-full border border-rule text-ink-soft hover:text-ink hover:border-ink/40 transition-colors"
+              >
+                {h.shortTitle}
+              </Link>
+            ))}
+          </div>
         </div>
-        <div className="flex flex-wrap gap-2">
-          {hubs.map((h) => (
-            <Link
-              key={h.slug}
-              to="/topics/$hub"
-              params={{ hub: h.slug }}
-              className="text-xs px-3 py-1.5 rounded-full border border-rule text-ink-soft hover:text-ink hover:border-ink/40 transition-colors"
-            >
-              {h.shortTitle}
-            </Link>
-          ))}
-        </div>
-      </div>
+      </section>
       <script dangerouslySetInnerHTML={{ __html: BLOG_FILTER_SCRIPT }} />
     </div>
   );

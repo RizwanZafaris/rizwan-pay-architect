@@ -3,8 +3,8 @@ title: "EMV 3DS2: Step-Up Logic, Frictionless Flow and the Auth-Rate Optimisatio
 slug: "emv-3ds2-step-up-frictionless-optimisation"
 category: "Payment Infrastructure"
 metaTitle: "EMV 3DS2: Step-Up Logic + Frictionless Flow Optimisation | Rizwan Zafar"
-metaDescription: "An operator's guide to EMV 3DS2 — the three flows (frictionless, attempt, challenge), the exemption logic that decides which flow fires, and how to lift auth rate without breaking PSD2 SCA."
-excerpt: "3DS2 is the most consequential auth-rate lever most merchants don't touch. Default config gives you maximum step-up and minimum conversion. This is the operator's guide to the exemption logic that lifts auth rate without breaking compliance."
+metaDescription: "A field guide to EMV 3DS2: the three flows, the exemption logic that decides which one fires, and how to lift auth rate without breaking PSD2 SCA."
+excerpt: "3DS2 is the most consequential auth-rate lever most merchants never touch. Default config gives you maximum step-up and minimum conversion. This is the field guide to the exemption logic that lifts auth rate without breaking compliance."
 publishDate: "2026-05-20"
 readingTime: "11 min read"
 tags:

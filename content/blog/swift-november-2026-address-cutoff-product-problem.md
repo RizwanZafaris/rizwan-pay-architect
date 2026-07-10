@@ -4,7 +4,7 @@ slug: "swift-november-2026-address-cutoff-product-problem"
 category: "Cross-Border Payments"
 metaTitle: "Swift Address Cutoff Is a Product Problem"
 metaDescription: "Swift's November 2026 structured-address cutoff turns ISO 20022 from a bank-format project into a capture-side product requirement."
-excerpt: "Swift's November 2026 structured-address cutoff is not a standards-team footnote. It is a product requirement for every cross-border payment surface that still accepts weak beneficiary data."
+excerpt: "In April, 61% of cross-border payments still carried unstructured debtor addresses. After 14 November 2026 Swift rejects them, and no mapper can recover data the origination screen never captured. This is a capture problem, not a standards footnote."
 publishDate: "2026-06-22"
 readingTime: "6 min read"
 tags:

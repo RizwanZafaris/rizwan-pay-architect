@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, CalendarDays } from "lucide-react";
 import { profile } from "@/data/profile";
+import { PLATFORM } from "@/content/facts";
 import { BookingSection } from "@/components/BookingSection";
 import { NewsletterSignup } from "@/components/NewsletterSignup";
 import { absUrl, OG_IMAGE_URL, SITE_URL } from "@/lib/seo";
@@ -30,10 +31,10 @@ import { absUrl, OG_IMAGE_URL, SITE_URL } from "@/lib/seo";
 // call via the shared inline cal.com embed (#book, ref consulting_inline_embed).
 
 const proofMetrics = [
-  { value: "$1B+", label: "Annual GTV" },
-  { value: "270M+", label: "Payments a year" },
-  { value: "150+", label: "Merchants" },
-  { value: "99.95%", label: "Settlement SLA" },
+  { value: PLATFORM.gtv, label: "Annual GTV" },
+  { value: PLATFORM.annualPayments, label: "Payments a year" },
+  { value: PLATFORM.merchants, label: "Merchants" },
+  { value: PLATFORM.settlementSla, label: "Settlement SLA" },
   { value: `${profile.career.years}`, label: "Years in payments & delivery" },
 ] as const;
 
@@ -67,7 +68,7 @@ const offers: Offer[] = [
     ],
     proof: [
       {
-        label: "+3.4 pts portfolio-wide auth-rate uplift across 150+ merchants",
+        label: `+3.4 pts portfolio-wide auth-rate uplift across ${PLATFORM.merchants} merchants`,
         href: "/product-work/mpgs-acquirer-integration-programme/",
       },
       {
@@ -89,7 +90,7 @@ const offers: Offer[] = [
     ],
     proof: [
       {
-        label: "99.95% reconciliation accuracy at $1B+ GTV",
+        label: `${PLATFORM.settlementSla} reconciliation accuracy at ${PLATFORM.gtv} GTV`,
         href: "/product-work/settlement-reconciliation/",
       },
       {
@@ -170,8 +171,7 @@ const consultingJsonLd = {
   "@id": `${absUrl("/consulting")}#service`,
   name: "Rizwan Zafar — Payments & Product Advisory",
   url: absUrl("/consulting"),
-  description:
-    "Independent payments and product advisory: fixed-scope payment performance audits, monthly payments advisory retainers and AI delivery advisory, led by an operator who scaled $1B+ annual GTV and 270M+ payments a year across frontier markets.",
+  description: `Independent payments and product advisory: fixed-scope payment performance audits, monthly payments advisory retainers and AI delivery advisory, led by an operator who scaled ${PLATFORM.gtv} annual GTV and ${PLATFORM.annualPayments} payments a year across frontier markets.`,
   founder: {
     "@type": "Person",
     "@id": `${SITE_URL}#person`,
@@ -204,6 +204,19 @@ const consultingFaqJsonLd = {
   })),
 };
 
+// Print guard for the engine-staggered KPI grid: the global @media print rules
+// reset [class*="reveal"] / [class*="motion"] but not [data-rz-stagger]
+// children, whose hidden pre-reveal state lives in next.css.
+const consultingPrintCss = `
+@media print {
+  .consulting-page [data-rz-stagger] > * {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+`;
+
 const primaryCtaClass =
   "inline-flex items-center justify-center gap-2 rounded-full bg-ink text-background px-8 py-4 text-base font-medium shadow-sm transition duration-200 hover:bg-brand hover:text-[var(--brand-foreground)] hover:-translate-y-0.5 hover:shadow-md active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2";
 
@@ -223,14 +236,12 @@ export const Route = createFileRoute("/consulting")({
       { title: "Payments & Product Advisory | Rizwan Zafar" },
       {
         name: "description",
-        content:
-          "Independent payments & product advisory from an operator who scaled $1B+ GTV and 270M+ payments a year. Audits, retainers, AI delivery. Dubai, remote-friendly.",
+        content: `Independent payments & product advisory from an operator who scaled ${PLATFORM.gtv} GTV and ${PLATFORM.annualPayments} payments a year. Audits, retainers, AI delivery. Dubai, remote-friendly.`,
       },
       { property: "og:title", content: "Payments & Product Advisory — Rizwan Zafar" },
       {
         property: "og:description",
-        content:
-          "Payment performance audits, payments advisory retainers and AI delivery advisory — operator-led, grounded in $1B+ GTV production work.",
+        content: `Payment performance audits, payments advisory retainers and AI delivery advisory — operator-led, grounded in ${PLATFORM.gtv} GTV production work.`,
       },
       { property: "og:url", content: absUrl("/consulting") },
       { property: "og:type", content: "website" },
@@ -262,19 +273,21 @@ export const Route = createFileRoute("/consulting")({
 function ConsultingPage() {
   const calendarUrl = profile.calendarUrl;
   return (
-    <div className="mx-auto max-w-5xl px-5 sm:px-6 py-16 md:py-24">
+    <div className="consulting-page mx-auto max-w-5xl px-5 sm:px-6 py-16 md:py-24">
+      <style dangerouslySetInnerHTML={{ __html: consultingPrintCss }} />
       {/* Hero — client intent, single action */}
       <section className="text-center">
-        <div className="text-[11px] uppercase tracking-[0.22em] text-ink-soft font-mono-tech">
-          Independent · operator-led · for founders and payment leaders
+        <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
+          ◆ Independent · operator-led · for founders and payment leaders
         </div>
-        <h1 className="font-instrument text-3xl sm:text-4xl md:text-5xl text-ink mt-5 leading-[1.08] max-w-3xl mx-auto">
+        <h1 className="font-instrument text-[clamp(2.25rem,4vw,3.5rem)] text-ink mt-5 leading-[1.08] max-w-3xl mx-auto">
           Payments &amp; Product Advisory
         </h1>
         <p className="mt-5 text-lg md:text-xl text-ink-soft leading-relaxed max-w-2xl mx-auto">
           I&apos;m {profile.name}. I&apos;ve scaled payment infrastructure to{" "}
-          <span className="text-ink font-medium">$1B+ annual GTV</span>, 270M+ payments a year and
-          150+ merchants across frontier markets — as the operator, not the observer. I take a small
+          <span className="text-ink font-medium">{PLATFORM.gtv} annual GTV</span>,{" "}
+          {PLATFORM.annualPayments} payments a year and {PLATFORM.merchants} merchants across
+          frontier markets — as the operator, not the observer. I take a small
           number of advisory engagements alongside that work. Dubai (GST) &middot; remote-friendly.
         </p>
         <div className="mt-9 flex flex-col items-center gap-3">
@@ -403,13 +416,15 @@ function ConsultingPage() {
           merchant strip. Framing matters: these are merchants served by
           platforms Rizwan led as an operator, NOT advisory clients. */}
       <section className="mt-16" aria-label="Proof points">
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+        {/* Flat bordered KPI tiles, mono tabular-nums, engine-staggered with a
+            single beam on this page's first ruled band. */}
+        <div
+          data-rz-stagger
+          className="rz-beam relative grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3"
+        >
           {proofMetrics.map((m) => (
-            <div
-              key={m.label}
-              className="rounded-lg border border-rule bg-surface px-4 py-3 text-center"
-            >
-              <div className="font-instrument text-xl md:text-2xl text-ink leading-none">
+            <div key={m.label} className="border border-rule bg-surface px-4 py-3 text-center">
+              <div className="font-mono-tech text-xl md:text-2xl text-ink leading-none tabular-nums">
                 {m.value}
               </div>
               <div className="mt-1.5 text-[10px] uppercase tracking-[0.14em] text-ink-soft font-mono-tech leading-tight">

@@ -4,7 +4,7 @@ slug: "mollie-eea-localisation-infrastructure"
 category: "Cross-Border Payments"
 metaTitle: "Mollie EEA Expansion: Localisation Infrastructure"
 metaDescription: "Mollie's EUR350M EEA expansion shows why cross-border merchants need local payment methods, onboarding, support, and reconciliation as one stack."
-excerpt: "Mollie's EEA expansion is not just country coverage. It is a bet that local payment methods, onboarding, support, settlement and reconciliation have to be shipped as one merchant operating system."
+excerpt: "Mollie is committing EUR350 million over five years to ship local payment methods, onboarding, support, settlement, and reconciliation as one merchant operating system. Country coverage was always the weak proxy."
 publishDate: "2026-06-19"
 readingTime: "6 min read"
 tags:

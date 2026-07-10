@@ -7,11 +7,11 @@
 // gate in scripts/seo-audit.ts stays green.
 import { Link } from "@tanstack/react-router";
 import { profile } from "@/data/profile";
+import { CAREER, PLATFORM, DARAZ } from "@/content/facts";
 import { WorldMap } from "@/components/WorldMap";
 import { RevealHeading } from "@/components/RevealHeading";
 import { AnimatedMetric } from "@/components/motion/AnimatedMetric";
 import { BackgroundPaths } from "@/components/BackgroundPaths";
-import { testimonials } from "@/data/testimonials";
 
 // The industry-filter deep links (?industry=…) intentionally use a raw <a>,
 // not TanStack's typed <Link>. Two reasons: (1) the target route's search
@@ -150,15 +150,6 @@ export const homeSectionsCss = `
 // `metricsSpotlight` export contract in src/data/profile.ts; the lookup goes
 // through profile.metrics BY LABEL so this renders the exact same entries
 // whether or not that named export has landed yet (parallel workstream).
-const SPOTLIGHT_METRIC_LABELS = [
-  "Payment success",
-  "Straight-through processing",
-  "Settlement SLA",
-  "Uptime",
-  "Fraud loss",
-  "Authorization uplift",
-] as const;
-type SpotlightMetric = (typeof profile.metrics)[number];
 
 export function ProofBand() {
   const { career, platform } = profile;
@@ -169,26 +160,10 @@ export function ProofBand() {
     { value: `${career.years}+`, label: "Years" },
     { value: platform.gtv, label: "Annual GTV" },
     { value: platform.annualPayments, label: "Payments / yr" },
-    { value: platform.merchants, label: "Merchants" },
     { value: `${career.marketCount}`, label: "Markets" },
   ];
-  // SECONDARY proof — the operating record, moved behind a native <details> so
-  // the homepage stays elegant while the deep reliability metrics stay one
-  // click (and fully no-JS) away. Order preserved via map-then-find.
-  const operating = SPOTLIGHT_METRIC_LABELS.map((label) =>
-    profile.metrics.find((m) => m.label === label),
-  )
-    .filter((m): m is SpotlightMetric => Boolean(m))
-    // Display-only reshape: a value like "<0.1% GTV" wraps to two lines in a
-    // 1/6 column at desktop numeral sizes and breaks the row baseline. Move
-    // the unit into the label; the canonical metric in profile.ts is untouched.
-    .map((m) =>
-      m.value.endsWith(" GTV")
-        ? { ...m, value: m.value.slice(0, -4), label: `${m.label}, % of GTV` }
-        : m,
-    );
   return (
-    <section className="relative border-b border-rule bg-surface">
+    <section className="rz-beam relative border-b border-rule bg-surface">
       <div className="mx-auto max-w-6xl px-5 sm:px-6 py-[var(--space-section-sm)]">
         {/* Five premium counters. Large Instrument-serif numerals + count-up. */}
         <div className="relative">
@@ -199,12 +174,24 @@ export function ProofBand() {
               .rz-js-gated + position:absolute → invisible to no-JS /
               reduced-motion and CLS 0. */}
           <span aria-hidden className="rz-reveal rz-proof-sweep" />
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-y-12 md:gap-y-0 md:divide-x md:divide-[color:var(--rule)]">
-            {primary.map((s, i) => (
+          {/* data-rz-stagger: the reveal engine indexes the five tiles (--i)
+              and cascades them left→right when the grid gets .rz-in — the
+              tiles therefore must NOT also carry .rz-reveal (double-hide).
+              rz-proof-grid hooks the tabular-nums + narrow-width rebalance
+              rules in sections-next.css. */}
+          {/* md:grid-cols-4 — `primary` holds exactly 4 stats. This was
+              md:grid-cols-5, and grid-cols-5 compiles to 5 equal fixed tracks,
+              so the four tiles occupied 4/5 of the row and left a dead
+              trailing column: the strip read as left-weighted, and the
+              divide-x hairline stopped short of the right edge. */}
+          <div
+            data-rz-stagger
+            className="rz-proof-grid grid grid-cols-2 md:grid-cols-4 gap-y-12 md:gap-y-0 md:divide-x md:divide-[color:var(--rule)]"
+          >
+            {primary.map((s) => (
             <div
               key={s.label}
-              className="rz-reveal text-center md:px-8"
-              style={{ ["--rz-delay" as string]: `${i * 90}ms` }}
+              className="text-center md:px-8"
             >
               <div className="font-instrument text-[46px] sm:text-6xl lg:text-7xl text-ink leading-[0.88] tabular-nums">
                 <AnimatedMetric value={s.value} />
@@ -217,35 +204,10 @@ export function ProofBand() {
           </div>
         </div>
 
-        {/* Operating record: secondary, expandable (native details, no JS). */}
-        {operating.length > 0 && (
-          <details className="rz-reveal group mt-14 md:mt-20 border-t border-rule pt-6">
-            <summary className="flex cursor-pointer list-none items-center gap-2 text-[10px] uppercase tracking-[0.22em] font-mono-tech text-ink-soft hover:text-ink transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-sm">
-              <span className="text-[var(--brand)]" aria-hidden>
-                &#9670;
-              </span>
-              Operating record
-              <span className="ml-auto inline-flex items-center gap-1 normal-case tracking-normal text-ink-soft/70">
-                {platform.company} platform
-                <span className="transition-transform group-open:rotate-90" aria-hidden>
-                  &rsaquo;
-                </span>
-              </span>
-            </summary>
-            <div className="mt-8 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-x-6 gap-y-8">
-              {operating.map((m) => (
-                <div key={m.label} className="text-center lg:text-left">
-                  <div className="font-mono-tech text-xl sm:text-2xl text-ink leading-none tabular-nums">
-                    {m.value}
-                  </div>
-                  <div className="mt-2 text-[10px] uppercase tracking-[0.22em] text-ink-soft font-mono-tech">
-                    {m.label}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </details>
-        )}
+        {/* The Operating record block used to live here: six more numbers,
+            collapsed behind a <details>. They moved to the Simpaisa platform
+            case study (Loop 3), where the architecture that produced them is
+            on the same page. The homepage now shows four. */}
       </div>
     </section>
   );
@@ -258,7 +220,9 @@ export function ProofBand() {
 // in" — Nigeria was pending owner confirmation of shipped status.
 export function MapStrip() {
   return (
-    <section className="relative border-b border-rule bg-background overflow-hidden">
+    // rz-beam-flush: this section is overflow-hidden, so the shared beam
+    // (top:-1px) would be clipped — sections-next.css pulls it to top:0.
+    <section className="rz-beam rz-beam-flush relative border-b border-rule bg-background overflow-hidden">
       <div className="mx-auto max-w-6xl px-5 sm:px-6 py-14 md:py-16">
         <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold text-center">
           ◆ The map
@@ -286,13 +250,13 @@ export function MapStrip() {
 const PILLARS = [
   {
     title: "Payments & cross-border",
-    // Platform-scope sentence: $1B+ stands alone, no career marker in-clause.
-    body: "A $1B+/yr gateway across five frontier markets: acceptance, wallets, settlement, compliance.",
+    // Platform-scope sentence: GTV stands alone, no career marker in-clause.
+    body: `A ${PLATFORM.gtv}/yr gateway across ${PLATFORM.marketsWord} frontier markets: acceptance, wallets, settlement, compliance.`,
     href: "/product-work?industry=payments",
   },
   {
     title: "E-commerce & marketplaces",
-    body: "Daraz (Alibaba Group): payments and conversion across five South-Asian markets — +15% checkout conversion, −20% false declines.",
+    body: `Daraz (Alibaba Group): payments and conversion across ${DARAZ.marketsWord} South-Asian markets — +15% checkout conversion, −20% false declines.`,
     href: "/product-work?industry=ecommerce",
   },
   {
@@ -304,37 +268,55 @@ const PILLARS = [
 
 export function IndustryPillars() {
   return (
-    <section className="relative">
+    <section className="rz-beam relative">
+      {/* max-w-6xl px-5 sm:px-6 = the homepage BODY measure. This section used
+          to carry the HERO's measure (max-w-[1400px] px-5 sm:px-8 lg:px-12)
+          while ProofBand above and Selected-work below both sit at 6xl. At
+          1440px that put its left rail ~100px outboard of its neighbours', so
+          the eyebrow and headline visibly jogged sideways mid-scroll — the page
+          read as three templates stitched together. The wide measure belongs to
+          the full-bleed hero alone (the portrait is anchored to it); the body
+          keeps one immovable rail. */}
       <div className="mx-auto max-w-6xl px-5 sm:px-6 py-[var(--space-section-md)]">
         <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
           ◆ Three industries
         </div>
-        <h2 className="font-instrument text-4xl md:text-6xl text-ink mt-3 leading-[1.02] max-w-3xl">
+        <h2 className="font-instrument text-[clamp(2.5rem,5.5vw,5.5rem)] text-ink mt-3 leading-[1.0] max-w-4xl">
           <RevealHeading lead="One operating discipline," emphasis="three arenas." />
         </h2>
-        <div className="mt-10 grid md:grid-cols-3 gap-5">
+        {/* V2 monument pass: the 3-card grid is gone. Each arena is a
+            full-width index row — huge mono index, statement serif title,
+            right-column body. The whole row is the link (title = accessible
+            name); hover slides the title and lights the row via data-glow.
+            Stagger stays on the list wrapper, never the section (heading
+            must not be hidden by the child-hiding CSS). */}
+        <div data-rz-stagger className="mt-12 border-t border-rule md:mt-16">
           {PILLARS.map((p, i) => (
             <a
               key={p.title}
               href={p.href}
-              className="home-pillar-card home-card home-card-lift rz-reveal group relative overflow-hidden rounded-lg border border-rule bg-card p-7 flex flex-col"
+              data-glow
+              className="home-pillar-row group relative grid grid-cols-[auto_1fr] items-center gap-x-5 border-b border-rule py-7 md:grid-cols-12 md:gap-x-10 md:py-10"
             >
-              <div
-                className="font-mono-tech text-[11px] tracking-[0.22em] text-[var(--brand)]"
+              <span
+                className="font-mono-tech text-[11px] tracking-[0.22em] text-[var(--brand)] md:col-span-1"
                 aria-hidden
               >
                 {String(i + 1).padStart(2, "0")}
-              </div>
-              <h3 className="mt-3 font-instrument text-2xl text-ink leading-tight group-hover:text-[var(--brand)] transition-colors">
+              </span>
+              <h3 className="font-instrument text-3xl leading-[1.02] text-ink transition-transform duration-300 [transition-timing-function:var(--ease-soft)] group-hover:translate-x-2 sm:text-4xl md:col-span-6 md:text-5xl lg:text-6xl">
                 {p.title}
               </h3>
-              <p className="mt-3 text-sm text-ink-soft leading-relaxed flex-1">{p.body}</p>
-              <div className="mt-6 text-sm text-ink group-hover:text-[var(--brand)] inline-flex items-center gap-1.5 transition-colors">
-                See the case studies
-                <span className="transition-transform group-hover:translate-x-1" aria-hidden>
-                  →
-                </span>
-              </div>
+              <p className="col-span-2 mt-4 text-sm leading-relaxed text-ink-soft md:col-span-4 md:mt-0 md:text-[15px]">
+                {p.body}
+              </p>
+              <span
+                className="hidden self-center justify-self-end text-2xl text-ink-soft transition-all duration-300 group-hover:translate-x-1 group-hover:text-[var(--brand)] md:col-span-1 md:inline-flex"
+                aria-hidden
+              >
+                →
+              </span>
+              <span className="sr-only"> — see the case studies</span>
             </a>
           ))}
         </div>
@@ -359,7 +341,7 @@ export function CredentialsStrip() {
     "PCI-DSS L1 + ISO 27001 (platform)",
   ].filter(Boolean) as string[];
   return (
-    <section className="relative border-y border-rule bg-surface">
+    <section className="rz-beam relative border-y border-rule bg-surface">
       <div className="mx-auto max-w-6xl px-5 sm:px-6 py-6">
         <ul className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-[11px] md:text-xs uppercase tracking-[0.16em] text-ink-soft font-mono-tech">
           {items.map((it, i) => (
@@ -396,7 +378,7 @@ export function GetInTouchBand() {
     {
       eyebrow: "Building?",
       title: "Read the essays, get the notes.",
-      body: "Payment acceptance, settlement and delivery notes. Advisory conversations open Q4.",
+      body: "Payment acceptance, settlement and delivery notes. Advisory conversations open from October 2026.",
       links: [
         { label: "Read the essays →", to: "/blog", kind: "internal" as const },
         {
@@ -417,7 +399,8 @@ export function GetInTouchBand() {
     },
   ];
   return (
-    <section className="relative overflow-hidden">
+    // rz-beam-flush: overflow-hidden section — see MapStrip note.
+    <section className="rz-beam rz-beam-flush relative overflow-hidden">
       {/* kokonutd/background-paths, JS-less + brand-toned. Faint flowing teal
           strokes behind the closing CTA; a paper wash fades the edges so the
           copy stays crisp. */}
@@ -426,22 +409,29 @@ export function GetInTouchBand() {
       <div className="relative z-10 mx-auto max-w-6xl px-5 sm:px-6 py-20 md:py-24">
         <div className="text-center">
           <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
-            ◆ Get in touch
+            Get in touch
           </div>
-          <h2 className="font-instrument text-4xl md:text-6xl text-ink mt-3 leading-[1.05] max-w-3xl mx-auto">
+          <h2 className="font-instrument text-[clamp(2.5rem,5.5vw,5.5rem)] text-ink mt-3 leading-[1.05] max-w-3xl mx-auto">
             <RevealHeading lead="The right conversation depends on" emphasis="who you are." />
           </h2>
         </div>
-        <div className="mt-12 grid md:grid-cols-3 gap-5">
+        {/* Stagger on the cards grid only (heading stays visible); cards drop
+            .rz-reveal (double-hide) and pick up data-glow, which composes
+            with home-card-lift — see the IndustryPillars note. */}
+        <div
+          data-rz-stagger
+          className="mt-12 grid gap-y-10 border-t border-rule pt-10 md:grid-cols-3 md:gap-0 md:divide-x md:divide-[color:var(--rule)] md:pt-0"
+        >
           {cards.map((c) => (
             <div
               key={c.eyebrow}
-              className="home-card home-card-lift rz-reveal rounded-lg border border-rule bg-card p-7 flex flex-col"
+              data-glow
+              className="relative flex flex-col md:px-10 md:py-10 md:first:pl-0 md:last:pr-0"
             >
               <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
                 {c.eyebrow}
               </div>
-              <h3 className="font-instrument text-xl text-ink mt-3 leading-snug">{c.title}</h3>
+              <h3 className="font-instrument text-2xl md:text-[1.7rem] text-ink mt-3 leading-snug">{c.title}</h3>
               <p className="mt-2 text-sm text-ink-soft leading-relaxed flex-1">{c.body}</p>
               <div className="mt-6 flex flex-col gap-2.5">
                 {/* Tap targets (Gate-A 2026-07-08, WCAG 2.5.8): py + negative
@@ -488,76 +478,6 @@ export function GetInTouchBand() {
   );
 }
 
-// ── TESTIMONIALS ──────────────────────────────────────────────────────────
-// Editorial pull-quote list — the JS-less port of the 21st.dev "Editorial
-// Testimonial" (oversized light index numeral, light quote, monogram +
-// attribution). No carousel state (the site never hydrates); the quotes
-// simply stack. Renders nothing until src/data/testimonials.ts has a real
-// entry, so no placeholder ever ships. The route also guards on length.
-function initials(name: string) {
-  return name
-    .trim()
-    .split(/\s+/)
-    .slice(0, 2)
-    .map((p) => p[0]?.toUpperCase() ?? "")
-    .join("");
-}
-
-export function Testimonials() {
-  if (testimonials.length === 0) return null;
-  return (
-    <section className="relative border-t border-rule">
-      <div className="mx-auto max-w-5xl px-5 sm:px-6 py-20 md:py-24">
-        <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
-          ◆ In their words
-        </div>
-        <h2 className="font-instrument text-4xl md:text-6xl text-ink mt-3 leading-[1.03] max-w-3xl">
-          <RevealHeading lead="The people I've built with" emphasis="on the record." />
-        </h2>
-        <ol className="mt-14 divide-y divide-rule">
-          {testimonials.map((t, i) => (
-            <li
-              key={`${t.author}-${i}`}
-              className="grid gap-6 py-10 first:pt-0 md:grid-cols-[auto_1fr] md:gap-10"
-            >
-              <div
-                className="font-mono-tech text-5xl md:text-6xl leading-none text-[var(--brand)]/15 tabular-nums select-none"
-                aria-hidden
-              >
-                {String(i + 1).padStart(2, "0")}
-              </div>
-              <figure>
-                <blockquote className="font-instrument text-2xl md:text-3xl font-light leading-snug text-ink">
-                  &ldquo;{t.quote}&rdquo;
-                </blockquote>
-                <figcaption className="mt-6 flex items-center gap-4">
-                  <span
-                    className="grid h-11 w-11 flex-none place-items-center rounded-full bg-ink text-background font-display text-sm font-semibold tracking-tight"
-                    aria-hidden
-                  >
-                    {initials(t.author)}
-                  </span>
-                  <span className="text-sm text-ink-soft leading-tight">
-                    <span className="font-medium text-ink">{t.author}</span>
-                    <br />
-                    {t.role} · {t.org}
-                    {t.relationship ? (
-                      <>
-                        <span className="mx-1.5 text-[var(--brand)]/40">/</span>
-                        {t.relationship}
-                      </>
-                    ) : null}
-                  </span>
-                </figcaption>
-              </figure>
-            </li>
-          ))}
-        </ol>
-      </div>
-    </section>
-  );
-}
-
 // ── HOW I WORK / FAQ ──────────────────────────────────────────────────────
 // Native <details> accordion (zero JS). Every answer traces to profile.ts /
 // the verified fact base, and this same array feeds the FAQPage JSON-LD in
@@ -571,7 +491,7 @@ export const howIWorkFaqs: { q: string; a: string }[] = [
   },
   {
     q: "Which markets have you worked across?",
-    a: "Ten markets across MENA and South Asia over my career, spanning payments, e-commerce and streaming. At Simpaisa specifically, I run the platform across five regulated frontier markets.",
+    a: `${CAREER.marketsWordCap} markets across MENA and South Asia over my career, spanning payments, e-commerce and streaming. At Simpaisa specifically, I run the platform across ${PLATFORM.marketsWord} regulated frontier markets.`,
   },
   {
     q: "How technical are you?",
@@ -583,7 +503,7 @@ export const howIWorkFaqs: { q: string; a: string }[] = [
   },
   {
     q: "How do you use AI in delivery?",
-    a: "I run four production GenAI systems in a regulated payments environment — merchant-integration support, incident auto-escalation, partner-support automation, and a fraud/AML pilot with a banking partner — plus a multi-agent automation behind my own delivery work.",
+    a: "I run four production GenAI systems in a regulated payments environment — merchant-integration support, incident auto-escalation, partner-support automation, and a fraud/AML pilot with a banking partner.",
   },
   {
     q: "Where are you based and how do you work?",
@@ -593,12 +513,14 @@ export const howIWorkFaqs: { q: string; a: string }[] = [
 
 export function HowIWorkFaq() {
   return (
-    <section className="relative border-t border-rule bg-surface">
+    // No data-glow on the <details> rows: they are flat divider rows (border-b
+    // only, no card surface), so the engine's card bloom doesn't apply.
+    <section className="rz-beam relative border-t border-rule bg-surface">
       <div className="mx-auto max-w-3xl px-5 sm:px-6 py-[var(--space-section-sm)]">
         <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
-          ◆ How I work
+          How I work
         </div>
-        <h2 className="font-instrument text-4xl md:text-6xl text-ink mt-3 leading-[1.05]">
+        <h2 className="font-instrument text-[clamp(2.5rem,5.5vw,5.5rem)] text-ink mt-3 leading-[1.05]">
           <RevealHeading lead="The questions I get" emphasis="most." />
         </h2>
         <div className="mt-10 border-t border-rule">

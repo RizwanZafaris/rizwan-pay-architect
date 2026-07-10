@@ -5,7 +5,7 @@ category: "Merchant Onboarding"
 subcategory: "KYB"
 metaTitle: "KYB Automation Without Blowing Up Risk | Rizwan Zafar"
 metaDescription: "How to automate KYB onboarding for merchants without inflating fraud, sanctions, or default rates, tiering, data sources, and the review queue that scales."
-excerpt: "Automated KYB is not about removing humans. It is about putting them where they actually add risk-adjusted value."
+excerpt: "Automate KYB well and activation drops from weeks to minutes; automate it badly and fraud and default rates climb while nobody watches. The teams that win automate each step to its ceiling and route the rest to a tiered queue."
 publishDate: "2026-05-24"
 readingTime: "9 min read"
 tags: ["KYB", "merchant onboarding", "compliance", "automation"]

@@ -1,11 +1,55 @@
 import { Link, useRouterState } from "@tanstack/react-router";
-import { CalendarDays, Download } from "lucide-react";
+import { CalendarDays, Download, Moon, Sun } from "lucide-react";
 import { profile } from "@/data/profile";
 import { ctaClick, outboundClick, resumeDownload } from "@/lib/analytics";
 import { SocialIconRow } from "@/components/SocialIcons";
 
+/**
+ * Colour-theme toggle.
+ *
+ * Deliberately STATELESS. Reading the current theme into React state would mean
+ * the server renders one icon and the client may render the other — a hydration
+ * mismatch on every load where the visitor's theme differs from the default.
+ * Instead both icons are always in the DOM and CSS picks one off the
+ * `html[data-theme]` attribute (styles.css), so the server never has to know.
+ *
+ * The button is hidden until the bootstrap script adds `.rz-theme-js`: without
+ * JS a theme switch cannot work, and an inert control is worse than none.
+ *
+ * The icon shown is the theme you would switch TO, which is the convention
+ * users expect (sun on a dark page = "go light").
+ */
+function ThemeToggle() {
+  return (
+    <button
+      type="button"
+      data-theme-toggle
+      aria-label="Switch colour theme"
+      title="Switch colour theme"
+      onClick={() => {
+        const el = document.documentElement;
+        const next = el.getAttribute("data-theme") === "light" ? "dark" : "light";
+        // Paint the colour change over --dur-standard instead of snapping. The
+        // class is transient so the transition never taxes ordinary rendering.
+        el.classList.add("rz-theme-switching");
+        window.setTimeout(() => el.classList.remove("rz-theme-switching"), 300);
+        el.setAttribute("data-theme", next);
+        try {
+          localStorage.setItem("rz-theme", next);
+        } catch {
+          /* private mode: the choice simply does not persist */
+        }
+      }}
+      className="inline-flex items-center justify-center w-11 h-11 rounded-full text-ink hover:bg-ink/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+    >
+      <Sun aria-hidden="true" className="rz-theme-icon-sun h-[18px] w-[18px]" />
+      <Moon aria-hidden="true" className="rz-theme-icon-moon h-[18px] w-[18px]" />
+    </button>
+  );
+}
+
 // Brand-rebuild primary nav (strategy doc §3): a narrative scan path that
-// leads with the work and the arc. Order is Work → Journey → Insights →
+// leads with the work and the arc. Order is Work → Journey → Writing →
 // Resume, with the persistent "Book a 15-min intro call" pill carrying the
 // single CTA. (Audit sprint 2026-07, ISSUE-001: Resume promoted into the
 // top bar in place of About; About stays reachable in the footer.)
@@ -22,7 +66,7 @@ import { SocialIconRow } from "@/components/SocialIcons";
 const nav = [
   { to: "/product-work", label: "Work" },
   { to: "/journey", label: "Journey" },
-  { to: "/blog", label: "Insights" },
+  { to: "/blog", label: "Writing" },
   { to: "/resume", label: "Resume" },
   { to: "/for", label: "For recruiters" },
 ] as const;
@@ -104,8 +148,11 @@ export function SiteHeader() {
   const bookingHref = hasLocalEmbed ? "#book" : "/contact/#book";
   return (
     <header className="site-header sticky top-0 z-40 px-3 sm:px-4 pt-3 sm:pt-4">
+      {/* Reading-depth hairline — pure CSS scroll-driven (chrome-next.css);
+          lives inside the header so it paints above the ::before scrim. */}
+      <div className="rz-scroll-progress" aria-hidden="true" />
       <div className="mx-auto max-w-6xl">
-        <div className="flex items-center justify-between gap-3 rounded-full border border-ink/10 bg-background/92 backdrop-blur-xl pl-3 pr-2 py-2 shadow-[0_1px_0_rgba(255,255,255,0.6)_inset,0_8px_30px_-12px_rgba(15,23,42,0.18)]">
+        <div className="header-pill flex items-center justify-between gap-3 rounded-full border border-ink/10 bg-background/92 backdrop-blur-xl pl-3 pr-2 py-2 shadow-[0_1px_0_rgba(255,255,255,0.6)_inset,0_8px_30px_-12px_rgba(15,23,42,0.18)]">
           <Link to="/" className="flex items-center gap-2.5 min-w-0 group">
             <span className="h-8 w-8 shrink-0 rounded-lg bg-ink text-background grid place-items-center font-display text-[13px] font-semibold tracking-tighter">
               RZ
@@ -138,6 +185,7 @@ export function SiteHeader() {
           </nav>
 
           <div className="flex items-center gap-1.5 shrink-0">
+            <ThemeToggle />
             <a
               href={bookingHref}
               aria-label="Book a 15-min intro call"
@@ -262,8 +310,19 @@ export function SiteHeader() {
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-rule mt-32 bg-surface-2/60">
-      <div className="mx-auto max-w-6xl px-6 py-14 grid gap-10 md:grid-cols-4 text-sm">
+    // rz-beam: the engine runs a cyan light along the top border-rule once
+    // when the footer reveals (contract in next.css; observer in __root.tsx).
+    <footer className="site-footer rz-beam relative border-t border-rule mt-32 bg-surface-2/60">
+      {/* Ghost signature — decorative outline name behind the columns.
+          Clipped by its OWN wrapper (not the footer) so footer-link focus
+          rings are never cut. Rise/fade on reveal lives in chrome-next.css. */}
+      <div className="footer-ghost" aria-hidden="true">
+        <span className="footer-ghost-name">Rizwan Zafar</span>
+      </div>
+      <div
+        data-rz-stagger
+        className="footer-cols relative mx-auto max-w-6xl px-6 py-14 grid gap-10 md:grid-cols-4 text-sm"
+      >
         <div className="md:col-span-2">
           <div className="flex items-center gap-2.5">
             <span className="h-8 w-8 rounded-lg bg-ink text-background grid place-items-center font-display text-[13px] font-semibold">
@@ -300,7 +359,7 @@ export function SiteFooter() {
             </li>
             <li>
               <Link to="/blog" className="hover:text-ink text-ink-soft inline-block py-1">
-                <span className="rz-link">Insights</span>
+                <span className="rz-link">Writing</span>
               </Link>
             </li>
             <li>
@@ -362,7 +421,8 @@ export function SiteFooter() {
           </div>
         </div>
       </div>
-      <div className="border-t border-rule">
+      {/* relative: keeps the legal strip painting above the ghost layer */}
+      <div className="relative border-t border-rule">
         <div className="mx-auto max-w-6xl px-6 py-5 text-xs text-ink-soft flex flex-wrap justify-between gap-3 font-mono-tech">
           <span>
             © <span data-current-year>{new Date().getFullYear()}</span> {profile.name} · Dubai, UAE
@@ -386,8 +446,10 @@ export function CampaignHeader() {
   const calendarUrl = profile.calendarUrl;
   return (
     <header className="site-header sticky top-0 z-40 px-3 sm:px-4 pt-3 sm:pt-4">
+      {/* Same scroll-depth chrome as the primary header (chrome-next.css). */}
+      <div className="rz-scroll-progress" aria-hidden="true" />
       <div className="mx-auto max-w-6xl">
-        <div className="flex items-center justify-between gap-3 rounded-full border border-ink/10 bg-background/92 backdrop-blur-xl pl-3 pr-2 py-2 shadow-[0_1px_0_rgba(255,255,255,0.6)_inset,0_8px_30px_-12px_rgba(15,23,42,0.18)]">
+        <div className="header-pill flex items-center justify-between gap-3 rounded-full border border-ink/10 bg-background/92 backdrop-blur-xl pl-3 pr-2 py-2 shadow-[0_1px_0_rgba(255,255,255,0.6)_inset,0_8px_30px_-12px_rgba(15,23,42,0.18)]">
           <Link to="/" className="flex items-center gap-2.5 min-w-0 group">
             <span className="h-8 w-8 shrink-0 rounded-lg bg-ink text-background grid place-items-center font-display text-[13px] font-semibold tracking-tighter">
               RZ
@@ -401,6 +463,8 @@ export function CampaignHeader() {
               </span>
             </span>
           </Link>
+          <div className="flex items-center gap-1.5 shrink-0">
+            <ThemeToggle />
           <a
             href="#book"
             aria-label="Book a 15-min intro call"
@@ -416,6 +480,7 @@ export function CampaignHeader() {
             <CalendarDays aria-hidden="true" className="h-3.5 w-3.5" />
             <span>Book a 15-min intro call</span>
           </a>
+          </div>
         </div>
       </div>
     </header>

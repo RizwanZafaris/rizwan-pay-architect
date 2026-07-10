@@ -3,8 +3,22 @@
 @import "tailwindcss" source(none);
 @source "../src";
 @import "tw-animate-css";
+/* Operator's Console next-gen layer (2026-07-09): shared primitives + per-area
+   files. Unlayered on purpose — interaction states must beat Tailwind utils. */
+@import "./styles/motion.css";
+@import "./styles/next.css";
+@import "./styles/hero-next.css";
+@import "./styles/sections-next.css";
+@import "./styles/chrome-next.css";
+@import "./styles/corridor-map.css";
+/* Last: the zero-specificity focus/press safety net (section 22). Every
+   selector inside is wrapped in :where(), so it can only fill gaps — it never
+   outranks the bespoke rings and card lifts declared above. */
+@import "./styles/focus-press.css";
 
-@custom-variant dark (&:is(.dark *));
+/* Repointed from the dead `.dark` class to the real theme attribute. Dark is
+   the DEFAULT (`:root`), so `dark:` matches unless light is explicitly set. */
+@custom-variant dark (&:where(:root:not([data-theme="light"]) *));
 
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
@@ -39,7 +53,7 @@
   --color-brand: var(--brand);
   --color-brand-foreground: var(--brand-foreground);
   --color-accent-emerald: var(--accent-emerald);
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Geist", ui-sans-serif, system-ui, sans-serif;
   --font-serif: "Source Serif 4", "Source Serif Pro", Georgia, serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
 }
@@ -58,8 +72,11 @@
   --signal: #2dd4bf;   /* THE visible accent: links/rings/brand — cyan-glow, 9.6:1 on base */
   --signal-deep: #0e4f4f;  /* teal-core — gradients & glows ONLY, never text (1.5:1) */
   --signal-soft: #5eead4;  /* hover-bright cyan rim */
-  --rule: rgba(255, 255, 255, 0.1);   /* hairlines */
-  --rule-hi: rgba(255, 255, 255, 0.16);
+  /* Hairlines are INK-derived, not hardcoded white, so they invert with the
+     theme instead of staying white on a light page. Mixed `in srgb` because
+     these are alpha ramps, not perceptual blends. */
+  --rule: color-mix(in srgb, var(--ink) 10%, transparent);   /* hairlines */
+  --rule-hi: color-mix(in srgb, var(--ink) 16%, transparent);
 
   --background: var(--paper);
   --foreground: var(--ink);
@@ -67,40 +84,56 @@
   --surface: var(--paper-2);
   --surface-2: var(--paper-3);
 
-  /* Press Run motion/spacing tokens (redesign 2026-07-08). Two easing curves
-     only; a section-spacing scale assigned by editorial WEIGHT (not uniform)
-     so ten repeated skeletons read as a paced bound volume. */
-  --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
-  --ease-soft: cubic-bezier(0.22, 1, 0.36, 1);
+  /* Press Run spacing tokens (redesign 2026-07-08): a section-spacing scale
+     assigned by editorial WEIGHT (not uniform) so ten repeated skeletons read
+     as a paced bound volume. */
+
+  /* ── Easing: DEPRECATED ALIASES ──────────────────────────────
+     These two once declared their own "two easing curves only" system —
+     in parallel with the *other* two-curve system in styles/motion.css
+     (--ease-out-quart / --ease-in-out-quart). The site therefore ran two
+     competing motion vocabularies: 38 call sites used these, 14 used the
+     sanctioned pair. That is what "no coherent motion system" looks like.
+
+     motion.css is the constitution, so these now alias into it rather than
+     compete with it. Both were ease-out curves, so behaviour is preserved
+     within a few milliseconds of the original feel:
+       expo cubic-bezier(0.16, 1, 0.3,  1)  ─┐
+       soft cubic-bezier(0.22, 1, 0.36, 1)  ─┴→ out-quart (0.25, 1, 0.5, 1)
+
+     Do not use these in new code. Call --ease-out-quart / --ease-in-out-quart
+     directly. They are kept only so the 38 existing call sites resolve, and
+     can be deleted once those are migrated. */
+  --ease-expo: var(--ease-out-quart);
+  --ease-soft: var(--ease-out-quart);
   --space-section-sm: clamp(3.5rem, 6vw, 6rem);
   --space-section-md: clamp(5rem, 9vw, 9rem);
   --space-section-lg: clamp(6.5rem, 12vw, 11rem);
 
-  /* Dark-glassmorphism system (2026-07-09 inversion). Raised panels sit on the
-     near-black base as faint-lit dark glass — white hairline ring, deep black
-     drop shadow, a whisper of cyan tint + top highlight. Blur is budgeted:
-     at most ~1 live backdrop-blur surface per viewport (perf on dark). */
-  --cyan: #2dd4bf;
-  --cyan-edge: #5eead4;
-  --ink-muted-glass: #c9c7c2;   /* light secondary text on dark glass */
-  --glass-fill: rgba(22, 22, 27, 0.55);
-  --glass-fill-hi: rgba(26, 26, 31, 0.68);
-  --glass-fill-solid: rgba(16, 16, 19, 0.92);
-  --glass-body: rgba(12, 12, 15, 0.95);
-  --glass-tint: rgba(45, 212, 191, 0.06);
-  --glass-ring: rgba(255, 255, 255, 0.1);
-  --glass-edge: rgba(255, 255, 255, 0.06);
-  --glass-shadow: 0 1px 2px rgba(0, 0, 0, 0.45), 0 12px 32px rgba(0, 0, 0, 0.5),
-    0 30px 70px -18px rgba(0, 0, 0, 0.6);
-  --glass-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.06);
-  --glass-blur: 14px;
-  --glass-blur-sm: 10px;
-  --glass-blur-lg: 18px;
-  --glass-sat: 1.3;
-  --glass-radius: 16px;
+  /* Raised-surface material (2026-07-10 — promoted from the retired dark-glass
+     system, which shipped zero glass-panel nodes; DESIGN.md bans decorative
+     glassmorphism). Card fill LIFTED from the old rgba(16,16,19,0.92) so panels
+     separate from the near-black page: composited luma ~21.8 vs page ~10.1
+     (was ~15.8, a ~6pt gap that merged in bright rooms). Hairline strengthened
+     0.10 → 0.14 white. Still warm near-black, restrained — not grey. */
+  --surface-raised: rgba(22, 22, 26, 0.95);          /* solid card fill */
+  --surface-raised-hi: rgba(30, 30, 35, 0.72);       /* pillar-card blur fill */
+  /* Ink-derived so they invert with the theme (see --rule). */
+  --surface-raised-edge: color-mix(in srgb, var(--ink) 14%, transparent);
+  --surface-raised-tint: color-mix(in srgb, var(--signal) 6%, transparent);
+  --surface-raised-shadow: 0 1px 2px rgba(0, 0, 0, 0.45),
+    0 12px 32px rgba(0, 0, 0, 0.5), 0 30px 70px -18px rgba(0, 0, 0, 0.6);
+  --surface-raised-highlight: inset 0 1px 0
+    color-mix(in srgb, var(--ink) 6%, transparent);
+  --surface-blur: 14px;
+  /* The one sanctioned live blur: the scrolled header pill (chrome-next.css).
+     Preserves the 18px the deleted --glass-blur-lg carried. */
+  --surface-blur-lg: 18px;
+  --surface-sat: 1.3;
+
+  /* Gradient-mesh substrate drift durations (live: .rz-substrate). */
   --mesh-a: 52s;
   --mesh-b: 67s;
-  --ease-glass: cubic-bezier(0.32, 0.72, 0, 1);
 
   --card: var(--paper);
   --card-foreground: var(--ink);
@@ -122,8 +155,12 @@
   --destructive: oklch(0.65 0.22 27.325);
   --destructive-foreground: var(--paper);
   --border: var(--rule);
-  /* 3:1 non-text contrast for form-field boundaries (was --rule ≈ 1.36:1). */
-  --input: color-mix(in oklab, var(--ink) 35%, var(--paper));
+  /* 3:1 non-text contrast for form-field boundaries (WCAG 1.4.11).
+     Was 35%, which measures 2.42:1 on #0a0a0b — the comment promised 3:1 and
+     the value never delivered it. 41% is exactly 3.00; 43% gives 3.2:1 of
+     margin. Wired to fields in styles/focus-press.css (it was previously
+     defined, exported as --color-input, and applied to nothing). */
+  --input: color-mix(in oklab, var(--ink) 43%, var(--paper));
   --ring: var(--brand);
 
   --chart-1: var(--signal);
@@ -142,33 +179,41 @@
   --sidebar-ring: var(--brand);
 }
 
-.dark {
-  --background: oklch(0.16 0.02 255);
-  --foreground: oklch(0.97 0.005 80);
-  --ink: oklch(0.97 0.005 80);
-  --ink-soft: oklch(0.75 0.01 250);
-  --rule: oklch(0.28 0.02 255);
-  --surface: oklch(0.2 0.025 255);
-  --surface-2: oklch(0.23 0.025 255);
-  --card: oklch(0.2 0.025 255);
-  --card-foreground: var(--ink);
-  --popover: oklch(0.2 0.025 255);
-  --popover-foreground: var(--ink);
-  --primary: oklch(0.97 0.005 80);
-  --primary-foreground: oklch(0.18 0.02 255);
-  --brand: oklch(0.7 0.12 235);
-  --brand-foreground: oklch(0.16 0.02 255);
-  --accent-emerald: oklch(0.7 0.14 165);
-  --secondary: oklch(0.25 0.02 255);
-  --secondary-foreground: var(--ink);
-  --muted: oklch(0.25 0.02 255);
-  --muted-foreground: oklch(0.78 0.012 250);
-  --accent: oklch(0.25 0.02 255);
-  --accent-foreground: var(--ink);
-  --border: var(--rule);
-  /* 3:1 non-text contrast for form-field boundaries (was --rule ≈ 1.36:1). */
-  --input: color-mix(in oklab, var(--ink) 35%, var(--paper));
-  --ring: oklch(0.7 0.12 235);
+/* ============================================================
+   LIGHT THEME
+   `:root` above is the DARK theme (paper = near-black, ink = off-white); that
+   is the brand's default. This block overrides ONLY the primitives. Everything
+   else in the system — --ink-soft, --muted-foreground, --input, --rule,
+   --surface-raised-edge, the chart ramp — is a color-mix of --ink / --paper /
+   --signal, so it recomputes against the light base automatically.
+
+   This replaces a dead `.dark` block: a stale oklch palette from an earlier
+   design that nothing ever applied (no element sets `.dark`, and zero `dark:`
+   utilities exist anywhere in the codebase). It was a decoy — it looked like
+   the site had theming when it had none.
+
+   --signal MUST change. #2dd4bf (cyan) is 9.6:1 on near-black but only ~1.8:1
+   on a light page: unreadable as link text. Light mode uses a deep teal that
+   holds AA against the paper while staying the same hue family.
+   ============================================================ */
+html[data-theme="light"] {
+  color-scheme: light;
+
+  --paper: #faf9f7; /* warm off-white, not #fff */
+  --paper-2: #f2f0ec; /* alt section bg */
+  --paper-3: #ffffff; /* raised panels sit ABOVE the page in light */
+  --ink: #14131a; /* warm near-black */
+
+  --signal: #0d6e64; /* deep teal — AA on --paper as link/CTA text */
+  --signal-deep: #99f6e4; /* light wash: gradients & glows only, never text */
+  --signal-soft: #0f8a7e; /* hover-bright rim */
+
+  /* Raised material inverts: in dark a card is LIGHTER than the page; in light
+     it is whiter and leans on shadow, not on a luminous fill. */
+  --surface-raised: rgba(255, 255, 255, 0.96);
+  --surface-raised-hi: rgba(255, 255, 255, 0.78);
+  --surface-raised-shadow: 0 1px 2px rgba(15, 15, 20, 0.06),
+    0 12px 32px rgba(15, 15, 20, 0.07), 0 30px 70px -18px rgba(15, 15, 20, 0.1);
 }
 
 @layer base {
@@ -671,131 +716,43 @@
     }
   }
 
-  /* Glass panels — base look is opaque-first (safe if blur never applies). */
-  .rz-glass,
-  .rz-glass-lite {
-    position: relative;
-    border-radius: var(--glass-radius);
-    background: var(--glass-fill-solid);
-    border: 1px solid var(--glass-ring);
-    box-shadow: var(--glass-highlight), var(--glass-shadow);
-  }
-  .rz-glass::before,
-  .rz-glass-lite::before {
-    content: "";
-    position: absolute;
-    inset: 0 0 auto 0;
-    height: 32%;
-    border-radius: inherit;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), transparent);
-    pointer-events: none;
-  }
-  .rz-glass--reading,
-  .rz-glass-lite--reading {
-    background: var(--glass-fill-hi);
-  }
-
-  /* Tier A: real blur — only when supported. */
-  @supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-    .rz-glass {
-      background: linear-gradient(135deg, var(--glass-tint), transparent 55%), var(--glass-fill);
-      -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-sat));
-      backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-sat));
-    }
-    .rz-glass--reading {
-      background: linear-gradient(135deg, var(--glass-tint), transparent 55%), var(--glass-fill-hi);
-    }
-    .rz-glass--nav {
-      -webkit-backdrop-filter: blur(var(--glass-blur-lg)) saturate(1.2);
-      backdrop-filter: blur(var(--glass-blur-lg)) saturate(1.2);
-    }
-  }
-
-  /* Mobile / coarse pointer: drop live blur to solid — identical look, no cost. */
-  @media (max-width: 768px), (pointer: coarse) {
-    .rz-glass {
-      -webkit-backdrop-filter: none !important;
-      backdrop-filter: none !important;
-      background: var(--glass-fill-solid) !important;
-    }
-  }
-  @media (prefers-reduced-transparency: reduce) {
-    .rz-glass,
-    .rz-glass-lite {
-      background: var(--glass-fill-solid);
-      -webkit-backdrop-filter: none;
-      backdrop-filter: none;
-    }
-  }
-  @media (forced-colors: active) {
-    .rz-glass,
-    .rz-glass-lite {
-      background: Canvas;
-      border: 1px solid CanvasText;
-      -webkit-backdrop-filter: none;
-      backdrop-filter: none;
-    }
-  }
-
-  /* Glass hover — transform/shadow/border only (never animate blur). */
-  .rz-glass-card {
-    transition:
-      transform 260ms var(--ease-soft),
-      box-shadow 320ms var(--ease-soft),
-      border-color 320ms var(--ease-soft);
-  }
-  .rz-glass-card:hover,
-  .rz-glass-card:focus-within {
-    transform: translateY(-6px);
-    border-color: color-mix(in oklab, var(--signal) 45%, var(--glass-ring));
-    box-shadow:
-      0 30px 60px -24px rgba(0, 0, 0, 0.6),
-      0 0 0 1px rgba(45, 212, 191, 0.25),
-      0 0 32px -8px rgba(45, 212, 191, 0.18);
-  }
+  /* Retired dark-glass panel + hover rules removed 2026-07-10 (shipped zero
+     glass-panel nodes; DESIGN.md bans decorative glassmorphism). The card
+     surfaces below inherit the promoted --surface-raised material directly. */
   @media (prefers-reduced-motion: reduce) {
     .rz-substrate::before,
     .rz-substrate::after {
       animation: none !important;
     }
-    .rz-glass-card {
-      transition: border-color 320ms linear;
-    }
-    .rz-glass-card:hover,
-    .rz-glass-card:focus-within {
-      transform: none;
-      box-shadow: var(--glass-highlight), var(--glass-shadow);
-    }
   }
 
-  /* Apply the light-glass material to the existing card surfaces (CSS-only
-     tiering, no markup change). LITE by default = solid-translucent fill +
-     light ring + layered teal-cast shadow (reads as glass floating over the
-     mesh, zero blur cost). */
+  /* Raised-surface material on the card surfaces (CSS-only tiering, no markup
+     change). Solid lifted fill + strengthened hairline + layered shadow so
+     panels sit clearly above the near-black page. */
   .home-pillar-card,
   .home-card,
   .home-topic-card,
   .case-study-card,
   .case-soft-card,
   .blog-result-card {
-    background: var(--glass-fill-solid);
-    border-color: var(--glass-ring);
-    box-shadow: var(--glass-highlight), var(--glass-shadow);
+    background: var(--surface-raised);
+    border-color: var(--surface-raised-edge);
+    box-shadow: var(--surface-raised-highlight), var(--surface-raised-shadow);
   }
   /* The one live-blur moment: the three "Where I operate" cards actually
      refract the drifting mesh behind them. */
   @supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
     .home-pillar-card {
-      background: linear-gradient(135deg, var(--glass-tint), transparent 55%), var(--glass-fill-hi);
-      -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-sat));
-      backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-sat));
+      background: linear-gradient(135deg, var(--surface-raised-tint), transparent 55%), var(--surface-raised-hi);
+      -webkit-backdrop-filter: blur(var(--surface-blur)) saturate(var(--surface-sat));
+      backdrop-filter: blur(var(--surface-blur)) saturate(var(--surface-sat));
     }
   }
   @media (max-width: 768px), (pointer: coarse) {
     .home-pillar-card {
       -webkit-backdrop-filter: none !important;
       backdrop-filter: none !important;
-      background: var(--glass-fill-solid) !important;
+      background: var(--surface-raised) !important;
     }
   }
 
@@ -1254,12 +1211,15 @@
   .blog-kinetic-label {
     position: absolute;
     top: 50%;
-    left: 0.75rem;
+    /* Flush to the strip's edge: at left:0.75rem the scrolling track showed
+       through the 12px gap beside the opaque chip. The inset lives in the
+       left padding instead, so nothing renders to the label's left. */
+    left: 0;
     z-index: 3;
     transform: translateY(-50%);
     border-right: 1px solid var(--rule);
     background: var(--paper);
-    padding: 0.18rem 0.8rem 0.18rem 0.2rem;
+    padding: 0.18rem 0.8rem 0.18rem 1.25rem;
     color: var(--ink);
     font-family: "JetBrains Mono", ui-monospace, monospace;
     font-size: 0.62rem;
@@ -2512,9 +2472,13 @@
 
 /* ── 2026-07-05 UI/UX audit fixes (unlayered on purpose: targeted overrides) ── */
 
-/* Forced-dark browser modes must not auto-invert the paper palette. */
+/* `color-scheme` now tells the truth. It used to say `light` on a near-black
+   page — a hack to stop forced-dark browser modes auto-inverting the palette.
+   With a real theme system the honest declaration is better: it gives the dark
+   theme dark form controls, scrollbars and UA widgets, and the light override
+   lives in the html[data-theme="light"] block above. */
 :root {
-  color-scheme: light;
+  color-scheme: dark;
 }
 
 /* Brand selection tint. */
@@ -2557,16 +2521,18 @@ textarea:user-invalid {
     animation-name: rz-soft-reveal-lcp;
   }
 
-  /* MPA View Transitions — native crossfade between same-origin navigations.
-     Unsupported browsers ignore the whole block; reduced-motion users never
-     see it. The header keeps its identity across pages. */
-  @view-transition {
-    navigation: auto;
-  }
-  ::view-transition-old(root),
-  ::view-transition-new(root) {
-    animation-duration: 160ms;
-  }
+  /* MPA View Transitions — SINGLE OWNER: src/styles/next.css.
+     This file used to declare a second `@view-transition` block plus
+     `::view-transition-old/new(root) { animation-duration: 160ms }`. Because
+     next.css is @imported ABOVE, that duration silently overrode next.css's
+     own 200ms/320ms — so the site crossfaded at 160ms while two stylesheets
+     each believed they owned the transition, and the spec'd 250ms existed
+     nowhere. Both declarations are deleted; next.css now sets the timing.
+
+     What stays here is the half that does not collide: the shared element.
+     `view-transition-name` makes the header a continuous object across
+     navigations (the morph), rather than something that crossfades with the
+     page. Scoped to no-preference, so reduced-motion visitors never see it. */
   .site-header {
     view-transition-name: site-header;
   }

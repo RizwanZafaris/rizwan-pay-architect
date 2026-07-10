@@ -4,7 +4,7 @@ slug: "project-pangea-stablecoin-fx-settlement"
 category: "Cross-Border Payments"
 metaTitle: "Project Pangea and Stablecoin FX Settlement"
 metaDescription: "Project Pangea shows stablecoin FX needs PvP settlement, ISO 20022, Swift integration, liquidity controls, and bank-grade reconciliation."
-excerpt: "Project Pangea is not just another stablecoin announcement. It is a useful test of whether banks can move FX from T+2 messaging into T+0 payment-versus-payment settlement without losing controls."
+excerpt: "More than 50 banks holding over $10 trillion in assets are testing whether FX can move from T+2 to T+0 without losing the controls the delay quietly buys. Project Pangea's PvP design, on Swift and ISO 20022, is the part worth reading."
 publishDate: "2026-06-24"
 readingTime: "6 min read"
 tags:
