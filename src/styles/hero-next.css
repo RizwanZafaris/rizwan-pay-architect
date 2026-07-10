@@ -28,7 +28,7 @@
        default to 0, so with no script (no-JS, touch, reduced-motion) this
        resolves to translate3d(0,0,0). */
     transform: translate3d(calc(var(--hx, 0) * 6px), calc(var(--hy, 0) * 6px), 0);
-    transition: transform 600ms var(--ease-soft);
+    transition: transform var(--track-lean) var(--ease-out-quart);
   }
 }
 
@@ -37,7 +37,8 @@
    portrait-column width. */
 .rz-rail {
   fill: none;
-  stroke: #fff;
+  /* was #fff — invisible on a light page. Ink-derived so it inverts. */
+  stroke: var(--ink);
   stroke-width: 1;
   stroke-linecap: round;
   stroke-linejoin: round;
@@ -46,7 +47,7 @@
 
 /* Junction nodes — tiny solder points where routes turn. */
 .rz-rail-node {
-  fill: rgba(255, 255, 255, 0.14);
+  fill: color-mix(in srgb, var(--ink) 14%, transparent);
 }
 .rz-rail-node-hot {
   fill: var(--signal);
@@ -101,19 +102,24 @@
   }
 }
 
-/* ---------- Entrance: fade in AFTER the H1 (.rz-hero-go + 420ms) ---------
+/* ---------- Entrance: fade in AFTER the H1 (.rz-hero-go + --hero-count) ---
    Gated on .rz-js so no-JS / reduced-motion / crawler visitors simply see
    the static field — never opacity:0 with no path back. .rz-hero-go lands
    one frame after paint (existing engine contract), so the field starts its
-   fade ~420ms behind the H1, after the line-2 mask-rise has begun. */
+   fade on the --hero-count beat (380ms), after the line-2 mask-rise. */
 .rz-js .rz-rail-field {
   opacity: 0;
 }
+/* Was `opacity 1100ms ... 420ms`, i.e. the rails finished at 1520ms inside a
+   hero sequence that motion.css budgets at 900ms end-to-end. Now it starts on
+   the --hero-count beat (380ms) and completes at 780ms, comfortably inside the
+   budget and landing just before the CTA settles at 640ms + its own fade.
+   The transform is parallax lean, not a state change → --track-lean. */
 .rz-js.rz-hero-go .rz-rail-field {
   opacity: 1;
   transition:
-    opacity 1100ms var(--ease-soft) 420ms,
-    transform 600ms var(--ease-soft);
+    opacity var(--dur-section) var(--ease-out-quart) var(--hero-count),
+    transform var(--track-lean) var(--ease-out-quart);
 }
 
 /* ---------- Cursor parallax depths (vars written by heroParallaxScript) --
@@ -127,13 +133,13 @@
    transform on the inner span, so neither overrides the other. */
 .rz-acc-par {
   transform: translate3d(calc(var(--hx, 0) * 10px), calc(var(--hy, 0) * 10px), 0);
-  transition: transform 600ms var(--ease-soft);
+  transition: transform var(--track-lean) var(--ease-out-quart);
 }
 
 /* Depth 3 — portrait radial glow scrim (±4px), the subtlest layer. */
 .rz-glow-par {
   transform: translate3d(calc(var(--hx, 0) * 4px), calc(var(--hy, 0) * 4px), 0);
-  transition: transform 600ms var(--ease-soft);
+  transition: transform var(--track-lean) var(--ease-out-quart);
 }
 
 /* ---------- Reduced-motion belt ------------------------------------------
