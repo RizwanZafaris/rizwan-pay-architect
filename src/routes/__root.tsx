@@ -180,6 +180,31 @@ document.addEventListener("DOMContentLoaded",function(){var path=location.pathna
 // <CountUp> components never animated in production and the CSS reveals were
 // Chromium-only (animation-timeline). This single inline script drives every
 // reveal from one IntersectionObserver, cross-browser, no hydration needed:
+/* Theme bootstrap. Runs synchronously in <head>, before first paint.
+ *
+ * Precedence: an explicit stored choice wins; otherwise follow the OS. Dark is
+ * the fallback — it is the brand's default palette, and it is what `:root`
+ * carries, so if this script never runs (JS off) the page still renders
+ * correctly in dark rather than half-themed.
+ *
+ * The server cannot know the visitor's theme (no cookie is set), so the SSR
+ * markup has no `data-theme` and this script adds it before paint. React DOES
+ * diff <html> attributes on hydration, so <html> carries
+ * `suppressHydrationWarning` — the standard, and only, way to reconcile a
+ * pre-paint theme script with SSR. The suppression is one level deep: it covers
+ * <html>'s own attributes, not its subtree.
+ *
+ * `rz-theme-js` reveals the toggle. A theme switch is meaningless without JS,
+ * so the control stays hidden rather than sitting there inert.
+ */
+const THEME_STORAGE_KEY = "rz-theme";
+const themeBootstrapScript = `(function(){var e=document.documentElement;var t;try{t=localStorage.getItem('${THEME_STORAGE_KEY}');}catch(_){}
+if(t!=='light'&&t!=='dark'){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches)?'light':'dark';}
+e.setAttribute('data-theme',t);e.classList.add('rz-theme-js');
+try{var m=window.matchMedia('(prefers-color-scheme: light)');var h=function(ev){var s=null;try{s=localStorage.getItem('${THEME_STORAGE_KEY}');}catch(_){}
+if(s==='light'||s==='dark')return;e.setAttribute('data-theme',ev.matches?'light':'dark');};
+if(m.addEventListener)m.addEventListener('change',h);}catch(_){}})();`;
+
 //   1. Adds `.rz-js` to <html> ONLY when motion is allowed (IO supported and
 //      reduced-motion not set) so the CSS hidden state is gated safely — no-JS
 //      and reduced-motion visitors keep content fully visible.
@@ -534,9 +559,16 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    // suppressHydrationWarning: the theme script stamps `data-theme` (and the
+    // reveal engine stamps `.rz-js`) onto <html> before React hydrates. The
+    // server cannot predict either. This suppresses the diff for <html>'s own
+    // attributes only — it does not extend to the subtree.
+    <html lang="en" suppressHydrationWarning>
       <head>
-        {/* Reveal engine first: adds `.rz-js` during head parse so the CSS
+        {/* Theme FIRST — before any stylesheet resolves and before paint, or the
+            page renders in the default (dark) palette and then snaps to light. */}
+        <script dangerouslySetInnerHTML={{ __html: themeBootstrapScript }} />
+        {/* Reveal engine next: adds `.rz-js` during head parse so the CSS
             hidden state is set before the body paints (no flash-of-visible
             then hide). Gated on IO support + reduced-motion inside the script. */}
         <script dangerouslySetInnerHTML={{ __html: rzRevealScript }} />

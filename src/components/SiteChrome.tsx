@@ -1,8 +1,52 @@
 import { Link, useRouterState } from "@tanstack/react-router";
-import { CalendarDays, Download } from "lucide-react";
+import { CalendarDays, Download, Moon, Sun } from "lucide-react";
 import { profile } from "@/data/profile";
 import { ctaClick, outboundClick, resumeDownload } from "@/lib/analytics";
 import { SocialIconRow } from "@/components/SocialIcons";
+
+/**
+ * Colour-theme toggle.
+ *
+ * Deliberately STATELESS. Reading the current theme into React state would mean
+ * the server renders one icon and the client may render the other — a hydration
+ * mismatch on every load where the visitor's theme differs from the default.
+ * Instead both icons are always in the DOM and CSS picks one off the
+ * `html[data-theme]` attribute (styles.css), so the server never has to know.
+ *
+ * The button is hidden until the bootstrap script adds `.rz-theme-js`: without
+ * JS a theme switch cannot work, and an inert control is worse than none.
+ *
+ * The icon shown is the theme you would switch TO, which is the convention
+ * users expect (sun on a dark page = "go light").
+ */
+function ThemeToggle() {
+  return (
+    <button
+      type="button"
+      data-theme-toggle
+      aria-label="Switch colour theme"
+      title="Switch colour theme"
+      onClick={() => {
+        const el = document.documentElement;
+        const next = el.getAttribute("data-theme") === "light" ? "dark" : "light";
+        // Paint the colour change over --dur-standard instead of snapping. The
+        // class is transient so the transition never taxes ordinary rendering.
+        el.classList.add("rz-theme-switching");
+        window.setTimeout(() => el.classList.remove("rz-theme-switching"), 300);
+        el.setAttribute("data-theme", next);
+        try {
+          localStorage.setItem("rz-theme", next);
+        } catch {
+          /* private mode: the choice simply does not persist */
+        }
+      }}
+      className="inline-flex items-center justify-center w-11 h-11 rounded-full text-ink hover:bg-ink/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+    >
+      <Sun aria-hidden="true" className="rz-theme-icon-sun h-[18px] w-[18px]" />
+      <Moon aria-hidden="true" className="rz-theme-icon-moon h-[18px] w-[18px]" />
+    </button>
+  );
+}
 
 // Brand-rebuild primary nav (strategy doc §3): a narrative scan path that
 // leads with the work and the arc. Order is Work → Journey → Writing →
@@ -141,6 +185,7 @@ export function SiteHeader() {
           </nav>
 
           <div className="flex items-center gap-1.5 shrink-0">
+            <ThemeToggle />
             <a
               href={bookingHref}
               aria-label="Book a 15-min intro call"
@@ -418,6 +463,8 @@ export function CampaignHeader() {
               </span>
             </span>
           </Link>
+          <div className="flex items-center gap-1.5 shrink-0">
+            <ThemeToggle />
           <a
             href="#book"
             aria-label="Book a 15-min intro call"
@@ -433,6 +480,7 @@ export function CampaignHeader() {
             <CalendarDays aria-hidden="true" className="h-3.5 w-3.5" />
             <span>Book a 15-min intro call</span>
           </a>
+          </div>
         </div>
       </div>
     </header>
