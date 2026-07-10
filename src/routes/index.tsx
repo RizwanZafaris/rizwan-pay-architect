@@ -31,6 +31,34 @@ import portraitPng from "@/assets/rizwan-zafar-cutout.png";
 import portraitWebp from "@/assets/rizwan-zafar-cutout.webp";
 import portraitWebpSmall from "@/assets/rizwan-zafar-cutout-460.webp";
 
+/* ONE source of truth for the hero portrait's `sizes`, used by BOTH the
+   <source sizes> and the <link rel=preload imageSizes>.
+
+   They used to disagree — preload said "…440px", the picture said
+   "(max-width: 1024px) 44vw, 40vw". At 1440px those resolve to 440px and 576px,
+   which select DIFFERENT srcset candidates, so the browser downloaded the 460w
+   AND the 920w file on every homepage load. The comment above the preload
+   claimed it prevented exactly that.
+
+   The values track the real rendered box: the portrait is height-driven
+   (62svh / 70svh at lg) and the asset ratio is 0.8056, so its width is roughly
+   half the viewport height — ~504px at 1440x900, which 36vw approximates. It is
+   `hidden` below md, hence the 1px hint at the bottom breakpoint. */
+const PORTRAIT_SIZES =
+  "(max-width: 767px) 1px, (max-width: 1023px) 44vw, 36vw";
+const PORTRAIT_MEDIA = "(min-width: 768px)";
+
+/* A `display: none` <img> is still fetched. The portrait is `hidden` below md,
+   so every phone was downloading the 460w cut-out (~44KB) for an image that is
+   never painted. Suppressing the preload is not enough — the element itself has
+   to resolve to something free below the breakpoint.
+
+   When a <source media> matches, the browser uses it and never touches the
+   <img src> fallback. So the first source hands phones a 1x1 transparent GIF:
+   zero network bytes, no layout consequence (the element is display:none). */
+const TRANSPARENT_PIXEL =
+  "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7";
+
 const profilePageJsonLd = {
   "@context": "https://schema.org",
   "@type": "ProfilePage",
@@ -138,10 +166,14 @@ export const Route = createFileRoute("/")({
         rel: "preload",
         as: "image",
         href: portraitWebpSmall,
-        // Match the <picture> selection so retina screens don't fetch both
-        // the 460w preload AND the 920w display asset.
+        // imageSizes MUST be byte-identical to the <picture>'s `sizes`, or the
+        // preload and the display element resolve to different srcset
+        // candidates and the browser downloads both. Hence the shared constant.
         imageSrcSet: `${portraitWebpSmall} 460w, ${portraitWebp} 920w`,
-        imageSizes: "(max-width: 640px) 280px, (max-width: 1024px) 360px, 440px",
+        imageSizes: PORTRAIT_SIZES,
+        // The portrait is `hidden` below md. Preloading it on a phone spends
+        // the LCP budget on an image that is never painted.
+        media: PORTRAIT_MEDIA,
         type: "image/webp",
         fetchPriority: "high",
       },
@@ -453,45 +485,84 @@ function HomePage() {
         <div
           aria-hidden
           className="pointer-events-none absolute inset-0 z-[1]"
+          /* The legibility scrim behind the monument type. Every stop was a
+             hardcoded rgba(10,10,11,...) — the dark page colour — so on a light
+             page it painted a black veil over white type. Now derived from
+             --paper, so the scrim is whatever the page is. */
           style={{
-            background:
-              "linear-gradient(90deg, rgba(10,10,11,0.9) 0%, rgba(10,10,11,0.62) 46%, rgba(10,10,11,0.22) 76%, rgba(10,10,11,0.05) 100%), linear-gradient(180deg, rgba(10,10,11,0.4) 0%, transparent 26%, transparent 70%, rgba(10,10,11,0.85) 100%)",
+            background: [
+              "linear-gradient(90deg," +
+                " color-mix(in srgb, var(--paper) 90%, transparent) 0%," +
+                " color-mix(in srgb, var(--paper) 62%, transparent) 46%," +
+                " color-mix(in srgb, var(--paper) 22%, transparent) 76%," +
+                " color-mix(in srgb, var(--paper) 5%, transparent) 100%)",
+              "linear-gradient(180deg," +
+                " color-mix(in srgb, var(--paper) 40%, transparent) 0%," +
+                " transparent 26%," +
+                " transparent 70%," +
+                " color-mix(in srgb, var(--paper) 85%, transparent) 100%)",
+            ].join(", "),
           }}
         />
 
-        {/* Portrait — no longer a framed column: a cinematic cut-out layer
-            anchored to the stage's bottom-right, BEHIND the monument type
-            (z-0, under the scrim). Eager + high priority: it is part of the
-            first paint. Hidden below md, where type carries the viewport. */}
+        {/* Portrait — a cinematic cut-out layer anchored to the stage's bottom
+            edge, BEHIND the monument type (z-0, under the scrim). Eager + high
+            priority: it is part of the first paint. Hidden below md, where type
+            carries the viewport.
+
+            ALIGNMENT: the outer wrapper repeats the content container's own
+            `mx-auto max-w-[1400px] px-…` so the portrait's right edge lands on
+            exactly the same x as the headline's right edge. It used to be
+            `right-0`, i.e. pinned to the VIEWPORT edge, 20px outside the type
+            grid — and because the cut-out carries only ~19px (2%) of
+            transparent margin beside the subject, his shoulder sat flush
+            against the screen and read as accidentally cropped.
+
+            SIZING: height drives the box (`h-[62svh] w-auto`); the intrinsic
+            928x1152 ratio supplies the width. The old `aspect-[4/5]` fought
+            both the real 0.8056 ratio (a 5px letterbox) and `max-w-[40vw]`
+            (which clamped width, letterboxing again). `max-w-[44vw]` remains
+            only as a guard so a short, wide viewport cannot drive the portrait
+            into the headline. */}
         <div
           data-hero-portrait
-          className="pointer-events-none absolute bottom-0 right-0 z-0 hidden md:block h-[62svh] lg:h-[70svh] aspect-[4/5] max-w-[40vw]"
+          className="pointer-events-none absolute inset-x-0 bottom-0 z-0 hidden md:block"
         >
-          <div
-            aria-hidden
-            className="rz-glow-par pointer-events-none absolute inset-x-[8%] inset-y-[14%] -z-10 rounded-[45%] blur-3xl opacity-70"
-            style={{
-              background:
-                "radial-gradient(60% 60% at 55% 42%, color-mix(in oklab, var(--brand) 24%, transparent), transparent 74%)",
-            }}
-          />
-          <picture>
-            <source
-              type="image/webp"
-              srcSet={`${portraitWebpSmall} 460w, ${portraitWebp} 920w`}
-              sizes="(max-width: 1024px) 44vw, 40vw"
-            />
-            <img
-              src={portraitPng}
-              alt="Portrait of Rizwan Zafar, Chief Product Officer, Payments"
-              width={920}
-              height={1150}
-              loading="eager"
-              decoding="async"
-              fetchPriority="high"
-              className="h-full w-full object-contain object-bottom"
-            />
-          </picture>
+          <div className="mx-auto flex max-w-[1400px] justify-end px-5 sm:px-8 lg:px-12">
+            <div className="relative h-[62svh] lg:h-[70svh]">
+              <div
+                aria-hidden
+                className="rz-glow-par pointer-events-none absolute inset-x-[8%] inset-y-[14%] -z-10 rounded-[45%] blur-3xl opacity-70"
+                style={{
+                  background:
+                    "radial-gradient(60% 60% at 55% 42%, color-mix(in oklab, var(--brand) 24%, transparent), transparent 74%)",
+                }}
+              />
+              <picture>
+                {/* Must come first: below md the portrait is display:none, and a
+                    hidden <img> still downloads. This costs 0 bytes. */}
+                <source media="(max-width: 767px)" srcSet={TRANSPARENT_PIXEL} />
+                <source
+                  type="image/webp"
+                  media={PORTRAIT_MEDIA}
+                  srcSet={`${portraitWebpSmall} 460w, ${portraitWebp} 920w`}
+                  sizes={PORTRAIT_SIZES}
+                />
+                <img
+                  src={portraitPng}
+                  alt="Portrait of Rizwan Zafar, Chief Product Officer, Payments"
+                  /* 928x1152 = the real asset. Was 920x1150, whose 0.800 ratio
+                     disagreed with the file's 0.8056 and letterboxed the top. */
+                  width={928}
+                  height={1152}
+                  loading="eager"
+                  decoding="async"
+                  fetchPriority="high"
+                  className="h-full w-auto max-w-[44vw] object-contain object-bottom"
+                />
+              </picture>
+            </div>
+          </div>
         </div>
 
         {/* ── Monument content: top status rail / full-width H1 / grounded
