@@ -314,7 +314,20 @@ marked.use({
     heading({ tokens, depth }) {
       const text = this.parser.parseInline(tokens);
       const id = slugify(tokens.map((t) => t.raw ?? "").join(""));
-      return `<h${depth} id="${id}">${text}</h${depth}>\n`;
+      // The essay body was the longest static surface on the site: an animated
+      // header and a staggered "related" footer sandwiching a motionless wall
+      // of prose. motion.css defines exactly ONE sanctioned reveal for this —
+      // `.rz-section-head[data-rz-reveal]`, a 14px rise + fade over
+      // --dur-section — and, remarkably, it was applied to zero elements
+      // anywhere in the codebase. This is its canonical home.
+      //
+      // Scoped to depth === 2 on purpose. The renderer handles every depth, and
+      // the contract says SECTION HEADINGS only; letting `###` sub-points rise
+      // too would turn "one beat per argument turn" into "everything moves".
+      // The engine (__root.tsx) already observes [data-rz-reveal], so this adds
+      // no JS, and the reduced-motion / no-JS paths are already covered.
+      const reveal = depth === 2 ? ' data-rz-reveal class="rz-section-head"' : "";
+      return `<h${depth} id="${id}"${reveal}>${text}</h${depth}>\n`;
     },
   },
 });

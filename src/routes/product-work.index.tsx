@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { zodValidator, fallback } from "@tanstack/zod-adapter";
 import { z } from "zod";
 import { caseStudies, caseStudyThumb, type CaseStudy } from "@/data/caseStudies";
-import { compactMetricValue } from "@/lib/case-study-ui";
+import { compactMetricValue, isCompactMetric } from "@/lib/case-study-ui";
 import { profile } from "@/data/profile";
 import { PLATFORM } from "@/content/facts";
 import { absUrl } from "@/lib/seo";
@@ -295,9 +295,12 @@ const PW_FILTER_SCRIPT = `
 })();
 `;
 
+// px-5 at base, not px-4: every other page container on the site opens at
+// px-5 sm:px-6 (about, blog, contact, resume, journey...). This page was the
+// lone px-4, so entering /product-work nudged the content rail 4px left on mobile.
 function ProductWorkIndex() {
   return (
-    <div className="mx-auto max-w-6xl overflow-x-clip px-4 py-12 sm:px-6 sm:py-20">
+    <div className="mx-auto max-w-6xl overflow-x-clip px-5 py-12 sm:px-6 sm:py-20">
       <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
         ◆ Product work
       </div>
@@ -430,7 +433,18 @@ function ProductWorkIndex() {
                 </span>
                 {heroStat && (
                   <div className="mt-4">
-                    <div className="break-words font-instrument italic leading-none tracking-tight text-ink text-4xl sm:text-5xl lg:text-6xl tabular-nums">
+                    {/* A metric that resists compaction (no numeric lede, no
+                        parenthetical to shed) drops a type step rather than
+                        being truncated. compactMetricValue no longer emits an
+                        ellipsis, so the alternative to sizing down would be a
+                        60-character string set at text-6xl. */}
+                    <div
+                      className={`break-words font-instrument italic leading-none tracking-tight text-ink tabular-nums ${
+                        isCompactMetric(compactMetricValue(heroStat))
+                          ? "text-4xl sm:text-5xl lg:text-6xl"
+                          : "text-2xl sm:text-3xl lg:text-4xl"
+                      }`}
+                    >
                       {compactMetricValue(heroStat)}
                     </div>
                     <div className="mt-2 text-[10px] uppercase tracking-[0.22em] text-ink-soft font-mono-tech">

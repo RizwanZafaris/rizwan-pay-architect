@@ -179,9 +179,14 @@ export function ProofBand() {
               tiles therefore must NOT also carry .rz-reveal (double-hide).
               rz-proof-grid hooks the tabular-nums + narrow-width rebalance
               rules in sections-next.css. */}
+          {/* md:grid-cols-4 — `primary` holds exactly 4 stats. This was
+              md:grid-cols-5, and grid-cols-5 compiles to 5 equal fixed tracks,
+              so the four tiles occupied 4/5 of the row and left a dead
+              trailing column: the strip read as left-weighted, and the
+              divide-x hairline stopped short of the right edge. */}
           <div
             data-rz-stagger
-            className="rz-proof-grid grid grid-cols-2 md:grid-cols-5 gap-y-12 md:gap-y-0 md:divide-x md:divide-[color:var(--rule)]"
+            className="rz-proof-grid grid grid-cols-2 md:grid-cols-4 gap-y-12 md:gap-y-0 md:divide-x md:divide-[color:var(--rule)]"
           >
             {primary.map((s) => (
             <div
@@ -264,7 +269,15 @@ const PILLARS = [
 export function IndustryPillars() {
   return (
     <section className="rz-beam relative">
-      <div className="mx-auto max-w-[1400px] px-5 sm:px-8 lg:px-12 py-[var(--space-section-md)]">
+      {/* max-w-6xl px-5 sm:px-6 = the homepage BODY measure. This section used
+          to carry the HERO's measure (max-w-[1400px] px-5 sm:px-8 lg:px-12)
+          while ProofBand above and Selected-work below both sit at 6xl. At
+          1440px that put its left rail ~100px outboard of its neighbours', so
+          the eyebrow and headline visibly jogged sideways mid-scroll — the page
+          read as three templates stitched together. The wide measure belongs to
+          the full-bleed hero alone (the portrait is anchored to it); the body
+          keeps one immovable rail. */}
+      <div className="mx-auto max-w-6xl px-5 sm:px-6 py-[var(--space-section-md)]">
         <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
           ◆ Three industries
         </div>
