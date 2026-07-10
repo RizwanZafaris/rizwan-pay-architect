@@ -25,7 +25,7 @@
   border-radius: inherit;
   pointer-events: none;
   opacity: 0;
-  transition: opacity 260ms var(--ease-soft);
+  transition: opacity var(--dur-standard) var(--ease-out-quart);
   background: radial-gradient(
     340px circle at var(--gx, 50%) var(--gy, 50%),
     rgba(45, 212, 191, 0.1),
@@ -56,30 +56,42 @@
 
 /* ---------- Magnetic CTA (engine writes --mag-x/--mag-y) ---------- */
 @media (hover: hover) and (pointer: fine) {
+  /* Settle-back when the pointer leaves: a real state change, so it takes a
+     real token (220ms -> --dur-standard). */
   .rz-js [data-magnetic] {
     transform: translate3d(var(--mag-x, 0px), var(--mag-y, 0px), 0);
-    transition: transform 220ms var(--ease-soft);
+    transition: transform var(--dur-standard) var(--ease-out-quart);
     will-change: transform;
   }
+  /* While the pointer is captured this is NOT a state change — it is a
+     per-frame tracking smoother (a lerp toward the cursor). Motion tokens
+     describe state transitions, not interpolation, so 60ms/linear stays:
+     a 150ms ease-out here would make the magnet feel like it is dragging
+     on elastic. Documented exception, same class as the map's dashoffset. */
   .rz-js [data-magnetic].rz-mag-live {
-    transition: transform 60ms linear;
+    transition: transform var(--track-magnet) linear;
   }
 }
 
 /* ---------- Staggered child reveals ----------
    Parent carries data-rz-reveal + data-rz-stagger; the engine adds .rz-in
    to the parent; children cascade via --i (set inline per child). */
+/* Aligned to the ONE reveal pattern (motion.css): same 14px rise, same
+   --dur-section, same --ease-out-quart, same 50ms stagger step as
+   `.rz-section-head[data-rz-reveal]`. It previously ran 18px / 600ms / 70ms —
+   a second, near-miss reveal that read as a different designer's hand on the
+   same page. The only thing that distinguishes it now is the per-child delay. */
 .rz-js [data-rz-stagger] > * {
   opacity: 0;
-  transform: translateY(18px);
+  transform: translateY(14px);
 }
 .rz-js [data-rz-stagger].rz-in > * {
   opacity: 1;
   transform: none;
   transition:
-    opacity 600ms var(--ease-expo),
-    transform 600ms var(--ease-expo);
-  transition-delay: calc(var(--i, 0) * 70ms);
+    opacity var(--dur-section) var(--ease-out-quart),
+    transform var(--dur-section) var(--ease-out-quart);
+  transition-delay: calc(var(--i, 0) * var(--stagger-step));
 }
 
 /* ---------- Section beam: light runs the top rule once ---------- */
@@ -104,8 +116,14 @@
     transparent
   );
 }
+/* A one-shot decorative sweep along a section's top rule. It is a travelling
+   highlight, not a state change — but at 1.7s it was the longest thing on the
+   site, outlasting even the corridor map's sanctioned 1200ms. Pulled back to
+   --dur-map so nothing on the page can run longer than the map, and put on the
+   grid (delay 180ms -> 4 x --stagger-step). */
 .rz-js .rz-beam.rz-in::before {
-  animation: rz-beam-run 1.7s var(--ease-soft) 180ms 1 both;
+  animation: rz-beam-run var(--dur-map) var(--ease-out-quart)
+    calc(4 * var(--stagger-step)) 1 both;
 }
 @keyframes rz-beam-run {
   0% {
@@ -124,7 +142,16 @@
   }
 }
 
-/* ---------- Cross-document view transitions (MPA) ---------- */
+/* ---------- Cross-document view transitions (MPA) ----------
+   THE ONLY view-transition declaration on the site. styles.css previously
+   declared a rival @view-transition and forced `animation-duration: 160ms`
+   onto both pseudo-elements; imported later, it won, and the timings below
+   never actually ran. That override is gone — this block is now authoritative
+   and is retimed to the mandated --dur-standard (250ms).
+
+   The shared-element half lives in styles.css: `.site-header` carries a
+   `view-transition-name`, so the header morphs across routes instead of
+   crossfading with the page body. */
 @view-transition {
   navigation: auto;
 }
@@ -140,11 +167,15 @@
     transform: translateY(8px);
   }
 }
+/* 250ms both ways. The incoming page is held back by one --stagger-step so the
+   old and new roots do not double-expose mid-crossfade; 80ms was an off-grid
+   number doing the same job. */
 ::view-transition-old(root) {
-  animation: rz-vt-out 200ms var(--ease-soft) both;
+  animation: rz-vt-out var(--dur-standard) var(--ease-out-quart) both;
 }
 ::view-transition-new(root) {
-  animation: rz-vt-in 320ms var(--ease-expo) 80ms both;
+  animation: rz-vt-in var(--dur-standard) var(--ease-out-quart)
+    var(--stagger-step) both;
 }
 
 /* ---------- Reduced motion: kill the whole layer ---------- */

@@ -36,27 +36,31 @@
       revealed twice by two different systems.
    2. The engine's stagger reveal is a TRANSITION with a per-child
       transition-delay; left in place it would also lag every later
-      hover lift by that delay and stretch it to 600ms. So the ENTRANCE
-      here runs as a backwards-filled animation (same 18px/600ms/70ms
-      grammar as the engine) and the transition is handed back to the
-      hover lift at its original snappy 260ms. */
+      hover lift by that delay. So the ENTRANCE here runs as a
+      backwards-filled animation (the same grammar as the engine) and the
+      transition is handed back to the hover lift.
+
+   All four numbers are now tokens: the entrance matches the ONE reveal
+   pattern (14px / --dur-section / --ease-out-quart / 50ms step) instead of
+   the near-miss 18px/600ms/70ms it used to copy, and the hover lift sits on
+   --dur-standard rather than a bespoke 260ms. */
 .rz-js [data-rz-stagger] > .home-card {
   animation: none;
 }
 .rz-js [data-rz-stagger].rz-in > .home-card {
   transition:
-    transform 260ms var(--ease-soft),
-    border-color 260ms var(--ease-soft),
-    box-shadow 260ms var(--ease-soft),
-    background-color 260ms var(--ease-soft);
+    transform var(--dur-standard) var(--ease-out-quart),
+    border-color var(--dur-standard) var(--ease-out-quart),
+    box-shadow var(--dur-standard) var(--ease-out-quart),
+    background-color var(--dur-standard) var(--ease-out-quart);
   transition-delay: 0ms;
-  animation: rzs-card-in 600ms var(--ease-expo) backwards;
-  animation-delay: calc(var(--i, 0) * 70ms);
+  animation: rzs-card-in var(--dur-section) var(--ease-out-quart) backwards;
+  animation-delay: calc(var(--i, 0) * var(--stagger-step));
 }
 @keyframes rzs-card-in {
   from {
     opacity: 0;
-    transform: translateY(18px);
+    transform: translateY(14px);
   }
   to {
     opacity: 1;

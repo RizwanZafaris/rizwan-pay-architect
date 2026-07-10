@@ -16,12 +16,18 @@
    The pill acknowledges depth: ~19% less vertical padding (8px -> 6.5px),
    a deeper glass fill (92% -> 97% paper + stronger blur/saturation via
    the glass tokens), and a sharper hairline (--rule-hi). */
+/* `padding` is a layout property, which motion.css rule 4 bans. Kept as a
+   documented exception, on the same footing as the map's stroke-dashoffset:
+   this is a ONE-SHOT state change fired when `html.rz-scrolled` flips at the
+   24px threshold — not a scroll-linked animation. The reflow cost is paid once
+   per crossing, is confined to the header's own subtree, and never runs during
+   the scroll frame loop. Retimed 260ms -> --dur-standard. */
 .site-header .header-pill {
   transition:
-    padding 260ms var(--ease-soft),
-    background-color 260ms var(--ease-soft),
-    border-color 260ms var(--ease-soft),
-    box-shadow 260ms var(--ease-soft);
+    padding var(--dur-standard) var(--ease-out-quart),
+    background-color var(--dur-standard) var(--ease-out-quart),
+    border-color var(--dur-standard) var(--ease-out-quart),
+    box-shadow var(--dur-standard) var(--ease-out-quart);
 }
 html.rz-scrolled .site-header .header-pill {
   padding-top: 0.40625rem; /* 6.5px, down from py-2's 8px */
@@ -120,12 +126,16 @@ html.rz-scrolled .site-header .header-pill {
   opacity: 0;
   transform: translate(-50%, 30px);
 }
+/* Retimed 1100ms -> --dur-section. motion.css rule 5 allows nothing over 400ms
+   except the map (1200ms) and the hero sequence (900ms); the footer signature
+   was claiming a third exception it was never granted. The 150ms delay is legal:
+   it is exactly 3 x --stagger-step. */
 .rz-js .site-footer.rz-in .footer-ghost-name {
   opacity: 1;
   transform: translate(-50%, 0);
   transition:
-    opacity 1100ms var(--ease-expo) 150ms,
-    transform 1100ms var(--ease-expo) 150ms;
+    opacity var(--dur-section) var(--ease-out-quart) calc(3 * var(--stagger-step)),
+    transform var(--dur-section) var(--ease-out-quart) calc(3 * var(--stagger-step));
 }
 
 /* Room to breathe: the columns block reserves extra bottom padding at
