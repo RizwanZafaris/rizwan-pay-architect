@@ -5,8 +5,16 @@
   <link>https://rzifi.com/blog/</link>
   <description>Essays on payment infrastructure, fintech product, risk, settlement, AI and program leadership.</description>
   <language>en</language>
-  <lastBuildDate>Thu, 09 Jul 2026 10:19:29 GMT</lastBuildDate>
+  <lastBuildDate>Fri, 10 Jul 2026 01:08:36 GMT</lastBuildDate>
   <item>
+    <title>SWIFT Messaging Formats: MT vs MX (and Why It Matters Now)</title>
+    <link>https://rzifi.com/blog/swift-messaging-formats-mt-vs-mx/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/swift-messaging-formats-mt-vs-mx/</guid>
+    <pubDate>Fri, 10 Jul 2026 00:00:00 GMT</pubDate>
+    <category>Cross-Border Payments</category>
+    <description>MT is the legacy SWIFT format. MX is the ISO 20022 successor. What changes, what stays, and what product teams must understand.</description>
+  </item>
+<item>
     <title>Baringa&apos;s UK Payments Migration Shows Why Delivery Gates Matter</title>
     <link>https://rzifi.com/blog/baringa-uk-payments-migration-delivery-gates/</link>
     <guid isPermaLink="true">https://rzifi.com/blog/baringa-uk-payments-migration-delivery-gates/</guid>
@@ -237,14 +245,6 @@
     <pubDate>Fri, 26 Jun 2026 00:00:00 GMT</pubDate>
     <category>Product Management</category>
     <description>GoCardless and Sequence&apos;s native Direct Debit integration shows why billing, collection, retries, and cash timing are product work.</description>
-  </item>
-<item>
-    <title>Lean and Ziina Turn UAE Pay by Bank Into a Checkout Test</title>
-    <link>https://rzifi.com/blog/lean-ziina-uae-one-tap-pay-by-bank/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/lean-ziina-uae-one-tap-pay-by-bank/</guid>
-    <pubDate>Fri, 26 Jun 2026 00:00:00 GMT</pubDate>
-    <category>Payments Strategy</category>
-    <description>Lean and Ziina&apos;s UAE one-tap Pay by Bank launch shows how Open Finance will be judged by conversion, trust, and settlement ops.</description>
   </item>
 </channel>
 </rss>
