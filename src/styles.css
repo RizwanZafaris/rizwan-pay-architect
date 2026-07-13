@@ -2627,6 +2627,55 @@ textarea:user-invalid {
   letter-spacing: -0.01em;
 }
 
+/* Keep privacy choice visible without letting the consent surface consume the
+   entire first mobile viewport. The two decisive actions share one row; the
+   granular preferences action remains full-width directly below. */
+@media (max-width: 420px) {
+  #cc-main {
+    --cc-modal-margin: 0.5rem;
+  }
+
+  #cc-main .cm__texts {
+    padding-top: 0.75rem;
+  }
+
+  #cc-main .cm__title {
+    font-size: 1rem;
+  }
+
+  #cc-main .cm__title + .cm__desc {
+    margin-top: 0.65rem;
+  }
+
+  #cc-main .cm__desc {
+    font-size: 0.82em;
+    line-height: 1.4;
+    padding-bottom: 0.75rem;
+  }
+
+  #cc-main .cm__btns {
+    padding: 0.75rem 0.9rem !important;
+  }
+
+  #cc-main .cm__btn-group:first-child {
+    display: grid !important;
+    flex-direction: initial !important;
+    gap: 0.375rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  #cc-main .cm__btn-group:first-child .cm__btn {
+    font-size: 0.76em;
+    margin: 0 !important;
+    min-width: 0 !important;
+    padding-inline: 0.5em;
+  }
+
+  #cc-main .cm__btn-group + .cm__btn-group {
+    margin-top: 0.375rem !important;
+  }
+}
+
 /* ============ SOBER MICRO-MOTION (2026-07-09, unlayered so it wins over
    Tailwind utilities + @layer utilities). Pure CSS, one easing curve, cyan
    accent only. No hidden state → no-JS unaffected; reduced-motion neutralised

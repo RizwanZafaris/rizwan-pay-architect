@@ -41,17 +41,17 @@ import portraitWebpSmall from "@/assets/rizwan-zafar-cutout-460.webp";
    claimed it prevented exactly that.
 
    The values track the real rendered box: the portrait is height-driven
-   (62svh / 70svh at lg) and the asset ratio is 0.8056, so its width is roughly
-   half the viewport height — ~504px at 1440x900, which 36vw approximates. It is
-   `hidden` below md, hence the 1px hint at the bottom breakpoint. */
+   (70svh at lg) and the asset ratio is 0.8056, so its width is roughly half the
+   viewport height. It is hidden below lg so tablet copy owns the composition;
+   compact laptops use 44vw and wider screens settle at 36vw. */
 const PORTRAIT_SIZES =
-  "(max-width: 767px) 1px, (max-width: 1023px) 44vw, 36vw";
-const PORTRAIT_MEDIA = "(min-width: 768px)";
+  "(max-width: 1023px) 1px, (max-width: 1279px) 44vw, 36vw";
+const PORTRAIT_MEDIA = "(min-width: 1024px)";
 
-/* A `display: none` <img> is still fetched. The portrait is `hidden` below md,
-   so every phone was downloading the 460w cut-out (~44KB) for an image that is
-   never painted. Suppressing the preload is not enough — the element itself has
-   to resolve to something free below the breakpoint.
+/* A `display: none` <img> is still fetched. The portrait is `hidden` below lg,
+   so phones and tablets should not download the 460w cut-out for an image that
+   is never painted. Suppressing the preload is not enough — the element itself
+   has to resolve to something free below the breakpoint.
 
    When a <source media> matches, the browser uses it and never touches the
    <img src> fallback. So the first source hands phones a 1x1 transparent GIF:
@@ -118,8 +118,8 @@ export const Route = createFileRoute("/")({
         // candidates and the browser downloads both. Hence the shared constant.
         imageSrcSet: `${portraitWebpSmall} 460w, ${portraitWebp} 920w`,
         imageSizes: PORTRAIT_SIZES,
-        // The portrait is `hidden` below md. Preloading it on a phone spends
-        // the LCP budget on an image that is never painted.
+        // The portrait is `hidden` below lg. Preloading it on a phone or tablet
+        // spends the LCP budget on an image that is never painted.
         media: PORTRAIT_MEDIA,
         type: "image/webp",
         fetchPriority: "high",
@@ -319,7 +319,7 @@ function HomePage() {
 
         {/* Portrait — a cinematic cut-out layer anchored to the stage's bottom
             edge, BEHIND the monument type (z-0, under the scrim). Eager + high
-            priority: it is part of the first paint. Hidden below md, where type
+            priority: it is part of the first paint. Hidden below lg, where type
             carries the viewport.
 
             ALIGNMENT: the outer wrapper repeats the content container's own
@@ -338,7 +338,7 @@ function HomePage() {
             into the headline. */}
         <div
           data-hero-portrait
-          className="pointer-events-none absolute inset-x-0 bottom-0 z-0 hidden md:block"
+          className="pointer-events-none absolute inset-x-0 bottom-0 z-0 hidden lg:block"
         >
           <div className="mx-auto flex max-w-[1400px] justify-end px-5 sm:px-8 lg:px-12">
             <div className="relative h-[62svh] lg:h-[70svh]">
@@ -351,9 +351,9 @@ function HomePage() {
                 }}
               />
               <picture>
-                {/* Must come first: below md the portrait is display:none, and a
+                {/* Must come first: below lg the portrait is display:none, and a
                     hidden <img> still downloads. This costs 0 bytes. */}
-                <source media="(max-width: 767px)" srcSet={TRANSPARENT_PIXEL} />
+                <source media="(max-width: 1023px)" srcSet={TRANSPARENT_PIXEL} />
                 <source
                   type="image/webp"
                   media={PORTRAIT_MEDIA}
@@ -446,7 +446,7 @@ function HomePage() {
               <p
                 data-hero-in
                 style={{ ["--i" as string]: 1 }}
-                className="max-w-xl text-[15px] leading-[1.6] text-ink-soft md:text-base"
+                className="max-w-xl text-[15px] leading-[1.6] text-ink-soft md:text-base lg:max-w-[28rem] xl:max-w-xl"
               >
                 Product &amp; program executive with{" "}
                 <span className="text-ink font-medium">
