@@ -112,20 +112,21 @@ const probes: Probe[] = [
   // http MUST 301 to https. Apex-host stays the same.
   { name: "http → https", url: `${HTTP_ORIGIN}/`, expect: "redirect", required: true },
 
-  // Legacy profile URL redirects to the resume page.
+  // About is a first-class portfolio page. The bare path should normalize to
+  // the canonical trailing-slash URL, and the canonical route must serve 200.
   {
-    name: "/about → /resume/",
+    name: "/about → /about/",
     url: `${APEX_ORIGIN}/about`,
     expect: "redirect",
     required: true,
-    expectRedirectTo: `${APEX_ORIGIN}/resume/`,
+    expectRedirectTo: `${APEX_ORIGIN}/about/`,
   },
   {
-    name: "/about/ → /resume/",
+    name: "/about/",
     url: `${APEX_ORIGIN}/about/`,
-    expect: "redirect",
+    expect: 200,
     required: true,
-    expectRedirectTo: `${APEX_ORIGIN}/resume/`,
+    matchBody: /About Rizwan Zafar/i,
   },
 
   // Core SEO assets.

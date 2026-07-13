@@ -81,59 +81,6 @@ const faqJsonLd = {
   })),
 };
 
-const heroScrambleScript = `
-(() => {
-  if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-  const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789$+";
-  const nodes = document.querySelectorAll("[data-text-scramble]");
-  const scramble = (node, delay = 0) => {
-    const finalText = node.getAttribute("data-text-scramble") || node.textContent || "";
-    const letters = Array.from(finalText);
-    const duration = 560;
-    window.setTimeout(() => {
-      const startedAt = performance.now();
-      const timer = window.setInterval(() => {
-        const progress = Math.min((performance.now() - startedAt) / duration, 1);
-        const revealed = Math.floor(progress * (letters.length + 1));
-        node.textContent = letters
-          .map((char, index) => {
-            if (char === " ") return char;
-            if (index < revealed) return char;
-            return alphabet[Math.floor(Math.random() * alphabet.length)] || char;
-          })
-          .join("");
-        if (progress >= 1) {
-          window.clearInterval(timer);
-          node.textContent = finalText;
-        }
-      }, 38);
-    }, delay);
-  };
-
-  nodes.forEach((node, index) => {
-    scramble(node, 260 + index * 90);
-    node.addEventListener("mouseenter", () => scramble(node));
-    node.addEventListener("focus", () => scramble(node));
-  });
-})();
-`;
-
-// Hero eyebrow typewriter — cycles the label phrases after the ◆ signature
-// glyph (which stays fixed). Vanilla, no-JS/reduced-motion safe: the first
-// phrase is the static default and the effect simply never starts.
-const heroTypewriterScript = `(function(){function init(){try{
-if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
-var el=document.querySelector('[data-typewriter]');if(!el)return;
-var phrases=(el.getAttribute('data-typewriter')||'').split('|').filter(Boolean);if(phrases.length<2)return;
-var pi=0,ci=phrases[0].length,del=false;
-function tick(){var cur=phrases[pi];
-if(!del){ci++;el.textContent=cur.slice(0,ci);if(ci>=cur.length){del=true;setTimeout(tick,2800);return;}}
-else{ci--;el.textContent=cur.slice(0,ci);if(ci<=0){del=false;pi=(pi+1)%phrases.length;setTimeout(tick,340);return;}}
-setTimeout(tick,del?26:64);}
-setTimeout(tick,2800);
-}catch(e){}}
-if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();})();`;
-
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
@@ -182,9 +129,6 @@ export const Route = createFileRoute("/")({
     scripts: [
       { type: "application/ld+json", children: JSON.stringify(profilePageJsonLd) },
       { type: "application/ld+json", children: JSON.stringify(faqJsonLd) },
-      { children: heroScrambleScript },
-      { children: heroCanvasScript },
-      { children: heroTypewriterScript },
     ],
   }),
   component: HomePage,
@@ -199,105 +143,6 @@ function pickSeed(s: string) {
   return h;
 }
 
-// Client half of the picks rotation: sets the active 8-hour slot on the side
-// list so the CSS below reveals that slot's alternates. Runs without
-// hydration (same inline-script pattern as the rest of the site); no-JS
-// visitors keep the build-time slot.
-// Hero atmosphere — a WebGL2 fragment shader (Matthias Hurrle's fbm "cosmic
-// clouds", recoloured to the brand: a light paper base with slow flowing teal
-// nebula + soft glow, kept subtle so the ink H1 stays readable). Ported to
-// vanilla WebGL2 (no React) for the hydration-stripped build. Decorative +
-// aria-hidden, LCP-safe: lazy-inits on the hero canvas, pauses when the hero
-// scrolls out of view and when the tab is hidden, caps DPR, and is skipped
-// under reduced-motion / when WebGL2 is unavailable (the CSS gradient remains
-// the static fallback). Zero dependencies.
-const heroCanvasScript = `(function(){function init(){try{
-var c=document.querySelector('[data-hero-canvas]');if(!c)return;
-if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
-var gl=c.getContext('webgl2',{antialias:true,alpha:false});if(!gl)return;
-var VS='#version 300 es\\nprecision highp float;\\nin vec4 position;void main(){gl_Position=position;}';
-var FS='#version 300 es\\n'+
-'precision highp float;\\n'+
-'out vec4 O;\\n'+
-'uniform vec2 resolution;\\n'+
-'uniform float time;\\n'+
-/* 21st.dev shader-background port (plasma lines + light dots riding them),
-   recolored: purple/indigo -> brand teal/cyan on warm near-black. Grid
-   branch of the original removed (unused). Lines read as living payment
-   rails behind the monument type. */
-'const float overallSpeed=0.2;\\n'+
-'const float gridSmoothWidth=0.015;\\n'+
-'const float minLineWidth=0.01;\\n'+
-'const float maxLineWidth=0.2;\\n'+
-'const float lineSpeed=1.0*overallSpeed;\\n'+
-'const float lineAmplitude=1.0;\\n'+
-'const float lineFrequency=0.2;\\n'+
-'const float warpSpeed=0.2*overallSpeed;\\n'+
-'const float warpFrequency=0.5;\\n'+
-'const float warpAmplitude=1.0;\\n'+
-'const float offsetFrequency=0.5;\\n'+
-'const float offsetSpeed=1.33*overallSpeed;\\n'+
-'const float minOffsetSpread=0.6;\\n'+
-'const float maxOffsetSpread=2.0;\\n'+
-'const int linesPerGroup=16;\\n'+
-'const vec4 lineColor=vec4(0.11,0.52,0.47,1.0);\\n'+
-'const vec4 bgColor1=vec4(0.039,0.039,0.043,1.0);\\n'+
-'const vec4 bgColor2=vec4(0.045,0.106,0.104,1.0);\\n'+
-'#define drawCircle(pos,radius,coord) smoothstep(radius+gridSmoothWidth,radius,length(coord-(pos)))\\n'+
-'#define drawSmoothLine(pos,halfWidth,t) smoothstep(halfWidth,0.0,abs(pos-(t)))\\n'+
-'#define drawCrispLine(pos,halfWidth,t) smoothstep(halfWidth+gridSmoothWidth,halfWidth,abs(pos-(t)))\\n'+
-'float random(float t){return (cos(t)+cos(t*1.3+1.3)+cos(t*1.4+1.4))/3.0;}\\n'+
-'float getPlasmaY(float x,float horizontalFade,float offset){return random(x*lineFrequency+time*lineSpeed)*horizontalFade*lineAmplitude+offset;}\\n'+
-'void main(void){\\n'+
-'vec2 fragCoord=gl_FragCoord.xy;\\n'+
-'vec2 uv=fragCoord.xy/resolution.xy;\\n'+
-'vec2 space=(fragCoord-resolution.xy/2.0)/resolution.x*2.0*5.0;\\n'+
-'float horizontalFade=1.0-(cos(uv.x*6.28)*0.5+0.5);\\n'+
-'float verticalFade=1.0-(cos(uv.y*6.28)*0.5+0.5);\\n'+
-'space.y+=random(space.x*warpFrequency+time*warpSpeed)*warpAmplitude*(0.5+horizontalFade);\\n'+
-'space.x+=random(space.y*warpFrequency+time*warpSpeed+2.0)*warpAmplitude*horizontalFade;\\n'+
-'vec4 lines=vec4(0.0);\\n'+
-'for(int l=0;l<linesPerGroup;l++){\\n'+
-'float normalizedLineIndex=float(l)/float(linesPerGroup);\\n'+
-'float offsetTime=time*offsetSpeed;\\n'+
-'float offsetPosition=float(l)+space.x*offsetFrequency;\\n'+
-'float rand=random(offsetPosition+offsetTime)*0.5+0.5;\\n'+
-'float halfWidth=mix(minLineWidth,maxLineWidth,rand*horizontalFade)/2.0;\\n'+
-'float offset=random(offsetPosition+offsetTime*(1.0+normalizedLineIndex))*mix(minOffsetSpread,maxOffsetSpread,horizontalFade);\\n'+
-'float linePosition=getPlasmaY(space.x,horizontalFade,offset);\\n'+
-'float line=drawSmoothLine(linePosition,halfWidth,space.y)/2.0+drawCrispLine(linePosition,halfWidth*0.15,space.y);\\n'+
-'float circleX=mod(float(l)+time*lineSpeed,25.0)-12.0;\\n'+
-'vec2 circlePosition=vec2(circleX,getPlasmaY(circleX,horizontalFade,offset));\\n'+
-'float circle=drawCircle(circlePosition,0.01,space)*4.0;\\n'+
-'line=line+circle;\\n'+
-'lines+=line*lineColor*rand;}\\n'+
-'vec4 col=mix(bgColor1,bgColor2,uv.x);\\n'+
-'col*=(0.55+0.45*verticalFade);\\n'+
-'col+=lines*0.85;\\n'+
-/* cyan lift on the brightest cores so dots read as signal, then a radial
-   vignette drops the corners to ink for the monument type contrast. */
-'col.rgb+=vec3(0.176,0.831,0.749)*clamp(lines.g-0.55,0.0,1.0)*0.5;\\n'+
-'vec2 cuv=(fragCoord-0.5*resolution.xy)/min(resolution.x,resolution.y);\\n'+
-'float vig=smoothstep(1.42,0.2,length(cuv));\\n'+
-'col.rgb=mix(bgColor1.rgb,col.rgb,vig);\\n'+
-'O=vec4(col.rgb,1.0);}';
-function sh(t,s){var o=gl.createShader(t);gl.shaderSource(o,s);gl.compileShader(o);if(!gl.getShaderParameter(o,gl.COMPILE_STATUS)){return null;}return o;}
-var vs=sh(gl.VERTEX_SHADER,VS),fs=sh(gl.FRAGMENT_SHADER,FS);if(!vs||!fs)return;
-var pr=gl.createProgram();gl.attachShader(pr,vs);gl.attachShader(pr,fs);gl.linkProgram(pr);if(!gl.getProgramParameter(pr,gl.LINK_STATUS))return;gl.useProgram(pr);
-var b=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,b);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,1,-1,-1,1,1,1,-1]),gl.STATIC_DRAW);
-var loc=gl.getAttribLocation(pr,'position');gl.enableVertexAttribArray(loc);gl.vertexAttribPointer(loc,2,gl.FLOAT,false,0,0);
-var uR=gl.getUniformLocation(pr,'resolution'),uT=gl.getUniformLocation(pr,'time');
-function rs(){var d=Math.min(window.devicePixelRatio||1,1.5);var w=Math.max(1,(c.clientWidth*d)|0),h=Math.max(1,(c.clientHeight*d)|0);if(c.width!==w||c.height!==h){c.width=w;c.height=h;gl.viewport(0,0,w,h);}}
-var raf=0,run=false,st=null;
-function fr(ts){if(!run)return;if(st===null)st=ts;rs();gl.uniform2f(uR,c.width,c.height);gl.uniform1f(uT,(ts-st)/1000);gl.drawArrays(gl.TRIANGLE_STRIP,0,4);raf=requestAnimationFrame(fr);}
-function play(){if(run)return;run=true;raf=requestAnimationFrame(fr);}
-function stop(){run=false;cancelAnimationFrame(raf);}
-var rt;window.addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(rs,180);});
-var io=new IntersectionObserver(function(e){if(e[0]&&e[0].isIntersecting)play();else stop();},{threshold:0.01});io.observe(c);
-document.addEventListener('visibilitychange',function(){if(document.hidden)stop();else if(c.getBoundingClientRect().bottom>0)play();});
-}catch(e){}}
-if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();})();`;
-
 const picksRotationScript = `!function(){try{var s=Math.floor(new Date().getUTCHours()/8);var el=document.querySelector("[data-picks-list]");if(el)el.setAttribute("data-pick-slot",String(s))}catch(e){}}();`;
 
 const picksRotationCss = `
@@ -306,28 +151,6 @@ const picksRotationCss = `
 [data-picks-list][data-pick-slot="1"] [data-pick-alt="1"],
 [data-picks-list][data-pick-slot="2"] [data-pick-alt="2"]{display:grid}
 `;
-
-// Hero cursor parallax — writes normalized --hx/--hy (-1..1, centered) onto
-// the hero stage so hero-next.css can "lean" the decorative depth layers
-// (rail field ±6px, plus-accents ±10px, portrait glow ±4px). Vanilla inline
-// script (no hydration), pointer-fine + hover only, reduced-motion off,
-// passive listener, rAF-throttled with a single rect read per frame. Never
-// touches the H1 or any text — CSS only transforms aria-hidden layers.
-const heroParallaxScript = `(function(){function init(){try{
-if(!window.matchMedia)return;
-if(!matchMedia('(hover: hover) and (pointer: fine)').matches)return;
-if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
-var st=document.querySelector('[data-hero-stage]');if(!st)return;
-var px=0,py=0,raf=0;
-function apply(){raf=0;var r=st.getBoundingClientRect();if(!r.width||!r.height)return;
-var x=Math.max(-1,Math.min(1,((px-r.left)/r.width)*2-1));
-var y=Math.max(-1,Math.min(1,((py-r.top)/r.height)*2-1));
-st.style.setProperty('--hx',x.toFixed(3));st.style.setProperty('--hy',y.toFixed(3));}
-st.addEventListener('pointermove',function(e){px=e.clientX;py=e.clientY;if(!raf)raf=requestAnimationFrame(apply);},{passive:true});
-st.addEventListener('pointerleave',function(){if(raf){cancelAnimationFrame(raf);raf=0;}
-st.style.setProperty('--hx','0');st.style.setProperty('--hy','0');},{passive:true});
-}catch(e){}}
-if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();})();`;
 
 // Real architecture drawings, one per featured case. These SVGs are the
 // artefacts of the work (named rails, named partners, real flows) and had been
@@ -435,20 +258,9 @@ function HomePage() {
       <style dangerouslySetInnerHTML={{ __html: homeSectionsCss }} />
       {/* ============ HERO ============ */}
       <section className="home-signal-field relative overflow-hidden border-b border-rule">
-        {/* Hero stage — bounds the WebGL nebula to the hero viewport only (the
-            home-signal-field section wraps later blocks too, so an unbounded
-            canvas would render a full-page-tall shader). data-hero-stage is
-            the cursor-parallax host: heroParallaxScript writes --hx/--hy here
-            and hero-next.css leans the decorative layers off those vars. */}
-        <div className="relative overflow-hidden" data-hero-stage>
-        <script dangerouslySetInnerHTML={{ __html: heroParallaxScript }} />
-        {/* WebGL atmosphere backdrop — flowing brand-teal light (heroCanvasScript).
-            Behind the grid + content; decorative, LCP-safe, reduced-motion-off. */}
-        <canvas
-          data-hero-canvas
-          aria-hidden
-          className="pointer-events-none absolute inset-0 -z-20 h-full w-full"
-        />
+        {/* Hero stage: a restrained CSS/SVG signal field keeps the opening
+            visually alive without pointer-tracking or continuous WebGL work. */}
+        <div className="relative overflow-hidden">
         {/* Payment-rail field — now a full-bleed stage layer (v2 monument
             hero): faint circuit routes with cyan pulses travelling them,
             scaled-and-cropped by preserveAspectRatio slice. The pulses'
@@ -583,12 +395,7 @@ function HomePage() {
               <span className="home-rule-animate h-px w-10 bg-[var(--brand)]" />
               <span className="text-[10px] uppercase tracking-[0.32em] text-[var(--brand)] font-mono-tech font-semibold">
                 ◆{" "}
-                <span data-typewriter="Product · Program · Payments|Frontier markets · Scale|Fintech · Infrastructure">
-                  Product · Program · Payments
-                </span>
-                <span className="rz-caret" aria-hidden>
-                  |
-                </span>
+                <span>Product · Program · Payments</span>
               </span>
             </span>
             <span className="hidden sm:inline-flex items-center gap-6 text-[10px] uppercase tracking-[0.22em] text-ink-soft font-mono-tech">
@@ -596,7 +403,7 @@ function HomePage() {
               <span className="inline-flex items-center gap-2">
                 <span
                   aria-hidden
-                  className="h-1.5 w-1.5 rounded-full bg-[var(--brand)] animate-pulse"
+                  className="h-1.5 w-1.5 rounded-full bg-[var(--brand)]"
                 />
                 Open to senior roles
               </span>
@@ -621,11 +428,7 @@ function HomePage() {
             <span className="block rz-line-clip">
               <span className="rz-line-rise">
                 most operators{" "}
-                <span
-                  className="text-scramble italic text-[var(--brand)]"
-                  data-text-scramble="avoid."
-                  tabIndex={0}
-                >
+                <span className="italic text-[var(--brand)]">
                   avoid.
                 </span>
               </span>
@@ -662,20 +465,6 @@ function HomePage() {
                 style={{ ["--i" as string]: 2 }}
                 className="mt-4 flex flex-col gap-2.5 sm:flex-row sm:flex-wrap sm:items-center"
               >
-                <a
-                  href="/contact/#book"
-                  data-magnetic
-                  data-analytics-event="cta_click"
-                  data-analytics-cta-id="book_intro_call"
-                  data-analytics-cta-location="hero"
-                  data-analytics-cta-destination="/contact/#book"
-                  className="rz-cta-primary group inline-flex h-12 items-center justify-center gap-2 rounded-full px-6 text-base font-medium text-background bg-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background transition-colors"
-                >
-                  Book a 15-min intro call
-                  <span className="transition-transform group-hover:translate-x-1" aria-hidden>
-                    →
-                  </span>
-                </a>
                 <Link
                   to="/product-work"
                   data-analytics-event="cta_click"
@@ -683,10 +472,23 @@ function HomePage() {
                   data-analytics-cta-location="hero"
                   data-analytics-cta-destination="/product-work"
                   onClick={() => ctaClick("see_case_studies", "hero", "/product-work")}
-                  className="inline-flex h-12 items-center justify-center gap-2 rounded-full px-6 text-base text-ink border border-ink/20 hover:border-ink/50 hover:bg-ink/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background transition-colors"
+                  className="rz-cta-primary group inline-flex h-12 items-center justify-center gap-2 rounded-full px-6 text-base font-medium text-background bg-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background transition-colors"
                 >
                   See the work
+                  <span className="transition-transform group-hover:translate-x-1" aria-hidden>
+                    →
+                  </span>
                 </Link>
+                <a
+                  href="/contact/#book"
+                  data-analytics-event="cta_click"
+                  data-analytics-cta-id="book_intro_call"
+                  data-analytics-cta-location="hero"
+                  data-analytics-cta-destination="/contact/#book"
+                  className="inline-flex h-12 items-center justify-center gap-2 rounded-full px-6 text-base text-ink border border-ink/20 hover:border-ink/50 hover:bg-ink/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background transition-colors"
+                >
+                  Book a 15-min intro call
+                </a>
                 {/* Two CTAs, not three. "The 17-year journey" was a third
                     competing choice in the decisive first viewport; /journey is
                     one click away in the nav. Council audit B1 + P2.8. */}

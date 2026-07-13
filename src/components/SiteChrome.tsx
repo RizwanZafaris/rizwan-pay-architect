@@ -48,27 +48,20 @@ function ThemeToggle() {
   );
 }
 
-// Brand-rebuild primary nav (strategy doc §3): a narrative scan path that
-// leads with the work and the arc. Order is Work → Journey → Writing →
-// Resume, with the persistent "Book a 15-min intro call" pill carrying the
-// single CTA. (Audit sprint 2026-07, ISSUE-001: Resume promoted into the
-// top bar in place of About; About stays reachable in the footer.)
-// Gate-A audit 2026-07-08 reversed the original footer-only call on /for:
-// the recruiter brief is the highest-intent surface for the primary
-// audience, so it earns the last top-bar slot. Contact stays footer-only —
-// the header booking pill already carries that intent. /products, /media,
-// /topics stay off the top bar too and
-// remain reachable via the footer, homepage sections and blog links.
+// Portfolio-first primary navigation. Work and writing carry the proof;
+// About supplies the operating story; Resume and Contact close the recruiter
+// journey. The focused recruiter brief stays available in the footer and in
+// context, while the compact booking pill remains the persistent utility CTA.
 // Advisory (/consulting) stays out of the nav — PARKED until 2026-10-02.
 // Speaking (/speaking) stays out of the nav too — PARKED until 2027-01-06
 // (owner call 2026-07-06, same treatment as /consulting: noindex + out of
 // nav/footer/sitemap, page stays reachable by direct link for now).
 const nav = [
   { to: "/product-work", label: "Work" },
-  { to: "/journey", label: "Journey" },
+  { to: "/about", label: "About" },
   { to: "/blog", label: "Writing" },
   { to: "/resume", label: "Resume" },
-  { to: "/for", label: "For recruiters" },
+  { to: "/contact", label: "Contact" },
 ] as const;
 
 // Nav label with a vertical slide-swap on hover/focus — the JS-less port of a
@@ -335,10 +328,10 @@ export function SiteFooter() {
             in complex markets across MENA and South Asia.
           </p>
           <div className="mt-5 inline-flex items-center gap-2 text-xs text-ink-soft">
-            <span className="relative inline-flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full rounded-full bg-[var(--accent-emerald)] opacity-60 motion-safe:animate-ping"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-[var(--accent-emerald)]"></span>
-            </span>
+            <span
+              className="inline-flex h-2 w-2 rounded-full bg-[var(--accent-emerald)]"
+              aria-hidden
+            />
             <span className="font-mono-tech uppercase tracking-[0.18em]">Open to senior roles</span>
           </div>
         </div>
@@ -389,6 +382,18 @@ export function SiteFooter() {
             Connect
           </div>
           <ul className="space-y-2">
+            <li>
+              <a
+                href="/contact/#book"
+                data-analytics-event="cta_click"
+                data-analytics-cta-id="book_intro_call"
+                data-analytics-cta-location="footer"
+                data-analytics-cta-destination="/contact/#book"
+                className="hover:text-ink text-ink-soft inline-block py-1"
+              >
+                <span className="rz-link">Book a 15-min intro call</span>
+              </a>
+            </li>
             <li>
               <Link to="/for" className="hover:text-ink text-ink-soft inline-block py-1">
                 <span className="rz-link">For recruiters</span>
@@ -465,21 +470,21 @@ export function CampaignHeader() {
           </Link>
           <div className="flex items-center gap-1.5 shrink-0">
             <ThemeToggle />
-          <a
-            href="#book"
-            aria-label="Book a 15-min intro call"
-            data-analytics-event="cta_click"
-            data-analytics-cta-id="book_intro_call"
-            data-analytics-cta-location="campaign_header"
-            data-analytics-cta-destination="#book"
-            onClick={() => {
-              ctaClick("book_intro_call", "campaign_header", "#book");
-            }}
-            className="rz-cta-primary inline-flex items-center gap-1.5 rounded-full bg-ink text-background px-3.5 sm:px-4 py-2.5 text-[12px] font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-          >
-            <CalendarDays aria-hidden="true" className="h-3.5 w-3.5" />
-            <span>Book a 15-min intro call</span>
-          </a>
+            <a
+              href="#book"
+              aria-label="Book a 15-min intro call"
+              data-analytics-event="cta_click"
+              data-analytics-cta-id="book_intro_call"
+              data-analytics-cta-location="campaign_header"
+              data-analytics-cta-destination="#book"
+              onClick={() => {
+                ctaClick("book_intro_call", "campaign_header", "#book");
+              }}
+              className="rz-cta-primary inline-flex items-center gap-1.5 rounded-full bg-ink text-background px-3.5 sm:px-4 py-2.5 text-[12px] font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+            >
+              <CalendarDays aria-hidden="true" className="h-3.5 w-3.5" />
+              <span>Book a 15-min intro call</span>
+            </a>
           </div>
         </div>
       </div>

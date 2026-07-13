@@ -14,6 +14,7 @@
     "seo:indexnow": "bun scripts/indexnow-submit.ts",
     "seo:check-live": "bun scripts/check-live.ts",
     "seo:og-image": "bun scripts/generate-og.ts",
+    "resume:pdf": "python3 scripts/generate-resume-pdf.py",
     "content:validate": "bun scripts/validate-content.ts",
     "content:backlog": "bun scripts/generate-400-backlog.ts",
     "content:topic-map": "bun scripts/generate-topic-map.ts",
