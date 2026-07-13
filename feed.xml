@@ -5,8 +5,16 @@
   <link>https://rzifi.com/blog/</link>
   <description>Essays on payment infrastructure, fintech product, risk, settlement, AI and program leadership.</description>
   <language>en</language>
-  <lastBuildDate>Mon, 13 Jul 2026 18:50:50 GMT</lastBuildDate>
+  <lastBuildDate>Mon, 13 Jul 2026 19:02:02 GMT</lastBuildDate>
   <item>
+    <title>The Role of SWIFT in Emerging-Markets Banking</title>
+    <link>https://rzifi.com/blog/swift-for-emerging-markets-banking/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/swift-for-emerging-markets-banking/</guid>
+    <pubDate>Tue, 14 Jul 2026 00:00:00 GMT</pubDate>
+    <category>Cross-Border Payments</category>
+    <description>How emerging-market banks actually use SWIFT, access, cost, correspondent dependence, and where fintech intermediation is reshaping the picture.</description>
+  </item>
+<item>
     <title>SWIFT Messaging Formats: MT vs MX (and Why It Matters Now)</title>
     <link>https://rzifi.com/blog/swift-messaging-formats-mt-vs-mx/</link>
     <guid isPermaLink="true">https://rzifi.com/blog/swift-messaging-formats-mt-vs-mx/</guid>
@@ -237,14 +245,6 @@
     <pubDate>Fri, 26 Jun 2026 00:00:00 GMT</pubDate>
     <category>AI in Fintech</category>
     <description>Forter&apos;s five commerce AI agents show the practical shift from chatbots to workflow agents for fraud, disputes, payments, and integration.</description>
-  </item>
-<item>
-    <title>GoCardless and Sequence Make Billing a Product Surface</title>
-    <link>https://rzifi.com/blog/gocardless-sequence-direct-debit-product-design/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/gocardless-sequence-direct-debit-product-design/</guid>
-    <pubDate>Fri, 26 Jun 2026 00:00:00 GMT</pubDate>
-    <category>Product Management</category>
-    <description>GoCardless and Sequence&apos;s native Direct Debit integration shows why billing, collection, retries, and cash timing are product work.</description>
   </item>
 </channel>
 </rss>
