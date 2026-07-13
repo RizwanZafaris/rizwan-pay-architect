@@ -218,26 +218,56 @@ type Result = {
 };
 const results: Result[] = [];
 
-async function fetchOne(url: string, ua = "rzifi-check-live/1.0") {
-  try {
-    const res = await fetch(url, {
-      method: "GET",
-      redirect: "manual",
-      signal: AbortSignal.timeout(12_000),
-      headers: { "user-agent": ua, accept: "*/*" },
-    });
-    const body = res.headers.get("content-type")?.match(/^(?:text|application\/(?:xml|json))/i)
-      ? await res.text()
-      : "";
-    return {
-      status: res.status,
-      location: res.headers.get("location") ?? "",
-      contentType: res.headers.get("content-type") ?? "",
-      body,
-    };
-  } catch (err) {
-    return { status: "err" as const, location: "", contentType: "", body: "", error: err };
+const TRANSIENT_STATUSES = new Set([403, 408, 425, 429, 500, 502, 503, 504]);
+
+async function fetchOne(url: string, ua = "rzifi-check-live/1.1") {
+  let lastResult:
+    | { status: number; location: string; contentType: string; body: string; error?: undefined }
+    | {
+        status: "err";
+        location: string;
+        contentType: string;
+        body: string;
+        error: unknown;
+      } = {
+    status: "err",
+    location: "",
+    contentType: "",
+    body: "",
+    error: new Error("Probe did not run"),
+  };
+
+  // Hostinger's edge occasionally challenges a single GitHub-runner request
+  // while the same URL is healthy from browsers and the next edge request.
+  // Retry only challenge/rate-limit/server statuses; real 404s, redirects and
+  // body mismatches still fail immediately and visibly.
+  for (let attempt = 0; attempt < 3; attempt++) {
+    if (attempt > 0) {
+      await new Promise((resolve) => setTimeout(resolve, attempt === 1 ? 800 : 2_000));
+    }
+    try {
+      const res = await fetch(url, {
+        method: "GET",
+        redirect: "manual",
+        signal: AbortSignal.timeout(12_000),
+        headers: { "user-agent": ua, accept: "*/*", "cache-control": "no-cache" },
+      });
+      const body = res.headers.get("content-type")?.match(/^(?:text|application\/(?:xml|json))/i)
+        ? await res.text()
+        : "";
+      lastResult = {
+        status: res.status,
+        location: res.headers.get("location") ?? "",
+        contentType: res.headers.get("content-type") ?? "",
+        body,
+      };
+      if (!TRANSIENT_STATUSES.has(res.status)) return lastResult;
+    } catch (error) {
+      lastResult = { status: "err", location: "", contentType: "", body: "", error };
+    }
   }
+
+  return lastResult;
 }
 
 async function runProbes() {
