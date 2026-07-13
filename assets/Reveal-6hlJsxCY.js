@@ -1,0 +1,1 @@
+import{J as n}from"./index-CiI51hHb.js";function m({children:r,delay:t=0,as:s="div",className:e=""}){const a=s,o=t?{"--rz-delay":`${t}ms`}:void 0;return n.jsx(a,{"data-rz-reveal":!0,className:e,style:o,children:r})}export{m as R};
