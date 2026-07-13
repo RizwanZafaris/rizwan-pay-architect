@@ -1,2 +1,0 @@
-import{J as a,y as o}from"./index-DEPd-54t.js";function i(e){return e.toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/(^-|-$)/g,"")}o.use({renderer:{heading({tokens:e,depth:r}){const s=this.parser.parseInline(e),t=i(e.map(n=>n.raw??"").join(""));return`<h${r} id="${t}"${r===2?' data-rz-reveal class="rz-section-head"':""}>${s}</h${r}>
-`}}});const p=({error:e})=>a.jsx("div",{className:"mx-auto max-w-2xl px-6 py-24 text-center",children:a.jsx("p",{className:"text-ink-soft",children:e.message})});export{p as errorComponent};
