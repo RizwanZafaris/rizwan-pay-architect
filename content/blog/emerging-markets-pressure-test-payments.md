@@ -27,7 +27,7 @@ relatedArticles:
 
 # How Emerging Markets Pressure-Test Payment Product Strategy.
 
-The payment product assumptions that quietly run global platforms, cards as default, monthly bank settlement, English-language KYC, dollar-denominated FX, fail predictably the moment those platforms ship into Pakistan, Bangladesh, Egypt, Iraq, or the broader frontier of MENA and South Asia.
+The payment product assumptions that quietly run global platforms, cards as default, monthly bank settlement, English-language KYC, dollar-denominated FX, fail predictably the moment those platforms ship into Pakistan, Bangladesh, Nepal, Sri Lanka, Iraq, or the broader frontier of MENA and South Asia.
 
 That failure is the most useful pressure test a payment product team can run. The markets that look like they need accommodation are actually the markets that will surface the structural weaknesses in the product. Fix them there, and the product gets stronger everywhere.
 

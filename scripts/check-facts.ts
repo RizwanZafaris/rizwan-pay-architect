@@ -30,14 +30,23 @@ const BANNED: { pattern: RegExp; why: string }[] = [
   { pattern: /\b25M\+/g, why: "REJECTED framing (25M monthly overstates 270M+/yr)" },
   // Bare "150+" too: a KPI tile that renders just the number is still a claim.
   // (Group-B migration found one hiding beside converted siblings.)
-  { pattern: /"150\+"|>\s*150\+|\b150\+\s*(global\s*)?merchants?/gi, why: "merchants — use PLATFORM.merchants" },
-  { pattern: /\b(\d+)\s+markets?\b/gi, why: "markets — use CAREER.marketsPhrase or PLATFORM.marketsPhrase" },
+  {
+    pattern: /"150\+"|>\s*150\+|\b150\+\s*(global\s*)?merchants?/gi,
+    why: "merchants — use PLATFORM.merchants",
+  },
+  {
+    pattern: /\b(\d+)\s+markets?\b/gi,
+    why: "markets — use CAREER.marketsPhrase or PLATFORM.marketsPhrase",
+  },
   // Spelled-out counts evade the digit rule and are how "five" and "ten" drifted
   // apart in the first place. "ten lessons"/"three industries" are fine.
   // Up to two adjectives may sit between the count and "markets" — that is how
   // "Ten operating markets" and "five regulated frontier markets" slipped past
   // the first version of this rule.
-  { pattern: /\b(five|seven|ten|nine)\s+(?:[a-z-]+\s+){0,2}markets?\b/gi, why: "markets — use CAREER/PLATFORM/DARAZ marketsWord" },
+  {
+    pattern: /\b(five|seven|ten|nine)\s+(?:[a-z-]+\s+){0,2}markets?\b/gi,
+    why: "markets — use CAREER/PLATFORM/DARAZ marketsWord",
+  },
   { pattern: /\b7 markets\b/gi, why: "REJECTED framing (neither career 10 nor live 5)" },
   { pattern: /\b99\.95%/g, why: "settlement SLA — use PLATFORM.settlementSla" },
   { pattern: /\b\d{2}\s*years of experience/gi, why: "tenure — use CAREER.yearsLabel" },

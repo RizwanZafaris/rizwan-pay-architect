@@ -82,7 +82,7 @@ const credentialGroups = [
   },
   {
     label: "Recognition",
-    items: ['PMI "Youngest Project Manager of the Year", 2015'],
+    items: ["Youngest Project Manager of the Year, 2015"],
   },
   {
     label: "Service",
@@ -222,10 +222,10 @@ function AboutPage() {
             <p>
               Product followed delivery. At Tapmad I owned monetization for Pakistan's leading OTT
               platform and built the billing that turned it into a business. At Daraz (Alibaba
-              Group) I ran payment operations across {DARAZ.marketsWord} markets through a COVID volume surge. Then
-              at Simpaisa I became Chief Product Officer, building full-stack payment infrastructure
-              — card acquiring, wallets, cross-border corridors, settlement and the risk controls
-              underneath.
+              Group) I ran payment operations across {DARAZ.marketsWord} markets through a COVID
+              volume surge. Then at Simpaisa I became Chief Product Officer, building full-stack
+              payment infrastructure — card acquiring, wallets, cross-border corridors, settlement
+              and the risk controls underneath.
             </p>
             <p>
               Frontier markets became the specialty on purpose. Constraint breeds operators: when

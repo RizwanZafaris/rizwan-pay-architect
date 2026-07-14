@@ -147,8 +147,8 @@ function HirePage() {
           ◆ For hiring teams in payments, fintech &amp; financial institutions
         </div>
         <h1 className="font-instrument text-[clamp(2.25rem,4vw,3.5rem)] text-ink mt-5 leading-[1.08] max-w-3xl mx-auto">
-          Hiring a payments product and program leader who&apos;s scaled {PLATFORM.gtv} in frontier and
-          emerging markets?
+          Hiring a payments product and program leader who&apos;s scaled {PLATFORM.gtv} in frontier
+          and emerging markets?
         </h1>
         <p className="mt-5 text-lg md:text-xl text-ink-soft leading-relaxed max-w-2xl mx-auto">
           I&apos;m {profile.name}, CPO at Simpaisa. I pair payments{" "}

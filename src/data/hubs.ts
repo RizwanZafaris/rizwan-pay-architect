@@ -137,7 +137,7 @@ export const hubs: Hub[] = [
     title: "AI in Fintech & Payments",
     shortTitle: "AI · Fintech",
     description:
-      "GenAI use-case identification, value modeling and four production AI deployments in regulated payments, merchant support, monitoring, partner ops and fraud/AML.",
+      "GenAI use-case identification, value modeling, three production AI systems and one fraud/AML banking pilot across regulated payments operations.",
     intro:
       "AI in payments is moving from demos to production. These posts cover use-case identification, value modeling (ROI / feasibility / data readiness), RAG architectures for merchant support, auto-escalation bots, AI fraud detection and the regulatory frame in which all of it has to ship.",
     categories: ["AI in Fintech"],

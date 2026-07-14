@@ -185,18 +185,15 @@ const industryIdsFor = (c: CaseStudy) =>
     .join("|");
 
 // Flagship curation (council audit 2026-07: "nineteen case studies is dilution,
-// not proof"). Six deep studies render as full editorial panels, in this exact
-// order; the remaining fifteen collapse into the compact "Additional
-// programmes" index below. This is a LAYOUT change only — every slug keeps its
-// own detail page and URL (see product-work.$slug.tsx), and the CollectionPage
-// JSON-LD above still lists all of them, so no SEO equity is lost. The order
-// here is the render order and does not have to match the data order; the
-// `flagship: true` flag in caseStudies.ts is the single source of which six.
+// not proof"). Six evidence-backed studies render as full editorial panels, in
+// this exact order; the remaining publishable studies collapse into the compact
+// "Additional programmes" index below. Non-publishable drafts never enter this
+// collection (see the filter in caseStudies.ts).
 const FLAGSHIP_SLUGS = [
   "simpaisa-payment-infrastructure",
   "settlement-reconciliation",
   "merchant-onboarding-kyc",
-  "mdes-network-tokenisation-rollout",
+  "daraz-payment-operations",
   "tapmad-dcb-monetisation-wallet-migration",
   "simpaisa-ai-solutions-suite",
 ] as const;
@@ -295,12 +292,22 @@ const PW_FILTER_SCRIPT = `
 })();
 `;
 
+const PRODUCT_WORK_REDUCED_MOTION_CSS = `
+@media (prefers-reduced-motion: reduce) {
+  .product-work-page .pw-motion-target {
+    transition: none !important;
+    transform: none !important;
+  }
+}
+`;
+
 // px-5 at base, not px-4: every other page container on the site opens at
 // px-5 sm:px-6 (about, blog, contact, resume, journey...). This page was the
 // lone px-4, so entering /product-work nudged the content rail 4px left on mobile.
 function ProductWorkIndex() {
   return (
-    <div className="mx-auto max-w-6xl overflow-x-clip px-5 py-12 sm:px-6 sm:py-20">
+    <div className="product-work-page mx-auto max-w-6xl overflow-x-clip px-5 py-12 sm:px-6 sm:py-20">
+      <style>{PRODUCT_WORK_REDUCED_MOTION_CSS}</style>
       <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
         ◆ Product work
       </div>
@@ -309,8 +316,8 @@ function ProductWorkIndex() {
         <span className="italic text-[var(--brand)]">regulated payments infrastructure.</span>
       </h1>
       <p className="mt-6 max-w-2xl text-base leading-relaxed text-ink-soft sm:text-lg">
-        Real systems shipped at {PLATFORM.gtv} GTV scale. Filter by industry, by the companies this work is
-        most relevant to, or by compliance theme.
+        Real systems shipped at {PLATFORM.gtv} GTV scale. Filter by industry, by the companies this
+        work is most relevant to, or by compliance theme.
       </p>
 
       {/* Industry lens — chip row. Matches the homepage pillar deep links
@@ -327,7 +334,7 @@ function ProductWorkIndex() {
               type="button"
               data-pw-industry={ind.id}
               aria-pressed="false"
-              className="rounded-full border border-rule bg-surface px-3 py-1.5 text-xs font-mono-tech uppercase tracking-[0.1em] text-ink-soft transition-colors hover:border-ink/40 hover:text-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-ink/40 data-[pw-active=true]:border-[var(--brand)] data-[pw-active=true]:bg-[var(--brand)]/10 data-[pw-active=true]:text-[var(--brand)]"
+              className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-full border border-rule bg-surface px-3 text-xs font-mono-tech uppercase tracking-[0.1em] text-ink-soft transition-colors hover:border-ink/40 hover:text-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-ink/40 data-[pw-active=true]:border-[var(--brand)] data-[pw-active=true]:bg-[var(--brand)]/10 data-[pw-active=true]:text-[var(--brand)]"
             >
               {ind.label}
             </button>
@@ -353,7 +360,7 @@ function ProductWorkIndex() {
         <button
           type="button"
           data-pw-clear
-          className="uppercase tracking-[0.18em] text-ink hover:text-[var(--brand)] focus:outline-none focus-visible:ring-2 focus-visible:ring-ink/40 rounded"
+          className="-my-2 inline-flex min-h-11 min-w-11 items-center justify-center rounded px-2 uppercase tracking-[0.18em] text-ink hover:text-[var(--brand)] focus:outline-none focus-visible:ring-2 focus-visible:ring-ink/40"
         >
           Clear filters
         </button>
@@ -365,7 +372,11 @@ function ProductWorkIndex() {
         className="mt-8 border border-dashed border-rule p-10 text-center text-ink-soft"
       >
         No case studies match those filters.{" "}
-        <button type="button" data-pw-clear className="underline text-ink hover:text-[var(--brand)]">
+        <button
+          type="button"
+          data-pw-clear
+          className="-my-2 inline-flex min-h-11 min-w-11 items-center justify-center px-2 text-ink underline hover:text-[var(--brand)]"
+        >
           Clear filters
         </button>
       </div>
@@ -386,98 +397,101 @@ function ProductWorkIndex() {
           Six flagship builds, in depth.
         </h2>
         <div data-rz-stagger className="mt-10 flex flex-col gap-14 md:mt-14 md:gap-24">
-        {flagships.map((c, i) => {
-          const heroStat = c.metrics?.[0];
-          const flip = i % 2 === 1;
-          return (
-            <Link
-              key={c.slug}
-              to="/product-work/$slug"
-              params={{ slug: c.slug }}
-              data-pw-result
-              data-pw-companies={(c.relevantFor ?? []).join("|")}
-              data-pw-themes={themeIdsFor(c)}
-              data-pw-industries={industryIdsFor(c)}
-              data-glow
-              className="group relative grid min-w-0 items-center gap-6 md:grid-cols-12 md:gap-12"
-            >
-              {/* Abstract symbolic image field — Higgsfield-generated, brand-coherent. */}
-              <div
-                className={`rz-unveil relative aspect-[16/10] min-w-0 overflow-hidden rounded-lg bg-ink md:col-span-7 ${
-                  flip ? "md:order-2" : ""
-                }`}
+          {flagships.map((c, i) => {
+            const heroStat = c.metrics?.[0];
+            const flip = i % 2 === 1;
+            return (
+              <Link
+                key={c.slug}
+                to="/product-work/$slug"
+                params={{ slug: c.slug }}
+                data-pw-result
+                data-pw-companies={(c.relevantFor ?? []).join("|")}
+                data-pw-themes={themeIdsFor(c)}
+                data-pw-industries={industryIdsFor(c)}
+                data-glow
+                className="group relative grid min-w-0 items-center gap-6 md:grid-cols-12 md:gap-12"
               >
-                <img
-                  src={caseStudyThumb(c.slug)}
-                  alt={c.imageAlt ?? `${c.title} — abstract editorial illustration`}
-                  width={800}
-                  height={450}
-                  loading={i < 2 ? "eager" : "lazy"}
-                  decoding="async"
-                  className="absolute inset-0 h-full w-full object-cover opacity-90 transition-transform duration-700 [transition-timing-function:var(--ease-soft)] group-hover:scale-[1.035]"
-                />
+                {/* Abstract symbolic image field — Higgsfield-generated, brand-coherent. */}
                 <div
-                  className="absolute inset-0"
-                  style={{
-                    background:
-                      "linear-gradient(180deg, color-mix(in oklab, var(--background) 40%, transparent) 0%, transparent 40%, color-mix(in oklab, var(--background) 55%, transparent) 100%)",
-                  }}
-                />
-                <div className="absolute top-4 left-5 z-10 font-mono-tech text-[10px] tracking-[0.18em] text-ink uppercase">
-                  ◆ Case study /{String(i + 1).padStart(2, "0")}
+                  className={`rz-unveil relative aspect-[16/10] min-w-0 overflow-hidden rounded-lg bg-ink md:col-span-7 ${
+                    flip ? "md:order-2" : ""
+                  }`}
+                >
+                  <img
+                    src={caseStudyThumb(c.slug)}
+                    alt={c.imageAlt ?? `${c.title} — abstract editorial illustration`}
+                    width={800}
+                    height={450}
+                    loading={i < 2 ? "eager" : "lazy"}
+                    decoding="async"
+                    className="pw-motion-target absolute inset-0 h-full w-full object-cover opacity-90 transition-transform duration-700 [transition-timing-function:var(--ease-soft)] group-hover:scale-[1.035]"
+                  />
+                  <div
+                    className="absolute inset-0"
+                    style={{
+                      background:
+                        "linear-gradient(180deg, color-mix(in oklab, var(--background) 40%, transparent) 0%, transparent 40%, color-mix(in oklab, var(--background) 55%, transparent) 100%)",
+                    }}
+                  />
+                  <div className="absolute top-4 left-5 z-10 font-mono-tech text-[10px] tracking-[0.18em] text-ink uppercase">
+                    ◆ Case study /{String(i + 1).padStart(2, "0")}
+                  </div>
                 </div>
-              </div>
-              <div className={`min-w-0 md:col-span-5 ${flip ? "md:order-1" : ""}`}>
-                <span className="text-[10px] font-mono-tech uppercase tracking-[0.18em] text-[var(--brand)]">
-                  {c.category}
-                </span>
-                {heroStat && (
-                  <div className="mt-4">
-                    {/* A metric that resists compaction (no numeric lede, no
+                <div className={`min-w-0 md:col-span-5 ${flip ? "md:order-1" : ""}`}>
+                  <span className="text-[10px] font-mono-tech uppercase tracking-[0.18em] text-[var(--brand)]">
+                    {c.category}
+                  </span>
+                  {heroStat && (
+                    <div className="mt-4">
+                      {/* A metric that resists compaction (no numeric lede, no
                         parenthetical to shed) drops a type step rather than
                         being truncated. compactMetricValue no longer emits an
                         ellipsis, so the alternative to sizing down would be a
                         60-character string set at text-6xl. */}
-                    <div
-                      className={`break-words font-instrument italic leading-none tracking-tight text-ink tabular-nums ${
-                        isCompactMetric(compactMetricValue(heroStat))
-                          ? "text-4xl sm:text-5xl lg:text-6xl"
-                          : "text-2xl sm:text-3xl lg:text-4xl"
-                      }`}
-                    >
-                      {compactMetricValue(heroStat)}
+                      <div
+                        className={`break-words font-instrument italic leading-none tracking-tight text-ink tabular-nums ${
+                          isCompactMetric(compactMetricValue(heroStat))
+                            ? "text-4xl sm:text-5xl lg:text-6xl"
+                            : "text-2xl sm:text-3xl lg:text-4xl"
+                        }`}
+                      >
+                        {compactMetricValue(heroStat)}
+                      </div>
+                      <div className="mt-2 text-[10px] uppercase tracking-[0.22em] text-ink-soft font-mono-tech">
+                        {heroStat.label}
+                      </div>
                     </div>
-                    <div className="mt-2 text-[10px] uppercase tracking-[0.22em] text-ink-soft font-mono-tech">
-                      {heroStat.label}
-                    </div>
+                  )}
+                  <h2 className="pw-motion-target mt-5 break-words font-instrument text-2xl leading-tight text-ink transition-colors group-hover:text-[var(--brand)] md:text-3xl">
+                    {c.title}
+                  </h2>
+                  <p className="mt-3 max-w-md text-sm leading-relaxed text-ink-soft md:text-[15px]">
+                    {cardSummary(c.tagline)}
+                  </p>
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    {c.keywords.slice(0, 4).map((k) => (
+                      <span
+                        key={k}
+                        className="rounded-full border border-rule bg-surface px-2 py-0.5 text-[10px] uppercase tracking-[0.08em] text-ink-soft font-mono-tech"
+                      >
+                        {k}
+                      </span>
+                    ))}
                   </div>
-                )}
-                <h2 className="mt-5 break-words font-instrument text-2xl leading-tight text-ink transition-colors group-hover:text-[var(--brand)] md:text-3xl">
-                  {c.title}
-                </h2>
-                <p className="mt-3 max-w-md text-sm leading-relaxed text-ink-soft md:text-[15px]">
-                  {cardSummary(c.tagline)}
-                </p>
-                <div className="mt-4 flex flex-wrap gap-2">
-                  {c.keywords.slice(0, 4).map((k) => (
+                  <span className="pw-motion-target mt-5 inline-flex items-center gap-1.5 text-sm text-ink transition-colors group-hover:text-[var(--brand)]">
+                    Read case study
                     <span
-                      key={k}
-                      className="rounded-full border border-rule bg-surface px-2 py-0.5 text-[10px] uppercase tracking-[0.08em] text-ink-soft font-mono-tech"
+                      className="pw-motion-target transition-transform group-hover:translate-x-1"
+                      aria-hidden
                     >
-                      {k}
+                      →
                     </span>
-                  ))}
-                </div>
-                <span className="mt-5 inline-flex items-center gap-1.5 text-sm text-ink transition-colors group-hover:text-[var(--brand)]">
-                  Read case study
-                  <span className="transition-transform group-hover:translate-x-1" aria-hidden>
-                    →
                   </span>
-                </span>
-              </div>
-            </Link>
-          );
-        })}
+                </div>
+              </Link>
+            );
+          })}
         </div>
       </section>
 
@@ -514,7 +528,7 @@ function ProductWorkIndex() {
                   </span>
                 </div>
                 <div className="min-w-0 md:col-span-7">
-                  <h3 className="break-words font-instrument text-xl leading-[1.15] text-ink transition-all duration-300 [transition-timing-function:var(--ease-soft)] group-hover:translate-x-1.5 group-hover:text-[var(--brand)] md:text-2xl">
+                  <h3 className="pw-motion-target break-words font-instrument text-xl leading-[1.15] text-ink transition-all duration-300 [transition-timing-function:var(--ease-soft)] group-hover:translate-x-1.5 group-hover:text-[var(--brand)] md:text-2xl">
                     {c.title}
                   </h3>
                   <p className="mt-2 text-sm leading-relaxed text-ink-soft md:line-clamp-1">
@@ -535,7 +549,7 @@ function ProductWorkIndex() {
                 </div>
                 <div className="flex items-center gap-4 md:col-span-2 md:justify-end md:self-center">
                   <span
-                    className="hidden text-lg text-ink-soft transition-all duration-300 group-hover:translate-x-1 group-hover:text-[var(--brand)] md:inline"
+                    className="pw-motion-target hidden text-lg text-ink-soft transition-all duration-300 group-hover:translate-x-1 group-hover:text-[var(--brand)] md:inline"
                     aria-hidden
                   >
                     →
@@ -573,7 +587,7 @@ function FilterSelect({ id, label, options }: { id: string; label: string; optio
         name={id}
         aria-label={label}
         defaultValue=""
-        className="mt-2 w-full rounded-lg border border-rule bg-surface px-3 py-2.5 text-sm text-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-ink/40 focus:border-ink/60"
+        className="mt-2 min-h-11 w-full rounded-lg border border-rule bg-surface px-3 py-2.5 text-sm text-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-ink/40 focus:border-ink/60"
       >
         <option value="">All</option>
         {options.map((o) => {

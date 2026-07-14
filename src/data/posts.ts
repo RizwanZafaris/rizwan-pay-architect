@@ -404,7 +404,7 @@ export const posts: Post[] = [
       "/blog/authorization-rate-merchant-pnl-operating-model",
       "/blog/reconciliation-is-product-infrastructure",
       "/blog/revolut-adyen-uae-licences-dubai-fintech-signal",
-      "/product-work/mpgs-acquirer-integration-programme"
+      "/product-work/simpaisa-payment-infrastructure"
     ]
   },
   {
@@ -2690,13 +2690,13 @@ export const posts: Post[] = [
   },
   {
     "slug": "ai-in-payments-four-production-use-cases",
-    "title": "GenAI in Fintech: 4 Production Use Cases That Actually Ship",
-    "metaTitle": "GenAI in Fintech: 4 Production Use Cases (2026) | Rizwan Zafar",
+    "title": "GenAI in Fintech: 3 Production Systems and 1 Banking Pilot",
+    "metaTitle": "GenAI in Fintech: 3 Production Systems + 1 Pilot | Rizwan Zafar",
     "date": "2026-05-15",
     "category": "AI in Fintech",
     "readingTime": "10 min read",
-    "description": "Four GenAI deployments running in production at a $1B+ TPV payments platform, merchant integration support, incident auto-escalation, partner support automation, and a fraud/AML AI pilot. What shipped, what didn't, and the operating model underneath.",
-    "thesis": "Most fintech AI work in 2026 is still demos. These four use cases are not, they're running in production at $1B+ TPV across five regulated markets.",
+    "description": "Three GenAI systems run in production at a $1B+ TPV payments platform, plus a fraud/AML banking pilot—what shipped, what remained a pilot, and how it operates.",
+    "thesis": "Most fintech AI work in 2026 is still demos. Three of these use cases run in production; the fourth is a regulated banking pilot.",
     "tags": [
       "GenAI",
       "AI in payments",
@@ -2818,7 +2818,7 @@ export const posts: Post[] = [
     "date": "2026-05-09",
     "category": "AI in Fintech",
     "readingTime": "9 min read",
-    "description": "A four-axis framework for prioritising GenAI use cases in a regulated fintech: ROI, feasibility, data readiness and regulatory risk. The exact framework used to narrow 20+ candidates to 4 production deployments at Simpaisa.",
+    "description": "A four-axis framework for prioritising GenAI use cases in a regulated fintech: ROI, feasibility, data readiness and regulatory risk. The framework used to narrow 20+ candidates to 3 production systems and 1 banking pilot at Simpaisa.",
     "thesis": "Most fintech AI roadmaps fail because they prioritise ambition over data readiness and regulatory risk. This is the four-axis framework that ships.",
     "tags": [
       "GenAI",

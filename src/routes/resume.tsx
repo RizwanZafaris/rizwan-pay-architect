@@ -1,9 +1,12 @@
-import type { CSSProperties } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useEffect } from "react";
 import { personSchemaAwards, personSchemaCredentials, profile } from "@/data/profile";
 import { PLATFORM, DARAZ } from "@/content/facts";
 import { BookingSection } from "@/components/BookingSection";
 import { absUrl, GOOGLE_ADS_PAGE_VIEW_CONVERSION_SEND_TO, OG_IMAGE_URL, SITE_URL } from "@/lib/seo";
+import portraitWebp from "@/assets/rizwan-zafar-cutout.webp";
+import portraitWebpSmall from "@/assets/rizwan-zafar-cutout-460.webp";
+import resumeEditorialCss from "@/styles/resume-editorial.css?url";
 
 const resumeKeywords = [
   "Product & Program Executive",
@@ -29,7 +32,7 @@ const resumeJsonLd = {
   url: absUrl("/resume"),
   description:
     "Executive resume for Rizwan Zafar, a Product & Program Executive focused on fintech infrastructure, payments, PMO governance and AI-enabled payment operations.",
-  dateModified: "2026-06-05",
+  dateModified: "2026-07-15",
   inLanguage: "en",
   isPartOf: { "@type": "WebSite", "@id": `${SITE_URL}#website`, name: "rzifi.com" },
   primaryImageOfPage: { "@type": "ImageObject", url: OG_IMAGE_URL, width: 1200, height: 630 },
@@ -50,7 +53,7 @@ const resumeJsonLd = {
     email: `mailto:${profile.email}`,
     address: { "@type": "PostalAddress", addressLocality: "Dubai", addressCountry: "AE" },
     sameAs: profile.entitySameAs,
-    worksFor: { "@type": "Organization", name: "Simpaisa", url: "https://simpaisa.com" },
+    worksFor: { "@type": "Organization", name: "SimPaisa", url: "https://simpaisa.com" },
     hasCredential: personSchemaCredentials.map((cert) => ({
       "@type": "EducationalOccupationalCredential",
       name: cert,
@@ -85,43 +88,32 @@ const googleAdsResumeConversionScript = GOOGLE_ADS_PAGE_VIEW_CONVERSION_SEND_TO
   : "";
 
 const proofMetrics = [
-  { value: PLATFORM.gtv, label: "Annual GTV" },
-  { value: PLATFORM.annualPayments, label: "Payments a year" },
-  { value: "5", label: "Frontier markets" },
-  { value: PLATFORM.settlementSla, label: "Settlement SLA" },
-  { value: "40+", label: "Engineers led" },
-  { value: "4", label: "Production AI deployments" },
+  { value: PLATFORM.gtv, label: "Annual GTV", note: "Regulated payment infrastructure" },
+  { value: PLATFORM.annualPayments, label: "Payments / year", note: "Platform throughput" },
+  {
+    value: String(PLATFORM.marketCount),
+    label: "Live markets",
+    note: "Frontier-market operations",
+  },
+  { value: PLATFORM.settlementSla, label: "Settlement SLA", note: "Control and reliability" },
+  { value: "40", label: "Engineers led", note: "Across 12 squads" },
 ] as const;
 
 const roleFit = [
   {
-    title: "Product Leadership",
-    body: "Payment infrastructure, pay-in/payout APIs, card acquiring, wallets, DCB, merchant onboarding, settlement, reconciliation, fraud controls, BNPL and cross-border corridors.",
+    title: "Product leadership",
+    body: "Payment infrastructure, pay-in and payout APIs, card acquiring, wallets, DCB, merchant onboarding, settlement, reconciliation, fraud controls, BNPL and cross-border corridors.",
   },
   {
-    title: "Program Leadership",
+    title: "Program leadership",
     body: "PMO governance, multi-squad delivery, vendor management, SteerCo reporting, regulatory programs, PCI DSS, ISO 27001 and complex-market execution.",
   },
   {
-    title: "Platform Scale",
-    body: "Built product and operating systems across fintech, ecommerce and OTT: payment rails, subscription billing, partner ecosystems, risk controls and AI-enabled operations.",
+    title: "Platform scale",
+    body: "Product and operating systems across fintech, ecommerce and OTT: payment rails, subscription billing, partner ecosystems, risk controls and AI-enabled operations.",
   },
 ] as const;
 
-const recruiterSearchFit = [
-  "VP Product, Payments",
-  "Head of Product, Fintech Infrastructure",
-  "Director Product, Payment Platforms",
-  "Product Lead, Cross-Border Payments",
-  "Program Director, Fintech / PMO",
-  "Technical Program Manager, Payments",
-  "Director, Digital Transformation",
-  "AI in Fintech Operations Lead",
-] as const;
-
-// `slug` / `audience` feed the typed dynamic-route Link params
-// (/product-work/$slug, /for/$audience) — TanStack Router types reject a
-// fully-resolved literal path, so we pass the pattern + params instead.
 const selectedProofLinks = [
   {
     title: `${PLATFORM.gtv} regulated payment infrastructure`,
@@ -153,23 +145,23 @@ const recruiterPathLinks = [
 
 const resumeExperience = [
   {
-    company: "Simpaisa",
+    company: "SimPaisa",
     role: "Chief Product Officer (acting CTO, 2024)",
-    period: "Aug 2020 - Present",
+    period: "Aug 2020 – Present",
     location: "Dubai, UAE",
     bullets: [
       "Owned product strategy and program execution for a regulated multi-rail payments platform spanning pay-in, payouts, wallets, DCB, IBFT, card acquiring, settlement, FX and cross-border corridors.",
-      `Helped scale infrastructure from $0 to ${PLATFORM.gtv} GTV and ${PLATFORM.annualPayments} payments a year, working with leading global PSPs across 5 frontier markets.`,
+      `Helped scale infrastructure from $0 to ${PLATFORM.gtv} GTV and ${PLATFORM.annualPayments} payments a year, working with leading global PSPs across ${PLATFORM.marketCount} frontier markets.`,
       `Built merchant onboarding, KYC/KYB, risk-tiering and category pricing flows that cut standard-risk activation from weeks to hours and supported ${PLATFORM.merchants} merchant integrations.`,
       "Led a 40-engineer payments organization across 12 squads; managed $5M+ technology budget, 15+ vendor relationships, PCI DSS, ISO/IEC 27001 and multi-jurisdiction reporting programs.",
       `Improved platform economics and control: 97% payment success at 90% straight-through processing, ${PLATFORM.settlementSla} settlement SLA, fraud loss below 0.1% of GTV and downtime down 90%.`,
-      "Deployed four production AI/GenAI solutions across merchant support, incident auto-escalation, partner operations and fraud/AML decisioning.",
+      "Deployed three production AI/GenAI solutions across merchant support, incident auto-escalation and partner operations, plus a fraud/AML banking pilot.",
     ],
   },
   {
     company: "Daraz (Alibaba Group)",
     role: "Project Manager, Payments Operations",
-    period: "Mar 2020 - Sep 2020",
+    period: "Mar 2020 – Aug 2020",
     location: "Karachi, Pakistan",
     bullets: [
       `Ran payment operations governance across ${DARAZ.marketsWord} markets during a COVID-driven volume surge, covering settlement cycles, disputes, fraud rules and COD-to-digital conversion.`,
@@ -179,7 +171,7 @@ const resumeExperience = [
   {
     company: "Tapmad",
     role: "Senior Project & Product Manager",
-    period: "Jul 2017 - May 2020",
+    period: "Jul 2017 – Mar 2020",
     location: "Karachi, Pakistan",
     bullets: [
       "Owned product strategy and program delivery for OTT monetization, subscription billing and payment rails, turning a high-cost billing model into a commercially viable product.",
@@ -190,7 +182,7 @@ const resumeExperience = [
   {
     company: "Wing Logic",
     role: "PMO & Project Manager",
-    period: "Apr 2017 - Oct 2017",
+    period: "Apr 2017 – Oct 2017",
     location: "Dubai, UAE",
     bullets: [
       "Built a PMO operating model for a $12M+ project portfolio, creating executive dashboards, KPI cadence and delivery governance for 50+ people.",
@@ -200,7 +192,7 @@ const resumeExperience = [
   {
     company: "CIMKO (Nyumba Ya Akiba SA)",
     role: "Assistant Manager, Projects",
-    period: "May 2016 - Jan 2017",
+    period: "May 2016 – Jan 2017",
     location: "Democratic Republic of the Congo",
     bullets: [
       "Delivered $8M+ in IT infrastructure and ERP projects in a high-complexity operating environment; reduced project delays by 12% and procurement costs by 15%.",
@@ -209,7 +201,7 @@ const resumeExperience = [
   {
     company: "DS Engineering Services",
     role: "Project Manager, PMO",
-    period: "Sep 2012 - Feb 2016",
+    period: "Sep 2012 – Feb 2016",
     location: "Karachi, Pakistan",
     bullets: [
       "Managed governance and reporting across 400+ engineering projects and a $15M utilities/power infrastructure portfolio; improved delivery efficiency by 70%.",
@@ -218,69 +210,13 @@ const resumeExperience = [
   {
     company: "Pakistan Engineering Services Co. (PESCO)",
     role: "Senior Planning Engineer",
-    period: "Jun 2009 - Aug 2012",
+    period: "Jun 2009 – Aug 2012",
     location: "Karachi, Pakistan",
     bullets: [
       "Built planning and monitoring systems for substation field operations, improving downtime visibility and reducing downtime by 6%.",
     ],
   },
 ] as const;
-
-const prioritySkills = [
-  "Payment infrastructure",
-  "Pay-in & payout rails",
-  "Product strategy",
-  "Program governance",
-  "Cross-border payments",
-  "Settlement & reconciliation",
-  "KYC/KYB automation",
-  "BNPL & subscription billing",
-  "Crypto on/off-ramp strategy",
-  "Fraud & AML/CFT",
-  "Bank/wallet partnerships",
-  "PCI DSS / ISO 27001",
-  "AI in payment operations",
-  "Vendor management",
-  "Complex-market execution",
-] as const;
-
-const resumeSignals = [
-  "Recruiter scan-ready",
-  `${PLATFORM.gtv} scale validated`,
-  "Intro call ready",
-  "Global fintech ready",
-] as const;
-
-const delayStyle = (ms: number) => ({ "--motion-delay": `${ms}ms` }) as CSSProperties;
-
-// Print guard for the engine-staggered KPI grid: the global @media print rules
-// reset [class*="reveal"] / [class*="motion"] but not [data-rz-stagger]
-// children, whose hidden pre-reveal state lives in next.css. Route-scoped so
-// the frozen print block in styles.css stays untouched.
-const resumePrintCss = `
-@media print {
-  .resume-page [data-rz-stagger] > * {
-    opacity: 1 !important;
-    transform: none !important;
-    transition: none !important;
-  }
-}
-`;
-
-// Site-vocabulary marker, replacing the former lucide-react icon set (the only
-// page that pulled in an external icon vocabulary, breaking the ◆/mono system —
-// see DESIGN.md §3). The ◆ glyph is the site's signature; here it leads each
-// control's own text label, so it is purely decorative and aria-hidden. It is a
-// plain text glyph in currentColor, so it inherits the control's colour on every
-// surface (dark pill, ghost button, cyan CTA panel) and prints cleanly under the
-// route's @media print rules — no SVG box or missing-glyph artifact.
-function Mark() {
-  return (
-    <span aria-hidden="true" className="font-mono-tech text-[0.7em] leading-none opacity-80">
-      ◆
-    </span>
-  );
-}
 
 export const Route = createFileRoute("/resume")({
   head: () => ({
@@ -291,10 +227,7 @@ export const Route = createFileRoute("/resume")({
         content: `Rizwan Zafar resume: Product & Program Executive for fintech infrastructure, payments, PMO and AI operations. ${PLATFORM.gtv} GTV, ${PLATFORM.annualPayments} payments a year, ${PLATFORM.marketCount} markets.`,
       },
       { name: "keywords", content: resumeKeywords.join(", ") },
-      {
-        property: "og:title",
-        content: "Rizwan Zafar Resume | Product & Program Executive",
-      },
+      { property: "og:title", content: "Rizwan Zafar Resume | Product & Program Executive" },
       {
         property: "og:description",
         content:
@@ -320,6 +253,7 @@ export const Route = createFileRoute("/resume")({
         href: profile.resumeHref,
         title: "Download PDF resume",
       },
+      { rel: "stylesheet", href: resumeEditorialCss },
     ],
     scripts: [
       ...(googleAdsResumeConversionScript ? [{ children: googleAdsResumeConversionScript }] : []),
@@ -331,465 +265,374 @@ export const Route = createFileRoute("/resume")({
 });
 
 function ResumePage() {
-  const formalCertifications = profile.certifications.filter((c) => !c.startsWith("Led "));
-  const programCredentials = profile.certifications.filter((c) => c.startsWith("Led "));
+  useEffect(() => {
+    const html = document.documentElement;
+    html.classList.add("resume-editorial-active");
+    return () => html.classList.remove("resume-editorial-active");
+  }, []);
+
+  const formalCertifications = profile.certifications.filter(
+    (credential) => !credential.startsWith("Led "),
+  );
+  const programCredentials = profile.certifications.filter((credential) =>
+    credential.startsWith("Led "),
+  );
+  const capabilityGroups = profile.skills.filter((group) => group.group !== "Markets");
   const marketRegions = profile.skills.find((group) => group.group === "Markets")?.items ?? [];
-  const credentialSkillGroups = profile.skills.filter((group) => group.group !== "Markets");
 
   return (
-    <div className="resume-page mx-auto max-w-6xl px-5 sm:px-6 py-10 md:py-14">
-      <style dangerouslySetInnerHTML={{ __html: resumePrintCss }} />
-      <section className="priority-hero-shell relative overflow-hidden grid lg:grid-cols-[1fr_320px] gap-8 lg:gap-12 items-start border-b border-rule pb-10 md:pb-12">
-        <span aria-hidden="true" className="priority-hero-rule priority-hero-rule-a" />
-        <span aria-hidden="true" className="priority-hero-rule priority-hero-rule-b" />
-        <div className="resume-soft-reveal relative z-10 min-w-0" style={delayStyle(0)}>
-          <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
-            ◆ Executive resume
+    <div className="resume-page resume-editorial-page">
+      <section className="resume-hero" aria-labelledby="resume-title">
+        <div className="resume-shell">
+          <div className="resume-masthead" aria-label="Resume edition details">
+            <span>Executive résumé</span>
+            <span>Updated 15 Jul 2026</span>
           </div>
-          <h1
-            className="font-instrument text-[clamp(2.25rem,4vw,3.5rem)] text-ink mt-7 leading-[1.02] max-w-4xl text-wrap"
-            aria-label="Rizwan Zafar, Product and Program Executive scaling fintech infrastructure"
-          >
-            <span className="block">Rizwan Zafar</span>
-            <span className="resume-role-line mt-3 block font-sans text-base sm:text-lg md:text-2xl leading-snug text-ink-soft">
-              <span className="sr-only">, </span>
-              Product &amp; Program Executive{" "}
-              <span className="resume-role-accent text-ink">Scaling Fintech Infrastructure</span>
-            </span>
-          </h1>
-          <div className="mt-4 flex flex-wrap gap-2" aria-label="Primary executive positioning">
-            {["Product Leadership", "Program Leadership", "Payments", "Fintech Infrastructure"].map(
-              (item, index) => (
-                <span
-                  key={item}
-                  className="resume-identity-chip"
-                  style={delayStyle(120 + index * 55)}
+
+          <div className="resume-hero-grid" data-rz-stagger>
+            <div className="resume-hero-copy">
+              <p className="resume-eyebrow">Product · Program · Payments</p>
+              <h1 id="resume-title" className="resume-name">
+                <span>Rizwan</span>
+                <span>Zafar</span>
+              </h1>
+              <p className="resume-role">Product &amp; Program Executive</p>
+              <p className="resume-intro">
+                I build regulated payment infrastructure and the operating systems behind it—
+                turning fragmented rails, risk controls and multi-market delivery into products that
+                scale.
+              </p>
+
+              <div className="resume-actions" aria-label="Resume actions">
+                <a
+                  href={profile.resumeHref}
+                  download
+                  data-analytics-event="cta_click"
+                  data-analytics-cta-id="download_resume"
+                  data-analytics-cta-location="resume_hero"
+                  data-analytics-cta-destination={profile.resumeHref}
+                  data-analytics-cta-placement="resume_hero"
+                  className="resume-button resume-button--primary"
                 >
-                  {item}
-                </span>
-              ),
-            )}
-          </div>
-          <p className="mt-4 text-lg md:text-xl text-ink-soft leading-relaxed max-w-3xl">
-            Senior product and program leader who has scaled fintech, ecommerce and OTT
-            infrastructure in complex markets: pay-in and payout rails, merchant onboarding,
-            settlement, reconciliation, risk/AML controls, partner ecosystems, BNPL/subscription
-            billing and AI-enabled operations.
-          </p>
-          <div className="mt-6 flex flex-wrap gap-2.5 max-w-full">
-            <a
-              href="#book"
-              data-analytics-event="cta_click"
-              data-analytics-cta-id="book_intro_call"
-              data-analytics-cta-location="resume_page"
-              data-analytics-cta-destination="#book"
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-ink text-background px-5 py-2.5 text-sm font-medium hover:bg-brand hover:text-[var(--brand-foreground)] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2"
-            >
-              <Mark />
-              Book a 15-min intro call
-            </a>
-            <a
-              href={profile.resumeHref}
-              download
-              data-analytics-event="cta_click"
-              data-analytics-cta-id="download_resume"
-              data-analytics-cta-location="resume_page"
-              data-analytics-cta-destination={profile.resumeHref}
-              data-analytics-placement="resume_page"
-              className="inline-flex items-center justify-center gap-2 rounded-full border border-ink/20 px-5 py-2.5 text-sm font-medium text-ink hover:bg-ink/5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2"
-            >
-              <Mark />
-              Download PDF
-            </a>
-            <a
-              href={profile.linkedin}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center justify-center gap-2 rounded-full border border-ink/20 px-5 py-2.5 text-sm font-medium text-ink hover:bg-ink/5 transition-colors"
-            >
-              <Mark />
-              LinkedIn
-            </a>
-          </div>
-        </div>
+                  Download PDF
+                  <span aria-hidden="true">↓</span>
+                </a>
+                <a
+                  href="#book"
+                  data-analytics-event="cta_click"
+                  data-analytics-cta-id="book_intro_call"
+                  data-analytics-cta-location="resume_hero"
+                  data-analytics-cta-destination="#book"
+                  className="resume-button resume-button--secondary"
+                >
+                  Book an intro
+                  <span aria-hidden="true">↘</span>
+                </a>
+              </div>
 
-        <aside
-          className="priority-brief-card resume-soft-reveal relative z-10 rounded-lg border border-rule bg-surface p-5"
-          style={delayStyle(90)}
-        >
-          <div className="text-[10px] uppercase tracking-[0.18em] text-ink-soft font-mono-tech">
-            Best fit
-          </div>
-          <ul className="mt-4 space-y-2 text-sm text-ink">
-            {[
-              "VP / Head / Director Product, Payments",
-              "Product Lead, Fintech Infrastructure",
-              "Program Director / Head of PMO",
-              "Technical Program Manager, Payments",
-              "Director, Digital Transformation",
-            ].map((role) => (
-              <li key={role} className="flex gap-2.5">
-                <span className="mt-2 h-1.5 w-1.5 rounded-full bg-[var(--accent-emerald)] shrink-0" />
-                <span>{role}</span>
-              </li>
-            ))}
-          </ul>
-          <div className="mt-5 border-t border-rule pt-4 text-xs text-ink-soft">
-            Open to UAE, KSA, Singapore, MENA, Europe and global roles across fintechs, banks,
-            financial institutions, payment networks and digital platforms.
-          </div>
-          <div className="mt-5 flex flex-wrap gap-2" aria-label="Resume readiness signals">
-            {resumeSignals.map((signal, index) => (
-              <span
-                key={signal}
-                className="priority-status-badge"
-                style={delayStyle(220 + index * 55)}
-              >
-                {signal}
-              </span>
-            ))}
-          </div>
-        </aside>
-      </section>
-
-      {/* KPI tiles — flat bordered, mono tabular-nums values, engine-staggered
-          (the beam runs the hero's bottom rule once as the grid enters). */}
-      <section
-        data-rz-stagger
-        className="rz-beam relative grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4 border-b border-rule py-6"
-      >
-        {proofMetrics.map((m) => (
-          <div key={m.label} className="border border-rule bg-surface px-4 py-3">
-            <div className="font-mono-tech text-xl md:text-2xl text-ink leading-none tabular-nums">
-              {m.value}
+              <div className="resume-hero-meta">
+                <span>Dubai, UAE</span>
+                <span>{profile.career.yearsLabel}</span>
+                <span>Open to senior global roles</span>
+                <a href={profile.linkedin} target="_blank" rel="noreferrer">
+                  LinkedIn ↗
+                </a>
+              </div>
             </div>
-            <div className="mt-1.5 text-[10px] uppercase tracking-[0.14em] text-ink-soft font-mono-tech leading-tight">
-              {m.label}
+
+            <figure className="resume-portrait-stage">
+              <div className="resume-portrait-rule" aria-hidden="true" />
+              <img
+                src={portraitWebp}
+                srcSet={portraitWebpSmall + " 460w, " + portraitWebp + " 928w"}
+                sizes="(max-width: 1023px) 92vw, 38vw"
+                width="928"
+                height="1160"
+                alt="Rizwan Zafar, Product and Program Executive"
+                fetchPriority="high"
+                decoding="async"
+              />
+              <figcaption>
+                <span>Dubai / Global</span>
+                <span>Payments infrastructure</span>
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section className="resume-metric-band" aria-label="Selected operating outcomes">
+        <div className="resume-shell resume-metric-grid" data-rz-stagger>
+          {proofMetrics.map((metric) => (
+            <div className="resume-metric" key={metric.label}>
+              <strong>{metric.value}</strong>
+              <span>{metric.label}</span>
+              <small>{metric.note}</small>
             </div>
-          </div>
-        ))}
-      </section>
-
-      <section className="grid md:grid-cols-12 gap-8 border-b border-rule py-10">
-        <div className="resume-soft-reveal md:col-span-3" style={delayStyle(0)}>
-          <h2 className="font-instrument text-2xl text-ink">Recruiter Search Fit</h2>
-          <p className="mt-3 text-sm text-ink-soft leading-relaxed">
-            Built for senior hiring managers searching for product, program and payments leadership
-            across regulated fintech, banks, payment networks and infrastructure platforms.
-          </p>
-        </div>
-        <div className="md:col-span-9 space-y-6">
-          <div className="flex flex-wrap gap-2">
-            {recruiterSearchFit.map((role, index) => (
-              <span
-                key={role}
-                className="resume-skill-chip rounded-md border border-rule bg-surface px-3 py-1.5 text-sm text-ink"
-                style={delayStyle(index * 30)}
-              >
-                {role}
-              </span>
-            ))}
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-3">
-            {selectedProofLinks.map((proof, index) => (
-              <Link
-                key={proof.slug}
-                to="/product-work/$slug"
-                params={{ slug: proof.slug }}
-                data-glow
-                className="resume-soft-reveal group rounded-lg border border-rule bg-card p-4 transition-colors hover:border-ink/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)]"
-                style={delayStyle(120 + index * 50)}
-              >
-                <span className="text-[10px] uppercase tracking-[0.16em] text-ink-soft font-mono-tech">
-                  Proof case study
-                </span>
-                <h3 className="mt-2 font-instrument text-lg text-ink group-hover:text-[var(--brand)] transition-colors">
-                  {proof.title}
-                </h3>
-                <p className="mt-2 text-sm text-ink-soft leading-relaxed">{proof.body}</p>
-              </Link>
-            ))}
-          </div>
-
-          <div className="flex flex-wrap gap-2.5">
-            {recruiterPathLinks.map((path) => (
-              <Link
-                key={path.audience}
-                to="/for/$audience"
-                params={{ audience: path.audience }}
-                className="inline-flex items-center justify-center rounded-full border border-ink/20 px-4 py-2 text-sm font-medium text-ink hover:bg-ink/5 transition-colors"
-              >
-                {path.label}
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="grid md:grid-cols-12 gap-8 border-b border-rule py-10">
-        <div className="resume-soft-reveal md:col-span-3" style={delayStyle(0)}>
-          <h2 className="font-instrument text-2xl text-ink">Executive Summary</h2>
-        </div>
-        <div className="md:col-span-9 space-y-5">
-          <p
-            className="resume-soft-reveal font-instrument text-2xl md:text-3xl text-ink leading-snug"
-            style={delayStyle(80)}
-          >
-            Product &amp; Program Executive with {profile.career.years} years across payments,
-            fintech, OTT, ecommerce operations and digital transformation.
-          </p>
-          <p
-            className="resume-soft-reveal text-base text-ink-soft leading-relaxed max-w-3xl"
-            style={delayStyle(120)}
-          >
-            Currently CPO at Simpaisa, where I helped scale regulated payment infrastructure to{" "}
-            {PLATFORM.gtv} GTV, {PLATFORM.annualPayments} payments a year, working with leading global
-            PSPs. My operating lane sits
-            between product strategy, program delivery, compliance, risk, engineering leadership,
-            partner ecosystems and market expansion, with adjacent work across BNPL, OTT
-            subscription billing and crypto on/off-ramp product strategy.
-          </p>
-          <div className="grid md:grid-cols-3 gap-3">
-            {roleFit.map((item, index) => (
-              <div
-                key={item.title}
-                className="resume-soft-reveal rounded-lg border border-rule bg-card p-4"
-                style={delayStyle(160 + index * 55)}
-              >
-                <h3 className="font-instrument text-lg text-ink">{item.title}</h3>
-                <p className="mt-2 text-sm text-ink-soft leading-relaxed">{item.body}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="grid md:grid-cols-12 gap-8 border-b border-rule py-10">
-        <div className="resume-soft-reveal md:col-span-3" style={delayStyle(0)}>
-          <h2 className="font-instrument text-2xl text-ink">Priority Skills</h2>
-        </div>
-        <div className="md:col-span-9">
-          <div className="flex flex-wrap gap-2">
-            {prioritySkills.map((skill, index) => (
-              <span
-                key={skill}
-                className="resume-skill-chip rounded-md border border-rule bg-surface px-3 py-1.5 text-sm text-ink"
-                style={delayStyle(index * 35)}
-              >
-                {skill}
-              </span>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section
-        className="grid md:grid-cols-12 gap-8 border-b border-rule py-10"
-        aria-labelledby="resume-markets-heading"
-      >
-        <div className="resume-soft-reveal md:col-span-3" style={delayStyle(0)}>
-          <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
-            ◆ Region coverage
-          </div>
-          <h2 id="resume-markets-heading" className="mt-2 font-instrument text-2xl text-ink">
-            MARKETS
-          </h2>
-        </div>
-        <div className="md:col-span-9">
-          <div className="flex flex-wrap gap-2">
-            {marketRegions.map((region, index) => (
-              <span
-                key={region}
-                className="resume-skill-chip rounded-md border border-rule bg-surface px-3 py-1.5 text-sm text-ink"
-                style={delayStyle(index * 35)}
-              >
-                {region}
-              </span>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="py-10">
-        <div className="flex items-end justify-between gap-6 mb-7">
-          <h2 className="font-instrument text-3xl md:text-4xl text-ink">Experience</h2>
-        </div>
-        <div className="space-y-9">
-          {resumeExperience.map((job, index) => (
-            <article
-              key={`${job.company}-${job.role}`}
-              className="resume-timeline-card grid md:grid-cols-12 gap-5"
-              style={delayStyle(index * 65)}
-            >
-              <div className="md:col-span-3 text-sm text-ink-soft">
-                <div className="font-mono-tech text-ink">{job.period}</div>
-                <div className="mt-1 text-[10px] uppercase tracking-[0.14em] font-mono-tech">
-                  {job.location}
-                </div>
-              </div>
-              <div className="resume-divider md:col-span-9 border-l border-rule pl-5 md:pl-6">
-                <h3 className="font-instrument text-xl text-ink leading-snug">
-                  {job.role}
-                  <span className="text-ink-soft"> · {job.company}</span>
-                </h3>
-                <ul className="mt-3 space-y-2.5 text-ink-soft">
-                  {job.bullets.map((bullet) => (
-                    <li key={bullet} className="relative pl-5 text-sm leading-relaxed">
-                      <span className="absolute left-0 top-2.5 h-1.5 w-1.5 rounded-full bg-[var(--accent-emerald)]" />
-                      {bullet}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </article>
           ))}
         </div>
       </section>
 
-      <section className="grid lg:grid-cols-12 gap-8 border-y border-rule py-10">
-        <div className="lg:col-span-3">
-          <h2 className="font-instrument text-2xl text-ink">Skills & Credentials</h2>
-        </div>
-        <div className="lg:col-span-9 grid md:grid-cols-2 gap-8">
-          {credentialSkillGroups.map((group) => (
-            <div key={group.group}>
-              <h3 className="text-[10px] uppercase tracking-[0.16em] text-ink-soft mb-3 font-mono-tech">
-                {group.group}
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                {group.items.map((item, index) => (
-                  <span
-                    key={item}
-                    className="resume-skill-chip text-xs px-2.5 py-1 border border-rule rounded-md text-ink bg-surface"
-                    style={delayStyle(index * 25)}
-                  >
-                    {item}
+      <div className="resume-content">
+        <section className="resume-section resume-experience" aria-labelledby="experience-title">
+          <div className="resume-shell">
+            <header className="resume-section-head rz-section-head" data-rz-reveal>
+              <p>01 / Career record</p>
+              <h2 id="experience-title">Experience</h2>
+              <span>Selected scope, decisions and measurable outcomes.</span>
+            </header>
+
+            <div className="resume-experience-list">
+              {resumeExperience.map((job, index) => (
+                <details
+                  className="resume-experience-item resume-row-reveal"
+                  key={[job.company, job.role].join("-")}
+                  open={index === 0}
+                  data-rz-reveal
+                >
+                  <summary>
+                    <span className="resume-experience-period">{job.period}</span>
+                    <span className="resume-experience-marker" aria-hidden="true">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <span className="resume-experience-identity">
+                      <strong>{job.company}</strong>
+                      <span>{job.role}</span>
+                    </span>
+                    <span className="resume-experience-location">{job.location}</span>
+                    <span className="resume-experience-toggle" aria-hidden="true" />
+                  </summary>
+                  <div className="resume-experience-body">
+                    <p>Selected mandate</p>
+                    <ul>
+                      {job.bullets.map((bullet) => (
+                        <li key={bullet}>{bullet}</li>
+                      ))}
+                    </ul>
+                  </div>
+                </details>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="resume-section resume-proof" aria-labelledby="proof-title">
+          <div className="resume-shell">
+            <header className="resume-section-head resume-section-head--split" data-rz-reveal>
+              <p>02 / Evidence</p>
+              <h2 id="proof-title">Selected proof</h2>
+              <span>Deep dives for interviewers who want the decisions behind the numbers.</span>
+            </header>
+
+            <div className="resume-proof-list">
+              {selectedProofLinks.map((item, index) => (
+                <Link
+                  to="/product-work/$slug"
+                  params={{ slug: item.slug }}
+                  className="resume-proof-row resume-row-reveal"
+                  key={item.slug}
+                  data-rz-reveal
+                >
+                  <span className="resume-proof-index">{String(index + 1).padStart(2, "0")}</span>
+                  <span className="resume-proof-copy">
+                    <strong>{item.title}</strong>
+                    <span>{item.body}</span>
                   </span>
+                  <span className="resume-proof-arrow" aria-hidden="true">
+                    ↗
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="resume-section resume-leadership" aria-labelledby="leadership-title">
+          <div className="resume-shell">
+            <header className="resume-section-head" data-rz-reveal>
+              <p>03 / Leadership system</p>
+              <h2 id="leadership-title">What I lead</h2>
+              <span>
+                Product judgment, program control and platform accountability in one remit.
+              </span>
+            </header>
+
+            <div className="resume-leadership-grid" data-rz-stagger>
+              {roleFit.map((item, index) => (
+                <article key={item.title}>
+                  <span>{String(index + 1).padStart(2, "0")}</span>
+                  <h3>{item.title}</h3>
+                  <p>{item.body}</p>
+                </article>
+              ))}
+            </div>
+
+            <div className="resume-capability-list" data-rz-reveal>
+              {capabilityGroups.map((group) => (
+                <div className="resume-capability-row" key={group.group}>
+                  <h3>{group.group}</h3>
+                  <p>{group.items.join(" · ")}</p>
+                </div>
+              ))}
+            </div>
+
+            <div className="resume-markets" data-rz-reveal>
+              <p>Market exposure</p>
+              <div>
+                {marketRegions.map((market) => (
+                  <span key={market}>{market}</span>
                 ))}
               </div>
             </div>
-          ))}
-        </div>
-      </section>
 
-      <section className="grid md:grid-cols-3 gap-8 py-10">
-        <div>
-          <h2 className="font-instrument text-2xl text-ink mb-4">Certifications</h2>
-          <ul className="space-y-2 text-sm text-ink-soft">
-            {formalCertifications.map((cert) => (
-              <li key={cert}>{cert}</li>
-            ))}
-          </ul>
-          {programCredentials.length > 0 && (
-            <p className="mt-4 text-xs text-ink-soft leading-relaxed">
-              Also led PCI DSS and ISO/IEC 27001 certification programs from scratch at Simpaisa.
-            </p>
-          )}
-        </div>
-        <div>
-          <h2 className="font-instrument text-2xl text-ink mb-4">Education</h2>
-          <ul className="space-y-4">
-            {profile.education.map((item) => (
-              <li key={`${item.school}-${item.degree}`}>
-                <div className="font-instrument text-base text-ink">{item.degree}</div>
-                <div className="text-sm text-ink-soft">{item.school}</div>
-                <div className="text-[10px] uppercase tracking-[0.14em] text-ink-soft mt-1 font-mono-tech">
-                  {item.period}
+            <nav className="resume-recruiter-paths" aria-label="Role-fit views" data-rz-reveal>
+              <p>Shortlist paths</p>
+              <div>
+                {recruiterPathLinks.map((item) => (
+                  <Link
+                    key={item.audience}
+                    to="/for/$audience"
+                    params={{ audience: item.audience }}
+                  >
+                    {item.label}
+                    <span aria-hidden="true">↗</span>
+                  </Link>
+                ))}
+              </div>
+            </nav>
+          </div>
+        </section>
+
+        <section className="resume-section resume-credentials" aria-labelledby="credentials-title">
+          <div className="resume-shell">
+            <header className="resume-section-head resume-section-head--split" data-rz-reveal>
+              <p>04 / Foundations</p>
+              <h2 id="credentials-title">Credentials</h2>
+              <span>Formal qualifications, operating certifications and community leadership.</span>
+            </header>
+
+            <div className="resume-credentials-grid" data-rz-stagger>
+              <article>
+                <p className="resume-column-label">Certifications</p>
+                <ul>
+                  {formalCertifications.map((credential) => (
+                    <li key={credential}>{credential}</li>
+                  ))}
+                </ul>
+                <div className="resume-program-credentials">
+                  {programCredentials.map((credential) => (
+                    <p key={credential}>{credential}</p>
+                  ))}
                 </div>
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div>
-          <h2 className="font-instrument text-2xl text-ink mb-4">Recognition</h2>
-          <ul className="space-y-3">
-            {profile.honors.map((honor) => (
-              <li key={honor.title}>
-                <div className="font-instrument text-base text-ink">{honor.title}</div>
-                <div className="text-[10px] uppercase tracking-[0.14em] text-ink-soft mt-1 font-mono-tech">
-                  {honor.issuer} · {honor.year}
+              </article>
+
+              <article>
+                <p className="resume-column-label">Education</p>
+                <div className="resume-education-list">
+                  {profile.education.map((item) => (
+                    <div key={[item.school, item.degree].join("-")}>
+                      <span>{item.period.replace(",", " –")}</span>
+                      <strong>{item.school}</strong>
+                      <p>{item.degree}</p>
+                    </div>
+                  ))}
                 </div>
-              </li>
-            ))}
-          </ul>
-          <h3 className="font-instrument text-xl text-ink mt-8 mb-3">Contact</h3>
-          <div className="space-y-2 text-sm text-ink-soft">
-            <div>{profile.location}</div>
-            <a
-              className="flex w-fit items-center gap-2 text-ink underline underline-offset-4"
-              href="#book"
-              data-analytics-event="cta_click"
-              data-analytics-cta-id="book_intro_call"
-              data-analytics-cta-location="resume_contact"
-              data-analytics-cta-destination="#book"
-            >
-              <Mark />
-              Book a 15-min intro call
-            </a>
-            <a
-              className="flex w-fit items-center gap-2 text-ink underline underline-offset-4"
-              href={`mailto:${profile.email}`}
-            >
-              <Mark />
-              {profile.email}
-            </a>
-            <a
-              className="flex w-fit items-center gap-2 text-ink underline underline-offset-4"
-              href={profile.linkedin}
-              target="_blank"
-              rel="noreferrer"
-            >
-              <Mark />
-              LinkedIn profile
-            </a>
+              </article>
+
+              <article>
+                <p className="resume-column-label">Recognition &amp; contact</p>
+                <div className="resume-recognition">
+                  {profile.honors.map((honor) => (
+                    <div key={honor.title}>
+                      <strong>{honor.title}</strong>
+                      <span>{honor.year}</span>
+                    </div>
+                  ))}
+                  {profile.volunteering.map((item) => (
+                    <div key={item.role}>
+                      <strong>{item.role}</strong>
+                      <span>
+                        {item.org} · {item.period.replace(",", " –")}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+                <div className="resume-contact-links">
+                  <a href={"mailto:" + profile.email}>{profile.email}</a>
+                  <a href={profile.linkedin} target="_blank" rel="noreferrer">
+                    LinkedIn ↗
+                  </a>
+                  <a
+                    href="#book"
+                    data-analytics-event="cta_click"
+                    data-analytics-cta-id="book_intro_call"
+                    data-analytics-cta-location="resume_contact"
+                    data-analytics-cta-destination="#book"
+                  >
+                    Book an intro ↘
+                  </a>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <section className="resume-close" aria-labelledby="resume-close-title">
+        <div className="resume-shell">
+          <div className="resume-close-kicker" data-rz-reveal>
+            <span>Senior product &amp; program leadership</span>
+            <span>Dubai · MENA · Global</span>
+          </div>
+          <div className="resume-close-grid" data-rz-stagger>
+            <h2 id="resume-close-title">
+              <span>Let&apos;s build</span>
+              <span>the next system.</span>
+            </h2>
+            <div>
+              <p>
+                Looking for a payments leader who can connect strategy, architecture, regulation and
+                delivery?
+              </p>
+              <div className="resume-actions resume-actions--inverse">
+                <a
+                  href={profile.resumeHref}
+                  download
+                  data-analytics-event="cta_click"
+                  data-analytics-cta-id="download_resume"
+                  data-analytics-cta-location="resume_close"
+                  data-analytics-cta-destination={profile.resumeHref}
+                  data-analytics-cta-placement="resume_close"
+                  className="resume-button resume-button--primary"
+                >
+                  Download PDF <span aria-hidden="true">↓</span>
+                </a>
+                <a
+                  href="#book"
+                  data-analytics-event="cta_click"
+                  data-analytics-cta-id="book_intro_call"
+                  data-analytics-cta-location="resume_close"
+                  data-analytics-cta-destination="#book"
+                  className="resume-button resume-button--secondary"
+                >
+                  Book an intro <span aria-hidden="true">↘</span>
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="resume-cta-panel rounded-lg border border-[var(--brand)] bg-[var(--brand)] text-background p-6 md:p-8 flex flex-col md:flex-row md:items-center md:justify-between gap-5">
-        <div>
-          <h2 className="font-instrument text-2xl md:text-3xl leading-tight">
-            Ready for senior product, payments and program leadership roles.
-          </h2>
-          <p className="mt-2 text-sm text-background/70 max-w-2xl">
-            Best fit: fintech infrastructure, payment networks, PSPs, banks, OTT/ecommerce platforms
-            and digital transformation programs that need product judgment plus delivery discipline.
-          </p>
+      <div className="resume-booking-wrap">
+        <div className="resume-shell">
+          <BookingSection
+            refName="resume_inline_embed"
+            fallbackLocation="resume_inline_embed"
+            calendarUrl={profile.calendarUrl}
+            className="resume-booking"
+          />
         </div>
-        <div className="flex flex-wrap gap-2.5 shrink-0">
-          <a
-            href="#book"
-            data-analytics-event="cta_click"
-            data-analytics-cta-id="book_intro_call"
-            data-analytics-cta-location="resume_page"
-            data-analytics-cta-destination="#book"
-            className="inline-flex items-center justify-center gap-2 rounded-full bg-background text-ink px-5 py-2.5 text-sm font-medium hover:bg-[var(--brand)] hover:text-background transition-colors"
-          >
-            <Mark />
-            Book a 15-min intro call
-          </a>
-          <a
-            href={profile.resumeHref}
-            download
-            data-analytics-event="cta_click"
-            data-analytics-cta-id="download_resume"
-            data-analytics-cta-location="resume_page"
-            data-analytics-cta-destination={profile.resumeHref}
-            data-analytics-placement="resume_page"
-            className="inline-flex items-center justify-center gap-2 rounded-full border border-background/25 px-5 py-2.5 text-sm font-medium text-background hover:bg-background/10 transition-colors"
-          >
-            <Mark />
-            Download PDF
-          </a>
-        </div>
-      </section>
-
-      <BookingSection
-        refName="resume_inline_embed"
-        fallbackLocation="resume_embed_fallback"
-        calendarUrl={profile.calendarUrl}
-      />
+      </div>
     </div>
   );
 }

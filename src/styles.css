@@ -11,6 +11,8 @@
 @import "./styles/sections-next.css";
 @import "./styles/chrome-next.css";
 @import "./styles/corridor-map.css";
+@import "./styles/corridor-home.css";
+@import "./styles/article-reader.css";
 /* Last: the zero-specificity focus/press safety net (section 22). Every
    selector inside is wrapped in :where(), so it can only fill gaps — it never
    outranks the bespoke rings and card lifts declared above. */
@@ -65,22 +67,22 @@
      warm off-white text, chroma quarantined to the teal→cyan accent (<5% of
      surface). "paper" now reads near-black; downstream color-mix greys
      auto-recompute against the dark base so the whole system flips at once. */
-  --paper: #0a0a0b;   /* page base — warm near-black (not #000) */
-  --paper-2: #0c0c0e;  /* alt section bg */
-  --paper-3: #101013;  /* raised panels / surface-2 */
-  --ink: #f2f0ec;      /* headlines / body — warm off-white (NOT #fff) */
-  --signal: #2dd4bf;   /* THE visible accent: links/rings/brand — cyan-glow, 9.6:1 on base */
-  --signal-deep: #0e4f4f;  /* teal-core — gradients & glows ONLY, never text (1.5:1) */
-  --signal-soft: #5eead4;  /* hover-bright cyan rim */
+  --paper: #0a0a0b; /* page base — warm near-black (not #000) */
+  --paper-2: #0c0c0e; /* alt section bg */
+  --paper-3: #101013; /* raised panels / surface-2 */
+  --ink: #f2f0ec; /* headlines / body — warm off-white (NOT #fff) */
+  --signal: #2dd4bf; /* THE visible accent: links/rings/brand — cyan-glow, 9.6:1 on base */
+  --signal-deep: #0e4f4f; /* teal-core — gradients & glows ONLY, never text (1.5:1) */
+  --signal-soft: #5eead4; /* hover-bright cyan rim */
   /* Hairlines are INK-derived, not hardcoded white, so they invert with the
      theme instead of staying white on a light page. Mixed `in srgb` because
      these are alpha ramps, not perceptual blends. */
-  --rule: color-mix(in srgb, var(--ink) 10%, transparent);   /* hairlines */
+  --rule: color-mix(in srgb, var(--ink) 10%, transparent); /* hairlines */
   --rule-hi: color-mix(in srgb, var(--ink) 16%, transparent);
 
   --background: var(--paper);
   --foreground: var(--ink);
-  --ink-soft: color-mix(in oklab, var(--ink) 66%, var(--paper));   /* secondary text ~#b7b6b0, ~8:1 */
+  --ink-soft: color-mix(in oklab, var(--ink) 66%, var(--paper)); /* secondary text ~#b7b6b0, ~8:1 */
   --surface: var(--paper-2);
   --surface-2: var(--paper-3);
 
@@ -116,15 +118,15 @@
      separate from the near-black page: composited luma ~21.8 vs page ~10.1
      (was ~15.8, a ~6pt gap that merged in bright rooms). Hairline strengthened
      0.10 → 0.14 white. Still warm near-black, restrained — not grey. */
-  --surface-raised: rgba(22, 22, 26, 0.95);          /* solid card fill */
-  --surface-raised-hi: rgba(30, 30, 35, 0.72);       /* pillar-card blur fill */
+  --surface-raised: rgba(22, 22, 26, 0.95); /* solid card fill */
+  --surface-raised-hi: rgba(30, 30, 35, 0.72); /* pillar-card blur fill */
   /* Ink-derived so they invert with the theme (see --rule). */
   --surface-raised-edge: color-mix(in srgb, var(--ink) 14%, transparent);
   --surface-raised-tint: color-mix(in srgb, var(--signal) 6%, transparent);
-  --surface-raised-shadow: 0 1px 2px rgba(0, 0, 0, 0.45),
-    0 12px 32px rgba(0, 0, 0, 0.5), 0 30px 70px -18px rgba(0, 0, 0, 0.6);
-  --surface-raised-highlight: inset 0 1px 0
-    color-mix(in srgb, var(--ink) 6%, transparent);
+  --surface-raised-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.45), 0 12px 32px rgba(0, 0, 0, 0.5),
+    0 30px 70px -18px rgba(0, 0, 0, 0.6);
+  --surface-raised-highlight: inset 0 1px 0 color-mix(in srgb, var(--ink) 6%, transparent);
   --surface-blur: 14px;
   /* The one sanctioned live blur: the scrolled header pill (chrome-next.css).
      Preserves the 18px the deleted --glass-blur-lg carried. */
@@ -212,8 +214,9 @@ html[data-theme="light"] {
      it is whiter and leans on shadow, not on a luminous fill. */
   --surface-raised: rgba(255, 255, 255, 0.96);
   --surface-raised-hi: rgba(255, 255, 255, 0.78);
-  --surface-raised-shadow: 0 1px 2px rgba(15, 15, 20, 0.06),
-    0 12px 32px rgba(15, 15, 20, 0.07), 0 30px 70px -18px rgba(15, 15, 20, 0.1);
+  --surface-raised-shadow:
+    0 1px 2px rgba(15, 15, 20, 0.06), 0 12px 32px rgba(15, 15, 20, 0.07),
+    0 30px 70px -18px rgba(15, 15, 20, 0.1);
 }
 
 @layer base {
@@ -477,13 +480,7 @@ html[data-theme="light"] {
      the viewport edge dissolve instead of being cut mid-glyph, which read
      as a layout break in review. */
   .marquee-wrap {
-    -webkit-mask-image: linear-gradient(
-      to right,
-      transparent,
-      black 7%,
-      black 93%,
-      transparent
-    );
+    -webkit-mask-image: linear-gradient(to right, transparent, black 7%, black 93%, transparent);
     mask-image: linear-gradient(to right, transparent, black 7%, black 93%, transparent);
   }
   .marquee-wrap:hover .marquee-track,
@@ -743,7 +740,9 @@ html[data-theme="light"] {
      refract the drifting mesh behind them. */
   @supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
     .home-pillar-card {
-      background: linear-gradient(135deg, var(--surface-raised-tint), transparent 55%), var(--surface-raised-hi);
+      background:
+        linear-gradient(135deg, var(--surface-raised-tint), transparent 55%),
+        var(--surface-raised-hi);
       -webkit-backdrop-filter: blur(var(--surface-blur)) saturate(var(--surface-sat));
       backdrop-filter: blur(var(--surface-blur)) saturate(var(--surface-sat));
     }
@@ -2548,11 +2547,20 @@ textarea:user-invalid {
   }
 }
 
-/* Scrim behind the floating header pill: content scrolling beneath used to
-   collide crisply with the pill's rounded corners and the strip above it
-   (serif titles rendering through the gaps read as broken). A paper fade
-   keeps the floating look while everything under it recedes. Static rule on
-   purpose — legibility, not motion, so it must NOT sit in a motion query. */
+/* Scrim behind the shared header: content scrolling beneath used to collide
+   crisply with the controls and the strip above them. Keep the scrim surface
+   local to the header instead of reading --paper directly: the Corridor home
+   is intentionally dark even when a visitor has selected the light theme,
+   while interior pages continue to follow the selected palette. */
+.site-header {
+  --rz-header-scrim-surface: var(--paper);
+  isolation: isolate;
+}
+
+html.corridor-home-active .site-header {
+  --rz-header-scrim-surface: #090b0d;
+}
+
 .site-header::before {
   content: "";
   position: absolute;
@@ -2561,8 +2569,8 @@ textarea:user-invalid {
   z-index: -1;
   background: linear-gradient(
     to bottom,
-    var(--paper) 0%,
-    color-mix(in oklab, var(--paper) 82%, transparent) 62%,
+    var(--rz-header-scrim-surface) 0%,
+    color-mix(in oklab, var(--rz-header-scrim-surface) 82%, transparent) 62%,
     transparent 100%
   );
 }
@@ -2628,11 +2636,18 @@ textarea:user-invalid {
 }
 
 /* Keep privacy choice visible without letting the consent surface consume the
-   entire first mobile viewport. The two decisive actions share one row; the
-   granular preferences action remains full-width directly below. */
-@media (max-width: 420px) {
+   first mobile/tablet viewport. CookieConsent's own <=640px rule stacks every
+   action; restore a compact, equal-weight row for Accept / Essential and keep
+   granular preferences as the quieter full-width action below. All controls
+   retain a 44px target and the library's native focus outline. */
+@media (max-width: 640px) {
   #cc-main {
     --cc-modal-margin: 0.5rem;
+  }
+
+  #cc-main .cm {
+    max-width: min(32rem, calc(100vw - 1rem)) !important;
+    width: min(32rem, calc(100vw - 1rem)) !important;
   }
 
   #cc-main .cm__texts {
@@ -2655,6 +2670,10 @@ textarea:user-invalid {
 
   #cc-main .cm__btns {
     padding: 0.75rem 0.9rem !important;
+  }
+
+  #cc-main .cm__btn {
+    min-height: 44px;
   }
 
   #cc-main .cm__btn-group:first-child {

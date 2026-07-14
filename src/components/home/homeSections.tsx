@@ -8,6 +8,7 @@
 import { Link } from "@tanstack/react-router";
 import { profile } from "@/data/profile";
 import { CAREER, PLATFORM, DARAZ } from "@/content/facts";
+import { HOW_I_WORK_FAQS } from "@/data/homeFaqs";
 import { WorldMap } from "@/components/WorldMap";
 import { RevealHeading } from "@/components/RevealHeading";
 import { AnimatedMetric } from "@/components/motion/AnimatedMetric";
@@ -189,17 +190,14 @@ export function ProofBand() {
             className="rz-proof-grid grid grid-cols-2 md:grid-cols-4 gap-y-12 md:gap-y-0 md:divide-x md:divide-[color:var(--rule)]"
           >
             {primary.map((s) => (
-            <div
-              key={s.label}
-              className="text-center md:px-8"
-            >
-              <div className="font-instrument text-[46px] sm:text-6xl lg:text-7xl text-ink leading-[0.88] tabular-nums">
-                <AnimatedMetric value={s.value} />
+              <div key={s.label} className="text-center md:px-8">
+                <div className="font-instrument text-[46px] sm:text-6xl lg:text-7xl text-ink leading-[0.88] tabular-nums">
+                  <AnimatedMetric value={s.value} />
+                </div>
+                <div className="mt-3 md:mt-4 text-[10px] uppercase tracking-[0.22em] text-ink-soft font-mono-tech">
+                  {s.label}
+                </div>
               </div>
-              <div className="mt-3 md:mt-4 text-[10px] uppercase tracking-[0.22em] text-ink-soft font-mono-tech">
-                {s.label}
-              </div>
-            </div>
             ))}
           </div>
         </div>
@@ -217,7 +215,7 @@ export function ProofBand() {
 // Owner call: no map on the homepage — the signature map lives on /journey
 // only. Component kept (not deleted) in case this gets revisited; not
 // imported from src/routes/index.tsx. Copy said "worked in", NOT "shipped
-// in" — Nigeria was pending owner confirmation of shipped status.
+// in" — only evidence-backed market records are published by markets.ts.
 export function MapStrip() {
   return (
     // rz-beam-flush: this section is overflow-hidden, so the shared beam
@@ -328,6 +326,8 @@ export function IndustryPillars() {
 // ── G. CREDENTIALS STRIP ──────────────────────────────────────────────────
 // Mono row sourced from profile.education (MIT Sloan), profile.honors
 // (Youngest PM of the Year 2015) and profile.volunteering (PMI Karachi VP).
+// The recognition remains issuer-neutral because the canonical honor record
+// does not attribute it to PMI.
 // PCI/ISO tagged "(platform)" — those certs belong to the Simpaisa platform,
 // not the individual.
 export function CredentialsStrip() {
@@ -336,7 +336,7 @@ export function CredentialsStrip() {
   const pmiVp = profile.volunteering.find((v) => v.role.includes("Vice President"));
   const items = [
     mitSloan ? "MIT Sloan" : null,
-    youngestPm ? `PMI Youngest Project Manager of the Year (${youngestPm.year})` : null,
+    youngestPm ? `${youngestPm.title} (${youngestPm.year})` : null,
     pmiVp ? "PMI Karachi VP '22–23" : null,
     "PCI-DSS L1 + ISO 27001 (platform)",
   ].filter(Boolean) as string[];
@@ -431,7 +431,9 @@ export function GetInTouchBand() {
               <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
                 {c.eyebrow}
               </div>
-              <h3 className="font-instrument text-2xl md:text-[1.7rem] text-ink mt-3 leading-snug">{c.title}</h3>
+              <h3 className="font-instrument text-2xl md:text-[1.7rem] text-ink mt-3 leading-snug">
+                {c.title}
+              </h3>
               <p className="mt-2 text-sm text-ink-soft leading-relaxed flex-1">{c.body}</p>
               <div className="mt-6 flex flex-col gap-2.5">
                 {/* Tap targets (Gate-A 2026-07-08, WCAG 2.5.8): py + negative
@@ -479,38 +481,6 @@ export function GetInTouchBand() {
 }
 
 // ── HOW I WORK / FAQ ──────────────────────────────────────────────────────
-// Native <details> accordion (zero JS). Every answer traces to profile.ts /
-// the verified fact base, and this same array feeds the FAQPage JSON-LD in
-// the route head — so the structured data can never drift from the copy.
-// Two-tier note: career-scope markers (ten markets) and Simpaisa platform
-// facts are kept in separate sentences within any single answer.
-export const howIWorkFaqs: { q: string; a: string }[] = [
-  {
-    q: "What roles are you focused on?",
-    a: "Senior product and program leadership in payments and fintech infrastructure — Director or VP of Product, Head of Product, and senior program or PMO roles. I own the full lifecycle: strategy, roadmap, PMO governance, execution and P&L.",
-  },
-  {
-    q: "Which markets have you worked across?",
-    a: `${CAREER.marketsWordCap} markets across MENA and South Asia over my career, spanning payments, e-commerce and streaming. At Simpaisa specifically, I run the platform across ${PLATFORM.marketsWord} regulated frontier markets.`,
-  },
-  {
-    q: "How technical are you?",
-    a: "I started in engineering and still operate close to the build. At Simpaisa I led a 40-plus engineer organisation across 12 squads and served as acting CTO through 2024 alongside the CPO role.",
-  },
-  {
-    q: "What does your product scope cover?",
-    a: "Regulated payment infrastructure end to end: card acquiring, merchant onboarding and KYC/KYB, pay-in and payout rails, cross-border corridors, settlement and reconciliation, fraud and AML/CFT controls, and AI-augmented operations.",
-  },
-  {
-    q: "How do you use AI in delivery?",
-    a: "I run four production GenAI systems in a regulated payments environment — merchant-integration support, incident auto-escalation, partner-support automation, and a fraud/AML pilot with a banking partner.",
-  },
-  {
-    q: "Where are you based and how do you work?",
-    a: "Dubai (GST, UTC+4), which overlaps cleanly with Europe, MENA and South Asia working hours and with US East Coast mornings. I work async-first with a weekly live cadence.",
-  },
-];
-
 export function HowIWorkFaq() {
   return (
     // No data-glow on the <details> rows: they are flat divider rows (border-b
@@ -524,7 +494,7 @@ export function HowIWorkFaq() {
           <RevealHeading lead="The questions I get" emphasis="most." />
         </h2>
         <div className="mt-10 border-t border-rule">
-          {howIWorkFaqs.map((f, i) => (
+          {HOW_I_WORK_FAQS.map((f, i) => (
             <details key={i} className="faq-item group border-b border-rule">
               <summary className="flex items-center justify-between gap-6 py-5">
                 <span className="font-instrument text-lg md:text-xl text-ink leading-snug">

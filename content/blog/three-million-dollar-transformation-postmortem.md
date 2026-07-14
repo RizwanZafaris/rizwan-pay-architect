@@ -34,7 +34,7 @@ relatedArticles:
 
 # Running a $3M Digital Transformation Programme: A Postmortem (TapmadTV)
 
-In 2016 I took on a $3M digital transformation programme at TapmadTV, Pakistan's first licensed OTT streaming platform. 5 technology workstreams (iOS, Android, web, CMS, CDN), 25-person team, 8 international vendors, a regulator-facing launch date with no slip room.
+In 2017 I took on a $3M digital transformation programme at TapmadTV, Pakistan's first licensed OTT streaming platform. 5 technology workstreams (iOS, Android, web, CMS, CDN), 25-person team, 8 international vendors, a regulator-facing launch date with no slip room.
 
 It landed on schedule. This is the postmortem, what worked, what didn't, and what I would do differently.
 

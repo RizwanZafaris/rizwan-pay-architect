@@ -68,12 +68,12 @@ const offers: Offer[] = [
     ],
     proof: [
       {
-        label: `+3.4 pts portfolio-wide auth-rate uplift across ${PLATFORM.merchants} merchants`,
-        href: "/product-work/mpgs-acquirer-integration-programme/",
+        label: `+14% authorization uplift across a ${PLATFORM.gtv} GTV platform`,
+        href: "/product-work/simpaisa-payment-infrastructure/",
       },
       {
-        label: "38% → 73% frictionless 3DS2 without lifting fraud",
-        href: "/product-work/3ds2-sca-step-up-optimisation-programme/",
+        label: "97% payment success at 90% straight-through processing",
+        href: "/product-work/simpaisa-payment-infrastructure/",
       },
     ],
   },
@@ -94,8 +94,8 @@ const offers: Offer[] = [
         href: "/product-work/settlement-reconciliation/",
       },
       {
-        label: "Regional wallet integration: Easypaisa, JazzCash, SADAD, STC Pay",
-        href: "/product-work/regional-wallet-integration-easypaisa-jazzcash-sadad/",
+        label: `${PLATFORM.marketCount}-market pay-in, payout and cross-border infrastructure`,
+        href: "/product-work/cross-border-corridors-fx/",
       },
     ],
   },
@@ -112,7 +112,7 @@ const offers: Offer[] = [
     ],
     proof: [
       {
-        label: "4 production GenAI deployments in regulated payments",
+        label: "3 production GenAI systems + 1 regulated banking pilot",
         href: "/product-work/simpaisa-ai-solutions-suite/",
       },
     ],
@@ -156,7 +156,7 @@ const faqs = [
   {
     question: "How do you use AI in delivery?",
     answer:
-      "As leverage, with governance. I run production AI systems in regulated payments — four GenAI deployments covering merchant integration support, incident escalation and partner support — and use agent-assisted analysis and drafting in engagements, with every output human-verified before it reaches you. Client data is never put into public model training.",
+      "As leverage, with governance. I run three production GenAI systems in regulated payments across merchant integration support, incident escalation and partner support, plus a fraud/AML banking pilot. I also use agent-assisted analysis and drafting in engagements, with every output human-verified before it reaches you. Client data is never put into public model training.",
   },
   {
     question: "What is the difference between advisory and hiring you full-time?",
@@ -207,7 +207,7 @@ const consultingFaqJsonLd = {
 // Print guard for the engine-staggered KPI grid: the global @media print rules
 // reset [class*="reveal"] / [class*="motion"] but not [data-rz-stagger]
 // children, whose hidden pre-reveal state lives in next.css.
-const consultingPrintCss = `
+const consultingPageCss = `
 @media print {
   .consulting-page [data-rz-stagger] > * {
     opacity: 1 !important;
@@ -215,10 +215,16 @@ const consultingPrintCss = `
     transition: none !important;
   }
 }
+@media (prefers-reduced-motion: reduce) {
+  .consulting-page .consulting-primary-cta {
+    transform: none !important;
+    transition: none !important;
+  }
+}
 `;
 
 const primaryCtaClass =
-  "inline-flex items-center justify-center gap-2 rounded-full bg-ink text-background px-8 py-4 text-base font-medium shadow-sm transition duration-200 hover:bg-brand hover:text-[var(--brand-foreground)] hover:-translate-y-0.5 hover:shadow-md active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2";
+  "consulting-primary-cta inline-flex items-center justify-center gap-2 rounded-full bg-ink text-background px-8 py-4 text-base font-medium shadow-sm transition duration-200 hover:bg-brand hover:text-[var(--brand-foreground)] hover:-translate-y-0.5 hover:shadow-md active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2";
 
 const cardCtaClass =
   "inline-flex items-center gap-2 rounded-full bg-ink text-background px-4 py-2.5 text-sm font-medium transition duration-200 hover:bg-brand hover:text-[var(--brand-foreground)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2";
@@ -274,7 +280,7 @@ function ConsultingPage() {
   const calendarUrl = profile.calendarUrl;
   return (
     <div className="consulting-page mx-auto max-w-5xl px-5 sm:px-6 py-16 md:py-24">
-      <style dangerouslySetInnerHTML={{ __html: consultingPrintCss }} />
+      <style dangerouslySetInnerHTML={{ __html: consultingPageCss }} />
       {/* Hero — client intent, single action */}
       <section className="text-center">
         <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
@@ -287,8 +293,8 @@ function ConsultingPage() {
           I&apos;m {profile.name}. I&apos;ve scaled payment infrastructure to{" "}
           <span className="text-ink font-medium">{PLATFORM.gtv} annual GTV</span>,{" "}
           {PLATFORM.annualPayments} payments a year and {PLATFORM.merchants} merchants across
-          frontier markets — as the operator, not the observer. I take a small
-          number of advisory engagements alongside that work. Dubai (GST) &middot; remote-friendly.
+          frontier markets — as the operator, not the observer. I take a small number of advisory
+          engagements alongside that work. Dubai (GST) &middot; remote-friendly.
         </p>
         <div className="mt-9 flex flex-col items-center gap-3">
           <a

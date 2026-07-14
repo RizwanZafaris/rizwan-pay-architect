@@ -29,7 +29,7 @@ relatedArticles:
   - "/blog/authorization-rate-merchant-pnl-operating-model"
   - "/blog/reconciliation-is-product-infrastructure"
   - "/blog/revolut-adyen-uae-licences-dubai-fintech-signal"
-  - "/product-work/mpgs-acquirer-integration-programme"
+  - "/product-work/simpaisa-payment-infrastructure"
 ---
 
 # 85,000 Amex Locations: The UAE Acceptance Work Starts Now
@@ -72,7 +72,7 @@ The rollout needs at least five separate states:
 
 Reporting one combined "enabled" number hides the funnel. A strong rollout dashboard should show conversion and ageing between each state, split by physical POS, e-commerce, merchant category, emirate, and SME segment.
 
-This is the same discipline required in any [multi-merchant acquiring programme](/product-work/mpgs-acquirer-integration-programme): portfolio coverage is useful only when merchant-level telemetry shows where the rollout is working and where it is stuck.
+This is the same discipline required in any [multi-merchant payments platform](/product-work/simpaisa-payment-infrastructure): portfolio coverage is useful only when merchant-level telemetry shows where the rollout is working and where it is stuck.
 
 ## The Merchant Proposition Has To Survive Operations
 

@@ -127,13 +127,12 @@ function AudiencePage() {
 
       {/* Proof strip — flat bordered KPI tiles, mono tabular-nums, engine-
           staggered with a single beam on this page's first ruled band. */}
-      <div
-        data-rz-stagger
-        className="rz-beam relative mt-10 grid grid-cols-2 md:grid-cols-4 gap-3"
-      >
+      <div data-rz-stagger className="rz-beam relative mt-10 grid grid-cols-2 md:grid-cols-4 gap-3">
         {profile.metrics.slice(0, 4).map((m) => (
           <div key={m.label} className="border border-rule bg-surface px-4 py-3">
-            <div className="font-mono-tech text-xl text-ink leading-none tabular-nums">{m.value}</div>
+            <div className="font-mono-tech text-xl text-ink leading-none tabular-nums">
+              {m.value}
+            </div>
             <div className="text-[10px] uppercase tracking-[0.14em] text-ink-soft mt-1.5 font-mono-tech leading-tight">
               {m.label}
             </div>

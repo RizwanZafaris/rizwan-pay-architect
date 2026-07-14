@@ -44,7 +44,7 @@ The single most common framing mistake in cross-border product strategy is treat
 
 That gets the first transaction through. It does not get the hundredth-thousand through reliably. A corridor is not a route. It is an operating system with its own success rate, cost curve, FX behavior, compliance overlay, dispute timeline, and customer-experience model.
 
-This essay is the framing I have used to build pay-in and payout corridors across MENA and South Asia, UAE, Pakistan, Bangladesh, Nepal, Iraq, Egypt, and what product teams at corridor companies should internalize.
+This essay is the framing I have used to build pay-in and payout corridors across Pakistan, Bangladesh, Nepal, Sri Lanka and Iraq, and what product teams at corridor companies should internalize.
 
 ## Table of contents
 
@@ -137,7 +137,7 @@ Most teams cannot produce this. The result is corridors that look profitable in 
 
 The cross-border market is consolidating around the platforms that treat corridors as products. Thunes, Wise, dLocal, Stripe Connect payouts, the ones with the highest-quality corridors are the ones with the deepest product investment in each layer above. The platforms that treat cross-border as "we wired up SWIFT and added some receiver options" lose the corridor war one country at a time.
 
-For an emerging-market platform like Simpaisa operating across UAE, Pakistan, Bangladesh, Nepal, Iraq, and Egypt, the corridor-as-OS framing was the only one that scaled, because each of these markets has different rail dominance, different regulators, and different customer payment behaviors.
+For an emerging-market platform like Simpaisa operating across Pakistan, Bangladesh, Nepal, Sri Lanka and Iraq, the corridor-as-OS framing was the only one that scaled, because each of these markets has different rail dominance, different regulators, and different customer payment behaviors.
 
 ## Rizwan's operator lens
 

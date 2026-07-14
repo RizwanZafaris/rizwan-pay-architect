@@ -36,9 +36,7 @@ export function NewsletterSignup({
       <div className="text-[10px] uppercase tracking-[0.18em] text-ink-soft font-mono-tech">
         Payments Infrastructure Notes
       </div>
-      <h2 className="font-display text-xl text-ink mt-2">
-        One operator email a week. No filler.
-      </h2>
+      <h2 className="font-display text-xl text-ink mt-2">One operator email a week. No filler.</h2>
       <p className="mt-2 text-sm text-ink-soft leading-relaxed">
         Payment acceptance, settlement and product delivery notes from running {PLATFORM.gtv} annual
         GTV across frontier markets — written for founders and payment leaders.
@@ -79,9 +77,7 @@ export function NewsletterSignup({
           Subscribe
         </button>
       </form>
-      <p className="mt-2 text-xs text-ink-soft">
-        Weekly at most. Unsubscribe with one reply.
-      </p>
+      <p className="mt-2 text-xs text-ink-soft">Weekly at most. Unsubscribe with one reply.</p>
     </section>
   );
 }

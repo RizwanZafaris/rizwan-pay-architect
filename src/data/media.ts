@@ -50,11 +50,11 @@ export const mediaItems: MediaItem[] = [
   },
   {
     kind: "video",
-    title: "Walk-through: 4 production GenAI deployments in payments",
+    title: "Walk-through: 3 production GenAI systems + 1 banking pilot",
     venue: "Loom · case-study companion",
     date: "Coming soon",
     description:
-      "Tour of the 4 GenAI solutions running in production at Simpaisa, merchant chatbot, auto-escalation, partner support automation and the fraud/AML pilot.",
+      "Tour of three GenAI systems running in production at Simpaisa, merchant chatbot, auto-escalation and partner support automation, plus the fraud/AML banking pilot.",
     tags: ["AI in fintech", "GenAI", "production AI"],
     duration: "7 min",
     comingSoon: true,

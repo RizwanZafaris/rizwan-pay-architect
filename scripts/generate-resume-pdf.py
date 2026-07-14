@@ -21,11 +21,11 @@ from reportlab.platypus import (
 )
 
 
-INK = colors.HexColor("#152A2C")
-TEAL = colors.HexColor("#0E706B")
-MUTED = colors.HexColor("#536365")
-RULE = colors.HexColor("#D8DEDC")
-PAPER = colors.HexColor("#FCFAF5")
+INK = colors.HexColor("#171513")
+COPPER = colors.HexColor("#A6532B")
+MUTED = colors.HexColor("#675F57")
+RULE = colors.HexColor("#D5C9BA")
+PAPER = colors.HexColor("#F3EEE5")
 
 
 def bullet(text: str, style: ParagraphStyle) -> Paragraph:
@@ -101,21 +101,21 @@ def build(output: Path):
         "name": ParagraphStyle(
             "Name",
             parent=base["Title"],
-            fontName="Helvetica-Bold",
-            fontSize=21,
-            leading=23,
+            fontName="Times-Roman",
+            fontSize=27,
+            leading=27,
             textColor=INK,
-            alignment=TA_CENTER,
-            spaceAfter=2,
+            alignment=0,
+            spaceAfter=3,
         ),
         "headline": ParagraphStyle(
             "Headline",
             parent=base["Normal"],
-            fontName="Helvetica",
-            fontSize=9.2,
-            leading=12,
-            textColor=TEAL,
-            alignment=TA_CENTER,
+            fontName="Helvetica-Bold",
+            fontSize=8.7,
+            leading=11,
+            textColor=COPPER,
+            alignment=0,
             spaceAfter=2,
         ),
         "contact": ParagraphStyle(
@@ -125,7 +125,7 @@ def build(output: Path):
             fontSize=7.8,
             leading=10.5,
             textColor=MUTED,
-            alignment=TA_CENTER,
+            alignment=0,
         ),
         "section": ParagraphStyle(
             "Section",
@@ -133,7 +133,7 @@ def build(output: Path):
             fontName="Helvetica-Bold",
             fontSize=8.2,
             leading=10,
-            textColor=TEAL,
+            textColor=COPPER,
             borderWidth=0,
             borderPadding=0,
             spaceAfter=0,
@@ -193,21 +193,38 @@ def build(output: Path):
             fontName="Helvetica-Bold",
             fontSize=7.5,
             leading=9.5,
-            textColor=TEAL,
+            textColor=COPPER,
+        ),
+        "metric_value": ParagraphStyle(
+            "MetricValue",
+            parent=base["BodyText"],
+            fontName="Times-Roman",
+            fontSize=17,
+            leading=18,
+            textColor=COPPER,
+            spaceAfter=1,
+        ),
+        "metric_label": ParagraphStyle(
+            "MetricLabel",
+            parent=base["BodyText"],
+            fontName="Helvetica-Bold",
+            fontSize=6.6,
+            leading=8,
+            textColor=MUTED,
         ),
     }
 
     story = [
         Paragraph("RIZWAN ZAFAR", styles["name"]),
         Paragraph(
-            "Payments Product and Program Executive | Fintech Infrastructure | Emerging Markets",
+            "PAYMENTS PRODUCT AND PROGRAM EXECUTIVE | FINTECH INFRASTRUCTURE",
             styles["headline"],
         ),
         Paragraph(
             'Dubai, UAE | +971 58 968 3970 | '
-            '<link href="mailto:rizwanzaffar.pk@gmail.com" color="#536365">rizwanzaffar.pk@gmail.com</link> | '
-            '<link href="https://rzifi.com" color="#536365">rzifi.com</link> | '
-            '<link href="https://www.linkedin.com/in/rizwanzaffar" color="#536365">linkedin.com/in/rizwanzaffar</link>',
+            '<link href="mailto:rizwanzaffar.pk@gmail.com" color="#675F57">rizwanzaffar.pk@gmail.com</link> | '
+            '<link href="https://rzifi.com" color="#675F57">rzifi.com</link> | '
+            '<link href="https://www.linkedin.com/in/rizwanzaffar" color="#675F57">linkedin.com/in/rizwanzaffar</link>',
             styles["contact"],
         ),
     ]
@@ -215,12 +232,38 @@ def build(output: Path):
     story += section("Professional summary", styles)
     story.append(
         Paragraph(
-            "Payments product and program executive working across complex technology and delivery environments since 2009. "
+            "Payments product and program executive with 17 years across complex technology and delivery environments. "
             "Currently Chief Product Officer at Simpaisa, leading product across payment gateway, pay-in, payout, cross-border, "
             "merchant onboarding, settlement, risk and compliance. Simpaisa publicly reports more than $1B in annual GTV, "
             "270M annual transactions, 150+ merchants and formal operations in five markets. Brings product judgment together "
             "with PMO discipline, partner management and regulated delivery.",
             styles["body"],
+        )
+    )
+
+    story += section("Impact snapshot", styles)
+    metric_rows = [[
+        Paragraph("$1B+<br/><font size='6.6' color='#675F57'><b>ANNUAL GTV</b></font>", styles["metric_value"]),
+        Paragraph("270M+<br/><font size='6.6' color='#675F57'><b>PAYMENTS / YEAR</b></font>", styles["metric_value"]),
+        Paragraph("5<br/><font size='6.6' color='#675F57'><b>LIVE MARKETS</b></font>", styles["metric_value"]),
+        Paragraph("40<br/><font size='6.6' color='#675F57'><b>ENGINEERS LED</b></font>", styles["metric_value"]),
+    ]]
+    story.append(
+        Table(
+            metric_rows,
+            colWidths=[42.5 * mm] * 4,
+            style=TableStyle(
+                [
+                    ("VALIGN", (0, 0), (-1, -1), "TOP"),
+                    ("LEFTPADDING", (0, 0), (-1, -1), 0),
+                    ("RIGHTPADDING", (0, 0), (-1, -1), 4 * mm),
+                    ("TOPPADDING", (0, 0), (-1, -1), 2 * mm),
+                    ("BOTTOMPADDING", (0, 0), (-1, -1), 2.2 * mm),
+                    ("LINEABOVE", (0, 0), (-1, -1), 0.5, RULE),
+                    ("LINEBELOW", (0, 0), (-1, -1), 0.5, RULE),
+                    ("LINEAFTER", (0, 0), (-2, -1), 0.35, RULE),
+                ]
+            ),
         )
     )
 
@@ -280,6 +323,7 @@ def build(output: Path):
     )
 
     story.append(PageBreak())
+    story += section("Professional experience, continued", styles)
     story += role(
         "Senior Product and Program Manager",
         "Tapmad",
@@ -331,8 +375,8 @@ def build(output: Path):
     story += section("Education", styles)
     story.append(
         Paragraph(
-            "<b>MIT Sloan School of Management</b> - Certificate, Mastering Design Thinking Executive Program (2022)<br/>"
-            "<b>University of Karachi</b> - M.Sc. Applied Physics (2012); B.Sc. Physics, Statistics and Mathematics (2009)",
+            "<b>MIT Sloan School of Management</b> - Executive Program, Mastering Design Thinking (2022)<br/>"
+            "<b>University of Karachi</b> - M.Sc. Physics (2012); B.Sc. Physics (2009)",
             styles["body"],
         )
     )
@@ -357,8 +401,8 @@ def build(output: Path):
     story += section("Portfolio and contact", styles)
     story.append(
         Paragraph(
-            'Selected work and payments writing: <link href="https://rzifi.com" color="#0E706B"><b>rzifi.com</b></link><br/>'
-            'Book a 15-minute introduction: <link href="https://cal.com/rizwan-zafar-gws2uk/15min" color="#0E706B"><b>cal.com/rizwan-zafar-gws2uk/15min</b></link>',
+            'Selected work and payments writing: <link href="https://rzifi.com" color="#A6532B"><b>rzifi.com</b></link><br/>'
+            'Book a 15-minute introduction: <link href="https://cal.com/rizwan-zafar-gws2uk/15min" color="#A6532B"><b>cal.com/rizwan-zafar-gws2uk/15min</b></link>',
             styles["body"],
         )
     )

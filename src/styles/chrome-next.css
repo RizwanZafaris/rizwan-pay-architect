@@ -11,35 +11,20 @@
      between it and the page in a way that breaks it.
    ============================================================ */
 
-/* ---------- 1. Scroll-aware header pill ----------
-   html.rz-scrolled is toggled by the engine after 24px of scroll.
-   The pill acknowledges depth: ~19% less vertical padding (8px -> 6.5px),
-   a deeper glass fill (92% -> 97% paper + stronger blur/saturation via
-   the glass tokens), and a sharper hairline (--rule-hi). */
-/* `padding` is a layout property, which motion.css rule 4 bans. Kept as a
-   documented exception, on the same footing as the map's stroke-dashoffset:
-   this is a ONE-SHOT state change fired when `html.rz-scrolled` flips at the
-   24px threshold — not a scroll-linked animation. The reflow cost is paid once
-   per crossing, is confined to the header's own subtree, and never runs during
-   the scroll frame loop. Retimed 260ms -> --dur-standard. */
+/* ---------- 1. Scroll-aware header rail ----------
+   The header keeps fixed geometry. Scroll depth changes only paint properties,
+   preventing a reflow or threshold oscillation while the page moves beneath it. */
 .site-header .header-pill {
   transition:
-    padding var(--dur-standard) var(--ease-out-quart),
     background-color var(--dur-standard) var(--ease-out-quart),
     border-color var(--dur-standard) var(--ease-out-quart),
     box-shadow var(--dur-standard) var(--ease-out-quart);
 }
 html.rz-scrolled .site-header .header-pill {
-  padding-top: 0.40625rem; /* 6.5px, down from py-2's 8px */
-  padding-bottom: 0.40625rem;
   background-color: color-mix(in srgb, var(--background) 97%, transparent);
   border-color: var(--rule-hi);
-  /* The --glass-* token system was deleted (dead decoration). These now point
-     at the promoted --surface-* tokens; they were only still resolving via
-     their inline fallbacks, which is a trap for the next reader. */
-  -webkit-backdrop-filter: blur(calc(var(--surface-blur-lg) + 10px))
-    saturate(var(--surface-sat));
-  backdrop-filter: blur(calc(var(--surface-blur-lg) + 10px)) saturate(var(--surface-sat));
+  /* One opaque-enough surface is cheaper and clearer than stacking a sticky
+     header blur, a child blur and (on mobile) a viewport backdrop blur. */
   box-shadow:
     0 1px 0 rgba(255, 255, 255, 0.6) inset,
     0 10px 34px -12px rgba(15, 23, 42, 0.3);
@@ -147,6 +132,75 @@ html.rz-scrolled .site-header .header-pill {
   }
 }
 
+/* ---------- Mobile menu scene ----------
+   The static runtime keeps the overlay mounted for 280ms on close, which lets
+   these transforms reverse cleanly instead of snapping through `display:none`.
+   Header geometry never participates in the animation. */
+[data-mobile-menu-root][hidden] {
+  display: none;
+}
+
+[data-mobile-menu-root][data-state="closed"] {
+  pointer-events: none;
+}
+
+/* During the reversible close, the backdrop continues intercepting input so
+   the still-visible panel never becomes a click-through ghost. */
+[data-mobile-menu-root][data-state="closing"] {
+  pointer-events: auto;
+}
+
+[data-mobile-menu-root][data-state="closing"] [data-mobile-menu-panel] {
+  pointer-events: none;
+}
+
+[data-mobile-menu-backdrop] {
+  opacity: 0;
+  transition: opacity var(--dur-standard) var(--ease-out-quart);
+}
+
+[data-mobile-menu-panel] {
+  opacity: 0;
+  transform: translate3d(0, -0.75rem, 0) scale(0.985);
+  transform-origin: 50% 0;
+  transition:
+    opacity var(--dur-standard) var(--ease-out-quart),
+    transform var(--dur-standard) var(--ease-out-quart);
+}
+
+[data-mobile-menu-panel] nav > * {
+  opacity: 0;
+  transform: translate3d(0, 0.35rem, 0);
+  transition:
+    opacity var(--dur-standard) var(--ease-out-quart),
+    transform var(--dur-standard) var(--ease-out-quart),
+    color var(--dur-micro) var(--ease-out-quart),
+    background-color var(--dur-micro) var(--ease-out-quart);
+}
+
+[data-mobile-menu-root][data-state="open"] [data-mobile-menu-backdrop],
+[data-mobile-menu-root][data-state="open"] [data-mobile-menu-panel],
+[data-mobile-menu-root][data-state="open"] [data-mobile-menu-panel] nav > * {
+  opacity: 1;
+  transform: none;
+}
+
+[data-mobile-menu-root][data-state="open"] [data-mobile-menu-panel] nav > *:nth-child(1) {
+  transition-delay: 25ms;
+}
+[data-mobile-menu-root][data-state="open"] [data-mobile-menu-panel] nav > *:nth-child(2) {
+  transition-delay: 50ms;
+}
+[data-mobile-menu-root][data-state="open"] [data-mobile-menu-panel] nav > *:nth-child(3) {
+  transition-delay: 75ms;
+}
+[data-mobile-menu-root][data-state="open"] [data-mobile-menu-panel] nav > *:nth-child(4) {
+  transition-delay: 100ms;
+}
+[data-mobile-menu-root][data-state="open"] [data-mobile-menu-panel] nav > *:nth-child(n + 5) {
+  transition-delay: 125ms;
+}
+
 /* ---------- Reduced-motion belt ----------
    The engine never adds .rz-js / .rz-scrolled under reduced motion, so
    the states above cannot fire — this belt is the redundant guarantee.
@@ -165,5 +219,14 @@ html.rz-scrolled .site-header .header-pill {
     opacity: 1;
     transform: translate(-50%, 0);
     transition: none;
+  }
+  [data-mobile-menu-backdrop],
+  [data-mobile-menu-panel],
+  [data-mobile-menu-panel] nav > * {
+    transition: none;
+  }
+  [data-mobile-menu-panel],
+  [data-mobile-menu-panel] nav > * {
+    transform: none;
   }
 }

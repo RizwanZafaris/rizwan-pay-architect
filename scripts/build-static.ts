@@ -339,6 +339,23 @@ async function resolveMacConflictCopies(dir = OUT_DIR): Promise<number> {
   return resolved;
 }
 
+async function removeAppleDoubleFiles(dir = OUT_DIR): Promise<number> {
+  let removed = 0;
+  const entries = await readdir(dir, { withFileTypes: true });
+
+  for (const entry of entries) {
+    const fullPath = join(dir, entry.name);
+    if (entry.name.startsWith("._")) {
+      await rm(fullPath, { recursive: entry.isDirectory(), force: true });
+      removed++;
+      continue;
+    }
+    if (entry.isDirectory()) removed += await removeAppleDoubleFiles(fullPath);
+  }
+
+  return removed;
+}
+
 function assertPrerenderedRoutesExist(routes: string[]) {
   const missing = routes.filter((route) => !existsSync(pathToFile(route)));
   if (missing.length > 0) {
@@ -396,6 +413,11 @@ async function main() {
   const conflictCopiesResolved = await resolveMacConflictCopies();
   if (conflictCopiesResolved > 0) {
     console.log(`✓ Resolved ${conflictCopiesResolved} macOS conflict-copy item(s) in ${OUT_DIR}/`);
+  }
+
+  const appleDoubleFilesRemoved = await removeAppleDoubleFiles();
+  if (appleDoubleFilesRemoved > 0) {
+    console.log(`✓ Removed ${appleDoubleFilesRemoved} macOS metadata file(s) from ${OUT_DIR}/`);
   }
 
   assertPrerenderedRoutesExist(routes);

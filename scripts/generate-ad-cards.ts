@@ -55,14 +55,7 @@ const mono = (
 ) =>
   `<text x="${x}" y="${y}" font-family="${MONO}" font-size="${size}" letter-spacing="${ls}" fill="${fill}" font-weight="${weight}" text-anchor="${anchor}">${esc(text)}</text>`;
 
-const serif = (
-  x: number,
-  y: number,
-  size: number,
-  fill: string,
-  text: string,
-  anchor = "start",
-) =>
+const serif = (x: number, y: number, size: number, fill: string, text: string, anchor = "start") =>
   `<text x="${x}" y="${y}" font-family="${SERIF}" font-size="${size}" fill="${fill}" font-weight="400" text-anchor="${anchor}">${esc(text)}</text>`;
 
 /** shared decorative glow behind the portrait (right side) */
@@ -250,10 +243,7 @@ const ratio = (meta.width ?? 920) / (meta.height ?? 1142);
 for (const v of variants) {
   const ph = v.portraitH;
   const pw = Math.round(ph * ratio);
-  const portrait = await sharp(PORTRAIT)
-    .resize({ height: ph, width: pw })
-    .png()
-    .toBuffer();
+  const portrait = await sharp(PORTRAIT).resize({ height: ph, width: pw }).png().toBuffer();
 
   const left = v.left ?? W - pw;
   const top = H - ph;

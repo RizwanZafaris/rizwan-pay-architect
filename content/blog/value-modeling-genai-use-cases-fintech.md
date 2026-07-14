@@ -3,7 +3,7 @@ title: "Value-Modeling GenAI Use Cases in Fintech: ROI, Feasibility, Data Readin
 slug: "value-modeling-genai-use-cases-fintech"
 category: "AI in Fintech"
 metaTitle: "Value-Modeling GenAI Use Cases in Fintech | Rizwan Zafar"
-metaDescription: "A four-axis framework for prioritising GenAI use cases in a regulated fintech: ROI, feasibility, data readiness and regulatory risk. The exact framework used to narrow 20+ candidates to 4 production deployments at Simpaisa."
+metaDescription: "A four-axis framework for prioritising GenAI use cases in a regulated fintech: ROI, feasibility, data readiness and regulatory risk. The framework used to narrow 20+ candidates to 3 production systems and 1 banking pilot at Simpaisa."
 excerpt: "Most fintech AI roadmaps fail because they prioritise ambition over data readiness and regulatory risk. This is the four-axis framework that ships."
 publishDate: "2026-05-09"
 readingTime: "9 min read"
@@ -33,7 +33,7 @@ relatedArticles:
 
 Most fintech AI roadmaps fail at the same step: they prioritise the most ambitious use cases instead of the most ship-able ones. The result is a portfolio of half-built demos and one or two limping pilots.
 
-This is the four-axis framework that took 20+ candidate use cases at Simpaisa down to four production deployments, covering merchant integration support, incident auto-escalation, partner support automation and a fraud/AML banking pilot.
+This is the four-axis framework that took 20+ candidate use cases at Simpaisa down to three production systems covering merchant integration support, incident auto-escalation and partner support automation, plus a fraud/AML banking pilot.
 
 ## The four axes
 

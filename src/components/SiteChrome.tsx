@@ -26,20 +26,6 @@ function ThemeToggle() {
       data-theme-toggle
       aria-label="Switch colour theme"
       title="Switch colour theme"
-      onClick={() => {
-        const el = document.documentElement;
-        const next = el.getAttribute("data-theme") === "light" ? "dark" : "light";
-        // Paint the colour change over --dur-standard instead of snapping. The
-        // class is transient so the transition never taxes ordinary rendering.
-        el.classList.add("rz-theme-switching");
-        window.setTimeout(() => el.classList.remove("rz-theme-switching"), 300);
-        el.setAttribute("data-theme", next);
-        try {
-          localStorage.setItem("rz-theme", next);
-        } catch {
-          /* private mode: the choice simply does not persist */
-        }
-      }}
       className="inline-flex items-center justify-center w-11 h-11 rounded-full text-ink hover:bg-ink/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background"
     >
       <Sun aria-hidden="true" className="rz-theme-icon-sun h-[18px] w-[18px]" />
@@ -89,22 +75,83 @@ const currentYearScript = `(() => {
 })();`;
 
 // The static production build ships no React runtime, so the menu is wired by
-// this inline vanilla script (same pattern as the blog filter and year stamp):
-// the panel prerenders with `hidden` and the script toggles it. Do not move
-// this behavior into useState — component state never runs in production.
+// this inline vanilla script. `hidden` remains the initial/final accessibility
+// state, while data-state keeps the panel mounted briefly enough to animate a
+// reversible close. Do not move this behavior into useState — component state
+// never runs in production.
 const MOBILE_MENU_SCRIPT = `(() => {
+  document.querySelectorAll('[data-theme-toggle]').forEach((button) => {
+    if (button.dataset.bound === 'true') return;
+    button.dataset.bound = 'true';
+    button.addEventListener('click', () => {
+      const el = document.documentElement;
+      const next = el.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+      el.classList.add('rz-theme-switching');
+      window.setTimeout(() => el.classList.remove('rz-theme-switching'), 300);
+      el.setAttribute('data-theme', next);
+      try { localStorage.setItem('rz-theme', next); } catch (_) {}
+    });
+  });
   if (window.__rzMenuBound) return; window.__rzMenuBound = true;
   const root = document.querySelector('[data-mobile-menu-root]');
   const trigger = document.querySelector('[data-mobile-menu-trigger]');
   if (!root || !trigger) return;
-  const setOpen = (open) => {
-    root.hidden = !open;
-    trigger.setAttribute('aria-expanded', String(open));
-    document.body.style.overflow = open ? 'hidden' : '';
-    const target = open ? root.querySelector('[data-mobile-menu-close]') : trigger;
-    if (target && target.focus) target.focus();
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let hideTimer = 0;
+  let previousOverflow = '';
+  let inertRecords = [];
+  const menuIsActive = () => root.dataset.state === 'open' || root.dataset.state === 'opening';
+  const setPageInert = (inert) => {
+    if (inert) {
+      if (inertRecords.length) return;
+      const targets = [document.querySelector('main'), document.querySelector('.site-footer')];
+      if (root.parentElement) {
+        Array.prototype.forEach.call(root.parentElement.children, (node) => {
+          if (node !== root && node.tagName !== 'SCRIPT') targets.push(node);
+        });
+      }
+      const unique = targets.filter((node, index) => node && targets.indexOf(node) === index);
+      inertRecords = unique.map((node) => ({ node, hadInert: node.hasAttribute('inert') }));
+      inertRecords.forEach(({ node }) => node.setAttribute('inert', ''));
+      return;
+    }
+    inertRecords.forEach(({ node, hadInert }) => {
+      if (!hadInert) node.removeAttribute('inert');
+    });
+    inertRecords = [];
   };
-  trigger.addEventListener('click', () => setOpen(root.hidden));
+  const setOpen = (open, restoreFocus = true) => {
+    window.clearTimeout(hideTimer);
+    trigger.setAttribute('aria-expanded', String(open));
+    if (open) {
+      previousOverflow = document.body.style.overflow;
+      root.hidden = false;
+      root.dataset.state = 'opening';
+      root.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      setPageInert(true);
+      const close = root.querySelector('[data-mobile-menu-close]');
+      if (close && close.focus) close.focus();
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        if (root.dataset.state === 'opening') root.dataset.state = 'open';
+      }));
+      return;
+    }
+    if (root.dataset.state === 'closed' || root.dataset.state === 'closing') return;
+    setPageInert(false);
+    if (restoreFocus && trigger.focus) trigger.focus();
+    root.dataset.state = 'closing';
+    root.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = previousOverflow;
+    const finishClose = () => {
+      if (root.dataset.state !== 'closing') return;
+      root.dataset.state = 'closed';
+      root.hidden = true;
+    };
+    if (reduceMotion) finishClose();
+    else hideTimer = window.setTimeout(finishClose, 280);
+  };
+  trigger.addEventListener('click', () => setOpen(!menuIsActive()));
   root.addEventListener('click', (e) => {
     const t = e.target;
     if (!(t instanceof Element)) return;
@@ -112,7 +159,7 @@ const MOBILE_MENU_SCRIPT = `(() => {
     if (t.closest('a')) setOpen(false);
   });
   document.addEventListener('keydown', (e) => {
-    if (root.hidden) return;
+    if (!menuIsActive()) return;
     if (e.key === 'Escape') { setOpen(false); return; }
     // Focus trap: while the dialog is open, Tab cycles within the panel.
     if (e.key === 'Tab') {
@@ -127,27 +174,26 @@ const MOBILE_MENU_SCRIPT = `(() => {
   // Resizing/rotating past the lg breakpoint hides trigger+panel via CSS;
   // close properly so body scroll-lock doesn't survive into desktop layout.
   const mq = window.matchMedia('(min-width: 1024px)');
-  const onMq = () => { if (mq.matches && !root.hidden) setOpen(false); };
+  const onMq = () => { if (mq.matches && menuIsActive()) setOpen(false, false); };
   if (mq.addEventListener) mq.addEventListener('change', onMq);
 })();`;
 
 export function SiteHeader() {
-  // /contact and /resume carry their own inline booking embed — the header
-  // CTA should land on the local #book instead of forcing a navigation
-  // away at peak intent (also keeps per-placement funnel attribution clean).
+  // The exact /contact and /resume pages carry their own inline booking embed.
+  // Descendant routes such as /contact/thanks do not, so they must keep the
+  // full destination instead of linking to a missing local #book target.
   const headerPathname = useRouterState({ select: (s) => s.location.pathname });
-  const hasLocalEmbed =
-    headerPathname.startsWith("/contact") || headerPathname.startsWith("/resume");
+  const hasLocalEmbed = /^\/(?:contact|resume)\/?$/.test(headerPathname);
   const bookingHref = hasLocalEmbed ? "#book" : "/contact/#book";
   return (
-    <header className="site-header sticky top-0 z-40 px-3 sm:px-4 pt-3 sm:pt-4">
+    <header className="site-header sticky top-0 z-40 border-b border-rule bg-background/95">
       {/* Reading-depth hairline — pure CSS scroll-driven (chrome-next.css);
           lives inside the header so it paints above the ::before scrim. */}
       <div className="rz-scroll-progress" aria-hidden="true" />
-      <div className="mx-auto max-w-6xl">
-        <div className="header-pill flex items-center justify-between gap-3 rounded-full border border-ink/10 bg-background/92 backdrop-blur-xl pl-3 pr-2 py-2 shadow-[0_1px_0_rgba(255,255,255,0.6)_inset,0_8px_30px_-12px_rgba(15,23,42,0.18)]">
+      <div className="mx-auto max-w-[1400px] px-5 sm:px-8 lg:px-12">
+        <div className="header-pill flex items-center justify-between gap-3 py-3">
           <Link to="/" className="flex items-center gap-2.5 min-w-0 group">
-            <span className="h-8 w-8 shrink-0 rounded-lg bg-ink text-background grid place-items-center font-display text-[13px] font-semibold tracking-tighter">
+            <span className="h-8 shrink-0 grid place-items-center font-mono-tech text-[12px] font-semibold tracking-[0.2em] text-ink">
               RZ
             </span>
             <span className="hidden sm:flex flex-col leading-tight min-w-0">
@@ -169,8 +215,8 @@ export function SiteHeader() {
               <Link
                 key={n.to}
                 to={n.to}
-                className="nav-link px-3 py-2.5 rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-                activeProps={{ className: "text-ink font-medium bg-ink/5" }}
+                className="nav-link px-3 py-2.5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                activeProps={{ className: "text-ink font-medium" }}
               >
                 <NavSwap label={n.label} />
               </Link>
@@ -189,7 +235,7 @@ export function SiteHeader() {
               onClick={() => {
                 ctaClick("book_intro_call", "header", bookingHref);
               }}
-              className="rz-cta-primary inline-flex items-center justify-center gap-1.5 rounded-full bg-ink text-background px-3.5 sm:px-4 py-2.5 min-h-[44px] min-w-[44px] sm:min-w-0 text-[12px] font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+              className="rz-cta-primary inline-flex items-center justify-center gap-1.5 rounded-sm border border-[var(--brand)] bg-transparent text-ink px-3.5 sm:px-4 py-2.5 min-h-[44px] min-w-[44px] sm:min-w-0 text-[12px] font-medium transition-colors hover:bg-[var(--brand)] hover:text-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background"
             >
               <CalendarDays aria-hidden="true" className="h-3.5 w-3.5" />
               <span className="hidden sm:inline">Book a 15-min intro call</span>
@@ -201,7 +247,7 @@ export function SiteHeader() {
               aria-expanded="false"
               aria-controls="mobile-menu"
               aria-label="Open menu"
-              className="lg:hidden inline-flex items-center justify-center w-11 h-11 rounded-full hover:bg-ink/5 transition-colors text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+              className="lg:hidden inline-flex items-center justify-center w-11 h-11 rounded-sm hover:bg-ink/5 transition-colors text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background"
             >
               <svg
                 aria-hidden
@@ -218,16 +264,17 @@ export function SiteHeader() {
         </div>
       </div>
 
-      {/* Mobile menu overlay — prerendered hidden; MOBILE_MENU_SCRIPT toggles it */}
-      <div data-mobile-menu-root hidden>
+      {/* Mobile menu overlay — prerendered hidden; the static runtime animates its states. */}
+      <div data-mobile-menu-root data-state="closed" aria-hidden="true" hidden>
         {/* Backdrop, not focusable; click closes (handled by the script) */}
         <div
           aria-hidden
           data-mobile-menu-backdrop
-          className="fixed inset-0 z-40 bg-ink/30 backdrop-blur-sm lg:hidden"
+          className="fixed inset-0 z-40 bg-ink/40 lg:hidden"
         />
         <div
           id="mobile-menu"
+          data-mobile-menu-panel
           role="dialog"
           aria-modal="true"
           aria-label="Site menu"

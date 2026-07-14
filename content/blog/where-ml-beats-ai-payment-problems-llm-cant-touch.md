@@ -153,7 +153,7 @@ In the same payments stack, here's where an LLM actually shines:
 - **KYB document extraction** — pulling structured fields from articles of incorporation, utility bills, bank statements.
 - **Internal knowledge retrieval** — RAG over the company's compliance documentation.
 
-These are the four I've shipped in production (described in [AI in Payments: Four Production Use Cases](/blog/ai-in-payments-four-production-use-cases)). None of them sit in a hot path. None of them are scoring transactions. All of them have a human in the loop or a tolerance for occasional misses.
+The production systems I have shipped live in this bounded, recoverable class of work: merchant integration support, incident auto-escalation and partner support automation. A fourth fraud/AML use case remains a banking pilot, as described in [AI in Payments: Three Production Systems and One Banking Pilot](/blog/ai-in-payments-four-production-use-cases). None sit in a hot payment-decision path; each has a human fallback or a tolerance for occasional misses.
 
 ## The deeper point
 

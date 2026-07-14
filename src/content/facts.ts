@@ -63,6 +63,8 @@ export const PLATFORM = {
   paymentsPhrase: `${platform.annualPayments} payments a year`,
   merchants: platform.merchants,
   marketCount: platform.marketCount,
+  /** Official live Simpaisa operating markets. */
+  markets: platform.markets,
   /** Spelled-out form, for editorial prose ("five frontier markets"). */
   marketsWord: "five",
   /** Sentence-initial / heading form. */
@@ -93,24 +95,17 @@ export const DARAZ = {
 } as const;
 
 /**
- * Team scale — ONE sentence that reconciles the three figures that used to be
- * stated separately (and once contradicted each other). Sourced from the
- * owner-ruled bio in profile.ts: "from 2 to 50+ people (40+ engineers) across
- * 12 cross-functional squads".
- *
- * A case study said "25+ person org" (caseStudies.ts) against the canonical
- * 50+. Aligned to canonical. TODO-VERIFY(owner): confirm 50+ is right for the
- * Simpaisa platform study specifically, or tell me the point-in-time the 25+
- * referred to and I will date it ("25+ at launch, 50+ today").
+ * Team scale — only the evidence-backed organisation figure from the canonical
+ * profile: 40 engineers across 12 cross-functional squads. Broader headcount
+ * and product-org growth figures stay unpublished until owner-verified.
  */
 export const TEAM = {
-  total: "50+ people across product, engineering, ops, risk and compliance",
-  engineers: "40+ engineers",
+  total: "40-engineer payments organisation",
+  engineers: "mobile, backend, payments, risk and compliance",
   squads: 12,
-  productOrg: "product org grown from 2 to 8 PMs",
+  productOrg: "platform-wide delivery",
   /** The one approved sentence. Use verbatim wherever team scale appears. */
-  sentence:
-    "50+ people across product, engineering, ops, risk and compliance — 40+ engineers in 12 squads; product org grown from 2 to 8 PMs",
+  sentence: "40-engineer payments organisation across 12 cross-functional squads",
 } as const;
 
 /**
@@ -122,7 +117,14 @@ export const TEAM = {
  * ONE approved list (and that logo/name usage rights are clear for each).
  * Until then this is the hero list, which is the owner-attested set.
  */
-export const MERCHANT_ROSTER = ["TikTok", "Samsung", "InDrive", "Temu", "Spotify", "Yango"] as const;
+export const MERCHANT_ROSTER = [
+  "TikTok",
+  "Samsung",
+  "InDrive",
+  "Temu",
+  "Spotify",
+  "Yango",
+] as const;
 
 /**
  * Markets whose `shipped` line is still an owner placeholder. These are

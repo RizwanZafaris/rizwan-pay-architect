@@ -70,17 +70,19 @@ var ready=false;function markReady(){if(!ready){ready=true;try{var sk=document.g
 Cal.ns["15min"]("on",{action:"linkReady",callback:markReady});
 Cal.ns["15min"]("on",{action:"linkFailed",callback:function(e){var r="unknown";try{r=(e&&e.detail&&e.detail.data&&(e.detail.data.msg||e.detail.data.code))||"unknown"}catch(x){}try{var sk=document.getElementById("cal-booking-skeleton");if(sk){sk.style.display="";sk.innerHTML='<p class="text-sm text-ink-soft py-4">The calendar could not load right now — use the booking links below instead.</p>'}}catch(x){}track("cal_embed_failed",{reason:String(r).slice(0,90)})}});
 Cal.ns["15min"]("on",{action:"bookingSuccessful",callback:function(){track("book_call_confirmed");${
-    LINKEDIN_BOOKING_CONVERSION_ID
-      ? `try{if(window.lintrk)window.lintrk("track",{conversion_id:${Number(LINKEDIN_BOOKING_CONVERSION_ID)}})}catch(x){}`
-      : ""
-  }}});
+  LINKEDIN_BOOKING_CONVERSION_ID
+    ? `try{if(window.lintrk)window.lintrk("track",{conversion_id:${Number(LINKEDIN_BOOKING_CONVERSION_ID)}})}catch(x){}`
+    : ""
+}}});
 var stepSeen={};
 Cal.ns["15min"]("on",{action:"*",callback:function(e){try{var a=e&&e.detail&&(e.detail.type||(e.detail.data&&e.detail.data.action));if(!a||typeof a!=="string")return;if(a.indexOf("__")===0)return;markReady();if(a==="linkReady"||a==="linkFailed"||a==="bookingSuccessful")return;if(stepSeen[a])return;stepSeen[a]=1;track("cal_embed_step",{cal_action:a.slice(0,60)})}catch(x){}}});
 }catch(x){}}
 try{if("IntersectionObserver" in window){${
-    opts?.eager ? "" : `var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){boot();io.disconnect()}})},{rootMargin:"900px 0px"});io.observe(section);
+  opts?.eager
+    ? ""
+    : `var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){boot();io.disconnect()}})},{rootMargin:"900px 0px"});io.observe(section);
 `
-  }var seen=false,vo=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting&&!seen){seen=true;track("cal_embed_viewed");vo.disconnect()}})},{threshold:0.15});vo.observe(section)}else boot()}catch(x){boot()}
+}var seen=false,vo=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting&&!seen){seen=true;track("cal_embed_viewed");vo.disconnect()}})},{threshold:0.15});vo.observe(section)}else boot()}catch(x){boot()}
 ${opts?.eager ? "boot();" : ""}
 document.querySelectorAll('a[href="#book"]').forEach(function(a){a.addEventListener("click",function(ev){boot();try{ev.preventDefault();section.scrollIntoView({behavior:"smooth",block:"start"});history.replaceState(null,"","#book")}catch(x){location.hash="book"}})});
 window.addEventListener("hashchange",function(){if(location.hash==="#book"){boot();try{section.scrollIntoView({behavior:"smooth",block:"start"})}catch(x){}}});

@@ -63,9 +63,8 @@ function ProductsPage() {
           <p className="mt-6 max-w-2xl text-base leading-relaxed text-ink-soft md:text-lg">
             Shipped payment infrastructure, card acquiring, wallets, cross-border corridors,
             settlement and reconciliation, KYC/KYB, AML/CFT and fraud, that has cleared{" "}
-            {PLATFORM.gtv} in annual GTV across {PLATFORM.marketsWord} regulated markets. Plus a small portfolio of new
-            products in
-            quiet build from the product lab.
+            {PLATFORM.gtv} in annual GTV across {PLATFORM.marketsWord} regulated markets. Plus a
+            small portfolio of new products in quiet build from the product lab.
           </p>
         </div>
         {/* Ledger strip: flat bordered tiles, tabular mono numerals. */}
@@ -154,20 +153,26 @@ function ProductsPage() {
                     {p.link.startsWith("/") ? (
                       <Link
                         to={p.link}
-                        className="inline-flex items-center gap-1.5 py-1.5 -my-1.5 text-sm font-medium text-ink hover:text-[var(--brand)] transition-colors"
+                        className="-my-3 inline-flex min-h-11 items-center gap-1.5 text-sm font-medium text-ink transition-colors hover:text-[var(--brand)]"
                       >
                         <span className="rz-link">{p.ctaLabel ?? "Learn more"}</span>
-                        <span className="transition-transform group-hover:translate-x-1" aria-hidden>
+                        <span
+                          className="transition-transform group-hover:translate-x-1"
+                          aria-hidden
+                        >
                           →
                         </span>
                       </Link>
                     ) : (
                       <a
                         href={p.link}
-                        className="inline-flex items-center gap-1.5 py-1.5 -my-1.5 text-sm font-medium text-ink hover:text-[var(--brand)] transition-colors"
+                        className="-my-3 inline-flex min-h-11 items-center gap-1.5 text-sm font-medium text-ink transition-colors hover:text-[var(--brand)]"
                       >
                         <span className="rz-link">{p.ctaLabel ?? "Learn more"}</span>
-                        <span className="transition-transform group-hover:translate-x-1" aria-hidden>
+                        <span
+                          className="transition-transform group-hover:translate-x-1"
+                          aria-hidden
+                        >
                           →
                         </span>
                       </a>

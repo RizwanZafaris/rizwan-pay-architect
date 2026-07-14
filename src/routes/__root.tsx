@@ -205,6 +205,10 @@ try{var m=window.matchMedia('(prefers-color-scheme: light)');var h=function(ev){
 if(s==='light'||s==='dark')return;e.setAttribute('data-theme',ev.matches?'light':'dark');};
 if(m.addEventListener)m.addEventListener('change',h);}catch(_){}})();`;
 
+// Route art-direction classes are stamped during head parsing so the header and
+// progress chrome cannot flash in the wrong state before route runtimes bind.
+const routeArtBootstrapScript = `(function(){var e=document.documentElement,p=location.pathname,a=p.split('/').filter(Boolean);if(p==='/'||p==='/index.html')e.classList.add('corridor-home-active');if(a.length===2&&a[0]==='blog')e.classList.add('article-reader-active');if(p==='/resume'||p==='/resume/')e.classList.add('resume-editorial-active');})();`;
+
 //   1. Adds `.rz-js` to <html> ONLY when motion is allowed (IO supported and
 //      reduced-motion not set) so the CSS hidden state is gated safely — no-JS
 //      and reduced-motion visitors keep content fully visible.
@@ -568,6 +572,7 @@ function RootShell({ children }: { children: React.ReactNode }) {
         {/* Theme FIRST — before any stylesheet resolves and before paint, or the
             page renders in the default (dark) palette and then snaps to light. */}
         <script dangerouslySetInnerHTML={{ __html: themeBootstrapScript }} />
+        <script dangerouslySetInnerHTML={{ __html: routeArtBootstrapScript }} />
         {/* Reveal engine next: adds `.rz-js` during head parse so the CSS
             hidden state is set before the body paints (no flash-of-visible
             then hide). Gated on IO support + reduced-motion inside the script. */}

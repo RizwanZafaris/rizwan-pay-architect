@@ -318,6 +318,13 @@ const BANNED_CLAIM_PATTERNS: { label: string; re: RegExp }[] = [
   // the "across …" construction so essays discussing OTHER companies' market
   // counts don't false-positive.
   { label: "six-market footprint (canonical is five)", re: /across six markets/i },
+  // Owner evidence inventory: three systems are Production and the fraud/AML
+  // use case remains a banking Pilot. Keep the former "four production AI"
+  // shorthand from drifting back into bios, case studies or article metadata.
+  {
+    label: "four production AI systems (canonical is three + one pilot)",
+    re: /\b(?:4|four)\s+production\s+(?:AI|GenAI|deployments?|systems?|solutions?|use cases?)\b/i,
+  },
   // QA 2026-07-06: a literal "TODO(owner)" scaffold string from markets.ts
   // shipped to the live /journey/ page. Internal placeholder language must
   // never reach emitted HTML — keep TODOs in source comments only.

@@ -1,10 +1,10 @@
 ---
-title: "GenAI in Fintech: 4 Production Use Cases That Actually Ship"
+title: "GenAI in Fintech: 3 Production Systems and 1 Banking Pilot"
 slug: "ai-in-payments-four-production-use-cases"
 category: "AI in Fintech"
-metaTitle: "GenAI in Fintech: 4 Production Use Cases (2026) | Rizwan Zafar"
-metaDescription: "Four GenAI deployments running in production at a $1B+ TPV payments platform, merchant integration support, incident auto-escalation, partner support automation, and a fraud/AML AI pilot. What shipped, what didn't, and the operating model underneath."
-excerpt: "Most fintech AI work in 2026 is still demos. These four use cases are not, they're running in production at $1B+ TPV across five regulated markets."
+metaTitle: "GenAI in Fintech: 3 Production Systems + 1 Pilot | Rizwan Zafar"
+metaDescription: "Three GenAI systems run in production at a $1B+ TPV payments platform, plus a fraud/AML banking pilot—what shipped, what remained a pilot, and how it operates."
+excerpt: "Most fintech AI work in 2026 is still demos. Three of these use cases run in production; the fourth is a regulated banking pilot."
 publishDate: "2026-05-15"
 readingTime: "10 min read"
 tags:
@@ -31,11 +31,11 @@ relatedArticles:
   - "/blog/ai-fraud-detection-vs-rule-engines"
 ---
 
-# GenAI in Fintech: 4 Production Use Cases That Actually Ship
+# GenAI in Fintech: 3 Production Systems and 1 Banking Pilot
 
-The 2026 fintech AI conversation is still dominated by demos. This is what shipped instead, four GenAI deployments running in production at Simpaisa, a $1B+ TPV B2B payments platform across five regulated markets.
+The 2026 fintech AI conversation is still dominated by demos. This is what shipped instead: three GenAI systems running in production at Simpaisa, a $1B+ TPV B2B payments platform across five regulated markets, plus a fraud/AML pilot with a banking partner.
 
-I led the use-case identification, value modeling, vendor selection and regulator engagement for all four. They're not the most ambitious AI projects out there. They're the ones that survived the regulatory frame, had data and feedback loops in place from day one, and produced auditable behaviour. That's the actual bar in regulated payments.
+I led the use-case identification, value modeling, vendor selection and regulator engagement for all four use cases. They're not the most ambitious AI projects out there. They're the ones that survived the regulatory frame, had data and feedback loops in place from day one, and produced auditable behaviour. That's the actual bar in regulated payments.
 
 ## 1. AI Merchant Integration Chatbot (−65% support time)
 

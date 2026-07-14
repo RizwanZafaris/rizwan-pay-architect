@@ -1,13 +1,16 @@
-// Canonical market list for the career-scope brand surfaces (home map strip,
-// /journey map + per-market cards). SINGLE SOURCE OF TRUTH — the build-time
-// map generator (scripts/gen-map.mjs) and the WorldMap component both read
-// coordinates from here, and /journey renders the cards from the same array.
+// Published market details for the career-scope brand surfaces (home map
+// strip, /journey map + per-market cards). SINGLE SOURCE OF TRUTH — the
+// build-time map generator (scripts/gen-map.mjs) and the WorldMap component
+// both read coordinates from here, and /journey renders the cards from the
+// same array. The canonical career market count lives in profile/facts; this
+// detail list intentionally includes only markets backed by a concrete item.
 //
 // FACT DISCIPLINE (two-tier claims, strategy doc §2): every `shipped` line
-// traces to a real bullet in src/data/profile.ts `experience`. Anything with
-// no supporting bullet is marked TODO(owner) rather than invented. Per-market
-// copy is CAREER-scope (Daraz / Tapmad / Simpaisa work) and never attaches a
-// Simpaisa-only platform metric ($1B / 270M / 150+ merchants / 99.95%).
+// traces to a real bullet in src/data/profile.ts `experience`. A market with
+// no supporting bullet is omitted from these public surfaces rather than
+// rendered with verification language. Per-market copy is CAREER-scope
+// (Daraz / Tapmad / Simpaisa work) and never attaches a Simpaisa-only platform
+// metric ($1B / 270M / 150+ merchants / 99.95%).
 
 export type Market = {
   key: string;
@@ -21,11 +24,11 @@ export type Market = {
   years: string;
   /** Brand(s) the work sat under — must exist in profile.experience. */
   brand: string;
-  /** One concrete shipped item. TODO(owner) where no bullet supports one. */
+  /** One concrete shipped item supported by the canonical profile. */
   shipped: string;
   /** One operating lesson — voice, not a metric claim. */
   lesson: string;
-  /** True when `shipped` is a placeholder awaiting owner confirmation. */
+  /** Legacy guard for downstream filters; published records never set it. */
   needsOwnerConfirm?: boolean;
 };
 
@@ -118,26 +121,6 @@ export const markets: Market[] = [
     lesson: "Regulator engagement is high-touch and slow — plan for it.",
   },
   {
-    key: "nigeria",
-    name: "Nigeria",
-    flag: "🇳🇬",
-    city: "Lagos",
-    lat: 6.52,
-    lng: 3.38,
-    // TODO(owner): confirm years/brand and one concrete Nigeria shipped item —
-    // no supporting bullet exists in profile.experience yet. Until then the
-    // VISITOR-FACING copy below stays neutral (never raw scaffold text: a
-    // literal "TODO(owner)" leaked to the live page in QA 2026-07-06 and the
-    // seo-audit gate now fails the build on it), and needsOwnerConfirm keeps
-    // this market out of ALL structured data.
-    years: "In verification",
-    brand: "Corridor work",
-    shipped:
-      "Engagement detail is being verified before publication — this card carries the specifics in an upcoming update.",
-    lesson: "Frontier-market corridor expansion.",
-    needsOwnerConfirm: true,
-  },
-  {
     key: "sri-lanka",
     name: "Sri Lanka",
     flag: "🇱🇰",
@@ -162,5 +145,3 @@ export const markets: Market[] = [
     lesson: "Payment coverage is a localisation problem, not a feature list.",
   },
 ];
-
-export const marketCount = markets.length; // 10

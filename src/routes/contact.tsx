@@ -158,8 +158,6 @@ const contactSignals = [
   "Senior mandates",
 ] as const;
 
-
-
 // Static build never hydrates React — the "Copy email" buttons are wired by
 // this inline script (same pattern as the menu/embed scripts). The React
 // onClick above still covers dev/hydrated contexts; double-copy is harmless.
@@ -293,7 +291,7 @@ function ContactPage() {
   }
 
   const field =
-    "mt-1 w-full border border-rule bg-card px-3 py-2 rounded-md text-ink focus:outline-none focus:ring-2 focus:ring-[var(--brand)] focus:ring-offset-1 focus:ring-offset-background focus:border-[var(--brand)]";
+    "mt-1 min-h-11 w-full border border-rule bg-card px-3 py-2 rounded-md text-ink focus:outline-none focus:ring-2 focus:ring-[var(--brand)] focus:ring-offset-1 focus:ring-offset-background focus:border-[var(--brand)]";
 
   const isSent = state === "sent";
   const isSending = state === "sending";
@@ -782,7 +780,7 @@ function ContactPage() {
                   data-analytics-cta-destination={
                     usesServerSubmission ? "contact_form" : `mailto:${profile.email}`
                   }
-                  className="inline-flex items-center rounded-md bg-ink text-background px-5 py-2.5 text-sm font-medium hover:bg-brand focus:outline-none focus:ring-2 focus:ring-ink/40 transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+                  className="inline-flex min-h-11 items-center justify-center rounded-md bg-ink text-background px-5 py-2.5 text-sm font-medium hover:bg-brand focus:outline-none focus:ring-2 focus:ring-ink/40 transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
                 >
                   {submitLabel}
                 </button>
@@ -794,7 +792,7 @@ function ContactPage() {
                   data-analytics-cta-id="copy_email"
                   data-analytics-cta-location="contact_page"
                   data-analytics-cta-destination={profile.email}
-                  className="inline-flex items-center rounded-md border border-ink/20 px-5 py-2.5 text-sm font-medium text-ink hover:border-ink/50 focus:outline-none focus:ring-2 focus:ring-ink/30 transition-colors"
+                  className="inline-flex min-h-11 items-center justify-center rounded-md border border-ink/20 px-5 py-2.5 text-sm font-medium text-ink hover:border-ink/50 focus:outline-none focus:ring-2 focus:ring-ink/30 transition-colors"
                 >
                   {copied ? "Email copied ✓" : "Copy email"}
                 </button>

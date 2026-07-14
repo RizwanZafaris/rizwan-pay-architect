@@ -144,7 +144,7 @@ export const profile = {
     "I build regulated payment infrastructure where product, program delivery, network partnerships, risk, compliance and operations collide. My work turns fragmented local rails into reliable products: card acquiring, merchant onboarding, cross-border corridors, settlement and reconciliation, fraud and AML/CFT controls, and now AI-augmented operations. I run the full lifecycle, strategy → roadmap → PMO governance → execution → P&L, across regulated markets.",
   // Duration framing per owner ruling 2026-07-06 — computed, never "14+ years"
   // (that undersold the arc) and never "since 2009" (banned framing).
-  bio: `Product & Program leader with ${CAREER_YEARS} years across payments, fintech and digital transformation. Currently CPO at Simpaisa, a B2B cross-border acquiring, payouts & gateway platform I helped scale from $0 to $1B+ GTV across five frontier markets in MENA and South Asia, working with leading global PSPs (DLocal, Thunes, Boku, Coda Payments, Tazapay) and enterprise clients including TikTok, Samsung, Shein, Uber, MoneyGram, InDrive and Temu. Built and led the organisation from 2 to 50+ people (40+ engineers) across 12 cross-functional squads. Deployed 4 production GenAI solutions covering merchant integration support (−65% support time), incident auto-escalation (−70% MTTR), partner support automation (90% resolution) and a fraud/AML AI pilot with a banking partner. Earlier: $3M digital transformation programme at TapmadTV, payments operations at Daraz (Alibaba Group), PMO setups at Wing Logic and DS Engineering. Engineer's discipline, programme manager's tempo, regulator's vocabulary. PMP, PMI-ACP, CSPO, CSM, COBIT 5, ITIL v3. PCI DSS and ISO/IEC 27001 led from scratch.`,
+  bio: `Product & Program leader with ${CAREER_YEARS} years across payments, fintech and digital transformation. Currently CPO at Simpaisa, a B2B cross-border acquiring, payouts & gateway platform I helped scale from $0 to $1B+ GTV across five frontier markets in MENA and South Asia, working with leading global PSPs (DLocal, Thunes, Boku, Coda Payments, Tazapay) and enterprise clients including TikTok, Samsung, Shein, Uber, MoneyGram, InDrive and Temu. Built and led a 40-engineer payments organisation across 12 cross-functional squads. Deployed three production GenAI systems covering merchant integration support (−65% support time), incident auto-escalation (−70% MTTR) and partner support automation (90% resolution), plus a fraud/AML AI pilot with a banking partner. Earlier: $3M digital transformation programme at TapmadTV, payments operations at Daraz (Alibaba Group), PMO setups at Wing Logic and DS Engineering. Engineer's discipline, programme manager's tempo, regulator's vocabulary. PMP, PMI-ACP, CSPO, CSM, COBIT 5, ITIL v3. PCI DSS and ISO/IEC 27001 led from scratch.`,
   // Career-scope canonical (strategy doc §2, owner-default adopted 2026-07-05).
   // These describe the 17-year ARC and must never be mixed in one clause with
   // the Simpaisa PLATFORM metrics below (which stay scoped to the current
@@ -167,6 +167,7 @@ export const profile = {
   platform: {
     company: "Simpaisa",
     marketCount: 5,
+    markets: ["Pakistan", "Bangladesh", "Nepal", "Sri Lanka", "Iraq"],
     gtv: "$1B+",
     annualPayments: "270M+",
     merchants: "150+",
@@ -181,8 +182,8 @@ export const profile = {
     { label: "Payment success", value: "97%" },
     { label: "Authorization uplift", value: "+14%" },
     { label: "Smart-retry recovery", value: "$14M+/mo GTV" },
-    { label: "Production AI solutions", value: "4 deployed" },
-    { label: "Org built", value: "2 → 50+ people" },
+    { label: "Production AI + pilot", value: "3 + 1" },
+    { label: "Org built", value: "40 engineers · 12 squads" },
     { label: "Straight-through processing", value: "90%" },
     { label: "Token-failure reduction", value: "22%" },
     { label: "Integration time", value: "6 wks → 2 wks" },
@@ -276,7 +277,7 @@ export const profile = {
         "Built and led a 40-engineer payments organisation across 12 cross-functional squads (mobile, backend, payments, risk, compliance). Managed $5M+ annual technology budget and 15+ vendor relationships.",
         "Scaled the partnership ecosystem: local infrastructure partner for DLocal, Thunes, Boku, Coda Payments and Tazapay. Enabled TikTok, Samsung, Shein, Uber and MoneyGram to collect and disburse where they had no local rails.",
         "Took on dual CPO + acting CTO during 2024 CTO departure and regulatory tightening, held platform stability, security architecture and product direction at the same time.",
-        "Results: $1B+ GTV · 270M+ transactions a year · 99.95% settlement SLA · 99.9% uptime · <0.1% fraud loss · expanded to Bangladesh, Nepal, Iraq and Egypt.",
+        "Results: $1B+ GTV · 270M+ transactions a year · 99.95% settlement SLA · 99.9% uptime · <0.1% fraud loss · operating across Pakistan, Bangladesh, Nepal, Sri Lanka and Iraq.",
       ],
     },
     {
@@ -398,7 +399,7 @@ export const profile = {
       items: [
         "Payments product strategy & roadmap",
         "P&L ownership (built from $0)",
-        "Org design (built 2 → 50+ across 12 squads)",
+        "Org design (40 engineers across 12 squads)",
         "Network & issuer partner enablement",
         "Regulator and central-bank engagement",
         "Pricing, unit economics, ARPU",
@@ -410,13 +411,11 @@ export const profile = {
       items: [
         "UAE",
         "KSA",
-        "Qatar",
         "Pakistan",
         "Bangladesh",
         "Sri Lanka",
         "Nepal",
         "Myanmar",
-        "Nigeria",
         "Iraq",
         "Egypt",
         "MENA",
@@ -510,9 +509,7 @@ export const profile = {
       period: "2007, 2009",
     },
   ],
-  honors: [
-    { title: "Youngest Project Manager of the Year", issuer: "Industry honor", year: "2015" },
-  ],
+  honors: [{ title: "Youngest Project Manager of the Year", year: "2015" }],
   volunteering: [
     {
       org: "PMI Karachi Pakistan Chapter",
@@ -545,8 +542,4 @@ export const personSchemaCredentials = profile.certifications.filter(
   (credential) => !credential.startsWith("Led "),
 );
 
-export const personSchemaAwards = [
-  ...profile.honors.map((h) => `${h.title} (${h.issuer}, ${h.year})`),
-  "Led PCI DSS Level 1 certification programme from scratch — SimPaisa",
-  "Led ISO/IEC 27001 certification programme from scratch — SimPaisa",
-] as const;
+export const personSchemaAwards = profile.honors.map((honor) => `${honor.title} (${honor.year})`);

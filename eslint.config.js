@@ -8,7 +8,19 @@ import tseslint from "typescript-eslint";
 export default tseslint.config(
   // Ignore build output and macOS AppleDouble metadata files (._*) that appear
   // on ExFAT/FAT-formatted volumes (e.g. external drives).
-  { ignores: ["dist", ".output", ".vinxi", "**/._*"] },
+  {
+    ignores: [
+      "dist",
+      "dist-static",
+      ".output",
+      ".vinxi",
+      "**/._*",
+      "public/vendor/**",
+      "src/routeTree.gen.ts",
+      "src/data/posts.ts",
+      "src/data/posts-content.ts",
+    ],
+  },
   {
     extends: [js.configs.recommended, ...tseslint.configs.recommended],
     files: ["**/*.{ts,tsx}"],

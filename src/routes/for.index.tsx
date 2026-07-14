@@ -2,7 +2,7 @@ import type { CSSProperties } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { audiences, getHub, postsForHub, caseStudiesForHub, type Audience } from "@/data/hubs";
 import { personSchemaAwards, personSchemaCredentials, profile } from "@/data/profile";
-import { PLATFORM } from "@/content/facts";
+import { PLATFORM, TEAM } from "@/content/facts";
 import { absUrl, OG_IMAGE_URL, SITE_URL } from "@/lib/seo";
 
 const recruiterKeywords = [
@@ -91,7 +91,7 @@ const recruiterFaqJsonLd = {
       name: "What payment markets has Rizwan Zafar worked in?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: `Pakistan, Bangladesh, Nepal, Iraq and Egypt — 5 regulated frontier markets processing ${PLATFORM.gtv} annual GTV and ${PLATFORM.annualPayments} payments a year.`,
+        text: `${PLATFORM.markets.join(", ")} — ${PLATFORM.marketCount} regulated frontier markets processing ${PLATFORM.gtv} annual GTV and ${PLATFORM.annualPayments} payments a year.`,
       },
     },
     {
@@ -184,10 +184,10 @@ const recruiterPrintCss = `
 const proofMetrics = [
   { value: PLATFORM.gtv, label: "GTV scaled" },
   { value: PLATFORM.annualPayments, label: "Annual transactions" },
-  { value: "5", label: "Markets" },
+  { value: String(PLATFORM.marketCount), label: "Live platform markets" },
   { value: PLATFORM.settlementSla, label: "Settlement SLA" },
-  { value: "40+", label: "Engineers led" },
-  { value: "4", label: "Production AI deployments" },
+  { value: "40", label: "Engineers led" },
+  { value: "3 + 1", label: "Production systems + pilot" },
 ] as const;
 
 const marketRegions = profile.skills.find((group) => group.group === "Markets")?.items ?? [];
@@ -206,7 +206,7 @@ const roleLanes = [
     title: "Program / PMO Leadership",
     fit: "Program Director, Head of PMO, Technical Program Manager or transformation leader.",
     proof: [
-      "Led 12 squads, 40+ engineers, $5M+ technology budget and 15+ vendor relationships.",
+      `Led a ${TEAM.sentence}; managed a $5M+ technology budget and 15+ vendor relationships.`,
       "Built governance across product, engineering, risk, compliance, operations and executive reporting.",
       "Delivered PCI DSS and ISO/IEC 27001 certification programs from scratch.",
     ],
@@ -224,7 +224,7 @@ const roleLanes = [
     title: "AI In Fintech Operations",
     fit: "AI-enabled product operations, support automation, fraud/AML decisioning and incident response.",
     proof: [
-      "Shipped 4 production AI/GenAI deployments inside payment operations.",
+      "Shipped 3 production AI/GenAI systems inside payment operations, plus 1 banking pilot.",
       "Reduced merchant support time, incident response time and partner support load with practical AI systems.",
       "Can separate production value from AI theater, especially in regulated environments.",
     ],
@@ -447,6 +447,7 @@ function ForIndex() {
         <div className="md:col-span-3 recruiter-soft-reveal" style={delayStyle(0)}>
           <h2 className="font-instrument text-2xl text-ink">Where The Fit Is Strongest</h2>
           <p className="mt-3 text-sm text-ink-soft leading-relaxed">
+            Roles where product strategy, regulated execution and payment infrastructure meet.
           </p>
         </div>
         <div className="md:col-span-9 grid sm:grid-cols-2 gap-4">

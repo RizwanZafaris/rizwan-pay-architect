@@ -1,9 +1,8 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { useEffect, type CSSProperties } from "react";
+import { useEffect } from "react";
 import { getPost, getRelated, isPostPublished, publishedPosts, type Post } from "@/data/posts";
 import { profile } from "@/data/profile";
 import { PLATFORM } from "@/content/facts";
-import { caseStudies } from "@/data/caseStudies";
 import { hubForPost } from "@/data/hubs";
 import { absUrl, SITE_URL, OG_IMAGE_URL, titleFor, trimToMax } from "@/lib/seo";
 import { DiagramFigure, postDiagrams } from "@/components/diagrams/Diagrams";
@@ -52,8 +51,7 @@ const OG_IMAGE_OVERRIDES: Record<string, string> = {
     "/og/blog/revolut-adyen-uae-licences-dubai-fintech-signal-v20260630.png",
   "adyen-uae-license-merchant-acquiring-local-settlement":
     "/og/blog/adyen-uae-license-merchant-acquiring-local-settlement-v20260630.png",
-  "lean-ziina-uae-one-tap-pay-by-bank":
-    "/og/blog/lean-ziina-uae-one-tap-pay-by-bank-v20260627.png",
+  "lean-ziina-uae-one-tap-pay-by-bank": "/og/blog/lean-ziina-uae-one-tap-pay-by-bank-v20260627.png",
   "gocardless-sequence-direct-debit-product-design":
     "/og/blog/gocardless-sequence-direct-debit-product-design-v20260627.png",
   "us-bank-gigsafe-instant-payout-programme":
@@ -288,7 +286,11 @@ export const Route = createFileRoute("/blog/$slug")({
   ),
   errorComponent: ({ error }) => (
     <div className="mx-auto max-w-2xl px-6 py-24 text-center">
-      <p className="text-ink-soft">{error.message}</p>
+      <h1 className="font-instrument text-3xl text-ink">This essay could not be loaded</h1>
+      <p className="mt-4 text-ink-soft">{error.message}</p>
+      <Link to="/blog" className="mt-6 inline-block text-brand underline">
+        Back to essays
+      </Link>
     </div>
   ),
   component: BlogPostPage,
@@ -311,6 +313,12 @@ function formatArticleDate(date: string) {
 
 marked.use({
   renderer: {
+    checkbox({ checked }) {
+      // Task-list boxes are visual reading aids, not operable form controls.
+      // Keep them visible while removing inert, unlabeled controls from the
+      // accessibility tree.
+      return `<input ${checked ? 'checked="" ' : ""}disabled="" type="checkbox" aria-hidden="true" tabindex="-1"> `;
+    },
     heading({ tokens, depth }) {
       const text = this.parser.parseInline(tokens);
       const id = slugify(tokens.map((t) => t.raw ?? "").join(""));
@@ -355,13 +363,261 @@ function extractTOC(md: string) {
     });
 }
 
-function articleSignals(post: Post, tocLength: number) {
-  return [
-    "Operator-written",
-    `${post.readingTime}`,
-    `${tocLength} section${tocLength === 1 ? "" : "s"}`,
-    "Recruiter-readable",
-  ];
+const ARTICLE_UTILITIES_SCRIPT = `(() => {
+  const article = document.querySelector('[data-article-reader]');
+  if (!article || article.dataset.bound === 'true') return;
+  article.dataset.bound = 'true';
+  const html = document.documentElement;
+  html.classList.add('article-reader-active');
+  const body = article.querySelector('[data-article-body]');
+  const bar = article.querySelector('[data-article-progress] > span');
+  const rail = article.querySelector('[data-article-rail-progress]');
+  const links = [...article.querySelectorAll('[data-article-toc-link]')];
+  const ids = [...new Set(links.map((link) => link.getAttribute('href')).filter(Boolean))];
+  const headings = ids.map((href) => document.getElementById(href.slice(1))).filter(Boolean);
+  const mapNav = article.querySelector('[data-article-map-nav]');
+  const marker = article.querySelector('[data-article-toc-marker]');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const controller = 'AbortController' in window ? new AbortController() : null;
+  const manualCleanups = [];
+  const timers = new Set();
+  const listen = (target, type, handler, options = {}) => {
+    if (controller) target.addEventListener(type, handler, { ...options, signal: controller.signal });
+    else {
+      target.addEventListener(type, handler, options);
+      manualCleanups.push(() => target.removeEventListener(type, handler, options));
+    }
+  };
+  const later = (callback, delay) => {
+    const timer = window.setTimeout(() => {
+      timers.delete(timer);
+      callback();
+    }, delay);
+    timers.add(timer);
+    return timer;
+  };
+  const clearLater = (timer) => {
+    if (!timer) return;
+    window.clearTimeout(timer);
+    timers.delete(timer);
+  };
+
+  let frame = 0;
+  let measureFrame = 0;
+  let readyFrame = 0;
+  let lifecycle = null;
+  let resizeObserver = null;
+  let cleaned = false;
+  let progressStart = 0;
+  let progressLength = 1;
+  let headingPoints = [];
+  let activeId = null;
+
+  const transitionTitle = article.querySelector('[data-essay-transition-target]');
+  const clearTransitionNames = () => {
+    article.querySelectorAll('[data-essay-transition-title],[data-essay-transition-target]').forEach((node) => {
+      node.style.removeProperty('view-transition-name');
+      node.removeAttribute('data-shared-title-active');
+    });
+  };
+  const cleanup = () => {
+    if (cleaned) return;
+    cleaned = true;
+    if (controller) controller.abort();
+    manualCleanups.forEach((dispose) => dispose());
+    if (lifecycle) lifecycle.disconnect();
+    if (resizeObserver) resizeObserver.disconnect();
+    if (frame) cancelAnimationFrame(frame);
+    if (measureFrame) cancelAnimationFrame(measureFrame);
+    if (readyFrame) cancelAnimationFrame(readyFrame);
+    timers.forEach((timer) => window.clearTimeout(timer));
+    timers.clear();
+    clearTransitionNames();
+    html.classList.remove('article-reader-active');
+  };
+
+  if ('MutationObserver' in window && document.body) {
+    lifecycle = new MutationObserver(() => {
+      if (article.isConnected) return;
+      cleanup();
+    });
+    lifecycle.observe(document.body, { childList: true, subtree: true });
+  }
+
+  const supportsSharedTitle =
+    !reduceMotion && 'CSS' in window && CSS.supports('view-transition-name: essay-title');
+  if (supportsSharedTitle && transitionTitle) {
+    try {
+      const raw = sessionStorage.getItem('rz-essay-transition');
+      const pending = raw ? JSON.parse(raw) : null;
+      const fresh = pending && Date.now() - Number(pending.timestamp || 0) < 5000;
+      if (fresh && pending.slug === article.getAttribute('data-article-slug')) {
+        transitionTitle.style.viewTransitionName = 'essay-title';
+        transitionTitle.setAttribute('data-shared-title-active', '');
+        sessionStorage.removeItem('rz-essay-transition');
+        listen(window, 'pagereveal', (event) => {
+          if (event.viewTransition && event.viewTransition.finished) {
+            event.viewTransition.finished.finally(clearTransitionNames);
+          } else later(clearTransitionNames, 500);
+        }, { once: true });
+        later(clearTransitionNames, 2200);
+      } else if (raw) sessionStorage.removeItem('rz-essay-transition');
+    } catch (_) {
+      try { sessionStorage.removeItem('rz-essay-transition'); } catch (_) {}
+    }
+  } else {
+    try { sessionStorage.removeItem('rz-essay-transition'); } catch (_) {}
+  }
+
+  if (!reduceMotion) {
+    article.classList.add('article-motion');
+    readyFrame = requestAnimationFrame(() => {
+      readyFrame = requestAnimationFrame(() => {
+        readyFrame = 0;
+        article.classList.add('article-ready');
+      });
+    });
+  }
+
+  const setActive = (id) => {
+    if (id === activeId) return;
+    activeId = id;
+    let activeDesktopLink = null;
+    links.forEach((link) => {
+      const active = link.getAttribute('href') === '#' + id;
+      link.classList.toggle('is-active', active);
+      if (active) {
+        link.setAttribute('aria-current', 'location');
+        if (mapNav && mapNav.contains(link)) activeDesktopLink = link;
+      } else link.removeAttribute('aria-current');
+    });
+    if (marker && mapNav && activeDesktopLink) {
+      const navRect = mapNav.getBoundingClientRect();
+      const linkRect = activeDesktopLink.getBoundingClientRect();
+      const y = linkRect.top - navRect.top + linkRect.height / 2 - 3;
+      marker.style.transform = 'translate3d(0,' + y + 'px,0)';
+      marker.classList.add('is-visible');
+    } else if (marker) marker.classList.remove('is-visible');
+  };
+
+  const measure = () => {
+    measureFrame = 0;
+    if (!body) return;
+    const scroll = window.scrollY;
+    const rect = body.getBoundingClientRect();
+    progressStart = scroll + rect.top - window.innerHeight * 0.22;
+    progressLength = Math.max(1, body.offsetHeight - window.innerHeight * 0.58);
+    headingPoints = headings.map((heading) => ({
+      id: heading.id,
+      top: scroll + heading.getBoundingClientRect().top,
+    }));
+    activeId = null;
+    updateProgress();
+  };
+
+  const updateProgress = () => {
+    frame = 0;
+    if (!body) return;
+    const progress = Math.max(0, Math.min(1, (window.scrollY - progressStart) / progressLength));
+    article.style.setProperty('--article-progress', String(progress));
+    if (bar) bar.style.transform = 'scaleX(' + progress + ')';
+    if (rail) rail.style.transform = 'scaleY(' + progress + ')';
+    if (headingPoints.length) {
+      const readingLine = window.scrollY + window.innerHeight * 0.24;
+      let current = '';
+      for (const point of headingPoints) {
+        if (point.top <= readingLine) current = point.id;
+        else break;
+      }
+      setActive(current);
+    }
+  };
+  const onScroll = () => { if (!frame) frame = requestAnimationFrame(updateProgress); };
+  const scheduleMeasure = () => {
+    if (!measureFrame) measureFrame = requestAnimationFrame(measure);
+  };
+  listen(window, 'scroll', onScroll, { passive: true });
+  listen(window, 'resize', scheduleMeasure, { passive: true });
+  if ('ResizeObserver' in window && body) {
+    resizeObserver = new ResizeObserver(scheduleMeasure);
+    resizeObserver.observe(body);
+  }
+  measure();
+
+  links.forEach((link) => {
+    listen(link, 'click', () => {
+      const disclosure = link.closest('details');
+      if (disclosure) disclosure.open = false;
+    });
+  });
+
+  listen(article, 'click', (event) => {
+    if (
+      !supportsSharedTitle ||
+      event.defaultPrevented ||
+      event.button !== 0 ||
+      event.metaKey ||
+      event.ctrlKey ||
+      event.shiftKey ||
+      event.altKey
+    ) return;
+    const link = event.target.closest && event.target.closest('[data-essay-transition-link]');
+    if (!link) return;
+    const title = link.querySelector('[data-essay-transition-title]');
+    const slug = link.getAttribute('data-essay-transition-link');
+    if (!title || !slug) return;
+    title.style.viewTransitionName = 'essay-title';
+    try {
+      sessionStorage.setItem('rz-essay-transition', JSON.stringify({ slug, timestamp: Date.now() }));
+    } catch (_) {}
+    later(() => title.style.removeProperty('view-transition-name'), 1600);
+  });
+
+  article.querySelectorAll('[data-copy-article]').forEach((button) => {
+    let resetTimer = 0;
+    listen(button, 'click', async () => {
+      const shareGroup = button.closest('[data-article-share]');
+      const status = shareGroup && shareGroup.querySelector('[data-share-status]');
+      const label = button.querySelector('[data-copy-label]');
+      clearLater(resetTimer);
+      try {
+        await navigator.clipboard.writeText(location.href.split('#')[0]);
+        button.dataset.copyState = 'copied';
+        if (label) label.textContent = 'Copied';
+        if (status) status.textContent = 'Link copied';
+      } catch (_) {
+        button.dataset.copyState = 'error';
+        if (label) label.textContent = 'Copy manually';
+        if (status) status.textContent = 'Copy the address from your browser';
+      }
+      resetTimer = later(() => {
+        button.dataset.copyState = '';
+        if (label) label.textContent = 'Copy link';
+        if (status) status.textContent = '';
+      }, 2400);
+    });
+  });
+})();`;
+
+function ArticleShare({ post }: { post: Post }) {
+  const url = absUrl(`/blog/${post.slug}`);
+  const linkedIn = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`;
+  const email = `mailto:?subject=${encodeURIComponent(post.title)}&body=${encodeURIComponent(url)}`;
+  return (
+    <div className="article-share" role="group" aria-label="Share this essay" data-article-share>
+      <button type="button" data-copy-article>
+        <span data-copy-label>Copy link</span>
+        <span className="article-share-check" aria-hidden="true">
+          ✓
+        </span>
+      </button>
+      <a href={linkedIn} target="_blank" rel="noreferrer">
+        LinkedIn
+      </a>
+      <a href={email}>Email</a>
+      <span className="sr-only" role="status" aria-live="polite" data-share-status />
+    </div>
+  );
 }
 
 // End-of-essay conversion block. Routes the reader (organic or AI-referred)
@@ -371,150 +627,235 @@ function articleSignals(post: Post, tocLength: number) {
 // trailing slashes (matches canonical form, no 301 hop) + data-analytics-*
 // so the static inline analytics bridge tracks each cta_click without JS.
 function EssayFooterCTA({ post }: { post: Post }) {
-  const hub = hubForPost(post);
-  const caseStudy =
-    caseStudies.find((c) => c.category === post.category) ??
-    caseStudies.find((c) => c.keywords?.some((k) => post.tags.includes(k)));
   return (
-    <section className="rz-beam relative border-t border-rule">
-      <div className="mx-auto max-w-3xl px-6 py-12">
-        {(hub || caseStudy) && (
-          <div className="grid sm:grid-cols-2 gap-4">
-            {hub && (
-              <a
-                href={`/topics/${hub.slug}/`}
-                data-analytics-event="cta_click"
-                data-analytics-placement="essay_footer"
-                data-analytics-target="hub"
-                data-glow
-                className="group relative block rounded-2xl border border-rule p-5 hover:border-ink/30 transition-colors"
-              >
-                <div className="text-[10px] uppercase tracking-[0.18em] text-ink-soft font-mono-tech">
-                  Topic hub
-                </div>
-                <div className="font-instrument text-lg text-ink mt-1 group-hover:text-[var(--brand)] transition-colors">
-                  Explore {hub.title} →
-                </div>
-              </a>
-            )}
-            {caseStudy && (
-              <a
-                href={`/product-work/${caseStudy.slug}/`}
-                data-analytics-event="cta_click"
-                data-analytics-placement="essay_footer"
-                data-analytics-target="case_study"
-                data-glow
-                className="group relative block rounded-2xl border border-rule p-5 hover:border-ink/30 transition-colors"
-              >
-                <div className="text-[10px] uppercase tracking-[0.18em] text-ink-soft font-mono-tech">
-                  Related case study
-                </div>
-                <div className="font-instrument text-lg text-ink mt-1 group-hover:text-[var(--brand)] transition-colors">
-                  {caseStudy.title} →
-                </div>
-              </a>
-            )}
-          </div>
-        )}
-        <div className="mt-6 rounded-2xl bg-ink text-background p-6 sm:flex sm:items-center sm:justify-between gap-6">
-          <div>
-            <div className="font-instrument text-xl leading-snug">
-              Hiring for a senior payments product role?
-            </div>
-            <p className="text-sm opacity-80 mt-1">
-              {profile.name} — {profile.role}.
-            </p>
-          </div>
-          <div className="mt-4 sm:mt-0 flex flex-wrap gap-2 shrink-0">
+    <section className="article-closing-cta">
+      <div className="article-closing-cta-inner" data-rz-reveal>
+        <div className="article-closing-conversation">
+          <div className="article-closing-cta-kicker">Continue the conversation</div>
+          <h2>Building through similar complexity?</h2>
+          <p>
+            Discuss the operating decisions behind the essay, or explore where my experience can
+            help.
+          </p>
+          <div className="article-closing-actions">
             <a
               href="/contact/#book"
               data-analytics-event="cta_click"
               data-analytics-cta-id="book_intro_call"
               data-analytics-cta-location="blog_post_footer"
               data-analytics-cta-destination="/contact/#book"
-              className="rounded-md bg-background text-ink px-4 py-2 text-sm font-medium hover:opacity-90"
+              className="article-closing-action-primary"
             >
-              Book a 15-min intro call
+              Book introduction
             </a>
             <a
-              href="/resume/"
+              href={`mailto:${profile.email}`}
               data-analytics-event="cta_click"
               data-analytics-placement="essay_footer"
-              data-analytics-target="resume"
-              className="rounded-md border border-background/40 px-4 py-2 text-sm hover:bg-background/10"
+              data-analytics-target="email"
+              className="article-closing-action-secondary"
             >
-              Résumé
-            </a>
-            <a
-              href="/for/"
-              data-analytics-event="cta_click"
-              data-analytics-placement="essay_footer"
-              data-analytics-target="for"
-              className="rounded-md border border-background/40 px-4 py-2 text-sm hover:bg-background/10"
-            >
-              For recruiters
+              Email Rizwan
             </a>
           </div>
         </div>
         <NewsletterSignup
           placement="essay_footer"
           fromPage={`/blog/${post.slug}`}
-          className="mt-8"
+          className="article-ending-newsletter"
         />
       </div>
     </section>
   );
 }
 
-// Author-entity box. Closes the loop the SEO audit flagged: every essay now
-// carries a visible byline linking back to /resume (the Person hub), reinforcing
-// the BlogPosting -> #person authorship signal already in the JSON-LD. Rendered
-// inside the article body column so it aligns with the prose.
-function EssayAuthorBox() {
+// Author-entity note. This remains a visible Person-hub link for the
+// BlogPosting -> #person authorship signal, but closes the essay as an
+// editorial colophon rather than a boxed profile card.
+function EssayAuthorBox({ post }: { post: Post }) {
+  const closingThought = post.thesis ?? post.description;
+  const quoteLength = closingThought.length;
+  const quoteLengthClass =
+    quoteLength > 210
+      ? " article-ending-quote-long"
+      : quoteLength > 130
+        ? " article-ending-quote-medium"
+        : "";
+
   return (
-    <div className="mt-12 rounded-lg border border-rule bg-surface p-6 md:p-7">
-      <div className="flex items-start gap-4">
-        <img
-          src={authorPortrait}
-          alt={profile.name}
-          width={64}
-          height={64}
-          loading="lazy"
-          decoding="async"
-          className="h-16 w-16 shrink-0 rounded-full border border-rule object-cover"
-        />
-        <div className="min-w-0">
-          <div className="text-[10px] uppercase tracking-[0.18em] text-ink-soft font-mono-tech">
-            Written by
-          </div>
-          <Link
-            to="/resume"
-            className="mt-1 inline-block font-instrument text-xl text-ink hover:text-[var(--brand)] transition-colors"
-          >
-            {profile.name}
-          </Link>
-          <p className="mt-0.5 text-sm text-ink-soft">{profile.role}</p>
-          <p className="mt-3 text-sm leading-relaxed text-ink-soft">
-            Payments product &amp; program leader &mdash; scaled a regulated multi-rail platform
-            from $0 to {PLATFORM.gtv} GTV across {PLATFORM.marketsWord} frontier markets. These essays are the public
-            version of how I think through the work.
-          </p>
-          <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm">
-            <Link to="/resume" className="text-ink underline-offset-4 hover:underline">
-              View resume →
+    <div className="article-ending-thesis" data-rz-stagger>
+      <blockquote className={`article-ending-quote${quoteLengthClass}`}>
+        <span className="article-ending-quote-mark" aria-hidden="true">
+          “
+        </span>
+        <p>{closingThought}</p>
+      </blockquote>
+      <aside className="article-author-note" aria-label={`About ${profile.name}`}>
+        <p className="article-author-note-copy">
+          Payments product &amp; program leader &mdash; scaled a regulated multi-rail platform from
+          $0 to {PLATFORM.gtv} GTV across {PLATFORM.marketsWord} frontier markets. These essays are
+          the public version of how I think through the work.
+        </p>
+        <div className="article-author-identity">
+          <span className="article-author-portrait">
+            <img
+              src={authorPortrait}
+              alt={profile.name}
+              width={80}
+              height={80}
+              loading="lazy"
+              decoding="async"
+            />
+          </span>
+          <div className="min-w-0">
+            <div className="article-author-label">Written by</div>
+            <Link to="/resume" className="article-author-name">
+              {profile.name}
             </Link>
-            <a
-              href={profile.linkedin}
-              target="_blank"
-              rel="noreferrer"
-              className="text-ink-soft hover:text-ink"
-            >
-              LinkedIn
-            </a>
+            <p className="article-author-role">{profile.role}</p>
           </div>
         </div>
-      </div>
+        <div className="article-author-links">
+          <Link to="/resume">View resume →</Link>
+          <a href={profile.linkedin} target="_blank" rel="noreferrer">
+            LinkedIn
+          </a>
+        </div>
+      </aside>
     </div>
+  );
+}
+
+function ArticleEnding({
+  post,
+  newer,
+  older,
+}: {
+  post: Post;
+  newer: Post | null;
+  older: Post | null;
+}) {
+  return (
+    <section className="article-ending" aria-labelledby={`article-ending-${post.slug}`}>
+      <div className="article-ending-inner">
+        <h2 id={`article-ending-${post.slug}`} className="sr-only">
+          Closing thought and further reading
+        </h2>
+        <EssayAuthorBox post={post} />
+        <div className="article-ending-navigation" data-rz-stagger>
+          <div className="article-ending-share">
+            <div className="article-ending-share-label">Share article</div>
+            <ArticleShare post={post} />
+          </div>
+          {(newer || older) && (
+            <nav
+              className={`article-sequence${newer && older ? "" : " article-sequence-single"}`}
+              aria-label="Previous and next essays"
+            >
+              {older && (
+                <Link
+                  to="/blog/$slug"
+                  params={{ slug: older.slug }}
+                  rel="prev"
+                  data-essay-transition-link={older.slug}
+                  className="article-sequence-previous"
+                >
+                  <span className="article-sequence-arrow" aria-hidden="true">
+                    ←
+                  </span>
+                  <span className="article-sequence-copy">
+                    <span className="article-sequence-label">Previous article</span>
+                    <strong data-essay-transition-title>{older.title}</strong>
+                    <span className="article-sequence-meta">
+                      {older.category} · {older.readingTime}
+                    </span>
+                  </span>
+                </Link>
+              )}
+              {newer && (
+                <Link
+                  to="/blog/$slug"
+                  params={{ slug: newer.slug }}
+                  rel="next"
+                  data-essay-transition-link={newer.slug}
+                  className="article-sequence-next"
+                >
+                  <span className="article-sequence-copy">
+                    <span className="article-sequence-label">Next article</span>
+                    <strong data-essay-transition-title>{newer.title}</strong>
+                    <span className="article-sequence-meta">
+                      {newer.category} · {newer.readingTime}
+                    </span>
+                  </span>
+                  <span className="article-sequence-arrow" aria-hidden="true">
+                    →
+                  </span>
+                </Link>
+              )}
+            </nav>
+          )}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function relatedArtwork(post: Post) {
+  return OG_IMAGE_OVERRIDES[post.slug] ?? `/og/blog/${post.slug}.png`;
+}
+
+function RelatedReading({ posts }: { posts: Post[] }) {
+  return (
+    <section className="article-related-reading" aria-labelledby="related-reading-heading">
+      <div className="article-related-inner">
+        <header className="article-related-intro" data-rz-reveal>
+          <div className="article-related-kicker">
+            <span aria-hidden="true" /> Keep reading
+          </div>
+          <h2 id="related-reading-heading">Ideas that continue the thread.</h2>
+          <Link to="/blog" activeOptions={{ exact: true }} className="article-related-all">
+            View all essays <span aria-hidden="true">→</span>
+          </Link>
+        </header>
+        <div className="article-related-grid" data-rz-stagger>
+          {posts.map((relatedPost, index) => (
+            <Link
+              key={relatedPost.slug}
+              to="/blog/$slug"
+              params={{ slug: relatedPost.slug }}
+              data-essay-transition-link={relatedPost.slug}
+              className="article-related-story"
+            >
+              <figure className="article-related-media">
+                <img
+                  src={relatedArtwork(relatedPost)}
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                  width={1200}
+                  height={630}
+                  sizes="(max-width: 640px) 92vw, (max-width: 1023px) 44vw, 22vw"
+                />
+                <span className="article-related-index" aria-hidden="true">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+              </figure>
+              <div className="article-related-copy">
+                <span className="article-related-category">{relatedPost.category}</span>
+                <h3 data-essay-transition-title>{relatedPost.title}</h3>
+                <p>{relatedPost.thesis ?? relatedPost.description}</p>
+                <span className="article-related-meta">
+                  {relatedPost.readingTime}
+                  <span className="article-related-arrow" aria-hidden="true">
+                    ↗
+                  </span>
+                </span>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </div>
+    </section>
   );
 }
 
@@ -542,20 +883,34 @@ function BlogPostPage() {
     });
   }, [p.slug, p.category, p.readingTime]);
 
+  const currentIndex = publishedPosts.findIndex((post) => post.slug === p.slug);
+  const newer = currentIndex > 0 ? publishedPosts[currentIndex - 1] : null;
+  const older =
+    currentIndex >= 0 && currentIndex < publishedPosts.length - 1
+      ? publishedPosts[currentIndex + 1]
+      : null;
+
   return (
-    <article className="blog-article-page overflow-x-clip">
-      <header className="rz-beam relative overflow-hidden border-b border-rule bg-surface">
-        <div className="mx-auto max-w-6xl px-5 sm:px-6 pt-14 pb-12 md:pt-16 md:pb-16">
+    <article
+      className="blog-article-page overflow-x-clip"
+      data-article-reader
+      data-article-slug={p.slug}
+    >
+      <div className="article-reading-progress" data-article-progress aria-hidden="true">
+        <span />
+      </div>
+      <header className="article-hero rz-beam relative overflow-hidden border-b border-rule bg-surface">
+        <div className="article-hero-inner mx-auto max-w-6xl px-5 sm:px-6 pt-14 pb-12 md:pt-16 md:pb-16">
           <Link
             to="/blog"
-            className="inline-flex py-2 -my-2 text-[10px] uppercase tracking-[0.18em] text-ink-soft hover:text-ink font-mono-tech"
+            className="article-arrival-back inline-flex py-2 -my-2 text-[10px] uppercase tracking-[0.18em] text-ink-soft hover:text-ink font-mono-tech"
           >
             ← Essays
           </Link>
           <div className="mt-8 grid gap-10 lg:grid-cols-12 lg:items-end lg:gap-12">
             <div className="lg:col-span-8 min-w-0">
               {/* Mono eyebrow: ◆ hub (linked) · category · date · reading time */}
-              <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-[10px] uppercase tracking-[0.18em] font-mono-tech">
+              <div className="article-arrival-meta flex flex-wrap items-center gap-x-4 gap-y-2 text-[10px] uppercase tracking-[0.18em] font-mono-tech">
                 {hub ? (
                   <Link
                     to="/topics/$hub"
@@ -572,32 +927,40 @@ function BlogPostPage() {
                   {formatArticleDate(p.date)} · {p.readingTime}
                 </span>
               </div>
-              <h1 className="font-instrument text-[clamp(2.25rem,4.6vw,4.25rem)] text-ink mt-5 leading-[1.03] max-w-4xl text-wrap">
+              <h1
+                data-essay-transition-target
+                className="article-arrival-title font-instrument text-[clamp(2.25rem,4.6vw,4.25rem)] text-ink mt-5 leading-[1.03] max-w-4xl"
+              >
                 {p.title}
               </h1>
-              <p className="mt-6 max-w-3xl text-lg leading-relaxed text-ink-soft">
+              <p className="article-arrival-lede mt-6 max-w-3xl text-lg leading-relaxed text-ink-soft">
                 {p.thesis ?? p.description}
               </p>
-              <div className="mt-6 text-[10px] uppercase tracking-[0.18em] text-ink-soft font-mono-tech">
+              <div className="article-arrival-byline mt-6 text-[10px] uppercase tracking-[0.18em] text-ink-soft font-mono-tech">
                 By {profile.name}
               </div>
             </div>
-            {/* Briefing note — flat ruled column, no card box */}
-            <div className="lg:col-span-4 min-w-0 border-t border-rule pt-6 lg:border-t-0 lg:border-l lg:pl-10 lg:pt-1">
+            {/* Reader utilities — facts and share actions, without repeating the lede. */}
+            <div className="article-arrival-utilities lg:col-span-4 min-w-0 border-t border-rule pt-6 lg:border-t-0 lg:border-l lg:pl-10 lg:pt-1">
               <div className="text-[10px] uppercase tracking-[0.18em] text-ink-soft mb-3 font-mono-tech">
-                Briefing note
+                Article
               </div>
-              <p className="text-sm leading-relaxed text-ink">{p.description}</p>
-              <div className="article-status-stack mt-5 flex flex-wrap gap-2">
-                {articleSignals(p, toc.length).map((signal, index) => (
-                  <span
-                    key={signal}
-                    className="article-status-badge"
-                    style={{ "--motion-delay": `${180 + index * 70}ms` } as CSSProperties}
-                  >
-                    {signal}
-                  </span>
-                ))}
+              <dl className="article-facts">
+                <div>
+                  <dt>Reading time</dt>
+                  <dd>{p.readingTime}</dd>
+                </div>
+                <div>
+                  <dt>Sections</dt>
+                  <dd>{toc.length}</dd>
+                </div>
+                <div>
+                  <dt>{p.updated ? "Updated" : "Published"}</dt>
+                  <dd>{formatArticleDate(p.updated ?? p.date)}</dd>
+                </div>
+              </dl>
+              <div className="mt-6">
+                <ArticleShare post={p} />
               </div>
             </div>
           </div>
@@ -606,47 +969,73 @@ function BlogPostPage() {
 
       <div className="mx-auto max-w-6xl px-5 sm:px-6 py-12 grid lg:grid-cols-12 gap-10">
         {/* TOC */}
-        <aside className="lg:col-span-3 order-1">
-          {toc.length > 0 && (
-            <div className="relative lg:sticky lg:top-24 pl-5">
+        {toc.length > 0 && (
+          <nav
+            className="hidden lg:block lg:col-span-3 order-1"
+            aria-labelledby="article-map-heading"
+          >
+            <div
+              className="article-desktop-map-shell relative pl-5 lg:sticky lg:top-24"
+              data-article-map-shell
+            >
               <div className="article-rail-progress" aria-hidden="true">
-                <span />
+                <span data-article-rail-progress />
               </div>
-              <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] mb-3 font-mono-tech font-semibold">
+              <div
+                id="article-map-heading"
+                className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] mb-3 font-mono-tech font-semibold"
+              >
                 ◆ Article map
               </div>
-              <ul className="space-y-2 text-sm leading-snug">
-                {toc.map((t) => (
-                  <li key={t.id}>
-                    <a
-                      href={`#${t.id}`}
-                      className="article-map-link text-ink-soft hover:text-ink transition-colors"
-                    >
-                      {t.text}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-              <div className="mt-5 border-t border-rule pt-4">
-                <div className="text-[10px] uppercase tracking-[0.18em] text-ink-soft mb-3 font-mono-tech">
-                  Reader signals
-                </div>
-                <div className="flex flex-wrap gap-2">
-                  {articleSignals(p, toc.length)
-                    .slice(0, 3)
-                    .map((signal) => (
-                      <span key={signal} className="article-mini-chip">
-                        {signal}
-                      </span>
-                    ))}
-                </div>
+              <div className="article-map-nav" data-article-map-nav>
+                <span className="article-map-marker" data-article-toc-marker aria-hidden="true" />
+                <ul className="space-y-2 text-sm leading-snug">
+                  {toc.map((t) => (
+                    <li key={t.id}>
+                      <a
+                        href={`#${t.id}`}
+                        data-article-toc-link
+                        className="article-map-link text-ink-soft hover:text-ink transition-colors"
+                      >
+                        {t.text}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
-          )}
-        </aside>
+          </nav>
+        )}
 
         {/* Body */}
-        <div className="lg:col-span-9 order-2 min-w-0">
+        <div className="lg:col-span-9 order-2 min-w-0" data-article-body>
+          {toc.length > 0 && (
+            <details className="article-mobile-map lg:hidden">
+              <summary>
+                <span id="article-mobile-map-heading" className="article-mobile-map-title">
+                  In this essay
+                </span>
+                <span className="article-mobile-map-meta">
+                  {toc.length} sections <i aria-hidden="true" />
+                </span>
+              </summary>
+              <div className="article-mobile-map-disclosure">
+                <div>
+                  <nav aria-labelledby="article-mobile-map-heading">
+                    <ol>
+                      {toc.map((t) => (
+                        <li key={t.id}>
+                          <a href={`#${t.id}`} data-article-toc-link>
+                            {t.text}
+                          </a>
+                        </li>
+                      ))}
+                    </ol>
+                  </nav>
+                </div>
+              </div>
+            </details>
+          )}
           <div className="prose-editorial max-w-3xl">
             {renderContent(content)}
             {diagram ? (
@@ -670,86 +1059,13 @@ function BlogPostPage() {
               ))}
             </div>
           </div>
-          <EssayAuthorBox />
-          <div className="mt-12 rounded-lg border border-rule bg-surface p-6 md:p-7">
-            <div className="text-[10px] uppercase tracking-[0.18em] text-ink-soft font-mono-tech">
-              Continue the conversation
-            </div>
-            <div className="mt-3 grid gap-5 md:grid-cols-[1fr_auto] md:items-center">
-              <p className="text-sm leading-relaxed text-ink-soft">
-                This writing is the public version of how I think through product, programme and
-                payment-infrastructure decisions in regulated markets.
-              </p>
-              <Link
-                to="/contact"
-                className="inline-flex justify-center rounded-full bg-ink px-4 py-2 text-sm font-medium text-background hover:bg-brand transition-colors"
-              >
-                Contact Rizwan
-              </Link>
-            </div>
-          </div>
         </div>
       </div>
 
+      <ArticleEnding post={p} newer={newer} older={older} />
+      {related.length > 0 && <RelatedReading posts={related} />}
       <EssayFooterCTA post={p} />
-
-      {related.length > 0 && (
-        <section className="rz-beam relative border-t border-rule bg-surface-2/70">
-          <div className="mx-auto max-w-6xl px-6 py-16">
-            <div className="mb-8 flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
-              <div>
-                <div className="text-[10px] uppercase tracking-[0.18em] text-[var(--brand)] font-mono-tech font-semibold">
-                  ◆ Related reading
-                </div>
-                <h2 className="mt-1 font-instrument text-3xl text-ink">
-                  Essays in the same operating context.
-                </h2>
-              </div>
-              <Link
-                to="/blog"
-                className="inline-flex py-1.5 -my-1.5 text-xs uppercase tracking-[0.14em] text-ink-soft hover:text-ink font-mono-tech"
-              >
-                View all essays →
-              </Link>
-            </div>
-            {/* Index rows, not a uniform card wall — one stagger group, each row
-                a glow-tracking link (mirrors the /blog journal index). */}
-            <div data-rz-stagger className="border-t border-rule">
-              {related.map((r) => (
-                <Link
-                  key={r.slug}
-                  to="/blog/$slug"
-                  params={{ slug: r.slug }}
-                  data-glow
-                  className="group relative grid gap-y-2 border-b border-rule py-6 md:grid-cols-12 md:gap-x-8 md:py-7"
-                >
-                  <div className="md:col-span-3">
-                    <span className="text-[10px] uppercase tracking-[0.14em] text-[var(--accent-emerald)] font-mono-tech">
-                      {r.category}
-                    </span>
-                  </div>
-                  <div className="md:col-span-7">
-                    <h3 className="font-instrument text-2xl leading-[1.1] text-ink transition-all duration-300 [transition-timing-function:var(--ease-soft)] group-hover:translate-x-1.5 group-hover:text-[var(--brand)] md:text-[1.75rem]">
-                      {r.title}
-                    </h3>
-                    <p className="mt-2 text-sm leading-relaxed text-ink-soft md:line-clamp-1">
-                      {r.thesis ?? r.description}
-                    </p>
-                  </div>
-                  <div className="flex items-center gap-4 md:col-span-2 md:justify-end md:self-center">
-                    <span className="inline-flex items-center gap-1 text-xs text-ink-soft group-hover:text-ink">
-                      Read essay{" "}
-                      <span className="transition-transform group-hover:translate-x-1" aria-hidden>
-                        →
-                      </span>
-                    </span>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
+      <script dangerouslySetInnerHTML={{ __html: ARTICLE_UTILITIES_SCRIPT }} />
     </article>
   );
 }

@@ -1,11 +1,6 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { useEffect } from "react";
-import {
-  caseStudies,
-  caseStudyHero,
-  getCaseStudy,
-  type CaseStudy,
-} from "@/data/caseStudies";
+import { caseStudies, caseStudyHero, getCaseStudy, type CaseStudy } from "@/data/caseStudies";
 import { profile } from "@/data/profile";
 import { compactMetricValue } from "@/lib/case-study-ui";
 import { absUrl, SITE_URL, titleFor, trimToMax } from "@/lib/seo";
@@ -157,7 +152,10 @@ function Section({
   // Editorial beat: every major section opens on a hairline rule the signal
   // beam can run (rz-beam), then eyebrow -> statement serif -> ~65ch prose.
   return (
-    <section id={id} className="rz-beam relative mt-12 scroll-mt-24 border-t border-rule pt-8 sm:mt-16 sm:pt-10">
+    <section
+      id={id}
+      className="rz-beam relative mt-12 scroll-mt-24 border-t border-rule pt-8 sm:mt-16 sm:pt-10"
+    >
       <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] font-mono-tech font-semibold">
         ◆ {label}
       </div>

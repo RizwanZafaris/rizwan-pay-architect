@@ -158,4 +158,4 @@ Strongly. Credit scoring has stricter regulatory expectations (fair lending, mod
 
 ---
 
-If this resonated, also read [Where ML Beats AI: Six Payment Problems an LLM Cannot Touch](/blog/where-ml-beats-ai-payment-problems-llm-cant-touch), [AI Fraud Detection vs Rule Engines](/blog/ai-fraud-detection-vs-rule-engines), and [AI in Payments: Four Production Use Cases](/blog/ai-in-payments-four-production-use-cases).
+If this resonated, also read [Where ML Beats AI: Six Payment Problems an LLM Cannot Touch](/blog/where-ml-beats-ai-payment-problems-llm-cant-touch), [AI Fraud Detection vs Rule Engines](/blog/ai-fraud-detection-vs-rule-engines), and [AI in Payments: Three Production Systems and One Banking Pilot](/blog/ai-in-payments-four-production-use-cases).

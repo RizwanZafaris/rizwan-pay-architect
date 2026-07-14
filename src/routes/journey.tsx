@@ -17,9 +17,9 @@ import { absUrl } from "@/lib/seo";
 // with a Simpaisa PLATFORM metric ("$1B", "270M", "150+ merchants", "99.95%").
 // The hero H1 uses period-separated sentences; era-3's platform metrics each
 // live in their OWN sentence with no career marker adjacent. Per-market copy
-// comes ONLY from src/data/markets.ts (rendered as-is). Nigeria carries
-// needsOwnerConfirm — its shipped line is a TODO(owner) placeholder rendered
-// verbatim with a muted "detail pending" affordance; no achievement invented.
+// comes ONLY from the publishable, evidence-backed records in
+// src/data/markets.ts (rendered as-is). Markets without a supporting work
+// bullet are omitted from cards, map pins and structured data.
 
 // The three career eras. Each `points` string is its own clause on the page so
 // the two-tier gate never sees a platform metric beside a career marker.
@@ -40,7 +40,7 @@ const eras: Era[] = [
     points: [
       "Moved from field engineering into project and product leadership.",
       "Ran PMO leadership at DS Engineering across a $15M portfolio and 400+ projects, and earlier at PESCO.",
-      "Named PMI Youngest Project Manager of the Year in 2015.",
+      "Named Youngest Project Manager of the Year in 2015.",
     ],
   },
   {
@@ -52,7 +52,7 @@ const eras: Era[] = [
       "Tapmad (OTT): launched Direct Carrier Billing across all four telcos and grew from 0 to 5M paid subscribers.",
       "Tapmad: cut payment cost from 50% of revenue to about 1% and lifted ARPU by 70%, on the way to $10M+ ARR.",
       "Tapmad: expanded DCB and wallet billing into the UAE and KSA with regional telco and wallet partners.",
-      `Daraz (Alibaba Group): ran payment operations across ${DARAZ.marketsWord} markets — +15% checkout conversion, −20% false declines, 99.5% settlement.`,
+      `Daraz (Alibaba Group): ran payment operations across ${DARAZ.marketsWord} markets during a COVID-driven volume surge.`,
       "Daraz: widened payment coverage by roughly 40% by localising regional methods on checkout.",
     ],
   },
@@ -66,30 +66,27 @@ const eras: Era[] = [
     points: [
       `Built a ${PLATFORM.gtv} GTV gateway processing ${PLATFORM.annualPayments} payments a year.`,
       `Reached ${PLATFORM.merchants} merchants at a ${PLATFORM.settlementSla} settlement SLA.`,
-      "Shipped four market launches in 2024, and grew the product org from 2 to 8 PMs across a 50+ team.",
+      "Shipped four market launches in 2024 and led a 40-engineer payments organisation across 12 squads.",
       "Led PCI-DSS Level 1 and ISO 27001 from scratch.",
     ],
   },
 ];
 
-// JSON-LD ItemList of the market stops. The needsOwnerConfirm market (Nigeria)
-// is excluded from structured data — we never assert an unconfirmed claim to a
-// machine surface. Positions are re-numbered over the confirmed set so the list
-// stays contiguous.
+// JSON-LD ItemList of the publishable market stops. markets.ts excludes any
+// record without a source-backed shipped item, so the machine surface and the
+// visible cards use the same contiguous list.
 const journeyItemListJsonLd = {
   "@context": "https://schema.org",
   "@type": "ItemList",
   name: "Operating markets — Rizwan Zafar",
   url: absUrl("/journey"),
-  numberOfItems: markets.filter((m) => !m.needsOwnerConfirm).length,
-  itemListElement: markets
-    .filter((m) => !m.needsOwnerConfirm)
-    .map((m, i) => ({
-      "@type": "ListItem",
-      position: i + 1,
-      name: `${m.name} — ${m.brand}`,
-      description: m.shipped,
-    })),
+  numberOfItems: markets.length,
+  itemListElement: markets.map((m, i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    name: `${m.name} — ${m.brand}`,
+    description: m.shipped,
+  })),
 };
 
 export const Route = createFileRoute("/journey")({
@@ -100,8 +97,7 @@ export const Route = createFileRoute("/journey")({
       },
       {
         name: "description",
-        content:
-          `Seventeen years, ${CAREER.marketsWord} markets, three industries — from Daraz's marketplaces to Tapmad's streaming business to Simpaisa's cross-border gateway.`,
+        content: `Seventeen years, ${CAREER.marketsWord} markets, three industries — from Daraz's marketplaces to Tapmad's streaming business to Simpaisa's cross-border gateway.`,
       },
       {
         property: "og:title",
@@ -406,11 +402,6 @@ function MarketPanel({ m }: { m: Market }) {
             {m.brand}
           </div>
           <p className="mt-4 text-sm leading-relaxed text-ink">{m.shipped}</p>
-          {m.needsOwnerConfirm && (
-            <p className="mt-3">
-              <span className="journey-pending">◇ Detail pending</span>
-            </p>
-          )}
           <p className="mt-4 border-t border-rule pt-4 text-sm italic leading-relaxed text-ink-soft">
             {m.lesson}
           </p>
@@ -452,7 +443,7 @@ function JourneyPage() {
             <WorldMap showLabels />
           </div>
           <p className="mt-4 text-center text-[10px] uppercase tracking-[0.22em] text-ink-soft font-mono-tech">
-            ◆ {CAREER.marketsWordCap} operating markets · arcs originate from the Dubai hub
+            ◆ Selected operating markets · arcs originate from the Dubai hub
           </p>
         </div>
       </section>
@@ -472,8 +463,8 @@ function JourneyPage() {
               Three eras, <span className="italic text-[var(--brand)]">one throughline</span>
             </h2>
             <p className="mt-4 max-w-2xl text-ink-soft leading-relaxed">
-              Delivery discipline first, consumer scale next, then regulated payment
-              infrastructure: each era compounding into the one after it.
+              Delivery discipline first, consumer scale next, then regulated payment infrastructure:
+              each era compounding into the one after it.
             </p>
           </div>
 
@@ -499,9 +490,7 @@ function JourneyPage() {
                         {era.title}
                       </span>
                     </div>
-                    <p className="mt-5 text-base md:text-lg leading-relaxed text-ink">
-                      {era.lede}
-                    </p>
+                    <p className="mt-5 text-base md:text-lg leading-relaxed text-ink">{era.lede}</p>
                     <ul className="mt-5 space-y-3">
                       {era.points.map((point) => (
                         <li
@@ -531,7 +520,7 @@ function JourneyPage() {
               ◆ Every stop on the map
             </div>
             <h2 className="mt-3 font-instrument text-[clamp(2rem,4vw,3.5rem)] leading-[1.05] text-ink">
-              {CAREER.marketsWordCap} markets, <span className="italic text-[var(--brand)]">ten lessons</span>
+              Markets that shaped <span className="italic text-[var(--brand)]">the work</span>
             </h2>
             <p className="mt-4 max-w-2xl text-ink-soft leading-relaxed">
               What shipped in each market, and the operating lesson it left behind.
@@ -539,7 +528,7 @@ function JourneyPage() {
           </div>
 
           {/* Expanding market rail. Below lg it is a plain stacked list with
-              every panel open (scannable). At lg+ the ten markets collapse to
+              every panel open (scannable). At lg+ the published markets collapse to
               a rail of vertical name-plates; hovering or keyboard-focusing one
               grows it to reveal what shipped there. Pure CSS (flex-grow), so
               it works with zero hydration and with JS off. All copy stays in

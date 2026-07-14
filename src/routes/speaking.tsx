@@ -57,8 +57,9 @@ const speakingMotionCss = `
 const delayStyle = (ms: number) => ({ "--motion-delay": `${ms}ms` }) as CSSProperties;
 
 // Ready-to-book talks — titles verbatim from the strategy doc. Abstracts are
-// grounded in real work (Simpaisa acceptance; Tapmad DCB; the 4 production
-// GenAI solutions). These are talks he can give, not past appearances.
+// grounded in real work (Simpaisa acceptance; Tapmad DCB; three production
+// GenAI systems plus one banking pilot). These are talks he can give, not past
+// appearances.
 // NOTE (two-tier gate): the first title carries "$1B" (platform scope); its
 // abstract stays platform-scoped and never adds a career marker in the same
 // clause.
@@ -79,7 +80,7 @@ const talks = [
     tag: "AI",
     title: "Shipping product with AI agents — a CPO's production diary",
     abstract:
-      "Four GenAI systems running in real payment operations: a merchant-integration chatbot, an incident auto-escalation agent, partner-support automation and a fraud/AML pilot with a banking partner. What actually shipped, what stayed a pilot, and how to tell production value from AI theatre in a regulated environment.",
+      "Three GenAI systems running in production across merchant integration, incident auto-escalation and partner support, plus a fraud/AML pilot with a banking partner. What actually shipped, what stayed a pilot, and how to tell production value from AI theatre in a regulated environment.",
   },
 ] as const;
 
@@ -100,7 +101,7 @@ const bios = [
   {
     length: "~250 words",
     label: "Long",
-    text: `Rizwan Zafar is a payments and product executive based in Dubai. He has spent ${profile.career.years} years on a deliberate arc: power-utility engineering, then programme and PMO delivery, then product — a path that made frontier markets his specialty, because constraint breeds operators. He is currently Chief Product Officer at Simpaisa, a B2B payments platform he helped build from the ground up. There he owns full-stack payment infrastructure: card acquiring (MPGS/MDES), wallets, DCB, IBFT, bill payments, a payout switch, cash-over-counter and cross-border corridors with real-time FX. The Simpaisa platform scaled to ${PLATFORM.gtv} GTV, ${PLATFORM.annualPayments} payments a year, a ${PLATFORM.settlementSla} settlement SLA and ${PLATFORM.merchants} merchant integrations across ${PLATFORM.marketsWord} regulated markets in MENA and South Asia. It became the local rail for enterprise platforms including TikTok, Samsung, Shein, Uber and MoneyGram. He led PCI DSS Level 1 and ISO/IEC 27001 certification from scratch, and shipped four production GenAI systems inside payment operations covering merchant support, incident escalation, partner support and a fraud/AML pilot. Earlier he owned monetization and Direct Carrier Billing for Tapmad, Pakistan's leading OTT platform, and ran payment operations across ${DARAZ.marketsWord} markets at Daraz (Alibaba Group). He built and led a 40-engineer organisation across 12 cross-functional squads. He holds PMP, PMI-ACP, CSPO, CSM, COBIT 5 and ITIL certifications and completed MIT Sloan's Mastering Design Thinking executive program. He speaks on frontier-market payments, product leadership in regulated fintech, and AI-assisted delivery.`,
+    text: `Rizwan Zafar is a payments and product executive based in Dubai. He has spent ${profile.career.years} years on a deliberate arc: power-utility engineering, then programme and PMO delivery, then product — a path that made frontier markets his specialty, because constraint breeds operators. He is currently Chief Product Officer at Simpaisa, a B2B payments platform he helped build from the ground up. There he owns full-stack payment infrastructure: card acquiring (MPGS/MDES), wallets, DCB, IBFT, bill payments, a payout switch, cash-over-counter and cross-border corridors with real-time FX. The Simpaisa platform scaled to ${PLATFORM.gtv} GTV, ${PLATFORM.annualPayments} payments a year, a ${PLATFORM.settlementSla} settlement SLA and ${PLATFORM.merchants} merchant integrations across ${PLATFORM.marketsWord} regulated markets in MENA and South Asia. It became the local rail for enterprise platforms including TikTok, Samsung, Shein, Uber and MoneyGram. He led PCI DSS Level 1 and ISO/IEC 27001 certification from scratch, and shipped three production GenAI systems inside payment operations covering merchant support, incident escalation and partner support, plus a fraud/AML banking pilot. Earlier he owned monetization and Direct Carrier Billing for Tapmad, Pakistan's leading OTT platform, and ran payment operations across ${DARAZ.marketsWord} markets at Daraz (Alibaba Group). He built and led a 40-engineer organisation across 12 cross-functional squads. He holds PMP, PMI-ACP, CSPO, CSM, COBIT 5 and ITIL certifications and completed MIT Sloan's Mastering Design Thinking executive program. He speaks on frontier-market payments, product leadership in regulated fintech, and AI-assisted delivery.`,
   },
 ] as const;
 
@@ -168,14 +169,14 @@ function SpeakingPage() {
             data-analytics-cta-id="book_intro_call"
             data-analytics-cta-location="home_body"
             data-analytics-cta-destination="/contact/#book"
-            className="inline-flex items-center justify-center gap-2 rounded-full bg-ink text-background px-5 py-2.5 text-sm font-medium hover:bg-brand hover:text-[var(--brand-foreground)] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2"
+            className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-ink text-background px-5 py-2.5 text-sm font-medium hover:bg-brand hover:text-[var(--brand-foreground)] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2"
           >
             Invite me to speak
             <span aria-hidden>→</span>
           </a>
           <a
             href="#cfp"
-            className="inline-flex items-center justify-center rounded-full border border-ink/20 px-5 py-2.5 text-sm font-medium text-ink hover:border-ink/50 hover:bg-ink/5 transition-colors"
+            className="inline-flex min-h-11 items-center justify-center rounded-full border border-ink/20 px-5 py-2.5 text-sm font-medium text-ink hover:border-ink/50 hover:bg-ink/5 transition-colors"
           >
             Organiser kit
           </a>
@@ -288,8 +289,8 @@ function SpeakingPage() {
         <p className="mt-4 max-w-2xl text-sm text-ink-soft leading-relaxed">
           One-line proof (Simpaisa platform scope):{" "}
           <span className="text-ink">
-            scaled payment infrastructure to {PLATFORM.gtv} GTV and {PLATFORM.annualPayments} payments
-            a year across {PLATFORM.marketsWord} frontier markets.
+            scaled payment infrastructure to {PLATFORM.gtv} GTV and {PLATFORM.annualPayments}{" "}
+            payments a year across {PLATFORM.marketsWord} frontier markets.
           </span>
         </p>
 
@@ -380,7 +381,7 @@ function SpeakingPage() {
             data-analytics-cta-id="book_intro_call"
             data-analytics-cta-location="footer"
             data-analytics-cta-destination="/contact/#book"
-            className="inline-flex items-center justify-center rounded-full bg-ink text-background px-5 py-2.5 text-sm font-medium hover:bg-background hover:text-ink transition-colors"
+            className="inline-flex min-h-11 items-center justify-center rounded-full bg-ink text-background px-5 py-2.5 text-sm font-medium hover:bg-background hover:text-ink transition-colors"
           >
             Book a slot
           </a>
@@ -390,13 +391,13 @@ function SpeakingPage() {
             data-analytics-cta-id="email_me"
             data-analytics-cta-location="footer"
             data-analytics-cta-destination={`mailto:${profile.email}`}
-            className="inline-flex items-center justify-center rounded-full bg-background text-ink px-5 py-2.5 text-sm font-medium hover:bg-[var(--brand)] hover:text-background transition-colors"
+            className="inline-flex min-h-11 items-center justify-center rounded-full bg-background text-ink px-5 py-2.5 text-sm font-medium hover:bg-[var(--brand)] hover:text-background transition-colors"
           >
             Email the enquiry
           </a>
           <Link
             to="/about"
-            className="inline-flex items-center justify-center rounded-full border border-background/25 px-5 py-2.5 text-sm font-medium text-background hover:bg-background/10 transition-colors"
+            className="inline-flex min-h-11 items-center justify-center rounded-full border border-background/25 px-5 py-2.5 text-sm font-medium text-background hover:bg-background/10 transition-colors"
           >
             About Rizwan
           </Link>

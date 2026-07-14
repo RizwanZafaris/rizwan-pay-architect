@@ -290,9 +290,7 @@ export function WorldMap({
                   <circle className="wm-hit-target" cx={p.x} cy={p.y} r={1.3} fill="transparent" />
                 )}
                 <circle className="wm-pin-halo" cx={p.x} cy={p.y} r={0.5} />
-                {interactive && (
-                  <circle className="wm-focusring" cx={p.x} cy={p.y} r={1.15} />
-                )}
+                {interactive && <circle className="wm-focusring" cx={p.x} cy={p.y} r={1.15} />}
                 <circle className="wm-pin" cx={p.x} cy={p.y} r={0.5} />
               </g>
             );
@@ -321,9 +319,13 @@ export function WorldMap({
             </p>
           </div>
           {markets.map((m) => (
-            <article key={`card-${m.key}`} id={`wm-card-${m.key}`} className={`wm-card wm-card-${m.key}`}>
+            <article
+              key={`card-${m.key}`}
+              id={`wm-card-${m.key}`}
+              className={`wm-card wm-card-${m.key}`}
+            >
               <div className="wm-card-head">
-                <h3 className="wm-card-name">{m.name}</h3>
+                <p className="wm-card-name">{m.name}</p>
                 <span className="wm-card-meta">
                   {m.city} · {m.years}
                 </span>
