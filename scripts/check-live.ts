@@ -18,6 +18,7 @@
  *   - sitemap loc URLs return 200 without redirect (no hop penalty)
  *   - no dev-server leakage in any served HTML
  *   - AI bot user agents receive the same 200 + correct content (no soft block)
+ *   - deployed source provenance matches the GitHub commit that triggered the run
  */
 
 const HOST = (process.argv[2] ?? "https://rzifi.com").replace(/\/$/, "");
@@ -26,6 +27,7 @@ const WWW_ORIGIN = HOST.replace("//", "//www.");
 const HTTP_ORIGIN = HOST.replace(/^https/, "http");
 const DEV_IMPORT_PATTERN = ["/@id", "virtual"].join("/");
 const START_ENTRY_PATTERN = ["tanstack", "start-client-entry"].join("-");
+const EXPECTED_SOURCE_SHA = process.env.EXPECTED_SOURCE_SHA?.trim() ?? "";
 const EXPECTED_GA_ID = process.env.VITE_GA_MEASUREMENT_ID || "G-F1NK5FJYJY";
 const EXPECTED_GA_RE = EXPECTED_GA_ID.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 const EXPECTED_GOOGLE_ADS_ID = process.env.VITE_GOOGLE_ADS_ID || "AW-790961325";
@@ -366,6 +368,46 @@ async function runCanonicalEqualsFinal() {
   });
 }
 
+async function runDeploymentProvenance() {
+  if (!EXPECTED_SOURCE_SHA) return;
+
+  const url = `${APEX_ORIGIN}/deployment.json?source=${encodeURIComponent(EXPECTED_SOURCE_SHA)}`;
+  const r = await fetchOne(url);
+  if (r.status === "err" || r.status !== 200) {
+    results.push({
+      name: "Deployment source SHA",
+      status: r.status,
+      pass: false,
+      detail: "deployment.json not reachable",
+    });
+    return;
+  }
+
+  let actual = "";
+  try {
+    const manifest = JSON.parse(r.body) as { sourceSha?: unknown };
+    actual = typeof manifest.sourceSha === "string" ? manifest.sourceSha : "";
+  } catch {
+    results.push({
+      name: "Deployment source SHA",
+      status: r.status,
+      pass: false,
+      detail: "deployment.json is not valid JSON",
+    });
+    return;
+  }
+
+  const pass = actual === EXPECTED_SOURCE_SHA;
+  results.push({
+    name: "Deployment source SHA",
+    status: r.status,
+    pass,
+    detail: pass
+      ? `live source ${actual.slice(0, 8)} matches this run`
+      : `expected ${EXPECTED_SOURCE_SHA.slice(0, 8)}, got ${actual.slice(0, 8) || "missing"}`,
+  });
+}
+
 async function runAiBots() {
   for (const [name, ua] of AI_USER_AGENTS) {
     const r = await fetchOne(`${APEX_ORIGIN}/`, ua);
@@ -388,6 +430,7 @@ async function runAiBots() {
 async function main() {
   console.log(`\nChecking ${HOST}…\n`);
   await runProbes();
+  await runDeploymentProvenance();
   await runSitemapLocs();
   await runCanonicalEqualsFinal();
   await runAiBots();
@@ -416,6 +459,7 @@ async function main() {
   probes.filter((p) => p.required).forEach((p) => requiredNames.add(p.name));
   requiredNames.add("Sitemap loc URLs");
   requiredNames.add("Canonical = final URL");
+  if (EXPECTED_SOURCE_SHA) requiredNames.add("Deployment source SHA");
   const requiredFails = failures.filter((f) => requiredNames.has(f.name));
 
   if (requiredFails.length > 0) {

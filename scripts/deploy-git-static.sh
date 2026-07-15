@@ -22,6 +22,30 @@ BRANCH="hostinger-static"
 
 cd "$REPO_DIR"
 
+# Production publishing is intentionally CI-only. A local checkout pushed an
+# older build over a verified release on 2026-07-15, so laptops and parallel
+# agent worktrees must never write the generated production branch directly.
+if [ "${GITHUB_ACTIONS:-}" != "true" ]; then
+  echo "ERROR: Production deployment is GitHub-Actions-only." >&2
+  echo "Push or merge to main, then let .github/workflows/build-deploy.yml publish." >&2
+  exit 1
+fi
+
+SOURCE_SHA=$(git rev-parse HEAD)
+if [ -z "${GITHUB_SHA:-}" ] || [ "$SOURCE_SHA" != "$GITHUB_SHA" ]; then
+  echo "ERROR: Checked-out source ($SOURCE_SHA) does not match GITHUB_SHA (${GITHUB_SHA:-unset})." >&2
+  exit 1
+fi
+if [ "${GITHUB_REF_NAME:-}" != "main" ]; then
+  echo "ERROR: Refusing production deploy from '${GITHUB_REF_NAME:-unknown}'; expected main." >&2
+  exit 1
+fi
+if [ -n "$(git status --porcelain --untracked-files=no)" ]; then
+  echo "ERROR: Tracked files changed during the CI build; refusing a mixed-source deploy." >&2
+  git status --short --untracked-files=no >&2
+  exit 1
+fi
+
 echo "─── 1/4  Rebuilding dist-static/ ───"
 # CI builds + gates dist-static in its own steps and sets SKIP_REBUILD=1.
 if [ "${SKIP_REBUILD:-}" = "1" ]; then
@@ -43,6 +67,13 @@ else
   bun run build:static
 fi
 find dist-static -name "._*" -delete 2>/dev/null || true
+
+# A public, non-cacheable provenance record lets the post-deploy gate prove
+# that Hostinger is serving this exact source commit rather than a merely
+# healthy-looking older build.
+DEPLOYED_AT=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+printf '{\n  "sourceSha": "%s",\n  "sourceRef": "refs/heads/main",\n  "deployedAt": "%s",\n  "githubRunId": "%s"\n}\n' \
+  "$SOURCE_SHA" "$DEPLOYED_AT" "${GITHUB_RUN_ID:-unknown}" > dist-static/deployment.json
 
 echo
 echo "─── 2/4  Preparing $BRANCH worktree ───"
@@ -77,8 +108,7 @@ echo "─── 3/4  Replacing $BRANCH contents with dist-static/ ───"
   if git diff --cached --quiet; then
     echo "(no changes — branch already up to date)"
   else
-    SRC_SHA=$(cd "$REPO_DIR" && git rev-parse --short HEAD)
-    git commit -m "Static build from HEAD@$SRC_SHA
+    git commit -m "Static build from HEAD@${SOURCE_SHA:0:8}
 
 Auto-generated. Do not edit directly.
 Regenerate with: bun run deploy:git-static
@@ -93,4 +123,5 @@ git worktree remove --force "$WORKTREE"
 
 echo
 echo "✓ Done. Hostinger Git deploy should pull from branch '$BRANCH' (path /)."
+echo "  Source: $SOURCE_SHA"
 echo "  Live: https://github.com/RizwanZafaris/rizwan-pay-architect/tree/$BRANCH"

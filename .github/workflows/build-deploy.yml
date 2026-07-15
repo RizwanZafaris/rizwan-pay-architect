@@ -93,6 +93,8 @@ jobs:
         run: sleep 420
 
       - name: Probe live site
+        env:
+          EXPECTED_SOURCE_SHA: ${{ github.sha }}
         run: bun scripts/check-live.ts
 
       - name: Notify on failure
