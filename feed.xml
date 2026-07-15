@@ -5,14 +5,22 @@
   <link>https://rzifi.com/blog/</link>
   <description>Essays on payment infrastructure, fintech product, risk, settlement, AI and program leadership.</description>
   <language>en</language>
-  <lastBuildDate>Wed, 15 Jul 2026 07:12:22 GMT</lastBuildDate>
+  <lastBuildDate>Wed, 15 Jul 2026 09:05:14 GMT</lastBuildDate>
   <item>
-    <title>Tabby Cash Turns UAE BNPL Into a Wallet Operating Model</title>
-    <link>https://rzifi.com/blog/tabby-cash-uae-wallet-operating-model/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/tabby-cash-uae-wallet-operating-model/</guid>
+    <title>Ajman Bank and AFS Make Merchant Acquiring a Platform Bet</title>
+    <link>https://rzifi.com/blog/ajman-bank-afs-merchant-acquiring-operating-model/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/ajman-bank-afs-merchant-acquiring-operating-model/</guid>
     <pubDate>Wed, 15 Jul 2026 00:00:00 GMT</pubDate>
-    <category>Payment Infrastructure</category>
-    <description>Tabby Cash shows how a BNPL app becomes a UAE money app, adding stored value, transfers, card economics, ledger controls, and support risk.</description>
+    <category>Merchant Acquiring</category>
+    <description>Ajman Bank and AFS show why merchant acquiring is now bank platform work: onboarding, acceptance, settlement, processing, and support.</description>
+  </item>
+<item>
+    <title>Checkout.com Shows AI Payment Optimization Needs Control Loops</title>
+    <link>https://rzifi.com/blog/checkout-ai-payment-optimization-control-loops/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/checkout-ai-payment-optimization-control-loops/</guid>
+    <pubDate>Wed, 15 Jul 2026 00:00:00 GMT</pubDate>
+    <category>AI &amp; Product Operations</category>
+    <description>Checkout.com&apos;s AI payment optimization story shows why acceptance AI needs control groups, reversibility, issuer-level learning, and guardrails.</description>
   </item>
 <item>
     <title>The Role of SWIFT in Emerging-Markets Banking</title>
@@ -237,14 +245,6 @@
     <pubDate>Sat, 27 Jun 2026 00:00:00 GMT</pubDate>
     <category>AI &amp; Product Operations</category>
     <description>GitHub Desktop 3.6 brings worktrees and AI-assisted conflict resolution together. The lesson for engineering leads is isolation, review, and controlled parallelism.</description>
-  </item>
-<item>
-    <title>Visa DCAP Makes Authentication an Acquiring Economics Decision</title>
-    <link>https://rzifi.com/blog/visa-dcap-acquiring-economics-data-only-3ds/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/visa-dcap-acquiring-economics-data-only-3ds/</guid>
-    <pubDate>Sat, 27 Jun 2026 00:00:00 GMT</pubDate>
-    <category>Merchant Acquiring</category>
-    <description>Visa DCAP turns richer checkout data into interchange savings, but acquirers must protect authorization, latency, and merchant economics.</description>
   </item>
 </channel>
 </rss>
