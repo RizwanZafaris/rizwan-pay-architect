@@ -61,6 +61,54 @@ export const posts: Post[] = [
     ]
   },
   {
+    "slug": "ajman-bank-afs-merchant-acquiring-operating-model",
+    "title": "Ajman Bank and AFS Make Merchant Acquiring a Platform Bet",
+    "metaTitle": "Ajman Bank + AFS: Merchant Acquiring Operating Model",
+    "date": "2026-07-15",
+    "category": "Merchant Acquiring",
+    "readingTime": "7 min read",
+    "description": "Ajman Bank and AFS show why merchant acquiring is now bank platform work: onboarding, acceptance, settlement, processing, and support.",
+    "thesis": "The Ajman Bank and AFS MoU is not just partnership news. It shows how banks turn merchant acquiring into a broader business platform.",
+    "tags": [
+      "Ajman Bank",
+      "Arab Financial Services",
+      "merchant acquiring",
+      "UAE payments",
+      "payment processing",
+      "merchant enablement"
+    ],
+    "relatedArticles": [
+      "/blog/amex-network-international-uae-acceptance-operating-model",
+      "/blog/adyen-uae-license-merchant-acquiring-local-settlement",
+      "/blog/authorization-rate-merchant-pnl-operating-model",
+      "/product-work/mpgs-acquirer-integration-programme"
+    ]
+  },
+  {
+    "slug": "checkout-ai-payment-optimization-control-loops",
+    "title": "Checkout.com Shows AI Payment Optimization Needs Control Loops",
+    "metaTitle": "Checkout.com AI Payment Optimization Control Loops",
+    "date": "2026-07-15",
+    "category": "AI & Product Operations",
+    "readingTime": "7 min read",
+    "description": "Checkout.com's AI payment optimization story shows why acceptance AI needs control groups, reversibility, issuer-level learning, and guardrails.",
+    "thesis": "AI payment optimization is not a magic approval-rate lift. It is a controlled learning system for authentication, tokens, routing, retries, and risk.",
+    "tags": [
+      "Checkout.com",
+      "AI payment optimization",
+      "Intelligent Acceptance",
+      "authorization rates",
+      "payment operations",
+      "AI governance"
+    ],
+    "relatedArticles": [
+      "/blog/authorization-rate-merchant-pnl-operating-model",
+      "/blog/checkout-unified-payin-payout-control-plane",
+      "/blog/where-ml-beats-ai-payment-problems-llm-cant-touch",
+      "/blog/ai-in-payments-four-production-use-cases"
+    ]
+  },
+  {
     "slug": "swift-for-emerging-markets-banking",
     "title": "The Role of SWIFT in Emerging-Markets Banking",
     "metaTitle": "The Role of SWIFT in Emerging-Markets Banking | Rizwan Zafar",

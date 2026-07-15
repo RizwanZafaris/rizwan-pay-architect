@@ -13,6 +13,10 @@ import { marked } from "marked";
 import authorPortrait from "@/assets/rizwan-zafar-cutout-460.webp";
 
 const OG_IMAGE_OVERRIDES: Record<string, string> = {
+  "ajman-bank-afs-merchant-acquiring-operating-model":
+    "/og/blog/ajman-bank-afs-merchant-acquiring-operating-model-v20260715.png",
+  "checkout-ai-payment-optimization-control-loops":
+    "/og/blog/checkout-ai-payment-optimization-control-loops-v20260715.png",
   "satispay-mastercard-wallet-card-programme":
     "/og/blog/satispay-mastercard-wallet-card-programme-v20260709.png",
   "pnc-mobile-app-modernization-product-migration":
