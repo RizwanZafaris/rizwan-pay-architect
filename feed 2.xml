@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+<channel>
+  <title>Rizwan Zafar — Payments Essays</title>
+  <link>https://rzifi.com/blog/</link>
+  <description>Essays on payment infrastructure, fintech product, risk, settlement, AI and program leadership.</description>
+  <language>en</language>
+  <lastBuildDate>Wed, 15 Jul 2026 06:40:17 GMT</lastBuildDate>
+  <item>
+    <title>Ajman Bank and AFS Make Merchant Acquiring a Platform Bet</title>
+    <link>https://rzifi.com/blog/ajman-bank-afs-merchant-acquiring-operating-model/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/ajman-bank-afs-merchant-acquiring-operating-model/</guid>
+    <pubDate>Wed, 15 Jul 2026 00:00:00 GMT</pubDate>
+    <category>Merchant Acquiring</category>
+    <description>Ajman Bank and AFS show why merchant acquiring is now bank platform work: onboarding, acceptance, settlement, processing, and support.</description>
+  </item>
+<item>
+    <title>Checkout.com Shows AI Payment Optimization Needs Control Loops</title>
+    <link>https://rzifi.com/blog/checkout-ai-payment-optimization-control-loops/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/checkout-ai-payment-optimization-control-loops/</guid>
+    <pubDate>Wed, 15 Jul 2026 00:00:00 GMT</pubDate>
+    <category>AI &amp; Product Operations</category>
+    <description>Checkout.com&apos;s AI payment optimization story shows why acceptance AI needs control groups, reversibility, issuer-level learning, and guardrails.</description>
+  </item>
+<item>
+    <title>The Role of SWIFT in Emerging-Markets Banking</title>
+    <link>https://rzifi.com/blog/swift-for-emerging-markets-banking/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/swift-for-emerging-markets-banking/</guid>
+    <pubDate>Tue, 14 Jul 2026 00:00:00 GMT</pubDate>
+    <category>Cross-Border Payments</category>
+    <description>How emerging-market banks actually use SWIFT, access, cost, correspondent dependence, and where fintech intermediation is reshaping the picture.</description>
+  </item>
+<item>
+    <title>SWIFT Messaging Formats: MT vs MX (and Why It Matters Now)</title>
+    <link>https://rzifi.com/blog/swift-messaging-formats-mt-vs-mx/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/swift-messaging-formats-mt-vs-mx/</guid>
+    <pubDate>Fri, 10 Jul 2026 00:00:00 GMT</pubDate>
+    <category>Cross-Border Payments</category>
+    <description>MT is the legacy SWIFT format. MX is the ISO 20022 successor. What changes, what stays, and what product teams must understand.</description>
+  </item>
+<item>
+    <title>Baringa&apos;s UK Payments Migration Shows Why Delivery Gates Matter</title>
+    <link>https://rzifi.com/blog/baringa-uk-payments-migration-delivery-gates/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/baringa-uk-payments-migration-delivery-gates/</guid>
+    <pubDate>Thu, 09 Jul 2026 00:00:00 GMT</pubDate>
+    <category>Program Management</category>
+    <description>Baringa&apos;s UK payments-hub migration case shows why regulated programmes need delivery gates, dependency control, live proving, and exit plans.</description>
+  </item>
+<item>
+    <title>GitHub Copilot OpenTelemetry Makes Agent Work Auditable</title>
+    <link>https://rzifi.com/blog/github-copilot-opentelemetry-agent-auditability/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/github-copilot-opentelemetry-agent-auditability/</guid>
+    <pubDate>Thu, 09 Jul 2026 00:00:00 GMT</pubDate>
+    <category>AI &amp; Product Operations</category>
+    <description>GitHub Copilot&apos;s managed OpenTelemetry export shows why AI coding agents need approved collectors, policy, traces, and evidence review.</description>
+  </item>
+<item>
+    <title>PNC&apos;s App Overhaul Is a Product Migration, Not a Redesign</title>
+    <link>https://rzifi.com/blog/pnc-mobile-app-modernization-product-migration/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/pnc-mobile-app-modernization-product-migration/</guid>
+    <pubDate>Thu, 09 Jul 2026 00:00:00 GMT</pubDate>
+    <category>Product Management</category>
+    <description>PNC&apos;s mobile app overhaul shows why financial-app modernization needs phased rollout, migration metrics, support readiness, and quality gates.</description>
+  </item>
+<item>
+    <title>Satispay&apos;s Mastercard Cards Turn a Wallet Into a Card Programme</title>
+    <link>https://rzifi.com/blog/satispay-mastercard-wallet-card-programme/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/satispay-mastercard-wallet-card-programme/</guid>
+    <pubDate>Thu, 09 Jul 2026 00:00:00 GMT</pubDate>
+    <category>Payment Infrastructure</category>
+    <description>Satispay&apos;s Mastercard debit cards show how a wallet becomes a card programme across acceptance, funding, tiers, controls, fees, and disputes.</description>
+  </item>
+<item>
+    <title>Agent Skills Turn Prompting Into an Operating Model</title>
+    <link>https://rzifi.com/blog/agent-skills-ai-coding-operating-model/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/agent-skills-ai-coding-operating-model/</guid>
+    <pubDate>Tue, 07 Jul 2026 00:00:00 GMT</pubDate>
+    <category>AI &amp; Product Operations</category>
+    <description>Agent-skills repositories show why AI coding agents need reusable workflows, verification gates, security review, and clear exit criteria.</description>
+  </item>
+<item>
+    <title>Checkout.com Shows Pay-In and Payout Need One Control Plane</title>
+    <link>https://rzifi.com/blog/checkout-unified-payin-payout-control-plane/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/checkout-unified-payin-payout-control-plane/</guid>
+    <pubDate>Tue, 07 Jul 2026 00:00:00 GMT</pubDate>
+    <category>Payment Infrastructure</category>
+    <description>Checkout.com&apos;s issuing and acquiring push shows why platforms need one control plane for pay-in, payout, liquidity, risk, and reconciliation.</description>
+  </item>
+<item>
+    <title>SWIFT and Cryptocurrency: The Honest Take</title>
+    <link>https://rzifi.com/blog/swift-and-cryptocurrency-the-honest-take/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/swift-and-cryptocurrency-the-honest-take/</guid>
+    <pubDate>Tue, 07 Jul 2026 00:00:00 GMT</pubDate>
+    <category>Cross-Border Payments</category>
+    <description>Will crypto and stablecoins replace SWIFT? The honest, practitioner answer: what works, what does not, and where the two will coexist.</description>
+  </item>
+<item>
+    <title>Cross River and Stripe Show Why Agentic Cards Need a Mandate Ledger</title>
+    <link>https://rzifi.com/blog/cross-river-stripe-agentic-card-mandate-controls/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/cross-river-stripe-agentic-card-mandate-controls/</guid>
+    <pubDate>Mon, 06 Jul 2026 00:00:00 GMT</pubDate>
+    <category>Payment Infrastructure</category>
+    <description>Cross River and Stripe are expanding agentic card issuing. The hard product problem is preserving user intent across auth, clearing, and disputes.</description>
+  </item>
+<item>
+    <title>Amex and Apple Pay Turn Rewards Into a Checkout Control Plane</title>
+    <link>https://rzifi.com/blog/amex-apple-pay-rewards-wallet-control-plane/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/amex-apple-pay-rewards-wallet-control-plane/</guid>
+    <pubDate>Sun, 05 Jul 2026 00:00:00 GMT</pubDate>
+    <category>Payment Infrastructure</category>
+    <description>Amex now lets eligible US card members use points through Apple Pay online. The real work is eligibility, reversals, reconciliation, and value.</description>
+  </item>
+<item>
+    <title>GitHub Copilot Session Streaming Makes Agent Governance Observable</title>
+    <link>https://rzifi.com/blog/github-copilot-agent-session-streaming-governance/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/github-copilot-agent-session-streaming-governance/</guid>
+    <pubDate>Sun, 05 Jul 2026 00:00:00 GMT</pubDate>
+    <category>AI &amp; Product Operations</category>
+    <description>GitHub now streams Copilot agent prompts, responses, and tool calls. Enterprises need a governed telemetry pipeline, not another unused log feed.</description>
+  </item>
+<item>
+    <title>Adyen&apos;s 3% Refund Signal: Fraud Controls Need a Lifecycle</title>
+    <link>https://rzifi.com/blog/adyen-refund-concentration-fraud-lifecycle-controls/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/adyen-refund-concentration-fraud-lifecycle-controls/</guid>
+    <pubDate>Sat, 04 Jul 2026 00:00:00 GMT</pubDate>
+    <category>Fraud &amp; Risk</category>
+    <description>Adyen says 3% of identities drove half of refund value on its platform. The right response is lifecycle controls, not more checkout friction.</description>
+  </item>
+<item>
+    <title>UK Payments Draws the Right Boundary Between Core Rails and Products</title>
+    <link>https://rzifi.com/blog/uk-retail-payments-core-product-programme-boundary/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/uk-retail-payments-core-product-programme-boundary/</guid>
+    <pubDate>Sat, 04 Jul 2026 00:00:00 GMT</pubDate>
+    <category>Program Management</category>
+    <description>The UK&apos;s new retail-payments model separates one core infrastructure from product-level rules. That boundary can make or break the programme.</description>
+  </item>
+<item>
+    <title>85,000 Amex Locations: The UAE Acceptance Work Starts Now</title>
+    <link>https://rzifi.com/blog/amex-network-international-uae-acceptance-operating-model/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/amex-network-international-uae-acceptance-operating-model/</guid>
+    <pubDate>Fri, 03 Jul 2026 00:00:00 GMT</pubDate>
+    <category>Merchant Acquiring</category>
+    <description>Amex and Network target 85,000 UAE acceptance locations. The real test is merchant activation, settlement, reconciliation, and usage.</description>
+  </item>
+<item>
+    <title>How to Track a SWIFT Payment Step by Step</title>
+    <link>https://rzifi.com/blog/tracking-a-swift-payment-step-by-step/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/tracking-a-swift-payment-step-by-step/</guid>
+    <pubDate>Fri, 03 Jul 2026 00:00:00 GMT</pubDate>
+    <category>Cross-Border Payments</category>
+    <description>A practical guide to tracking a SWIFT payment using the UETR and gpi Tracker, what to ask your bank and how to read the status.</description>
+  </item>
+<item>
+    <title>GitHub Models Is Shutting Down. Your AI Stack Needs an Exit Plan</title>
+    <link>https://rzifi.com/blog/github-models-retirement-ai-platform-exit-plan/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/github-models-retirement-ai-platform-exit-plan/</guid>
+    <pubDate>Thu, 02 Jul 2026 00:00:00 GMT</pubDate>
+    <category>AI in Fintech</category>
+    <description>GitHub Models closes on July 30, 2026. Use the brownouts to test provider portability, evaluation baselines, data controls, and recovery plans.</description>
+  </item>
+<item>
+    <title>Processor-Only Card Issuing Moves the Work, Not the Risk</title>
+    <link>https://rzifi.com/blog/processor-only-card-issuing-operating-model/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/processor-only-card-issuing-operating-model/</guid>
+    <pubDate>Wed, 01 Jul 2026 00:00:00 GMT</pubDate>
+    <category>Payment Infrastructure</category>
+    <description>Processor-only card issuing offers control, but shifts licensing, ledger, compliance, fraud, disputes, and bank management back to your team.</description>
+  </item>
+<item>
+    <title>Visa and Mastercard Join Open USD: The Stablecoin Battle Moves to Distribution</title>
+    <link>https://rzifi.com/blog/visa-mastercard-open-usd-stablecoin-network-economics/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/visa-mastercard-open-usd-stablecoin-network-economics/</guid>
+    <pubDate>Wed, 01 Jul 2026 00:00:00 GMT</pubDate>
+    <category>Crypto &amp; Stablecoins</category>
+    <description>Open USD brings Visa, Mastercard, Stripe and 140+ partners into a shared stablecoin model built around distribution, governance and reserve economics.</description>
+  </item>
+<item>
+    <title>Adyen&apos;s UAE License Makes Merchant Acquiring More Local</title>
+    <link>https://rzifi.com/blog/adyen-uae-license-merchant-acquiring-local-settlement/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/adyen-uae-license-merchant-acquiring-local-settlement/</guid>
+    <pubDate>Tue, 30 Jun 2026 00:00:00 GMT</pubDate>
+    <category>Merchant Acquiring</category>
+    <description>Adyen&apos;s new UAE license matters because local settlement control changes merchant acquiring, compliance operations, and product speed.</description>
+  </item>
+<item>
+    <title>GOV.UK Pay&apos;s Adyen Migration Is a 1,000-Service Programme</title>
+    <link>https://rzifi.com/blog/gov-uk-pay-adyen-1000-service-migration/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/gov-uk-pay-adyen-1000-service-migration/</guid>
+    <pubDate>Tue, 30 Jun 2026 00:00:00 GMT</pubDate>
+    <category>Program Management</category>
+    <description>GOV.UK Pay&apos;s move from Stripe to Adyen shows how to govern a 1,000-service payment migration without breaking user journeys or finance controls.</description>
+  </item>
+<item>
+    <title>Mercado Pago&apos;s Claude Plugin Turns Payment Docs Into Controls</title>
+    <link>https://rzifi.com/blog/mercado-pago-claude-plugin-payment-integration-agent/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/mercado-pago-claude-plugin-payment-integration-agent/</guid>
+    <pubDate>Tue, 30 Jun 2026 00:00:00 GMT</pubDate>
+    <category>AI &amp; Product Operations</category>
+    <description>Mercado Pago&apos;s Claude Code plugin shows where payment integration agents help—and why versioning, evidence, security, and human review still matter.</description>
+  </item>
+<item>
+    <title>Revolut and Adyen&apos;s UAE Licences Show What Dubai Wants From Fintech</title>
+    <link>https://rzifi.com/blog/revolut-adyen-uae-licences-dubai-fintech-signal/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/revolut-adyen-uae-licences-dubai-fintech-signal/</guid>
+    <pubDate>Tue, 30 Jun 2026 00:00:00 GMT</pubDate>
+    <category>Payment Infrastructure</category>
+    <description>Revolut and Adyen won different UAE approvals in June 2026, but both point to the same Dubai signal: more of the payment stack must be owned locally.</description>
+  </item>
+<item>
+    <title>SWIFT in 2026: ISO 20022, Instant Rails, and the Pressure on Correspondent Banking</title>
+    <link>https://rzifi.com/blog/swift-in-2026-trends-to-watch/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/swift-in-2026-trends-to-watch/</guid>
+    <pubDate>Tue, 30 Jun 2026 00:00:00 GMT</pubDate>
+    <category>Cross-Border Payments</category>
+    <description>Where SWIFT and cross-border payments are heading in 2026, ISO 20022 done, instant rails everywhere, correspondent banking under pressure, and the G20 roadmap deadline.</description>
+  </item>
+<item>
+    <title>Authorization Rate Is a Merchant P&amp;L Metric, Not a Gateway KPI</title>
+    <link>https://rzifi.com/blog/authorization-rate-merchant-pnl-operating-model/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/authorization-rate-merchant-pnl-operating-model/</guid>
+    <pubDate>Mon, 29 Jun 2026 00:00:00 GMT</pubDate>
+    <category>Merchant Acquiring</category>
+    <description>A practical operating model for improving payment authorization without confusing retries, tokenization, fraud controls, or routing with profit.</description>
+  </item>
+<item>
+    <title>OpenAI&apos;s Jalapeño Chip Turns AI Strategy Into Unit Economics</title>
+    <link>https://rzifi.com/blog/openai-broadcom-jalapeno-ai-unit-economics/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/openai-broadcom-jalapeno-ai-unit-economics/</guid>
+    <pubDate>Mon, 29 Jun 2026 00:00:00 GMT</pubDate>
+    <category>AI &amp; Product Operations</category>
+    <description>OpenAI and Broadcom&apos;s inference chip matters when it changes latency, cost, reliability, and vendor risk—not when a benchmark wins a headline.</description>
+  </item>
+<item>
+    <title>Thredd and Sutton Turn BIN Sponsorship Into an Operating Model</title>
+    <link>https://rzifi.com/blog/thredd-sutton-bin-sponsorship-operating-model/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/thredd-sutton-bin-sponsorship-operating-model/</guid>
+    <pubDate>Sun, 28 Jun 2026 00:00:00 GMT</pubDate>
+    <category>Payment Infrastructure</category>
+    <description>Thredd and Sutton Bank show why card launches need explicit ownership across BIN sponsorship, issuer processing, risk, settlement, and operations.</description>
+  </item>
+<item>
+    <title>GitHub Desktop Makes Worktrees an AI Agent Control</title>
+    <link>https://rzifi.com/blog/github-desktop-worktrees-ai-agent-control/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/github-desktop-worktrees-ai-agent-control/</guid>
+    <pubDate>Sat, 27 Jun 2026 00:00:00 GMT</pubDate>
+    <category>AI &amp; Product Operations</category>
+    <description>GitHub Desktop 3.6 brings worktrees and AI-assisted conflict resolution together. The lesson for engineering leads is isolation, review, and controlled parallelism.</description>
+  </item>
+</channel>
+</rss>
