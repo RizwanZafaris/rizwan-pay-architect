@@ -80,8 +80,7 @@ export const posts: Post[] = [
     "relatedArticles": [
       "/blog/amex-network-international-uae-acceptance-operating-model",
       "/blog/adyen-uae-license-merchant-acquiring-local-settlement",
-      "/blog/authorization-rate-merchant-pnl-operating-model",
-      "/product-work/simpaisa-payment-infrastructure"
+      "/blog/authorization-rate-merchant-pnl-operating-model"
     ]
   },
   {

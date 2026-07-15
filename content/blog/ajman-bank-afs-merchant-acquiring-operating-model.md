@@ -29,7 +29,6 @@ relatedArticles:
   - "/blog/amex-network-international-uae-acceptance-operating-model"
   - "/blog/adyen-uae-license-merchant-acquiring-local-settlement"
   - "/blog/authorization-rate-merchant-pnl-operating-model"
-  - "/product-work/simpaisa-payment-infrastructure"
 ---
 
 # Ajman Bank and AFS Make Merchant Acquiring a Platform Bet
