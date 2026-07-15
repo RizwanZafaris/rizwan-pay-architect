@@ -5,8 +5,16 @@
   <link>https://rzifi.com/blog/</link>
   <description>Essays on payment infrastructure, fintech product, risk, settlement, AI and program leadership.</description>
   <language>en</language>
-  <lastBuildDate>Wed, 15 Jul 2026 00:13:08 GMT</lastBuildDate>
+  <lastBuildDate>Wed, 15 Jul 2026 05:53:21 GMT</lastBuildDate>
   <item>
+    <title>Tabby Cash Turns UAE BNPL Into a Wallet Operating Model</title>
+    <link>https://rzifi.com/blog/tabby-cash-uae-wallet-operating-model/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/tabby-cash-uae-wallet-operating-model/</guid>
+    <pubDate>Wed, 15 Jul 2026 00:00:00 GMT</pubDate>
+    <category>Payment Infrastructure</category>
+    <description>Tabby Cash shows how a BNPL app becomes a UAE money app, adding stored value, transfers, card economics, ledger controls, and support risk.</description>
+  </item>
+<item>
     <title>The Role of SWIFT in Emerging-Markets Banking</title>
     <link>https://rzifi.com/blog/swift-for-emerging-markets-banking/</link>
     <guid isPermaLink="true">https://rzifi.com/blog/swift-for-emerging-markets-banking/</guid>
@@ -237,14 +245,6 @@
     <pubDate>Sat, 27 Jun 2026 00:00:00 GMT</pubDate>
     <category>Merchant Acquiring</category>
     <description>Visa DCAP turns richer checkout data into interchange savings, but acquirers must protect authorization, latency, and merchant economics.</description>
-  </item>
-<item>
-    <title>Forter Agents Show AI Risk Work Is Becoming Operational</title>
-    <link>https://rzifi.com/blog/forter-ai-agents-commerce-risk-radar/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/forter-ai-agents-commerce-risk-radar/</guid>
-    <pubDate>Fri, 26 Jun 2026 00:00:00 GMT</pubDate>
-    <category>AI in Fintech</category>
-    <description>Forter&apos;s five commerce AI agents show the practical shift from chatbots to workflow agents for fraud, disputes, payments, and integration.</description>
   </item>
 </channel>
 </rss>
