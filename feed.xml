@@ -5,8 +5,16 @@
   <link>https://rzifi.com/blog/</link>
   <description>Essays on payment infrastructure, fintech product, risk, settlement, AI and program leadership.</description>
   <language>en</language>
-  <lastBuildDate>Thu, 16 Jul 2026 00:55:36 GMT</lastBuildDate>
+  <lastBuildDate>Fri, 17 Jul 2026 00:59:53 GMT</lastBuildDate>
   <item>
+    <title>A SWIFT Compliance Checklist for Banks and Fintechs</title>
+    <link>https://rzifi.com/blog/swift-compliance-checklist-for-banks-and-fintechs/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/swift-compliance-checklist-for-banks-and-fintechs/</guid>
+    <pubDate>Fri, 17 Jul 2026 00:00:00 GMT</pubDate>
+    <category>Cross-Border Payments</category>
+    <description>A practitioner checklist for SWIFT-related compliance, sanctions, AML/CFT, CSP, ISO 20022 readiness, gpi adoption, and audit trail.</description>
+  </item>
+<item>
     <title>Ajman Bank and AFS Make Merchant Acquiring a Platform Bet</title>
     <link>https://rzifi.com/blog/ajman-bank-afs-merchant-acquiring-operating-model/</link>
     <guid isPermaLink="true">https://rzifi.com/blog/ajman-bank-afs-merchant-acquiring-operating-model/</guid>
@@ -237,14 +245,6 @@
     <pubDate>Sun, 28 Jun 2026 00:00:00 GMT</pubDate>
     <category>Payment Infrastructure</category>
     <description>Thredd and Sutton Bank show why card launches need explicit ownership across BIN sponsorship, issuer processing, risk, settlement, and operations.</description>
-  </item>
-<item>
-    <title>GitHub Desktop Makes Worktrees an AI Agent Control</title>
-    <link>https://rzifi.com/blog/github-desktop-worktrees-ai-agent-control/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/github-desktop-worktrees-ai-agent-control/</guid>
-    <pubDate>Sat, 27 Jun 2026 00:00:00 GMT</pubDate>
-    <category>AI &amp; Product Operations</category>
-    <description>GitHub Desktop 3.6 brings worktrees and AI-assisted conflict resolution together. The lesson for engineering leads is isolation, review, and controlled parallelism.</description>
   </item>
 </channel>
 </rss>
