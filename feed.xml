@@ -5,14 +5,46 @@
   <link>https://rzifi.com/blog/</link>
   <description>Essays on payment infrastructure, fintech product, risk, settlement, AI and program leadership.</description>
   <language>en</language>
-  <lastBuildDate>Fri, 17 Jul 2026 00:59:53 GMT</lastBuildDate>
+  <lastBuildDate>Fri, 17 Jul 2026 11:03:57 GMT</lastBuildDate>
   <item>
+    <title>CaixaBank Shows Merchant Payments Are Becoming a Product System</title>
+    <link>https://rzifi.com/blog/caixabank-merchant-platform-product-system/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/caixabank-merchant-platform-product-system/</guid>
+    <pubDate>Fri, 17 Jul 2026 00:00:00 GMT</pubDate>
+    <category>Product Management</category>
+    <description>CaixaBank&apos;s merchant platform shows why payment products now need operations, tokenization, offline mode, receipts, and business-system integration.</description>
+  </item>
+<item>
+    <title>Mastercard Wallet Services Makes Wallets an Issuer Operating Model</title>
+    <link>https://rzifi.com/blog/mastercard-wallet-services-tokenization-operating-model/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/mastercard-wallet-services-tokenization-operating-model/</guid>
+    <pubDate>Fri, 17 Jul 2026 00:00:00 GMT</pubDate>
+    <category>Payment Infrastructure</category>
+    <description>Mastercard Wallet Services shows why issuer wallets now need tokenization, secure element access, lifecycle controls, and support operations.</description>
+  </item>
+<item>
+    <title>Microsoft Foundry Shows Production Agents Need a Control Plane</title>
+    <link>https://rzifi.com/blog/microsoft-foundry-production-agent-control-plane/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/microsoft-foundry-production-agent-control-plane/</guid>
+    <pubDate>Fri, 17 Jul 2026 00:00:00 GMT</pubDate>
+    <category>AI &amp; Product Operations</category>
+    <description>Microsoft Foundry&apos;s production-agent push shows why AI teams need model routing, observability, evaluations, tool controls, and rollback paths.</description>
+  </item>
+<item>
     <title>A SWIFT Compliance Checklist for Banks and Fintechs</title>
     <link>https://rzifi.com/blog/swift-compliance-checklist-for-banks-and-fintechs/</link>
     <guid isPermaLink="true">https://rzifi.com/blog/swift-compliance-checklist-for-banks-and-fintechs/</guid>
     <pubDate>Fri, 17 Jul 2026 00:00:00 GMT</pubDate>
     <category>Cross-Border Payments</category>
     <description>A practitioner checklist for SWIFT-related compliance, sanctions, AML/CFT, CSP, ISO 20022 readiness, gpi adoption, and audit trail.</description>
+  </item>
+<item>
+    <title>The UK Financial Services AI Plan Is a Delivery Governance Test</title>
+    <link>https://rzifi.com/blog/uk-financial-services-ai-adoption-plan-delivery-governance/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/uk-financial-services-ai-adoption-plan-delivery-governance/</guid>
+    <pubDate>Fri, 17 Jul 2026 00:00:00 GMT</pubDate>
+    <category>Program Management</category>
+    <description>The UK financial-services AI adoption plan needs portfolio governance: ownership, third-party assurance, skills, resilience, and agentic payments readiness.</description>
   </item>
 <item>
     <title>Ajman Bank and AFS Make Merchant Acquiring a Platform Bet</title>
@@ -213,38 +245,6 @@
     <pubDate>Tue, 30 Jun 2026 00:00:00 GMT</pubDate>
     <category>Payment Infrastructure</category>
     <description>Revolut and Adyen won different UAE approvals in June 2026, but both point to the same Dubai signal: more of the payment stack must be owned locally.</description>
-  </item>
-<item>
-    <title>SWIFT in 2026: ISO 20022, Instant Rails, and the Pressure on Correspondent Banking</title>
-    <link>https://rzifi.com/blog/swift-in-2026-trends-to-watch/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/swift-in-2026-trends-to-watch/</guid>
-    <pubDate>Tue, 30 Jun 2026 00:00:00 GMT</pubDate>
-    <category>Cross-Border Payments</category>
-    <description>Where SWIFT and cross-border payments are heading in 2026, ISO 20022 done, instant rails everywhere, correspondent banking under pressure, and the G20 roadmap deadline.</description>
-  </item>
-<item>
-    <title>Authorization Rate Is a Merchant P&amp;L Metric, Not a Gateway KPI</title>
-    <link>https://rzifi.com/blog/authorization-rate-merchant-pnl-operating-model/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/authorization-rate-merchant-pnl-operating-model/</guid>
-    <pubDate>Mon, 29 Jun 2026 00:00:00 GMT</pubDate>
-    <category>Merchant Acquiring</category>
-    <description>A practical operating model for improving payment authorization without confusing retries, tokenization, fraud controls, or routing with profit.</description>
-  </item>
-<item>
-    <title>OpenAI&apos;s Jalapeño Chip Turns AI Strategy Into Unit Economics</title>
-    <link>https://rzifi.com/blog/openai-broadcom-jalapeno-ai-unit-economics/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/openai-broadcom-jalapeno-ai-unit-economics/</guid>
-    <pubDate>Mon, 29 Jun 2026 00:00:00 GMT</pubDate>
-    <category>AI &amp; Product Operations</category>
-    <description>OpenAI and Broadcom&apos;s inference chip matters when it changes latency, cost, reliability, and vendor risk—not when a benchmark wins a headline.</description>
-  </item>
-<item>
-    <title>Thredd and Sutton Turn BIN Sponsorship Into an Operating Model</title>
-    <link>https://rzifi.com/blog/thredd-sutton-bin-sponsorship-operating-model/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/thredd-sutton-bin-sponsorship-operating-model/</guid>
-    <pubDate>Sun, 28 Jun 2026 00:00:00 GMT</pubDate>
-    <category>Payment Infrastructure</category>
-    <description>Thredd and Sutton Bank show why card launches need explicit ownership across BIN sponsorship, issuer processing, risk, settlement, and operations.</description>
   </item>
 </channel>
 </rss>
