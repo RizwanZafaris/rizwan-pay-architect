@@ -13,6 +13,14 @@ import { marked } from "marked";
 import authorPortrait from "@/assets/rizwan-zafar-cutout-460.webp";
 
 const OG_IMAGE_OVERRIDES: Record<string, string> = {
+  "mastercard-wallet-services-tokenization-operating-model":
+    "/og/blog/mastercard-wallet-services-tokenization-operating-model-v20260717.png",
+  "caixabank-merchant-platform-product-system":
+    "/og/blog/caixabank-merchant-platform-product-system-v20260717.png",
+  "uk-financial-services-ai-adoption-plan-delivery-governance":
+    "/og/blog/uk-financial-services-ai-adoption-plan-delivery-governance-v20260717.png",
+  "microsoft-foundry-production-agent-control-plane":
+    "/og/blog/microsoft-foundry-production-agent-control-plane-v20260717.png",
   "ajman-bank-afs-merchant-acquiring-operating-model":
     "/og/blog/ajman-bank-afs-merchant-acquiring-operating-model-v20260715.png",
   "checkout-ai-payment-optimization-control-loops":

@@ -39,6 +39,78 @@ export const categories = [
 
 export const posts: Post[] = [
   {
+    "slug": "caixabank-merchant-platform-product-system",
+    "title": "CaixaBank Shows Merchant Payments Are Becoming a Product System",
+    "metaTitle": "CaixaBank Merchant Platform: Product System Lessons",
+    "date": "2026-07-17",
+    "category": "Product Management",
+    "readingTime": "7 min read",
+    "description": "CaixaBank's merchant platform shows why payment products now need operations, tokenization, offline mode, receipts, and business-system integration.",
+    "thesis": "CaixaBank's new merchant platform is a useful product lesson: payments win when they reduce operating work, not when they add another terminal feature.",
+    "tags": [
+      "CaixaBank",
+      "Comercia Global Payments",
+      "merchant payments",
+      "product management",
+      "payment operations",
+      "business systems"
+    ],
+    "relatedArticles": [
+      "/blog/merchant-onboarding-growth-risk-compliance",
+      "/blog/local-payment-methods-developer-experience",
+      "/blog/reconciliation-is-product-infrastructure",
+      "/blog/authorization-rate-merchant-pnl-operating-model"
+    ]
+  },
+  {
+    "slug": "mastercard-wallet-services-tokenization-operating-model",
+    "title": "Mastercard Wallet Services Makes Wallets an Issuer Operating Model",
+    "metaTitle": "Mastercard Wallet Services: Wallet Operating Model",
+    "date": "2026-07-17",
+    "category": "Payment Infrastructure",
+    "readingTime": "7 min read",
+    "description": "Mastercard Wallet Services shows why issuer wallets now need tokenization, secure element access, lifecycle controls, and support operations.",
+    "thesis": "Mastercard Wallet Services is not just another SDK. It turns issuer wallets into a tokenization, secure element, lifecycle, and support operating model.",
+    "tags": [
+      "Mastercard Wallet Services",
+      "digital wallets",
+      "tokenization",
+      "issuer processing",
+      "card networks",
+      "secure element"
+    ],
+    "relatedArticles": [
+      "/blog/mdes-network-tokenisation-how-it-actually-works",
+      "/blog/amex-apple-pay-rewards-wallet-control-plane",
+      "/blog/processor-only-card-issuing-operating-model",
+      "/blog/cross-river-stripe-agentic-card-mandate-controls"
+    ]
+  },
+  {
+    "slug": "microsoft-foundry-production-agent-control-plane",
+    "title": "Microsoft Foundry Shows Production Agents Need a Control Plane",
+    "metaTitle": "Microsoft Foundry and Production Agent Control Planes",
+    "date": "2026-07-17",
+    "category": "AI & Product Operations",
+    "readingTime": "7 min read",
+    "description": "Microsoft Foundry's production-agent push shows why AI teams need model routing, observability, evaluations, tool controls, and rollback paths.",
+    "thesis": "Microsoft Foundry's production-agent direction is a useful signal: the AI platform race is moving from model access to control planes for agents.",
+    "tags": [
+      "Microsoft Foundry",
+      "AI agents",
+      "agent observability",
+      "production AI",
+      "fintech AI governance",
+      "model operations"
+    ],
+    "relatedArticles": [
+      "/blog/github-models-retirement-ai-platform-exit-plan",
+      "/blog/github-copilot-opentelemetry-agent-auditability",
+      "/blog/agent-skills-ai-coding-operating-model",
+      "/blog/why-ai-ml-solutions-fail-production-payments"
+    ]
+  },
+  {
     "slug": "swift-compliance-checklist-for-banks-and-fintechs",
     "title": "A SWIFT Compliance Checklist for Banks and Fintechs",
     "metaTitle": "SWIFT Compliance Checklist for Banks and Fintechs | Rizwan Zafar",
@@ -58,6 +130,30 @@ export const posts: Post[] = [
       "/blog/swift-aml-cft-sanctions-screening",
       "/blog/iso-20022-migration-what-product-teams-must-know",
       "/blog/financial-controls-are-product-requirements"
+    ]
+  },
+  {
+    "slug": "uk-financial-services-ai-adoption-plan-delivery-governance",
+    "title": "The UK Financial Services AI Plan Is a Delivery Governance Test",
+    "metaTitle": "UK Financial Services AI Plan: Delivery Governance",
+    "date": "2026-07-17",
+    "category": "Program Management",
+    "readingTime": "7 min read",
+    "description": "The UK financial-services AI adoption plan needs portfolio governance: ownership, third-party assurance, skills, resilience, and agentic payments readiness.",
+    "thesis": "The UK financial-services AI plan is not just policy. For banks and fintechs, it is a programme governance test across models, vendors, skills, resilience, and agentic payments.",
+    "tags": [
+      "UK financial services",
+      "AI adoption",
+      "programme governance",
+      "financial resilience",
+      "agentic payments",
+      "PMO"
+    ],
+    "relatedArticles": [
+      "/blog/pci-dss-iso-27001-program-leadership",
+      "/blog/raid-steerco-pmo-stack-that-ships",
+      "/blog/program-vs-product-management-fintech",
+      "/blog/agentic-payments-operations-what-works"
     ]
   },
   {
