@@ -5,8 +5,40 @@
   <link>https://rzifi.com/blog/</link>
   <description>Essays on payment infrastructure, fintech product, risk, settlement, AI and program leadership.</description>
   <language>en</language>
-  <lastBuildDate>Sun, 19 Jul 2026 01:00:10 GMT</lastBuildDate>
+  <lastBuildDate>Sun, 19 Jul 2026 11:59:18 GMT</lastBuildDate>
   <item>
+    <title>Acceptance Rate Is an Operating Model, Not a Dashboard Metric</title>
+    <link>https://rzifi.com/blog/acceptance-rate-operating-model/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/acceptance-rate-operating-model/</guid>
+    <pubDate>Sun, 19 Jul 2026 00:00:00 GMT</pubDate>
+    <category>Merchant Acquiring</category>
+    <description>Checkout.com&apos;s acceptance-rate guide and Visa VIA show why acquirers need clean measurement, routing, retries, risk, and ownership.</description>
+  </item>
+<item>
+    <title>NVIDIA and LangChain Show Agent Performance Is a Harness Problem</title>
+    <link>https://rzifi.com/blog/nvidia-langchain-agent-harness-evals/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/nvidia-langchain-agent-harness-evals/</guid>
+    <pubDate>Sun, 19 Jul 2026 00:00:00 GMT</pubDate>
+    <category>AI &amp; Product Operations</category>
+    <description>NVIDIA and LangChain show why production AI agents need harness tuning, evals, tool controls, runtime policy, and cost visibility.</description>
+  </item>
+<item>
+    <title>Spreedly&apos;s Standalone Vault Turns Credential Ownership Into Product Strategy</title>
+    <link>https://rzifi.com/blog/spreedly-standalone-vault-product-strategy/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/spreedly-standalone-vault-product-strategy/</guid>
+    <pubDate>Sun, 19 Jul 2026 00:00:00 GMT</pubDate>
+    <category>Product Management</category>
+    <description>Spreedly&apos;s standalone vault shows why payment credential ownership is now a product strategy across portability, routing, and lifecycle.</description>
+  </item>
+<item>
+    <title>The iDEAL to Wero Migration Is a Delivery-Gate Problem</title>
+    <link>https://rzifi.com/blog/wero-migration-delivery-gates/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/wero-migration-delivery-gates/</guid>
+    <pubDate>Sun, 19 Jul 2026 00:00:00 GMT</pubDate>
+    <category>Program Management</category>
+    <description>The iDEAL-to-Wero roadmap shows why regulated payment migrations need bank, PSP, merchant, customer, and rollback delivery gates.</description>
+  </item>
+<item>
     <title>CaixaBank Shows Merchant Payments Are Becoming a Product System</title>
     <link>https://rzifi.com/blog/caixabank-merchant-platform-product-system/</link>
     <guid isPermaLink="true">https://rzifi.com/blog/caixabank-merchant-platform-product-system/</guid>
@@ -213,38 +245,6 @@
     <pubDate>Wed, 01 Jul 2026 00:00:00 GMT</pubDate>
     <category>Crypto &amp; Stablecoins</category>
     <description>Open USD brings Visa, Mastercard, Stripe and 140+ partners into a shared stablecoin model built around distribution, governance and reserve economics.</description>
-  </item>
-<item>
-    <title>Adyen&apos;s UAE License Makes Merchant Acquiring More Local</title>
-    <link>https://rzifi.com/blog/adyen-uae-license-merchant-acquiring-local-settlement/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/adyen-uae-license-merchant-acquiring-local-settlement/</guid>
-    <pubDate>Tue, 30 Jun 2026 00:00:00 GMT</pubDate>
-    <category>Merchant Acquiring</category>
-    <description>Adyen&apos;s new UAE license matters because local settlement control changes merchant acquiring, compliance operations, and product speed.</description>
-  </item>
-<item>
-    <title>GOV.UK Pay&apos;s Adyen Migration Is a 1,000-Service Programme</title>
-    <link>https://rzifi.com/blog/gov-uk-pay-adyen-1000-service-migration/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/gov-uk-pay-adyen-1000-service-migration/</guid>
-    <pubDate>Tue, 30 Jun 2026 00:00:00 GMT</pubDate>
-    <category>Program Management</category>
-    <description>GOV.UK Pay&apos;s move from Stripe to Adyen shows how to govern a 1,000-service payment migration without breaking user journeys or finance controls.</description>
-  </item>
-<item>
-    <title>Mercado Pago&apos;s Claude Plugin Turns Payment Docs Into Controls</title>
-    <link>https://rzifi.com/blog/mercado-pago-claude-plugin-payment-integration-agent/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/mercado-pago-claude-plugin-payment-integration-agent/</guid>
-    <pubDate>Tue, 30 Jun 2026 00:00:00 GMT</pubDate>
-    <category>AI &amp; Product Operations</category>
-    <description>Mercado Pago&apos;s Claude Code plugin shows where payment integration agents help—and why versioning, evidence, security, and human review still matter.</description>
-  </item>
-<item>
-    <title>Revolut and Adyen&apos;s UAE Licences Show What Dubai Wants From Fintech</title>
-    <link>https://rzifi.com/blog/revolut-adyen-uae-licences-dubai-fintech-signal/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/revolut-adyen-uae-licences-dubai-fintech-signal/</guid>
-    <pubDate>Tue, 30 Jun 2026 00:00:00 GMT</pubDate>
-    <category>Payment Infrastructure</category>
-    <description>Revolut and Adyen won different UAE approvals in June 2026, but both point to the same Dubai signal: more of the payment stack must be owned locally.</description>
   </item>
 </channel>
 </rss>
