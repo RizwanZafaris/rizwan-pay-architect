@@ -13,6 +13,12 @@ import { marked } from "marked";
 import authorPortrait from "@/assets/rizwan-zafar-cutout-460.webp";
 
 const OG_IMAGE_OVERRIDES: Record<string, string> = {
+  "acceptance-rate-operating-model": "/og/blog/acceptance-rate-operating-model-v20260719.png",
+  "spreedly-standalone-vault-product-strategy":
+    "/og/blog/spreedly-standalone-vault-product-strategy-v20260719.png",
+  "wero-migration-delivery-gates": "/og/blog/wero-migration-delivery-gates-v20260719.png",
+  "nvidia-langchain-agent-harness-evals":
+    "/og/blog/nvidia-langchain-agent-harness-evals-v20260719.png",
   "mastercard-wallet-services-tokenization-operating-model":
     "/og/blog/mastercard-wallet-services-tokenization-operating-model-v20260717.png",
   "caixabank-merchant-platform-product-system":

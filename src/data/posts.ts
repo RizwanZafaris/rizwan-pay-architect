@@ -39,6 +39,102 @@ export const categories = [
 
 export const posts: Post[] = [
   {
+    "slug": "acceptance-rate-operating-model",
+    "title": "Acceptance Rate Is an Operating Model, Not a Dashboard Metric",
+    "metaTitle": "Acceptance Rate Needs an Operating Model",
+    "date": "2026-07-19",
+    "category": "Merchant Acquiring",
+    "readingTime": "7 min read",
+    "description": "Checkout.com's acceptance-rate guide and Visa VIA show why acquirers need clean measurement, routing, retries, risk, and ownership.",
+    "thesis": "Acceptance rate only creates value when a merchant can explain the numerator, the denominator, the retry policy, and the owner of each decline state.",
+    "tags": [
+      "payment acceptance",
+      "merchant acquiring",
+      "authorization rate",
+      "Visa Intelligent Authorisation",
+      "checkout conversion",
+      "payment operations"
+    ],
+    "relatedArticles": [
+      "/blog/authorization-rate-merchant-pnl-operating-model",
+      "/blog/visa-dcap-acquiring-economics-data-only-3ds",
+      "/blog/amex-network-international-uae-acceptance-operating-model",
+      "/blog/checkout-unified-payin-payout-control-plane"
+    ]
+  },
+  {
+    "slug": "nvidia-langchain-agent-harness-evals",
+    "title": "NVIDIA and LangChain Show Agent Performance Is a Harness Problem",
+    "metaTitle": "NVIDIA and LangChain: Agent Harness Lessons",
+    "date": "2026-07-19",
+    "category": "AI & Product Operations",
+    "readingTime": "7 min read",
+    "description": "NVIDIA and LangChain show why production AI agents need harness tuning, evals, tool controls, runtime policy, and cost visibility.",
+    "thesis": "The useful AI lesson is not that one model won a benchmark. It is that agent performance moved when the system around the model was tuned.",
+    "tags": [
+      "NVIDIA Nemotron",
+      "LangChain",
+      "Deep Agents",
+      "AI agents",
+      "agent evaluations",
+      "production AI"
+    ],
+    "relatedArticles": [
+      "/blog/microsoft-foundry-production-agent-control-plane",
+      "/blog/github-copilot-opentelemetry-agent-auditability",
+      "/blog/agent-skills-ai-coding-operating-model",
+      "/blog/why-ai-ml-solutions-fail-production-payments"
+    ]
+  },
+  {
+    "slug": "spreedly-standalone-vault-product-strategy",
+    "title": "Spreedly's Standalone Vault Turns Credential Ownership Into Product Strategy",
+    "metaTitle": "Spreedly Vault: Payment Product Strategy",
+    "date": "2026-07-19",
+    "category": "Product Management",
+    "readingTime": "7 min read",
+    "description": "Spreedly's standalone vault shows why payment credential ownership is now a product strategy across portability, routing, and lifecycle.",
+    "thesis": "A payment vault is not only a security store. It is the control point that decides how much future product optionality a merchant keeps.",
+    "tags": [
+      "Spreedly",
+      "payment vault",
+      "product management",
+      "payment orchestration",
+      "network tokenization",
+      "credential portability"
+    ],
+    "relatedArticles": [
+      "/blog/local-payment-methods-developer-experience",
+      "/blog/reconciliation-is-product-infrastructure",
+      "/blog/checkout-unified-payin-payout-control-plane",
+      "/blog/merchant-onboarding-growth-risk-compliance"
+    ]
+  },
+  {
+    "slug": "wero-migration-delivery-gates",
+    "title": "The iDEAL to Wero Migration Is a Delivery-Gate Problem",
+    "metaTitle": "Wero Migration: Delivery Gates That Matter",
+    "date": "2026-07-19",
+    "category": "Program Management",
+    "readingTime": "7 min read",
+    "description": "The iDEAL-to-Wero roadmap shows why regulated payment migrations need bank, PSP, merchant, customer, and rollback delivery gates.",
+    "thesis": "The iDEAL to Wero migration will be judged less by the announcement and more by whether each participant can prove readiness before traffic moves.",
+    "tags": [
+      "Wero",
+      "iDEAL",
+      "payment migration",
+      "programme governance",
+      "European Payments Initiative",
+      "PSP readiness"
+    ],
+    "relatedArticles": [
+      "/blog/gov-uk-pay-adyen-1000-service-migration",
+      "/blog/baringa-uk-payments-migration-delivery-gates",
+      "/blog/raid-steerco-pmo-stack-that-ships",
+      "/blog/uk-retail-payments-core-product-programme-boundary"
+    ]
+  },
+  {
     "slug": "caixabank-merchant-platform-product-system",
     "title": "CaixaBank Shows Merchant Payments Are Becoming a Product System",
     "metaTitle": "CaixaBank Merchant Platform: Product System Lessons",
