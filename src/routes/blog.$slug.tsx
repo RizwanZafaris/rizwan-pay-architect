@@ -13,6 +13,12 @@ import { marked } from "marked";
 import authorPortrait from "@/assets/rizwan-zafar-cutout-460.webp";
 
 const OG_IMAGE_OVERRIDES: Record<string, string> = {
+  "marqeta-stip-issuer-resilience-operating-model":
+    "/og/blog/marqeta-stip-issuer-resilience-operating-model-v20260720.png",
+  "stripe-projects-agent-product-controls":
+    "/og/blog/stripe-projects-agent-product-controls-v20260720.png",
+  "ktransformers-local-inference-cost-control":
+    "/og/blog/ktransformers-local-inference-cost-control-v20260720.png",
   "acceptance-rate-operating-model": "/og/blog/acceptance-rate-operating-model-v20260719.png",
   "spreedly-standalone-vault-product-strategy":
     "/og/blog/spreedly-standalone-vault-product-strategy-v20260719.png",

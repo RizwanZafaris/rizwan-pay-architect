@@ -23,6 +23,7 @@ export type Post = {
 export const categories = [
   "AI & Product Operations",
   "AI in Fintech",
+  "Card Issuing",
   "Cross-Border Payments",
   "Crypto & Stablecoins",
   "Emerging Markets",
@@ -38,6 +39,78 @@ export const categories = [
 ];
 
 export const posts: Post[] = [
+  {
+    "slug": "ktransformers-local-inference-cost-control",
+    "title": "KTransformers Makes Local AI A Cost-Control Question",
+    "metaTitle": "KTransformers And Local AI Cost Control",
+    "date": "2026-07-20",
+    "category": "AI & Product Operations",
+    "readingTime": "7 min read",
+    "description": "KTransformers' MoE inference and fine-tuning work shows why local AI should be judged on cost, latency, controls, and supportability.",
+    "thesis": "The repo-radar lesson is not that every fintech should run large models locally. It is that local inference is becoming a serious option that needs an operating scorecard.",
+    "tags": [
+      "KTransformers",
+      "local inference",
+      "AI infrastructure",
+      "model operations",
+      "LLM cost control",
+      "repo radar"
+    ],
+    "relatedArticles": [
+      "/blog/nvidia-langchain-agent-harness-evals",
+      "/blog/microsoft-foundry-production-agent-control-plane",
+      "/blog/github-copilot-opentelemetry-agent-auditability",
+      "/blog/where-ml-beats-ai-payment-problems-llm-cant-touch"
+    ]
+  },
+  {
+    "slug": "marqeta-stip-issuer-resilience-operating-model",
+    "title": "Marqeta's STIP Lesson: Issuer Resilience Is a Product Control",
+    "metaTitle": "Issuer Resilience Is a Product Control",
+    "date": "2026-07-20",
+    "category": "Card Issuing",
+    "readingTime": "7 min read",
+    "description": "Marqeta's STIP and Commando Mode material shows why issuer resilience needs authorization policy, limits, evidence, and drills.",
+    "thesis": "Stand-in processing is not just uptime insurance. It is a live authorization policy that decides which cardholders can still transact when the core path is broken.",
+    "tags": [
+      "card issuing",
+      "issuer processing",
+      "stand-in processing",
+      "authorization controls",
+      "Marqeta",
+      "payment resilience"
+    ],
+    "relatedArticles": [
+      "/blog/processor-only-card-issuing-operating-model",
+      "/blog/cross-river-stripe-agentic-card-mandate-controls",
+      "/blog/thredd-sutton-bin-sponsorship-operating-model",
+      "/blog/where-pmos-fail-six-patterns-fintech-programmes"
+    ]
+  },
+  {
+    "slug": "stripe-projects-agent-product-controls",
+    "title": "Stripe Projects Shows Agentic Products Need Cost Boundaries",
+    "metaTitle": "Agentic Products Need Cost Boundaries",
+    "date": "2026-07-20",
+    "category": "Product Management",
+    "readingTime": "7 min read",
+    "description": "Stripe Projects shows why agentic product teams need spend limits, environments, credential controls, and auditable provisioning.",
+    "thesis": "The product lesson is not that agents can provision services. It is that agent-native products need explicit cost, credential, environment, and evidence boundaries.",
+    "tags": [
+      "product management",
+      "agentic products",
+      "Stripe Projects",
+      "developer experience",
+      "product controls",
+      "AI agents"
+    ],
+    "relatedArticles": [
+      "/blog/spreedly-standalone-vault-product-strategy",
+      "/blog/github-copilot-byok-agent-routing",
+      "/blog/microsoft-foundry-production-agent-control-plane",
+      "/blog/product-management-for-payments-platforms"
+    ]
+  },
   {
     "slug": "acceptance-rate-operating-model",
     "title": "Acceptance Rate Is an Operating Model, Not a Dashboard Metric",
