@@ -5,8 +5,32 @@
   <link>https://rzifi.com/blog/</link>
   <description>Essays on payment infrastructure, fintech product, risk, settlement, AI and program leadership.</description>
   <language>en</language>
-  <lastBuildDate>Mon, 20 Jul 2026 01:03:56 GMT</lastBuildDate>
+  <lastBuildDate>Mon, 20 Jul 2026 08:46:27 GMT</lastBuildDate>
   <item>
+    <title>KTransformers Makes Local AI A Cost-Control Question</title>
+    <link>https://rzifi.com/blog/ktransformers-local-inference-cost-control/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/ktransformers-local-inference-cost-control/</guid>
+    <pubDate>Mon, 20 Jul 2026 00:00:00 GMT</pubDate>
+    <category>AI &amp; Product Operations</category>
+    <description>KTransformers&apos; MoE inference and fine-tuning work shows why local AI should be judged on cost, latency, controls, and supportability.</description>
+  </item>
+<item>
+    <title>Marqeta&apos;s STIP Lesson: Issuer Resilience Is a Product Control</title>
+    <link>https://rzifi.com/blog/marqeta-stip-issuer-resilience-operating-model/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/marqeta-stip-issuer-resilience-operating-model/</guid>
+    <pubDate>Mon, 20 Jul 2026 00:00:00 GMT</pubDate>
+    <category>Card Issuing</category>
+    <description>Marqeta&apos;s STIP and Commando Mode material shows why issuer resilience needs authorization policy, limits, evidence, and drills.</description>
+  </item>
+<item>
+    <title>Stripe Projects Shows Agentic Products Need Cost Boundaries</title>
+    <link>https://rzifi.com/blog/stripe-projects-agent-product-controls/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/stripe-projects-agent-product-controls/</guid>
+    <pubDate>Mon, 20 Jul 2026 00:00:00 GMT</pubDate>
+    <category>Product Management</category>
+    <description>Stripe Projects shows why agentic product teams need spend limits, environments, credential controls, and auditable provisioning.</description>
+  </item>
+<item>
     <title>Acceptance Rate Is an Operating Model, Not a Dashboard Metric</title>
     <link>https://rzifi.com/blog/acceptance-rate-operating-model/</link>
     <guid isPermaLink="true">https://rzifi.com/blog/acceptance-rate-operating-model/</guid>
@@ -221,30 +245,6 @@
     <pubDate>Fri, 03 Jul 2026 00:00:00 GMT</pubDate>
     <category>Cross-Border Payments</category>
     <description>A practical guide to tracking a SWIFT payment using the UETR and gpi Tracker, what to ask your bank and how to read the status.</description>
-  </item>
-<item>
-    <title>GitHub Models Is Shutting Down. Your AI Stack Needs an Exit Plan</title>
-    <link>https://rzifi.com/blog/github-models-retirement-ai-platform-exit-plan/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/github-models-retirement-ai-platform-exit-plan/</guid>
-    <pubDate>Thu, 02 Jul 2026 00:00:00 GMT</pubDate>
-    <category>AI in Fintech</category>
-    <description>GitHub Models closes on July 30, 2026. Use the brownouts to test provider portability, evaluation baselines, data controls, and recovery plans.</description>
-  </item>
-<item>
-    <title>Processor-Only Card Issuing Moves the Work, Not the Risk</title>
-    <link>https://rzifi.com/blog/processor-only-card-issuing-operating-model/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/processor-only-card-issuing-operating-model/</guid>
-    <pubDate>Wed, 01 Jul 2026 00:00:00 GMT</pubDate>
-    <category>Payment Infrastructure</category>
-    <description>Processor-only card issuing offers control, but shifts licensing, ledger, compliance, fraud, disputes, and bank management back to your team.</description>
-  </item>
-<item>
-    <title>Visa and Mastercard Join Open USD: The Stablecoin Battle Moves to Distribution</title>
-    <link>https://rzifi.com/blog/visa-mastercard-open-usd-stablecoin-network-economics/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/visa-mastercard-open-usd-stablecoin-network-economics/</guid>
-    <pubDate>Wed, 01 Jul 2026 00:00:00 GMT</pubDate>
-    <category>Crypto &amp; Stablecoins</category>
-    <description>Open USD brings Visa, Mastercard, Stripe and 140+ partners into a shared stablecoin model built around distribution, governance and reserve economics.</description>
   </item>
 </channel>
 </rss>
