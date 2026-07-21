@@ -13,6 +13,12 @@ import { marked } from "marked";
 import authorPortrait from "@/assets/rizwan-zafar-cutout-460.webp";
 
 const OG_IMAGE_OVERRIDES: Record<string, string> = {
+  "checkout-friction-acceptance-operating-model":
+    "/og/blog/checkout-friction-acceptance-operating-model-v20260721.png",
+  "adyen-orb-talonone-product-integration-model":
+    "/og/blog/adyen-orb-talonone-product-integration-model-v20260721.png",
+  "omniroute-ai-gateway-routing-control-model":
+    "/og/blog/omniroute-ai-gateway-routing-control-model-v20260721.png",
   "marqeta-stip-issuer-resilience-operating-model":
     "/og/blog/marqeta-stip-issuer-resilience-operating-model-v20260720.png",
   "stripe-projects-agent-product-controls":

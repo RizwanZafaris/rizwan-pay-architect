@@ -40,6 +40,78 @@ export const categories = [
 
 export const posts: Post[] = [
   {
+    "slug": "adyen-orb-talonone-product-integration-model",
+    "title": "Adyen's Orb and Talon.One Close Shows Product Integration Is the Strategy",
+    "metaTitle": "Adyen Orb Talon.One Product Integration",
+    "date": "2026-07-21",
+    "category": "Product Management",
+    "readingTime": "7 min read",
+    "description": "Adyen's Orb and Talon.One integration shows why product leaders need clear customer identity, billing, payments, and execution boundaries.",
+    "thesis": "The product lesson is not that Adyen bought two adjacent platforms. It is that multi-product strategy only works when identity, billing, payments, incentives, and execution have a designed integration model.",
+    "tags": [
+      "product management",
+      "Adyen",
+      "product integration",
+      "billing infrastructure",
+      "loyalty platforms",
+      "payments strategy"
+    ],
+    "relatedArticles": [
+      "/blog/stripe-global-demand-product-system",
+      "/blog/caixabank-merchant-platform-product-system",
+      "/blog/spreedly-standalone-vault-product-strategy",
+      "/blog/product-management-for-payments-platforms"
+    ]
+  },
+  {
+    "slug": "checkout-friction-acceptance-operating-model",
+    "title": "Checkout Friction Is an Acceptance Operating Model",
+    "metaTitle": "Checkout Friction Needs an Acceptance Model",
+    "date": "2026-07-21",
+    "category": "Merchant Acquiring",
+    "readingTime": "7 min read",
+    "description": "Checkout.com's MENA friction data shows why acceptance needs saved credentials, payment choice, routing, and trust owned as one operating model.",
+    "thesis": "Checkout conversion does not improve because a merchant adds one feature. It improves when onboarding, saved credentials, payment choice, routing, and trust are run as one acceptance system.",
+    "tags": [
+      "merchant acquiring",
+      "checkout conversion",
+      "payment acceptance",
+      "saved credentials",
+      "MENA payments",
+      "payment operations"
+    ],
+    "relatedArticles": [
+      "/blog/acceptance-rate-operating-model",
+      "/blog/authorization-rate-merchant-pnl-operating-model",
+      "/blog/visa-dcap-acquiring-economics-data-only-3ds",
+      "/blog/revolut-adyen-uae-licences-dubai-fintech-signal"
+    ]
+  },
+  {
+    "slug": "omniroute-ai-gateway-routing-control-model",
+    "title": "OmniRoute Shows AI Gateways Need Routing Controls, Not Just More Providers",
+    "metaTitle": "OmniRoute AI Gateway Routing Controls",
+    "date": "2026-07-21",
+    "category": "AI & Product Operations",
+    "readingTime": "7 min read",
+    "description": "OmniRoute's AI gateway shows why fintech teams need routing controls, quotas, audit trails, and fallback rules before agent usage scales.",
+    "thesis": "The repo-radar lesson is not that teams should chase every free model endpoint. It is that AI usage needs a control plane before agents, developers, and tools start routing around limits.",
+    "tags": [
+      "OmniRoute",
+      "AI gateway",
+      "model routing",
+      "AI operations",
+      "agent governance",
+      "repo radar"
+    ],
+    "relatedArticles": [
+      "/blog/ktransformers-local-inference-cost-control",
+      "/blog/nvidia-langchain-agent-harness-evals",
+      "/blog/github-copilot-opentelemetry-agent-auditability",
+      "/blog/microsoft-foundry-production-agent-control-plane"
+    ]
+  },
+  {
     "slug": "ktransformers-local-inference-cost-control",
     "title": "KTransformers Makes Local AI A Cost-Control Question",
     "metaTitle": "KTransformers And Local AI Cost Control",
