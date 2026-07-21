@@ -1,0 +1,485 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&amp;family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&amp;family=Instrument+Serif:ital@0;1&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" media="(min-width: 768px)" data-precedence="default"/><link rel="stylesheet" href="/assets/styles-8JXWQVD8.css" data-precedence="default"/><script async="" src="https://www.googletagmanager.com/gtag/js?id=AW-790961325"></script><title>Checkout Friction Needs an Acceptance Model</title><meta name="google-site-verification" content="kWHcLbkjB3HB8amvRUoa8gMfThcigOtXteUIZUPu8mc"/><meta name="msvalidate.01" content="0042C7FD5604AA776BACE3344377C74E"/><meta name="author" content="Rizwan Zafar"/><meta name="theme-color" content="#0e4f4f"/><meta property="og:site_name" content="Rizwan Zafar, Payments Product Executive"/><meta property="og:locale" content="en_US"/><meta name="twitter:card" content="summary_large_image"/><meta name="description" content="Checkout.com&#x27;s MENA friction data shows why acceptance needs saved credentials, payment choice, routing, and trust owned as one operating model."/><meta name="keywords" content="merchant acquiring, checkout conversion, payment acceptance, saved credentials, MENA payments, payment operations"/><meta property="og:title" content="Checkout Friction Is an Acceptance Operating Model"/><meta property="og:description" content="Checkout.com&#x27;s MENA friction data shows why acceptance needs saved credentials, payment choice, routing, and trust owned as one operating model."/><meta property="og:type" content="article"/><meta property="og:url" content="https://rzifi.com/blog/checkout-friction-acceptance-operating-model/"/><meta property="og:image" content="https://rzifi.com/og/blog/checkout-friction-acceptance-operating-model-v20260721.png"/><meta property="og:image:width" content="1200"/><meta property="og:image:height" content="630"/><meta property="og:image:type" content="image/png"/><meta property="og:image:alt" content="Checkout Friction Is an Acceptance Operating Model — Rizwan Zafar"/><meta property="article:published_time" content="2026-07-21"/><meta property="article:modified_time" content="2026-07-21"/><meta property="article:section" content="Merchant Acquiring"/><meta property="article:author" content="Rizwan Zafar"/><meta property="article:tag" content="payment operations"/><meta name="twitter:title" content="Checkout Friction Is an Acceptance Operating Model"/><meta name="twitter:description" content="Checkout.com&#x27;s MENA friction data shows why acceptance needs saved credentials, payment choice, routing, and trust owned as one operating model."/><meta name="twitter:image" content="https://rzifi.com/og/blog/checkout-friction-acceptance-operating-model-v20260721.png"/><meta name="twitter:image:alt" content="Checkout Friction Is an Acceptance Operating Model — Rizwan Zafar"/><link rel="icon" href="/favicon.svg" type="image/svg+xml"/><link rel="mask-icon" href="/favicon.svg" color="#0e4f4f"/><link rel="alternate" type="text/markdown" href="/llms.txt" title="llms.txt"/><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"/><link rel="alternate" type="application/rss+xml" title="Rizwan Zafar Payments Essays" href="https://rzifi.com/feed.xml"/><link rel="canonical" href="https://rzifi.com/blog/checkout-friction-acceptance-operating-model/"/><script>(function(){var e=document.documentElement;var t;try{t=localStorage.getItem('rz-theme');}catch(_){}
+if(t!=='light'&&t!=='dark'){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches)?'light':'dark';}
+e.setAttribute('data-theme',t);e.classList.add('rz-theme-js');
+try{var m=window.matchMedia('(prefers-color-scheme: light)');var h=function(ev){var s=null;try{s=localStorage.getItem('rz-theme');}catch(_){}
+if(s==='light'||s==='dark')return;e.setAttribute('data-theme',ev.matches?'light':'dark');};
+if(m.addEventListener)m.addEventListener('change',h);}catch(_){}})();</script><script>(function(){var e=document.documentElement,p=location.pathname,a=p.split('/').filter(Boolean);if(p==='/'||p==='/index.html')e.classList.add('corridor-home-active');if(a.length===2&&a[0]==='blog')e.classList.add('article-reader-active');if(p==='/resume'||p==='/resume/')e.classList.add('resume-editorial-active');})();</script><script>(function(){var d=document,el=d.documentElement;try{if(!('IntersectionObserver'in window))return;if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;el.classList.add('rz-js');}catch(e){return;}
+function count(n){var t=parseFloat(n.getAttribute('data-rz-count'));if(isNaN(t))return;var tpl=n.getAttribute('data-rz-count-tpl')||'{n}',dc=parseInt(n.getAttribute('data-rz-count-dec')||'0',10),du=parseInt(n.getAttribute('data-rz-count-dur')||'1400',10),fin=n.textContent,s=0,done=false;
+/* The server-rendered text is already the correct final value. If the tab is
+   hidden (rAF would be throttled), leave it untouched — never reset to 0. */
+if(document.hidden)return;
+function f(v){var x=dc===0?Math.round(v).toLocaleString('en-US'):v.toFixed(dc);return tpl.replace('{n}',x);}
+function settle(){if(done)return;done=true;n.textContent=fin;}
+function k(now){if(done)return;if(!s)s=now;var p=Math.min((now-s)/du,1),e=1-Math.pow(1-p,4);n.textContent=f(t*e);if(p<1)requestAnimationFrame(k);else settle();}
+n.textContent=f(0);requestAnimationFrame(k);
+/* Hard guarantee: whatever happens to rAF, snap to the real final value. The
+   number can never strand at 0 — the whole site is built on exact numbers. */
+setTimeout(settle,du+800);}
+function boot(){var tg=d.querySelectorAll('[data-rz-reveal],.rz-reveal,[data-rz-words],.bg-paths,.rz-unveil,.home-soft-reveal,.home-card,.home-topic-card,.home-search-panel,.case-study-card,.case-soft-card,.case-metric-card,[data-rz-stagger],.rz-beam'),ct=d.querySelectorAll('[data-rz-count]'),vh=window.innerHeight||el.clientHeight,seen=[];Array.prototype.forEach.call(tg,function(t){var r=t.getBoundingClientRect();if(r.top<vh*0.92&&r.bottom>0)seen.push(t);});seen.sort(function(a,b){return a.getBoundingClientRect().top-b.getBoundingClientRect().top;});seen.forEach(function(t,i){if(!t.style.getPropertyValue('--rz-delay'))t.style.setProperty('--rz-delay',Math.min(i*80,520)+'ms');});
+var io=new IntersectionObserver(function(en,o){en.forEach(function(x){if(x.isIntersecting){x.target.classList.add('rz-in');o.unobserve(x.target);}});},{rootMargin:'0px 0px -8% 0px',threshold:0.08});Array.prototype.forEach.call(tg,function(t){io.observe(t);});
+var cio=new IntersectionObserver(function(en,o){en.forEach(function(x){if(x.isIntersecting){count(x.target);o.unobserve(x.target);}});},{threshold:0.6});Array.prototype.forEach.call(ct,function(c){cio.observe(c);});
+/* Catch-up safety net: reveal ONLY what is already in or above the viewport,
+   in case the observer lagged on first paint. Below-fold elements stay hidden
+   and wait for the scroll observer, so lingering on the hero never burns the
+   reveals further down. IO is gated on support above, so below-fold reveals
+   are never at risk of getting stuck. */
+setTimeout(function(){var v=window.innerHeight||el.clientHeight;Array.prototype.forEach.call(tg,function(t){if(t.getBoundingClientRect().top<v)t.classList.add('rz-in');});},1200);
+/* Hero entrance: fire two frames after boot so the H1 (LCP) has already
+   painted, then the supporting cast + portrait stage in. */
+requestAnimationFrame(function(){requestAnimationFrame(function(){el.classList.add('rz-hero-go');});});
+/* --- Operator's Console modules (2026-07-09). Inherit the reduced-motion +
+   IO gates above; pointer modules additionally require a fine pointer. --- */
+Array.prototype.forEach.call(d.querySelectorAll('[data-rz-stagger]'),function(p){var i=0;Array.prototype.forEach.call(p.children,function(c){c.style.setProperty('--i',String(i++));});});
+var sc=false;function onSc(){var s=(window.scrollY||el.scrollTop||0)>24;if(s!==sc){sc=s;el.classList.toggle('rz-scrolled',s);}}
+window.addEventListener('scroll',onSc,{passive:true});onSc();
+if(window.matchMedia&&window.matchMedia('(hover: hover) and (pointer: fine)').matches){
+/* Probe glow: one delegated pointermove; rAF-throttled; a single
+   getBoundingClientRect per frame only while a [data-glow] card is hot. */
+var pe=null,px=0,py=0,praf=0;
+function probe(){praf=0;if(!pe)return;var r=pe.getBoundingClientRect();if(!r.width)return;pe.style.setProperty('--gx',(((px-r.left)/r.width)*100).toFixed(2)+'%');pe.style.setProperty('--gy',(((py-r.top)/r.height)*100).toFixed(2)+'%');}
+d.addEventListener('pointermove',function(e){px=e.clientX;py=e.clientY;var t=e.target&&e.target.closest?e.target.closest('[data-glow]'):null;if(t!==pe){if(pe)pe.classList.remove('rz-probe');pe=t;if(pe)pe.classList.add('rz-probe');}if(pe&&!praf)praf=requestAnimationFrame(probe);},{passive:true});
+/* Magnetic CTA: bounded pull toward the cursor, spring-back on leave. */
+Array.prototype.forEach.call(d.querySelectorAll('[data-magnetic]'),function(m){var r=null;
+m.addEventListener('pointerenter',function(){r=m.getBoundingClientRect();m.classList.add('rz-mag-live');});
+m.addEventListener('pointermove',function(e){if(!r)r=m.getBoundingClientRect();var dx=(e.clientX-(r.left+r.width/2))*0.18,dy=(e.clientY-(r.top+r.height/2))*0.22;dx=Math.max(-8,Math.min(8,dx));dy=Math.max(-6,Math.min(6,dy));m.style.setProperty('--mag-x',dx.toFixed(1)+'px');m.style.setProperty('--mag-y',dy.toFixed(1)+'px');},{passive:true});
+m.addEventListener('pointerleave',function(){r=null;m.classList.remove('rz-mag-live');m.style.setProperty('--mag-x','0px');m.style.setProperty('--mag-y','0px');});});
+}}
+if(d.readyState==='loading')d.addEventListener('DOMContentLoaded',boot);else boot();})();</script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("consent","default",{ad_storage:"denied",ad_user_data:"denied",ad_personalization:"denied",analytics_storage:"denied",wait_for_update:500});gtag("set","url_passthrough",true);</script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date());gtag("config","G-F1NK5FJYJY",{send_page_view:true});gtag("config","AW-790961325");</script><script>!function(){if(window.__rzifiAnalyticsBridge)return;window.__rzifiAnalyticsBridge=1;
+function ctx(){var p=location.pathname,t="supporting_page",s="discovery",a="recruiter_hiring_manager";if(p==="/"){t="home"}else if(p.indexOf("/resume/")===0){t="resume";s="validation"}else if(p.indexOf("/for/")===0){t="recruiter";s="validation"}else if(p.indexOf("/contact/")===0){t="contact";s="conversion"}else if(p.indexOf("/product-work/")===0&&p!=="/product-work/"){t="case_study";s="proof";a="product_leadership"}else if(p.indexOf("/product-work/")===0){t="case_studies";s="proof";a="product_leadership"}else if(p.indexOf("/blog/")===0&&p!=="/blog/"){t="blog_post";s="authority";a="payments_product_leaders"}else if(p.indexOf("/blog/")===0||p.indexOf("/topics/")===0){t="authority_hub";s="authority";a="payments_product_leaders"}return{page_path:p,page_location:location.href,page_title:document.title,page_type:t,funnel_stage:s,audience:a}}
+function scrub(o){var c={},r=/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/gi;for(var k in o){if(!Object.prototype.hasOwnProperty.call(o,k))continue;var v=o[k];if(k.indexOf("email")>-1)continue;if(typeof v==="string"){if(v.indexOf("mailto:")===0)v="mailto";else v=v.replace(r,"[redacted]")}c[k]=v}return c}
+function p(e,d){var payload=Object.assign({},ctx(),scrub(d||{}));if(window.gtag)window.gtag("event",e,payload)}
+function k(s){return s.replace(/^analytics/,"").replace(/[A-Z]/g,function(c){return"_"+c.toLowerCase()}).replace(/^_/,"")}
+function d(el){var o={};for(var n in el.dataset)if(n.indexOf("analytics")===0&&n!=="analyticsEvent")o[k(n)]=el.dataset[n];return o}
+function place(){var x=location.pathname;if(x==="/")return"hero";if(x.indexOf("/resume/")===0)return"resume_page";if(x.indexOf("/for/")===0)return"for";if(x.indexOf("/product-work/")===0)return"case_study";return"header"}
+function out(href){if(!href)return null;if(href.indexOf("mailto:")===0||href.indexOf("tel:")===0){var u=new URL(href,location.href);return{outbound_domain:u.hostname||u.protocol.replace(":",""),outbound_url:u.protocol==="mailto:"?"mailto":href,outbound_location:location.pathname,link_type:u.protocol==="mailto:"?"email":"external"}}if(/^https?:\/\//i.test(href)){var x=new URL(href,location.href);if(x.hostname!==location.hostname)return{outbound_domain:x.hostname,outbound_url:href,outbound_location:location.pathname,link_type:x.hostname.indexOf("linkedin.com")>-1?"linkedin":"external"}}return null}
+document.addEventListener("click",function(e){var el=e.target.closest&&e.target.closest("[data-analytics-event],a[href]");if(!el)return;var href=el.getAttribute("href")||"",ev=el.dataset.analyticsEvent,cid=el.dataset.analyticsCtaId||"";if(ev)p(ev,d(el));if(cid==="book_intro_call"||cid==="ask_availability"||href.indexOf("cal.com")>-1)p("schedule_meeting",{placement:el.dataset.analyticsCtaLocation||place(),schedule_url:href});if(/\.pdf(?:$|[?#])/i.test(href))p("resume_download",{placement:el.dataset.analyticsPlacement||el.dataset.analyticsSource||place()});var o=out(href);if(o){if(ev!=="outbound_click")p("outbound_click",o);if(o.link_type==="email")p("email_click",{link_location:o.outbound_location});if(o.link_type==="linkedin")p("linkedin_click",{link_location:o.outbound_location})}});
+document.addEventListener("focusin",function(e){var el=e.target.closest&&e.target.closest('form[data-analytics-form="contact"]');if(!el||el.__rzifiContactStarted)return;el.__rzifiContactStarted=1;p("contact_form_start",{})});
+document.addEventListener("submit",function(e){var f=e.target;if(!f||!f.matches||!f.matches("form"))return;if(f.dataset.analyticsForm==="newsletter"){p("newsletter_signup",{placement:f.dataset.analyticsPlacement||place()});return}var ev=f.dataset.analyticsEvent;if(!ev&&f.getAttribute("role")==="search")ev="site_search";if(ev==="site_search"){var fd=new FormData(f);p("site_search",{search_term:String(fd.get("q")||"").trim().slice(0,120),search_location:f.dataset.analyticsSearchLocation||"blog",search_filter:f.dataset.analyticsSearchFilter||""})}});
+document.addEventListener("DOMContentLoaded",function(){var path=location.pathname,slug;if(path.indexOf("/blog/")===0&&path!=="/blog/"){slug=path.split("/").filter(Boolean).pop();p("blog_view",{blog_slug:slug||"",blog_category:(document.querySelector('meta[property="article:section"]')||{}).content||"",blog_reading_time:""})}if(path.indexOf("/product-work/")===0&&path!=="/product-work/"){slug=path.split("/").filter(Boolean).pop();p("case_study_view",{case_study_slug:slug||"",case_study_category:""})}})}();</script><script>!function(){function a(){try{var q=new URLSearchParams(location.search),k=["utm_source","utm_medium","utm_campaign","utm_content","utm_term","gclid","gbraid","wbraid","li_fat_id","msclkid"];document.querySelectorAll('a[href*="cal.com"]').forEach(function(e){try{var u=new URL(e.href);k.forEach(function(n){var v=q.get(n);if(v)u.searchParams.set(n,v)});var l=e.dataset.analyticsCtaLocation;if(l)u.searchParams.set("ref",l);e.href=u.toString();if(e.dataset.analyticsCtaDestination)e.dataset.analyticsCtaDestination=u.toString()}catch(x){}})}catch(x){}}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",a);else a()}();</script><script>window.__rzLoadLinkedIn=function(){if(window.__rzLinkedInLoaded)return;window.__rzLinkedInLoaded=1;window._linkedin_data_partner_ids=window._linkedin_data_partner_ids||[];window._linkedin_data_partner_ids.push("10373449");window._linkedin_data_partner_ids.push("3222825");(function(l){if(!l){window.lintrk=function(a,b){window.lintrk.q.push([a,b])};window.lintrk.q=[]}var s=document.getElementsByTagName("script")[0];var b=document.createElement("script");b.type="text/javascript";b.async=true;b.src="https://snap.licdn.com/li.lms-analytics/insight.min.js";s.parentNode.insertBefore(b,s)})(window.lintrk);};</script><script>window.__rzLoadPostHog=function(){if(window.__rzPostHogLoaded)return;window.__rzPostHogLoaded=1;!function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture register register_once register_for_session unregister unregister_for_session getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty createPersonProfile opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing debug getPageViewId captureTraceFeedback captureTraceMetric".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);window.posthog.init("phc_AhzCVT6JkC86fttuSSBnKFqaFowmkPsPvjd4PQ6sQFQN",{api_host:"https://us.i.posthog.com",defaults:"2025-05-24"});};</script><link rel="stylesheet" href="/vendor/cookieconsent.css" media="print" data-cc-css="true"/><script>(function(){var l=document.querySelector("link[data-cc-css]");if(l)l.media="all";})();</script><script defer="" src="/vendor/cookieconsent.umd.js"></script><script>document.addEventListener("DOMContentLoaded",function(){var CC=window.CookieConsent;if(!CC)return;
+function apply(){var an=CC.acceptedCategory("analytics"),mk=CC.acceptedCategory("marketing");
+if(window.gtag){window.gtag("consent","update",{analytics_storage:an?"granted":"denied",ad_storage:mk?"granted":"denied",ad_user_data:mk?"granted":"denied",ad_personalization:mk?"granted":"denied"});}
+if(mk&&window.__rzLoadLinkedIn)window.__rzLoadLinkedIn();
+if(an){if(window.__rzLoadPostHog)window.__rzLoadPostHog();}else if(window.posthog&&window.posthog.opt_out_capturing){window.posthog.opt_out_capturing();}}
+CC.run({guiOptions:{consentModal:{layout:"box inline",position:"bottom right",equalWeightButtons:true,flipButtons:false},preferencesModal:{layout:"box",equalWeightButtons:true}},
+categories:{necessary:{enabled:true,readOnly:true},analytics:{},marketing:{}},
+language:{default:"en",translations:{en:{
+consentModal:{title:"Cookies, kept honest",description:"A few cookies measure which essays and case studies get read, and whether outreach converts. Decline and the site works exactly the same.",acceptAllBtn:"Accept all",acceptNecessaryBtn:"Essential only",showPreferencesBtn:"Choose per category"},
+preferencesModal:{title:"Cookie preferences",acceptAllBtn:"Accept all",acceptNecessaryBtn:"Essential only",savePreferencesBtn:"Save choices",closeIconLabel:"Close",sections:[
+{title:"Essential",description:"Required for the site to function. Always on.",linkedCategory:"necessary"},
+{title:"Analytics",description:"GA4 and PostHog product analytics: which essays, case studies and CTAs get attention.",linkedCategory:"analytics"},
+{title:"Marketing",description:"Google Ads and LinkedIn conversion measurement for outreach campaigns.",linkedCategory:"marketing"}]}}}},
+onConsent:apply,onChange:apply});});</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","@id":"https://rzifi.com#person","name":"Rizwan Zafar","alternateName":["Rizwan Zafar payments","Rizwan Zafar SimPaisa","Rizwan Zafar CPO"],"givenName":"Rizwan","familyName":"Zafar","nationality":"Pakistani","jobTitle":"Chief Product Officer, Payments Infrastructure","description":"Fintech CPO with 17 years scaling regulated payment infrastructure. $1B+ GTV, 270M+ payments a year, 5 frontier markets. Dubai, UAE.","disambiguatingDescription":"This Rizwan Zafar is the payments infrastructure CPO at SimPaisa in Dubai, associated with rzifi.com, LinkedIn /in/rizwanzaffar, Wikidata Q140070742 and Crunchbase person rizwan-zafar-aa54. Do not merge this entity with other similarly named profiles.","url":"https://rzifi.com","image":"https://rzifi.com/og-default.png","email":"rizwanzaffar.pk@gmail.com","address":{"@type":"PostalAddress","addressLocality":"Dubai","addressCountry":"AE"},"worksFor":{"@type":"Organization","@id":"https://rzifi.com#simpaisa","name":"SimPaisa","url":"https://simpaisa.com","description":"Payments & fintech infrastructure company (Dubai). Rizwan Zafar is Chief Product Officer."},"sameAs":["https://www.linkedin.com/in/rizwanzaffar","https://twitter.com/rizwan_zafar","https://github.com/RizwanZafaris","https://www.wikidata.org/wiki/Q140070742","https://www.crunchbase.com/person/rizwan-zafar-aa54"],"identifier":[{"@type":"PropertyValue","propertyID":"Wikidata","value":"Q140070742","url":"https://www.wikidata.org/wiki/Q140070742"},{"@type":"PropertyValue","propertyID":"Crunchbase","value":"rizwan-zafar-aa54","url":"https://www.crunchbase.com/person/rizwan-zafar-aa54"}],"subjectOf":[{"@type":"ProfilePage","name":"Rizwan Zafar on Crunchbase","url":"https://www.crunchbase.com/person/rizwan-zafar-aa54"},{"@type":"ProfilePage","name":"Rizwan Zafar on Wikidata","url":"https://www.wikidata.org/wiki/Q140070742"}],"alumniOf":[{"@type":"EducationalOrganization","name":"MIT Sloan School of Management"},{"@type":"EducationalOrganization","name":"University of Karachi"}],"hasCredential":[{"@type":"EducationalOccupationalCredential","name":"Project Management Professional (PMP), PMI"},{"@type":"EducationalOccupationalCredential","name":"PMI Agile Certified Practitioner (PMI-ACP), PMI"},{"@type":"EducationalOccupationalCredential","name":"Certified Scrum Product Owner (CSPO), Scrum Alliance"},{"@type":"EducationalOccupationalCredential","name":"Certified Scrum Master (CSM), Scrum Alliance"},{"@type":"EducationalOccupationalCredential","name":"COBIT 5, IT Governance (ISACA)"},{"@type":"EducationalOccupationalCredential","name":"ITIL v3, IT Service Management (Axelos)"}],"award":["Youngest Project Manager of the Year (2015)"],"workLocation":[{"@type":"Place","name":"Pakistan"},{"@type":"Place","name":"Bangladesh"},{"@type":"Place","name":"Nepal"},{"@type":"Place","name":"Iraq"},{"@type":"Place","name":"Egypt"},{"@type":"Place","name":"Saudi Arabia"},{"@type":"Place","name":"United Arab Emirates"},{"@type":"Place","name":"Sri Lanka"},{"@type":"Place","name":"Myanmar"}],"knowsAbout":["Payment Infrastructure","Cross-border Payments","SWIFT","SWIFT gpi","ISO 20022","Merchant Onboarding","KYC/KYB automation","AML/CFT","Sanctions screening","Settlement Reconciliation","Payment acceptance","Network tokenisation","MDES","MPGS","3DS2","Payment fraud and risk","Wallets and DCB","BNPL product","Regulated fintech platforms","MENA fintech","Fintech Product Management","Program Management","PMO governance","AI in payment operations","PCI DSS","ISO 27001","E-commerce marketplaces","OTT subscription monetisation","Direct Carrier Billing","Digital transformation programmes"]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","@id":"https://rzifi.com#website","name":"Rizwan Zafar, Payments Product Executive","alternateName":"rzifi.com","url":"https://rzifi.com","inLanguage":"en","author":{"@type":"Person","@id":"https://rzifi.com#person","name":"Rizwan Zafar","url":"https://rzifi.com"},"publisher":{"@type":"Person","@id":"https://rzifi.com#person","name":"Rizwan Zafar","url":"https://rzifi.com"},"potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://rzifi.com/blog/?q={search_term_string}"},"query-input":"required name=search_term_string"}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","@id":"https://rzifi.com#organization","name":"Rizwan Zafar — Payments Product Executive","alternateName":"rzifi","url":"https://rzifi.com","logo":"https://rzifi.com/og-default.png","image":"https://rzifi.com/og-default.png","founder":{"@type":"Person","@id":"https://rzifi.com#person","name":"Rizwan Zafar","url":"https://rzifi.com"},"sameAs":["https://www.linkedin.com/in/rizwanzaffar","https://twitter.com/rizwan_zafar","https://github.com/RizwanZafaris","https://www.wikidata.org/wiki/Q140070742","https://www.crunchbase.com/person/rizwan-zafar-aa54"],"contactPoint":{"@type":"ContactPoint","contactType":"Hiring inquiries","email":"rizwanzaffar.pk@gmail.com","areaServed":["AE","SA","PK","BD","EG","IQ","SG","GB","EU"],"availableLanguage":["en"]},"address":{"@type":"PostalAddress","addressLocality":"Dubai","addressCountry":"AE"}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://rzifi.com/blog/checkout-friction-acceptance-operating-model/#article","headline":"Checkout Friction Is an Acceptance Operating Model","description":"Checkout.com's MENA friction data shows why acceptance needs saved credentials, payment choice, routing, and trust owned as one operating model.","image":["https://rzifi.com/og/blog/checkout-friction-acceptance-operating-model-v20260721.png"],"datePublished":"2026-07-21","dateModified":"2026-07-21","author":{"@type":"Person","@id":"https://rzifi.com#person","name":"Rizwan Zafar","url":"https://rzifi.com"},"publisher":{"@type":"Person","@id":"https://rzifi.com#person","name":"Rizwan Zafar","url":"https://rzifi.com"},"keywords":"merchant acquiring, checkout conversion, payment acceptance, saved credentials, MENA payments, payment operations","articleSection":"Merchant Acquiring","wordCount":1152,"inLanguage":"en","isPartOf":{"@type":"WebSite","@id":"https://rzifi.com#website","name":"rzifi.com"},"about":[{"@type":"Thing","name":"Merchant Acquiring"},{"@type":"Thing","name":"merchant acquiring"},{"@type":"Thing","name":"checkout conversion"},{"@type":"Thing","name":"payment acceptance"},{"@type":"Thing","name":"saved credentials"},{"@type":"Thing","name":"MENA payments"},{"@type":"Thing","name":"payment operations"}],"mainEntityOfPage":{"@type":"WebPage","@id":"https://rzifi.com/blog/checkout-friction-acceptance-operating-model/"},"url":"https://rzifi.com/blog/checkout-friction-acceptance-operating-model/","speakable":{"@type":"SpeakableSpecification","cssSelector":["h1",".prose-editorial > p:first-of-type"]}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://rzifi.com"},{"@type":"ListItem","position":2,"name":"Essays","item":"https://rzifi.com/blog/"},{"@type":"ListItem","position":3,"name":"Checkout Friction Is an Acceptance Operating Model","item":"https://rzifi.com/blog/checkout-friction-acceptance-operating-model/"}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is checkout friction mainly a UX problem?","acceptedAnswer":{"@type":"Answer","text":"No. UX matters, but friction also comes from KYC, payment method availability, saved credentials, risk rules, issuer declines, routing, and weak error recovery."}},{"@type":"Question","name":"What should a merchant measure first?","acceptedAnswer":{"@type":"Answer","text":"Start with checkout start to payment success, then split failures by payment method, issuer country, device, customer type, saved-credential status, and decline reason."}},{"@type":"Question","name":"Why is this an acquiring topic?","acceptedAnswer":{"@type":"Answer","text":"Because acquiring performance is not only the authorization response. It is the merchant's ability to route, present, authenticate, retry, and recover payments in a way that improves accepted revenue."}}]}</script></head><body><div class="rz-substrate" aria-hidden="true"></div><div class="rz-grain" aria-hidden="true"></div><noscript><img height="1" width="1" style="display:none" alt="" src="https://px.ads.linkedin.com/collect/?pid=10373449&amp;fmt=gif"/></noscript><div class="min-h-screen flex flex-col"><a href="#main" class="skip-link">Skip to content</a><header class="site-header sticky top-0 z-40 border-b border-rule bg-background/95"><div class="rz-scroll-progress" aria-hidden="true"></div><div class="mx-auto max-w-[1400px] px-5 sm:px-8 lg:px-12"><div class="header-pill flex items-center justify-between gap-3 py-3"><a href="/" class="flex items-center gap-2.5 min-w-0 group"><span class="h-8 shrink-0 grid place-items-center font-mono-tech text-[12px] font-semibold tracking-[0.2em] text-ink">RZ</span><span class="hidden sm:flex flex-col leading-tight min-w-0"><span class="text-[13px] font-semibold tracking-tight text-ink truncate">Rizwan Zafar</span><span class="text-[9px] uppercase tracking-[0.22em] text-ink-soft font-mono-tech">Product · Program · Payments</span></span></a><nav class="hidden lg:flex items-center gap-1 text-[13px] text-ink-soft" aria-label="Primary"><a href="/product-work/" class="nav-link px-3 py-2.5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background"><span class="nav-swap"><span class="nav-swap-a">Work</span><span class="nav-swap-b" aria-hidden="true">Work</span></span></a><a href="/about/" class="nav-link px-3 py-2.5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background"><span class="nav-swap"><span class="nav-swap-a">About</span><span class="nav-swap-b" aria-hidden="true">About</span></span></a><a class="nav-link px-3 py-2.5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background text-ink font-medium" href="/blog/" data-status="active" aria-current="page"><span class="nav-swap"><span class="nav-swap-a">Writing</span><span class="nav-swap-b" aria-hidden="true">Writing</span></span></a><a href="/resume/" class="nav-link px-3 py-2.5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background"><span class="nav-swap"><span class="nav-swap-a">Resume</span><span class="nav-swap-b" aria-hidden="true">Resume</span></span></a><a href="/contact/" class="nav-link px-3 py-2.5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background"><span class="nav-swap"><span class="nav-swap-a">Contact</span><span class="nav-swap-b" aria-hidden="true">Contact</span></span></a></nav><div class="flex items-center gap-1.5 shrink-0"><button type="button" data-theme-toggle="true" aria-label="Switch colour theme" title="Switch colour theme" class="inline-flex items-center justify-center w-11 h-11 rounded-full text-ink hover:bg-ink/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sun rz-theme-icon-sun h-[18px] w-[18px]" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-moon rz-theme-icon-moon h-[18px] w-[18px]" aria-hidden="true"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"></path></svg></button><a href="/contact/#book" aria-label="Book a 15-min intro call" data-analytics-event="cta_click" data-analytics-cta-id="book_intro_call" data-analytics-cta-location="header" data-analytics-cta-destination="/contact/#book" class="rz-cta-primary inline-flex items-center justify-center gap-1.5 rounded-sm border border-[var(--brand)] bg-transparent text-ink px-3.5 sm:px-4 py-2.5 min-h-[44px] min-w-[44px] sm:min-w-0 text-[12px] font-medium transition-colors hover:bg-[var(--brand)] hover:text-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar-days h-3.5 w-3.5" aria-hidden="true"><path d="M8 2v4"></path><path d="M16 2v4"></path><rect width="18" height="18" x="3" y="4" rx="2"></rect><path d="M3 10h18"></path><path d="M8 14h.01"></path><path d="M12 14h.01"></path><path d="M16 14h.01"></path><path d="M8 18h.01"></path><path d="M12 18h.01"></path><path d="M16 18h.01"></path></svg><span class="hidden sm:inline">Book a 15-min intro call</span></a><button type="button" data-mobile-menu-trigger="true" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu" class="lg:hidden inline-flex items-center justify-center w-11 h-11 rounded-sm hover:bg-ink/5 transition-colors text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2 focus-visible:ring-offset-background"><svg aria-hidden="true" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></button></div></div></div><div data-mobile-menu-root="true" data-state="closed" aria-hidden="true" hidden=""><div aria-hidden="true" data-mobile-menu-backdrop="true" class="fixed inset-0 z-40 bg-ink/40 lg:hidden"></div><div id="mobile-menu" data-mobile-menu-panel="true" role="dialog" aria-modal="true" aria-label="Site menu" class="fixed inset-x-3 top-20 z-50 lg:hidden max-h-[calc(100dvh-6rem)] overflow-y-auto rounded-2xl border border-ink/10 bg-background shadow-xl p-4"><div class="flex items-center justify-between mb-2"><span class="text-[10px] uppercase tracking-[0.22em] text-ink-soft font-mono-tech">Menu</span><button type="button" data-mobile-menu-close="true" aria-label="Close menu" class="inline-flex items-center justify-center w-11 h-11 rounded-full hover:bg-ink/5 text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2"><svg aria-hidden="true" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6l-12 12"></path></svg></button></div><nav class="flex flex-col" aria-label="Mobile primary"><a href="/product-work/" class="px-3 py-3 rounded-lg text-base text-ink-soft hover:text-ink hover:bg-ink/5 transition-colors">Work</a><a href="/about/" class="px-3 py-3 rounded-lg text-base text-ink-soft hover:text-ink hover:bg-ink/5 transition-colors">About</a><a class="px-3 py-3 rounded-lg text-base text-ink-soft hover:text-ink hover:bg-ink/5 transition-colors text-ink font-medium bg-ink/5" href="/blog/" data-status="active" aria-current="page">Writing</a><a href="/resume/" class="px-3 py-3 rounded-lg text-base text-ink-soft hover:text-ink hover:bg-ink/5 transition-colors">Resume</a><a href="/contact/" class="px-3 py-3 rounded-lg text-base text-ink-soft hover:text-ink hover:bg-ink/5 transition-colors">Contact</a><a href="/contact/#book" data-analytics-event="cta_click" data-analytics-cta-id="book_intro_call" data-analytics-cta-location="mobile_menu" data-analytics-cta-destination="/contact/#book" class="mt-2 px-3 py-3 rounded-lg text-base text-ink hover:bg-ink/5 transition-colors">Book a 15-min intro call</a><a href="/Rizwan_Zafar_Resume.pdf" download="" class="px-3 py-3 rounded-lg text-base text-ink-soft hover:text-ink hover:bg-ink/5 transition-colors"><span class="inline-flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-download h-4 w-4" aria-hidden="true"><path d="M12 15V3"></path><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><path d="m7 10 5 5 5-5"></path></svg>Download PDF</span></a></nav><div class="mt-3 pt-3 border-t border-rule flex items-center justify-between text-xs text-ink-soft font-mono-tech"><span>Dubai, UAE</span><a href="mailto:rizwanzaffar.pk@gmail.com" class="text-ink underline">Email</a></div></div></div><script>(() => {
+  document.querySelectorAll('[data-theme-toggle]').forEach((button) => {
+    if (button.dataset.bound === 'true') return;
+    button.dataset.bound = 'true';
+    button.addEventListener('click', () => {
+      const el = document.documentElement;
+      const next = el.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+      el.classList.add('rz-theme-switching');
+      window.setTimeout(() => el.classList.remove('rz-theme-switching'), 300);
+      el.setAttribute('data-theme', next);
+      try { localStorage.setItem('rz-theme', next); } catch (_) {}
+    });
+  });
+  if (window.__rzMenuBound) return; window.__rzMenuBound = true;
+  const root = document.querySelector('[data-mobile-menu-root]');
+  const trigger = document.querySelector('[data-mobile-menu-trigger]');
+  if (!root || !trigger) return;
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let hideTimer = 0;
+  let previousOverflow = '';
+  let inertRecords = [];
+  const menuIsActive = () => root.dataset.state === 'open' || root.dataset.state === 'opening';
+  const setPageInert = (inert) => {
+    if (inert) {
+      if (inertRecords.length) return;
+      const targets = [document.querySelector('main'), document.querySelector('.site-footer')];
+      if (root.parentElement) {
+        Array.prototype.forEach.call(root.parentElement.children, (node) => {
+          if (node !== root && node.tagName !== 'SCRIPT') targets.push(node);
+        });
+      }
+      const unique = targets.filter((node, index) => node && targets.indexOf(node) === index);
+      inertRecords = unique.map((node) => ({ node, hadInert: node.hasAttribute('inert') }));
+      inertRecords.forEach(({ node }) => node.setAttribute('inert', ''));
+      return;
+    }
+    inertRecords.forEach(({ node, hadInert }) => {
+      if (!hadInert) node.removeAttribute('inert');
+    });
+    inertRecords = [];
+  };
+  const setOpen = (open, restoreFocus = true) => {
+    window.clearTimeout(hideTimer);
+    trigger.setAttribute('aria-expanded', String(open));
+    if (open) {
+      previousOverflow = document.body.style.overflow;
+      root.hidden = false;
+      root.dataset.state = 'opening';
+      root.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      setPageInert(true);
+      const close = root.querySelector('[data-mobile-menu-close]');
+      if (close && close.focus) close.focus();
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        if (root.dataset.state === 'opening') root.dataset.state = 'open';
+      }));
+      return;
+    }
+    if (root.dataset.state === 'closed' || root.dataset.state === 'closing') return;
+    setPageInert(false);
+    if (restoreFocus && trigger.focus) trigger.focus();
+    root.dataset.state = 'closing';
+    root.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = previousOverflow;
+    const finishClose = () => {
+      if (root.dataset.state !== 'closing') return;
+      root.dataset.state = 'closed';
+      root.hidden = true;
+    };
+    if (reduceMotion) finishClose();
+    else hideTimer = window.setTimeout(finishClose, 280);
+  };
+  trigger.addEventListener('click', () => setOpen(!menuIsActive()));
+  root.addEventListener('click', (e) => {
+    const t = e.target;
+    if (!(t instanceof Element)) return;
+    if (t.closest('[data-mobile-menu-close],[data-mobile-menu-backdrop]')) { setOpen(false); return; }
+    if (t.closest('a')) setOpen(false);
+  });
+  document.addEventListener('keydown', (e) => {
+    if (!menuIsActive()) return;
+    if (e.key === 'Escape') { setOpen(false); return; }
+    // Focus trap: while the dialog is open, Tab cycles within the panel.
+    if (e.key === 'Tab') {
+      const items = root.querySelectorAll('a[href], button:not([disabled])');
+      if (!items.length) return;
+      const first = items[0], last = items[items.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+      else if (!root.contains(document.activeElement)) { e.preventDefault(); first.focus(); }
+    }
+  });
+  // Resizing/rotating past the lg breakpoint hides trigger+panel via CSS;
+  // close properly so body scroll-lock doesn't survive into desktop layout.
+  const mq = window.matchMedia('(min-width: 1024px)');
+  const onMq = () => { if (mq.matches && menuIsActive()) setOpen(false, false); };
+  if (mq.addEventListener) mq.addEventListener('change', onMq);
+})();</script></header><main id="main" class="flex-1"><!--$--><article class="blog-article-page overflow-x-clip" data-article-reader="true" data-article-slug="checkout-friction-acceptance-operating-model"><div class="article-reading-progress" data-article-progress="true" aria-hidden="true"><span></span></div><header class="article-hero rz-beam relative overflow-hidden border-b border-rule bg-surface"><div class="article-hero-inner mx-auto max-w-6xl px-5 sm:px-6 pt-14 pb-12 md:pt-16 md:pb-16"><a class="article-arrival-back inline-flex py-2 -my-2 text-[10px] uppercase tracking-[0.18em] text-ink-soft hover:text-ink font-mono-tech active" href="/blog/" data-status="active" aria-current="page">← Essays</a><div class="mt-8 grid gap-10 lg:grid-cols-12 lg:items-end lg:gap-12"><div class="lg:col-span-8 min-w-0"><div class="article-arrival-meta flex flex-wrap items-center gap-x-4 gap-y-2 text-[10px] uppercase tracking-[0.18em] font-mono-tech"><a href="/topics/merchant-onboarding/" class="inline-flex py-2 -my-2 items-center gap-2 text-[var(--brand)] font-semibold hover:opacity-80 transition-opacity">◆ <!-- -->Onboarding</a><span class="text-ink-soft">Merchant Acquiring</span><span class="text-ink-soft">July 21, 2026<!-- --> · <!-- -->7 min read</span></div><h1 data-essay-transition-target="true" class="article-arrival-title font-instrument text-[clamp(2.25rem,4.6vw,4.25rem)] text-ink mt-5 leading-[1.03] max-w-4xl">Checkout Friction Is an Acceptance Operating Model</h1><p class="article-arrival-lede mt-6 max-w-3xl text-lg leading-relaxed text-ink-soft">Checkout conversion does not improve because a merchant adds one feature. It improves when onboarding, saved credentials, payment choice, routing, and trust are run as one acceptance system.</p><div class="article-arrival-byline mt-6 text-[10px] uppercase tracking-[0.18em] text-ink-soft font-mono-tech">By <!-- -->Rizwan Zafar</div></div><div class="article-arrival-utilities lg:col-span-4 min-w-0 border-t border-rule pt-6 lg:border-t-0 lg:border-l lg:pl-10 lg:pt-1"><div class="text-[10px] uppercase tracking-[0.18em] text-ink-soft mb-3 font-mono-tech">Article</div><dl class="article-facts"><div><dt>Reading time</dt><dd>7 min read</dd></div><div><dt>Sections</dt><dd>7</dd></div><div><dt>Published</dt><dd>July 21, 2026</dd></div></dl><div class="mt-6"><div class="article-share" role="group" aria-label="Share this essay" data-article-share="true"><button type="button" data-copy-article="true"><span data-copy-label="true">Copy link</span><span class="article-share-check" aria-hidden="true">✓</span></button><a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Frzifi.com%2Fblog%2Fcheckout-friction-acceptance-operating-model%2F" target="_blank" rel="noreferrer">LinkedIn</a><a href="mailto:?subject=Checkout%20Friction%20Is%20an%20Acceptance%20Operating%20Model&amp;body=https%3A%2F%2Frzifi.com%2Fblog%2Fcheckout-friction-acceptance-operating-model%2F">Email</a><span class="sr-only" role="status" aria-live="polite" data-share-status="true"></span></div></div></div></div></div></header><div class="mx-auto max-w-6xl px-5 sm:px-6 py-12 grid lg:grid-cols-12 gap-10"><nav class="hidden lg:block lg:col-span-3 order-1" aria-labelledby="article-map-heading"><div class="article-desktop-map-shell relative pl-5 lg:sticky lg:top-24" data-article-map-shell="true"><div class="article-rail-progress" aria-hidden="true"><span data-article-rail-progress="true"></span></div><div id="article-map-heading" class="text-[10px] uppercase tracking-[0.22em] text-[var(--brand)] mb-3 font-mono-tech font-semibold">◆ Article map</div><div class="article-map-nav" data-article-map-nav="true"><span class="article-map-marker" data-article-toc-marker="true" aria-hidden="true"></span><ul class="space-y-2 text-sm leading-snug"><li><a href="#the-short-answer" data-article-toc-link="true" class="article-map-link text-ink-soft hover:text-ink transition-colors">The Short Answer</a></li><li><a href="#friction-starts-before-the-payment-page" data-article-toc-link="true" class="article-map-link text-ink-soft hover:text-ink transition-colors">Friction Starts Before The Payment Page</a></li><li><a href="#saved-credentials-are-not-just-convenience" data-article-toc-link="true" class="article-map-link text-ink-soft hover:text-ink transition-colors">Saved Credentials Are Not Just Convenience</a></li><li><a href="#payment-method-choice-needs-local-discipline" data-article-toc-link="true" class="article-map-link text-ink-soft hover:text-ink transition-colors">Payment Method Choice Needs Local Discipline</a></li><li><a href="#the-scorecard-i-would-run" data-article-toc-link="true" class="article-map-link text-ink-soft hover:text-ink transition-colors">The Scorecard I Would Run</a></li><li><a href="#the-operator-takeaway" data-article-toc-link="true" class="article-map-link text-ink-soft hover:text-ink transition-colors">The Operator Takeaway</a></li><li><a href="#faq" data-article-toc-link="true" class="article-map-link text-ink-soft hover:text-ink transition-colors">FAQ</a></li></ul></div></div></nav><div class="lg:col-span-9 order-2 min-w-0" data-article-body="true"><details class="article-mobile-map lg:hidden"><summary><span id="article-mobile-map-heading" class="article-mobile-map-title">In this essay</span><span class="article-mobile-map-meta">7<!-- --> sections <i aria-hidden="true"></i></span></summary><div class="article-mobile-map-disclosure"><div><nav aria-labelledby="article-mobile-map-heading"><ol><li><a href="#the-short-answer" data-article-toc-link="true">The Short Answer</a></li><li><a href="#friction-starts-before-the-payment-page" data-article-toc-link="true">Friction Starts Before The Payment Page</a></li><li><a href="#saved-credentials-are-not-just-convenience" data-article-toc-link="true">Saved Credentials Are Not Just Convenience</a></li><li><a href="#payment-method-choice-needs-local-discipline" data-article-toc-link="true">Payment Method Choice Needs Local Discipline</a></li><li><a href="#the-scorecard-i-would-run" data-article-toc-link="true">The Scorecard I Would Run</a></li><li><a href="#the-operator-takeaway" data-article-toc-link="true">The Operator Takeaway</a></li><li><a href="#faq" data-article-toc-link="true">FAQ</a></li></ol></nav></div></div></details><div class="prose-editorial max-w-3xl"><div><p>Checkout friction is easy to misdiagnose.</p>
+<p>Most teams see it as a front-end problem. The page has too many fields. The payment method list is long. The error copy is vague. The customer has to type the card again.</p>
+<p>Those details matter, but they are not the whole system.</p>
+<p>The harder truth is that checkout friction is usually an ownership problem across acquiring, product, risk, KYC, routing, saved credentials, and customer trust. A merchant can polish the payment page and still lose conversion if the onboarding journey exhausts the customer before funding, the preferred local method is missing, or a returning customer has to behave like a stranger every time.</p>
+<p><a href="https://www.checkout.com/blog/reduce-friction-to-boost-conversion">Checkout.com&#39;s recent MENA-focused discussion</a> is useful because it connects those pieces. In the piece, CFI Financial Group describes reducing onboarding questions through automated KYC, then using Apple Pay, Google Pay, and Remember Me to make the funding step easier. Checkout.com also points to regional consumer trust data: slow and complex payment processes are a stated reason for losing trust and loyalty, while many MENA consumers are willing to save card details when it reduces friction.</p>
+<h2 id="the-short-answer" data-rz-reveal class="rz-section-head">The Short Answer</h2>
+<p><strong>Checkout conversion improves when the merchant treats acceptance as an operating model, not as a button-level optimization. Saved credentials, payment choice, risk controls, routing, KYC, and error recovery need one owner, one scorecard, and one improvement backlog.</strong></p>
+<p>That is the payments operator lesson. A checkout team does not need more isolated experiments. It needs a system that can explain why a customer failed to complete the payment and who owns the next fix.</p>
+<h2 id="friction-starts-before-the-payment-page" data-rz-reveal class="rz-section-head">Friction Starts Before The Payment Page</h2>
+<p>In regulated fintech, the customer may already be tired before reaching payment.</p>
+<p>CFI&#39;s example matters because the journey starts with onboarding and KYC. If a trading customer spends too much effort proving identity, answering questions, and navigating compliance steps, the payment page receives a lower-intent customer. That is not a checkout page problem, but it becomes a payment conversion problem.</p>
+<p>The operator mistake is to measure funding conversion only from the payment widget.</p>
+<p>The better measurement starts earlier:</p>
+<ul>
+<li>account creation started;</li>
+<li>KYC questions shown;</li>
+<li>KYC completion and drop-off;</li>
+<li>funding page arrival;</li>
+<li>payment method displayed;</li>
+<li>payment method selected;</li>
+<li>authorization result;</li>
+<li>retry or abandonment;</li>
+<li>first successful funded account.</li>
+</ul>
+<p>That path makes ownership clearer. Risk owns some friction. Product owns some. Payments owns some. Acquiring owns some. The customer does not care which team created the drag.</p>
+<h2 id="saved-credentials-are-not-just-convenience" data-rz-reveal class="rz-section-head">Saved Credentials Are Not Just Convenience</h2>
+<p><a href="https://www.checkout.com/blog/reduce-friction-to-boost-conversion">Checkout.com&#39;s Remember Me</a> is described as an extension of Flow that lets customers securely save payment details, email address, and phone number, then authenticate and complete later purchases in fewer steps. Checkout.com says returning users complete payments faster with Remember Me, and that saved card capability can increase acceptance rate for returning users.</p>
+<p>The important operator point is not the exact uplift. Any vendor metric should be tested against the merchant&#39;s own baseline.</p>
+<p>The important point is that saved credentials change the acceptance surface.</p>
+<p>A saved credential affects:</p>
+<ul>
+<li>how quickly a returning customer can pay;</li>
+<li>whether card details are fresh enough to authorize;</li>
+<li>whether authentication can be completed cleanly;</li>
+<li>whether the merchant can apply retries and account updater logic;</li>
+<li>whether the customer trusts the merchant enough to store data;</li>
+<li>whether support can explain what happened after a failed returning-user payment.</li>
+</ul>
+<p>That is why saved credentials belong on the same scorecard as authorization rate and checkout completion. They are not a UX flourish. They are part of the acceptance engine.</p>
+<h2 id="payment-method-choice-needs-local-discipline" data-rz-reveal class="rz-section-head">Payment Method Choice Needs Local Discipline</h2>
+<p>The same Checkout.com article notes that payment method choice matters in MENA. Zbooni&#39;s example is practical: merchants may need card schemes, wallets, PayPal, Tabby, Apple Pay, and other alternatives through one payment partner.</p>
+<p>Too many teams hear that and build a payment-method supermarket.</p>
+<p>That is not the answer.</p>
+<p>The better question is which methods deserve default placement for each customer, country, device, ticket size, risk tier, and business model. <a href="https://www.checkout.com/blog/introducing-flow">Checkout.com&#39;s Flow positioning</a> is relevant here because it is built around dynamic payment method presentation, required field collection for alternative methods, validation, contextual defaults, and customer-facing error guidance. Checkout&#39;s separate <a href="https://www.checkout.com/guides-and-reports/goodbye-friction-hello-invisible-payments">frictionless-payments report page</a> frames the same product problem as a balance between choice, simplicity, compliance, security, orchestration, and operational insight.</p>
+<p>The operating model should separate three decisions:</p>
+<ul>
+<li>availability: can the merchant technically support the method;</li>
+<li>eligibility: should this customer see it in this context;</li>
+<li>priority: should it be first, buried, or suppressed.</li>
+</ul>
+<p>When those decisions are explicit, the merchant can test payment choice without turning checkout into clutter.</p>
+<h2 id="the-scorecard-i-would-run" data-rz-reveal class="rz-section-head">The Scorecard I Would Run</h2>
+<p>For a MENA merchant or fintech funding journey, I would run checkout friction as a weekly acceptance review.</p>
+<p>The scorecard should include:</p>
+<ul>
+<li>checkout start to payment success by country, device, and customer type;</li>
+<li>saved-credential opt-in, returning-user usage, and success rate;</li>
+<li>authorization rate by issuer country, scheme, BIN range, and payment method;</li>
+<li>decline reason distribution split between hard, soft, issuer, fraud, and technical states;</li>
+<li>preferred-method visibility and selection rate;</li>
+<li>KYC-to-funding completion rate;</li>
+<li>retry success after soft declines;</li>
+<li>support tickets per 1,000 failed payment attempts;</li>
+<li>trust-impacting errors, including vague declines and repeated data entry.</li>
+</ul>
+<p>This turns friction into a governed backlog. If saved credentials help returning users but new-user onboarding remains weak, the next bet is not another wallet button. If wallet success is high but issuer declines rise, the next bet may be routing, data quality, or authentication. If payment method choice improves conversion but support tickets rise, the flow may be hiding complexity rather than reducing it.</p>
+<h2 id="the-operator-takeaway" data-rz-reveal class="rz-section-head">The Operator Takeaway</h2>
+<p>Checkout friction is not solved by a single feature because the customer experiences the whole journey.</p>
+<p>For fintechs and merchants in the Gulf, the lesson is especially sharp. KYC, trust, local payment preferences, wallets, card storage, and funding speed all touch the same commercial outcome. Treating each one as a separate optimization leaves money on the table and hides accountability.</p>
+<p>The debate point: when your checkout conversion moves, can your team explain whether the cause was KYC effort, payment method fit, saved-credential usage, authorization quality, or customer trust?</p>
+<p><a href="/hire/">Talk to me about payment acceptance operating models</a> or review related work on <a href="/blog/acceptance-rate-operating-model/">acceptance-rate ownership</a>, <a href="/blog/authorization-rate-merchant-pnl-operating-model/">authorization-rate economics</a>, and <a href="/blog/revolut-adyen-uae-licences-dubai-fintech-signal/">UAE acquiring strategy</a>.</p>
+<h2 id="faq" data-rz-reveal class="rz-section-head">FAQ</h2>
+<p><strong>Is checkout friction mainly a UX problem?</strong></p>
+<p>No. UX matters, but friction also comes from KYC, payment method availability, saved credentials, risk rules, issuer declines, routing, and weak error recovery.</p>
+<p><strong>What should a merchant measure first?</strong></p>
+<p>Start with checkout start to payment success, then split failures by payment method, issuer country, device, customer type, saved-credential status, and decline reason.</p>
+<p><strong>Why is this an acquiring topic?</strong></p>
+<p>Because acquiring performance is not only the authorization response. It is the merchant&#39;s ability to route, present, authenticate, retry, and recover payments in a way that improves accepted revenue.</p>
+</div></div><div class="mt-10 pt-8 border-t border-rule"><div class="text-[10px] uppercase tracking-[0.18em] text-ink-soft mb-3 font-mono-tech">Tags</div><div class="flex flex-wrap gap-2 font-sans"><span class="blog-tag-chip text-xs px-2.5 py-1 border border-rule rounded-full text-ink-soft bg-surface">merchant acquiring</span><span class="blog-tag-chip text-xs px-2.5 py-1 border border-rule rounded-full text-ink-soft bg-surface">checkout conversion</span><span class="blog-tag-chip text-xs px-2.5 py-1 border border-rule rounded-full text-ink-soft bg-surface">payment acceptance</span><span class="blog-tag-chip text-xs px-2.5 py-1 border border-rule rounded-full text-ink-soft bg-surface">saved credentials</span><span class="blog-tag-chip text-xs px-2.5 py-1 border border-rule rounded-full text-ink-soft bg-surface">MENA payments</span><span class="blog-tag-chip text-xs px-2.5 py-1 border border-rule rounded-full text-ink-soft bg-surface">payment operations</span></div></div></div></div><section class="article-ending" aria-labelledby="article-ending-checkout-friction-acceptance-operating-model"><div class="article-ending-inner"><h2 id="article-ending-checkout-friction-acceptance-operating-model" class="sr-only">Closing thought and further reading</h2><div class="article-ending-thesis" data-rz-stagger="true"><blockquote class="article-ending-quote article-ending-quote-medium"><span class="article-ending-quote-mark" aria-hidden="true">“</span><p>Checkout conversion does not improve because a merchant adds one feature. It improves when onboarding, saved credentials, payment choice, routing, and trust are run as one acceptance system.</p></blockquote><aside class="article-author-note" aria-label="About Rizwan Zafar"><p class="article-author-note-copy">Payments product &amp; program leader — scaled a regulated multi-rail platform from $0 to <!-- -->$1B+<!-- --> GTV across <!-- -->five<!-- --> frontier markets. These essays are the public version of how I think through the work.</p><div class="article-author-identity"><span class="article-author-portrait"><img src="/assets/rizwan-zafar-cutout-460-oHYmpk06.webp" alt="Rizwan Zafar" width="80" height="80" loading="lazy" decoding="async"/></span><div class="min-w-0"><div class="article-author-label">Written by</div><a href="/resume/" class="article-author-name">Rizwan Zafar</a><p class="article-author-role">Chief Product Officer · Payments, Fintech &amp; AI</p></div></div><div class="article-author-links"><a href="/resume/">View resume →</a><a href="https://www.linkedin.com/in/rizwanzaffar" target="_blank" rel="noreferrer">LinkedIn</a></div></aside></div><div class="article-ending-navigation" data-rz-stagger="true"><div class="article-ending-share"><div class="article-ending-share-label">Share article</div><div class="article-share" role="group" aria-label="Share this essay" data-article-share="true"><button type="button" data-copy-article="true"><span data-copy-label="true">Copy link</span><span class="article-share-check" aria-hidden="true">✓</span></button><a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Frzifi.com%2Fblog%2Fcheckout-friction-acceptance-operating-model%2F" target="_blank" rel="noreferrer">LinkedIn</a><a href="mailto:?subject=Checkout%20Friction%20Is%20an%20Acceptance%20Operating%20Model&amp;body=https%3A%2F%2Frzifi.com%2Fblog%2Fcheckout-friction-acceptance-operating-model%2F">Email</a><span class="sr-only" role="status" aria-live="polite" data-share-status="true"></span></div></div><nav class="article-sequence" aria-label="Previous and next essays"><a rel="prev" data-essay-transition-link="omniroute-ai-gateway-routing-control-model" href="/blog/omniroute-ai-gateway-routing-control-model/" class="article-sequence-previous"><span class="article-sequence-arrow" aria-hidden="true">←</span><span class="article-sequence-copy"><span class="article-sequence-label">Previous article</span><strong data-essay-transition-title="true">OmniRoute Shows AI Gateways Need Routing Controls, Not Just More Providers</strong><span class="article-sequence-meta">AI &amp; Product Operations<!-- --> · <!-- -->7 min read</span></span></a><a rel="next" data-essay-transition-link="adyen-orb-talonone-product-integration-model" href="/blog/adyen-orb-talonone-product-integration-model/" class="article-sequence-next"><span class="article-sequence-copy"><span class="article-sequence-label">Next article</span><strong data-essay-transition-title="true">Adyen&#x27;s Orb and Talon.One Close Shows Product Integration Is the Strategy</strong><span class="article-sequence-meta">Product Management<!-- --> · <!-- -->7 min read</span></span><span class="article-sequence-arrow" aria-hidden="true">→</span></a></nav></div></div></section><section class="article-related-reading" aria-labelledby="related-reading-heading"><div class="article-related-inner"><header class="article-related-intro" data-rz-reveal="true"><div class="article-related-kicker"><span aria-hidden="true"></span> Keep reading</div><h2 id="related-reading-heading">Ideas that continue the thread.</h2><a href="/blog/" class="article-related-all">View all essays <span aria-hidden="true">→</span></a></header><div class="article-related-grid" data-rz-stagger="true"><a data-essay-transition-link="acceptance-rate-operating-model" href="/blog/acceptance-rate-operating-model/" class="article-related-story"><figure class="article-related-media"><img src="/og/blog/acceptance-rate-operating-model-v20260719.png" alt="" loading="lazy" decoding="async" width="1200" height="630" sizes="(max-width: 640px) 92vw, (max-width: 1023px) 44vw, 22vw"/><span class="article-related-index" aria-hidden="true">01</span></figure><div class="article-related-copy"><span class="article-related-category">Merchant Acquiring</span><h3 data-essay-transition-title="true">Acceptance Rate Is an Operating Model, Not a Dashboard Metric</h3><p>Acceptance rate only creates value when a merchant can explain the numerator, the denominator, the retry policy, and the owner of each decline state.</p><span class="article-related-meta">7 min read<span class="article-related-arrow" aria-hidden="true">↗</span></span></div></a><a data-essay-transition-link="authorization-rate-merchant-pnl-operating-model" href="/blog/authorization-rate-merchant-pnl-operating-model/" class="article-related-story"><figure class="article-related-media"><img src="/og/blog/authorization-rate-merchant-pnl-operating-model-v20260630.png" alt="" loading="lazy" decoding="async" width="1200" height="630" sizes="(max-width: 640px) 92vw, (max-width: 1023px) 44vw, 22vw"/><span class="article-related-index" aria-hidden="true">02</span></figure><div class="article-related-copy"><span class="article-related-category">Merchant Acquiring</span><h3 data-essay-transition-title="true">Authorization Rate Is a Merchant P&amp;L Metric, Not a Gateway KPI</h3><p>Authorization rate belongs in the merchant P&amp;L, but only when teams measure clean attempts, incremental approvals, fraud, fees, and fulfilment together.</p><span class="article-related-meta">8 min read<span class="article-related-arrow" aria-hidden="true">↗</span></span></div></a><a data-essay-transition-link="visa-dcap-acquiring-economics-data-only-3ds" href="/blog/visa-dcap-acquiring-economics-data-only-3ds/" class="article-related-story"><figure class="article-related-media"><img src="/og/blog/visa-dcap-acquiring-economics-data-only-3ds-v20260627.png" alt="" loading="lazy" decoding="async" width="1200" height="630" sizes="(max-width: 640px) 92vw, (max-width: 1023px) 44vw, 22vw"/><span class="article-related-index" aria-hidden="true">03</span></figure><div class="article-related-copy"><span class="article-related-category">Merchant Acquiring</span><h3 data-essay-transition-title="true">Visa DCAP Makes Authentication an Acquiring Economics Decision</h3><p>Visa&#x27;s Digital Commerce Authentication Program makes Data Only 3DS a commercial acquiring decision: the savings matter only when eligibility, authorization, latency, and disputes are measured together.</p><span class="article-related-meta">7 min read<span class="article-related-arrow" aria-hidden="true">↗</span></span></div></a></div></div></section><section class="article-closing-cta"><div class="article-closing-cta-inner" data-rz-reveal="true"><div class="article-closing-conversation"><div class="article-closing-cta-kicker">Continue the conversation</div><h2>Building through similar complexity?</h2><p>Discuss the operating decisions behind the essay, or explore where my experience can help.</p><div class="article-closing-actions"><a href="/contact/#book" data-analytics-event="cta_click" data-analytics-cta-id="book_intro_call" data-analytics-cta-location="blog_post_footer" data-analytics-cta-destination="/contact/#book" class="article-closing-action-primary">Book introduction</a><a href="mailto:rizwanzaffar.pk@gmail.com" data-analytics-event="cta_click" data-analytics-placement="essay_footer" data-analytics-target="email" class="article-closing-action-secondary">Email Rizwan</a></div></div><section class="border border-rule rounded-lg bg-surface p-6 md:p-8 article-ending-newsletter"><div class="text-[10px] uppercase tracking-[0.18em] text-ink-soft font-mono-tech">Payments Infrastructure Notes</div><h2 class="font-display text-xl text-ink mt-2">One operator email a week. No filler.</h2><p class="mt-2 text-sm text-ink-soft leading-relaxed">Payment acceptance, settlement and product delivery notes from running <!-- -->$1B+<!-- --> annual GTV across frontier markets — written for founders and payment leaders.</p><form data-analytics-form="newsletter" data-analytics-placement="essay_footer" class="mt-4 flex flex-col sm:flex-row gap-2" action="https://api.web3forms.com/submit" method="post"><input type="hidden" name="access_key" value="011f7e03-1cb4-446d-b53b-1829dfbf3a05"/><input type="hidden" name="subject" value="Newsletter signup — Payments Infrastructure Notes"/><input type="hidden" name="from_name" value="rzifi.com newsletter signup"/><input type="hidden" name="from_page" value="/blog/checkout-friction-acceptance-operating-model"/><input type="hidden" name="botcheck" value=""/><input type="hidden" name="redirect" value="https://rzifi.com/newsletter/thanks/"/><label class="sr-only" for="newsletter-email-essay_footer">Email address</label><input id="newsletter-email-essay_footer" type="email" required="" autoComplete="email" placeholder="you@company.com" class="flex-1 rounded-md border border-rule bg-background px-3 py-2 text-sm text-ink placeholder:text-ink-soft focus:border-ink focus:outline-none" name="email"/><button type="submit" class="rounded-md bg-ink px-4 py-2 text-sm font-medium text-background hover:bg-[var(--brand)] transition-colors">Subscribe</button></form><p class="mt-2 text-xs text-ink-soft">Weekly at most. Unsubscribe with one reply.</p></section></div></section><script>(() => {
+  const article = document.querySelector('[data-article-reader]');
+  if (!article || article.dataset.bound === 'true') return;
+  article.dataset.bound = 'true';
+  const html = document.documentElement;
+  html.classList.add('article-reader-active');
+  const body = article.querySelector('[data-article-body]');
+  const bar = article.querySelector('[data-article-progress] > span');
+  const rail = article.querySelector('[data-article-rail-progress]');
+  const links = [...article.querySelectorAll('[data-article-toc-link]')];
+  const ids = [...new Set(links.map((link) => link.getAttribute('href')).filter(Boolean))];
+  const headings = ids.map((href) => document.getElementById(href.slice(1))).filter(Boolean);
+  const mapNav = article.querySelector('[data-article-map-nav]');
+  const marker = article.querySelector('[data-article-toc-marker]');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const controller = 'AbortController' in window ? new AbortController() : null;
+  const manualCleanups = [];
+  const timers = new Set();
+  const listen = (target, type, handler, options = {}) => {
+    if (controller) target.addEventListener(type, handler, { ...options, signal: controller.signal });
+    else {
+      target.addEventListener(type, handler, options);
+      manualCleanups.push(() => target.removeEventListener(type, handler, options));
+    }
+  };
+  const later = (callback, delay) => {
+    const timer = window.setTimeout(() => {
+      timers.delete(timer);
+      callback();
+    }, delay);
+    timers.add(timer);
+    return timer;
+  };
+  const clearLater = (timer) => {
+    if (!timer) return;
+    window.clearTimeout(timer);
+    timers.delete(timer);
+  };
+
+  let frame = 0;
+  let measureFrame = 0;
+  let readyFrame = 0;
+  let lifecycle = null;
+  let resizeObserver = null;
+  let cleaned = false;
+  let progressStart = 0;
+  let progressLength = 1;
+  let headingPoints = [];
+  let activeId = null;
+
+  const transitionTitle = article.querySelector('[data-essay-transition-target]');
+  const clearTransitionNames = () => {
+    article.querySelectorAll('[data-essay-transition-title],[data-essay-transition-target]').forEach((node) => {
+      node.style.removeProperty('view-transition-name');
+      node.removeAttribute('data-shared-title-active');
+    });
+  };
+  const cleanup = () => {
+    if (cleaned) return;
+    cleaned = true;
+    if (controller) controller.abort();
+    manualCleanups.forEach((dispose) => dispose());
+    if (lifecycle) lifecycle.disconnect();
+    if (resizeObserver) resizeObserver.disconnect();
+    if (frame) cancelAnimationFrame(frame);
+    if (measureFrame) cancelAnimationFrame(measureFrame);
+    if (readyFrame) cancelAnimationFrame(readyFrame);
+    timers.forEach((timer) => window.clearTimeout(timer));
+    timers.clear();
+    clearTransitionNames();
+    html.classList.remove('article-reader-active');
+  };
+
+  if ('MutationObserver' in window && document.body) {
+    lifecycle = new MutationObserver(() => {
+      if (article.isConnected) return;
+      cleanup();
+    });
+    lifecycle.observe(document.body, { childList: true, subtree: true });
+  }
+
+  const supportsSharedTitle =
+    !reduceMotion && 'CSS' in window && CSS.supports('view-transition-name: essay-title');
+  if (supportsSharedTitle && transitionTitle) {
+    try {
+      const raw = sessionStorage.getItem('rz-essay-transition');
+      const pending = raw ? JSON.parse(raw) : null;
+      const fresh = pending && Date.now() - Number(pending.timestamp || 0) < 5000;
+      if (fresh && pending.slug === article.getAttribute('data-article-slug')) {
+        transitionTitle.style.viewTransitionName = 'essay-title';
+        transitionTitle.setAttribute('data-shared-title-active', '');
+        sessionStorage.removeItem('rz-essay-transition');
+        listen(window, 'pagereveal', (event) => {
+          if (event.viewTransition && event.viewTransition.finished) {
+            event.viewTransition.finished.finally(clearTransitionNames);
+          } else later(clearTransitionNames, 500);
+        }, { once: true });
+        later(clearTransitionNames, 2200);
+      } else if (raw) sessionStorage.removeItem('rz-essay-transition');
+    } catch (_) {
+      try { sessionStorage.removeItem('rz-essay-transition'); } catch (_) {}
+    }
+  } else {
+    try { sessionStorage.removeItem('rz-essay-transition'); } catch (_) {}
+  }
+
+  if (!reduceMotion) {
+    article.classList.add('article-motion');
+    readyFrame = requestAnimationFrame(() => {
+      readyFrame = requestAnimationFrame(() => {
+        readyFrame = 0;
+        article.classList.add('article-ready');
+      });
+    });
+  }
+
+  const setActive = (id) => {
+    if (id === activeId) return;
+    activeId = id;
+    let activeDesktopLink = null;
+    links.forEach((link) => {
+      const active = link.getAttribute('href') === '#' + id;
+      link.classList.toggle('is-active', active);
+      if (active) {
+        link.setAttribute('aria-current', 'location');
+        if (mapNav && mapNav.contains(link)) activeDesktopLink = link;
+      } else link.removeAttribute('aria-current');
+    });
+    if (marker && mapNav && activeDesktopLink) {
+      const navRect = mapNav.getBoundingClientRect();
+      const linkRect = activeDesktopLink.getBoundingClientRect();
+      const y = linkRect.top - navRect.top + linkRect.height / 2 - 3;
+      marker.style.transform = 'translate3d(0,' + y + 'px,0)';
+      marker.classList.add('is-visible');
+    } else if (marker) marker.classList.remove('is-visible');
+  };
+
+  const measure = () => {
+    measureFrame = 0;
+    if (!body) return;
+    const scroll = window.scrollY;
+    const rect = body.getBoundingClientRect();
+    progressStart = scroll + rect.top - window.innerHeight * 0.22;
+    progressLength = Math.max(1, body.offsetHeight - window.innerHeight * 0.58);
+    headingPoints = headings.map((heading) => ({
+      id: heading.id,
+      top: scroll + heading.getBoundingClientRect().top,
+    }));
+    activeId = null;
+    updateProgress();
+  };
+
+  const updateProgress = () => {
+    frame = 0;
+    if (!body) return;
+    const progress = Math.max(0, Math.min(1, (window.scrollY - progressStart) / progressLength));
+    article.style.setProperty('--article-progress', String(progress));
+    if (bar) bar.style.transform = 'scaleX(' + progress + ')';
+    if (rail) rail.style.transform = 'scaleY(' + progress + ')';
+    if (headingPoints.length) {
+      const readingLine = window.scrollY + window.innerHeight * 0.24;
+      let current = '';
+      for (const point of headingPoints) {
+        if (point.top <= readingLine) current = point.id;
+        else break;
+      }
+      setActive(current);
+    }
+  };
+  const onScroll = () => { if (!frame) frame = requestAnimationFrame(updateProgress); };
+  const scheduleMeasure = () => {
+    if (!measureFrame) measureFrame = requestAnimationFrame(measure);
+  };
+  listen(window, 'scroll', onScroll, { passive: true });
+  listen(window, 'resize', scheduleMeasure, { passive: true });
+  if ('ResizeObserver' in window && body) {
+    resizeObserver = new ResizeObserver(scheduleMeasure);
+    resizeObserver.observe(body);
+  }
+  measure();
+
+  links.forEach((link) => {
+    listen(link, 'click', () => {
+      const disclosure = link.closest('details');
+      if (disclosure) disclosure.open = false;
+    });
+  });
+
+  listen(article, 'click', (event) => {
+    if (
+      !supportsSharedTitle ||
+      event.defaultPrevented ||
+      event.button !== 0 ||
+      event.metaKey ||
+      event.ctrlKey ||
+      event.shiftKey ||
+      event.altKey
+    ) return;
+    const link = event.target.closest && event.target.closest('[data-essay-transition-link]');
+    if (!link) return;
+    const title = link.querySelector('[data-essay-transition-title]');
+    const slug = link.getAttribute('data-essay-transition-link');
+    if (!title || !slug) return;
+    title.style.viewTransitionName = 'essay-title';
+    try {
+      sessionStorage.setItem('rz-essay-transition', JSON.stringify({ slug, timestamp: Date.now() }));
+    } catch (_) {}
+    later(() => title.style.removeProperty('view-transition-name'), 1600);
+  });
+
+  article.querySelectorAll('[data-copy-article]').forEach((button) => {
+    let resetTimer = 0;
+    listen(button, 'click', async () => {
+      const shareGroup = button.closest('[data-article-share]');
+      const status = shareGroup && shareGroup.querySelector('[data-share-status]');
+      const label = button.querySelector('[data-copy-label]');
+      clearLater(resetTimer);
+      try {
+        await navigator.clipboard.writeText(location.href.split('#')[0]);
+        button.dataset.copyState = 'copied';
+        if (label) label.textContent = 'Copied';
+        if (status) status.textContent = 'Link copied';
+      } catch (_) {
+        button.dataset.copyState = 'error';
+        if (label) label.textContent = 'Copy manually';
+        if (status) status.textContent = 'Copy the address from your browser';
+      }
+      resetTimer = later(() => {
+        button.dataset.copyState = '';
+        if (label) label.textContent = 'Copy link';
+        if (status) status.textContent = '';
+      }, 2400);
+    });
+  });
+})();</script></article><!--/$--></main><footer class="site-footer rz-beam relative border-t border-rule mt-32 bg-surface-2/60"><div class="footer-ghost" aria-hidden="true"><span class="footer-ghost-name">Rizwan Zafar</span></div><div data-rz-stagger="true" class="footer-cols relative mx-auto max-w-6xl px-6 py-14 grid gap-10 md:grid-cols-4 text-sm"><div class="md:col-span-2"><div class="flex items-center gap-2.5"><span class="h-8 w-8 rounded-lg bg-ink text-background grid place-items-center font-display text-[13px] font-semibold">RZ</span><div class="font-display text-lg text-ink">Rizwan Zafar</div></div><p class="mt-3 text-ink-soft leading-relaxed max-w-md">Rizwan Zafar, Product &amp; Program Executive. Scaling regulated fintech infrastructure in complex markets across MENA and South Asia.</p><div class="mt-5 inline-flex items-center gap-2 text-xs text-ink-soft"><span class="inline-flex h-2 w-2 rounded-full bg-[var(--accent-emerald)]" aria-hidden="true"></span><span class="font-mono-tech uppercase tracking-[0.18em]">Open to senior roles</span></div></div><div><div class="text-[10px] uppercase tracking-[0.22em] text-ink-soft font-mono-tech mb-3">Site</div><ul class="space-y-2"><li><a href="/product-work/" class="hover:text-ink text-ink-soft inline-block py-1"><span class="rz-link">Work</span></a></li><li><a href="/journey/" class="hover:text-ink text-ink-soft inline-block py-1"><span class="rz-link">Journey</span></a></li><li><a class="hover:text-ink text-ink-soft inline-block py-1 active" href="/blog/" data-status="active" aria-current="page"><span class="rz-link">Writing</span></a></li><li><a href="/resume/" class="hover:text-ink text-ink-soft inline-block py-1"><span class="rz-link">Resume</span></a></li><li><a href="/products/" class="hover:text-ink text-ink-soft inline-block py-1"><span class="rz-link">Products</span></a></li><li><a href="/topics/" class="hover:text-ink text-ink-soft inline-block py-1"><span class="rz-link">Topics</span></a></li><li><a href="/sitemap/" class="hover:text-ink text-ink-soft inline-block py-1"><span class="rz-link">Sitemap</span></a></li></ul></div><div><div class="text-[10px] uppercase tracking-[0.22em] text-ink-soft font-mono-tech mb-3">Connect</div><ul class="space-y-2"><li><a href="/contact/#book" data-analytics-event="cta_click" data-analytics-cta-id="book_intro_call" data-analytics-cta-location="footer" data-analytics-cta-destination="/contact/#book" class="hover:text-ink text-ink-soft inline-block py-1"><span class="rz-link">Book a 15-min intro call</span></a></li><li><a href="/for/" class="hover:text-ink text-ink-soft inline-block py-1"><span class="rz-link">For recruiters</span></a></li><li><a href="/contact/" class="hover:text-ink text-ink-soft inline-block py-1"><span class="rz-link">Contact</span></a></li><li><a href="mailto:rizwanzaffar.pk@gmail.com" data-analytics-event="outbound_click" data-analytics-outbound-domain="mailto" data-analytics-outbound-url="mailto:rizwanzaffar.pk@gmail.com" data-analytics-outbound-location="footer" class="hover:text-ink text-ink-soft break-all inline-block py-1"><span class="rz-link">rizwanzaffar.pk@gmail.com</span></a></li></ul><div class="mt-5"><div class="text-[10px] uppercase tracking-[0.22em] text-ink-soft font-mono-tech mb-3">Follow</div><ul class="flex items-center gap-2 "><li><a href="https://www.linkedin.com/in/rizwanzaffar" target="_blank" rel="noreferrer me" data-analytics-event="outbound_click" data-analytics-outbound-domain="www.linkedin.com" data-analytics-outbound-url="https://www.linkedin.com/in/rizwanzaffar" data-analytics-outbound-location="footer" aria-label="Rizwan Zafar on LinkedIn" title="LinkedIn · /in/rizwanzaffar" class="grid place-items-center h-9 w-9 rounded-full border border-rule text-ink-soft hover:text-ink hover:border-ink/40 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)]"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" class="w-4 h-4"><path d="M20.45 20.45h-3.55v-5.56c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.66H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"></path></svg></a></li><li><a href="https://twitter.com/rizwan_zafar" target="_blank" rel="noreferrer me" data-analytics-event="outbound_click" data-analytics-outbound-domain="twitter.com" data-analytics-outbound-url="https://twitter.com/rizwan_zafar" data-analytics-outbound-location="footer" aria-label="Rizwan Zafar on X (Twitter)" title="X (Twitter) · @rizwan_zafar" class="grid place-items-center h-9 w-9 rounded-full border border-rule text-ink-soft hover:text-ink hover:border-ink/40 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)]"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" class="w-4 h-4"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231zm-1.161 17.52h1.833L7.084 4.126H5.117l11.966 15.644z"></path></svg></a></li><li><a href="https://github.com/RizwanZafaris" target="_blank" rel="noreferrer me" data-analytics-event="outbound_click" data-analytics-outbound-domain="github.com" data-analytics-outbound-url="https://github.com/RizwanZafaris" data-analytics-outbound-location="footer" aria-label="Rizwan Zafar on GitHub" title="GitHub · @RizwanZafaris" class="grid place-items-center h-9 w-9 rounded-full border border-rule text-ink-soft hover:text-ink hover:border-ink/40 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)]"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" class="w-4 h-4"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56 0-.27-.01-1-.02-1.96-3.2.69-3.87-1.54-3.87-1.54-.52-1.33-1.28-1.69-1.28-1.69-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.76 2.7 1.25 3.36.96.1-.74.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.15 1.18a10.94 10.94 0 0 1 5.74 0c2.19-1.49 3.15-1.18 3.15-1.18.63 1.58.23 2.75.12 3.04.74.81 1.18 1.84 1.18 3.1 0 4.43-2.7 5.41-5.27 5.69.41.36.78 1.06.78 2.13 0 1.54-.01 2.78-.01 3.16 0 .31.21.67.8.56C20.21 21.38 23.5 17.08 23.5 12 23.5 5.65 18.35.5 12 .5z"></path></svg></a></li></ul></div></div></div><div class="relative border-t border-rule"><div class="mx-auto max-w-6xl px-6 py-5 text-xs text-ink-soft flex flex-wrap justify-between gap-3 font-mono-tech"><span>© <span data-current-year="true">2026</span> <!-- -->Rizwan Zafar<!-- --> · Dubai, UAE</span><span>Built for senior Product &amp; Program roles in fintech</span></div></div><script>(() => {
+  const year = String(new Date().getFullYear());
+  document.querySelectorAll("[data-current-year]").forEach((node) => {
+    node.textContent = year;
+  });
+})();</script></footer></div></body></html>

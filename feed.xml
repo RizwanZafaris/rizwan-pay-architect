@@ -5,8 +5,32 @@
   <link>https://rzifi.com/blog/</link>
   <description>Essays on payment infrastructure, fintech product, risk, settlement, AI and program leadership.</description>
   <language>en</language>
-  <lastBuildDate>Tue, 21 Jul 2026 00:57:43 GMT</lastBuildDate>
+  <lastBuildDate>Tue, 21 Jul 2026 10:38:14 GMT</lastBuildDate>
   <item>
+    <title>Adyen&apos;s Orb and Talon.One Close Shows Product Integration Is the Strategy</title>
+    <link>https://rzifi.com/blog/adyen-orb-talonone-product-integration-model/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/adyen-orb-talonone-product-integration-model/</guid>
+    <pubDate>Tue, 21 Jul 2026 00:00:00 GMT</pubDate>
+    <category>Product Management</category>
+    <description>Adyen&apos;s Orb and Talon.One integration shows why product leaders need clear customer identity, billing, payments, and execution boundaries.</description>
+  </item>
+<item>
+    <title>Checkout Friction Is an Acceptance Operating Model</title>
+    <link>https://rzifi.com/blog/checkout-friction-acceptance-operating-model/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/checkout-friction-acceptance-operating-model/</guid>
+    <pubDate>Tue, 21 Jul 2026 00:00:00 GMT</pubDate>
+    <category>Merchant Acquiring</category>
+    <description>Checkout.com&apos;s MENA friction data shows why acceptance needs saved credentials, payment choice, routing, and trust owned as one operating model.</description>
+  </item>
+<item>
+    <title>OmniRoute Shows AI Gateways Need Routing Controls, Not Just More Providers</title>
+    <link>https://rzifi.com/blog/omniroute-ai-gateway-routing-control-model/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/omniroute-ai-gateway-routing-control-model/</guid>
+    <pubDate>Tue, 21 Jul 2026 00:00:00 GMT</pubDate>
+    <category>AI &amp; Product Operations</category>
+    <description>OmniRoute&apos;s AI gateway shows why fintech teams need routing controls, quotas, audit trails, and fallback rules before agent usage scales.</description>
+  </item>
+<item>
     <title>KTransformers Makes Local AI A Cost-Control Question</title>
     <link>https://rzifi.com/blog/ktransformers-local-inference-cost-control/</link>
     <guid isPermaLink="true">https://rzifi.com/blog/ktransformers-local-inference-cost-control/</guid>
@@ -221,30 +245,6 @@
     <pubDate>Sat, 04 Jul 2026 00:00:00 GMT</pubDate>
     <category>Fraud &amp; Risk</category>
     <description>Adyen says 3% of identities drove half of refund value on its platform. The right response is lifecycle controls, not more checkout friction.</description>
-  </item>
-<item>
-    <title>UK Payments Draws the Right Boundary Between Core Rails and Products</title>
-    <link>https://rzifi.com/blog/uk-retail-payments-core-product-programme-boundary/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/uk-retail-payments-core-product-programme-boundary/</guid>
-    <pubDate>Sat, 04 Jul 2026 00:00:00 GMT</pubDate>
-    <category>Program Management</category>
-    <description>The UK&apos;s new retail-payments model separates one core infrastructure from product-level rules. That boundary can make or break the programme.</description>
-  </item>
-<item>
-    <title>85,000 Amex Locations: The UAE Acceptance Work Starts Now</title>
-    <link>https://rzifi.com/blog/amex-network-international-uae-acceptance-operating-model/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/amex-network-international-uae-acceptance-operating-model/</guid>
-    <pubDate>Fri, 03 Jul 2026 00:00:00 GMT</pubDate>
-    <category>Merchant Acquiring</category>
-    <description>Amex and Network target 85,000 UAE acceptance locations. The real test is merchant activation, settlement, reconciliation, and usage.</description>
-  </item>
-<item>
-    <title>How to Track a SWIFT Payment Step by Step</title>
-    <link>https://rzifi.com/blog/tracking-a-swift-payment-step-by-step/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/tracking-a-swift-payment-step-by-step/</guid>
-    <pubDate>Fri, 03 Jul 2026 00:00:00 GMT</pubDate>
-    <category>Cross-Border Payments</category>
-    <description>A practical guide to tracking a SWIFT payment using the UETR and gpi Tracker, what to ask your bank and how to read the status.</description>
   </item>
 </channel>
 </rss>
