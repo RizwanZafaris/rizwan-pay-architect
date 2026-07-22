@@ -13,6 +13,14 @@ import { marked } from "marked";
 import authorPortrait from "@/assets/rizwan-zafar-cutout-460.webp";
 
 const OG_IMAGE_OVERRIDES: Record<string, string> = {
+  "capital-one-discover-network-issuer-routing-strategy":
+    "/og/blog/capital-one-discover-network-issuer-routing-strategy-v20260722.png",
+  "klarna-bnpl-economics-product-scorecard":
+    "/og/blog/klarna-bnpl-economics-product-scorecard-v20260722.png",
+  "mambu-swift-connectivity-programme-operating-model":
+    "/og/blog/mambu-swift-connectivity-programme-operating-model-v20260722.png",
+  "agent-payment-guard-x402-risk-gates":
+    "/og/blog/agent-payment-guard-x402-risk-gates-v20260722.png",
   "checkout-friction-acceptance-operating-model":
     "/og/blog/checkout-friction-acceptance-operating-model-v20260721.png",
   "adyen-orb-talonone-product-integration-model":

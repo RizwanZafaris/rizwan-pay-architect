@@ -40,6 +40,102 @@ export const categories = [
 
 export const posts: Post[] = [
   {
+    "slug": "agent-payment-guard-x402-risk-gates",
+    "title": "Agent Payment Guard Shows x402 Needs Pre-Payment Risk Gates",
+    "metaTitle": "Agent Payment Guard: x402 Risk Gates",
+    "date": "2026-07-22",
+    "category": "AI & Product Operations",
+    "readingTime": "7 min read",
+    "description": "agent-payment-guard shows why x402 and agentic payments need pre-payment risk gates, mandate checks, and fail-closed controls.",
+    "thesis": "Agentic payments do not become safe because the payment rail works. They become safe when every agent payment has an approved mandate, bounded amount, trusted counterparty, and a pre-signing risk gate that can stop the transaction.",
+    "tags": [
+      "AI agents",
+      "x402",
+      "agentic payments",
+      "payment risk",
+      "repo radar",
+      "prompt injection"
+    ],
+    "relatedArticles": [
+      "/blog/cross-river-stripe-agentic-card-mandate-controls",
+      "/blog/agentic-commerce-visa-mastercard-payments",
+      "/blog/stripe-projects-agent-product-controls",
+      "/blog/ai-auto-escalation-payment-ops"
+    ]
+  },
+  {
+    "slug": "capital-one-discover-network-issuer-routing-strategy",
+    "title": "Capital One's Discover Test Turns Issuing Into Network Strategy",
+    "metaTitle": "Capital One Discover Network: Issuer Strategy",
+    "date": "2026-07-22",
+    "category": "Card Issuing",
+    "readingTime": "7 min read",
+    "description": "Capital One's Discover credit-card tests show why issuer strategy now spans network routing, acceptance, migration, and customer trust.",
+    "thesis": "The Discover integration is not just a card-portfolio migration. It is a test of whether an issuer can move economics, acceptance, wallets, servicing, and customer trust onto a new network without making the customer feel the operating model.",
+    "tags": [
+      "Capital One",
+      "Discover Network",
+      "card issuing",
+      "issuer processing",
+      "card networks",
+      "portfolio migration"
+    ],
+    "relatedArticles": [
+      "/blog/marqeta-stip-issuer-resilience-operating-model",
+      "/blog/processor-only-card-issuing-operating-model",
+      "/blog/thredd-sutton-bin-sponsorship-operating-model",
+      "/blog/mastercard-wallet-services-tokenization-operating-model"
+    ]
+  },
+  {
+    "slug": "klarna-bnpl-economics-product-scorecard",
+    "title": "Klarna Shows BNPL Product Strategy Has Moved Past Checkout",
+    "metaTitle": "Klarna BNPL: Product Economics Scorecard",
+    "date": "2026-07-22",
+    "category": "Product Management",
+    "readingTime": "7 min read",
+    "description": "Klarna's 2026 economics show why BNPL product teams must manage retention, credit risk, margin, and repeat engagement.",
+    "thesis": "BNPL is no longer won by adding a pay-later button. The product problem has moved to repeat engagement, transaction margin, credit discipline, merchant distribution, and a scorecard that proves the product is worth default placement.",
+    "tags": [
+      "product management",
+      "Klarna",
+      "BNPL",
+      "product economics",
+      "checkout",
+      "retention"
+    ],
+    "relatedArticles": [
+      "/blog/product-management-for-payments-platforms",
+      "/blog/onboarding-conversion-vs-default-rate-tradeoff",
+      "/blog/risk-adjusted-backlog-payments",
+      "/blog/stripe-global-demand-product-system"
+    ]
+  },
+  {
+    "slug": "mambu-swift-connectivity-programme-operating-model",
+    "title": "Mambu's Swift Certification Is a Connectivity Programme Lesson",
+    "metaTitle": "Mambu Swift Certification: Programme Lessons",
+    "date": "2026-07-22",
+    "category": "Program Management",
+    "readingTime": "7 min read",
+    "description": "Mambu's Swift Business Connect certification shows how payment connectivity programmes need governance, sequencing, and ownership.",
+    "thesis": "Managed Swift connectivity sounds like infrastructure simplification. The real delivery lesson is sharper: programme leaders still need ownership across connectivity, compliance, sponsor banks, operations, reconciliation, and customer go-live gates.",
+    "tags": [
+      "program management",
+      "Mambu",
+      "Swift",
+      "payment connectivity",
+      "migration",
+      "governance"
+    ],
+    "relatedArticles": [
+      "/blog/building-pmo-from-scratch-fintech",
+      "/blog/vendor-governance-fintech-pmo",
+      "/blog/uk-retail-payments-core-product-programme-boundary",
+      "/blog/swift-compliance-checklist-for-banks-and-fintechs"
+    ]
+  },
+  {
     "slug": "adyen-orb-talonone-product-integration-model",
     "title": "Adyen's Orb and Talon.One Close Shows Product Integration Is the Strategy",
     "metaTitle": "Adyen Orb Talon.One Product Integration",
