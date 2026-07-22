@@ -5,8 +5,40 @@
   <link>https://rzifi.com/blog/</link>
   <description>Essays on payment infrastructure, fintech product, risk, settlement, AI and program leadership.</description>
   <language>en</language>
-  <lastBuildDate>Wed, 22 Jul 2026 00:55:52 GMT</lastBuildDate>
+  <lastBuildDate>Wed, 22 Jul 2026 06:47:27 GMT</lastBuildDate>
   <item>
+    <title>Agent Payment Guard Shows x402 Needs Pre-Payment Risk Gates</title>
+    <link>https://rzifi.com/blog/agent-payment-guard-x402-risk-gates/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/agent-payment-guard-x402-risk-gates/</guid>
+    <pubDate>Wed, 22 Jul 2026 00:00:00 GMT</pubDate>
+    <category>AI &amp; Product Operations</category>
+    <description>agent-payment-guard shows why x402 and agentic payments need pre-payment risk gates, mandate checks, and fail-closed controls.</description>
+  </item>
+<item>
+    <title>Capital One&apos;s Discover Test Turns Issuing Into Network Strategy</title>
+    <link>https://rzifi.com/blog/capital-one-discover-network-issuer-routing-strategy/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/capital-one-discover-network-issuer-routing-strategy/</guid>
+    <pubDate>Wed, 22 Jul 2026 00:00:00 GMT</pubDate>
+    <category>Card Issuing</category>
+    <description>Capital One&apos;s Discover credit-card tests show why issuer strategy now spans network routing, acceptance, migration, and customer trust.</description>
+  </item>
+<item>
+    <title>Klarna Shows BNPL Product Strategy Has Moved Past Checkout</title>
+    <link>https://rzifi.com/blog/klarna-bnpl-economics-product-scorecard/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/klarna-bnpl-economics-product-scorecard/</guid>
+    <pubDate>Wed, 22 Jul 2026 00:00:00 GMT</pubDate>
+    <category>Product Management</category>
+    <description>Klarna&apos;s 2026 economics show why BNPL product teams must manage retention, credit risk, margin, and repeat engagement.</description>
+  </item>
+<item>
+    <title>Mambu&apos;s Swift Certification Is a Connectivity Programme Lesson</title>
+    <link>https://rzifi.com/blog/mambu-swift-connectivity-programme-operating-model/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/mambu-swift-connectivity-programme-operating-model/</guid>
+    <pubDate>Wed, 22 Jul 2026 00:00:00 GMT</pubDate>
+    <category>Program Management</category>
+    <description>Mambu&apos;s Swift Business Connect certification shows how payment connectivity programmes need governance, sequencing, and ownership.</description>
+  </item>
+<item>
     <title>Adyen&apos;s Orb and Talon.One Close Shows Product Integration Is the Strategy</title>
     <link>https://rzifi.com/blog/adyen-orb-talonone-product-integration-model/</link>
     <guid isPermaLink="true">https://rzifi.com/blog/adyen-orb-talonone-product-integration-model/</guid>
@@ -213,38 +245,6 @@
     <pubDate>Tue, 07 Jul 2026 00:00:00 GMT</pubDate>
     <category>Cross-Border Payments</category>
     <description>Will crypto and stablecoins replace SWIFT? The honest, practitioner answer: what works, what does not, and where the two will coexist.</description>
-  </item>
-<item>
-    <title>Cross River and Stripe Show Why Agentic Cards Need a Mandate Ledger</title>
-    <link>https://rzifi.com/blog/cross-river-stripe-agentic-card-mandate-controls/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/cross-river-stripe-agentic-card-mandate-controls/</guid>
-    <pubDate>Mon, 06 Jul 2026 00:00:00 GMT</pubDate>
-    <category>Payment Infrastructure</category>
-    <description>Cross River and Stripe are expanding agentic card issuing. The hard product problem is preserving user intent across auth, clearing, and disputes.</description>
-  </item>
-<item>
-    <title>Amex and Apple Pay Turn Rewards Into a Checkout Control Plane</title>
-    <link>https://rzifi.com/blog/amex-apple-pay-rewards-wallet-control-plane/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/amex-apple-pay-rewards-wallet-control-plane/</guid>
-    <pubDate>Sun, 05 Jul 2026 00:00:00 GMT</pubDate>
-    <category>Payment Infrastructure</category>
-    <description>Amex now lets eligible US card members use points through Apple Pay online. The real work is eligibility, reversals, reconciliation, and value.</description>
-  </item>
-<item>
-    <title>GitHub Copilot Session Streaming Makes Agent Governance Observable</title>
-    <link>https://rzifi.com/blog/github-copilot-agent-session-streaming-governance/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/github-copilot-agent-session-streaming-governance/</guid>
-    <pubDate>Sun, 05 Jul 2026 00:00:00 GMT</pubDate>
-    <category>AI &amp; Product Operations</category>
-    <description>GitHub now streams Copilot agent prompts, responses, and tool calls. Enterprises need a governed telemetry pipeline, not another unused log feed.</description>
-  </item>
-<item>
-    <title>Adyen&apos;s 3% Refund Signal: Fraud Controls Need a Lifecycle</title>
-    <link>https://rzifi.com/blog/adyen-refund-concentration-fraud-lifecycle-controls/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/adyen-refund-concentration-fraud-lifecycle-controls/</guid>
-    <pubDate>Sat, 04 Jul 2026 00:00:00 GMT</pubDate>
-    <category>Fraud &amp; Risk</category>
-    <description>Adyen says 3% of identities drove half of refund value on its platform. The right response is lifecycle controls, not more checkout friction.</description>
   </item>
 </channel>
 </rss>
