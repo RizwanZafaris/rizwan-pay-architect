@@ -95,7 +95,7 @@ The natural mistake is to put every control at account opening. That makes onboa
 
 Card ownership checks are more useful when they sit near high-risk actions: adding a card, changing a payout method, requesting a refund, attempting a high-value transaction, changing account credentials, or moving money after dormant-account reactivation.
 
-Visa's May 2026 [Tap to Confirm and Tap to Activate](https://usa.visa.com/about-visa/newsroom/press-releases.releaseId.22406.html) announcement points in the same direction from the issuer side. Visa described using the physical card and EMV cryptography as an authentication factor for actions such as activation, high-value transfers, password changes, and account-limit changes.
+iDenfy's broader [bank verification service](https://idenfy.com/bank-verification-service/) points in the same direction from the account-ownership side. The product page describes using open banking data to verify account ownership and identity details, with coverage across thousands of banks in European markets.
 
 The common lesson is simple: possession evidence is strongest when it is attached to a specific action.
 
