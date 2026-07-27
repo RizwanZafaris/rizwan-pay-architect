@@ -5,8 +5,40 @@
   <link>https://rzifi.com/blog/</link>
   <description>Essays on payment infrastructure, fintech product, risk, settlement, AI and program leadership.</description>
   <language>en</language>
-  <lastBuildDate>Mon, 27 Jul 2026 01:07:52 GMT</lastBuildDate>
+  <lastBuildDate>Mon, 27 Jul 2026 06:07:42 GMT</lastBuildDate>
   <item>
+    <title>Alibaba&apos;s Open Code Review Shows AI Review Needs Hard Rails</title>
+    <link>https://rzifi.com/blog/alibaba-open-code-review-agent-governance/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/alibaba-open-code-review-agent-governance/</guid>
+    <pubDate>Mon, 27 Jul 2026 00:00:00 GMT</pubDate>
+    <category>AI &amp; Product Operations</category>
+    <description>Alibaba&apos;s open-code-review repo shows why AI code review needs deterministic file selection, rule matching, and audit gates before autonomy.</description>
+  </item>
+<item>
+    <title>Ecommpay Shows SMB Payments Need a Product Ladder</title>
+    <link>https://rzifi.com/blog/ecommpay-small-business-payments-product-ladder/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/ecommpay-small-business-payments-product-ladder/</guid>
+    <pubDate>Mon, 27 Jul 2026 00:00:00 GMT</pubDate>
+    <category>Product Management</category>
+    <description>Ecommpay&apos;s UK small-business platform shows how payment teams can turn enterprise rails into a self-serve product without hiding risk.</description>
+  </item>
+<item>
+    <title>iDenfy Shows Card Verification Needs Its Own Risk Gate</title>
+    <link>https://rzifi.com/blog/idenfy-card-verification-risk-gate/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/idenfy-card-verification-risk-gate/</guid>
+    <pubDate>Mon, 27 Jul 2026 00:00:00 GMT</pubDate>
+    <category>Fraud &amp; Risk</category>
+    <description>iDenfy&apos;s standalone card verification platform shows why fintech teams need ownership, audit trails, and fraud controls before onboarding.</description>
+  </item>
+<item>
+    <title>Mastercard&apos;s Virtual Card Controls Are a Programme-Gate Lesson</title>
+    <link>https://rzifi.com/blog/mastercard-virtual-card-controls-programme-gates/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/mastercard-virtual-card-controls-programme-gates/</guid>
+    <pubDate>Mon, 27 Jul 2026 00:00:00 GMT</pubDate>
+    <category>Program Management</category>
+    <description>Mastercard&apos;s virtual card controls show why B2B payment programmes need issuer, clearing, API, and partner gates before scale.</description>
+  </item>
+<item>
     <title>Agent Payment Guard Shows x402 Needs Pre-Payment Risk Gates</title>
     <link>https://rzifi.com/blog/agent-payment-guard-x402-risk-gates/</link>
     <guid isPermaLink="true">https://rzifi.com/blog/agent-payment-guard-x402-risk-gates/</guid>
@@ -213,38 +245,6 @@
     <pubDate>Thu, 09 Jul 2026 00:00:00 GMT</pubDate>
     <category>Product Management</category>
     <description>PNC&apos;s mobile app overhaul shows why financial-app modernization needs phased rollout, migration metrics, support readiness, and quality gates.</description>
-  </item>
-<item>
-    <title>Satispay&apos;s Mastercard Cards Turn a Wallet Into a Card Programme</title>
-    <link>https://rzifi.com/blog/satispay-mastercard-wallet-card-programme/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/satispay-mastercard-wallet-card-programme/</guid>
-    <pubDate>Thu, 09 Jul 2026 00:00:00 GMT</pubDate>
-    <category>Payment Infrastructure</category>
-    <description>Satispay&apos;s Mastercard debit cards show how a wallet becomes a card programme across acceptance, funding, tiers, controls, fees, and disputes.</description>
-  </item>
-<item>
-    <title>Agent Skills Turn Prompting Into an Operating Model</title>
-    <link>https://rzifi.com/blog/agent-skills-ai-coding-operating-model/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/agent-skills-ai-coding-operating-model/</guid>
-    <pubDate>Tue, 07 Jul 2026 00:00:00 GMT</pubDate>
-    <category>AI &amp; Product Operations</category>
-    <description>Agent-skills repositories show why AI coding agents need reusable workflows, verification gates, security review, and clear exit criteria.</description>
-  </item>
-<item>
-    <title>Checkout.com Shows Pay-In and Payout Need One Control Plane</title>
-    <link>https://rzifi.com/blog/checkout-unified-payin-payout-control-plane/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/checkout-unified-payin-payout-control-plane/</guid>
-    <pubDate>Tue, 07 Jul 2026 00:00:00 GMT</pubDate>
-    <category>Payment Infrastructure</category>
-    <description>Checkout.com&apos;s issuing and acquiring push shows why platforms need one control plane for pay-in, payout, liquidity, risk, and reconciliation.</description>
-  </item>
-<item>
-    <title>SWIFT and Cryptocurrency: The Honest Take</title>
-    <link>https://rzifi.com/blog/swift-and-cryptocurrency-the-honest-take/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/swift-and-cryptocurrency-the-honest-take/</guid>
-    <pubDate>Tue, 07 Jul 2026 00:00:00 GMT</pubDate>
-    <category>Cross-Border Payments</category>
-    <description>Will crypto and stablecoins replace SWIFT? The honest, practitioner answer: what works, what does not, and where the two will coexist.</description>
   </item>
 </channel>
 </rss>
