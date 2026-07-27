@@ -40,6 +40,102 @@ export const categories = [
 
 export const posts: Post[] = [
   {
+    "slug": "alibaba-open-code-review-agent-governance",
+    "title": "Alibaba's Open Code Review Shows AI Review Needs Hard Rails",
+    "metaTitle": "Alibaba Open Code Review: Hard Rails",
+    "date": "2026-07-27",
+    "category": "AI & Product Operations",
+    "readingTime": "7 min read",
+    "description": "Alibaba's open-code-review repo shows why AI code review needs deterministic file selection, rule matching, and audit gates before autonomy.",
+    "thesis": "Open-code-review is a useful repo-radar signal because it treats AI review as an engineered workflow. The lesson for fintech teams is to constrain file selection, context, rules, and comment placement before trusting agent output.",
+    "tags": [
+      "Alibaba",
+      "open-code-review",
+      "AI code review",
+      "agent governance",
+      "developer productivity",
+      "repo radar"
+    ],
+    "relatedArticles": [
+      "/blog/github-copilot-opentelemetry-agent-auditability",
+      "/blog/omniroute-ai-gateway-routing-control-model",
+      "/blog/agent-payment-guard-x402-risk-gates",
+      "/blog/agent-skills-ai-coding-operating-model"
+    ]
+  },
+  {
+    "slug": "ecommpay-small-business-payments-product-ladder",
+    "title": "Ecommpay Shows SMB Payments Need a Product Ladder",
+    "metaTitle": "Ecommpay SMB Payments Product Ladder",
+    "date": "2026-07-27",
+    "category": "Product Management",
+    "readingTime": "7 min read",
+    "description": "Ecommpay's UK small-business platform shows how payment teams can turn enterprise rails into a self-serve product without hiding risk.",
+    "thesis": "The product lesson in Ecommpay for Small Businesses is not cheaper card processing. It is how an enterprise payment stack becomes a staged product ladder for merchants with limited time, volume, and technical capacity.",
+    "tags": [
+      "Ecommpay",
+      "product management",
+      "small business payments",
+      "hosted checkout",
+      "payment acceptance",
+      "SMB fintech"
+    ],
+    "relatedArticles": [
+      "/blog/product-management-for-payments-platforms",
+      "/blog/checkout-friction-acceptance-operating-model",
+      "/blog/stripe-global-demand-product-system",
+      "/blog/hosted-checkout-vs-direct-card-processing"
+    ]
+  },
+  {
+    "slug": "idenfy-card-verification-risk-gate",
+    "title": "iDenfy Shows Card Verification Needs Its Own Risk Gate",
+    "metaTitle": "iDenfy Card Verification: Risk Gate",
+    "date": "2026-07-27",
+    "category": "Fraud & Risk",
+    "readingTime": "7 min read",
+    "description": "iDenfy's standalone card verification platform shows why fintech teams need ownership, audit trails, and fraud controls before onboarding.",
+    "thesis": "Standalone card verification is not just a compliance widget. It is a risk gate that decides whether card ownership, identity evidence, account control, and onboarding policy are strong enough before money movement begins.",
+    "tags": [
+      "iDenfy",
+      "bank card verification",
+      "payment fraud",
+      "onboarding risk",
+      "card ownership",
+      "fraud controls"
+    ],
+    "relatedArticles": [
+      "/blog/layered-fraud-controls-payments-stack",
+      "/blog/merchant-onboarding-growth-risk-compliance",
+      "/blog/adyen-refund-concentration-fraud-lifecycle-controls",
+      "/blog/kyb-automation-without-blowing-up-risk"
+    ]
+  },
+  {
+    "slug": "mastercard-virtual-card-controls-programme-gates",
+    "title": "Mastercard's Virtual Card Controls Are a Programme-Gate Lesson",
+    "metaTitle": "Mastercard Virtual Cards: Programme Gates",
+    "date": "2026-07-27",
+    "category": "Program Management",
+    "readingTime": "7 min read",
+    "description": "Mastercard's virtual card controls show why B2B payment programmes need issuer, clearing, API, and partner gates before scale.",
+    "thesis": "Mastercard's virtual card platform update is a delivery lesson for B2B payment programmes: controls, clearing, API access, partners, wallets, and operating evidence need their own gates before scale.",
+    "tags": [
+      "Mastercard",
+      "virtual cards",
+      "programme management",
+      "B2B payments",
+      "issuer controls",
+      "embedded payments"
+    ],
+    "relatedArticles": [
+      "/blog/mambu-swift-connectivity-programme-operating-model",
+      "/blog/virtual-card-accounts-product-guide",
+      "/blog/processor-only-card-issuing-operating-model",
+      "/blog/vendor-governance-fintech-pmo"
+    ]
+  },
+  {
     "slug": "agent-payment-guard-x402-risk-gates",
     "title": "Agent Payment Guard Shows x402 Needs Pre-Payment Risk Gates",
     "metaTitle": "Agent Payment Guard: x402 Risk Gates",

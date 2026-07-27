@@ -13,6 +13,13 @@ import { marked } from "marked";
 import authorPortrait from "@/assets/rizwan-zafar-cutout-460.webp";
 
 const OG_IMAGE_OVERRIDES: Record<string, string> = {
+  "idenfy-card-verification-risk-gate": "/og/blog/idenfy-card-verification-risk-gate-v20260727.png",
+  "ecommpay-small-business-payments-product-ladder":
+    "/og/blog/ecommpay-small-business-payments-product-ladder-v20260727.png",
+  "mastercard-virtual-card-controls-programme-gates":
+    "/og/blog/mastercard-virtual-card-controls-programme-gates-v20260727.png",
+  "alibaba-open-code-review-agent-governance":
+    "/og/blog/alibaba-open-code-review-agent-governance-v20260727.png",
   "capital-one-discover-network-issuer-routing-strategy":
     "/og/blog/capital-one-discover-network-issuer-routing-strategy-v20260722.png",
   "klarna-bnpl-economics-product-scorecard":
