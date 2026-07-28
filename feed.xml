@@ -5,8 +5,24 @@
   <link>https://rzifi.com/blog/</link>
   <description>Essays on payment infrastructure, fintech product, risk, settlement, AI and program leadership.</description>
   <language>en</language>
-  <lastBuildDate>Tue, 28 Jul 2026 00:54:25 GMT</lastBuildDate>
+  <lastBuildDate>Tue, 28 Jul 2026 06:35:48 GMT</lastBuildDate>
   <item>
+    <title>Marqeta and zerohash Turn Stablecoins Into Card Programme Controls</title>
+    <link>https://rzifi.com/blog/marqeta-zerohash-stablecoin-card-programme-controls/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/marqeta-zerohash-stablecoin-card-programme-controls/</guid>
+    <pubDate>Tue, 28 Jul 2026 00:00:00 GMT</pubDate>
+    <category>Card Issuing</category>
+    <description>Marqeta and zerohash show why stablecoin-backed cards need issuer controls, custody boundaries, ledger latency, and dispute-ready operations.</description>
+  </item>
+<item>
+    <title>Microsoft Project Perception Makes Security Agents an Operating Model</title>
+    <link>https://rzifi.com/blog/microsoft-project-perception-agentic-security-stack/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/microsoft-project-perception-agentic-security-stack/</guid>
+    <pubDate>Tue, 28 Jul 2026 00:00:00 GMT</pubDate>
+    <category>AI &amp; Product Operations</category>
+    <description>Microsoft Project Perception shows why security agents need context, model routing, permissions, escalation, and operator control before production.</description>
+  </item>
+<item>
     <title>Alibaba&apos;s Open Code Review Shows AI Review Needs Hard Rails</title>
     <link>https://rzifi.com/blog/alibaba-open-code-review-agent-governance/</link>
     <guid isPermaLink="true">https://rzifi.com/blog/alibaba-open-code-review-agent-governance/</guid>
@@ -229,22 +245,6 @@
     <pubDate>Thu, 09 Jul 2026 00:00:00 GMT</pubDate>
     <category>Program Management</category>
     <description>Baringa&apos;s UK payments-hub migration case shows why regulated programmes need delivery gates, dependency control, live proving, and exit plans.</description>
-  </item>
-<item>
-    <title>GitHub Copilot OpenTelemetry Makes Agent Work Auditable</title>
-    <link>https://rzifi.com/blog/github-copilot-opentelemetry-agent-auditability/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/github-copilot-opentelemetry-agent-auditability/</guid>
-    <pubDate>Thu, 09 Jul 2026 00:00:00 GMT</pubDate>
-    <category>AI &amp; Product Operations</category>
-    <description>GitHub Copilot&apos;s managed OpenTelemetry export shows why AI coding agents need approved collectors, policy, traces, and evidence review.</description>
-  </item>
-<item>
-    <title>PNC&apos;s App Overhaul Is a Product Migration, Not a Redesign</title>
-    <link>https://rzifi.com/blog/pnc-mobile-app-modernization-product-migration/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/pnc-mobile-app-modernization-product-migration/</guid>
-    <pubDate>Thu, 09 Jul 2026 00:00:00 GMT</pubDate>
-    <category>Product Management</category>
-    <description>PNC&apos;s mobile app overhaul shows why financial-app modernization needs phased rollout, migration metrics, support readiness, and quality gates.</description>
   </item>
 </channel>
 </rss>
