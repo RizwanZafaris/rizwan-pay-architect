@@ -40,6 +40,54 @@ export const categories = [
 
 export const posts: Post[] = [
   {
+    "slug": "marqeta-zerohash-stablecoin-card-programme-controls",
+    "title": "Marqeta and zerohash Turn Stablecoins Into Card Programme Controls",
+    "metaTitle": "Marqeta zerohash Stablecoin Card Controls",
+    "date": "2026-07-28",
+    "category": "Card Issuing",
+    "readingTime": "7 min read",
+    "description": "Marqeta and zerohash show why stablecoin-backed cards need issuer controls, custody boundaries, ledger latency, and dispute-ready operations.",
+    "thesis": "A stablecoin-backed card programme is not a crypto shortcut. It is an issuing operating model where custody, authorization, ledgering, fiat merchant settlement, risk policy, and customer disclosures have to meet inside one decision loop.",
+    "tags": [
+      "Marqeta",
+      "zerohash",
+      "stablecoin cards",
+      "card issuing",
+      "issuer processing",
+      "ledger controls"
+    ],
+    "relatedArticles": [
+      "/blog/processor-only-card-issuing-operating-model",
+      "/blog/marqeta-stip-issuer-resilience-operating-model",
+      "/blog/cross-river-stripe-agentic-card-mandate-controls",
+      "/blog/reconciliation-is-product-infrastructure"
+    ]
+  },
+  {
+    "slug": "microsoft-project-perception-agentic-security-stack",
+    "title": "Microsoft Project Perception Makes Security Agents an Operating Model",
+    "metaTitle": "Microsoft Project Perception: Agentic Security",
+    "date": "2026-07-28",
+    "category": "AI & Product Operations",
+    "readingTime": "7 min read",
+    "description": "Microsoft Project Perception shows why security agents need context, model routing, permissions, escalation, and operator control before production.",
+    "thesis": "Agentic security is not a model launch. It is an operating model where signals, context, model routing, agent identity, permissions, actuators, and human control have to be designed as one system.",
+    "tags": [
+      "Microsoft",
+      "Project Perception",
+      "agentic security",
+      "Security Copilot",
+      "AI operations",
+      "cyber risk"
+    ],
+    "relatedArticles": [
+      "/blog/microsoft-foundry-production-agent-control-plane",
+      "/blog/agent-payment-guard-x402-risk-gates",
+      "/blog/ai-auto-escalation-payment-ops",
+      "/blog/where-ml-beats-ai-payment-problems-llm-cant-touch"
+    ]
+  },
+  {
     "slug": "alibaba-open-code-review-agent-governance",
     "title": "Alibaba's Open Code Review Shows AI Review Needs Hard Rails",
     "metaTitle": "Alibaba Open Code Review: Hard Rails",

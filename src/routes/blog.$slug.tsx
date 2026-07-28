@@ -13,6 +13,10 @@ import { marked } from "marked";
 import authorPortrait from "@/assets/rizwan-zafar-cutout-460.webp";
 
 const OG_IMAGE_OVERRIDES: Record<string, string> = {
+  "marqeta-zerohash-stablecoin-card-programme-controls":
+    "/og/blog/marqeta-zerohash-stablecoin-card-programme-controls-v20260728.png",
+  "microsoft-project-perception-agentic-security-stack":
+    "/og/blog/microsoft-project-perception-agentic-security-stack-v20260728.png",
   "idenfy-card-verification-risk-gate": "/og/blog/idenfy-card-verification-risk-gate-v2026072701.png",
   "ecommpay-small-business-payments-product-ladder":
     "/og/blog/ecommpay-small-business-payments-product-ladder-v2026072701.png",
