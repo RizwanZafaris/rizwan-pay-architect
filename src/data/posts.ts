@@ -40,6 +40,102 @@ export const categories = [
 
 export const posts: Post[] = [
   {
+    "slug": "github-copilot-gemini-deprecation-model-fallback-contract",
+    "title": "GitHub Copilot's Gemini Deprecation Needs a Model Fallback Contract",
+    "metaTitle": "GitHub Copilot Model Deprecation Governance",
+    "date": "2026-08-01",
+    "category": "AI & Product Operations",
+    "readingTime": "7 min read",
+    "description": "GitHub Copilot's Gemini deprecation shows why AI teams need model inventories, policy owners, eval gates, and fallback contracts.",
+    "thesis": "GitHub Copilot's Gemini model deprecation is a useful repo-radar signal because it turns model choice into an operating dependency. Teams need fallback contracts before a provider removes a model from daily workflows.",
+    "tags": [
+      "GitHub Copilot",
+      "Gemini",
+      "model governance",
+      "AI operations",
+      "enterprise AI",
+      "fallback planning"
+    ],
+    "relatedArticles": [
+      "/blog/github-models-retirement-ai-platform-exit-plan",
+      "/blog/github-copilot-opentelemetry-agent-auditability",
+      "/blog/agent-skills-ai-coding-operating-model",
+      "/blog/ktransformers-local-inference-cost-control"
+    ]
+  },
+  {
+    "slug": "mastercard-scam-merchant-monitoring-acquirer-operations",
+    "title": "Mastercard's Scam Rules Move Fraud Into Acquirer Operations",
+    "metaTitle": "Mastercard Scam Rules: Acquirer Operations",
+    "date": "2026-08-01",
+    "category": "Fraud & Risk",
+    "readingTime": "7 min read",
+    "description": "Mastercard's scam monitoring shift shows why acquirers and payment facilitators need merchant risk ops, evidence, and fast shutdown paths.",
+    "thesis": "Mastercard's scam-merchant monitoring shift is not just a fraud-rule update. It moves scam detection into acquirer and payment facilitator operations, where merchant onboarding, monitoring, dispute evidence, and shutdown authority have to work as one control loop.",
+    "tags": [
+      "Mastercard",
+      "scam monitoring",
+      "merchant risk",
+      "acquirer operations",
+      "payment facilitators",
+      "fraud controls"
+    ],
+    "relatedArticles": [
+      "/blog/idenfy-card-verification-risk-gate",
+      "/blog/merchant-onboarding-growth-risk-compliance",
+      "/blog/adyen-refund-concentration-fraud-lifecycle-controls",
+      "/product-work/merchant-onboarding-kyc"
+    ]
+  },
+  {
+    "slug": "natwest-uinsure-home-insurance-tracker-product-loop",
+    "title": "NatWest and Uinsure Turn Insurance Into a Product Loop",
+    "metaTitle": "NatWest Uinsure: Insurance Product Loop",
+    "date": "2026-08-01",
+    "category": "Product Management",
+    "readingTime": "7 min read",
+    "description": "NatWest and Uinsure show how banks can turn home insurance from a one-off sale into a renewal, data, trust, and service loop.",
+    "thesis": "The NatWest and Uinsure partnership is a product-management lesson: the useful surface is not a faster quote alone. It is a loop that remembers the policy, monitors renewal timing, compares cover, and gives the customer a reason to trust the bank again.",
+    "tags": [
+      "NatWest",
+      "Uinsure",
+      "product management",
+      "embedded insurance",
+      "banking apps",
+      "renewal experience"
+    ],
+    "relatedArticles": [
+      "/blog/product-management-for-payments-platforms",
+      "/blog/stripe-global-demand-product-system",
+      "/blog/ecommpay-small-business-payments-product-ladder",
+      "/product-work/tapmad-dcb-monetisation-wallet-migration"
+    ]
+  },
+  {
+    "slug": "scotpayments-2-platform-migration-resilience-programme",
+    "title": "ScotPayments 2.0 Shows Migration Is a Resilience Programme",
+    "metaTitle": "ScotPayments 2.0 Migration Programme",
+    "date": "2026-08-01",
+    "category": "Program Management",
+    "readingTime": "7 min read",
+    "description": "ScotPayments 2.0 shows how payment migrations need resilience gates, live-data planning, supplier coordination, and operational readiness.",
+    "thesis": "ScotPayments 2.0 is a useful programme-management case because the migration was not only a cloud upgrade. It moved live payment services and operational data while protecting public-sector payment continuity.",
+    "tags": [
+      "ScotPayments",
+      "programme management",
+      "payment migration",
+      "public sector payments",
+      "cloud migration",
+      "resilience"
+    ],
+    "relatedArticles": [
+      "/blog/gov-uk-pay-adyen-1000-service-migration",
+      "/blog/mambu-swift-connectivity-programme-operating-model",
+      "/blog/wero-migration-delivery-gates",
+      "/product-work/tapmad-digital-transformation-programme"
+    ]
+  },
+  {
     "slug": "marqeta-zerohash-stablecoin-card-programme-controls",
     "title": "Marqeta and zerohash Turn Stablecoins Into Card Programme Controls",
     "metaTitle": "Marqeta zerohash Stablecoin Card Controls",

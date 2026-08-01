@@ -13,6 +13,14 @@ import { marked } from "marked";
 import authorPortrait from "@/assets/rizwan-zafar-cutout-460.webp";
 
 const OG_IMAGE_OVERRIDES: Record<string, string> = {
+  "mastercard-scam-merchant-monitoring-acquirer-operations":
+    "/og/blog/mastercard-scam-merchant-monitoring-acquirer-operations-v20260801.png",
+  "natwest-uinsure-home-insurance-tracker-product-loop":
+    "/og/blog/natwest-uinsure-home-insurance-tracker-product-loop-v20260801.png",
+  "scotpayments-2-platform-migration-resilience-programme":
+    "/og/blog/scotpayments-2-platform-migration-resilience-programme-v20260801.png",
+  "github-copilot-gemini-deprecation-model-fallback-contract":
+    "/og/blog/github-copilot-gemini-deprecation-model-fallback-contract-v20260801.png",
   "marqeta-zerohash-stablecoin-card-programme-controls":
     "/og/blog/marqeta-zerohash-stablecoin-card-programme-controls-v20260728.png",
   "microsoft-project-perception-agentic-security-stack":
