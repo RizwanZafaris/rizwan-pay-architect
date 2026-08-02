@@ -5,8 +5,40 @@
   <link>https://rzifi.com/blog/</link>
   <description>Essays on payment infrastructure, fintech product, risk, settlement, AI and program leadership.</description>
   <language>en</language>
-  <lastBuildDate>Sun, 02 Aug 2026 01:06:24 GMT</lastBuildDate>
+  <lastBuildDate>Sun, 02 Aug 2026 07:20:55 GMT</lastBuildDate>
   <item>
+    <title>GitHub Copilot&apos;s Gemini Deprecation Needs a Model Fallback Contract</title>
+    <link>https://rzifi.com/blog/github-copilot-gemini-deprecation-model-fallback-contract/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/github-copilot-gemini-deprecation-model-fallback-contract/</guid>
+    <pubDate>Sat, 01 Aug 2026 00:00:00 GMT</pubDate>
+    <category>AI &amp; Product Operations</category>
+    <description>GitHub Copilot&apos;s Gemini deprecation shows why AI teams need model inventories, policy owners, eval gates, and fallback contracts.</description>
+  </item>
+<item>
+    <title>Mastercard&apos;s Scam Rules Move Fraud Into Acquirer Operations</title>
+    <link>https://rzifi.com/blog/mastercard-scam-merchant-monitoring-acquirer-operations/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/mastercard-scam-merchant-monitoring-acquirer-operations/</guid>
+    <pubDate>Sat, 01 Aug 2026 00:00:00 GMT</pubDate>
+    <category>Fraud &amp; Risk</category>
+    <description>Mastercard&apos;s scam monitoring shift shows why acquirers and payment facilitators need merchant risk ops, evidence, and fast shutdown paths.</description>
+  </item>
+<item>
+    <title>NatWest and Uinsure Turn Insurance Into a Product Loop</title>
+    <link>https://rzifi.com/blog/natwest-uinsure-home-insurance-tracker-product-loop/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/natwest-uinsure-home-insurance-tracker-product-loop/</guid>
+    <pubDate>Sat, 01 Aug 2026 00:00:00 GMT</pubDate>
+    <category>Product Management</category>
+    <description>NatWest and Uinsure show how banks can turn home insurance from a one-off sale into a renewal, data, trust, and service loop.</description>
+  </item>
+<item>
+    <title>ScotPayments 2.0 Shows Migration Is a Resilience Programme</title>
+    <link>https://rzifi.com/blog/scotpayments-2-platform-migration-resilience-programme/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/scotpayments-2-platform-migration-resilience-programme/</guid>
+    <pubDate>Sat, 01 Aug 2026 00:00:00 GMT</pubDate>
+    <category>Program Management</category>
+    <description>ScotPayments 2.0 shows how payment migrations need resilience gates, live-data planning, supplier coordination, and operational readiness.</description>
+  </item>
+<item>
     <title>Marqeta and zerohash Turn Stablecoins Into Card Programme Controls</title>
     <link>https://rzifi.com/blog/marqeta-zerohash-stablecoin-card-programme-controls/</link>
     <guid isPermaLink="true">https://rzifi.com/blog/marqeta-zerohash-stablecoin-card-programme-controls/</guid>
@@ -213,38 +245,6 @@
     <pubDate>Wed, 15 Jul 2026 00:00:00 GMT</pubDate>
     <category>Merchant Acquiring</category>
     <description>Ajman Bank and AFS show why merchant acquiring is now bank platform work: onboarding, acceptance, settlement, processing, and support.</description>
-  </item>
-<item>
-    <title>Checkout.com Shows AI Payment Optimization Needs Control Loops</title>
-    <link>https://rzifi.com/blog/checkout-ai-payment-optimization-control-loops/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/checkout-ai-payment-optimization-control-loops/</guid>
-    <pubDate>Wed, 15 Jul 2026 00:00:00 GMT</pubDate>
-    <category>AI &amp; Product Operations</category>
-    <description>Checkout.com&apos;s AI payment optimization story shows why acceptance AI needs control groups, reversibility, issuer-level learning, and guardrails.</description>
-  </item>
-<item>
-    <title>The Role of SWIFT in Emerging-Markets Banking</title>
-    <link>https://rzifi.com/blog/swift-for-emerging-markets-banking/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/swift-for-emerging-markets-banking/</guid>
-    <pubDate>Tue, 14 Jul 2026 00:00:00 GMT</pubDate>
-    <category>Cross-Border Payments</category>
-    <description>How emerging-market banks actually use SWIFT, access, cost, correspondent dependence, and where fintech intermediation is reshaping the picture.</description>
-  </item>
-<item>
-    <title>SWIFT Messaging Formats: MT vs MX (and Why It Matters Now)</title>
-    <link>https://rzifi.com/blog/swift-messaging-formats-mt-vs-mx/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/swift-messaging-formats-mt-vs-mx/</guid>
-    <pubDate>Fri, 10 Jul 2026 00:00:00 GMT</pubDate>
-    <category>Cross-Border Payments</category>
-    <description>MT is the legacy SWIFT format. MX is the ISO 20022 successor. What changes, what stays, and what product teams must understand.</description>
-  </item>
-<item>
-    <title>Baringa&apos;s UK Payments Migration Shows Why Delivery Gates Matter</title>
-    <link>https://rzifi.com/blog/baringa-uk-payments-migration-delivery-gates/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/baringa-uk-payments-migration-delivery-gates/</guid>
-    <pubDate>Thu, 09 Jul 2026 00:00:00 GMT</pubDate>
-    <category>Program Management</category>
-    <description>Baringa&apos;s UK payments-hub migration case shows why regulated programmes need delivery gates, dependency control, live proving, and exit plans.</description>
   </item>
 </channel>
 </rss>
