@@ -13,6 +13,14 @@ import { marked } from "marked";
 import authorPortrait from "@/assets/rizwan-zafar-cutout-460.webp";
 
 const OG_IMAGE_OVERRIDES: Record<string, string> = {
+  "adyen-peak-season-acquiring-control-room":
+    "/og/blog/adyen-peak-season-acquiring-control-room-v20260804.png",
+  "which-moneysupermarket-comparison-trust-loop":
+    "/og/blog/which-moneysupermarket-comparison-trust-loop-v20260804.png",
+  "kaneo-minimal-pmo-governance-boundary":
+    "/og/blog/kaneo-minimal-pmo-governance-boundary-v20260804.png",
+  "tencentdb-agent-memory-governance":
+    "/og/blog/tencentdb-agent-memory-governance-v20260804.png",
   "mastercard-scam-merchant-monitoring-acquirer-operations":
     "/og/blog/mastercard-scam-merchant-monitoring-acquirer-operations-v20260801.png",
   "natwest-uinsure-home-insurance-tracker-product-loop":

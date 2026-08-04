@@ -40,6 +40,102 @@ export const categories = [
 
 export const posts: Post[] = [
   {
+    "slug": "adyen-peak-season-acquiring-control-room",
+    "title": "Adyen's Peak Season Data Needs an Acquiring Control Room",
+    "metaTitle": "Adyen Peak Season: Acquiring Control Room",
+    "date": "2026-08-04",
+    "category": "Merchant Acquiring",
+    "readingTime": "7 min read",
+    "description": "Adyen's peak-season guide shows why acquiring teams need a control room for wallets, authorization, fraud, refunds, incidents, and learning.",
+    "thesis": "Peak season is not only a traffic test. It is a pressure test of the acquiring operating model across payment methods, authorization, fraud, refunds, incident ownership, and post-season learning.",
+    "tags": [
+      "Adyen",
+      "merchant acquiring",
+      "peak season",
+      "authorization rate",
+      "digital wallets",
+      "payment operations"
+    ],
+    "relatedArticles": [
+      "/blog/acceptance-rate-operating-model",
+      "/blog/authorization-rate-merchant-pnl-operating-model",
+      "/blog/adyen-refund-concentration-fraud-lifecycle-controls",
+      "/product-work/simpaisa-payment-infrastructure"
+    ]
+  },
+  {
+    "slug": "kaneo-minimal-pmo-governance-boundary",
+    "title": "Kaneo Shows Minimal PM Tools Still Need Governance Boundaries",
+    "metaTitle": "Kaneo and PMO Governance Boundaries",
+    "date": "2026-08-04",
+    "category": "Program Management",
+    "readingTime": "7 min read",
+    "description": "Kaneo's minimal project-management model shows why delivery teams need simple boards, but regulated programmes still need governance outside the tool.",
+    "thesis": "Kaneo is a useful project-management signal because it argues for less tool noise. The operator lesson is to keep execution simple while preserving decision logs, risk ownership, and delivery evidence elsewhere.",
+    "tags": [
+      "Kaneo",
+      "project management",
+      "PMO",
+      "delivery governance",
+      "open source tools",
+      "fintech programmes"
+    ],
+    "relatedArticles": [
+      "/blog/raid-steerco-pmo-stack-that-ships",
+      "/blog/program-vs-product-management-fintech",
+      "/blog/pmbok-plus-agile-hybrid-frameworks",
+      "/product-work/tapmad-digital-transformation-programme"
+    ]
+  },
+  {
+    "slug": "tencentdb-agent-memory-governance",
+    "title": "TencentDB Agent Memory Makes Recall a Governance Problem",
+    "metaTitle": "TencentDB Agent Memory Governance",
+    "date": "2026-08-04",
+    "category": "AI & Product Operations",
+    "readingTime": "7 min read",
+    "description": "TencentDB Agent Memory shows why agent recall needs ownership, visibility, backup, access control, and deletion rules before production use.",
+    "thesis": "TencentDB Agent Memory is a useful repo-radar signal because it treats memory as a shared team asset. That makes recall a governance problem, not only a context-window trick.",
+    "tags": [
+      "TencentDB Agent Memory",
+      "AI agents",
+      "long-term memory",
+      "agent governance",
+      "repo radar",
+      "product operations"
+    ],
+    "relatedArticles": [
+      "/blog/nvidia-langchain-agent-harness-evals",
+      "/blog/github-copilot-gemini-deprecation-model-fallback-contract",
+      "/blog/agent-skills-ai-coding-operating-model",
+      "/blog/microsoft-foundry-production-agent-control-plane"
+    ]
+  },
+  {
+    "slug": "which-moneysupermarket-comparison-trust-loop",
+    "title": "Which? and MoneySuperMarket Make Comparison a Trust Loop",
+    "metaTitle": "Which? MoneySuperMarket: Trust Loop",
+    "date": "2026-08-04",
+    "category": "Product Management",
+    "readingTime": "7 min read",
+    "description": "Which? and MoneySuperMarket show how comparison products can move beyond price into ratings, trust, renewal timing, and decision support.",
+    "thesis": "The useful product lesson in Which? and MoneySuperMarket's insurance comparison partnership is not more quotes. It is the attempt to combine price discovery with trusted evaluation inside the buying journey.",
+    "tags": [
+      "Which?",
+      "MoneySuperMarket",
+      "product management",
+      "insurance comparison",
+      "trust loops",
+      "fintech product strategy"
+    ],
+    "relatedArticles": [
+      "/blog/natwest-uinsure-home-insurance-tracker-product-loop",
+      "/blog/product-management-for-payments-platforms",
+      "/blog/ecommpay-small-business-payments-product-ladder",
+      "/product-work/tapmad-dcb-monetisation-wallet-migration"
+    ]
+  },
+  {
     "slug": "github-copilot-gemini-deprecation-model-fallback-contract",
     "title": "GitHub Copilot's Gemini Deprecation Needs a Model Fallback Contract",
     "metaTitle": "GitHub Copilot Model Deprecation Governance",
