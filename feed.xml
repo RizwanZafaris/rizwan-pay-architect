@@ -5,8 +5,40 @@
   <link>https://rzifi.com/blog/</link>
   <description>Essays on payment infrastructure, fintech product, risk, settlement, AI and program leadership.</description>
   <language>en</language>
-  <lastBuildDate>Tue, 04 Aug 2026 00:58:50 GMT</lastBuildDate>
+  <lastBuildDate>Tue, 04 Aug 2026 13:12:19 GMT</lastBuildDate>
   <item>
+    <title>Adyen&apos;s Peak Season Data Needs an Acquiring Control Room</title>
+    <link>https://rzifi.com/blog/adyen-peak-season-acquiring-control-room/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/adyen-peak-season-acquiring-control-room/</guid>
+    <pubDate>Tue, 04 Aug 2026 00:00:00 GMT</pubDate>
+    <category>Merchant Acquiring</category>
+    <description>Adyen&apos;s peak-season guide shows why acquiring teams need a control room for wallets, authorization, fraud, refunds, incidents, and learning.</description>
+  </item>
+<item>
+    <title>Kaneo Shows Minimal PM Tools Still Need Governance Boundaries</title>
+    <link>https://rzifi.com/blog/kaneo-minimal-pmo-governance-boundary/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/kaneo-minimal-pmo-governance-boundary/</guid>
+    <pubDate>Tue, 04 Aug 2026 00:00:00 GMT</pubDate>
+    <category>Program Management</category>
+    <description>Kaneo&apos;s minimal project-management model shows why delivery teams need simple boards, but regulated programmes still need governance outside the tool.</description>
+  </item>
+<item>
+    <title>TencentDB Agent Memory Makes Recall a Governance Problem</title>
+    <link>https://rzifi.com/blog/tencentdb-agent-memory-governance/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/tencentdb-agent-memory-governance/</guid>
+    <pubDate>Tue, 04 Aug 2026 00:00:00 GMT</pubDate>
+    <category>AI &amp; Product Operations</category>
+    <description>TencentDB Agent Memory shows why agent recall needs ownership, visibility, backup, access control, and deletion rules before production use.</description>
+  </item>
+<item>
+    <title>Which? and MoneySuperMarket Make Comparison a Trust Loop</title>
+    <link>https://rzifi.com/blog/which-moneysupermarket-comparison-trust-loop/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/which-moneysupermarket-comparison-trust-loop/</guid>
+    <pubDate>Tue, 04 Aug 2026 00:00:00 GMT</pubDate>
+    <category>Product Management</category>
+    <description>Which? and MoneySuperMarket show how comparison products can move beyond price into ratings, trust, renewal timing, and decision support.</description>
+  </item>
+<item>
     <title>GitHub Copilot&apos;s Gemini Deprecation Needs a Model Fallback Contract</title>
     <link>https://rzifi.com/blog/github-copilot-gemini-deprecation-model-fallback-contract/</link>
     <guid isPermaLink="true">https://rzifi.com/blog/github-copilot-gemini-deprecation-model-fallback-contract/</guid>
@@ -213,38 +245,6 @@
     <pubDate>Fri, 17 Jul 2026 00:00:00 GMT</pubDate>
     <category>Payment Infrastructure</category>
     <description>Mastercard Wallet Services shows why issuer wallets now need tokenization, secure element access, lifecycle controls, and support operations.</description>
-  </item>
-<item>
-    <title>Microsoft Foundry Shows Production Agents Need a Control Plane</title>
-    <link>https://rzifi.com/blog/microsoft-foundry-production-agent-control-plane/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/microsoft-foundry-production-agent-control-plane/</guid>
-    <pubDate>Fri, 17 Jul 2026 00:00:00 GMT</pubDate>
-    <category>AI &amp; Product Operations</category>
-    <description>Microsoft Foundry&apos;s production-agent push shows why AI teams need model routing, observability, evaluations, tool controls, and rollback paths.</description>
-  </item>
-<item>
-    <title>A SWIFT Compliance Checklist for Banks and Fintechs</title>
-    <link>https://rzifi.com/blog/swift-compliance-checklist-for-banks-and-fintechs/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/swift-compliance-checklist-for-banks-and-fintechs/</guid>
-    <pubDate>Fri, 17 Jul 2026 00:00:00 GMT</pubDate>
-    <category>Cross-Border Payments</category>
-    <description>A practitioner checklist for SWIFT-related compliance, sanctions, AML/CFT, CSP, ISO 20022 readiness, gpi adoption, and audit trail.</description>
-  </item>
-<item>
-    <title>The UK Financial Services AI Plan Is a Delivery Governance Test</title>
-    <link>https://rzifi.com/blog/uk-financial-services-ai-adoption-plan-delivery-governance/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/uk-financial-services-ai-adoption-plan-delivery-governance/</guid>
-    <pubDate>Fri, 17 Jul 2026 00:00:00 GMT</pubDate>
-    <category>Program Management</category>
-    <description>The UK financial-services AI adoption plan needs portfolio governance: ownership, third-party assurance, skills, resilience, and agentic payments readiness.</description>
-  </item>
-<item>
-    <title>Ajman Bank and AFS Make Merchant Acquiring a Platform Bet</title>
-    <link>https://rzifi.com/blog/ajman-bank-afs-merchant-acquiring-operating-model/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/ajman-bank-afs-merchant-acquiring-operating-model/</guid>
-    <pubDate>Wed, 15 Jul 2026 00:00:00 GMT</pubDate>
-    <category>Merchant Acquiring</category>
-    <description>Ajman Bank and AFS show why merchant acquiring is now bank platform work: onboarding, acceptance, settlement, processing, and support.</description>
   </item>
 </channel>
 </rss>
