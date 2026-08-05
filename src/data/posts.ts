@@ -40,6 +40,102 @@ export const categories = [
 
 export const posts: Post[] = [
   {
+    "slug": "deepmind-ai-control-roadmap-programme-gates",
+    "title": "DeepMind's AI Control Roadmap Is a Programme Gate",
+    "metaTitle": "DeepMind AI Control Roadmap Programme Gates",
+    "date": "2026-08-05",
+    "category": "Program Management",
+    "readingTime": "7 min read",
+    "description": "DeepMind's AI Control Roadmap shows why agent programmes need measurable gates for monitoring, recall, response, and authority.",
+    "thesis": "DeepMind's AI Control Roadmap is a delivery-governance signal: AI-agent programmes need gates for monitored coverage, recall, response time, authority boundaries, drills, and escalation ownership.",
+    "tags": [
+      "DeepMind",
+      "AI Control Roadmap",
+      "programme management",
+      "AI agents",
+      "delivery governance",
+      "risk management"
+    ],
+    "relatedArticles": [
+      "/blog/uk-financial-services-ai-adoption-plan-delivery-governance",
+      "/blog/raid-steerco-pmo-stack-that-ships",
+      "/blog/microsoft-project-perception-agentic-security-stack",
+      "/product-work/tapmad-digital-transformation-programme"
+    ]
+  },
+  {
+    "slug": "loopx-agent-state-kernel-governance",
+    "title": "LoopX Shows Agent Teams Need a State Kernel",
+    "metaTitle": "LoopX Agent State Kernel Governance",
+    "date": "2026-08-05",
+    "category": "AI & Product Operations",
+    "readingTime": "7 min read",
+    "description": "LoopX shows why long-running AI agent teams need durable goals, typed todos, evidence logs, gates, and handoffs.",
+    "thesis": "LoopX is a repo-radar signal because it treats long-running agent work as state management: durable goals, typed todos, human gates, evidence logs, quota-aware continuation, and verifiable handoffs.",
+    "tags": [
+      "LoopX",
+      "AI agents",
+      "repo radar",
+      "agent state",
+      "engineering operations",
+      "product operations"
+    ],
+    "relatedArticles": [
+      "/blog/tencentdb-agent-memory-governance",
+      "/blog/agent-skills-ai-coding-operating-model",
+      "/blog/github-copilot-opentelemetry-agent-auditability",
+      "/product-work/fraud-risk-aml-cft"
+    ]
+  },
+  {
+    "slug": "openai-presence-agent-product-change-loop",
+    "title": "OpenAI Presence Turns Agent Products Into Change Management",
+    "metaTitle": "OpenAI Presence Agent Product Change Loop",
+    "date": "2026-08-05",
+    "category": "Product Management",
+    "readingTime": "7 min read",
+    "description": "OpenAI Presence shows why product teams need evaluations, approval rules, escalation paths, and change control for agents.",
+    "thesis": "OpenAI Presence is a product-management signal because it moves agents from prompt demos into managed service design: channel consistency, evaluations, guardrails, human approval, and change control.",
+    "tags": [
+      "OpenAI Presence",
+      "product management",
+      "AI agents",
+      "customer support",
+      "product operations",
+      "change management"
+    ],
+    "relatedArticles": [
+      "/blog/product-management-for-payments-platforms",
+      "/blog/agentic-payments-operations-what-works",
+      "/blog/github-copilot-gemini-deprecation-model-fallback-contract",
+      "/product-work/tapmad-dcb-monetisation-wallet-migration"
+    ]
+  },
+  {
+    "slug": "thredd-pliant-us-credit-issuing-controls",
+    "title": "Thredd and Pliant Make U.S. Credit Issuing a Control Test",
+    "metaTitle": "Thredd Pliant U.S. Credit Issuing Controls",
+    "date": "2026-08-05",
+    "category": "Card Issuing",
+    "readingTime": "7 min read",
+    "description": "Thredd and Pliant's U.S. commercial credit launch shows why issuer processing needs control ownership before growth.",
+    "thesis": "Pliant's U.S. commercial credit launch with Thredd, Visa, and Coastal is not only a market-entry story. It is an issuing-control test across sponsorship, authorization, credit policy, ledger evidence, and customer operations.",
+    "tags": [
+      "Thredd",
+      "Pliant",
+      "card issuing",
+      "issuer processing",
+      "commercial credit",
+      "embedded finance"
+    ],
+    "relatedArticles": [
+      "/blog/thredd-sutton-bin-sponsorship-operating-model",
+      "/blog/processor-only-card-issuing-operating-model",
+      "/blog/mastercard-virtual-card-controls-programme-gates",
+      "/product-work/simpaisa-payment-infrastructure"
+    ]
+  },
+  {
     "slug": "adyen-peak-season-acquiring-control-room",
     "title": "Adyen's Peak Season Data Needs an Acquiring Control Room",
     "metaTitle": "Adyen Peak Season: Acquiring Control Room",
