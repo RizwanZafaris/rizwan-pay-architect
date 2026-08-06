@@ -5,8 +5,40 @@
   <link>https://rzifi.com/blog/</link>
   <description>Essays on payment infrastructure, fintech product, risk, settlement, AI and program leadership.</description>
   <language>en</language>
-  <lastBuildDate>Thu, 06 Aug 2026 00:51:03 GMT</lastBuildDate>
+  <lastBuildDate>Thu, 06 Aug 2026 10:32:16 GMT</lastBuildDate>
   <item>
+    <title>Adyen Personalize Turns Checkout Into a Product Control</title>
+    <link>https://rzifi.com/blog/adyen-personalize-checkout-product-governance/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/adyen-personalize-checkout-product-governance/</guid>
+    <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
+    <category>Product Management</category>
+    <description>Adyen Personalize shows why checkout PMs need controls for conversion, payment cost, shopper data, experiments, and risk.</description>
+  </item>
+<item>
+    <title>OpenAI and Hugging Face Make AI Eval Containment a Product Gate</title>
+    <link>https://rzifi.com/blog/openai-hugging-face-eval-containment-controls/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/openai-hugging-face-eval-containment-controls/</guid>
+    <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
+    <category>AI &amp; Product Operations</category>
+    <description>OpenAI and Hugging Face&apos;s July 2026 incident shows why AI evaluations need isolation, monitoring, scope, and stop conditions.</description>
+  </item>
+<item>
+    <title>PwC and Label Show CARF Reporting Needs Programme Gates</title>
+    <link>https://rzifi.com/blog/pwc-label-carf-reporting-programme-gates/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/pwc-label-carf-reporting-programme-gates/</guid>
+    <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
+    <category>Program Management</category>
+    <description>PwC and Label&apos;s CARF collaboration shows why tax-transparency automation needs data, controls, vendor, and go-live gates.</description>
+  </item>
+<item>
+    <title>Visa VIA Makes Acquirer Routing an Evidence Test</title>
+    <link>https://rzifi.com/blog/visa-intelligent-authorisation-acquirer-routing-evidence/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/visa-intelligent-authorisation-acquirer-routing-evidence/</guid>
+    <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
+    <category>Merchant Acquiring</category>
+    <description>Visa Intelligent Authorisation shows why acquirers need routing evidence, resilience, and settlement visibility before auth modernization.</description>
+  </item>
+<item>
     <title>DeepMind&apos;s AI Control Roadmap Is a Programme Gate</title>
     <link>https://rzifi.com/blog/deepmind-ai-control-roadmap-programme-gates/</link>
     <guid isPermaLink="true">https://rzifi.com/blog/deepmind-ai-control-roadmap-programme-gates/</guid>
@@ -213,38 +245,6 @@
     <pubDate>Mon, 20 Jul 2026 00:00:00 GMT</pubDate>
     <category>AI &amp; Product Operations</category>
     <description>KTransformers&apos; MoE inference and fine-tuning work shows why local AI should be judged on cost, latency, controls, and supportability.</description>
-  </item>
-<item>
-    <title>Marqeta&apos;s STIP Lesson: Issuer Resilience Is a Product Control</title>
-    <link>https://rzifi.com/blog/marqeta-stip-issuer-resilience-operating-model/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/marqeta-stip-issuer-resilience-operating-model/</guid>
-    <pubDate>Mon, 20 Jul 2026 00:00:00 GMT</pubDate>
-    <category>Card Issuing</category>
-    <description>Marqeta&apos;s STIP and Commando Mode material shows why issuer resilience needs authorization policy, limits, evidence, and drills.</description>
-  </item>
-<item>
-    <title>Stripe Projects Shows Agentic Products Need Cost Boundaries</title>
-    <link>https://rzifi.com/blog/stripe-projects-agent-product-controls/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/stripe-projects-agent-product-controls/</guid>
-    <pubDate>Mon, 20 Jul 2026 00:00:00 GMT</pubDate>
-    <category>Product Management</category>
-    <description>Stripe Projects shows why agentic product teams need spend limits, environments, credential controls, and auditable provisioning.</description>
-  </item>
-<item>
-    <title>Acceptance Rate Is an Operating Model, Not a Dashboard Metric</title>
-    <link>https://rzifi.com/blog/acceptance-rate-operating-model/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/acceptance-rate-operating-model/</guid>
-    <pubDate>Sun, 19 Jul 2026 00:00:00 GMT</pubDate>
-    <category>Merchant Acquiring</category>
-    <description>Checkout.com&apos;s acceptance-rate guide and Visa VIA show why acquirers need clean measurement, routing, retries, risk, and ownership.</description>
-  </item>
-<item>
-    <title>NVIDIA and LangChain Show Agent Performance Is a Harness Problem</title>
-    <link>https://rzifi.com/blog/nvidia-langchain-agent-harness-evals/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/nvidia-langchain-agent-harness-evals/</guid>
-    <pubDate>Sun, 19 Jul 2026 00:00:00 GMT</pubDate>
-    <category>AI &amp; Product Operations</category>
-    <description>NVIDIA and LangChain show why production AI agents need harness tuning, evals, tool controls, runtime policy, and cost visibility.</description>
   </item>
 </channel>
 </rss>
