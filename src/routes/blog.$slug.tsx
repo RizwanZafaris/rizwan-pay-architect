@@ -13,6 +13,14 @@ import { marked } from "marked";
 import authorPortrait from "@/assets/rizwan-zafar-cutout-460.webp";
 
 const OG_IMAGE_OVERRIDES: Record<string, string> = {
+  "visa-intelligent-authorisation-acquirer-routing-evidence":
+    "/og/blog/visa-intelligent-authorisation-acquirer-routing-evidence-v20260806.png",
+  "adyen-personalize-checkout-product-governance":
+    "/og/blog/adyen-personalize-checkout-product-governance-v20260806.png",
+  "pwc-label-carf-reporting-programme-gates":
+    "/og/blog/pwc-label-carf-reporting-programme-gates-v20260806.png",
+  "openai-hugging-face-eval-containment-controls":
+    "/og/blog/openai-hugging-face-eval-containment-controls-v20260806.png",
   "thredd-pliant-us-credit-issuing-controls":
     "/og/blog/thredd-pliant-us-credit-issuing-controls-v20260805.png",
   "openai-presence-agent-product-change-loop":

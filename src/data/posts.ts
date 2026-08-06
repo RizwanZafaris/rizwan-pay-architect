@@ -40,6 +40,102 @@ export const categories = [
 
 export const posts: Post[] = [
   {
+    "slug": "adyen-personalize-checkout-product-governance",
+    "title": "Adyen Personalize Turns Checkout Into a Product Control",
+    "metaTitle": "Adyen Personalize Checkout Product Governance",
+    "date": "2026-08-06",
+    "category": "Product Management",
+    "readingTime": "7 min read",
+    "description": "Adyen Personalize shows why checkout PMs need controls for conversion, payment cost, shopper data, experiments, and risk.",
+    "thesis": "Adyen Personalize is not only AI checkout optimization. It forces product leaders to decide how shopper data, cost, conversion, experiments, and fraud controls change together.",
+    "tags": [
+      "Adyen",
+      "product management",
+      "checkout optimization",
+      "payment conversion",
+      "experimentation",
+      "fintech product strategy"
+    ],
+    "relatedArticles": [
+      "/blog/product-management-for-payments-platforms",
+      "/blog/stripe-global-demand-product-system",
+      "/blog/checkout-friction-acceptance-operating-model",
+      "/product-work/tapmad-dcb-monetisation-wallet-migration"
+    ]
+  },
+  {
+    "slug": "openai-hugging-face-eval-containment-controls",
+    "title": "OpenAI and Hugging Face Make AI Eval Containment a Product Gate",
+    "metaTitle": "OpenAI Hugging Face AI Eval Containment Gates",
+    "date": "2026-08-06",
+    "category": "AI & Product Operations",
+    "readingTime": "7 min read",
+    "description": "OpenAI and Hugging Face's July 2026 incident shows why AI evaluations need isolation, monitoring, scope, and stop conditions.",
+    "thesis": "The OpenAI and Hugging Face incident is not only an AI safety headline. It shows why high-risk model evaluations need product gates for isolation, credentials, monitoring, scope, and incident response.",
+    "tags": [
+      "OpenAI",
+      "Hugging Face",
+      "AI evaluations",
+      "model safety",
+      "agent governance",
+      "cybersecurity"
+    ],
+    "relatedArticles": [
+      "/blog/deepmind-ai-control-roadmap-programme-gates",
+      "/blog/loopx-agent-state-kernel-governance",
+      "/blog/microsoft-project-perception-agentic-security-stack",
+      "/product-work/fraud-risk-aml-cft"
+    ]
+  },
+  {
+    "slug": "pwc-label-carf-reporting-programme-gates",
+    "title": "PwC and Label Show CARF Reporting Needs Programme Gates",
+    "metaTitle": "PwC Label CARF Reporting Programme Gates",
+    "date": "2026-08-06",
+    "category": "Program Management",
+    "readingTime": "7 min read",
+    "description": "PwC and Label's CARF collaboration shows why tax-transparency automation needs data, controls, vendor, and go-live gates.",
+    "thesis": "PwC Middle East and Label's CARF collaboration is a programme-management signal: reporting automation only works when onboarding data, classification, controls, vendor delivery, and evidence are governed together.",
+    "tags": [
+      "PwC Middle East",
+      "Label",
+      "CARF",
+      "FATCA",
+      "CRS",
+      "programme management"
+    ],
+    "relatedArticles": [
+      "/blog/project-management-fintech-regulatory-programmes",
+      "/blog/vendor-governance-fintech-pmo",
+      "/blog/pci-dss-iso-27001-program-leadership",
+      "/product-work/tapmad-digital-transformation-programme"
+    ]
+  },
+  {
+    "slug": "visa-intelligent-authorisation-acquirer-routing-evidence",
+    "title": "Visa VIA Makes Acquirer Routing an Evidence Test",
+    "metaTitle": "Visa VIA and Acquirer Routing Evidence",
+    "date": "2026-08-06",
+    "category": "Merchant Acquiring",
+    "readingTime": "7 min read",
+    "description": "Visa Intelligent Authorisation shows why acquirers need routing evidence, resilience, and settlement visibility before auth modernization.",
+    "thesis": "Visa Intelligent Authorisation is useful because it makes acquiring modernization measurable: routing, resilience, risk alerts, visibility, and settlement oversight have to become one evidence loop.",
+    "tags": [
+      "Visa",
+      "merchant acquiring",
+      "authorization routing",
+      "Visa Acceptance Platform",
+      "payment processing",
+      "acceptance optimization"
+    ],
+    "relatedArticles": [
+      "/blog/acceptance-rate-operating-model",
+      "/blog/adyen-peak-season-acquiring-control-room",
+      "/blog/visa-dcap-acquiring-economics-data-only-3ds",
+      "/product-work/simpaisa-payment-infrastructure"
+    ]
+  },
+  {
     "slug": "deepmind-ai-control-roadmap-programme-gates",
     "title": "DeepMind's AI Control Roadmap Is a Programme Gate",
     "metaTitle": "DeepMind AI Control Roadmap Programme Gates",
