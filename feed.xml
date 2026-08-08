@@ -5,8 +5,40 @@
   <link>https://rzifi.com/blog/</link>
   <description>Essays on payment infrastructure, fintech product, risk, settlement, AI and program leadership.</description>
   <language>en</language>
-  <lastBuildDate>Fri, 07 Aug 2026 23:58:17 GMT</lastBuildDate>
+  <lastBuildDate>Sat, 08 Aug 2026 02:33:06 GMT</lastBuildDate>
   <item>
+    <title>GitHub Copilot Agent Metrics Make AI Adoption Governable</title>
+    <link>https://rzifi.com/blog/github-copilot-agent-metrics-adoption-governance/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/github-copilot-agent-metrics-adoption-governance/</guid>
+    <pubDate>Sat, 08 Aug 2026 00:00:00 GMT</pubDate>
+    <category>AI &amp; Product Operations</category>
+    <description>GitHub Copilot&apos;s agent-app metrics show why AI adoption needs agent-level evidence, cost controls, rollout rules, and governance.</description>
+  </item>
+<item>
+    <title>Splitit and 1stMILE Make Installments an Issuer Control Surface</title>
+    <link>https://rzifi.com/blog/splitit-1stmile-card-linked-installment-controls/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/splitit-1stmile-card-linked-installment-controls/</guid>
+    <pubDate>Sat, 08 Aug 2026 00:00:00 GMT</pubDate>
+    <category>Card Issuing</category>
+    <description>Splitit and 1stMILE&apos;s auto repair rollout shows why card-linked installments need issuer controls, merchant economics, and servicing proof.</description>
+  </item>
+<item>
+    <title>UK Open Banking Has a Product Scale Scorecard Now</title>
+    <link>https://rzifi.com/blog/uk-open-banking-billion-payments-product-scorecard/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/uk-open-banking-billion-payments-product-scorecard/</guid>
+    <pubDate>Sat, 08 Aug 2026 00:00:00 GMT</pubDate>
+    <category>Product Management</category>
+    <description>UK Open Banking&apos;s one-billion-payment milestone shows why product teams need scale metrics for reliability, consent, VRP, and disputes.</description>
+  </item>
+<item>
+    <title>Worldline&apos;s Digital Euro Pilot Needs Programme Gates</title>
+    <link>https://rzifi.com/blog/worldline-digital-euro-pilot-programme-gates/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/worldline-digital-euro-pilot-programme-gates/</guid>
+    <pubDate>Sat, 08 Aug 2026 00:00:00 GMT</pubDate>
+    <category>Program Management</category>
+    <description>Worldline and the ECB&apos;s digital euro pilot shows why payment pilots need gates for scope, acceptance, offline use, evidence, and rollout.</description>
+  </item>
+<item>
     <title>Adyen Personalize Turns Checkout Into a Product Control</title>
     <link>https://rzifi.com/blog/adyen-personalize-checkout-product-governance/</link>
     <guid isPermaLink="true">https://rzifi.com/blog/adyen-personalize-checkout-product-governance/</guid>
@@ -213,38 +245,6 @@
     <pubDate>Wed, 22 Jul 2026 00:00:00 GMT</pubDate>
     <category>Program Management</category>
     <description>Mambu&apos;s Swift Business Connect certification shows how payment connectivity programmes need governance, sequencing, and ownership.</description>
-  </item>
-<item>
-    <title>Adyen&apos;s Orb and Talon.One Close Shows Product Integration Is the Strategy</title>
-    <link>https://rzifi.com/blog/adyen-orb-talonone-product-integration-model/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/adyen-orb-talonone-product-integration-model/</guid>
-    <pubDate>Tue, 21 Jul 2026 00:00:00 GMT</pubDate>
-    <category>Product Management</category>
-    <description>Adyen&apos;s Orb and Talon.One integration shows why product leaders need clear customer identity, billing, payments, and execution boundaries.</description>
-  </item>
-<item>
-    <title>Checkout Friction Is an Acceptance Operating Model</title>
-    <link>https://rzifi.com/blog/checkout-friction-acceptance-operating-model/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/checkout-friction-acceptance-operating-model/</guid>
-    <pubDate>Tue, 21 Jul 2026 00:00:00 GMT</pubDate>
-    <category>Merchant Acquiring</category>
-    <description>Checkout.com&apos;s MENA friction data shows why acceptance needs saved credentials, payment choice, routing, and trust owned as one operating model.</description>
-  </item>
-<item>
-    <title>OmniRoute Shows AI Gateways Need Routing Controls, Not Just More Providers</title>
-    <link>https://rzifi.com/blog/omniroute-ai-gateway-routing-control-model/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/omniroute-ai-gateway-routing-control-model/</guid>
-    <pubDate>Tue, 21 Jul 2026 00:00:00 GMT</pubDate>
-    <category>AI &amp; Product Operations</category>
-    <description>OmniRoute&apos;s AI gateway shows why fintech teams need routing controls, quotas, audit trails, and fallback rules before agent usage scales.</description>
-  </item>
-<item>
-    <title>KTransformers Makes Local AI A Cost-Control Question</title>
-    <link>https://rzifi.com/blog/ktransformers-local-inference-cost-control/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/ktransformers-local-inference-cost-control/</guid>
-    <pubDate>Mon, 20 Jul 2026 00:00:00 GMT</pubDate>
-    <category>AI &amp; Product Operations</category>
-    <description>KTransformers&apos; MoE inference and fine-tuning work shows why local AI should be judged on cost, latency, controls, and supportability.</description>
   </item>
 </channel>
 </rss>
