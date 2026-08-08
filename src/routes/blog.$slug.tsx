@@ -13,6 +13,14 @@ import { marked } from "marked";
 import authorPortrait from "@/assets/rizwan-zafar-cutout-460.webp";
 
 const OG_IMAGE_OVERRIDES: Record<string, string> = {
+  "splitit-1stmile-card-linked-installment-controls":
+    "/og/blog/splitit-1stmile-card-linked-installment-controls-v20260808.png",
+  "uk-open-banking-billion-payments-product-scorecard":
+    "/og/blog/uk-open-banking-billion-payments-product-scorecard-v20260808.png",
+  "worldline-digital-euro-pilot-programme-gates":
+    "/og/blog/worldline-digital-euro-pilot-programme-gates-v20260808.png",
+  "github-copilot-agent-metrics-adoption-governance":
+    "/og/blog/github-copilot-agent-metrics-adoption-governance-v20260808.png",
   "visa-intelligent-authorisation-acquirer-routing-evidence":
     "/og/blog/visa-intelligent-authorisation-acquirer-routing-evidence-v20260806.png",
   "adyen-personalize-checkout-product-governance":

@@ -40,6 +40,102 @@ export const categories = [
 
 export const posts: Post[] = [
   {
+    "slug": "github-copilot-agent-metrics-adoption-governance",
+    "title": "GitHub Copilot Agent Metrics Make AI Adoption Governable",
+    "metaTitle": "GitHub Copilot Agent Metrics Governance",
+    "date": "2026-08-08",
+    "category": "AI & Product Operations",
+    "readingTime": "7 min read",
+    "description": "GitHub Copilot's agent-app metrics show why AI adoption needs agent-level evidence, cost controls, rollout rules, and governance.",
+    "thesis": "GitHub's Copilot usage metrics update is a repo-radar signal for AI leaders: agent adoption is no longer a single bucket. Teams can now govern agents by usage, owner, rollout intent, and cost evidence.",
+    "tags": [
+      "GitHub Copilot",
+      "AI agents",
+      "repo radar",
+      "engineering productivity",
+      "product operations",
+      "AI governance"
+    ],
+    "relatedArticles": [
+      "/blog/github-copilot-opentelemetry-agent-auditability",
+      "/blog/omniroute-ai-gateway-routing-control-model",
+      "/blog/loopx-agent-state-kernel-governance",
+      "/product-work/fraud-risk-aml-cft"
+    ]
+  },
+  {
+    "slug": "splitit-1stmile-card-linked-installment-controls",
+    "title": "Splitit and 1stMILE Make Installments an Issuer Control Surface",
+    "metaTitle": "Splitit 1stMILE Card-Linked Installment Controls",
+    "date": "2026-08-08",
+    "category": "Card Issuing",
+    "readingTime": "7 min read",
+    "description": "Splitit and 1stMILE's auto repair rollout shows why card-linked installments need issuer controls, merchant economics, and servicing proof.",
+    "thesis": "Splitit and 1stMILE's automotive repair rollout turns BNPL distribution into an issuer-control problem: authorization, merchant funding, disputes, and support all need ownership before scale.",
+    "tags": [
+      "Splitit",
+      "1stMILE",
+      "card-linked installments",
+      "card issuing",
+      "point of sale financing",
+      "automotive payments"
+    ],
+    "relatedArticles": [
+      "/blog/processor-only-card-issuing-operating-model",
+      "/blog/thredd-pliant-us-credit-issuing-controls",
+      "/blog/financial-controls-are-product-requirements",
+      "/product-work/simpaisa-payment-infrastructure"
+    ]
+  },
+  {
+    "slug": "uk-open-banking-billion-payments-product-scorecard",
+    "title": "UK Open Banking Has a Product Scale Scorecard Now",
+    "metaTitle": "UK Open Banking Product Scale Scorecard",
+    "date": "2026-08-08",
+    "category": "Product Management",
+    "readingTime": "7 min read",
+    "description": "UK Open Banking's one-billion-payment milestone shows why product teams need scale metrics for reliability, consent, VRP, and disputes.",
+    "thesis": "UK Open Banking's one billion payments and 100 billion API calls should push product teams from adoption storytelling into a harder scale scorecard: reliability, consent completion, VRP quality, fraud, disputes, and cash-flow outcomes.",
+    "tags": [
+      "UK Open Banking",
+      "product management",
+      "account-to-account payments",
+      "API reliability",
+      "variable recurring payments",
+      "fintech product strategy"
+    ],
+    "relatedArticles": [
+      "/blog/open-banking-product-architecture",
+      "/blog/lean-ziina-uae-one-tap-pay-by-bank",
+      "/blog/product-management-for-payments-platforms",
+      "/product-work/tapmad-dcb-monetisation-wallet-migration"
+    ]
+  },
+  {
+    "slug": "worldline-digital-euro-pilot-programme-gates",
+    "title": "Worldline's Digital Euro Pilot Needs Programme Gates",
+    "metaTitle": "Worldline Digital Euro Pilot Programme Gates",
+    "date": "2026-08-08",
+    "category": "Program Management",
+    "readingTime": "7 min read",
+    "description": "Worldline and the ECB's digital euro pilot shows why payment pilots need gates for scope, acceptance, offline use, evidence, and rollout.",
+    "thesis": "Worldline's selection for the Eurosystem digital euro pilot is a programme-management signal: the hard work is not announcing participation, but governing scope, merchant acceptance, offline flows, integration, evidence, and readiness across a regulated ecosystem.",
+    "tags": [
+      "Worldline",
+      "digital euro",
+      "European Central Bank",
+      "programme management",
+      "payment pilots",
+      "merchant acceptance"
+    ],
+    "relatedArticles": [
+      "/blog/project-management-fintech-regulatory-programmes",
+      "/blog/gov-uk-pay-adyen-1000-service-migration",
+      "/blog/vendor-governance-fintech-pmo",
+      "/product-work/tapmad-digital-transformation-programme"
+    ]
+  },
+  {
     "slug": "adyen-personalize-checkout-product-governance",
     "title": "Adyen Personalize Turns Checkout Into a Product Control",
     "metaTitle": "Adyen Personalize Checkout Product Governance",
