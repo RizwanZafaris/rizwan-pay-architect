@@ -5,8 +5,32 @@
   <link>https://rzifi.com/blog/</link>
   <description>Essays on payment infrastructure, fintech product, risk, settlement, AI and program leadership.</description>
   <language>en</language>
-  <lastBuildDate>Sat, 08 Aug 2026 23:55:18 GMT</lastBuildDate>
+  <lastBuildDate>Sun, 09 Aug 2026 02:38:23 GMT</lastBuildDate>
   <item>
+    <title>The Bank of England Just Turned Payment Vendor Risk Into a Programme Gate</title>
+    <link>https://rzifi.com/blog/boe-payment-third-party-risk-programme-gates/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/boe-payment-third-party-risk-programme-gates/</guid>
+    <pubDate>Sun, 09 Aug 2026 00:00:00 GMT</pubDate>
+    <category>Program Management</category>
+    <description>The Bank of England&apos;s 2026 IOREP rules show why payment programmes need gates for material vendors, incidents, registers, and exit plans.</description>
+  </item>
+<item>
+    <title>Checkout.com UAE SVF Approval Turns Liquidity Into a Payment Control</title>
+    <link>https://rzifi.com/blog/checkout-uae-svf-liquidity-controls/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/checkout-uae-svf-liquidity-controls/</guid>
+    <pubDate>Sun, 09 Aug 2026 00:00:00 GMT</pubDate>
+    <category>Merchant Acquiring</category>
+    <description>Checkout.com&apos;s UAE SVF in-principle approval shows why acquiring, issuing, liquidity, and fund controls must be governed together.</description>
+  </item>
+<item>
+    <title>Solana Pay Shows Agent Payments Need Wallet Approval Controls</title>
+    <link>https://rzifi.com/blog/solana-pay-agent-payment-approval-controls/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/solana-pay-agent-payment-approval-controls/</guid>
+    <pubDate>Sun, 09 Aug 2026 00:00:00 GMT</pubDate>
+    <category>AI &amp; Product Operations</category>
+    <description>Solana Foundation&apos;s pay CLI shows why agent payments need wallet approval, spend policies, receipts, and fail-closed controls before scale.</description>
+  </item>
+<item>
     <title>GitHub Copilot Agent Metrics Make AI Adoption Governable</title>
     <link>https://rzifi.com/blog/github-copilot-agent-metrics-adoption-governance/</link>
     <guid isPermaLink="true">https://rzifi.com/blog/github-copilot-agent-metrics-adoption-governance/</guid>
@@ -221,30 +245,6 @@
     <pubDate>Wed, 22 Jul 2026 00:00:00 GMT</pubDate>
     <category>AI &amp; Product Operations</category>
     <description>agent-payment-guard shows why x402 and agentic payments need pre-payment risk gates, mandate checks, and fail-closed controls.</description>
-  </item>
-<item>
-    <title>Capital One&apos;s Discover Test Turns Issuing Into Network Strategy</title>
-    <link>https://rzifi.com/blog/capital-one-discover-network-issuer-routing-strategy/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/capital-one-discover-network-issuer-routing-strategy/</guid>
-    <pubDate>Wed, 22 Jul 2026 00:00:00 GMT</pubDate>
-    <category>Card Issuing</category>
-    <description>Capital One&apos;s Discover credit-card tests show why issuer strategy now spans network routing, acceptance, migration, and customer trust.</description>
-  </item>
-<item>
-    <title>Klarna Shows BNPL Product Strategy Has Moved Past Checkout</title>
-    <link>https://rzifi.com/blog/klarna-bnpl-economics-product-scorecard/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/klarna-bnpl-economics-product-scorecard/</guid>
-    <pubDate>Wed, 22 Jul 2026 00:00:00 GMT</pubDate>
-    <category>Product Management</category>
-    <description>Klarna&apos;s 2026 economics show why BNPL product teams must manage retention, credit risk, margin, and repeat engagement.</description>
-  </item>
-<item>
-    <title>Mambu&apos;s Swift Certification Is a Connectivity Programme Lesson</title>
-    <link>https://rzifi.com/blog/mambu-swift-connectivity-programme-operating-model/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/mambu-swift-connectivity-programme-operating-model/</guid>
-    <pubDate>Wed, 22 Jul 2026 00:00:00 GMT</pubDate>
-    <category>Program Management</category>
-    <description>Mambu&apos;s Swift Business Connect certification shows how payment connectivity programmes need governance, sequencing, and ownership.</description>
   </item>
 </channel>
 </rss>
