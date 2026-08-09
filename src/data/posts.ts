@@ -40,6 +40,78 @@ export const categories = [
 
 export const posts: Post[] = [
   {
+    "slug": "boe-payment-third-party-risk-programme-gates",
+    "title": "The Bank of England Just Turned Payment Vendor Risk Into a Programme Gate",
+    "metaTitle": "Bank of England Payment Third-Party Risk Gates",
+    "date": "2026-08-09",
+    "category": "Program Management",
+    "readingTime": "7 min read",
+    "description": "The Bank of England's 2026 IOREP rules show why payment programmes need gates for material vendors, incidents, registers, and exit plans.",
+    "thesis": "The Bank of England's updated third-party and incident reporting framework turns payment-system vendor risk into a programme-delivery gate, not a procurement appendix.",
+    "tags": [
+      "Bank of England",
+      "payment systems",
+      "third-party risk",
+      "programme management",
+      "operational resilience",
+      "vendor governance"
+    ],
+    "relatedArticles": [
+      "/blog/vendor-governance-fintech-pmo",
+      "/blog/baringa-uk-payments-migration-delivery-gates",
+      "/blog/project-management-fintech-regulatory-programmes",
+      "/product-work/tapmad-digital-transformation-programme"
+    ]
+  },
+  {
+    "slug": "checkout-uae-svf-liquidity-controls",
+    "title": "Checkout.com UAE SVF Approval Turns Liquidity Into a Payment Control",
+    "metaTitle": "Checkout.com UAE SVF Liquidity Controls",
+    "date": "2026-08-09",
+    "category": "Merchant Acquiring",
+    "readingTime": "7 min read",
+    "description": "Checkout.com's UAE SVF in-principle approval shows why acquiring, issuing, liquidity, and fund controls must be governed together.",
+    "thesis": "Checkout.com's UAE SVF in-principle approval is a MENA payments signal: unified acquiring and issuing only works when liquidity, safeguarding, authorization, settlement, and reconciliation controls are designed before scale.",
+    "tags": [
+      "Checkout.com",
+      "UAE payments",
+      "merchant acquiring",
+      "card issuing",
+      "stored value facilities",
+      "liquidity controls"
+    ],
+    "relatedArticles": [
+      "/blog/checkout-unified-payin-payout-control-plane",
+      "/blog/revolut-adyen-uae-licences-dubai-fintech-signal",
+      "/blog/lean-ziina-uae-one-tap-pay-by-bank",
+      "/product-work/simpaisa-payment-infrastructure"
+    ]
+  },
+  {
+    "slug": "solana-pay-agent-payment-approval-controls",
+    "title": "Solana Pay Shows Agent Payments Need Wallet Approval Controls",
+    "metaTitle": "Solana Pay Agent Payment Approval Controls",
+    "date": "2026-08-09",
+    "category": "AI & Product Operations",
+    "readingTime": "7 min read",
+    "description": "Solana Foundation's pay CLI shows why agent payments need wallet approval, spend policies, receipts, and fail-closed controls before scale.",
+    "thesis": "Solana Foundation's pay CLI is a repo-radar signal for agentic payments: the useful product boundary is not automatic payment, but local wallet approval, policy checks, receipts, and denial before signing.",
+    "tags": [
+      "Solana Pay",
+      "agentic payments",
+      "x402",
+      "AI agents",
+      "wallet controls",
+      "repo radar"
+    ],
+    "relatedArticles": [
+      "/blog/agent-payment-guard-x402-risk-gates",
+      "/blog/cross-river-stripe-agentic-card-mandate-controls",
+      "/blog/github-copilot-agent-metrics-adoption-governance",
+      "/product-work/fraud-risk-aml-cft"
+    ]
+  },
+  {
     "slug": "github-copilot-agent-metrics-adoption-governance",
     "title": "GitHub Copilot Agent Metrics Make AI Adoption Governable",
     "metaTitle": "GitHub Copilot Agent Metrics Governance",

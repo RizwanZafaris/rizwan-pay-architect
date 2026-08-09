@@ -13,6 +13,12 @@ import { marked } from "marked";
 import authorPortrait from "@/assets/rizwan-zafar-cutout-460.webp";
 
 const OG_IMAGE_OVERRIDES: Record<string, string> = {
+  "checkout-uae-svf-liquidity-controls":
+    "/og/blog/checkout-uae-svf-liquidity-controls-v20260809.png",
+  "boe-payment-third-party-risk-programme-gates":
+    "/og/blog/boe-payment-third-party-risk-programme-gates-v20260809.png",
+  "solana-pay-agent-payment-approval-controls":
+    "/og/blog/solana-pay-agent-payment-approval-controls-v20260809.png",
   "splitit-1stmile-card-linked-installment-controls":
     "/og/blog/splitit-1stmile-card-linked-installment-controls-v20260808.png",
   "uk-open-banking-billion-payments-product-scorecard":
