@@ -325,7 +325,7 @@ def build(output: Path):
     story.append(PageBreak())
     story += section("Professional experience, continued", styles)
     story += role(
-        "Senior Product and Program Manager",
+        "Head of Product & Projects",
         "Tapmad",
         "Karachi | Jul 2017 - Mar 2020",
         [
