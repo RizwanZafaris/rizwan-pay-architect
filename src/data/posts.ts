@@ -40,6 +40,30 @@ export const categories = [
 
 export const posts: Post[] = [
   {
+    "slug": "marqeta-riskified-issuer-authorization-false-declines",
+    "title": "Marqeta and Riskified Move False Declines Into Issuer Controls",
+    "metaTitle": "Marqeta Riskified Issuer Authorization Controls",
+    "date": "2026-08-10",
+    "category": "Card Issuing",
+    "readingTime": "7 min read",
+    "description": "Marqeta and Riskified show why issuer authorization needs merchant intelligence, fraud feedback, override rules, and false-decline evidence.",
+    "thesis": "Marqeta and Riskified's issuer-risk integration is a card-programme signal: false declines are partly an issuer authorization problem. Issuers need merchant intelligence, rule feedback, override paths, and evidence that protects approvals without weakening fraud controls.",
+    "tags": [
+      "Marqeta",
+      "Riskified",
+      "card issuing",
+      "false declines",
+      "issuer authorization",
+      "fraud controls"
+    ],
+    "relatedArticles": [
+      "/blog/processor-only-card-issuing-operating-model",
+      "/blog/marqeta-stip-issuer-resilience-operating-model",
+      "/blog/adyen-refund-concentration-fraud-lifecycle-controls",
+      "/product-work/fraud-risk-aml-cft"
+    ]
+  },
+  {
     "slug": "boe-payment-third-party-risk-programme-gates",
     "title": "The Bank of England Just Turned Payment Vendor Risk Into a Programme Gate",
     "metaTitle": "Bank of England Payment Third-Party Risk Gates",
