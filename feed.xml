@@ -5,8 +5,16 @@
   <link>https://rzifi.com/blog/</link>
   <description>Essays on payment infrastructure, fintech product, risk, settlement, AI and program leadership.</description>
   <language>en</language>
-  <lastBuildDate>Sun, 09 Aug 2026 23:57:50 GMT</lastBuildDate>
+  <lastBuildDate>Mon, 10 Aug 2026 02:24:03 GMT</lastBuildDate>
   <item>
+    <title>Marqeta and Riskified Move False Declines Into Issuer Controls</title>
+    <link>https://rzifi.com/blog/marqeta-riskified-issuer-authorization-false-declines/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/marqeta-riskified-issuer-authorization-false-declines/</guid>
+    <pubDate>Mon, 10 Aug 2026 00:00:00 GMT</pubDate>
+    <category>Card Issuing</category>
+    <description>Marqeta and Riskified show why issuer authorization needs merchant intelligence, fraud feedback, override rules, and false-decline evidence.</description>
+  </item>
+<item>
     <title>The Bank of England Just Turned Payment Vendor Risk Into a Programme Gate</title>
     <link>https://rzifi.com/blog/boe-payment-third-party-risk-programme-gates/</link>
     <guid isPermaLink="true">https://rzifi.com/blog/boe-payment-third-party-risk-programme-gates/</guid>
@@ -237,14 +245,6 @@
     <pubDate>Mon, 27 Jul 2026 00:00:00 GMT</pubDate>
     <category>Program Management</category>
     <description>Mastercard&apos;s virtual card controls show why B2B payment programmes need issuer, clearing, API, and partner gates before scale.</description>
-  </item>
-<item>
-    <title>Agent Payment Guard Shows x402 Needs Pre-Payment Risk Gates</title>
-    <link>https://rzifi.com/blog/agent-payment-guard-x402-risk-gates/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/agent-payment-guard-x402-risk-gates/</guid>
-    <pubDate>Wed, 22 Jul 2026 00:00:00 GMT</pubDate>
-    <category>AI &amp; Product Operations</category>
-    <description>agent-payment-guard shows why x402 and agentic payments need pre-payment risk gates, mandate checks, and fail-closed controls.</description>
   </item>
 </channel>
 </rss>
