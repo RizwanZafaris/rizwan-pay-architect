@@ -13,6 +13,8 @@ import { marked } from "marked";
 import authorPortrait from "@/assets/rizwan-zafar-cutout-460.webp";
 
 const OG_IMAGE_OVERRIDES: Record<string, string> = {
+  "psr-app-fraud-reimbursement-control-loop":
+    "/og/blog/psr-app-fraud-reimbursement-control-loop-v20260811.png",
   "marqeta-riskified-issuer-authorization-false-declines":
     "/og/blog/marqeta-riskified-issuer-authorization-false-declines-v20260810.png",
   "checkout-uae-svf-liquidity-controls":

@@ -40,6 +40,30 @@ export const categories = [
 
 export const posts: Post[] = [
   {
+    "slug": "psr-app-fraud-reimbursement-control-loop",
+    "title": "PSR APP Fraud Data Turns Reimbursement Into A Payments Control Loop",
+    "metaTitle": "PSR APP Fraud Reimbursement Control Loop",
+    "date": "2026-08-11",
+    "category": "Fraud & Risk",
+    "readingTime": "7 min read",
+    "description": "PSR APP fraud data shows UK payment firms need reimbursement, claims evidence, receiving-bank controls, CoP, and scam-source data in one loop.",
+    "thesis": "The PSR's latest APP fraud evidence moves beyond consumer-protection coverage. It turns Faster Payments reimbursement into a measurable operating loop across sending PSPs, receiving PSPs, Pay.UK, Confirmation of Payee, claim handling, scam-source data, and board-level fraud controls.",
+    "tags": [
+      "PSR",
+      "APP fraud",
+      "Faster Payments",
+      "Confirmation of Payee",
+      "fraud operations",
+      "UK payments"
+    ],
+    "relatedArticles": [
+      "/blog/mastercard-scam-merchant-monitoring-acquirer-operations",
+      "/blog/uk-open-banking-billion-payments-product-scorecard",
+      "/blog/baringa-uk-payments-migration-delivery-gates",
+      "/product-work/fraud-risk-aml-cft"
+    ]
+  },
+  {
     "slug": "marqeta-riskified-issuer-authorization-false-declines",
     "title": "Marqeta and Riskified Move False Declines Into Issuer Controls",
     "metaTitle": "Marqeta Riskified Issuer Authorization Controls",
