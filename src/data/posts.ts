@@ -40,6 +40,54 @@ export const categories = [
 
 export const posts: Post[] = [
   {
+    "slug": "fednow-intermediary-banks-cross-border-rulebook",
+    "title": "FedNow Intermediary Banks Turn Cross-Border Into A Rulebook Problem",
+    "metaTitle": "FedNow Cross-Border Intermediary Bank Controls",
+    "date": "2026-08-12",
+    "category": "Cross-Border Payments",
+    "readingTime": "7 min read",
+    "description": "FedNow intermediary-bank proposals show why cross-border instant payments need sanctions, settlement, exception, and respondent-bank controls.",
+    "thesis": "The Federal Reserve's Regulation J proposal for FedNow intermediaries is not just a cross-border growth story. It turns real-time domestic settlement, correspondent banking, sanctions screening, message design, and exception ownership into one operating model.",
+    "tags": [
+      "FedNow",
+      "Regulation J",
+      "cross-border payments",
+      "correspondent banking",
+      "real-time payments",
+      "sanctions screening"
+    ],
+    "relatedArticles": [
+      "/blog/mastercard-send-visa-direct-push-payments",
+      "/blog/mbridge-cross-border-settlement-warning-shot",
+      "/blog/swift-november-2026-address-cutoff-product-problem",
+      "/product-work/simpaisa-payment-infrastructure"
+    ]
+  },
+  {
+    "slug": "openai-daybreak-cyber-access-control-model",
+    "title": "OpenAI Daybreak Makes Cyber Agents An Access-Control Product",
+    "metaTitle": "OpenAI Daybreak Cyber Access Control Model",
+    "date": "2026-08-12",
+    "category": "AI & Product Operations",
+    "readingTime": "7 min read",
+    "description": "OpenAI Daybreak and GPT-5.6-Cyber show why powerful cyber agents need access tiers, scope, sandboxes, monitoring, and owner gates.",
+    "thesis": "OpenAI's Daybreak expansion is not only a model release. It is a product lesson in how to expose more powerful AI capability through eligibility, scope, safeguards, monitoring, and review gates.",
+    "tags": [
+      "OpenAI Daybreak",
+      "GPT-5.6-Cyber",
+      "AI agents",
+      "cybersecurity",
+      "access controls",
+      "product governance"
+    ],
+    "relatedArticles": [
+      "/blog/openai-hugging-face-eval-containment-controls",
+      "/blog/github-copilot-agent-metrics-adoption-governance",
+      "/blog/agent-skills-ai-coding-operating-model",
+      "/product-work/fraud-risk-aml-cft"
+    ]
+  },
+  {
     "slug": "psr-app-fraud-reimbursement-control-loop",
     "title": "PSR APP Fraud Data Turns Reimbursement Into A Payments Control Loop",
     "metaTitle": "PSR APP Fraud Reimbursement Control Loop",

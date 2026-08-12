@@ -13,6 +13,10 @@ import { marked } from "marked";
 import authorPortrait from "@/assets/rizwan-zafar-cutout-460.webp";
 
 const OG_IMAGE_OVERRIDES: Record<string, string> = {
+  "fednow-intermediary-banks-cross-border-rulebook":
+    "/og/blog/fednow-intermediary-banks-cross-border-rulebook-v20260812.png",
+  "openai-daybreak-cyber-access-control-model":
+    "/og/blog/openai-daybreak-cyber-access-control-model-v20260812.png",
   "psr-app-fraud-reimbursement-control-loop":
     "/og/blog/psr-app-fraud-reimbursement-control-loop-v20260811.png",
   "marqeta-riskified-issuer-authorization-false-declines":
