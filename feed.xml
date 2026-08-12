@@ -5,8 +5,24 @@
   <link>https://rzifi.com/blog/</link>
   <description>Essays on payment infrastructure, fintech product, risk, settlement, AI and program leadership.</description>
   <language>en</language>
-  <lastBuildDate>Wed, 12 Aug 2026 00:07:13 GMT</lastBuildDate>
+  <lastBuildDate>Wed, 12 Aug 2026 05:20:49 GMT</lastBuildDate>
   <item>
+    <title>FedNow Intermediary Banks Turn Cross-Border Into A Rulebook Problem</title>
+    <link>https://rzifi.com/blog/fednow-intermediary-banks-cross-border-rulebook/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/fednow-intermediary-banks-cross-border-rulebook/</guid>
+    <pubDate>Wed, 12 Aug 2026 00:00:00 GMT</pubDate>
+    <category>Cross-Border Payments</category>
+    <description>FedNow intermediary-bank proposals show why cross-border instant payments need sanctions, settlement, exception, and respondent-bank controls.</description>
+  </item>
+<item>
+    <title>OpenAI Daybreak Makes Cyber Agents An Access-Control Product</title>
+    <link>https://rzifi.com/blog/openai-daybreak-cyber-access-control-model/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/openai-daybreak-cyber-access-control-model/</guid>
+    <pubDate>Wed, 12 Aug 2026 00:00:00 GMT</pubDate>
+    <category>AI &amp; Product Operations</category>
+    <description>OpenAI Daybreak and GPT-5.6-Cyber show why powerful cyber agents need access tiers, scope, sandboxes, monitoring, and owner gates.</description>
+  </item>
+<item>
     <title>PSR APP Fraud Data Turns Reimbursement Into A Payments Control Loop</title>
     <link>https://rzifi.com/blog/psr-app-fraud-reimbursement-control-loop/</link>
     <guid isPermaLink="true">https://rzifi.com/blog/psr-app-fraud-reimbursement-control-loop/</guid>
@@ -229,22 +245,6 @@
     <pubDate>Mon, 27 Jul 2026 00:00:00 GMT</pubDate>
     <category>AI &amp; Product Operations</category>
     <description>Alibaba&apos;s open-code-review repo shows why AI code review needs deterministic file selection, rule matching, and audit gates before autonomy.</description>
-  </item>
-<item>
-    <title>Ecommpay Shows SMB Payments Need a Product Ladder</title>
-    <link>https://rzifi.com/blog/ecommpay-small-business-payments-product-ladder/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/ecommpay-small-business-payments-product-ladder/</guid>
-    <pubDate>Mon, 27 Jul 2026 00:00:00 GMT</pubDate>
-    <category>Product Management</category>
-    <description>Ecommpay&apos;s UK small-business platform shows how payment teams can turn enterprise rails into a self-serve product without hiding risk.</description>
-  </item>
-<item>
-    <title>iDenfy Shows Card Verification Needs Its Own Risk Gate</title>
-    <link>https://rzifi.com/blog/idenfy-card-verification-risk-gate/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/idenfy-card-verification-risk-gate/</guid>
-    <pubDate>Mon, 27 Jul 2026 00:00:00 GMT</pubDate>
-    <category>Fraud &amp; Risk</category>
-    <description>iDenfy&apos;s standalone card verification platform shows why fintech teams need ownership, audit trails, and fraud controls before onboarding.</description>
   </item>
 </channel>
 </rss>
