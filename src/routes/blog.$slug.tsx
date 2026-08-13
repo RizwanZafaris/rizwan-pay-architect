@@ -14,7 +14,7 @@ import authorPortrait from "@/assets/rizwan-zafar-cutout-460.webp";
 
 const OG_IMAGE_OVERRIDES: Record<string, string> = {
   "uae-einvoicing-provider-readiness-gates":
-    "/og/blog/uae-einvoicing-provider-readiness-gates-v20260813.png",
+    "/og/blog/uae-einvoicing-provider-readiness-gates-v2026081301.png",
   "fednow-intermediary-banks-cross-border-rulebook":
     "/og/blog/fednow-intermediary-banks-cross-border-rulebook-v20260812.png",
   "openai-daybreak-cyber-access-control-model":
