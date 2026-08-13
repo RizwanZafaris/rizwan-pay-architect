@@ -40,6 +40,29 @@ export const categories = [
 
 export const posts: Post[] = [
   {
+    "slug": "uae-einvoicing-provider-readiness-gates",
+    "title": "UAE E-Invoicing Turns Finance Change Into Provider Readiness Gates",
+    "metaTitle": "UAE E-Invoicing Provider Readiness Gates",
+    "date": "2026-08-13",
+    "category": "Program Management",
+    "readingTime": "7 min read",
+    "description": "UAE e-invoicing makes finance transformation a provider-readiness programme across invoice data, tax reporting, onboarding, controls, and exceptions.",
+    "thesis": "The UAE e-invoicing programme is not only a tax technology change. It forces finance, tax, procurement, ERP, payments, and operations teams to prove provider readiness before the mandate becomes a production risk.",
+    "tags": [
+      "UAE e-invoicing",
+      "programme governance",
+      "tax reporting",
+      "provider readiness",
+      "finance transformation"
+    ],
+    "relatedArticles": [
+      "/blog/boe-payment-third-party-risk-programme-gates",
+      "/blog/uk-retail-payments-core-product-programme-boundary",
+      "/blog/three-way-reconciliation-at-scale",
+      "/hire"
+    ]
+  },
+  {
     "slug": "fednow-intermediary-banks-cross-border-rulebook",
     "title": "FedNow Intermediary Banks Turn Cross-Border Into A Rulebook Problem",
     "metaTitle": "FedNow Cross-Border Intermediary Bank Controls",
