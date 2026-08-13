@@ -5,8 +5,16 @@
   <link>https://rzifi.com/blog/</link>
   <description>Essays on payment infrastructure, fintech product, risk, settlement, AI and program leadership.</description>
   <language>en</language>
-  <lastBuildDate>Thu, 13 Aug 2026 00:06:57 GMT</lastBuildDate>
+  <lastBuildDate>Thu, 13 Aug 2026 13:33:21 GMT</lastBuildDate>
   <item>
+    <title>UAE E-Invoicing Turns Finance Change Into Provider Readiness Gates</title>
+    <link>https://rzifi.com/blog/uae-einvoicing-provider-readiness-gates/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/uae-einvoicing-provider-readiness-gates/</guid>
+    <pubDate>Thu, 13 Aug 2026 00:00:00 GMT</pubDate>
+    <category>Program Management</category>
+    <description>UAE e-invoicing makes finance transformation a provider-readiness programme across invoice data, tax reporting, onboarding, controls, and exceptions.</description>
+  </item>
+<item>
     <title>FedNow Intermediary Banks Turn Cross-Border Into A Rulebook Problem</title>
     <link>https://rzifi.com/blog/fednow-intermediary-banks-cross-border-rulebook/</link>
     <guid isPermaLink="true">https://rzifi.com/blog/fednow-intermediary-banks-cross-border-rulebook/</guid>
@@ -237,14 +245,6 @@
     <pubDate>Tue, 28 Jul 2026 00:00:00 GMT</pubDate>
     <category>AI &amp; Product Operations</category>
     <description>Microsoft Project Perception shows why security agents need context, model routing, permissions, escalation, and operator control before production.</description>
-  </item>
-<item>
-    <title>Alibaba&apos;s Open Code Review Shows AI Review Needs Hard Rails</title>
-    <link>https://rzifi.com/blog/alibaba-open-code-review-agent-governance/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/alibaba-open-code-review-agent-governance/</guid>
-    <pubDate>Mon, 27 Jul 2026 00:00:00 GMT</pubDate>
-    <category>AI &amp; Product Operations</category>
-    <description>Alibaba&apos;s open-code-review repo shows why AI code review needs deterministic file selection, rule matching, and audit gates before autonomy.</description>
   </item>
 </channel>
 </rss>
