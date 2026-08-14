@@ -1,371 +1,232 @@
 # Analytics setup — direct gtag (single pipeline)
 
-This doc is the canonical reference for:
+This is the canonical analytics reference for rzifi.com. It documents the
+events emitted by the site, the GA4 follow-up required outside the repository,
+and the release checks that protect the measurement contract.
 
-1. What events the site sends to GA4 (via inline `gtag()` calls)
-2. Which events to mark as conversions in GA4 / import into Google Ads
-3. How to verify the install end-to-end
+## Architecture
 
----
+The site uses **direct `gtag` as its only Google analytics pipeline**:
 
-Architecture: **direct gtag is the single pipeline.** Every tag ships inline
-in code (GA4 `G-F1NK5FJYJY`, Google Ads `AW-790961325`, LinkedIn Insight
-`3222825`, optional Clarity/Plausible) and every event fires as an inline
-`gtag("event", …)` call. Nothing is routed through Google Tag Manager.
+- GA4: `G-F1NK5FJYJY`, configurable with `VITE_GA_MEASUREMENT_ID`.
+- Google Ads: `AW-790961325`, configurable with `VITE_GOOGLE_ADS_ID`.
+- LinkedIn Insight: loaded directly from the IDs in `src/lib/seo.ts`.
+- React/hydrated contexts call the typed helpers in `src/lib/analytics.ts`.
+- The static Hostinger export uses the vanilla bridge in
+  `src/routes/__root.tsx` and the Cal embed script in `src/lib/campaign.ts`.
 
-## ⚠️ GTM retired — 2026-06-12
+Consent Mode defaults Google storage to denied before `gtag.js` loads. The
+cookie-consent banner grants or denies the analytics and marketing categories;
+LinkedIn loads only after marketing consent, and PostHog loads only after
+analytics consent.
 
-The GTM container (`GTM-TM5BP98G`) is **no longer loaded by the site**. Its
-UI-built tags (6 at retirement: GA4 config + event tags, Ads, LinkedIn
-mirrors) duplicated the inline tags above, so GA4/Ads/LinkedIn received every
-hit 2–3×, and the old `trackEvent` double-pushed (`dataLayer.push` for GTM
-*plus* `gtag()`). Fixed by removing the container loader + noscript iframe
-from `__root.tsx`, making all event senders gtag-only, and pointing the
-`check-live` probe at the direct GA4 tag.
+The URL `https://www.googletagmanager.com/gtag/js?...` loads Google's
+**gtag.js library**. Its hostname does not mean a Google Tag Manager container
+is active.
 
-What to do in the GTM UI: nothing is required (the container never loads).
-For hygiene, pause or delete the 6 tags — and do NOT re-publish the container
-expecting it to work; if GTM should ever come back as the hub, the inline
-tags must be stripped first so there is exactly one pipeline.
+## GTM retired — 2026-06-12
 
-Historical note: events still also appear in `window.dataLayer` because
-`gtag()` itself is a `dataLayer.push` — that is gtag.js internals, not a
-second pipeline.
+Container `GTM-TM5BP98G` is not loaded. Its UI-built GA4, Ads, and LinkedIn
+tags duplicated the direct tags and contaminated the historical baseline with
+double-counted events.
 
-## 0 · Analytics stack
+Guardrails:
 
-| Tool                          | Status in code           | Where to configure                   | Purpose                                                        |
-| ----------------------------- | ------------------------ | ------------------------------------ | -------------------------------------------------------------- |
-| Google Tag Manager            | Installed                | `VITE_GTM_ID` / GTM workspace        | Tag orchestration, triggers and debug                          |
-| Google Analytics 4            | Ready via GTM events     | GTM + GA4 Measurement ID             | Traffic, funnels, conversions                                  |
-| Google Ads base tag           | Installed                | `VITE_GOOGLE_ADS_ID`                 | Ads verification, attribution and conversion-readiness          |
-| Google Ads page-view snippet  | Installed on `/resume/`  | `VITE_GOOGLE_ADS_PAGE_VIEW_CONVERSION_LABEL` | Resume-page visit conversion action for the test campaign |
-| Google Search Console         | Verified in root meta    | Google Search Console                | Search indexing and query performance                          |
-| Bing Webmaster Tools          | Optional meta ready      | `VITE_BING_SITE_VERIFICATION`        | Bing/Copilot search visibility                                 |
-| Microsoft Clarity             | Optional script ready    | `VITE_MICROSOFT_CLARITY_ID`          | Heatmaps/session recordings                                    |
-| Plausible                     | Optional script ready    | `VITE_PLAUSIBLE_DOMAIN`              | Privacy-friendly traffic analytics                             |
-| LinkedIn Insight Tag          | Use GTM                  | GTM Custom HTML or LinkedIn template | Recruiter/audience retargeting                                 |
-| Meta/TikTok pixels            | Use GTM                  | GTM templates                        | Paid campaign tracking only if needed                          |
-| AI bot analytics              | Requires server/CDN logs | Cloudflare/Hostinger logs            | GPTBot, ClaudeBot, PerplexityBot do not reliably run client JS |
+1. Do not add a GTM runtime ID, loader, or noscript iframe while direct tags
+   remain.
+2. Publishing the retired container has no effect because the site does not
+   load it.
+3. If GTM is deliberately restored later, remove every overlapping direct tag
+   first and treat GTM as the only pipeline. Never run both.
 
-## 1 · Event catalogue
+`gtag()` writes commands into `window.dataLayer`; seeing those commands is
+normal and is not evidence that GTM is running.
 
-All events live in [`src/lib/analytics.ts`](../src/lib/analytics.ts) as a typed union. Add a new one there first, then wire the matching trigger in GTM.
+## Event contract
 
-Production is a prerendered static export, so the site also includes a tiny vanilla analytics bridge in [`src/routes/__root.tsx`](../src/routes/__root.tsx). It listens for `data-analytics-*` attributes, PDF clicks, external clicks, blog views, case-study views and search submits, then pushes the same event names into `dataLayer`. This keeps analytics working even when React hydration is stripped from the Hostinger static build.
+The typed catalogue lives in
+[`src/lib/analytics.ts`](../src/lib/analytics.ts). The production static bridge
+emits equivalent names directly through `gtag("event", ...)`.
 
-Google Ads direct install:
+Every custom event also receives `page_path`, `page_location`, `page_title`,
+`page_type`, `funnel_stage`, and `audience` where the sender supports that
+shared context.
 
-- Base tag: `AW-790961325`, configurable via `VITE_GOOGLE_ADS_ID`.
-- Resume page-view conversion: `AW-790961325/6HJOCOTfn7ocEK25lPkC`, configurable via `VITE_GOOGLE_ADS_PAGE_VIEW_CONVERSION_LABEL`.
-- This conversion fires only on `/resume/`. It should be treated as a landing-page / page-view conversion for the small Google Ads test, not as a qualified lead. For higher-quality lead reporting, create separate Google Ads conversion actions for `schedule_meeting`, `resume_download` and `linkedin_click`.
+| Event                 | Trigger                                     | Key parameters                                                      | Reporting use                           |
+| --------------------- | ------------------------------------------- | ------------------------------------------------------------------- | --------------------------------------- |
+| `page_view`           | Initial page load and hydrated route config | GA4 page fields                                                     | Traffic baseline                        |
+| `cta_click`           | Tracked CTA                                 | `cta_id`, `cta_location`, `cta_destination`                         | CTA effectiveness                       |
+| `outbound_click`      | External, mailto, or LinkedIn link          | `outbound_domain`, `outbound_url`, `outbound_location`, `link_type` | Exit intent                             |
+| `email_click`         | Email link                                  | `link_location`                                                     | Contact intent                          |
+| `linkedin_click`      | LinkedIn link                               | `link_location`                                                     | Profile-validation intent               |
+| `schedule_meeting`    | Booking CTA or Cal link click               | `placement`, `schedule_url`                                         | Booking intent; not a booking           |
+| `resume_download`     | Resume PDF click                            | `placement`                                                         | Recruiter intent                        |
+| `newsletter_signup`   | Newsletter form submit                      | `placement`                                                         | Owned-audience intent                   |
+| `blog_view`           | Blog detail load                            | `blog_slug`, `blog_category`, `blog_reading_time`                   | Content performance                     |
+| `case_study_view`     | Case-study detail load                      | `case_study_slug`, `case_study_category`                            | Proof-stage engagement                  |
+| `contact_form_start`  | First focus in contact form                 | none                                                                | Contact funnel start                    |
+| `contact_form_submit` | Contact submission outcome                  | `submit_method`, `submit_status`, `submit_error`                    | Contact funnel outcome                  |
+| `site_search`         | Site search submit                          | `search_term`, `search_location`, `search_filter`                   | Content demand                          |
 
-| Event name            | Fires when                                                                                                                              | Params (dataLayer keys)                                                                                | Recommended GA4 use                                                                            |
-| --------------------- | --------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------- |
-| `spa_pageview`        | Every client-side route change (TanStack Router navigation) — _not_ the initial server-rendered load (GTM's own `gtm.load` covers that) | `page_path`, `page_location`, `page_title`                                                             | GA4 page_view tag, override `page_location` and `page_title` from the dataLayer                |
-| `cta_click`           | Any tracked CTA button or link                                                                                                          | `cta_id`, `cta_location`, `cta_destination` (optional)                                                 | Generic engagement event; useful for funnel analysis (where did they click before converting?) |
-| `outbound_click`      | LinkedIn / mailto / external links                                                                                                      | `outbound_domain`, `outbound_url`, `outbound_location`                                                 | GA4 `click` event with `outbound: true` parameter                                              |
-| `schedule_meeting`    | Cal.com / schedule-intent click from header, resume, contact or mobile menu                                                             | `placement`, `schedule_url`                                                                               | **MARK AS CONVERSION** in GA4 + Google Ads — primary lead signal                               |
-| `resume_download`     | PDF download from any surface                                                                                                           | `placement` (hero / header / mobile_menu / about / for / resume_page / case_study)                        | **MARK AS CONVERSION** in GA4 — lead-quality signal                                            |
-| `blog_view`           | Each `/blog/<slug>` mount                                                                                                               | `blog_slug`, `blog_category`, `blog_reading_time`                                                      | Content engagement; useful for finding which topics convert                                    |
-| `case_study_view`     | Each `/product-work/<slug>` mount                                                                                                       | `case_study_slug`, `case_study_category`                                                               | Mid-funnel engagement                                                                          |
-| `contact_form_start`  | First focus on any contact form field                                                                                                   | (none)                                                                                                 | Funnel step: form started                                                                      |
-| `contact_form_submit` | Form submitted (any outcome)                                                                                                            | `submit_method` (`server` / `mailto`), `submit_status` (`sent` / `error`), `submit_error` (when error) | Operational funnel event; optional secondary conversion only                                   |
-| `site_search`         | Homepage search submit or blog search intent                                                                                            | `search_term`, `search_location`, `search_filter`                                                      | Content demand signal; tells you what recruiters/readers look for                              |
+### Reserved GA4 attribution fields
 
-### `cta_id` values (enumerated)
+Do **not** send custom event parameters named `source`, `medium`, or `campaign`
+for UI placement. Those names belong to GA4 acquisition reporting; values such
+as `header` or `resume_page` can pollute source/medium and channel reports.
 
-- `see_case_studies` · `download_resume` · `email_me` · `discuss_a_role`
-- `book_intro_call` · `ask_availability` · `linkedin_contact` · `whatsapp_message`
-- `full_resume` · `send_message` · `open_email_app` · `copy_email`
-- `request_preview` (Felo / Job Hunt waitlist) · `newsletter_subscribe_request` · `rss_feed`
+The established UI placement parameter is `placement`. Both analytics senders
+contain a compatibility guard that remaps stale custom `source` metadata to
+`placement` and drops raw custom `medium`/`campaign` metadata. Campaign
+attribution remains in the real `utm_source`, `utm_medium`, `utm_campaign`,
+click-ID, and referrer fields. The Cal link/embed forwarders do not change
+those fields.
 
-### `cta_location` values (enumerated)
+## Cal booking funnel
 
-- `hero` · `header` · `for_top` · `for_lens`
-- `case_study_footer` · `blog_post_footer` · `contact_page`
-- `products_card` · `footer` · `mobile_menu` · `resume_page` · `resume_contact`
+The inline booking script emits stable stages rather than exposing raw Cal
+action names as the reporting contract:
 
----
+| Stage             | Event                  | Signal                                                          |
+| ----------------- | ---------------------- | --------------------------------------------------------------- |
+| Booking intent    | `schedule_meeting`     | Site click bridge                                               |
+| Calendar seen     | `cal_embed_viewed`     | Booking section at least 15% visible                            |
+| Calendar usable   | `cal_embed_ready`      | `bookerReady`, `linkReady`, or first supported public Cal event |
+| Booker entered    | `booking_flow_started` | `bookerViewed` or `navigatedToBooker`                           |
+| Booking created   | `booking_submitted`    | `bookingSuccessfulV2` or legacy success fallback                |
+| Technical failure | `cal_embed_failed`     | `linkFailed` code or embed boot exception                       |
 
-## 2 · One-time GTM workspace setup
+`bookingSuccessfulV2` proves that Cal created a booking. It does not prove the
+booking was later accepted or confirmed, even if its browser payload happens to
+contain a status-like field. The legacy success fallback is recorded with
+`booking_status=unknown` rather than promoted to a stronger state.
 
-Open <https://tagmanager.google.com> → container **GTM-TM5BP98G** → Workspace.
+The browser emits neither `booking_confirmed` nor `book_call_confirmed`.
+`booking_confirmed` is reserved for a future trusted Cal webhook/server path
+that can prove that lifecycle state and deduplicate it against booking creation.
+`book_call_confirmed` is historical only and must not remain a key event.
 
-### Step 1 — Create the Data Layer Variables
+Cal's documented embed API does not expose reliable date-selected,
+time-selected, or form-started events. The iframe is cross-origin, so the site
+must not infer those stages from undocumented internal messages.
 
-GTM doesn't auto-read dataLayer keys; you have to declare each one.
+No booking identifiers, names, email addresses, meeting titles, URLs, or
+timestamps are sent to GA4. Booking events contain only `placement`, a
+normalized `booking_status`, and `cal_event_version`. Technical failures send
+only a bounded Cal error code.
 
-**Variables → New → Data Layer Variable** — create these variables (Variable Type: `Data Layer Variable`, Version: `Version 2`):
+## Direct Google Ads and LinkedIn measurement
 
-| Variable Name             | Data Layer Variable Name |
-| ------------------------- | ------------------------ |
-| DLV — page_path           | `page_path`              |
-| DLV — page_location       | `page_location`          |
-| DLV — page_title          | `page_title`             |
-| DLV — cta_id              | `cta_id`                 |
-| DLV — cta_location        | `cta_location`           |
-| DLV — cta_destination     | `cta_destination`        |
-| DLV — outbound_domain     | `outbound_domain`        |
-| DLV — outbound_url        | `outbound_url`           |
-| DLV — outbound_location   | `outbound_location`      |
-| DLV — placement          | `placement`              |
-| DLV — schedule_url        | `schedule_url`           |
-| DLV — link_location       | `link_location`          |
-| DLV — blog_slug           | `blog_slug`              |
-| DLV — blog_category       | `blog_category`          |
-| DLV — case_study_slug     | `case_study_slug`        |
-| DLV — case_study_category | `case_study_category`    |
-| DLV — submit_status       | `submit_status`          |
-| DLV — search_term         | `search_term`            |
-| DLV — search_location     | `search_location`        |
-| DLV — search_filter       | `search_filter`          |
+- Google Ads base tag: `AW-790961325`, configurable with
+  `VITE_GOOGLE_ADS_ID`.
+- Resume page-view conversion:
+  `AW-790961325/6HJOCOTfn7ocEK25lPkC`, configurable with
+  `VITE_GOOGLE_ADS_PAGE_VIEW_CONVERSION_LABEL`.
+- The resume page-view conversion is a landing-page signal, not a qualified
+  lead. Do not optimize it as if it were a booking.
+- The LinkedIn booking conversion fires only with marketing consent and on
+  `booking_submitted`: a browser-observed successful booking creation, not an
+  acceptance/confirmation signal.
 
-### Step 2 — Create the Triggers
+## GA4 administration (external follow-up)
 
-**Triggers → New → Custom Event** for each:
+Repository changes do not update the GA4 property. After the new events have
+been observed in DebugView/Realtime:
 
-| Trigger Name            | Event Name (exact match) | Notes                                              |
-| ----------------------- | ------------------------ | -------------------------------------------------- |
-| CE — spa_pageview       | `spa_pageview`           | Fires on every SPA navigation                      |
-| CE — cta_click          | `cta_click`              | All CTAs                                           |
-| CE — outbound_click     | `outbound_click`         | All external links                                 |
-| CE — schedule_meeting   | `schedule_meeting`       | Conversion trigger                                 |
-| CE — resume_download    | `resume_download`        | Conversion trigger                                 |
-| CE — blog_view          | `blog_view`              | Conversion-worthy                                  |
-| CE — case_study_view    | `case_study_view`        | Mid-funnel engagement                              |
-| CE — contact_form_start | `contact_form_start`     | Funnel step                                        |
-| CE — contact_form_sent  | `contact_form_submit`    | Use this regex filter on `submit_status`: `^sent$` |
-| CE — contact_form_error | `contact_form_submit`    | Filter `submit_status` matches regex `^error$`     |
-| CE — linkedin_click     | `linkedin_click`         | Conversion trigger                                 |
-| CE — site_search        | `site_search`            | Content demand / search intent                     |
+### Key events
 
-For the two filtered `contact_form_*` triggers: under "This trigger fires on" → choose "Some Custom Events" → add the condition.
+1. `booking_submitted` — primary browser-observed booking-created conversion.
+2. `contact_form_submit` filtered to `submit_status=sent` — primary or
+   secondary depending on lead quality.
+3. `schedule_meeting` — secondary intent event; do not report it as a booking.
+4. `resume_download` — secondary recruiter-intent event.
 
-### Step 3 — Create the GA4 Configuration tag
+Mark `booking_submitted` as the replacement key event and retire
+`book_call_confirmed`; do not import both as primary Google Ads conversions.
+If a future trusted webhook emits `booking_confirmed`, treat that as a separate
+downstream lifecycle event and deduplicate conversion optimization deliberately.
 
-**Tags → New → Google Analytics: GA4 Configuration**
+### Event-scoped custom dimensions
 
-- Measurement ID: paste your GA4 stream's measurement ID (`G-XXXXXXXXXX`) — get from Google Analytics → Admin → Data Streams → Web stream.
-- Field to set:
-  - `send_page_view` = `false` (we'll fire page_view manually so we can control parameters)
-- Trigger: **Initialization — All Pages**
-
-This single tag sets up GA4. All event tags below reference it implicitly.
-
-### Step 4 — Create the page_view tag
-
-**Tags → New → Google Analytics: GA4 Event**
-
-- Configuration Tag: select the GA4 Config tag from Step 3
-- Event Name: `page_view`
-- Event Parameters:
-  - `page_path` = `{{DLV — page_path}}`
-  - `page_location` = `{{DLV — page_location}}`
-  - `page_title` = `{{DLV — page_title}}`
-- Triggers:
-  - **Initialization — All Pages** (fires the GA4 page_view on initial load)
-  - **CE — spa_pageview** (fires on subsequent client-side navigations)
-
-### Step 5 — Event tags
-
-Repeat the GA4 Event pattern for each event. Compact recipe:
-
-| Tag Name                 | GA4 Event Name       | Parameters                                                                                                                | Trigger                 |
-| ------------------------ | -------------------- | ------------------------------------------------------------------------------------------------------------------------- | ----------------------- |
-| GA4 — cta_click          | `cta_click`          | `cta_id={{DLV — cta_id}}`, `cta_location={{DLV — cta_location}}`, `cta_destination={{DLV — cta_destination}}`             | CE — cta_click          |
-| GA4 — outbound_click     | `click`              | `outbound=true`, `outbound_domain={{DLV — outbound_domain}}`, `outbound_url={{DLV — outbound_url}}`                       | CE — outbound_click     |
-| GA4 — schedule_meeting   | `schedule_meeting`   | `placement={{DLV — placement}}`, `schedule_url={{DLV — schedule_url}}`                                                          | CE — schedule_meeting   |
-| GA4 — resume_download    | `resume_download`    | `placement={{DLV — placement}}`                                                                                                 | CE — resume_download    |
-| GA4 — linkedin_click     | `linkedin_click`     | `link_location={{DLV — link_location}}`                                                                                   | CE — linkedin_click     |
-| GA4 — blog_view          | `blog_view`          | `blog_slug={{DLV — blog_slug}}`, `blog_category={{DLV — blog_category}}`                                                  | CE — blog_view          |
-| GA4 — case_study_view    | `case_study_view`    | `case_study_slug={{DLV — case_study_slug}}`                                                                               | CE — case_study_view    |
-| GA4 — contact_form_start | `contact_form_start` | (none)                                                                                                                    | CE — contact_form_start |
-| GA4 — contact_form_sent  | `contact_form_sent`  | (none)                                                                                                                    | CE — contact_form_sent  |
-| GA4 — contact_form_error | `contact_form_error` | (none)                                                                                                                    | CE — contact_form_error |
-| GA4 — site_search        | `search`             | `search_term={{DLV — search_term}}`, `search_location={{DLV — search_location}}`, `search_filter={{DLV — search_filter}}` | CE — site_search        |
-
-### Step 6 — Publish the container
-
-Top-right **Submit** → name the version (e.g. "Initial event setup — v1") → **Publish**. Until you publish, nothing fires in production.
-
----
-
-## 3 · GA4 admin setup (the side you control inside Google Analytics)
-
-Open <https://analytics.google.com> → property **(Admin → Property Settings)**.
-
-### Mark conversions
-
-**Admin → Conversions → New conversion event** for these 3:
-
-1. `schedule_meeting`
-2. `resume_download`
-3. `linkedin_click`
-
-These become trackable goals in funnels, audience definitions, and ad attribution.
-
-### Custom dimensions (so you can group/filter by these in reports)
-
-**Admin → Custom definitions → Create custom dimensions** — Event-scoped:
-
-| Dimension name      | Event parameter       |
-| ------------------- | --------------------- |
-| CTA ID              | `cta_id`              |
-| CTA Location        | `cta_location`        |
+| Dimension            | Event parameter       |
+| -------------------- | --------------------- |
+| CTA ID               | `cta_id`              |
+| CTA location         | `cta_location`        |
 | Placement            | `placement`           |
-| Schedule URL        | `schedule_url`        |
-| Blog slug           | `blog_slug`           |
-| Blog category       | `blog_category`       |
-| Case study slug     | `case_study_slug`     |
-| Case study category | `case_study_category` |
-| Outbound domain     | `outbound_domain`     |
-| Outbound location   | `outbound_location`   |
-| Link location       | `link_location`       |
-| Submit status       | `submit_status`       |
-| Search term         | `search_term`         |
-| Search location     | `search_location`     |
-| Search filter       | `search_filter`       |
+| Booking status       | `booking_status`      |
+| Cal event version    | `cal_event_version`   |
+| Embed failure reason | `failure_reason`      |
+| Blog slug            | `blog_slug`           |
+| Blog category        | `blog_category`       |
+| Case-study slug      | `case_study_slug`     |
+| Case-study category  | `case_study_category` |
+| Outbound domain      | `outbound_domain`     |
+| Outbound location    | `outbound_location`   |
+| Submit status        | `submit_status`       |
+| Search term          | `search_term`         |
+| Search location      | `search_location`     |
 
-Once registered, these show up as filterable columns in Reports → Engagement → Events.
+Do not create or retain a custom `source` definition for CTA placement.
+Historical rows cannot be repaired in place; use a clean post-release date as
+the new attribution baseline.
 
-### Recommended reports to build
+## Verification
 
-In **Explore → Free form**:
-
-1. **Top-of-funnel** — `page_view` segmented by `landing_page` (built-in) → which routes get traffic
-2. **Mid-funnel** — `case_study_view` segmented by `case_study_slug` → which case studies earn attention
-3. **Conversion path** — funnel: `page_view` → `case_study_view` → `cta_click (cta_id=book_intro_call)` → `schedule_meeting`
-4. **CTA effectiveness** — `cta_click` events segmented by `cta_location` + `cta_id`
-5. **Inbound CTA destinations** — referrals from LinkedIn vs Google by landing page
-
----
-
-## 4 · Verifying the install
-
-### Quick checks (DevTools console, no GA4 needed)
-
-1. Open <https://rzifi.com> in Chrome.
-2. DevTools → Console → type `dataLayer` → you should see an array with at least:
-   - `{ event: "gtm.js", ... }`
-   - `{ event: "gtm.dom", ... }`
-   - `{ event: "gtm.load", ... }`
-3. Click **Schedule call** in the header or **Book intro call** on the contact page → re-type `dataLayer` → look for:
-   ```js
-   { event: "schedule_meeting", placement: "header", schedule_url: "https://cal.com/..." }
-   ```
-4. Click the **See case studies** button in the hero → look for:
-   ```js
-   { event: "cta_click", cta_id: "see_case_studies", cta_location: "hero", cta_destination: "/product-work" }
-   ```
-5. Click **Download resume** → look for both:
-   ```js
-   { event: "cta_click", cta_id: "download_resume", cta_location: "hero", cta_destination: "/Rizwan_Zafar_Resume.pdf" }
-   { event: "resume_download", placement: "hero" }
-   ```
-6. Click any LinkedIn link → look for:
-   ```js
-   { event: "linkedin_click", link_location: "..." }
-   ```
-7. Navigate to `/about` → look for:
-   ```js
-   { event: "spa_pageview", page_path: "/about", page_location: "...", page_title: "About — Rizwan Zafar..." }
-   ```
-8. Search from the homepage or blog page → look for:
-   ```js
-   { event: "site_search", search_term: "swift", search_location: "home" }
-   ```
-
-### Code/live checks
-
-Run:
+### Repository checks
 
 ```bash
-bun run seo:check-live
+bun run typecheck
+bun run build:static
+bun run seo:audit
 ```
 
-This verifies that the live homepage includes Google Tag Manager and Google Search Console verification, alongside the existing search/AI reachability checks.
+The static audit fails if generated HTML contains a retired GTM container
+loader, a legacy `data-analytics-source` attribute, or either forbidden
+client-side booking-confirmation event.
 
-### GTM Preview Mode (best while you build triggers)
+### Browser and GA4 checks
 
-In your GTM workspace, top-right **Preview** → paste your site URL → it opens a connected tab with a debug pane. Every dataLayer push appears with the matching triggers it fired. Iterate triggers until everything lights up green.
+1. Accept analytics cookies in the test browser.
+2. Open DevTools → Network and filter for `collect?v=2` or `g/collect`.
+3. Trigger a CTA and confirm placement is sent as `placement`; no custom
+   `source=header`, `source=resume_page`, or similar value should be present.
+4. On a page with the inline calendar, confirm one `cal_embed_viewed`, one
+   `cal_embed_ready`, and at most one `booking_flow_started` per page load.
+5. Complete a booking only in an approved test flow. Confirm one
+   `booking_submitted` and confirm that no client-side `booking_confirmed` or
+   `book_call_confirmed` event is emitted.
+6. Check GA4 Realtime/DebugView. Standard reports may take up to a day.
 
-### GA4 DebugView (real-time event stream)
-
-1. In your GTM Preview session, GA4 events flow into the GA4 property's **DebugView** (Admin → DebugView).
-2. You'll see events appear in real time with all parameters expanded.
-3. If an event shows in dataLayer but NOT in DebugView, the GA4 tag isn't firing — check the trigger.
-
-### GA4 Realtime report
-
-Open **Reports → Realtime** in the live site visit → click around → events should show within ~5 seconds. Once you've confirmed firing, give it 24 hours for the standard reports to populate.
-
----
-
-## 5 · Operating model
-
-### Local dev opts out automatically
+After deployment, run:
 
 ```bash
-# .env.local
-VITE_GTM_ID=
+EXPECTED_SOURCE_SHA=<deployed-main-sha> bun scripts/check-live.ts https://rzifi.com
 ```
 
-Empty value → no GTM script injected → zero dev pollution in production analytics.
+The live check verifies the direct tags, absence of the retired GTM loader and
+legacy CTA-source markup, site health, and exact deployment provenance.
 
-### Staging vs production
+## Adding an event
 
-If you spin up a separate staging container later, set per-environment env vars:
+1. Add or update the variant in `src/lib/analytics.ts`.
+2. Use `trackEvent()` in hydrated code, or add equivalent static-bridge
+   behavior when the production export needs it.
+3. Use flat, non-PII parameters. Never use reserved acquisition names for UI
+   metadata.
+4. Update this event contract.
+5. Run typecheck, static build, and the static audit.
+6. Register only required dimensions/key events after observing the deployed
+   event in DebugView.
 
-| Env                      | `VITE_GTM_ID`                              |
-| ------------------------ | ------------------------------------------ |
-| Local dev                | (empty — opted out)                        |
-| Staging / preview deploy | `GTM-XXXXXXXX` (new container for staging) |
-| Production               | `GTM-TM5BP98G`                             |
+## Files involved
 
-### Optional direct tools
-
-Set these only if you want the direct install:
-
-```bash
-VITE_BING_SITE_VERIFICATION=<bing-token>
-VITE_MICROSOFT_CLARITY_ID=<clarity-project-id>
-VITE_PLAUSIBLE_DOMAIN=rzifi.com
-VITE_PLAUSIBLE_SRC=https://plausible.io/js/script.js
-```
-
-For LinkedIn Insight, Meta Pixel, TikTok Pixel and Google Ads conversions, use GTM instead of direct code. Create a Custom Event trigger for the events above and fire the vendor tag from GTM.
-
-### When you add a new CTA / event
-
-1. **Edit `src/lib/analytics.ts`** — add the new variant to the `SiteEvent` union.
-2. **Call `trackEvent('your_event', { ... })`** at the call site.
-3. **GTM workspace** — create matching Custom Event trigger + GA4 Event tag.
-4. **GA4** — register any new custom dimensions you reference.
-
-The TypeScript compiler enforces that any `trackEvent('new_thing', ...)` call has a matching union entry — so you can't ship an event your code/IDE doesn't already document.
-
-### Privacy / consent (TODO if you want EU compliance later)
-
-The current install fires GTM unconditionally. If you ever need EU GDPR cookie consent:
-
-1. Install a consent management platform (Klaro, CookieScript, Iubenda — pick one).
-2. Set the GTM container to use **Consent Mode v2** (in GTM admin → Container Settings → Consent Mode).
-3. Mark each tag with required consent (analytics_storage / ad_storage).
-4. The CMP fires `default consent` calls before GTM init, and `update consent` after the user accepts.
-
-Not needed for personal portfolio + no EU advertising — but worth knowing the path.
-
----
-
-## 6 · Files involved
-
-- [`src/lib/analytics.ts`](../src/lib/analytics.ts) — typed event helper, the source of truth for what fires
-- [`src/lib/seo.ts`](../src/lib/seo.ts) — exports `GTM_ID` (env-driven, defaults to `GTM-TM5BP98G`)
-- [`src/routes/__root.tsx`](../src/routes/__root.tsx) — GTM `<script>` in head, static analytics bridge, optional Clarity/Plausible/Bing config, `<noscript>` in body, `GtmRouteTracker` for SPA page views
-- [`src/components/SiteChrome.tsx`](../src/components/SiteChrome.tsx) — header / footer CTA tracking
-- [`src/routes/index.tsx`](../src/routes/index.tsx) — hero CTA tracking
-- [`src/routes/contact.tsx`](../src/routes/contact.tsx) — form lifecycle tracking
-- [`src/routes/blog.$slug.tsx`](../src/routes/blog.$slug.tsx) — `blog_view`
-- [`src/routes/product-work.$slug.tsx`](../src/routes/product-work.$slug.tsx) — `case_study_view` + CTA tracking
-- [`.env.example`](../.env.example) — `VITE_GTM_ID` documentation
+- [`src/lib/analytics.ts`](../src/lib/analytics.ts) — typed events, sanitizing,
+  and direct gtag helper.
+- [`src/routes/__root.tsx`](../src/routes/__root.tsx) — direct tag bootstrap,
+  consent handling, and the static analytics bridge.
+- [`src/lib/campaign.ts`](../src/lib/campaign.ts) — campaign forwarding and Cal
+  embed funnel.
+- [`src/lib/seo.ts`](../src/lib/seo.ts) — integration IDs and environment
+  defaults.
+- [`scripts/seo-audit.ts`](../scripts/seo-audit.ts) — generated-output gates.
+- [`scripts/check-live.ts`](../scripts/check-live.ts) — deployed-site gates.
+- [`.env.example`](../.env.example) — environment contract.

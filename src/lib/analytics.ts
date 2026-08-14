@@ -30,6 +30,20 @@ export function pageAnalyticsContext(pathname = "/"): EventParams {
   if (path === "/") {
     return { page_type: "home", funnel_stage: "discovery", audience: "recruiter_hiring_manager" };
   }
+  if (path === "/hire" || path.startsWith("/hire/")) {
+    return {
+      page_type: "hire_landing",
+      funnel_stage: "conversion",
+      audience: "recruiter_hiring_manager",
+    };
+  }
+  if (path === "/consulting" || path.startsWith("/consulting/")) {
+    return {
+      page_type: "consulting",
+      funnel_stage: "conversion",
+      audience: "founders_payments_leaders",
+    };
+  }
   if (path.startsWith("/resume/")) {
     return {
       page_type: "resume",
@@ -81,16 +95,23 @@ export function pageAnalyticsContext(pathname = "/"): EventParams {
 function sanitizeAnalyticsParams(params: EventParams): EventParams {
   const clean: EventParams = {};
   for (const [key, value] of Object.entries(params)) {
+    // `source`, `medium`, and `campaign` are GA4 acquisition fields. UI event
+    // metadata must not overwrite them. Keep `placement` as the established
+    // reporting contract and treat a stale `source` key as a compatibility
+    // fallback; real `utm_*` parameters are separate keys and remain intact.
+    const normalizedKey = key === "source" ? "placement" : key;
+    if (key === "medium" || key === "campaign") continue;
+    if (key === "source" && clean.placement !== undefined) continue;
     if (typeof value !== "string") {
-      clean[key] = value;
+      clean[normalizedKey] = value;
       continue;
     }
-    if (key.includes("email")) continue;
+    if (normalizedKey.includes("email")) continue;
     if (value.startsWith("mailto:")) {
-      clean[key] = "mailto";
+      clean[normalizedKey] = "mailto";
       continue;
     }
-    clean[key] = value.replace(/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/gi, "[redacted]");
+    clean[normalizedKey] = value.replace(/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/gi, "[redacted]");
   }
   return clean;
 }
@@ -109,20 +130,10 @@ export function trackEvent(eventName: SiteEvent["event"], params: EventParams = 
 }
 
 // ─── Event catalogue (typed) ──────────────────────────────────────────────
-// Each entry below is one event the site can fire. Keeps the GTM trigger
+// Each entry below is one event the site can fire. Keeps the direct-gtag
 // surface enumerable from a single place.
 
 export type SiteEvent =
-  // SPA navigation. Fired by RouteAnalyticsTracker in __root.tsx on every
-  // client route change (hydrated contexts only). Initial loads are captured
-  // by gtag.js's configured page_view.
-  | {
-      event: "spa_pageview";
-      page_path: string;
-      page_location: string;
-      page_title: string;
-    }
-
   // CTA button / link clicks. cta_id is stable across redesigns; cta_location
   // tells you which surface the user converted from.
   | {
@@ -133,6 +144,8 @@ export type SiteEvent =
         | "email_me"
         | "discuss_a_role"
         | "book_intro_call"
+        | "book_scoping_call"
+        | "consulting_proof"
         | "ask_availability"
         | "linkedin_contact"
         | "whatsapp_message"
@@ -158,7 +171,15 @@ export type SiteEvent =
         | "products_card"
         | "footer"
         | "resume_page"
-        | "resume_contact";
+        | "resume_contact"
+        | "resume_inline_embed"
+        | "contact_embed_fallback"
+        | "hire_hero"
+        | "hire_footer"
+        | "hire_embed_fallback"
+        | "consulting_hero"
+        | "consulting_embed_fallback"
+        | `consulting_offer_${string}`;
       cta_destination?: string;
     }
 
@@ -179,7 +200,8 @@ export type SiteEvent =
       link_location: string;
     }
 
-  // Cal.com / scheduling clicks. This is the primary paid-search conversion.
+  // Cal.com / scheduling clicks. This is an intent signal; the browser-side
+  // booking-created event is the primary lead conversion.
   // NOTE: the CTA-placement param is named `placement`, NOT `source` —
   // `source`/`medium`/`campaign` are GA4-reserved traffic-attribution params;
   // sending them as event params overrides the session's traffic source with
@@ -196,7 +218,15 @@ export type SiteEvent =
         | "contact_page"
         | "for"
         | "case_study"
-        | "footer";
+        | "footer"
+        | "resume_inline_embed"
+        | "contact_embed_fallback"
+        | "hire_hero"
+        | "hire_footer"
+        | "hire_embed_fallback"
+        | "consulting_hero"
+        | "consulting_embed_fallback"
+        | `consulting_offer_${string}`;
       schedule_url?: string;
     }
 
@@ -204,6 +234,24 @@ export type SiteEvent =
   | {
       event: "resume_download";
       placement: "hero" | "header" | "mobile_menu" | "about" | "for" | "resume_page" | "case_study";
+    }
+
+  // Cal.com inline-booking lifecycle. These names are stable reporting
+  // stages; raw Cal action names are not part of the analytics contract.
+  | {
+      event: "cal_embed_viewed" | "cal_embed_ready" | "booking_flow_started";
+      placement: string;
+    }
+  | {
+      event: "cal_embed_failed";
+      placement: string;
+      failure_reason: string;
+    }
+  | {
+      event: "booking_submitted";
+      placement: string;
+      booking_status: string;
+      cal_event_version: "v2" | "legacy";
     }
 
   // Blog post viewed (fires on mount of /blog/<slug>).

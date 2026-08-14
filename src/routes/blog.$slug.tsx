@@ -978,8 +978,8 @@ function BlogPostPage() {
   const diagram = postDiagrams[p.slug];
   const hub = hubForPost(p);
 
-  // Fire blog_view to dataLayer once per post mount (after spa_pageview, with
-  // post-specific dims that the generic pageview can't carry).
+  // Fire blog_view once per post mount with post-specific dimensions that the
+  // generic GA4 page view cannot carry.
   useEffect(() => {
     trackEvent("blog_view", {
       blog_slug: p.slug,

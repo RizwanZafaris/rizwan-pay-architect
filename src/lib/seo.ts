@@ -8,7 +8,6 @@ const DEFAULT_BING_SITE_VERIFICATION = "0042C7FD5604AA776BACE3344377C74E";
 type ViteEnv = {
   VITE_SITE_URL?: string;
   VITE_OG_IMAGE_URL?: string;
-  VITE_GTM_ID?: string;
   VITE_GA_MEASUREMENT_ID?: string;
   VITE_GOOGLE_ADS_ID?: string;
   VITE_GOOGLE_ADS_PAGE_VIEW_CONVERSION_LABEL?: string;
@@ -63,13 +62,6 @@ export const absUrl = (path: string) => {
 const DEFAULT_OG_IMAGE = `${SITE_URL}/og-default.png`;
 export const OG_IMAGE_URL = env.VITE_OG_IMAGE_URL || DEFAULT_OG_IMAGE;
 
-// Google Tag Manager — RETIRED 2026-06-12. The container (GTM-TM5BP98G) held
-// UI-built tags duplicating what the code already sends directly (GA4, Ads,
-// LinkedIn Insight), so every event double-counted. Single direct-gtag
-// pipeline now; leave empty unless deliberately reinstating GTM as the ONLY
-// pipeline (then strip the inline tags instead).
-export const GTM_ID = env.VITE_GTM_ID ?? "";
-
 // GA4 direct tag — the single analytics pipeline. All site events reach GA4
 // via inline gtag() calls (analytics bridge + cal embed funnel scripts).
 export const GA_MEASUREMENT_ID = env.VITE_GA_MEASUREMENT_ID ?? "G-F1NK5FJYJY";
@@ -86,9 +78,8 @@ export const GOOGLE_ADS_PAGE_VIEW_CONVERSION_SEND_TO =
     : "";
 
 // LinkedIn Insight Tag. Partner id from Campaign Manager (account 168924577)
-// → Signals manager → Sources → Insight Tag. Shipped as a direct tag (not via
-// GTM) so the tag verifies and starts building the retargeting audience before
-// any GTM publishing round-trip; fires site-wide, conversions are defined in
+// → Signals manager → Sources → Insight Tag. Shipped as a direct tag so it can
+// verify and build the retargeting audience; conversions are defined in
 // Campaign Manager on top of it. Set VITE_LINKEDIN_PARTNER_ID="" to opt out.
 // Comma-separated: the live ad account's tag (10373449, created 2026-06-12)
 // first, plus the original 3222825 so history in the old account stays intact.
@@ -96,10 +87,12 @@ export const LINKEDIN_PARTNER_IDS = (env.VITE_LINKEDIN_PARTNER_ID ?? "10373449,3
   .split(",")
   .map((id) => id.trim())
   .filter(Boolean);
-// LinkedIn event-specific conversion for a booked call. Created 2026-06-12 as an
-// *Insight-Tag* event conversion (id 28792729) — LinkedIn's Tag Manager handed
-// us the exact snippet window.lintrk("track",{conversion_id:28792729}), which is
-// the correct method for firing from the browser on bookingSuccessful.
+// LinkedIn event-specific conversion for a successfully created booking.
+// Created 2026-06-12 as an *Insight-Tag* event conversion (id 28792729) —
+// LinkedIn's Tag Manager handed us the exact snippet
+// window.lintrk("track",{conversion_id:28792729}), which is the correct method
+// for firing from the browser on bookingSuccessfulV2. This is not proof that
+// the booking was later accepted/confirmed.
 // (Earlier id 28792705 was a Conversions-API/Direct-API type — wrong method for
 // a browser lintrk call, so it never matched; ad id was 1139100523, also unused.)
 // Override with VITE_LINKEDIN_BOOKING_CONVERSION_ID; set "" to omit the call.

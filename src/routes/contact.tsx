@@ -9,7 +9,7 @@ import { NewsletterSignup } from "@/components/NewsletterSignup";
 
 // Web3Forms-compatible endpoint. The access key is PUBLIC BY DESIGN (Web3Forms
 // keys ship in the form's hidden input either way — same trust class as the
-// GTM/GA/Ads ids hardcoded in seo.ts). Override with VITE_CONTACT_ACCESS_KEY;
+// GA/Ads ids hardcoded in seo.ts). Override with VITE_CONTACT_ACCESS_KEY;
 // set it to "" to force the mailto: fallback.
 //   - Web3Forms (free, no sign-up email): https://web3forms.com
 //   - Compatible: Formspree, Getform, FormSubmit, adjust ENDPOINT + payload as needed
@@ -229,7 +229,7 @@ function ContactPage() {
     setErrors(errs);
     if (Object.keys(errs).length) return;
 
-    // Bot detected, silently succeed (don't log to GTM — would dirty data)
+    // Bot detected, silently succeed (don't emit analytics — would dirty data)
     if (values.website.trim().length > 0) {
       setState("sent");
       return;

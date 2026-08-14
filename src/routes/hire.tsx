@@ -18,10 +18,11 @@ import { absUrl, OG_IMAGE_URL, SITE_URL } from "@/lib/seo";
 // fact base — do not reintroduce the older inflated framings (7 markets, 25M monthly,
 // 50+ partners).
 //
-// Tracking is inherited from the site shell (GTM/GA4/Google Ads/LinkedIn Insight
-// tags live in __root.tsx). The `book_intro_call` CTA maps to the `schedule_meeting`
-// event → Google Ads "Book appointment" (Primary) conversion + GA4 key event. The
-// LinkedIn link auto-fires `linkedin_click` (Secondary).
+// Tracking is inherited from the site shell (direct GA4/Google Ads/LinkedIn
+// Insight tags live in __root.tsx). The `book_intro_call` CTA maps to the
+// secondary `schedule_meeting` intent event; `booking_submitted` records a
+// successfully created booking. The LinkedIn link auto-fires `linkedin_click`
+// (Secondary).
 //
 // This route renders with CampaignHeader/CampaignFooter (no site nav — paid
 // clicks shouldn't leak into the blog). The inline calendarCampaignParamsScript
@@ -30,10 +31,11 @@ import { absUrl, OG_IMAGE_URL, SITE_URL } from "@/lib/seo";
 //
 // Booking is INLINE (shared <BookingSection/> renders the #book embed):
 // both CTAs smooth-scroll there instead of redirecting, so the visitor never
-// leaves the page at the conversion moment. Cal's bookingSuccessful event fires
-// the GA4 `book_call_confirmed` event — the true booked-call conversion. A
-// plain cal.com fallback link stays under the embed (and in <noscript>) for
-// blocked-iframe/no-JS visitors; the link rewriter above still decorates it.
+// leaves the page at the conversion moment. Cal's bookingSuccessfulV2 event
+// fires `booking_submitted`; acceptance/confirmation requires a future trusted
+// webhook/server event. A plain cal.com fallback link stays under the embed
+// (and in <noscript>) for blocked-iframe/no-JS visitors; the link rewriter
+// above still decorates it.
 
 const proofMetrics = [
   { value: PLATFORM.gtv, label: "Annual GTV" },

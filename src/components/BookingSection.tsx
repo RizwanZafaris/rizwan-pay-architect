@@ -2,7 +2,7 @@ import { calInlineEmbedScript } from "@/lib/campaign";
 import { profile } from "@/data/profile";
 
 // Shared inline cal.com booking section — the single on-site conversion
-// surface, used by /hire, /contact and /resume. Renders the #book anchor,
+// surface, used by /hire, /consulting, /contact and /resume. Renders the #book anchor,
 // the embed slot and the page-scoped boot script (the static build never
 // hydrates React, so the embed is wired entirely by the inline script).
 //

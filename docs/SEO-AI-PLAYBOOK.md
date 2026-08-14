@@ -20,7 +20,7 @@ You don't have to think about these — they ship with every build:
 - ✅ Apex/www/http canonical-host enforcement (.htaccess)
 - ✅ IndexNow key file (`/2b37cfa0f40ee28009e4db27f7f62a6b.txt`)
 - ✅ `/.well-known/security.txt`
-- ✅ GTM with SPA `spa_pageview` (GTM-TM5BP98G) and typed events (schedule_meeting, resume_download, linkedin_click, contact_form_submit, blog_view, case_study_view)
+- ✅ Direct GA4 `gtag` pipeline with typed/static events (`schedule_meeting`, `booking_submitted`, `resume_download`, `linkedin_click`, `contact_form_submit`, `blog_view`, `case_study_view`); GTM was retired on 2026-06-12 to stop duplicate measurement
 
 Run-anytime commands (already in `package.json`):
 
@@ -162,26 +162,33 @@ Don't pay for these until you've shipped meaningful content for 8+ weeks and wan
 
 ## 3. Analytics setup (one-time, 20 min)
 
-### 3a. GA4 (already wired via GTM)
+### 3a. GA4 (already wired via direct gtag)
 
 Verify it's actually firing:
 
 1. Open <https://analytics.google.com/>.
 2. **Reports → Realtime**. Open `https://rzifi.com` in another tab.
 3. You should see 1 user in realtime within 30 seconds.
-4. **Admin → Property settings → Property details** → check Data Stream → confirm Measurement ID matches the one in GTM.
+4. **Admin → Data streams → Web** → confirm the Measurement ID matches `VITE_GA_MEASUREMENT_ID` / `src/lib/seo.ts`.
 
-If realtime shows 0 users: the GTM container isn't actually published in production. Open GTM → **Workspace → Publish**.
+If realtime shows 0 users, accept analytics cookies in the test browser, inspect
+the page source for the direct `googletagmanager.com/gtag/js?id=G-...` library
+and `gtag("config", "G-...")`, then check Network for `g/collect` requests. Do
+not re-enable the retired GTM container as a troubleshooting shortcut.
 
 ### 3b. GA4 conversions to mark (10 min, important)
 
-In GA4 **Admin → Events**, mark these as **Conversions** (toggle on):
+In GA4 **Admin → Events / Key events**, use these priorities:
 
-- `schedule_meeting` — Cal.com / booking intent. Highest-intent lead signal.
+- `booking_submitted` — successfully created Cal.com booking. Primary browser-side lead conversion; it does not prove later acceptance/confirmation.
+- `schedule_meeting` — Cal.com click intent. Secondary signal, not a booking.
 - `resume_download` — PDF download. Strong recruiter-intent signal.
 - `linkedin_click` — referral / validation intent from serious visitors.
 
-These already fire from the existing GTM container. Marking them as conversions makes them show up in GSC + GA4 attribution reports.
+These fire from direct site code. Mark `booking_submitted` as the replacement
+key event and retire the historical `book_call_confirmed` key event. Reserve
+`booking_confirmed` for a future trusted Cal webhook/server integration; the
+browser must not claim it.
 
 ### 3c. Custom dimensions in GA4 (5 min, useful)
 

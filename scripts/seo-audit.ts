@@ -40,6 +40,10 @@ const DEV_LEAK_PATTERNS = [
   "/@vite/client",
   "/@react-refresh",
 ];
+const RETIRED_GTM_PATTERN = /googletagmanager\.com\/(?:gtm\.js|ns\.html)\?id=GTM-/i;
+const LEGACY_CTA_SOURCE_PATTERN = /data-analytics-source\s*=/i;
+const CLIENT_BOOKING_CONFIRMATION_PATTERN =
+  /(?:\b(?:stage|track|trackEvent|p)\s*\(\s*["'](?:booking_confirmed|book_call_confirmed)["']|\bgtag\s*\(\s*["']event["']\s*,\s*["'](?:booking_confirmed|book_call_confirmed)["'])/;
 const TITLE_MAX = 120; // sanity cap only — full titles beat machine-truncation
 // (Google indexes the whole tag and truncates display itself); the real
 // regression guard is the ellipsis check below.
@@ -197,6 +201,47 @@ function auditFeed() {
 function auditHtml(file: string) {
   const body = readFileSync(file, "utf-8");
   const route = htmlPathToRoute(file);
+
+  if (RETIRED_GTM_PATTERN.test(body)) {
+    fail(file, "duplicate_analytics_pipeline", "retired GTM container loader is present");
+  }
+  if (LEGACY_CTA_SOURCE_PATTERN.test(body)) {
+    fail(file, "reserved_ga4_source", "legacy data-analytics-source attribute is present");
+  }
+  if (CLIENT_BOOKING_CONFIRMATION_PATTERN.test(body)) {
+    fail(
+      file,
+      "client_booking_confirmation",
+      "browser code claims a booking confirmation that requires a trusted webhook/server source",
+    );
+  }
+
+  if (route === "/consulting") {
+    if (!body.includes('data-analytics-cta-id="book_scoping_call"')) {
+      fail(file, "consulting_booking_cta", "book_scoping_call CTA is missing");
+    }
+    if (!body.includes('href="#book"')) {
+      fail(file, "consulting_booking_target", "consulting CTA no longer targets #book");
+    }
+    if (!body.includes('cid==="book_scoping_call"') || !body.includes('href==="#book"')) {
+      fail(file, "consulting_schedule_event", "static bridge does not map scoping CTA to booking intent");
+    }
+    if (!body.includes('t="consulting";s="conversion";a="founders_payments_leaders"')) {
+      fail(file, "consulting_analytics_context", "consulting conversion context is missing");
+    }
+    if (!body.includes('stage("booking_submitted"')) {
+      fail(file, "consulting_booking_created", "booking-created event is missing");
+    }
+  }
+
+  if (route === "/hire") {
+    if (!body.includes('t="hire_landing";s="conversion"')) {
+      fail(file, "hire_analytics_context", "hire conversion context is missing");
+    }
+    if (!body.includes('stage("booking_submitted"')) {
+      fail(file, "hire_booking_created", "booking-created event is missing");
+    }
+  }
 
   // 2a. Old builder-domain leakage.
   for (const d of OLD_DOMAINS) {

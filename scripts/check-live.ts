@@ -44,6 +44,7 @@ type Probe = {
   required?: boolean;
   ua?: string;
   matchBody?: RegExp;
+  forbidBody?: RegExp;
   // For redirect probes: expected Location prefix (lets us catch chains).
   expectRedirectTo?: string;
 };
@@ -67,6 +68,13 @@ const probes: Probe[] = [
     matchBody: new RegExp(`gtag\\(["']config["'],["']${EXPECTED_GA_RE}["']`, "i"),
   },
   {
+    name: "Retired GTM container absent",
+    url: `${APEX_ORIGIN}/`,
+    expect: 200,
+    required: true,
+    forbidBody: /googletagmanager\.com\/(?:gtm\.js|ns\.html)\?id=GTM-/i,
+  },
+  {
     name: "Google Ads base tag",
     url: `${APEX_ORIGIN}/`,
     expect: 200,
@@ -85,6 +93,36 @@ const probes: Probe[] = [
       `gtag\\(["']event["'],["']conversion["'][\\s\\S]{0,220}${EXPECTED_GOOGLE_ADS_RE}/${EXPECTED_GOOGLE_ADS_PAGE_VIEW_CONVERSION_RE}`,
       "i",
     ),
+  },
+  {
+    name: "Legacy CTA source markup absent",
+    url: `${APEX_ORIGIN}/resume/`,
+    expect: 200,
+    required: true,
+    forbidBody: /data-analytics-source\s*=/i,
+  },
+  {
+    name: "Consulting conversion analytics contract",
+    url: `${APEX_ORIGIN}/consulting/`,
+    expect: 200,
+    required: true,
+    matchBody:
+      /t="consulting";s="conversion";a="founders_payments_leaders"[\s\S]*cid==="book_scoping_call"[\s\S]{0,160}href==="#book"/,
+  },
+  {
+    name: "Hire booking-created analytics contract",
+    url: `${APEX_ORIGIN}/hire/`,
+    expect: 200,
+    required: true,
+    matchBody: /t="hire_landing";s="conversion"[\s\S]*stage\("booking_submitted"/,
+  },
+  {
+    name: "Client-side booking confirmation absent",
+    url: `${APEX_ORIGIN}/hire/`,
+    expect: 200,
+    required: true,
+    forbidBody:
+      /(?:\b(?:stage|track|trackEvent|p)\s*\(\s*["'](?:booking_confirmed|book_call_confirmed)["']|\bgtag\s*\(\s*["']event["']\s*,\s*["'](?:booking_confirmed|book_call_confirmed)["'])/,
   },
   {
     name: "Google Search Console verification",
@@ -284,12 +322,14 @@ async function runProbes() {
     const okLocation =
       !p.expectRedirectTo || (r.location && r.location.startsWith(p.expectRedirectTo));
     const okBody = !p.matchBody || p.matchBody.test(r.body);
+    const okForbidden = !p.forbidBody || !p.forbidBody.test(r.body);
     const okDevLeak = !r.body.includes(DEV_IMPORT_PATTERN) && !r.body.includes(START_ENTRY_PATTERN);
-    const pass = okStatus && okLocation && okBody && okDevLeak;
+    const pass = okStatus && okLocation && okBody && okForbidden && okDevLeak;
     let detail = `HTTP ${r.status}`;
     if (expectedRedirect && r.location) detail += ` → ${r.location}`;
     if (p.expectRedirectTo && !okLocation) detail += ` (expected → ${p.expectRedirectTo})`;
     if (!okBody) detail += " (body mismatch)";
+    if (!okForbidden) detail += " (forbidden analytics markup present)";
     if (!okDevLeak) detail += " (dev-only client entry leaked)";
     results.push({ name: p.name, status: r.status, pass, detail });
   }

@@ -39,25 +39,35 @@ import { LINKEDIN_BOOKING_CONVERSION_ID } from "@/lib/seo";
 //   - theme is hard-coded "light": the site itself has no dark mode, so an
 //     OS-dark visitor must not get a dark widget on the paper-white page;
 //   - cal-brand matches the site palette;
-//   - FUNNEL TRACKING for drop-off analysis. Every stage emits a GA4 event so
-//     the booking funnel is measurable end to end:
-//       page_view            (site shell)         — landed
-//       schedule_meeting     (analytics bridge)   — CTA clicked (intent)
-//       cal_embed_viewed     (here, IO ≥15%)      — calendar actually seen
-//       cal_embed_ready      (linkReady OR first  — widget loaded fine (current
-//                             public Cal action)    cal.com doesn't emit linkReady
-//                                                   for inline embeds — verified;
-//                                                   navigatedToBooker arrives instead)
-//       cal_embed_failed     (Cal "linkFailed")   — widget broke (technical drop-off)
-//       cal_embed_step       (catch-all, deduped  — granular booker steps, e.g.
-//                             per action name)      navigatedToBooker, availabilityLoaded,
-//                                                   with cal_action param
-//       book_call_confirmed  (Cal "bookingSuccessful") — BOOKED (true conversion)
-//     Import book_call_confirmed in Google Ads as the primary conversion once
-//     it has volume; until then existing click wiring stays untouched.
+//   - FUNNEL TRACKING for drop-off analysis. Stable, named GA4 stages replace
+//     the noisy `cal_embed_step` + `cal_action` catch-all:
+//       page_view             (site shell)                  — landed
+//       schedule_meeting      (analytics bridge)            — booking intent
+//       cal_embed_viewed      (here, IO ≥15%)               — calendar seen
+//       cal_embed_ready       (bookerReady/linkReady/first  — widget usable
+//                              public Cal action fallback)
+//       booking_flow_started  (bookerViewed or              — Cal flow entered
+//                              navigatedToBooker)
+//       booking_submitted     (bookingSuccessfulV2)         — booking created
+//       cal_embed_failed      (linkFailed/boot exception)   — technical failure
+//     Cal's public embed API does not expose reliable date-selected,
+//     time-selected, or form-started events. Do not infer those stages from
+//     undocumented iframe messages. It also cannot prove that a created
+//     booking was accepted/confirmed; that future event belongs in a trusted
+//     Cal webhook/server path, never this browser script.
 export const calInlineEmbedScript = (ref: string, opts?: { eager?: boolean }) => `!function(){
 var section=document.getElementById("book");if(!section)return;
 function track(ev,params){try{if(typeof gtag==="function"){params=params||{};params.placement=params.placement||"${ref}";gtag("event",ev,params)}}catch(x){}}
+var stageSeen={};function stage(ev,params){if(stageSeen[ev])return;stageSeen[ev]=1;track(ev,params)}
+function eventData(e){try{return e&&e.detail&&e.detail.data||{}}catch(x){return{}}}
+function statusOf(data){var s=data&&data.status;return typeof s==="string"?s.toLowerCase().slice(0,40):"unknown"}
+var bookingHandled=false,legacyTimer=0;
+function recordBooking(e,version){if(bookingHandled)return;bookingHandled=true;var data=eventData(e),status=version==="legacy"?"unknown":statusOf(data),params={booking_status:status,cal_event_version:version};stage("booking_submitted",params);${
+  LINKEDIN_BOOKING_CONVERSION_ID
+    ? `try{if(window.lintrk)window.lintrk("track",{conversion_id:${Number(LINKEDIN_BOOKING_CONVERSION_ID)}})}catch(x){}`
+    : ""
+}}
+function markFailed(reason){try{var sk=document.getElementById("cal-booking-skeleton");if(sk){sk.style.display="";sk.innerHTML='<p class="text-sm text-ink-soft py-4">The calendar could not load right now — use the booking links below instead.</p>'}}catch(x){}stage("cal_embed_failed",{failure_reason:String(reason||"unknown").slice(0,90)})}
 var booted=false;
 function boot(){if(booted)return;booted=true;
 try{
@@ -66,23 +76,22 @@ Cal("init","15min",{origin:"https://app.cal.com"});
 Cal.config=Cal.config||{};Cal.config.forwardQueryParams=true;
 Cal.ns["15min"]("inline",{elementOrSelector:"#cal-booking-slot",config:{layout:"month_view",useSlotsViewOnSmallScreen:true,theme:"light",ref:"${ref}"},calLink:"rizwan-zafar-gws2uk/15min"});
 Cal.ns["15min"]("ui",{cssVarsPerTheme:{light:{"cal-brand":"#0e4f4f"},dark:{"cal-brand":"#3ecbe6"}},hideEventTypeDetails:false,layout:"month_view"});
-var ready=false;function markReady(){if(!ready){ready=true;try{var sk=document.getElementById("cal-booking-skeleton");if(sk)sk.style.display="none"}catch(x){}track("cal_embed_ready")}}
+var ready=false;function markReady(){if(!ready){ready=true;try{var sk=document.getElementById("cal-booking-skeleton");if(sk)sk.style.display="none"}catch(x){}stage("cal_embed_ready")}}
 Cal.ns["15min"]("on",{action:"linkReady",callback:markReady});
-Cal.ns["15min"]("on",{action:"linkFailed",callback:function(e){var r="unknown";try{r=(e&&e.detail&&e.detail.data&&(e.detail.data.msg||e.detail.data.code))||"unknown"}catch(x){}try{var sk=document.getElementById("cal-booking-skeleton");if(sk){sk.style.display="";sk.innerHTML='<p class="text-sm text-ink-soft py-4">The calendar could not load right now — use the booking links below instead.</p>'}}catch(x){}track("cal_embed_failed",{reason:String(r).slice(0,90)})}});
-Cal.ns["15min"]("on",{action:"bookingSuccessful",callback:function(){track("book_call_confirmed");${
-  LINKEDIN_BOOKING_CONVERSION_ID
-    ? `try{if(window.lintrk)window.lintrk("track",{conversion_id:${Number(LINKEDIN_BOOKING_CONVERSION_ID)}})}catch(x){}`
-    : ""
-}}});
-var stepSeen={};
-Cal.ns["15min"]("on",{action:"*",callback:function(e){try{var a=e&&e.detail&&(e.detail.type||(e.detail.data&&e.detail.data.action));if(!a||typeof a!=="string")return;if(a.indexOf("__")===0)return;markReady();if(a==="linkReady"||a==="linkFailed"||a==="bookingSuccessful")return;if(stepSeen[a])return;stepSeen[a]=1;track("cal_embed_step",{cal_action:a.slice(0,60)})}catch(x){}}});
-}catch(x){}}
+Cal.ns["15min"]("on",{action:"bookerReady",callback:markReady});
+Cal.ns["15min"]("on",{action:"bookerViewed",callback:function(){markReady();stage("booking_flow_started")}});
+Cal.ns["15min"]("on",{action:"navigatedToBooker",callback:function(){markReady();stage("booking_flow_started")}});
+Cal.ns["15min"]("on",{action:"linkFailed",callback:function(e){var data=eventData(e);markFailed(data.code||"unknown")}});
+Cal.ns["15min"]("on",{action:"bookingSuccessfulV2",callback:function(e){if(legacyTimer)clearTimeout(legacyTimer);recordBooking(e,"v2")}});
+Cal.ns["15min"]("on",{action:"bookingSuccessful",callback:function(e){legacyTimer=setTimeout(function(){recordBooking(e,"legacy")},1000)}});
+Cal.ns["15min"]("on",{action:"*",callback:function(e){try{var a=e&&e.detail&&(e.detail.type||(e.detail.data&&e.detail.data.action));if(!a||typeof a!=="string"||a.indexOf("__")===0||a==="linkFailed")return;markReady()}catch(x){}}});
+}catch(x){markFailed("embed_boot_exception")}}
 try{if("IntersectionObserver" in window){${
   opts?.eager
     ? ""
     : `var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){boot();io.disconnect()}})},{rootMargin:"900px 0px"});io.observe(section);
 `
-}var seen=false,vo=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting&&!seen){seen=true;track("cal_embed_viewed");vo.disconnect()}})},{threshold:0.15});vo.observe(section)}else boot()}catch(x){boot()}
+}var seen=false,vo=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting&&!seen){seen=true;stage("cal_embed_viewed");vo.disconnect()}})},{threshold:0.15});vo.observe(section)}else{stage("cal_embed_viewed");boot()}}catch(x){boot()}
 ${opts?.eager ? "boot();" : ""}
 document.querySelectorAll('a[href="#book"]').forEach(function(a){a.addEventListener("click",function(ev){boot();try{ev.preventDefault();section.scrollIntoView({behavior:"smooth",block:"start"});history.replaceState(null,"","#book")}catch(x){location.hash="book"}})});
 window.addEventListener("hashchange",function(){if(location.hash==="#book"){boot();try{section.scrollIntoView({behavior:"smooth",block:"start"})}catch(x){}}});

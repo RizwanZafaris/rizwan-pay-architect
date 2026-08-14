@@ -178,8 +178,7 @@ function CaseStudyPage() {
   // description back at the reader, in quotation marks (council audit, B3).
   const operatorLens = s.pullQuote ?? s.lessons[0] ?? null;
 
-  // Per-case-study dim — fires after spa_pageview so GA4 can attribute the
-  // specific study viewed.
+  // Per-case-study dimensions let GA4 attribute the specific study viewed.
   useEffect(() => {
     trackEvent("case_study_view", {
       case_study_slug: s.slug,
