@@ -13,6 +13,8 @@ import { marked } from "marked";
 import authorPortrait from "@/assets/rizwan-zafar-cutout-460.webp";
 
 const OG_IMAGE_OVERRIDES: Record<string, string> = {
+  "three-way-reconciliation-at-scale":
+    "/og/blog/three-way-reconciliation-at-scale-v20260814.png",
   "uae-einvoicing-provider-readiness-gates":
     "/og/blog/uae-einvoicing-provider-readiness-gates-v2026081301.png",
   "fednow-intermediary-banks-cross-border-rulebook":
