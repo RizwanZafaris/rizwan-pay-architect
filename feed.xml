@@ -5,8 +5,16 @@
   <link>https://rzifi.com/blog/</link>
   <description>Essays on payment infrastructure, fintech product, risk, settlement, AI and program leadership.</description>
   <language>en</language>
-  <lastBuildDate>Fri, 14 Aug 2026 23:47:25 GMT</lastBuildDate>
+  <lastBuildDate>Sat, 15 Aug 2026 06:52:44 GMT</lastBuildDate>
   <item>
+    <title>UAE Open Finance Pay by Bank Needs Checkout Gates</title>
+    <link>https://rzifi.com/blog/uae-open-finance-pay-by-bank-checkout-gates/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/uae-open-finance-pay-by-bank-checkout-gates/</guid>
+    <pubDate>Sat, 15 Aug 2026 00:00:00 GMT</pubDate>
+    <category>Acquiring &amp; Acceptance</category>
+    <description>UAE Open Finance makes Pay by Bank a checkout option. The operator decision is consent, authentication, failure ownership, reconciliation and rollback.</description>
+  </item>
+<item>
     <title>UAE E-Invoicing Turns Finance Change Into Provider Readiness Gates</title>
     <link>https://rzifi.com/blog/uae-einvoicing-provider-readiness-gates/</link>
     <guid isPermaLink="true">https://rzifi.com/blog/uae-einvoicing-provider-readiness-gates/</guid>
@@ -237,14 +245,6 @@
     <pubDate>Tue, 28 Jul 2026 00:00:00 GMT</pubDate>
     <category>Card Issuing</category>
     <description>Marqeta and zerohash show why stablecoin-backed cards need issuer controls, custody boundaries, ledger latency, and dispute-ready operations.</description>
-  </item>
-<item>
-    <title>Microsoft Project Perception Makes Security Agents an Operating Model</title>
-    <link>https://rzifi.com/blog/microsoft-project-perception-agentic-security-stack/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/microsoft-project-perception-agentic-security-stack/</guid>
-    <pubDate>Tue, 28 Jul 2026 00:00:00 GMT</pubDate>
-    <category>AI &amp; Product Operations</category>
-    <description>Microsoft Project Perception shows why security agents need context, model routing, permissions, escalation, and operator control before production.</description>
   </item>
 </channel>
 </rss>
