@@ -23,6 +23,7 @@ export type Post = {
 export const categories = [
   "AI & Product Operations",
   "AI in Fintech",
+  "Acquiring & Acceptance",
   "Card Issuing",
   "Cross-Border Payments",
   "Crypto & Stablecoins",
@@ -39,6 +40,29 @@ export const categories = [
 ];
 
 export const posts: Post[] = [
+  {
+    "slug": "uae-open-finance-pay-by-bank-checkout-gates",
+    "title": "UAE Open Finance Pay by Bank Needs Checkout Gates",
+    "metaTitle": "UAE Open Finance Pay by Bank Checkout Gates",
+    "date": "2026-08-15",
+    "category": "Acquiring & Acceptance",
+    "readingTime": "7 min read",
+    "description": "UAE Open Finance makes Pay by Bank a checkout option. The operator decision is consent, authentication, failure ownership, reconciliation and rollback.",
+    "thesis": "UAE Open Finance is moving Pay by Bank from framework to checkout. Here is the go-live gate I would require before scaling it for merchants.",
+    "tags": [
+      "UAE Open Finance",
+      "Pay by Bank",
+      "account-to-account payments",
+      "checkout",
+      "payment operations"
+    ],
+    "relatedArticles": [
+      "/blog/lean-ziina-uae-one-tap-pay-by-bank",
+      "/blog/checkout-friction-acceptance-operating-model",
+      "/blog/three-way-reconciliation-at-scale",
+      "/hire"
+    ]
+  },
   {
     "slug": "uae-einvoicing-provider-readiness-gates",
     "title": "UAE E-Invoicing Turns Finance Change Into Provider Readiness Gates",
