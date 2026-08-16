@@ -5,8 +5,16 @@
   <link>https://rzifi.com/blog/</link>
   <description>Essays on payment infrastructure, fintech product, risk, settlement, AI and program leadership.</description>
   <language>en</language>
-  <lastBuildDate>Sat, 15 Aug 2026 23:44:07 GMT</lastBuildDate>
+  <lastBuildDate>Sun, 16 Aug 2026 11:05:25 GMT</lastBuildDate>
   <item>
+    <title>Saudi Cashless Payments Need an Exception-Control Gate</title>
+    <link>https://rzifi.com/blog/saudi-cashless-payments-exception-control-gate/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/saudi-cashless-payments-exception-control-gate/</guid>
+    <pubDate>Sun, 16 Aug 2026 00:00:00 GMT</pubDate>
+    <category>Payment Infrastructure</category>
+    <description>Saudi retail payments are 85% electronic. The operator decision is how banks, PSPs and merchants control exceptions when digital is the default.</description>
+  </item>
+<item>
     <title>UAE Open Finance Pay by Bank Needs Checkout Gates</title>
     <link>https://rzifi.com/blog/uae-open-finance-pay-by-bank-checkout-gates/</link>
     <guid isPermaLink="true">https://rzifi.com/blog/uae-open-finance-pay-by-bank-checkout-gates/</guid>
@@ -237,14 +245,6 @@
     <pubDate>Sat, 01 Aug 2026 00:00:00 GMT</pubDate>
     <category>Program Management</category>
     <description>ScotPayments 2.0 shows how payment migrations need resilience gates, live-data planning, supplier coordination, and operational readiness.</description>
-  </item>
-<item>
-    <title>Marqeta and zerohash Turn Stablecoins Into Card Programme Controls</title>
-    <link>https://rzifi.com/blog/marqeta-zerohash-stablecoin-card-programme-controls/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/marqeta-zerohash-stablecoin-card-programme-controls/</guid>
-    <pubDate>Tue, 28 Jul 2026 00:00:00 GMT</pubDate>
-    <category>Card Issuing</category>
-    <description>Marqeta and zerohash show why stablecoin-backed cards need issuer controls, custody boundaries, ledger latency, and dispute-ready operations.</description>
   </item>
 </channel>
 </rss>
