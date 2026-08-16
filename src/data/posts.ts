@@ -41,6 +41,29 @@ export const categories = [
 
 export const posts: Post[] = [
   {
+    "slug": "saudi-cashless-payments-exception-control-gate",
+    "title": "Saudi Cashless Payments Need an Exception-Control Gate",
+    "metaTitle": "Saudi Cashless Payments Exception-Control Gate",
+    "date": "2026-08-16",
+    "category": "Payment Infrastructure",
+    "readingTime": "7 min read",
+    "description": "Saudi retail payments are 85% electronic. The operator decision is how banks, PSPs and merchants control exceptions when digital is the default.",
+    "thesis": "Saudi retail payments are now mostly electronic. Here is the exception-control gate I would require before scaling more volume across POS, e-commerce and instant payments.",
+    "tags": [
+      "Saudi payments",
+      "cashless payments",
+      "mada",
+      "Sarie",
+      "payment operations"
+    ],
+    "relatedArticles": [
+      "/blog/mena-south-asia-payment-infrastructure-country-map",
+      "/blog/authorization-rate-merchant-pnl-operating-model",
+      "/blog/three-way-reconciliation-at-scale",
+      "/hire"
+    ]
+  },
+  {
     "slug": "uae-open-finance-pay-by-bank-checkout-gates",
     "title": "UAE Open Finance Pay by Bank Needs Checkout Gates",
     "metaTitle": "UAE Open Finance Pay by Bank Checkout Gates",

@@ -13,6 +13,8 @@ import { marked } from "marked";
 import authorPortrait from "@/assets/rizwan-zafar-cutout-460.webp";
 
 const OG_IMAGE_OVERRIDES: Record<string, string> = {
+  "saudi-cashless-payments-exception-control-gate":
+    "/og/blog/saudi-cashless-payments-exception-control-gate-v20260816.png",
   "uae-open-finance-pay-by-bank-checkout-gates":
     "/og/blog/uae-open-finance-pay-by-bank-checkout-gates-v20260815.png",
   "three-way-reconciliation-at-scale":
