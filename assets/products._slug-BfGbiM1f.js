@@ -1,1 +1,0 @@
-import{x as t,L as n}from"./index-CKubfxnE.js";const e=()=>t.jsxs("div",{className:"mx-auto max-w-2xl px-6 py-24 text-center",children:[t.jsx("h1",{className:"font-instrument text-3xl text-ink",children:"Product not found"}),t.jsx(n,{to:"/products",className:"mt-6 inline-block text-brand underline",children:"Back to products"})]});export{e as notFoundComponent};
