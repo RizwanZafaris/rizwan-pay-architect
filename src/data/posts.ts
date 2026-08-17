@@ -41,6 +41,29 @@ export const categories = [
 
 export const posts: Post[] = [
   {
+    "slug": "uae-jaywan-card-scheme-migration-control-room",
+    "title": "UAE Jaywan Rollout Needs a Scheme-Migration Control Room",
+    "metaTitle": "UAE Jaywan Scheme-Migration Control Room",
+    "date": "2026-08-17",
+    "category": "Payment Infrastructure",
+    "readingTime": "7 min read",
+    "description": "Jaywan is now a UAE card rollout. The operator decision is how issuers, acquirers and merchants prove routing, 3DS, disputes and reconciliation.",
+    "thesis": "Jaywan has moved from national card-scheme concept to phased UAE issuance. Here is the scheme-migration control room I would require before scaling it.",
+    "tags": [
+      "Jaywan",
+      "UAE payments",
+      "card scheme migration",
+      "payment infrastructure",
+      "merchant acceptance"
+    ],
+    "relatedArticles": [
+      "/blog/bin-routing-scheme-selection-override-default",
+      "/blog/mena-south-asia-payment-infrastructure-country-map",
+      "/blog/three-way-reconciliation-at-scale",
+      "/hire"
+    ]
+  },
+  {
     "slug": "saudi-cashless-payments-exception-control-gate",
     "title": "Saudi Cashless Payments Need an Exception-Control Gate",
     "metaTitle": "Saudi Cashless Payments Exception-Control Gate",
