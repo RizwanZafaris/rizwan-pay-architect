@@ -30,13 +30,13 @@ const OG_IMAGE_OVERRIDES: Record<string, string> = {
   "psr-app-fraud-reimbursement-control-loop":
     "/og/blog/psr-app-fraud-reimbursement-control-loop-v20260811.png",
   "marqeta-riskified-issuer-authorization-false-declines":
-    "/og/blog/marqeta-riskified-issuer-authorization-false-declines-v20260810.png",
+    "/og/blog/marqeta-riskified-issuer-authorization-false-declines-v2026081801.png",
   "checkout-uae-svf-liquidity-controls":
     "/og/blog/checkout-uae-svf-liquidity-controls-v20260809.png",
   "boe-payment-third-party-risk-programme-gates":
     "/og/blog/boe-payment-third-party-risk-programme-gates-v20260809.png",
   "solana-pay-agent-payment-approval-controls":
-    "/og/blog/solana-pay-agent-payment-approval-controls-v20260809.png",
+    "/og/blog/solana-pay-agent-payment-approval-controls-v2026081801.png",
   "splitit-1stmile-card-linked-installment-controls":
     "/og/blog/splitit-1stmile-card-linked-installment-controls-v20260808.png",
   "uk-open-banking-billion-payments-product-scorecard":
