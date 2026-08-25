@@ -14,7 +14,7 @@ import authorPortrait from "@/assets/rizwan-zafar-cutout-460.webp";
 
 const OG_IMAGE_OVERRIDES: Record<string, string> = {
   "aani-merchant-adoption-operating-model":
-    "/og/blog/aani-merchant-adoption-operating-model-v20260825.png",
+    "/og/blog/aani-merchant-adoption-operating-model-v2026082502.png",
   "uae-jaywan-card-scheme-migration-control-room":
     "/og/blog/uae-jaywan-card-scheme-migration-control-room-v20260817.png",
   "saudi-cashless-payments-exception-control-gate":
