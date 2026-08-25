@@ -5,8 +5,16 @@
   <link>https://rzifi.com/blog/</link>
   <description>Essays on payment infrastructure, fintech product, risk, settlement, AI and program leadership.</description>
   <language>en</language>
-  <lastBuildDate>Mon, 24 Aug 2026 23:46:04 GMT</lastBuildDate>
+  <lastBuildDate>Tue, 25 Aug 2026 00:51:14 GMT</lastBuildDate>
   <item>
+    <title>Aani&apos;s Next Product Problem Is Merchant Operating Adoption</title>
+    <link>https://rzifi.com/blog/aani-merchant-adoption-operating-model/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/aani-merchant-adoption-operating-model/</guid>
+    <pubDate>Tue, 25 Aug 2026 00:00:00 GMT</pubDate>
+    <category>Payment Infrastructure</category>
+    <description>Aani has scale in users and merchants. The next UAE instant-payments problem is repeat merchant use, exception ownership, reconciliation and evidence.</description>
+  </item>
+<item>
     <title>UAE Jaywan Rollout Needs a Scheme-Migration Control Room</title>
     <link>https://rzifi.com/blog/uae-jaywan-card-scheme-migration-control-room/</link>
     <guid isPermaLink="true">https://rzifi.com/blog/uae-jaywan-card-scheme-migration-control-room/</guid>
@@ -237,14 +245,6 @@
     <pubDate>Sat, 01 Aug 2026 00:00:00 GMT</pubDate>
     <category>Fraud &amp; Risk</category>
     <description>Mastercard&apos;s scam monitoring shift shows why acquirers and payment facilitators need merchant risk ops, evidence, and fast shutdown paths.</description>
-  </item>
-<item>
-    <title>NatWest and Uinsure Turn Insurance Into a Product Loop</title>
-    <link>https://rzifi.com/blog/natwest-uinsure-home-insurance-tracker-product-loop/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/natwest-uinsure-home-insurance-tracker-product-loop/</guid>
-    <pubDate>Sat, 01 Aug 2026 00:00:00 GMT</pubDate>
-    <category>Product Management</category>
-    <description>NatWest and Uinsure show how banks can turn home insurance from a one-off sale into a renewal, data, trust, and service loop.</description>
   </item>
 </channel>
 </rss>
