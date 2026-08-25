@@ -1,0 +1,177 @@
+{
+  "schemaVersion": 1,
+  "policyId": "rzifi-content-system-policy-v1",
+  "visualSystem": {
+    "id": "rzifi-cinematic-payments-split-v1",
+    "description": "A cinematic, editorial payments image with a dark text panel on the left and one credible payment action on the right.",
+    "canvas": {
+      "width": 1200,
+      "height": 630,
+      "aspectRatio": "40:21",
+      "orientation": "landscape",
+      "format": "png"
+    },
+    "palette": {
+      "navy": "#061119",
+      "ivory": "#F5F4EE",
+      "teal": "#22C7B6",
+      "amber": "#D8A552",
+      "muted": "#A6B0B4"
+    },
+    "layout": {
+      "id": "left-copy-right-scene-46-54",
+      "textPanel": {
+        "x": 0,
+        "y": 0,
+        "width": 552,
+        "height": 630
+      },
+      "scenePanel": {
+        "x": 552,
+        "y": 0,
+        "width": 648,
+        "height": 630
+      },
+      "safeArea": {
+        "left": 72,
+        "right": 48,
+        "top": 54,
+        "bottom": 48
+      },
+      "maximumSeamBlendPx": 72,
+      "dominantFocalPoints": 1,
+      "maximumSupportingProps": 4
+    },
+    "typography": {
+      "rendering": "deterministic_overlay",
+      "modelGeneratedTextAllowed": false,
+      "headline": {
+        "family": "Inter Variable",
+        "source": "@fontsource-variable/inter",
+        "weight": 800,
+        "case": "uppercase",
+        "minimumWords": 5,
+        "maximumWords": 8,
+        "minimumLines": 2,
+        "maximumLines": 4,
+        "fontSizePx": 68,
+        "lineHeight": 0.98,
+        "letterSpacingEm": -0.025
+      },
+      "eyebrow": {
+        "family": "Inter Variable",
+        "weight": 700,
+        "fontSizePx": 16,
+        "maximumLines": 1
+      },
+      "supportingCopy": {
+        "family": "Inter Variable",
+        "weight": 500,
+        "fontSizePx": 17,
+        "maximumWords": 16,
+        "maximumLines": 2
+      },
+      "footer": {
+        "family": "Inter Variable",
+        "weight": 600,
+        "fontSizePx": 14,
+        "maximumLines": 1
+      }
+    },
+    "sceneRules": {
+      "requiredTreatment": [
+        "cinematic",
+        "photoreal",
+        "editorial",
+        "credible payment action",
+        "real device or payment artifact"
+      ],
+      "allowedPrimarySubjects": [
+        "payment terminal",
+        "phone payment",
+        "payment card",
+        "merchant checkout",
+        "payment operations professional",
+        "issuer or acquirer operations"
+      ],
+      "prohibitedStyles": [
+        "sci-fi",
+        "science fiction",
+        "cyberpunk",
+        "industrial",
+        "industrial-fintech",
+        "gunmetal",
+        "portal",
+        "machine",
+        "switchyard",
+        "pipe",
+        "pipes",
+        "futuristic control room",
+        "generic dashboard",
+        "fake dashboard",
+        "abstract control room",
+        "mechanical gate",
+        "isometric machinery",
+        "cream checklist",
+        "cream card",
+        "poster collage",
+        "floating interface"
+      ]
+    }
+  },
+  "companyTagging": {
+    "maximumTagsPerPost": 3,
+    "verificationRequired": true,
+    "unverifiedTagBehavior": "omit",
+    "requiredVerificationFields": [
+      "canonicalName",
+      "profileUrl",
+      "evidenceUrl",
+      "verifiedAt"
+    ],
+    "notes": "Up to three organizations may be tagged when every identity and direct relevance to the cited story has been verified. Never infer a handle from a company name or tag an organization only for reach."
+  },
+  "distribution": {
+    "supportedChannels": [
+      "website",
+      "linkedin",
+      "x"
+    ],
+    "assetContract": {
+      "visualSystemId": "rzifi-cinematic-payments-split-v1",
+      "width": 1200,
+      "height": 630,
+      "format": "png",
+      "requiredForEveryChannel": true
+    },
+    "independence": {
+      "statusesArePerChannel": true,
+      "failureScope": "channel_only",
+      "crossChannelBlockingAllowed": false,
+      "websiteDependsOnSocialApproval": false,
+      "socialFailureRollsBackWebsite": false,
+      "rollForwardOnMissedSlot": false,
+      "retryRequiresCurrentApproval": true
+    },
+    "cadence": {
+      "ownership": "declared_per_channel",
+      "scheduleValuesMayBeInferred": false,
+      "requiredMetadata": [
+        "cadencePolicyId",
+        "timeZone",
+        "targetLocalDate",
+        "targetLocalTime",
+        "targetPostsPerWeek",
+        "maximumPostsPerLocalDay",
+        "approvalMode"
+      ],
+      "constraints": {
+        "minimumTargetPostsPerWeek": 0,
+        "maximumTargetPostsPerWeek": 14,
+        "minimumPostsPerLocalDay": 1,
+        "maximumPostsPerLocalDay": 4
+      },
+      "notes": "This contract does not silently choose or change posting frequency. Each channel must carry its own explicit cadence policy and target slot."
+    }
+  }
+}

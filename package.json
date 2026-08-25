@@ -16,6 +16,8 @@
     "seo:og-image": "bun scripts/generate-og.ts",
     "resume:pdf": "python3 scripts/generate-resume-pdf.py",
     "content:validate": "bun scripts/validate-content.ts",
+    "content:policy": "node scripts/validate-content-system-policy.mjs",
+    "content:policy:self-test": "node scripts/validate-content-system-policy.mjs --self-test",
     "content:backlog": "bun scripts/generate-400-backlog.ts",
     "content:topic-map": "bun scripts/generate-topic-map.ts",
     "deploy:git-static": "bash scripts/deploy-git-static.sh",

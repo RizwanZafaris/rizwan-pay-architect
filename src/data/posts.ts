@@ -41,6 +41,29 @@ export const categories = [
 
 export const posts: Post[] = [
   {
+    "slug": "aani-merchant-adoption-operating-model",
+    "title": "Aani's Next Product Problem Is Merchant Operating Adoption",
+    "metaTitle": "Aani Merchant Adoption Needs an Operating Model",
+    "date": "2026-08-25",
+    "category": "Payment Infrastructure",
+    "readingTime": "7 min read",
+    "description": "Aani has scale in users and merchants. The next UAE instant-payments problem is repeat merchant use, exception ownership, reconciliation and evidence.",
+    "thesis": "Aani's public numbers show reach. Durable merchant adoption now depends on checkout behaviour, confirmation, refunds, reconciliation and support.",
+    "tags": [
+      "Aani",
+      "UAE instant payments",
+      "account-to-account payments",
+      "QR payments",
+      "merchant acceptance"
+    ],
+    "relatedArticles": [
+      "/blog/uae-open-finance-pay-by-bank-checkout-gates",
+      "/blog/checkout-friction-acceptance-operating-model",
+      "/blog/three-way-reconciliation-at-scale",
+      "/hire"
+    ]
+  },
+  {
     "slug": "uae-jaywan-card-scheme-migration-control-room",
     "title": "UAE Jaywan Rollout Needs a Scheme-Migration Control Room",
     "metaTitle": "UAE Jaywan Scheme-Migration Control Room",
