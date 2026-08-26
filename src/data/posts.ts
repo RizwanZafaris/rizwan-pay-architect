@@ -41,6 +41,29 @@ export const categories = [
 
 export const posts: Post[] = [
   {
+    "slug": "jaywan-acceptance-payment-evidence",
+    "title": "Jaywan Acceptance Needs Payment Evidence, Not Just Logos",
+    "metaTitle": "Jaywan Acceptance Needs Payment Evidence",
+    "date": "2026-08-26",
+    "category": "Payment Infrastructure",
+    "readingTime": "7 min read",
+    "description": "Jaywan acceptance is moving into airline, retail, online and network enablement. Operators need evidence across checkout, routing, settlement and support.",
+    "thesis": "Jaywan acceptance is no longer only a scheme-launch claim. The useful operator question is whether merchants, acquirers, issuers and the network can prove what happened after every payment.",
+    "tags": [
+      "Jaywan",
+      "UAE payments",
+      "card acceptance",
+      "payment evidence",
+      "merchant operations"
+    ],
+    "relatedArticles": [
+      "/blog/uae-jaywan-card-scheme-migration-control-room",
+      "/blog/bin-routing-scheme-selection-override-default",
+      "/blog/three-way-reconciliation-at-scale",
+      "/hire"
+    ]
+  },
+  {
     "slug": "aani-merchant-adoption-operating-model",
     "title": "Aani's Next Product Problem Is Merchant Operating Adoption",
     "metaTitle": "Aani Merchant Adoption Needs an Operating Model",

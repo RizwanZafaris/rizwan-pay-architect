@@ -13,6 +13,7 @@ import { marked } from "marked";
 import authorPortrait from "@/assets/rizwan-zafar-cutout-460.webp";
 
 const OG_IMAGE_OVERRIDES: Record<string, string> = {
+  "jaywan-acceptance-payment-evidence": "/og/blog/jaywan-acceptance-payment-evidence-v20260826.png",
   "aani-merchant-adoption-operating-model":
     "/og/blog/aani-merchant-adoption-operating-model-v2026082502.png",
   "uae-jaywan-card-scheme-migration-control-room":
