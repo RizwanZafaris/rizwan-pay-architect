@@ -5,8 +5,16 @@
   <link>https://rzifi.com/blog/</link>
   <description>Essays on payment infrastructure, fintech product, risk, settlement, AI and program leadership.</description>
   <language>en</language>
-  <lastBuildDate>Tue, 25 Aug 2026 23:48:55 GMT</lastBuildDate>
+  <lastBuildDate>Wed, 26 Aug 2026 07:42:12 GMT</lastBuildDate>
   <item>
+    <title>Jaywan Acceptance Needs Payment Evidence, Not Just Logos</title>
+    <link>https://rzifi.com/blog/jaywan-acceptance-payment-evidence/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/jaywan-acceptance-payment-evidence/</guid>
+    <pubDate>Wed, 26 Aug 2026 00:00:00 GMT</pubDate>
+    <category>Payment Infrastructure</category>
+    <description>Jaywan acceptance is moving into airline, retail, online and network enablement. Operators need evidence across checkout, routing, settlement and support.</description>
+  </item>
+<item>
     <title>Aani&apos;s Next Product Problem Is Merchant Operating Adoption</title>
     <link>https://rzifi.com/blog/aani-merchant-adoption-operating-model/</link>
     <guid isPermaLink="true">https://rzifi.com/blog/aani-merchant-adoption-operating-model/</guid>
@@ -237,14 +245,6 @@
     <pubDate>Sat, 01 Aug 2026 00:00:00 GMT</pubDate>
     <category>AI &amp; Product Operations</category>
     <description>GitHub Copilot&apos;s Gemini deprecation shows why AI teams need model inventories, policy owners, eval gates, and fallback contracts.</description>
-  </item>
-<item>
-    <title>Mastercard&apos;s Scam Rules Move Fraud Into Acquirer Operations</title>
-    <link>https://rzifi.com/blog/mastercard-scam-merchant-monitoring-acquirer-operations/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/mastercard-scam-merchant-monitoring-acquirer-operations/</guid>
-    <pubDate>Sat, 01 Aug 2026 00:00:00 GMT</pubDate>
-    <category>Fraud &amp; Risk</category>
-    <description>Mastercard&apos;s scam monitoring shift shows why acquirers and payment facilitators need merchant risk ops, evidence, and fast shutdown paths.</description>
   </item>
 </channel>
 </rss>
