@@ -41,6 +41,29 @@ export const categories = [
 
 export const posts: Post[] = [
   {
+    "slug": "egypt-digital-financial-identity-ekyc-operating-model",
+    "title": "Egypt Digital Financial Identity Needs Operating Proof",
+    "metaTitle": "Egypt Digital Financial Identity Needs Operating Proof",
+    "date": "2026-08-27",
+    "category": "Merchant Onboarding",
+    "readingTime": "7 min read",
+    "description": "Egypt's digital financial identity rules make eKYC an operating model across banks, consent, authentication, data updates and support evidence.",
+    "thesis": "Egypt's digital financial identity platform is not only an onboarding shortcut. Banks need evidence that identity, consent, authentication and data updates work after launch.",
+    "tags": [
+      "Egypt payments",
+      "digital financial identity",
+      "eKYC",
+      "merchant onboarding",
+      "financial inclusion"
+    ],
+    "relatedArticles": [
+      "/blog/kyc-conversion-designed-together",
+      "/blog/merchant-onboarding-growth-risk-compliance",
+      "/blog/uae-open-finance-pay-by-bank-checkout-gates",
+      "/hire"
+    ]
+  },
+  {
     "slug": "jaywan-acceptance-payment-evidence",
     "title": "Jaywan Acceptance Needs Payment Evidence, Not Just Logos",
     "metaTitle": "Jaywan Acceptance Needs Payment Evidence",
