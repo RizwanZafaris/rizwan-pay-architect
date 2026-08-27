@@ -5,8 +5,16 @@
   <link>https://rzifi.com/blog/</link>
   <description>Essays on payment infrastructure, fintech product, risk, settlement, AI and program leadership.</description>
   <language>en</language>
-  <lastBuildDate>Wed, 26 Aug 2026 07:42:12 GMT</lastBuildDate>
+  <lastBuildDate>Thu, 27 Aug 2026 02:52:02 GMT</lastBuildDate>
   <item>
+    <title>Egypt Digital Financial Identity Needs Operating Proof</title>
+    <link>https://rzifi.com/blog/egypt-digital-financial-identity-ekyc-operating-model/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/egypt-digital-financial-identity-ekyc-operating-model/</guid>
+    <pubDate>Thu, 27 Aug 2026 00:00:00 GMT</pubDate>
+    <category>Merchant Onboarding</category>
+    <description>Egypt&apos;s digital financial identity rules make eKYC an operating model across banks, consent, authentication, data updates and support evidence.</description>
+  </item>
+<item>
     <title>Jaywan Acceptance Needs Payment Evidence, Not Just Logos</title>
     <link>https://rzifi.com/blog/jaywan-acceptance-payment-evidence/</link>
     <guid isPermaLink="true">https://rzifi.com/blog/jaywan-acceptance-payment-evidence/</guid>
@@ -237,14 +245,6 @@
     <pubDate>Tue, 04 Aug 2026 00:00:00 GMT</pubDate>
     <category>Product Management</category>
     <description>Which? and MoneySuperMarket show how comparison products can move beyond price into ratings, trust, renewal timing, and decision support.</description>
-  </item>
-<item>
-    <title>GitHub Copilot&apos;s Gemini Deprecation Needs a Model Fallback Contract</title>
-    <link>https://rzifi.com/blog/github-copilot-gemini-deprecation-model-fallback-contract/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/github-copilot-gemini-deprecation-model-fallback-contract/</guid>
-    <pubDate>Sat, 01 Aug 2026 00:00:00 GMT</pubDate>
-    <category>AI &amp; Product Operations</category>
-    <description>GitHub Copilot&apos;s Gemini deprecation shows why AI teams need model inventories, policy owners, eval gates, and fallback contracts.</description>
   </item>
 </channel>
 </rss>
