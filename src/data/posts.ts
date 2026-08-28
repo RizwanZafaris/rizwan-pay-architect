@@ -2459,13 +2459,14 @@ export const posts: Post[] = [
   },
   {
     "slug": "swift-november-2026-address-cutoff-product-problem",
-    "title": "Swift's November 2026 Address Cutoff Is a Product Problem",
-    "metaTitle": "Swift Address Cutoff Is a Product Problem",
+    "title": "Swift's Address Delay Is a Product Warning",
+    "metaTitle": "Swift Address Delay Is a Product Warning",
     "date": "2026-06-22",
+    "updated": "2026-08-28",
     "category": "Cross-Border Payments",
     "readingTime": "6 min read",
-    "description": "Swift's November 2026 structured-address cutoff turns ISO 20022 from a bank-format project into a capture-side product requirement.",
-    "thesis": "In April, 61% of cross-border payments still carried unstructured debtor addresses. After 14 November 2026 Swift rejects them, and no mapper can recover data the origination screen never captured. This is a capture problem, not a standards footnote.",
+    "description": "Swift's structured-address delay turns ISO 20022 from a deadline problem into a programme-readiness and source-data problem.",
+    "thesis": "Swift has extended the structured-address timeline for ISO 20022 payment messages. The lesson is not to slow down; it is to fix source data, client channels and repair operations before the next date is set.",
     "tags": [
       "Swift",
       "ISO 20022",
