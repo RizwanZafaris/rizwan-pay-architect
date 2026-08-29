@@ -15,8 +15,6 @@ import authorPortrait from "@/assets/rizwan-zafar-cutout-460.webp";
 const OG_IMAGE_OVERRIDES: Record<string, string> = {
   "syria-card-reconnection-acceptance-proof":
     "/og/blog/syria-card-reconnection-acceptance-proof-v20260829.png",
-  "saudi-supply-chain-finance-merchant-cash-flow-evidence":
-    "/og/blog/saudi-supply-chain-finance-merchant-cash-flow-evidence-v20260829.png",
   "egypt-digital-financial-identity-ekyc-operating-model":
     "/og/blog/egypt-digital-financial-identity-ekyc-operating-model-v20260827.png",
   "jaywan-acceptance-payment-evidence": "/og/blog/jaywan-acceptance-payment-evidence-v20260826.png",
