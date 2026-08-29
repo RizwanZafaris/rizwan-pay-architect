@@ -41,6 +41,29 @@ export const categories = [
 
 export const posts: Post[] = [
   {
+    "slug": "syria-card-reconnection-acceptance-proof",
+    "title": "Syria Card Reconnection Needs Acceptance Proof",
+    "metaTitle": "Syria Card Reconnection Needs Acceptance Proof",
+    "date": "2026-08-29",
+    "category": "Payment Infrastructure",
+    "readingTime": "7 min read",
+    "description": "Syria's first international card transaction in over 15 years is an acceptance-readiness test across QNB, merchants, authorization, settlement and support.",
+    "thesis": "Syria's card-network reconnection is not only a symbolic POS payment. Operators need proof across merchant onboarding, authorization, settlement, refunds and support.",
+    "tags": [
+      "Syria payments",
+      "Mastercard",
+      "QNB",
+      "card acceptance",
+      "payment infrastructure"
+    ],
+    "relatedArticles": [
+      "/blog/jaywan-acceptance-payment-evidence",
+      "/blog/mena-south-asia-payment-infrastructure-country-map",
+      "/blog/three-way-reconciliation-at-scale",
+      "/hire"
+    ]
+  },
+  {
     "slug": "egypt-digital-financial-identity-ekyc-operating-model",
     "title": "Egypt Digital Financial Identity Needs Operating Proof",
     "metaTitle": "Egypt Digital Financial Identity Needs Operating Proof",
