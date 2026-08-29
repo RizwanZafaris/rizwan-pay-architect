@@ -5,8 +5,16 @@
   <link>https://rzifi.com/blog/</link>
   <description>Essays on payment infrastructure, fintech product, risk, settlement, AI and program leadership.</description>
   <language>en</language>
-  <lastBuildDate>Sat, 29 Aug 2026 04:16:21 GMT</lastBuildDate>
+  <lastBuildDate>Sat, 29 Aug 2026 13:15:52 GMT</lastBuildDate>
   <item>
+    <title>Syria Card Reconnection Needs Acceptance Proof</title>
+    <link>https://rzifi.com/blog/syria-card-reconnection-acceptance-proof/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/syria-card-reconnection-acceptance-proof/</guid>
+    <pubDate>Sat, 29 Aug 2026 00:00:00 GMT</pubDate>
+    <category>Payment Infrastructure</category>
+    <description>Syria&apos;s first international card transaction in over 15 years is an acceptance-readiness test across QNB, merchants, authorization, settlement and support.</description>
+  </item>
+<item>
     <title>Egypt Digital Financial Identity Needs Operating Proof</title>
     <link>https://rzifi.com/blog/egypt-digital-financial-identity-ekyc-operating-model/</link>
     <guid isPermaLink="true">https://rzifi.com/blog/egypt-digital-financial-identity-ekyc-operating-model/</guid>
@@ -237,14 +245,6 @@
     <pubDate>Tue, 04 Aug 2026 00:00:00 GMT</pubDate>
     <category>AI &amp; Product Operations</category>
     <description>TencentDB Agent Memory shows why agent recall needs ownership, visibility, backup, access control, and deletion rules before production use.</description>
-  </item>
-<item>
-    <title>Which? and MoneySuperMarket Make Comparison a Trust Loop</title>
-    <link>https://rzifi.com/blog/which-moneysupermarket-comparison-trust-loop/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/which-moneysupermarket-comparison-trust-loop/</guid>
-    <pubDate>Tue, 04 Aug 2026 00:00:00 GMT</pubDate>
-    <category>Product Management</category>
-    <description>Which? and MoneySuperMarket show how comparison products can move beyond price into ratings, trust, renewal timing, and decision support.</description>
   </item>
 </channel>
 </rss>
