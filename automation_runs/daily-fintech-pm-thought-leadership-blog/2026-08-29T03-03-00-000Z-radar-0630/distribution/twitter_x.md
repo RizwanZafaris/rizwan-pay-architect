@@ -1,14 +1,7 @@
-# X Draft
+## Syria Card Reconnection Acceptance Proof
 
-Status: prepared, not scheduled
-Reason scheduling is gated: the canonical article URL must be live first, then Buffer X dry-run, preflight and readback must pass.
+Syria's first international Mastercard transaction through QNB is a payments milestone.
 
-Canonical URL: https://rzifi.com/blog/syria-card-reconnection-acceptance-proof/
-
-Text:
-
-Syria's first international Mastercard transaction through QNB is a payments milestone, but the operator test is narrower:
-
-Can one approved merchant prove the full lifecycle from card use to authorization, merchant funds receipt, refunds, disputes and support?
+The operator test: can one approved merchant prove authorization, merchant funds receipt, refunds, disputes and support?
 
 https://rzifi.com/blog/syria-card-reconnection-acceptance-proof/
