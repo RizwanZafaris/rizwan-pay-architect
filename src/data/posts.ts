@@ -41,6 +41,29 @@ export const categories = [
 
 export const posts: Post[] = [
   {
+    "slug": "saudi-supply-chain-finance-merchant-cash-flow-evidence",
+    "title": "Saudi Supply Chain Finance Needs Cash-Flow Evidence",
+    "metaTitle": "Saudi Supply Chain Finance Needs Cash-Flow Evidence",
+    "date": "2026-08-29",
+    "category": "Payment Infrastructure",
+    "readingTime": "6 min read",
+    "description": "SAMA's supply-chain-finance consultation is a merchant cash-flow signal. Banks and fintechs need evidence across invoices, approvals, disbursement and repayment.",
+    "thesis": "SAMA's supply-chain-finance consultation is not just a lending policy item. It is a merchant operating signal about invoice evidence, payment timing and repayment control.",
+    "tags": [
+      "Saudi payments",
+      "supply chain finance",
+      "B2B payments",
+      "merchant finance",
+      "cash flow"
+    ],
+    "relatedArticles": [
+      "/blog/saudi-cashless-payments-exception-control-gate",
+      "/blog/uae-einvoicing-provider-readiness-gates",
+      "/blog/three-way-reconciliation-at-scale",
+      "/blog/scheme-settlement-t-plus-1-t-plus-0-real-time-working-capital"
+    ]
+  },
+  {
     "slug": "syria-card-reconnection-acceptance-proof",
     "title": "Syria Card Reconnection Needs Acceptance Proof",
     "metaTitle": "Syria Card Reconnection Needs Acceptance Proof",

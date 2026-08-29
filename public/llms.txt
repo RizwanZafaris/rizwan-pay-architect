@@ -66,8 +66,9 @@ Disambiguation note: This Rizwan Zafar is the payments infrastructure CPO at Sim
 - [SWIFT MT/MX Implementation: ISO 20022 Migration + gpi at Simpaisa](https://rzifi.com/product-work/swift-mt-mx-implementation-simpaisa/): Wired SWIFT MT and MX (ISO 20022) messaging into the Simpaisa cross-border stack with gpi tracking, CSP attestation and dual-rail parsing — sustained 99.9%+ message-acceptance rate through the ISO 20022 migration window.
 - [Tapmad OTT: 0→5M Subscribers, Payment Cost 50% → ~1%](https://rzifi.com/product-work/tapmad-dcb-monetisation-wallet-migration/): Built the billing engine for Pakistan's leading OTT platform — Direct Carrier Billing across all four telcos, wallet-billing migration that pulled payment cost from 50% of revenue to ~1%, 0→5M paid subscribers, ARPU +70%, $10M+ ARR, expanded into UAE and KSA.
 
-## Essays (188 total, latest first)
+## Essays (189 total, latest first)
 
+- [Saudi Supply Chain Finance Needs Cash-Flow Evidence](https://rzifi.com/blog/saudi-supply-chain-finance-merchant-cash-flow-evidence/): SAMA's supply-chain-finance consultation is a merchant cash-flow signal. Banks and fintechs need evidence across invoices, approvals, disbursement and repayment.
 - [Syria Card Reconnection Needs Acceptance Proof](https://rzifi.com/blog/syria-card-reconnection-acceptance-proof/): Syria's first international card transaction in over 15 years is an acceptance-readiness test across QNB, merchants, authorization, settlement and support.
 - [Egypt Digital Financial Identity Needs Operating Proof](https://rzifi.com/blog/egypt-digital-financial-identity-ekyc-operating-model/): Egypt's digital financial identity rules make eKYC an operating model across banks, consent, authentication, data updates and support evidence.
 - [Jaywan Acceptance Needs Payment Evidence, Not Just Logos](https://rzifi.com/blog/jaywan-acceptance-payment-evidence/): Jaywan acceptance is moving into airline, retail, online and network enablement. Operators need evidence across checkout, routing, settlement and support.
