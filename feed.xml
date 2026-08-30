@@ -5,8 +5,16 @@
   <link>https://rzifi.com/blog/</link>
   <description>Essays on payment infrastructure, fintech product, risk, settlement, AI and program leadership.</description>
   <language>en</language>
-  <lastBuildDate>Sun, 30 Aug 2026 01:26:51 GMT</lastBuildDate>
+  <lastBuildDate>Sun, 30 Aug 2026 06:53:37 GMT</lastBuildDate>
   <item>
+    <title>Saudi Open Banking Needs a Licensed Operating Model</title>
+    <link>https://rzifi.com/blog/sama-open-banking-licensed-operating-model/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/sama-open-banking-licensed-operating-model/</guid>
+    <pubDate>Sun, 30 Aug 2026 00:00:00 GMT</pubDate>
+    <category>Payment Infrastructure</category>
+    <description>SAMA&apos;s open-banking licensing shift turns API access into supervised operating work across consent, data access, denial handling and incidents.</description>
+  </item>
+<item>
     <title>Syria Card Reconnection Needs Acceptance Proof</title>
     <link>https://rzifi.com/blog/syria-card-reconnection-acceptance-proof/</link>
     <guid isPermaLink="true">https://rzifi.com/blog/syria-card-reconnection-acceptance-proof/</guid>
@@ -237,14 +245,6 @@
     <pubDate>Tue, 04 Aug 2026 00:00:00 GMT</pubDate>
     <category>Program Management</category>
     <description>Kaneo&apos;s minimal project-management model shows why delivery teams need simple boards, but regulated programmes still need governance outside the tool.</description>
-  </item>
-<item>
-    <title>TencentDB Agent Memory Makes Recall a Governance Problem</title>
-    <link>https://rzifi.com/blog/tencentdb-agent-memory-governance/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/tencentdb-agent-memory-governance/</guid>
-    <pubDate>Tue, 04 Aug 2026 00:00:00 GMT</pubDate>
-    <category>AI &amp; Product Operations</category>
-    <description>TencentDB Agent Memory shows why agent recall needs ownership, visibility, backup, access control, and deletion rules before production use.</description>
   </item>
 </channel>
 </rss>
