@@ -1,0 +1,28 @@
+{
+  "status": "passed",
+  "reviewedAt": "2026-08-30T10:46:51+04:00",
+  "articles": [
+    {
+      "canonicalUrl": "https://rzifi.com/blog/sama-open-banking-licensed-operating-model/",
+      "title": "Saudi Open Banking Needs a Licensed Operating Model",
+      "wordCount": 1494,
+      "sourcesVerified": 7,
+      "factualClaimsVerified": true,
+      "linksChecked": true,
+      "gates": {
+        "humanVoice": "passed",
+        "grammar": "passed",
+        "credibility": "passed",
+        "originality": "passed"
+      },
+      "grammarIssues": 0,
+      "criticalIssues": [],
+      "claimRiskNotes": [
+        "License announcements are not used as proof of adoption, uptime, coverage, conversion or commercial success.",
+        "Account information services and payment initiation services are separated explicitly.",
+        "Draft consultations and future services are labeled outside the article rather than framed as live outcomes."
+      ]
+    }
+  ]
+}
+

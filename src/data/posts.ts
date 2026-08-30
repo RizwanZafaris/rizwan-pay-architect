@@ -41,6 +41,29 @@ export const categories = [
 
 export const posts: Post[] = [
   {
+    "slug": "sama-open-banking-licensed-operating-model",
+    "title": "Saudi Open Banking Needs a Licensed Operating Model",
+    "metaTitle": "Saudi Open Banking Needs a Licensed Operating Model",
+    "date": "2026-08-30",
+    "category": "Payment Infrastructure",
+    "readingTime": "7 min read",
+    "description": "SAMA's open-banking licensing shift turns API access into supervised operating work across consent, data access, denial handling and incidents.",
+    "thesis": "Saudi open banking has moved from sandbox proof to licensed operations. The product question is whether every consent, access request, denial and exception can be proved.",
+    "tags": [
+      "Saudi open banking",
+      "SAMA",
+      "payment initiation",
+      "account information",
+      "consent management"
+    ],
+    "relatedArticles": [
+      "/blog/uae-open-finance-pay-by-bank-checkout-gates",
+      "/blog/open-banking-product-architecture",
+      "/blog/lean-ziina-uae-one-tap-pay-by-bank",
+      "/hire"
+    ]
+  },
+  {
     "slug": "syria-card-reconnection-acceptance-proof",
     "title": "Syria Card Reconnection Needs Acceptance Proof",
     "metaTitle": "Syria Card Reconnection Needs Acceptance Proof",

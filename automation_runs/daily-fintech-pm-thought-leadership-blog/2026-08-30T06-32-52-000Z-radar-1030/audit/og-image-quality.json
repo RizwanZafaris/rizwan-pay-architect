@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "status": "passed",
+  "reviewedAt": "2026-08-30T10:46:51+04:00",
+  "benchmark": {
+    "path": "/Users/rizwanzafar/Documents/Codex/2026-08-25/i-x20/outputs/rzifi-aani-ecosystem-shared-ownership-v2.png",
+    "sha256": "26a0b6b8305c5a46c464af5c9d83d89a477e84dad7a4061ee038ae69e81df36e",
+    "verified": true
+  },
+  "posts": [
+    {
+      "canonicalUrl": "https://rzifi.com/blog/sama-open-banking-licensed-operating-model/",
+      "imageUrl": "https://rzifi.com/og/blog/sama-open-banking-licensed-operating-model-v20260830.png",
+      "imageSha256": "51b250b6f2e6c9283321d839c88f1f7a2162c1fe4de6b058b3c17ef37825e274",
+      "rawSceneSha256": "c7db6af6a6f6adc55e57a7601f70224485f6e4f36d7b5ed3383ee6815a27bf6d",
+      "visibleTextReviewed": true,
+      "mobilePreviewWidth": 360,
+      "gates": {
+        "canvasBounds": "passed",
+        "textVisualSeparation": "passed",
+        "mobileLegibility": "passed"
+      },
+      "criticalIssues": [],
+      "layout": {
+        "textRegions": [
+          {
+            "id": "eyebrow",
+            "role": "decorative",
+            "x": 80,
+            "y": 88,
+            "width": 260,
+            "height": 28,
+            "fontSize": 18
+          },
+          {
+            "id": "headline",
+            "role": "headline",
+            "x": 80,
+            "y": 138,
+            "width": 520,
+            "height": 286,
+            "fontSize": 72
+          },
+          {
+            "id": "footer",
+            "role": "footer",
+            "x": 80,
+            "y": 557,
+            "width": 130,
+            "height": 30,
+            "fontSize": 24
+          }
+        ],
+        "visualRegions": [
+          {
+            "id": "payment-scene",
+            "x": 640,
+            "y": 54,
+            "width": 504,
+            "height": 536
+          }
+        ]
+      }
+    }
+  ]
+}
+
