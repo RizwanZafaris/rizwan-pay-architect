@@ -229,6 +229,7 @@ export const posts: Post[] = [
     "title": "UAE E-Invoicing Turns Finance Change Into Provider Readiness Gates",
     "metaTitle": "UAE E-Invoicing Provider Readiness Gates",
     "date": "2026-08-13",
+    "updated": "2026-08-31",
     "category": "Program Management",
     "readingTime": "7 min read",
     "description": "UAE e-invoicing makes finance transformation a provider-readiness programme across invoice data, tax reporting, onboarding, controls, and exceptions.",

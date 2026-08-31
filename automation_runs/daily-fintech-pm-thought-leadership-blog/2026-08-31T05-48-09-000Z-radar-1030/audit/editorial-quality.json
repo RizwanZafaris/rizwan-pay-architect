@@ -1,0 +1,27 @@
+{
+  "status": "passed",
+  "reviewedAt": "2026-08-31T10:01:16+04:00",
+  "articles": [
+    {
+      "canonicalUrl": "https://rzifi.com/blog/uae-einvoicing-provider-readiness-gates/",
+      "title": "UAE E-Invoicing Turns Finance Change Into Provider Readiness Gates",
+      "wordCount": 1516,
+      "sourcesVerified": 8,
+      "factualClaimsVerified": true,
+      "linksChecked": true,
+      "gates": {
+        "humanVoice": "passed",
+        "grammar": "passed",
+        "credibility": "passed",
+        "originality": "passed"
+      },
+      "grammarIssues": 0,
+      "criticalIssues": [],
+      "claimRiskNotes": [
+        "This is a dated correction to an existing article, not a new 2026-08-31 flagship article.",
+        "The ASP appointment extension is described as a deadline extension, while the mandatory implementation date remains unchanged.",
+        "The ASP count is treated as provider-list evidence, not proof of implementation readiness across buyers, suppliers, ERPs or exception flows."
+      ]
+    }
+  ]
+}
