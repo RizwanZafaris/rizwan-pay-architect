@@ -27,9 +27,22 @@
  *     as an older inflated framing.
  *   - "7 markets"              → same note; it is neither the career (10) nor
  *     the live (5) figure.
- *   - "payment success 92% → 97%" → no such metric exists in the repo. The
- *     real, sourced figure is iOS Safari + cross-border authorisation rate
- *     88% → 92% (src/data/caseStudies.ts, tokenisation study).
+ *
+ * RETIRED METRICS — banned outright (owner ruling 2026-09-01, enforced as a
+ * hard fail by scripts/seo-audit.ts and scripts/check-facts.ts). None of these
+ * six had a source and several were contradicted by the owner's own
+ * dashboards. They must never appear as his own claim on any public surface:
+ *   1. "$14M/month recovered" / "$14M+/mo GTV"
+ *   2. "+14%" / "14% authorisation uplift"
+ *   3. "22% token-failure reduction"
+ *   4. "97% payment success"
+ *   5. "99.95%" (settlement SLA, reconciliation accuracy, any platform claim)
+ *   6. "120K+ failed transactions recovered monthly"
+ * The publishable replacements are the safe set already exported here:
+ *   $1B+ GTV · 270M+ payments a year · 150+ merchants · 5 live markets ·
+ *   90% straight-through processing · 99.9% uptime · <0.1% fraud loss.
+ * The one real authorisation figure in the repo is the tokenisation study's
+ * iOS Safari + cross-border rate, 88% → 92% (src/data/caseStudies.ts).
  */
 import { profile } from "@/data/profile";
 import { markets } from "@/data/markets";
@@ -71,7 +84,12 @@ export const PLATFORM = {
   marketsWordCap: "Five",
   /** The ONLY approved phrasing for the live footprint. */
   marketsPhrase: `${platform.marketCount} live markets today`,
-  settlementSla: platform.settlementSla,
+  /** Platform uptime. The replacement tile wherever a settlement-SLA number
+   *  used to sit — see the retired-claims note above. */
+  uptime: platform.uptime,
+  /** Straight-through processing rate. */
+  straightThrough: platform.straightThrough,
+  fraudLoss: platform.fraudLoss,
 } as const;
 
 /**

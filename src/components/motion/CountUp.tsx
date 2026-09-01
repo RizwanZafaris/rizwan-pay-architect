@@ -11,7 +11,7 @@
  * Usage:
  *   <CountUp value={1000} />                  → 1,000
  *   <CountUp value={1} template="${n}B+" />   → $1B+
- *   <CountUp value={99.95} template="{n}%" /> → 99.95%
+ *   <CountUp value={99.9} template="{n}%" />  → 99.9%
  */
 export function CountUp({
   value,

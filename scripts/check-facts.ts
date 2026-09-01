@@ -48,7 +48,19 @@ const BANNED: { pattern: RegExp; why: string }[] = [
     why: "markets — use CAREER/PLATFORM/DARAZ marketsWord",
   },
   { pattern: /\b7 markets\b/gi, why: "REJECTED framing (neither career 10 nor live 5)" },
-  { pattern: /\b99\.95%/g, why: "settlement SLA — use PLATFORM.settlementSla" },
+  // RETIRED METRICS (owner ruling 2026-09-01). These six are not "use the
+  // constant instead" — there is no constant, the claims are dead. The
+  // publishable replacements are PLATFORM.uptime (99.9%),
+  // PLATFORM.straightThrough (90%) and PLATFORM.fraudLoss (<0.1% GTV).
+  { pattern: /\b99\.95/g, why: "RETIRED claim (settlement SLA / recon accuracy) — unpublishable" },
+  { pattern: /97\s*%\s*(payment\s+)?success/gi, why: "RETIRED claim — unpublishable" },
+  { pattern: /\+?\s*14\s*%\s*authori[sz]ation/gi, why: "RETIRED claim — unpublishable" },
+  { pattern: /22\s*%\s*token/gi, why: "RETIRED claim — unpublishable" },
+  { pattern: /\$14M/g, why: "RETIRED claim (smart-retry recovery) — unpublishable" },
+  {
+    pattern: /120[Kk],?0?0?0?\+?\s*(failed\s+)?transactions/g,
+    why: "RETIRED claim — unpublishable",
+  },
   { pattern: /\b\d{2}\s*years of experience/gi, why: "tenure — use CAREER.yearsLabel" },
   { pattern: /Schedule call/g, why: "CTA verb — use CTA_LABEL" },
 ];

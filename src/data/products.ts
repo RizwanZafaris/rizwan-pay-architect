@@ -30,7 +30,7 @@ export const products: Product[] = [
       { label: "Annual GTV", value: "$1B+" },
       { label: "Annual transactions", value: "270M+" },
       { label: "Markets", value: "5" },
-      { label: "Settlement SLA", value: "99.95%" },
+      { label: "Platform uptime", value: "99.9%" },
       { label: "Fraud loss", value: "<0.1% GTV" },
     ],
     link: "/product-work/simpaisa-payment-infrastructure",

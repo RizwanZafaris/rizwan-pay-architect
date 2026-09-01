@@ -22,7 +22,8 @@ import { absUrl, OG_IMAGE_URL, SITE_URL } from "@/lib/seo";
 // src/data/profile.ts (canonical: 150+ merchants, $1B+ annual GTV, 270M+
 // payments a year, computed career years, +3.4pts auth uplift, 38%→73% frictionless
 // 3DS2, 92% CoF token coverage, 7.2pt Click-to-Pay lift, 60% AML
-// false-positive cut, 99.95% settlement SLA). Do not introduce numbers,
+// false-positive cut, 90% straight-through processing, 99.9% platform
+// uptime). Do not introduce numbers,
 // clients or testimonials that are not in those files. The merchant strip is
 // borrowed-authority framing (platform relationships, NOT advisory clients)
 // and must keep saying so.
@@ -34,7 +35,7 @@ const proofMetrics = [
   { value: PLATFORM.gtv, label: "Annual GTV" },
   { value: PLATFORM.annualPayments, label: "Payments a year" },
   { value: PLATFORM.merchants, label: "Merchants" },
-  { value: PLATFORM.settlementSla, label: "Settlement SLA" },
+  { value: PLATFORM.uptime, label: "Platform uptime" },
   { value: `${profile.career.years}`, label: "Years in payments & delivery" },
 ] as const;
 
@@ -68,11 +69,11 @@ const offers: Offer[] = [
     ],
     proof: [
       {
-        label: `+14% authorization uplift across a ${PLATFORM.gtv} GTV platform`,
+        label: `Authorisation optimisation across issuers and acquirers on a ${PLATFORM.gtv} GTV platform`,
         href: "/product-work/simpaisa-payment-infrastructure/",
       },
       {
-        label: "97% payment success at 90% straight-through processing",
+        label: `${PLATFORM.straightThrough} straight-through processing at ${PLATFORM.uptime} platform uptime`,
         href: "/product-work/simpaisa-payment-infrastructure/",
       },
     ],
@@ -90,7 +91,7 @@ const offers: Offer[] = [
     ],
     proof: [
       {
-        label: `${PLATFORM.settlementSla} reconciliation accuracy at ${PLATFORM.gtv} GTV`,
+        label: `Automated reconciliation at ${PLATFORM.gtv} GTV`,
         href: "/product-work/settlement-reconciliation/",
       },
       {

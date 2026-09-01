@@ -14,7 +14,7 @@ import { absUrl } from "@/lib/seo";
 // FACT DISCIPLINE (two-tier claims, strategy doc §2 — the seo-audit.ts CI gate
 // fails the build on a violation): a career marker ("since 2009", "seventeen
 // years", "ten markets", "three industries") must never share a sentence/clause
-// with a Simpaisa PLATFORM metric ("$1B", "270M", "150+ merchants", "99.95%").
+// with a Simpaisa PLATFORM metric ("$1B", "270M", "150+ merchants").
 // The hero H1 uses period-separated sentences; era-3's platform metrics each
 // live in their OWN sentence with no career marker adjacent. Per-market copy
 // comes ONLY from the publishable, evidence-backed records in
@@ -65,7 +65,7 @@ const eras: Era[] = [
     // platform metrics never mix tiers. Do not merge these into one sentence.
     points: [
       `Built a ${PLATFORM.gtv} GTV gateway processing ${PLATFORM.annualPayments} payments a year.`,
-      `Reached ${PLATFORM.merchants} merchants at a ${PLATFORM.settlementSla} settlement SLA.`,
+      `Reached ${PLATFORM.merchants} merchants at ${PLATFORM.uptime} platform uptime.`,
       "Shipped four market launches in 2024 and led a 40-engineer payments organisation across 12 squads.",
       "Led PCI-DSS Level 1 and ISO 27001 from scratch.",
     ],

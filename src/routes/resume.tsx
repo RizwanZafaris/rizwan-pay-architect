@@ -95,7 +95,7 @@ const proofMetrics = [
     label: "Live markets",
     note: "Frontier-market operations",
   },
-  { value: PLATFORM.settlementSla, label: "Settlement SLA", note: "Control and reliability" },
+  { value: PLATFORM.uptime, label: "Platform uptime", note: "Control and reliability" },
   { value: "40", label: "Engineers led", note: "Across 12 squads" },
 ] as const;
 
@@ -127,7 +127,7 @@ const selectedProofLinks = [
   },
   {
     title: "Settlement and reconciliation at scale",
-    body: `Canonical ledger, three-way reconciliation and ${PLATFORM.settlementSla} settlement SLA across fragmented rails and partners.`,
+    body: `Canonical ledger, automated three-way reconciliation and corridor-aware payout windows across fragmented rails and partners.`,
     slug: "settlement-reconciliation",
   },
   {
@@ -154,7 +154,7 @@ const resumeExperience = [
       `Helped scale infrastructure from $0 to ${PLATFORM.gtv} GTV and ${PLATFORM.annualPayments} payments a year, working with leading global PSPs across ${PLATFORM.marketCount} frontier markets.`,
       `Built merchant onboarding, KYC/KYB, risk-tiering and category pricing flows that cut standard-risk activation from weeks to hours and supported ${PLATFORM.merchants} merchant integrations.`,
       "Led a 40-engineer payments organization across 12 squads; managed $5M+ technology budget, 15+ vendor relationships, PCI DSS, ISO/IEC 27001 and multi-jurisdiction reporting programs.",
-      `Improved platform economics and control: 97% payment success at 90% straight-through processing, ${PLATFORM.settlementSla} settlement SLA, fraud loss below 0.1% of GTV and downtime down 90%.`,
+      `Improved platform economics and control: ${PLATFORM.straightThrough} straight-through processing, ${PLATFORM.uptime} platform uptime, fraud loss below 0.1% of GTV and downtime down 90%.`,
       "Deployed three production AI/GenAI solutions across merchant support, incident auto-escalation and partner operations, plus a fraud/AML banking pilot.",
     ],
   },

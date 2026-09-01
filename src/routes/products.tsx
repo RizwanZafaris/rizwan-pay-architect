@@ -77,7 +77,7 @@ function ProductsPage() {
               { v: PLATFORM.gtv, l: "annual GTV cleared" },
               { v: PLATFORM.annualPayments, l: "annual transactions" },
               { v: String(PLATFORM.marketCount), l: "regulated markets" },
-              { v: PLATFORM.settlementSla, l: "settlement SLA" },
+              { v: PLATFORM.uptime, l: "platform uptime" },
             ].map((p) => (
               <li key={p.l} className="px-5 py-6 sm:px-6 md:py-8">
                 <div className="font-mono-tech text-xl md:text-2xl text-ink leading-none tabular-nums">

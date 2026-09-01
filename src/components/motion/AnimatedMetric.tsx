@@ -9,7 +9,7 @@ import { CountUp } from "./CountUp";
  *   "$1B+"      → counts 0..1, template "${n}B+"
  *   "25M+"      → counts 0..25, template "{n}M+"
  *   "5"         → counts 0..5
- *   "99.95%"    → counts 0..99.95 with 2 decimals, template "{n}%"
+ *   "99.9%"     → counts 0..99.9 with 1 decimal, template "{n}%"
  *   "−90%"      → counts 0..-90 (handled as negative)
  *   anything    → renders verbatim, no animation
  *   else
@@ -32,7 +32,7 @@ type Parsed = { n: number; template: string; decimals: number };
 function parseMetric(raw: string): Parsed | null {
   // Compound transformations like "50% → 1%" or "0 → 100K in 8mo" — skip.
   if (raw.includes("→") || raw.includes("->")) return null;
-  // Match e.g.  "$1B+"  "25M+"  "5"  "99.95%"  "−90%"  "$10M+"
+  // Match e.g.  "$1B+"  "25M+"  "5"  "99.9%"  "−90%"  "$10M+"
   // Capture: optional prefix (currency), number, optional unit (B/M/K/%), optional suffix
   const match = raw.match(
     /^(?<prefix>[^\d−-]*?)(?<sign>[−-]?)(?<num>\d+(?:\.\d+)?)(?<unit>[BMK%]?)(?<suffix>.*)$/,

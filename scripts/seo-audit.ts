@@ -19,6 +19,12 @@
  *     (50-160 chars), exactly one <h1>
  *   - every <script type="application/ld+json"> parses as JSON
  *   - no robots noindex on pages that should be indexable
+ *   - no retired/banned claim in the prerendered HTML, llms*.txt, feed.xml,
+ *     the resume PDF, or the SOURCE files those are generated from — this
+ *     includes the six metrics retired on 2026-09-01 ($14M/month recovered,
+ *     14% authorization uplift, 22% token-failure reduction, 97% payment
+ *     success, 99.95% anything, 120K failed transactions recovered). Failures
+ *     name the file and the line.
  *
  * Exit code 0 = all green. Any failure exits non-zero.
  */
@@ -329,7 +335,43 @@ const BANNED_CLAIM_PATTERNS: { label: string; re: RegExp }[] = [
   // shipped to the live /journey/ page. Internal placeholder language must
   // never reach emitted HTML — keep TODOs in source comments only.
   { label: "TODO scaffold leaked into page copy", re: /TODO\s*\(/ },
+  // ── THE RETIRED SIX (owner ruling 2026-09-01, absolute) ─────────────────
+  // Six metrics may never appear as Rizwan's own claim on any public surface.
+  // None has a source and several are contradicted by his own dashboards:
+  // "97%" was a Bangladesh TARGET (the dashboard read 87.34%), "$14M" was
+  // described in his own PRD as "recoverable", "22%" measured a system that
+  // was not live, and "99.95%" was a vendor's UPTIME target, never a Simpaisa
+  // settlement SLA. Publishable replacements: 90% straight-through processing,
+  // 99.9% platform uptime, <0.1% fraud loss, 150+ merchants, $1B+ annual GTV,
+  // 270M+ payments a year. Never soften these into a "warning" — they ship as
+  // an entity-trust defect the moment a recruiter cross-checks one.
+  { label: "$14M recovered", re: /\$14M/ },
+  { label: "14M/month recovered", re: /14M\/month/ },
+  { label: "14% authorization uplift", re: /\+?14% authori[sz]ation/i },
+  { label: "22% token-failure reduction", re: /22% token/i },
+  { label: "97% payment success", re: /97% (payment )?success/i },
+  { label: "99.95% (settlement SLA / recon accuracy)", re: /99\.95/ },
+  { label: "120K failed transactions recovered", re: /120[Kk]\+? (failed )?transactions/ },
 ];
+
+// 1-based line number of the first match, so a failure names a place to edit
+// rather than just a file. Returns 0 if the pattern spans no single line.
+function lineOf(body: string, re: RegExp): number {
+  const lines = body.split(/\r?\n/);
+  for (let i = 0; i < lines.length; i++) {
+    if (re.test(lines[i])) return i + 1;
+  }
+  return 0;
+}
+
+function scanBannedClaims(file: string, body: string) {
+  for (const { label, re } of BANNED_CLAIM_PATTERNS) {
+    if (!re.test(body)) continue;
+    const line = lineOf(body, re);
+    fail(file, "banned_claim", `contains retired claim "${label}"${line ? ` (line ${line})` : ""}`);
+  }
+}
+
 // The claim gate also covers the AI-engine trust surfaces — a regenerator
 // regression in llms*.txt or feed.xml must fail the build, not ship silently.
 const claimScanFiles = [
@@ -339,16 +381,62 @@ const claimScanFiles = [
     .filter((f) => existsSync(f)),
 ];
 for (const file of claimScanFiles) {
-  const body = readFileSync(file, "utf-8");
-  for (const { label, re } of BANNED_CLAIM_PATTERNS) {
-    if (re.test(body)) fail(file, "banned_claim", `contains retired claim "${label}"`);
+  scanBannedClaims(file, readFileSync(file, "utf-8"));
+}
+
+// ── Source-side claim gate ──────────────────────────────────────────────
+// The built-output scan above catches a retired claim only once it has been
+// rendered. A claim sitting in a data file that no live route happens to read
+// today is a landmine: the next surface that imports it ships the claim. So
+// the same patterns run against the source of truth as well.
+//
+// SCOPE mirrors scripts/check-facts.ts: site-claim surfaces only. Long-form
+// authored essay prose is exempt — an essay quoting a THIRD PARTY's "97%
+// reimbursement rate" is writing, not one of Rizwan's own claims, and the
+// rendered page is still covered by the HTML scan above.
+// Comments are stripped before scanning, exactly as scripts/check-facts.ts
+// does it: the "do not reintroduce this" notes in src/content/facts.ts and
+// src/data/*.ts have to spell the retired claims out to be useful, and a
+// documentation line is not a shipped claim. Newlines are preserved so
+// reported line numbers stay accurate.
+const SRC_CLAIM_DIRS = ["src/data", "src/routes", "src/components", "src/content", "scripts"];
+const SRC_CLAIM_EXEMPT = new Set<string>([
+  // Authored essay bodies (see SCOPE above).
+  "src/data/posts-content.ts",
+  // This file: the pattern table itself necessarily spells the claims out,
+  // outside a comment.
+  "scripts/seo-audit.ts",
+  // The sibling gate, same reason.
+  "scripts/check-facts.ts",
+]);
+const blankOut = (m: string) => m.replace(/[^\n]/g, " ");
+// Line comments are dropped only when the WHOLE line is one (trimmed line
+// starts with //, * or #). A blanket /\/\/.*$/ strip would also eat everything
+// after "https://…" inside a string literal and hide a real claim behind a URL.
+const COMMENT_LINE = /^\s*(?:\/\/|\*|\/\*|#)/;
+function stripComments(rel: string, src: string): string {
+  const noBlocks = rel.endsWith(".py")
+    ? src.replace(/"""[\s\S]*?"""/g, blankOut)
+    : src.replace(/\/\*[\s\S]*?\*\//g, blankOut);
+  return noBlocks
+    .split("\n")
+    .map((line) => (COMMENT_LINE.test(line) ? "" : line))
+    .join("\n");
+}
+for (const dir of SRC_CLAIM_DIRS) {
+  if (!existsSync(dir)) continue;
+  for (const file of walk(dir)) {
+    const rel = file.replace(/\\/g, "/");
+    if (SRC_CLAIM_EXEMPT.has(rel)) continue;
+    if (!/\.(tsx?|mjs|py)$/.test(rel)) continue;
+    scanBannedClaims(rel, stripComments(rel, readFileSync(file, "utf-8")));
   }
 }
 
 // ── Two-tier claims gate (strategy doc §2, owner ruling 2026-07-05) ──────────
 // Career-scope claims ("since 2009", "17 years", "ten markets", "three
 // industries") and Simpaisa PLATFORM metrics ("$1B GTV", "270M payments",
-// "150+ merchants", "99.95% SLA") must never sit in the SAME clause. Correct
+// "150+ merchants", "99.9% uptime") must never sit in the SAME clause. Correct
 // copy keeps them in separate sentences (career = the arc; platform = the
 // current role). We split each HTML page's visible text into clauses on
 // sentence + list delimiters (incl. the `·` proof-band separator and em-dash)
@@ -369,7 +457,12 @@ const PLATFORM_METRICS = [
   /\b270\s*M\b/i,
   /\b270\s*million/i,
   /\b150\+\s*merchant/i,
-  /\b99\.95\s*%/,
+  // Was /99\.95%/ until the 2026-09-01 retirement removed that claim from the
+  // codebase entirely (it is now a hard banned_claim above, not a tier marker).
+  // Uptime took its place as the platform reliability tile, so the tier marker
+  // follows it — scoped to the "…% uptime" construction so a bare 99.9% in
+  // essay prose about someone else's SLA does not read as a platform claim.
+  /\b99\.9\s*%\s*(?:platform\s+)?uptime/i,
 ];
 for (const file of htmlFiles) {
   const text = readFileSync(file, "utf-8")
@@ -456,6 +549,31 @@ if (existsSync(resumePdf)) {
   const flat = text.replace(/[()\\]/g, "").replace(/\s+/g, " ");
   for (const claim of ["lovable.app", "25M+", "7 markets", "Business Insider", "BIT25"]) {
     if (flat.includes(claim)) fail(resumePdf, "banned_claim", `PDF contains "${claim}"`);
+  }
+  // The retired six travel further than the site does — the PDF is what lands
+  // in an ATS and in a recruiter's inbox, so it gets the same hard gate.
+  //
+  // A claim that wraps across two rendered lines is split in the content
+  // stream by positioning operators — "…, 14%) Tj 0 -12.5 Td (authorization
+  // uplift…" — so `flat` alone misses exactly the long phrases we care about
+  // (the pre-fix resume matched only 3 of its 5 retired claims). Blanking the
+  // operator tokens rejoins the sentence. Operators are replaced with a SPACE,
+  // never deleted: deleting them could fuse "99.9% uptime … 5 markets" into a
+  // phantom "99.95".
+  const stripped = flat
+    .replace(/\b-?\d+(?:\.\d+)?\s+-?\d+(?:\.\d+)?\s+(?:Td|TD|Tm|cm)\b/g, " ")
+    // T* has no trailing word boundary (the `*` is not a word char), so it
+    // cannot live in the \b…\b alternation below.
+    .replace(/\bT\*/g, " ")
+    .replace(
+      /\b(?:BT|ET|Tj|TJ|Tc|Tw|Tf|Tr|Ts|Tz|TL|Td|TD|Tm|Do|gs|q|Q|cm|re|W|n|f|S|EMC|BDC)\b/g,
+      " ",
+    )
+    .replace(/\s+/g, " ");
+  for (const { label, re } of BANNED_CLAIM_PATTERNS) {
+    if (re.test(flat) || re.test(stripped)) {
+      fail(resumePdf, "banned_claim", `PDF contains retired claim "${label}"`);
+    }
   }
   // Kerning (TJ arrays) can split a string mid-run with adjustment integers —
   // e.g. `(rzif)-3(i.com)` — so the domain marker is matched on a letters-only

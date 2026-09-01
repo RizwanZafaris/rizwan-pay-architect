@@ -1,5 +1,26 @@
 #!/usr/bin/env python3
-"""Generate the public, ATS-readable Rizwan Zafar resume PDF."""
+"""Generate the public, ATS-readable Rizwan Zafar resume PDF.
+
+This script is the ONLY source of public/Rizwan_Zafar_Resume.pdf. Between
+2026-08-10 and 2026-09-01 the shipped PDF was hand-replaced from an external
+build and drifted away from this file, which is how five retired metrics stayed
+live in the highest-intent download on the site after the site copy was
+cleaned. The shipped resume's content has now been folded back in here, so the
+PDF and the generator cannot diverge again.
+
+FACT DISCIPLINE. Six metrics were retired on 2026-09-01 (owner ruling) and may
+never appear here: $14M/month recovered, 14% authorization uplift, 22%
+token-failure reduction, 97% payment success, 99.95% (settlement SLA,
+reconciliation accuracy or any platform claim) and 120K+ failed transactions
+recovered monthly. `bun run seo:audit` hard-fails on all six, in this file and
+in the generated PDF. The publishable set is: $1B+ annual GTV, ~270M annual
+transactions, 150+ merchants, 5 markets, 90% straight-through processing,
+99.9% platform uptime, fraud loss below 0.1% of GTV, PCI-DSS Level 1 and
+ISO 27001, product org grown 2 to 8 PMs, 4 product launches in 2024.
+
+Certifications are reproduced verbatim and are owner-confirmed current as of
+2026-09-01. Do not add, remove or reword a status designation on them.
+"""
 
 from pathlib import Path
 import sys
@@ -217,7 +238,8 @@ def build(output: Path):
     story = [
         Paragraph("RIZWAN ZAFAR", styles["name"]),
         Paragraph(
-            "PAYMENTS PRODUCT AND PROGRAM EXECUTIVE | FINTECH INFRASTRUCTURE",
+            "PAYMENTS PRODUCT AND PROGRAM EXECUTIVE | FINTECH INFRASTRUCTURE | "
+            "EMERGING AND FRONTIER MARKETS",
             styles["headline"],
         ),
         Paragraph(
@@ -232,11 +254,15 @@ def build(output: Path):
     story += section("Professional summary", styles)
     story.append(
         Paragraph(
-            "Payments product and program executive with 17 years across complex technology and delivery environments. "
-            "Currently Chief Product Officer at Simpaisa, leading product across payment gateway, pay-in, payout, cross-border, "
-            "merchant onboarding, settlement, risk and compliance. Simpaisa publicly reports more than $1B in annual GTV, "
-            "270M annual transactions, 150+ merchants and formal operations in five markets. Brings product judgment together "
-            "with PMO discipline, partner management and regulated delivery.",
+            "Chief Product Officer with 17 years building and scaling payment gateway, cross-border and "
+            "merchant-acquiring products across emerging and frontier markets. At Simpaisa, scaled the leading "
+            "payment-gateway connector for frontier markets from market entry to $1B+ annual GTV, ~270M annual "
+            "transactions and 150+ merchants across 5 markets. Owns the end-to-end product stack (pay-in, payouts "
+            "and cross-border) plus the program and PMO discipline that delivers it: multi-squad execution, SteerCo "
+            "governance and vendor management. Built a product controls environment from scratch (PCI-DSS Level 1 "
+            "and ISO 27001), audited without findings across 5 regulatory jurisdictions. Local infrastructure partner "
+            "for DLocal, Thunes, Boku, Coda Payments and Tazapay, enabling global platforms (TikTok/ByteDance, "
+            "Samsung, Shein, Codashop, Xsolla, Uber, MoneyGram) to land in markets where they have no local rails.",
             styles["body"],
         )
     )
@@ -246,7 +272,7 @@ def build(output: Path):
         Paragraph("$1B+<br/><font size='6.6' color='#675F57'><b>ANNUAL GTV</b></font>", styles["metric_value"]),
         Paragraph("270M+<br/><font size='6.6' color='#675F57'><b>PAYMENTS / YEAR</b></font>", styles["metric_value"]),
         Paragraph("5<br/><font size='6.6' color='#675F57'><b>LIVE MARKETS</b></font>", styles["metric_value"]),
-        Paragraph("40<br/><font size='6.6' color='#675F57'><b>ENGINEERS LED</b></font>", styles["metric_value"]),
+        Paragraph("150+<br/><font size='6.6' color='#675F57'><b>MERCHANTS</b></font>", styles["metric_value"]),
     ]]
     story.append(
         Table(
@@ -269,10 +295,11 @@ def build(output: Path):
 
     story += section("Core competencies", styles)
     competencies = [
-        ("Payments infrastructure", "Gateway and orchestration | pay-in and payout APIs | card acquiring | wallets | DCB | IBFT | cross-border and FX | settlement and reconciliation"),
-        ("Product leadership", "Strategy and roadmaps | platform operating models | merchant onboarding | pricing and unit economics | partner enablement | product organization design"),
-        ("Risk and controls", "KYC and KYB | AML and CFT | sanctions screening | fraud controls | chargebacks | PCI DSS | ISO 27001 | audit readiness"),
-        ("Program delivery", "PMO governance | SteerCo and board reporting | OKRs | RAID management | vendor governance | multi-market launches | transformation programs"),
+        ("Gateway and orchestration", "Payment gateway | orchestration | pay-in | payouts | cross-border settlement | reconciliation | multi-currency and FX | dynamic corridor pricing"),
+        ("Merchant and acquiring", "Merchant acquiring | merchant onboarding (weeks to hours) | self-service flows | automated KYC/KYB | risk-based approval | blended and IC++ pricing | merchant of record"),
+        ("Payment methods and rails", "Card acquiring (MPGS/MDES) | tokenization | 3DS2 | mobile wallets | DCB | IBFT | QR | bill payments | BNPL | open banking | stablecoin settlement"),
+        ("Risk, compliance and security", "PCI-DSS Level 1 | ISO 27001 | AML and CFT | fraud prevention | chargeback management | multi-jurisdiction regulatory readiness | EMI operations"),
+        ("Product and program leadership", "Product strategy and roadmap | P&amp;L ownership | business cases | GTM | PMO governance | SteerCo | OKRs | vendor management | org design (2 to 8 PMs)"),
     ]
     comp_rows = [
         [Paragraph(label.upper(), styles["label"]), Paragraph(text, styles["small"])]
@@ -297,40 +324,48 @@ def build(output: Path):
 
     story += section("Professional experience", styles)
     story += role(
-        "Chief Product Officer (acting CTO, 2024)",
+        "Chief Product Officer (and acting CTO, 2024)",
         "Simpaisa",
-        "Dubai | Aug 2020 - Present",
+        "Dubai, UAE | Aug 2020 - Present",
         [
-            "Own product strategy and roadmaps across payment gateway, pay-in, payout and cross-border product lines, working with executive, engineering, operations, risk and commercial teams.",
-            "Built and scaled card acquiring, mobile-wallet, DCB, IBFT, voucher, bill-payment, QR, tokenization, payout and cross-border capabilities with local and global partners.",
-            "Designed merchant onboarding across self-service flows, automated KYC and KYB, risk-tiered approval and category-based pricing for a platform serving 150+ merchants.",
-            "Established product controls across fraud prevention, chargebacks, AML and CFT, transaction monitoring, settlement and reconciliation; supported PCI DSS Level 1 and ISO 27001 programs.",
-            "Led multi-market expansion and platform delivery through a regulatory transition while carrying dual product and technology leadership responsibilities during 2024.",
-            "Built the product organization from 2 to 8 product managers and led cross-functional delivery across product, engineering, operations, risk and compliance.",
+            "Defined and own the multi-year product strategy and roadmap with the CEO and C-suite across pay-in, payout and cross-border product lines; scaled from market entry to $1B+ annual GTV across 5 jurisdictions.",
+            "Own the end-to-end pay-in stack (card acquiring MPGS/MDES, mobile wallets, DCB, IBFT, vouchers, bill payments, QR and tokenization) and the payout stack: switch integration, direct wallet payouts, cash-out and B2B vendor disbursements.",
+            # Rebuilt 2026-09-01. The original bullet stacked four retired
+            # metrics; it now leads with the mechanism and lands on the two
+            # source-backed reliability figures.
+            "Drove authorization optimization across issuers and acquirers via smart-retry orchestration and token-failure remediation, holding 90% straight-through processing with 99.9% platform uptime.",
+            "Designed merchant onboarding end-to-end (self-service flows, automated KYC/KYB, tiered risk-based approval, dynamic pricing by category), cutting onboarding from weeks to hours across 150+ merchants.",
+            "Built fraud prevention, chargeback management and AML/CFT infrastructure; held fraud losses below 0.1% of GTV across 5 markets.",
+            "Led PCI-DSS Level 1 and ISO 27001 certification programs from scratch, both audited without findings across 5 regulatory jurisdictions.",
+            "Scaled the partnership ecosystem as the local infrastructure layer for DLocal, Thunes, Boku, Coda Payments, Tazapay and Eastnets; established blended and IC++ pricing for enterprise merchants.",
+            "Shipped 4 product launches in 2024 on time and within budget during a regulatory transition, while serving as dual CPO and acting CTO.",
+            "Built and led the product organization from 2 to 8 product managers; chaired weekly steering committees with internal leads and external partners; reported product KPIs (approval rates, GTV, fraud rate, SLA) to the CEO and board monthly.",
         ],
         styles,
     )
 
-    story += role(
-        "Project Manager, Payments Operations",
-        "Daraz (Alibaba Group)",
-        "Karachi | Mar 2020 - Aug 2020",
-        [
-            "Ran payments operations and delivery governance across Pakistan, Bangladesh, Sri Lanka, Nepal and Myanmar during the COVID-driven volume surge.",
-            "Coordinated reconciliation, settlement, payment compliance, fraud-rule management and vendor delivery across country teams.",
-        ],
-        styles,
-    )
-
+    # Page 1 ends after the Simpaisa role. Breaking mid-role left an orphan
+    # bullet stranded at the top of page 2 and pushed the document to three
+    # pages; the break belongs on a role boundary.
     story.append(PageBreak())
     story += section("Professional experience, continued", styles)
     story += role(
-        "Head of Product & Projects",
-        "Tapmad",
-        "Karachi | Jul 2017 - Mar 2020",
+        "Project Manager, Payments Operations",
+        "Daraz (Alibaba Group)",
+        "Karachi, Pakistan | Mar 2020 - Aug 2020",
         [
-            "Owned OTT monetization and billing strategy; launched direct carrier billing across Pakistan's four major telecom operators and expanded wallet and card payment options.",
-            "Led migration from high-cost carrier billing toward wallet and card rails, improving payment economics and subscription flexibility.",
+            "Ran payments operations and product readiness across 5 markets (Pakistan, Bangladesh, Sri Lanka, Nepal, Myanmar) during the COVID-driven transaction surge; lifted checkout conversion 15%.",
+            "Coordinated multi-country reconciliation, payment compliance, fraud-rule tightening and vendor management at Alibaba scale; cut false declines 20% through 3DS2 policy tuning.",
+        ],
+        styles,
+    )
+    story += role(
+        "Head of Product & Projects",
+        "Tapmad (OTT streaming)",
+        "Karachi, Pakistan | Jul 2017 - Mar 2020",
+        [
+            "Owned product strategy and monetization for Pakistan's leading OTT platform; designed and launched direct carrier billing with all four major telcos, scaling from 0 to 5M+ paid subscribers in under three years.",
+            "Identified unsustainable unit economics and led the full migration to wallet and card billing; payment cost cut from ~50% to ~1%, ARPU up 70% through pricing and bundle optimization.",
         ],
         styles,
     )
@@ -338,7 +373,7 @@ def build(output: Path):
     story += role(
         "PMO and Project Manager",
         "Wing Logic",
-        "Dubai | Apr 2017 - Oct 2017",
+        "Dubai, UAE | Apr 2017 - Oct 2017",
         [
             "Established PMO governance, portfolio reporting, risk tracking and executive cadence for a multi-project technology and engineering portfolio.",
         ],
@@ -356,47 +391,64 @@ def build(output: Path):
     story += role(
         "Project Manager, PMO",
         "DS Engineering Services",
-        "Karachi | Sep 2012 - Feb 2016",
+        "Karachi, Pakistan | Sep 2012 - Feb 2016",
         [
-            "Managed engineering-project portfolios and built reporting, controls and delivery governance across utilities and infrastructure programs.",
+            "Managed engineering-project portfolios and built reporting, controls and delivery governance across $8M to $15M utilities and infrastructure programs; PMO governance and reporting cut delays and improved delivery efficiency up to 70%.",
         ],
         styles,
     )
     story += role(
         "Senior Planning Engineer",
         "PESCO",
-        "Karachi | Jun 2009 - Aug 2012",
+        "Karachi, Pakistan | Jun 2009 - Aug 2012",
         [
             "Planned and monitored power-infrastructure work, establishing the reliability and operational discipline that later shaped fintech product leadership.",
         ],
         styles,
     )
 
-    story += section("Education", styles)
+    story += section("Recognition and professional leadership", styles)
     story.append(
         Paragraph(
-            "<b>MIT Sloan School of Management</b> - Executive Program, Mastering Design Thinking (2022)<br/>"
-            "<b>University of Karachi</b> - M.Sc. Physics (2012); B.Sc. Physics (2009)",
+            "Youngest Project Manager of the Year - PMI Karachi (2015) | "
+            "Vice President (2022-23) and Director, Governance (2021-22) - PMI Karachi Chapter",
             styles["body"],
         )
     )
 
+    story += section("Education", styles)
+    story.append(
+        Paragraph(
+            "<b>MIT Sloan School of Management</b> - Executive Program, Mastering Design Thinking (2022)<br/>"
+            "<b>University of Karachi</b> - M.Sc. Applied Physics (2009-2012); "
+            "B.Sc. Physics, Statistics &amp; Mathematics (2007-2009)",
+            styles["body"],
+        )
+    )
+
+    # Owner-confirmed current, 2026-09-01. Reproduced verbatim from the shipped
+    # resume; do not add, remove or reword a status designation here.
     story += section("Certifications", styles)
     story.append(
         Paragraph(
-            "Project Management Professional (PMP), PMI | PMI Agile Certified Practitioner (PMI-ACP) | "
-            "Certified Scrum Product Owner (CSPO) | Certified ScrumMaster (CSM) | COBIT 5 Foundation | ITIL v3 Foundation",
+            "Certified Scrum Product Owner (CSPO), Scrum Alliance (2024) | "
+            "Certified ScrumMaster (CSM), Scrum Alliance (2024) | "
+            "Project Management Professional (PMP), PMI (2016) | "
+            "PMI Agile Certified Practitioner (PMI-ACP), PMI (2021) | "
+            "COBIT 5 Foundation, ISACA (2019) | ITIL v3 Foundation, AXELOS (2018)",
             styles["body"],
         )
     )
 
     story += section("Selected professional focus", styles)
-    focus = [
-        "VP, Head or Director of Product - Payments Infrastructure",
-        "Product leadership for payment networks, PSPs, acquiring, cross-border and regulated fintech",
-        "Program and transformation leadership where product, controls, partners and delivery must operate as one system",
-    ]
-    story.extend(bullet(item, styles["bullet"]) for item in focus)
+    story.append(
+        Paragraph(
+            "VP, Head or Director of Product, payments infrastructure. Product leadership for payment networks, "
+            "PSPs, acquiring, cross-border and regulated fintech. Program and transformation leadership where "
+            "product, controls, partners and delivery must operate as one system.",
+            styles["body"],
+        )
+    )
 
     story += section("Portfolio and contact", styles)
     story.append(

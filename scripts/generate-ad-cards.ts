@@ -79,8 +79,8 @@ function v1() {
   const metrics: Array<[string, string]> = [
     ["$1B+", "ANNUAL GTV"],
     ["270M+", "PAYMENTS PER YEAR"],
-    ["97%", "PAYMENT SUCCESS"],
     ["90%", "STRAIGHT-THROUGH PROCESSING"],
+    ["99.9%", "PLATFORM UPTIME"],
   ];
   const cells = metrics
     .map(([value, label], i) => {
@@ -110,7 +110,7 @@ function v1() {
   ${mono(158, 100, 13, BRAND, "PAYMENTS PRODUCT & PROGRAM EXECUTIVE", 3.5)}
 
   ${serif(76, 196, 84, INK, "Rizwan Zafar")}
-  ${serif(76, 250, 26, SOFT, "14+ years building payment infrastructure")}
+  ${serif(76, 250, 26, SOFT, "17 years building payment infrastructure")}
   ${serif(76, 286, 26, SOFT, "in frontier & emerging markets.")}
 
   ${cells}
@@ -126,8 +126,8 @@ function v1() {
 function v2() {
   const rows: Array<[string, string]> = [
     ["270M+", "PAYMENTS PROCESSED A YEAR"],
-    ["97%", "PAYMENT SUCCESS RATE"],
-    ["99.95%", "SETTLEMENT SLA"],
+    ["90%", "STRAIGHT-THROUGH PROCESSING"],
+    ["99.9%", "PLATFORM UPTIME"],
   ];
   const rowSvg = rows
     .map(
@@ -178,7 +178,7 @@ function v3() {
   ${serif(76, 272, 58, INK, "leader who has scaled in")}
   ${serif(76, 340, 58, INK, "frontier markets?")}
 
-  ${mono(76, 412, 14, GOLD, "$1B+ GTV  ·  270M+ PAYMENTS/YR  ·  97% SUCCESS  ·  90% STP", 2, 600)}
+  ${mono(76, 412, 14, GOLD, "$1B+ GTV  ·  270M+ PAYMENTS/YR  ·  90% STP  ·  99.9% UPTIME", 2, 600)}
 
   <rect x="76" y="468" width="496" height="58" rx="29" fill="none" stroke="${BRAND}" stroke-width="2"/>
   ${mono(324, 504, 14, BRAND, "BOOK A 15-MIN INTRO CALL", 3, 700, "middle")}
@@ -207,8 +207,8 @@ function v4() {
   ${mono(76, 420, 11.5, L_SOFT, "ANNUAL GTV", 2, 600)}
   ${serif(300, 392, 46, L_INK, "270M+")}
   ${mono(300, 420, 11.5, L_SOFT, "PAYMENTS / YEAR", 2, 600)}
-  ${serif(76, 488, 46, L_INK, "97%")}
-  ${mono(76, 516, 11.5, L_SOFT, "PAYMENT SUCCESS", 2, 600)}
+  ${serif(76, 488, 46, L_INK, "90%")}
+  ${mono(76, 516, 11.5, L_SOFT, "STRAIGHT-THROUGH PROCESSING", 2, 600)}
   ${serif(300, 488, 46, L_GOLD, "5")}
   ${mono(300, 516, 11.5, L_SOFT, "FRONTIER MARKETS", 2, 600)}
 

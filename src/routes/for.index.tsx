@@ -185,7 +185,7 @@ const proofMetrics = [
   { value: PLATFORM.gtv, label: "GTV scaled" },
   { value: PLATFORM.annualPayments, label: "Annual transactions" },
   { value: String(PLATFORM.marketCount), label: "Live platform markets" },
-  { value: PLATFORM.settlementSla, label: "Settlement SLA" },
+  { value: PLATFORM.uptime, label: "Platform uptime" },
   { value: "40", label: "Engineers led" },
   { value: "3 + 1", label: "Production systems + pilot" },
 ] as const;
@@ -216,7 +216,7 @@ const roleLanes = [
     fit: "Payment infrastructure, payment orchestration, cross-border corridors, settlement and reconciliation.",
     proof: [
       "Built regulated rails across local methods, cards, wallets, payout flows, FX and partner routing.",
-      `Held 97% payment success at 90% straight-through processing and a ${PLATFORM.settlementSla} settlement SLA.`,
+      `Held ${PLATFORM.straightThrough} straight-through processing at ${PLATFORM.uptime} platform uptime.`,
       "Worked where compliance, risk, bank partnerships and market operations are part of the product.",
     ],
   },

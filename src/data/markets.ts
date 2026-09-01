@@ -10,7 +10,7 @@
 // no supporting bullet is omitted from these public surfaces rather than
 // rendered with verification language. Per-market copy is CAREER-scope
 // (Daraz / Tapmad / Simpaisa work) and never attaches a Simpaisa-only platform
-// metric ($1B / 270M / 150+ merchants / 99.95%).
+// metric ($1B / 270M / 150+ merchants / 99.9% uptime).
 
 export type Market = {
   key: string;

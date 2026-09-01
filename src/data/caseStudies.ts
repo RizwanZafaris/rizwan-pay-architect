@@ -78,9 +78,9 @@ export const caseStudies: CaseStudy[] = [
         after: "−90%",
       },
       {
-        metric: "Settlement SLA",
+        metric: "Settlement",
         before: "Best-effort",
-        after: "99.95%",
+        after: "Ledger-backed, corridor-aware windows",
       },
       {
         metric: "Enterprise wallet adoption",
@@ -98,8 +98,8 @@ export const caseStudies: CaseStudy[] = [
         value: "270M+",
       },
       {
-        label: "Settlement SLA",
-        value: "99.95%",
+        label: "Merchant integrations",
+        value: PLATFORM.merchants,
       },
       {
         label: "Fraud loss",
@@ -116,11 +116,10 @@ export const caseStudies: CaseStudy[] = [
       // Relocated from the homepage "Operating record" block (Loop 3). On the
       // homepage these were six more digits with no context; here they sit
       // beside the architecture that produced them. Values unchanged, sourced
-      // from profile.metrics.
-      {
-        label: "Payment success",
-        value: "97%",
-      },
+      // from profile.metrics. The retired "97% payment success" and "+14%
+      // authorization uplift" tiles were removed on 2026-09-01 (owner ruling —
+      // both unsourced); straight-through processing and uptime carry the
+      // acceptance story on their own.
       {
         label: "Straight-through processing",
         value: "90%",
@@ -128,10 +127,6 @@ export const caseStudies: CaseStudy[] = [
       {
         label: "Uptime",
         value: "99.9%",
-      },
-      {
-        label: "Authorization uplift",
-        value: "+14%",
       },
     ],
     executiveSummary:
@@ -164,7 +159,7 @@ export const caseStudies: CaseStudy[] = [
       "Onboarded enterprise platforms including TikTok, Samsung, Shein, Uber and MoneyGram",
       "Held fraud loss below 0.1% of GTV; cut platform downtime by 90%",
       "Led PCI DSS and ISO/IEC 27001 certification programs from scratch",
-      "Drove 30% enterprise wallet adoption and 99.95% settlement SLA",
+      "Drove 30% enterprise wallet adoption and moved settlement onto ledger-backed, corridor-aware payout windows",
     ],
     tradeoffs: [
       "Chose a single ledger over per-rail ledgers, slower to ship rail #1, much faster after rail #3",
@@ -267,7 +262,7 @@ export const caseStudies: CaseStudy[] = [
   {
     slug: "settlement-reconciliation",
     flagship: true,
-    title: "Settlement + Reconciliation Engine: 99.95% Accuracy at $1B+ GTV",
+    title: "Settlement + Reconciliation Engine: Automated Recon at $1B+ GTV",
     tagline:
       "A multi-rail settlement and reconciliation engine, canonical double-entry ledger, three-way auto-reconciliation, exception management and corridor-aware payout windows. Closed the gap between treasury, finance and product at $1B+ GTV.",
     category: "Settlement & Reconciliation",
@@ -275,9 +270,9 @@ export const caseStudies: CaseStudy[] = [
     relevantFor: ["Visa", "Mastercard", "Stripe", "Adyen"],
     beforeAfter: [
       {
-        metric: "Recon accuracy",
+        metric: "Recon",
         before: "Manual spreadsheets",
-        after: "99.95% automated",
+        after: "Automated three-way, ledger-backed",
       },
       {
         metric: "Manual journal entries",
@@ -287,8 +282,8 @@ export const caseStudies: CaseStudy[] = [
     ],
     metrics: [
       {
-        label: "Reconciliation accuracy",
-        value: "99.95%",
+        label: "GTV reconciled",
+        value: PLATFORM.gtv,
       },
       {
         label: "Settlement cycle",
@@ -324,7 +319,7 @@ export const caseStudies: CaseStudy[] = [
     ],
     role: "Product owner working alongside finance, treasury and engineering. Defined the ledger model, exception taxonomy and settlement SLAs.",
     impact: [
-      "99.95% reconciliation accuracy at $1B+ GTV scale",
+      "Automated reconciliation at $1B+ GTV scale",
       "Eliminated manual journal entries for core flows",
       "Made unit economics observable per rail, per corridor, per merchant",
     ],
@@ -413,8 +408,8 @@ export const caseStudies: CaseStudy[] = [
         value: "DLocal · Thunes · Boku · Coda · MoneyGram",
       },
       {
-        label: "Authorization uplift",
-        value: "+14% on routed traffic",
+        label: "Straight-through processing",
+        value: "90%",
       },
       {
         label: "Routing signals",

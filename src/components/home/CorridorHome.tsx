@@ -808,8 +808,8 @@ export function CorridorHome() {
               <span>03 / Outcomes</span>
               <h3>Scale without losing control.</h3>
               <p>
-                {PLATFORM.gtv} annual GTV, {PLATFORM.annualPayments} payments a year and a{" "}
-                {PLATFORM.settlementSla} settlement SLA across {PLATFORM.marketCount} live markets.
+                {PLATFORM.gtv} annual GTV, {PLATFORM.annualPayments} payments a year and{" "}
+                {PLATFORM.uptime} platform uptime across {PLATFORM.marketCount} live markets.
               </p>
               <MobileStoryState stage={3} />
               <Link
@@ -843,7 +843,7 @@ export function CorridorHome() {
                   <strong>{PLATFORM.annualPayments}</strong> payments / yr
                 </span>
                 <span>
-                  <strong>{PLATFORM.settlementSla}</strong> settlement SLA
+                  <strong>{PLATFORM.uptime}</strong> platform uptime
                 </span>
               </div>
               <ol className="corridor-story-progress" aria-label="Case study progress">

@@ -38,7 +38,7 @@ import { absUrl, OG_IMAGE_URL, SITE_URL } from "@/lib/seo";
 const proofMetrics = [
   { value: PLATFORM.gtv, label: "Annual GTV" },
   { value: PLATFORM.annualPayments, label: "Payments a year" },
-  { value: PLATFORM.settlementSla, label: "Settlement SLA" },
+  { value: PLATFORM.uptime, label: "Platform uptime" },
   { value: "12", label: "Squads led" },
   { value: "40+", label: "Engineers led" },
 ] as const;

@@ -171,7 +171,13 @@ export const profile = {
     gtv: "$1B+",
     annualPayments: "270M+",
     merchants: "150+",
-    settlementSla: "99.95%",
+    // Owner ruling 2026-09-01: the retired "99.95% settlement SLA" field is
+    // GONE. No settlement-SLA number is publishable — it had no source and the
+    // internal dashboard never supported it. Surfaces that used to render it
+    // now render uptime / fraud loss / merchants instead. Do not add it back.
+    uptime: "99.9%",
+    straightThrough: "90%",
+    fraudLoss: "<0.1% GTV",
   },
   metrics: [
     { label: "GTV scaled", value: "$0 → $1B+" },
@@ -179,16 +185,11 @@ export const profile = {
     { label: "Markets", value: "5" },
     { label: "Uptime", value: "99.9%" },
     { label: "Merchant integrations", value: "150+" },
-    { label: "Payment success", value: "97%" },
-    { label: "Authorization uplift", value: "+14%" },
-    { label: "Smart-retry recovery", value: "$14M+/mo GTV" },
     { label: "Production AI + pilot", value: "3 + 1" },
     { label: "Org built", value: "40 engineers · 12 squads" },
     { label: "Straight-through processing", value: "90%" },
-    { label: "Token-failure reduction", value: "22%" },
     { label: "Integration time", value: "6 wks → 2 wks" },
     { label: "Payment cost (Tapmad)", value: "50% → 1%" },
-    { label: "Settlement SLA", value: "99.95%" },
     { label: "Fraud loss", value: "<0.1% GTV" },
   ],
   targetRoles: [
@@ -271,13 +272,13 @@ export const profile = {
         "Built full-stack payment infrastructure: card acquiring (MPGS/MDES), wallets, DCB, IBFT, vouchers, bill payments, payout switch, cash-over-counter and cross-border corridors with real-time FX and dynamic corridor pricing.",
         "Designed merchant onboarding with self-service flows, automated KYC/KYB, tiered risk-based approval and category-based pricing, onboarding cut from weeks to hours for standard-risk merchants.",
         "Built fraud and risk infrastructure: transaction monitoring, velocity checks, device fingerprinting, AML/CFT controls, SAR workflows and chargeback management. Fraud loss held below 0.1% of GTV; fraud incidents reduced ~65%.",
-        "Drove authorisation-rate optimisation across acquiring partners: 97% payment success at 90% straight-through processing, built on routing logic, retry orchestration and bank SLA management.",
+        "Drove authorisation optimisation across issuers and acquiring partners through routing logic, smart-retry orchestration, token-failure remediation and bank SLA management, holding 90% straight-through processing at 99.9% platform uptime.",
         "Launched BNPL product from 0 to 100K users in 8 months, full risk model, underwriting, repayment flows and collections, shipped through iterative agile discovery.",
         "Led PCI DSS and ISO/IEC 27001 certification from scratch and stood up multi-jurisdiction regulatory reporting.",
         "Built and led a 40-engineer payments organisation across 12 cross-functional squads (mobile, backend, payments, risk, compliance). Managed $5M+ annual technology budget and 15+ vendor relationships.",
         "Scaled the partnership ecosystem: local infrastructure partner for DLocal, Thunes, Boku, Coda Payments and Tazapay. Enabled TikTok, Samsung, Shein, Uber and MoneyGram to collect and disburse where they had no local rails.",
         "Took on dual CPO + acting CTO during 2024 CTO departure and regulatory tightening, held platform stability, security architecture and product direction at the same time.",
-        "Results: $1B+ GTV · 270M+ transactions a year · 99.95% settlement SLA · 99.9% uptime · <0.1% fraud loss · operating across Pakistan, Bangladesh, Nepal, Sri Lanka and Iraq.",
+        "Results: $1B+ GTV · 270M+ transactions a year · 150+ merchants · 99.9% uptime · <0.1% fraud loss · operating across Pakistan, Bangladesh, Nepal, Sri Lanka and Iraq.",
       ],
     },
     {
@@ -529,13 +530,17 @@ export const profile = {
 // The 6 spotlighted platform metrics, by label — Workstream B resolves each
 // against `profile.metrics` at render time, so entries must match
 // `metrics[].label` exactly. Pure additive export; changes nothing else.
+// Owner ruling 2026-09-01: "Payment success", "Settlement SLA" and
+// "Authorization uplift" were retired as unsourced and removed from
+// profile.metrics, so they cannot be spotlighted. Replacements are all
+// source-backed entries that still exist in `metrics` above.
 export const metricsSpotlight = [
-  "Payment success",
+  "Annual transactions",
+  "Merchant integrations",
   "Straight-through processing",
-  "Settlement SLA",
   "Uptime",
   "Fraud loss",
-  "Authorization uplift",
+  "Markets",
 ] as const;
 
 export const personSchemaCredentials = profile.certifications.filter(
