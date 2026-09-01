@@ -55,7 +55,7 @@ Disambiguation note: This Rizwan Zafar is the payments infrastructure CPO at Sim
 
 - [Simpaisa Payment Infrastructure Platform](https://rzifi.com/product-work/simpaisa-payment-infrastructure/): A regulated, multi-rail payments platform processing $1B+ annual GTV and 270M+ payments a year across pay-in, payout, wallets (DCB/IBFT), card acquiring (MPGS/MDES), settlement, FX and cross-border corridors, PCI DSS and ISO/IEC 27001 certified.
 - [Merchant Onboarding + KYC/KYB Automation](https://rzifi.com/product-work/merchant-onboarding-kyc/): Automated merchant onboarding pipeline, KYC/KYB, UBO discovery, sanctions and PEP screening, risk-tiered decisioning with full audit trail. Activation cut from weeks to hours; manual review load down 70%.
-- [Settlement + Reconciliation Engine: 99.95% Accuracy at $1B+ GTV](https://rzifi.com/product-work/settlement-reconciliation/): A multi-rail settlement and reconciliation engine, canonical double-entry ledger, three-way auto-reconciliation, exception management and corridor-aware payout windows. Closed the gap between treasury, finance and product at $1B+ GTV.
+- [Settlement + Reconciliation Engine: Automated Recon at $1B+ GTV](https://rzifi.com/product-work/settlement-reconciliation/): A multi-rail settlement and reconciliation engine, canonical double-entry ledger, three-way auto-reconciliation, exception management and corridor-aware payout windows. Closed the gap between treasury, finance and product at $1B+ GTV.
 - [Fraud, Risk and AML/CFT Controls: Layered Decisioning at $1B+ GTV](https://rzifi.com/product-work/fraud-risk-aml-cft/): Layered fraud, AML/CFT and sanctions decisioning built natively into the payments stack, vendor signals, device intelligence, internal velocity rules, SAR-ready audit trails. Fraud loss held <0.1% of GTV; fraud incidents down ~65%.
 - [Cross-Border Corridors + FX Infrastructure](https://rzifi.com/product-work/cross-border-corridors-fx/): Cross-border pay-in and payout corridors with FX, partner routing and corridor-level economics.
 - [Tapmad Wallet/Billing Migration: 50% to 1%](https://rzifi.com/product-work/tapmad-wallet-billing-migration/): Migrated subscription billing off high-cost rails and rebuilt wallet/DCB flows, payment cost from 50% to 1%.
@@ -66,8 +66,9 @@ Disambiguation note: This Rizwan Zafar is the payments infrastructure CPO at Sim
 - [SWIFT MT/MX Implementation: ISO 20022 Migration + gpi at Simpaisa](https://rzifi.com/product-work/swift-mt-mx-implementation-simpaisa/): Wired SWIFT MT and MX (ISO 20022) messaging into the Simpaisa cross-border stack with gpi tracking, CSP attestation and dual-rail parsing — sustained 99.9%+ message-acceptance rate through the ISO 20022 migration window.
 - [Tapmad OTT: 0→5M Subscribers, Payment Cost 50% → ~1%](https://rzifi.com/product-work/tapmad-dcb-monetisation-wallet-migration/): Built the billing engine for Pakistan's leading OTT platform — Direct Carrier Billing across all four telcos, wallet-billing migration that pulled payment cost from 50% of revenue to ~1%, 0→5M paid subscribers, ARPU +70%, $10M+ ARR, expanded into UAE and KSA.
 
-## Essays (188 total, latest first)
+## Essays (189 total, latest first)
 
+- [Saudi Open Banking Needs a Licensed Operating Model](https://rzifi.com/blog/sama-open-banking-licensed-operating-model/): SAMA's open-banking licensing shift turns API access into supervised operating work across consent, data access, denial handling and incidents.
 - [Syria Card Reconnection Needs Acceptance Proof](https://rzifi.com/blog/syria-card-reconnection-acceptance-proof/): Syria's first international card transaction in over 15 years is an acceptance-readiness test across QNB, merchants, authorization, settlement and support.
 - [Egypt Digital Financial Identity Needs Operating Proof](https://rzifi.com/blog/egypt-digital-financial-identity-ekyc-operating-model/): Egypt's digital financial identity rules make eKYC an operating model across banks, consent, authentication, data updates and support evidence.
 - [Jaywan Acceptance Needs Payment Evidence, Not Just Logos](https://rzifi.com/blog/jaywan-acceptance-payment-evidence/): Jaywan acceptance is moving into airline, retail, online and network enablement. Operators need evidence across checkout, routing, settlement and support.
@@ -273,9 +274,9 @@ Disambiguation note: This Rizwan Zafar is the payments infrastructure CPO at Sim
 - Markets: 5
 - Uptime: 99.9%
 - Merchant integrations: 150+
-- Payment success: 97%
-- Authorization uplift: +14%
-- Smart-retry recovery: $14M+/mo GTV
+- Production AI + pilot: 3 + 1
+- Org built: 40 engineers · 12 squads
+- Straight-through processing: 90%
 
 ## Optional
 
