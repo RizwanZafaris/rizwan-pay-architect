@@ -4,13 +4,18 @@ import { profile } from "@/data/profile";
 
 // Product Manager OS: the public repository page.
 //
-// SUBJECT: github.com/RizwanZafaris/product-manager-OS, MIT licensed. Every
-// claim below is checked against the repo contents as of 2026-09-02:
+// SUBJECT: github.com/RizwanZafaris/product-manager-OS, MIT licensed, tagged
+// v0.3.0. Every claim below is checked against the repo contents at that tag:
 //   - 6 stages / 6 gates            os/OPERATING-LOOP.md, os/STAGE-GATES.md
-//   - 47 templates in 8 folders     templates/{discovery,definition,architecture,
+//   - the Conductor, a stage-gated  os/CONDUCTOR.md, skills/conductor/
+//     interviewer with resumable
+//     STATE.md
+//   - 67 templates in 8 folders     templates/{discovery,definition,architecture,
 //                                   execution,delivery,operate,planning,ai}
-//   - 10 knowledge cards + 18 index knowledge/INDEX.md
-//   - 5 skills, 5 agent files       skills/, agents/
+//   - 11 knowledge cards + 18 index knowledge/INDEX.md
+//   - roles + domains sub-layers    knowledge/roles/, knowledge/domains/
+//   - learn/, 3 paths + a tutor     learn/INDEX.md
+//   - 7 skills, 5 agent files       skills/, agents/
 //   - 4 usage methods               README.md "Four ways to run it"
 //   - 3 routing tiers               routing/README.md
 //   - regulated module byte-exact   modules/regulated/README.md, source repo
@@ -56,32 +61,38 @@ const overlays = [
   },
 ] as const;
 
-// The five layers from docs/ARCHITECTURE.md. Counts are file counts in the
+// The six layers from docs/ARCHITECTURE.md. Counts are file counts in the
 // repository, not claims about usage.
 const layers = [
   {
     dir: "os/",
     label: "Operating loop",
     answers:
-      "The six stages, the six gates, which document a decision deserves, and where filled artifacts live.",
+      "The six stages, the six gates, which document a decision deserves, and where filled artifacts live. The Conductor protocol that runs the loop as an interview sits here too.",
   },
   {
     dir: "knowledge/",
-    label: "Knowledge",
+    label: "Knowledge, roles, domains",
     answers:
-      "Ten canon cards with named attribution, plus eighteen indexed methods. Each card states the trap and one line on when to skip the method entirely.",
+      "Eleven canon cards with named attribution, plus eighteen indexed methods, each stating its trap and when to skip it. Two sub-layers sit beside them: roles, an eight-rung PM ladder, and domains, ten domain cards from ecommerce to a fintech pointer.",
   },
   {
     dir: "templates/",
     label: "Templates",
     answers:
-      "47 fill-in documents across discovery, definition, architecture, execution, delivery, operate, planning and AI. Every one carries its stage, its knowledge card and its exit gate in the header.",
+      "67 fill-in documents across discovery, definition, architecture, execution, delivery, operate, planning and AI. Every one carries its stage, its knowledge card and its exit gate in the header.",
   },
   {
     dir: "skills/, agents/",
     label: "Skills and agents",
     answers:
-      "Five skills and five agent instruction files. Each skill is a readable procedure with two frontmatter fields, no vendor account required.",
+      "Seven skills, including a product-analyst research skill and a feedback-synthesis skill, and five agent instruction files. Each skill is a readable procedure with two frontmatter fields, no vendor account required.",
+  },
+  {
+    dir: "learn/",
+    label: "Learning paths",
+    answers:
+      "Three stepped paths over fictional products, foundations, transitioning into PM, and senior sharpening, each ending at a real gate checklist, plus a tutor skill that scores a filled artifact the way the Conductor cross-examines an answer.",
   },
   {
     dir: "system/, routing/",
@@ -89,6 +100,15 @@ const layers = [
     answers:
       "A boot prompt and role prompts that assume no file access, plus an OmniRoute config that sends extraction, drafting and judgment work to three different model tiers.",
   },
+] as const;
+
+// The Conductor's own contract, condensed from os/CONDUCTOR.md, for the
+// callout that leads the "How it works" section below.
+const conductorPoints = [
+  "One question at a time, with a recommended default so agreeing costs one word",
+  "A vague answer gets cross-examined against an evidence ladder, capped at two pushes",
+  "Each gate has to pass on evidence before the next stage opens, and a human signs it, never the Conductor",
+  "Every accepted answer lands in STATE.md immediately, so any session can say resume and pick up where it stopped",
 ] as const;
 
 // The four usage methods, from the README section of the same name.
@@ -106,7 +126,7 @@ const methods = [
   {
     n: "03",
     title: "Agent CLIs",
-    body: "Claude Code reads CLAUDE.md, Codex and other runtimes read AGENTS.md, and both pick up the procedures in skills/ and the instruction files in agents/. Open the repo in the CLI and ask for the artifact you need.",
+    body: "Claude Code reads CLAUDE.md, Codex and other runtimes read AGENTS.md, and both pick up the procedures in skills/ and the instruction files in agents/. Say start for the conducted interview above, or ask for the artifact you need directly.",
   },
   {
     n: "04",
@@ -159,7 +179,7 @@ const pmosJsonLd = {
   programmingLanguage: "Markdown",
   license: "https://opensource.org/licenses/MIT",
   description:
-    "An open-source operating system for product management: a six-stage loop with six gates, 47 fill-in lifecycle templates, ten PM canon cards with named attribution, skills and agent instructions, boot prompts for any chat model, model routing and a regulated overlay.",
+    "An open-source operating system for product management: a stage-gated Conductor that interviews before it writes, a six-stage loop with six gates, 67 fill-in lifecycle templates, eleven PM canon cards, role and domain knowledge layers, a learning path, and a regulated overlay.",
   author: {
     "@type": "Person",
     "@id": `${SITE_URL}#person`,
@@ -176,7 +196,7 @@ export const Route = createFileRoute("/product-manager-os")({
       {
         name: "description",
         content:
-          "Product Manager OS: an open-source repo for running a product from discovery to sunset. Six stage gates, 47 templates, canon cards, AI skills that work without AI.",
+          "Product Manager OS: an open-source repo for running a product from discovery to sunset. The Conductor interviews stage by stage; 67 templates do the rest.",
       },
       {
         property: "og:title",
@@ -185,7 +205,7 @@ export const Route = createFileRoute("/product-manager-os")({
       {
         property: "og:description",
         content:
-          "Six stages, six gates, 47 fill-in templates, ten PM canon cards and AI layers you can remove. MIT licensed, readable, forkable.",
+          "The Conductor interviews you stage by stage. Six gates, 67 fill-in templates, eleven PM canon cards and AI layers you can remove. MIT licensed, readable, forkable.",
       },
       { property: "og:url", content: absUrl("/product-manager-os") },
       { property: "og:type", content: "website" },
@@ -196,7 +216,7 @@ export const Route = createFileRoute("/product-manager-os")({
       {
         name: "twitter:description",
         content:
-          "An open-source operating loop for product work: six gates, 47 templates, ten canon cards, and AI layers that are optional by design.",
+          "An open-source operating loop for product work, led by a stage-gated interviewer: six gates, 67 templates, eleven canon cards, and AI layers that are optional by design.",
       },
       { name: "twitter:image", content: OG_IMAGE_URL },
     ],
@@ -250,9 +270,9 @@ function ProductManagerOsPage() {
           >
             {[
               { v: "6", l: "stages, six gates" },
-              { v: "47", l: "fill-in templates" },
-              { v: "10", l: "PM canon cards" },
-              { v: "4", l: "ways to run it" },
+              { v: "67", l: "fill-in templates" },
+              { v: "11", l: "PM canon cards" },
+              { v: "10", l: "domain cards" },
             ].map((p) => (
               <li key={p.l} className="px-5 py-6 sm:px-6 md:py-8">
                 <div className="font-mono-tech text-xl md:text-2xl text-ink leading-none tabular-nums">
@@ -383,13 +403,13 @@ function ProductManagerOsPage() {
             ◆ What it is
           </div>
           <h2 id="layers-heading" className="font-instrument text-2xl md:text-3xl text-ink mt-3">
-            Five layers, and dependencies that point one way.
+            Six layers, and dependencies that point one way.
           </h2>
           <p className="mt-4 max-w-2xl text-base leading-relaxed text-ink-soft">
             Templates cite knowledge cards. Skills cite templates. System prompts cite skills and
-            templates by exact repo path. Routing serves all of them. Nothing in the knowledge or
-            template layer depends on an AI layer existing, which is what makes the first usage
-            method below possible.
+            templates by exact repo path. Routing serves all of them. Nothing in the knowledge,
+            role, domain or template layer depends on an AI layer existing, which is what makes the
+            first usage method below possible.
           </p>
           <ul
             data-rz-stagger
@@ -417,9 +437,36 @@ function ProductManagerOsPage() {
             ◆ How it works
           </div>
           <h2 id="methods-heading" className="font-instrument text-2xl md:text-3xl text-ink mt-3">
-            Four ways to run it. The first one uses no model at all.
+            Say &quot;start.&quot; The Conductor interviews before it writes.
           </h2>
-          <div data-rz-stagger className="mt-8 grid gap-4 md:grid-cols-2">
+          <p className="mt-4 max-w-2xl text-base leading-relaxed text-ink-soft">
+            The fastest way in is a conversation. The Conductor, the interviewer defined in
+            os/CONDUCTOR.md, runs the six stages above as a sequence of interviews rather than a
+            blank template. It asks one question at a time, and a vague answer gets cross-examined,
+            at most twice, against an evidence ladder that runs from observed behavior down to team
+            belief, then is either accepted as offered or parked with an owner and a date. A stage
+            does not open until the previous gate passes on evidence, and the Conductor never signs
+            it, a named human does.
+          </p>
+          <ul data-rz-stagger className="mt-6 grid gap-3 sm:grid-cols-2">
+            {conductorPoints.map((point) => (
+              <li
+                key={point}
+                className="flex gap-2.5 rounded-lg border border-rule bg-surface px-4 py-3 text-sm leading-relaxed text-ink-soft"
+              >
+                <span
+                  className="mt-1.5 h-1.5 w-1.5 rounded-full bg-[var(--accent-emerald)] shrink-0"
+                  aria-hidden
+                />
+                <span>{point}</span>
+              </li>
+            ))}
+          </ul>
+
+          <h3 className="font-instrument text-lg md:text-xl text-ink mt-10">
+            Four ways to run it, with or without the interview.
+          </h3>
+          <div data-rz-stagger className="mt-6 grid gap-4 md:grid-cols-2">
             {methods.map((m) => (
               <article
                 key={m.n}
