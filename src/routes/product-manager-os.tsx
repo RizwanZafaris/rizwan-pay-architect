@@ -24,7 +24,7 @@ import { profile } from "@/data/profile";
 // must come from that module (see scripts/check-facts.ts).
 
 const REPO_URL = "https://github.com/RizwanZafaris/product-manager-OS";
-const REGULATED_REPO_URL = "https://github.com/RizwanZafaris/regulated-ai-prd";
+const REGULATED_REPO_URL = "https://github.com/RizwanZafaris/product-manager-OS/tree/main/modules/regulated";
 const CONTRIBUTING_URL = `${REPO_URL}/blob/main/CONTRIBUTING.md`;
 const ISSUES_URL = `${REPO_URL}/issues`;
 
@@ -493,7 +493,7 @@ function ProductManagerOsPage() {
                 data-analytics-cta-destination={REGULATED_REPO_URL}
                 className="text-ink underline-offset-4 hover:underline hover:text-[var(--brand)] transition-colors"
               >
-                Read the regulated AI PRD repository, the module&apos;s canonical source →
+                Read the regulated AI PRD module →
               </a>
             </p>
           </div>
