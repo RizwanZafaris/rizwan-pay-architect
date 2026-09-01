@@ -64,6 +64,7 @@ const REQUIRED_INDEXABLE: string[] = [
   "/for/stripe-adyen-wise-thunes",
   "/for/banks-fintechs",
   "/media",
+  "/product-manager-os",
   "/product-work",
   "/products",
   "/resume",
