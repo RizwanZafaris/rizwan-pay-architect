@@ -15,6 +15,7 @@ import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as SitemapRouteImport } from './routes/sitemap'
 import { Route as ResumeRouteImport } from './routes/resume'
 import { Route as ProductsRouteImport } from './routes/products'
+import { Route as ProductManagerOsRouteImport } from './routes/product-manager-os'
 import { Route as MediaRouteImport } from './routes/media'
 import { Route as JourneyRouteImport } from './routes/journey'
 import { Route as HireRouteImport } from './routes/hire'
@@ -62,6 +63,11 @@ const ResumeRoute = ResumeRouteImport.update({
 const ProductsRoute = ProductsRouteImport.update({
   id: '/products',
   path: '/products',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProductManagerOsRoute = ProductManagerOsRouteImport.update({
+  id: '/product-manager-os',
+  path: '/product-manager-os',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MediaRoute = MediaRouteImport.update({
@@ -163,6 +169,7 @@ export interface FileRoutesByFullPath {
   '/hire': typeof HireRoute
   '/journey': typeof JourneyRoute
   '/media': typeof MediaRoute
+  '/product-manager-os': typeof ProductManagerOsRoute
   '/products': typeof ProductsRouteWithChildren
   '/resume': typeof ResumeRoute
   '/sitemap': typeof SitemapRoute
@@ -189,6 +196,7 @@ export interface FileRoutesByTo {
   '/hire': typeof HireRoute
   '/journey': typeof JourneyRoute
   '/media': typeof MediaRoute
+  '/product-manager-os': typeof ProductManagerOsRoute
   '/products': typeof ProductsRouteWithChildren
   '/resume': typeof ResumeRoute
   '/sitemap': typeof SitemapRoute
@@ -215,6 +223,7 @@ export interface FileRoutesById {
   '/hire': typeof HireRoute
   '/journey': typeof JourneyRoute
   '/media': typeof MediaRoute
+  '/product-manager-os': typeof ProductManagerOsRoute
   '/products': typeof ProductsRouteWithChildren
   '/resume': typeof ResumeRoute
   '/sitemap': typeof SitemapRoute
@@ -243,6 +252,7 @@ export interface FileRouteTypes {
     | '/hire'
     | '/journey'
     | '/media'
+    | '/product-manager-os'
     | '/products'
     | '/resume'
     | '/sitemap'
@@ -269,6 +279,7 @@ export interface FileRouteTypes {
     | '/hire'
     | '/journey'
     | '/media'
+    | '/product-manager-os'
     | '/products'
     | '/resume'
     | '/sitemap'
@@ -294,6 +305,7 @@ export interface FileRouteTypes {
     | '/hire'
     | '/journey'
     | '/media'
+    | '/product-manager-os'
     | '/products'
     | '/resume'
     | '/sitemap'
@@ -321,6 +333,7 @@ export interface RootRouteChildren {
   HireRoute: typeof HireRoute
   JourneyRoute: typeof JourneyRoute
   MediaRoute: typeof MediaRoute
+  ProductManagerOsRoute: typeof ProductManagerOsRoute
   ProductsRoute: typeof ProductsRouteWithChildren
   ResumeRoute: typeof ResumeRoute
   SitemapRoute: typeof SitemapRoute
@@ -379,6 +392,13 @@ declare module '@tanstack/react-router' {
       path: '/products'
       fullPath: '/products'
       preLoaderRoute: typeof ProductsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/product-manager-os': {
+      id: '/product-manager-os'
+      path: '/product-manager-os'
+      fullPath: '/product-manager-os'
+      preLoaderRoute: typeof ProductManagerOsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/media': {
@@ -543,6 +563,7 @@ const rootRouteChildren: RootRouteChildren = {
   HireRoute: HireRoute,
   JourneyRoute: JourneyRoute,
   MediaRoute: MediaRoute,
+  ProductManagerOsRoute: ProductManagerOsRoute,
   ProductsRoute: ProductsRouteWithChildren,
   ResumeRoute: ResumeRoute,
   SitemapRoute: SitemapRoute,

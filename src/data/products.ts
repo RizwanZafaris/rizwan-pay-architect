@@ -54,6 +54,23 @@ export const products: Product[] = [
     ctaLabel: "Read case study",
   },
   {
+    slug: "product-manager-os",
+    name: "Product Manager OS",
+    status: "shipped",
+    statusLabel: "Open source · MIT",
+    oneLiner:
+      "Run a product from discovery to sunset: gated templates, PM canon cards, and AI skills that work without AI.",
+    description:
+      "A public repository that turns product management into an operating loop: six stages, each closing at a gate that can fail, fill-in templates for every artifact a product needs, a knowledge layer with named attribution, and optional AI layers stacked on top. A document system first, an AI system second.",
+    metrics: [
+      { label: "Stages and gates", value: "6" },
+      { label: "Templates", value: "47" },
+      { label: "Canon cards", value: "10" },
+    ],
+    link: "/product-manager-os",
+    ctaLabel: "See the OS",
+  },
+  {
     slug: "felo",
     name: "Felo App",
     status: "coming-soon",

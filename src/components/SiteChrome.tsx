@@ -413,6 +413,14 @@ export function SiteFooter() {
               </Link>
             </li>
             <li>
+              <Link
+                to="/product-manager-os"
+                className="hover:text-ink text-ink-soft inline-block py-1"
+              >
+                <span className="rz-link">Product Manager OS</span>
+              </Link>
+            </li>
+            <li>
               <Link to="/topics" className="hover:text-ink text-ink-soft inline-block py-1">
                 <span className="rz-link">Topics</span>
               </Link>

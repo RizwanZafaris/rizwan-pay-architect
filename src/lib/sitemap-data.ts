@@ -109,6 +109,16 @@ const staticEntries: SitemapEntry[] = [
     priority: 0.65,
   },
   {
+    path: "/product-manager-os",
+    title: "Product Manager OS",
+    section: "Core",
+    description:
+      "Open-source operating loop for product work: six stage gates, fill-in lifecycle templates, PM canon cards and optional AI layers.",
+    lastmod: "2026-09-02",
+    changefreq: "monthly",
+    priority: 0.7,
+  },
+  {
     path: "/sitemap",
     title: "HTML Sitemap",
     section: "Core",
