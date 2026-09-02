@@ -10,7 +10,7 @@ import { profile } from "@/data/profile";
 //   - the Conductor, a stage-gated  os/CONDUCTOR.md, skills/conductor/
 //     interviewer with resumable
 //     STATE.md
-//   - 67 templates in 8 folders     templates/{discovery,definition,architecture,
+//   - 73 templates in 8 folders     templates/{discovery,definition,architecture,
 //                                   execution,delivery,operate,planning,ai}
 //   - 11 knowledge cards + 18 index knowledge/INDEX.md
 //   - roles + domains sub-layers    knowledge/roles/, knowledge/domains/
@@ -80,7 +80,7 @@ const layers = [
     dir: "templates/",
     label: "Templates",
     answers:
-      "67 fill-in documents across discovery, definition, architecture, execution, delivery, operate, planning and AI. Every one carries its stage, its knowledge card and its exit gate in the header.",
+      "73 fill-in documents across discovery, definition, architecture, execution, delivery, operate, planning and AI. Every one carries its stage, its knowledge card and its exit gate in the header.",
   },
   {
     dir: "skills/, agents/",
@@ -179,7 +179,7 @@ const pmosJsonLd = {
   programmingLanguage: "Markdown",
   license: "https://opensource.org/licenses/MIT",
   description:
-    "An open-source operating system for product management: a stage-gated Conductor that interviews before it writes, a six-stage loop with six gates, 67 fill-in lifecycle templates, eleven PM canon cards, role and domain knowledge layers, a learning path, and a regulated overlay.",
+    "An open-source operating system for product management: a stage-gated Conductor that interviews before it writes, a six-stage loop with six gates, 73 fill-in lifecycle templates, eleven PM canon cards, role and domain knowledge layers, a learning path, and a regulated overlay.",
   author: {
     "@type": "Person",
     "@id": `${SITE_URL}#person`,
@@ -196,7 +196,7 @@ export const Route = createFileRoute("/product-manager-os")({
       {
         name: "description",
         content:
-          "Product Manager OS: an open-source repo for running a product from discovery to sunset. The Conductor interviews stage by stage; 67 templates do the rest.",
+          "Product Manager OS: an open-source repo for running a product from discovery to sunset. The Conductor interviews stage by stage; 73 templates do the rest.",
       },
       {
         property: "og:title",
@@ -205,7 +205,7 @@ export const Route = createFileRoute("/product-manager-os")({
       {
         property: "og:description",
         content:
-          "The Conductor interviews you stage by stage. Six gates, 67 fill-in templates, eleven PM canon cards and AI layers you can remove. MIT licensed, readable, forkable.",
+          "The Conductor interviews you stage by stage. Six gates, 73 fill-in templates, eleven PM canon cards and AI layers you can remove. MIT licensed, readable, forkable.",
       },
       { property: "og:url", content: absUrl("/product-manager-os") },
       { property: "og:type", content: "website" },
@@ -216,7 +216,7 @@ export const Route = createFileRoute("/product-manager-os")({
       {
         name: "twitter:description",
         content:
-          "An open-source operating loop for product work, led by a stage-gated interviewer: six gates, 67 templates, eleven canon cards, and AI layers that are optional by design.",
+          "An open-source operating loop for product work, led by a stage-gated interviewer: six gates, 73 templates, eleven canon cards, and AI layers that are optional by design.",
       },
       { name: "twitter:image", content: OG_IMAGE_URL },
     ],
@@ -270,7 +270,7 @@ function ProductManagerOsPage() {
           >
             {[
               { v: "6", l: "stages, six gates" },
-              { v: "67", l: "fill-in templates" },
+              { v: "73", l: "fill-in templates" },
               { v: "11", l: "PM canon cards" },
               { v: "10", l: "domain cards" },
             ].map((p) => (
