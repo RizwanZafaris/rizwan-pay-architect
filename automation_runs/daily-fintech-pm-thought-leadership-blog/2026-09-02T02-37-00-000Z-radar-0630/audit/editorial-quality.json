@@ -1,0 +1,26 @@
+{
+  "status": "passed",
+  "checkedAt": "2026-09-02T02:43:00.000Z",
+  "articles": [
+    {
+      "canonicalUrl": "https://rzifi.com/blog/qatar-psp-rtgs-direct-access-settlement-control/",
+      "title": "Qatar Direct RTGS Access Changes PSP Settlement Control",
+      "gates": {
+        "humanVoice": "passed",
+        "grammar": "passed",
+        "credibility": "passed",
+        "originality": "passed"
+      },
+      "factualClaimsVerified": true,
+      "linksChecked": true,
+      "sourcesVerified": 4,
+      "grammarIssues": 0,
+      "criticalIssues": [],
+      "claimSafetyNotes": [
+        "Article labels the QNA/Gulf Times item as a QCB-cited report rather than a separate QCB press-page article.",
+        "Article does not claim universal PSP access, guaranteed merchant savings or completed industry-wide rollout.",
+        "Article distinguishes QA-RTGS settlement infrastructure from instant retail-payment checkout features."
+      ]
+    }
+  ]
+}

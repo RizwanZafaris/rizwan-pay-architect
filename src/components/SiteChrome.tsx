@@ -34,16 +34,17 @@ function ThemeToggle() {
   );
 }
 
-// Portfolio-first primary navigation. Work and writing carry the proof;
-// About supplies the operating story; Resume and Contact close the recruiter
-// journey. The focused recruiter brief stays available in the footer and in
-// context, while the compact booking pill remains the persistent utility CTA.
+// Portfolio-first primary navigation. Work, the public library and writing carry
+// the proof; About supplies the operating story; Resume and Contact close the
+// recruiter journey. The focused recruiter brief stays available in the footer
+// and in context, while the compact booking pill remains the persistent utility CTA.
 // Advisory (/consulting) stays out of the nav — PARKED until 2026-10-02.
 // Speaking (/speaking) stays out of the nav too — PARKED until 2027-01-06
 // (owner call 2026-07-06, same treatment as /consulting: noindex + out of
 // nav/footer/sitemap, page stays reachable by direct link for now).
 const nav = [
   { to: "/product-work", label: "Work" },
+  { to: "/library", label: "Library" },
   { to: "/about", label: "About" },
   { to: "/blog", label: "Writing" },
   { to: "/resume", label: "Resume" },
@@ -400,6 +401,11 @@ export function SiteFooter() {
             <li>
               <Link to="/blog" className="hover:text-ink text-ink-soft inline-block py-1">
                 <span className="rz-link">Writing</span>
+              </Link>
+            </li>
+            <li>
+              <Link to="/library" className="hover:text-ink text-ink-soft inline-block py-1">
+                <span className="rz-link">Library</span>
               </Link>
             </li>
             <li>

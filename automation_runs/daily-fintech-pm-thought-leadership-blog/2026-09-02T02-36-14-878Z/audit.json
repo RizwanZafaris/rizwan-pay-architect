@@ -1,0 +1,830 @@
+{
+  "automationId": "daily-fintech-pm-thought-leadership-blog",
+  "runId": "2026-09-02T02-36-14-878Z",
+  "runStartedAt": "2026-09-02T02:36:14.878Z",
+  "lastRun": "2026-09-01T15:31:43.996Z",
+  "utcRunDate": "2026-09-02",
+  "mondaySlowSourcesIncluded": false,
+  "articlesFetched": 0,
+  "sourceSummary": [
+    {
+      "source": "TechCrunch",
+      "ok": false,
+      "url": null,
+      "count": 0,
+      "errors": [
+        "https://techcrunch.com/feed/: fetch failed"
+      ]
+    },
+    {
+      "source": "Fintech Magazine",
+      "ok": false,
+      "url": null,
+      "count": 0,
+      "errors": [
+        "https://fintechmagazine.com/rss.xml: fetch failed",
+        "https://fintechmagazine.com/feed: fetch failed"
+      ]
+    },
+    {
+      "source": "Finextra",
+      "ok": false,
+      "url": null,
+      "count": 0,
+      "errors": [
+        "https://www.finextra.com/rss/headlines.aspx: fetch failed",
+        "https://www.finextra.com/rss/latestnews.aspx: fetch failed"
+      ]
+    },
+    {
+      "source": "PYMNTS",
+      "ok": false,
+      "url": null,
+      "count": 0,
+      "errors": [
+        "https://www.pymnts.com/feed/: fetch failed"
+      ]
+    },
+    {
+      "source": "American Banker",
+      "ok": false,
+      "url": null,
+      "count": 0,
+      "errors": [
+        "https://www.americanbanker.com/feed: fetch failed",
+        "https://www.americanbanker.com/feed.rss: fetch failed"
+      ]
+    },
+    {
+      "source": "Payments Dive",
+      "ok": false,
+      "url": null,
+      "count": 0,
+      "errors": [
+        "https://www.paymentsdive.com/feeds/news/: fetch failed"
+      ]
+    },
+    {
+      "source": "The Fintech Times",
+      "ok": false,
+      "url": null,
+      "count": 0,
+      "errors": [
+        "https://thefintechtimes.com/feed/: fetch failed"
+      ]
+    },
+    {
+      "source": "Tearsheet",
+      "ok": false,
+      "url": null,
+      "count": 0,
+      "errors": [
+        "https://tearsheet.co/feed/: fetch failed"
+      ]
+    },
+    {
+      "source": "Lenny's Newsletter",
+      "ok": false,
+      "url": null,
+      "count": 0,
+      "errors": [
+        "https://www.lennysnewsletter.com/feed: fetch failed"
+      ]
+    },
+    {
+      "source": "Mind the Product",
+      "ok": false,
+      "url": null,
+      "count": 0,
+      "errors": [
+        "https://www.mindtheproduct.com/feed/: fetch failed"
+      ]
+    },
+    {
+      "source": "Product Coalition",
+      "ok": false,
+      "url": null,
+      "count": 0,
+      "errors": [
+        "https://productcoalition.com/feed: fetch failed"
+      ]
+    },
+    {
+      "source": "Fintech Brainfood",
+      "ok": false,
+      "url": null,
+      "count": 0,
+      "errors": [
+        "https://sytaylor.substack.com/feed: fetch failed"
+      ]
+    },
+    {
+      "source": "This Week in Fintech",
+      "ok": false,
+      "url": null,
+      "count": 0,
+      "errors": [
+        "https://www.thisweekinfintech.com/feed/: fetch failed"
+      ]
+    },
+    {
+      "source": "Net Interest",
+      "ok": false,
+      "url": null,
+      "count": 0,
+      "errors": [
+        "https://www.netinterest.co/feed: fetch failed"
+      ]
+    },
+    {
+      "source": "a16z fintech",
+      "ok": false,
+      "url": null,
+      "count": 0,
+      "errors": [
+        "https://a16z.com/category/fintech/feed/: fetch failed"
+      ]
+    },
+    {
+      "source": "Stripe Blog",
+      "ok": false,
+      "url": null,
+      "count": 0,
+      "errors": [
+        "https://stripe.com/blog/feed.rss: fetch failed"
+      ]
+    },
+    {
+      "source": "Atlassian Work Life",
+      "ok": false,
+      "url": null,
+      "count": 0,
+      "errors": [
+        "https://www.atlassian.com/blog/feed: fetch failed"
+      ]
+    },
+    {
+      "source": "PMI Blog",
+      "ok": false,
+      "url": null,
+      "count": 0,
+      "errors": [
+        "https://www.pmi.org/rss: fetch failed"
+      ]
+    },
+    {
+      "source": "OpenAI News",
+      "ok": false,
+      "url": null,
+      "count": 0,
+      "errors": [
+        "https://openai.com/news/rss.xml: fetch failed",
+        "https://openai.com/blog/rss.xml: fetch failed"
+      ]
+    },
+    {
+      "source": "Google DeepMind Blog",
+      "ok": false,
+      "url": null,
+      "count": 0,
+      "errors": [
+        "https://deepmind.google/blog/rss.xml: fetch failed"
+      ]
+    },
+    {
+      "source": "NVIDIA AI Blog",
+      "ok": false,
+      "url": null,
+      "count": 0,
+      "errors": [
+        "https://blogs.nvidia.com/blog/category/deep-learning/feed/: fetch failed",
+        "https://blogs.nvidia.com/feed/: fetch failed"
+      ]
+    },
+    {
+      "source": "Microsoft AI and Research",
+      "ok": false,
+      "url": null,
+      "count": 0,
+      "errors": [
+        "https://azure.microsoft.com/en-us/blog/feed/: fetch failed",
+        "https://www.microsoft.com/en-us/research/feed/: fetch failed"
+      ]
+    },
+    {
+      "source": "Hugging Face Blog",
+      "ok": false,
+      "url": null,
+      "count": 0,
+      "errors": [
+        "https://huggingface.co/blog/feed.xml: fetch failed"
+      ]
+    },
+    {
+      "source": "GitHub Blog Changelog",
+      "ok": false,
+      "url": null,
+      "count": 0,
+      "errors": [
+        "https://github.blog/changelog/feed/: fetch failed"
+      ]
+    },
+    {
+      "source": "Hacker News",
+      "ok": false,
+      "url": null,
+      "count": 0,
+      "errors": [
+        "https://news.ycombinator.com/: fetch failed"
+      ]
+    },
+    {
+      "source": "Product Hunt",
+      "ok": false,
+      "url": null,
+      "count": 0,
+      "errors": [
+        "https://www.producthunt.com/: fetch failed"
+      ]
+    },
+    {
+      "source": "The Paypers",
+      "ok": false,
+      "url": null,
+      "count": 0,
+      "errors": [
+        "https://thepaypers.com/: fetch failed"
+      ]
+    },
+    {
+      "source": "Reforge Blog",
+      "ok": false,
+      "url": null,
+      "count": 0,
+      "errors": [
+        "https://www.reforge.com/blog: fetch failed"
+      ]
+    },
+    {
+      "source": "CB Insights fintech",
+      "ok": false,
+      "url": null,
+      "count": 0,
+      "errors": [
+        "https://www.cbinsights.com/research/fintech/: fetch failed"
+      ]
+    },
+    {
+      "source": "Mastercard Newsroom",
+      "ok": false,
+      "url": null,
+      "count": 0,
+      "errors": [
+        "https://www.mastercard.com/news/: fetch failed"
+      ]
+    },
+    {
+      "source": "Visa Newsroom",
+      "ok": false,
+      "url": null,
+      "count": 0,
+      "errors": [
+        "https://usa.visa.com/about-visa/newsroom.html: fetch failed"
+      ]
+    },
+    {
+      "source": "American Express Newsroom",
+      "ok": false,
+      "url": null,
+      "count": 0,
+      "errors": [
+        "https://www.americanexpress.com/en-us/newsroom/: fetch failed"
+      ]
+    },
+    {
+      "source": "Discover Newsroom",
+      "ok": false,
+      "url": null,
+      "count": 0,
+      "errors": [
+        "https://newsroom.discover.com/: fetch failed"
+      ]
+    },
+    {
+      "source": "Checkout.com Blog",
+      "ok": false,
+      "url": null,
+      "count": 0,
+      "errors": [
+        "https://www.checkout.com/blog: fetch failed"
+      ]
+    },
+    {
+      "source": "Adyen Knowledge Hub",
+      "ok": false,
+      "url": null,
+      "count": 0,
+      "errors": [
+        "https://www.adyen.com/knowledge-hub: fetch failed"
+      ]
+    },
+    {
+      "source": "Worldpay Insights",
+      "ok": false,
+      "url": null,
+      "count": 0,
+      "errors": [
+        "https://www.worldpay.com/en/insights: fetch failed"
+      ]
+    },
+    {
+      "source": "Fiserv Newsroom",
+      "ok": false,
+      "url": null,
+      "count": 0,
+      "errors": [
+        "https://newsroom.fiserv.com/: fetch failed"
+      ]
+    },
+    {
+      "source": "Marqeta Newsroom",
+      "ok": false,
+      "url": null,
+      "count": 0,
+      "errors": [
+        "https://www.marqeta.com/newsroom: fetch failed"
+      ]
+    },
+    {
+      "source": "Thredd Insights",
+      "ok": false,
+      "url": null,
+      "count": 0,
+      "errors": [
+        "https://www.thredd.com/insights/: fetch failed"
+      ]
+    },
+    {
+      "source": "Paymentology News",
+      "ok": false,
+      "url": null,
+      "count": 0,
+      "errors": [
+        "https://www.paymentology.com/newsroom: fetch failed"
+      ]
+    },
+    {
+      "source": "Enfuce Resources",
+      "ok": false,
+      "url": null,
+      "count": 0,
+      "errors": [
+        "https://enfuce.com/news-insights/: fetch failed"
+      ]
+    },
+    {
+      "source": "Galileo Newsroom",
+      "ok": false,
+      "url": null,
+      "count": 0,
+      "errors": [
+        "https://www.galileo-ft.com/newsroom/: fetch failed"
+      ]
+    },
+    {
+      "source": "Anthropic News",
+      "ok": false,
+      "url": null,
+      "count": 0,
+      "errors": [
+        "https://www.anthropic.com/news: fetch failed"
+      ]
+    },
+    {
+      "source": "Asana Resources",
+      "ok": false,
+      "url": null,
+      "count": 0,
+      "errors": [
+        "https://asana.com/resources: fetch failed"
+      ]
+    },
+    {
+      "source": "GitHub Trending",
+      "ok": false,
+      "url": null,
+      "count": 0,
+      "errors": [
+        "https://github.com/trending: fetch failed"
+      ]
+    }
+  ],
+  "articles": [],
+  "validationDecisions": [],
+  "approved": [],
+  "laneRecommendations": {
+    "fintech_update": [],
+    "product_management": [],
+    "project_management": [],
+    "ai_news": []
+  },
+  "subdomainRecommendations": {
+    "acquiring_acceptance": [],
+    "issuing_processing": [],
+    "card_networks_tokenization": [],
+    "payment_orchestration": [],
+    "open_banking_a2a": [],
+    "cross_border_fx_remittance": [],
+    "settlement_reconciliation": [],
+    "fraud_risk_disputes_3ds": []
+  },
+  "integrationStatus": {
+    "database": {
+      "available": false,
+      "reason": "No configured database connection or schema found in automation/site environment."
+    },
+    "cms": {
+      "available": true,
+      "reason": "Static markdown content directory available at /Users/rizwanzafar/Documents/Codex/2026-04-24/worktrees/daily-content-20260902-radar-0630/content/blog."
+    },
+    "linkedin": {
+      "available": true,
+      "reason": "Configured through the protected Buffer environment file."
+    },
+    "x": {
+      "available": true,
+      "reason": "Configured through the protected Buffer environment file."
+    },
+    "newsletter": {
+      "available": false,
+      "reason": "No newsletter provider credential/integration found."
+    },
+    "slack": {
+      "available": false,
+      "reason": "No Slack webhook or Slack app credential found."
+    },
+    "emailDigest": {
+      "available": false,
+      "reason": "No outbound email provider credential/integration found."
+    }
+  },
+  "alerts": [
+    {
+      "severity": "warning",
+      "channel": "daily_digest",
+      "delivered": false,
+      "reason": "No outbound email provider credential/integration found.",
+      "message": "TechCrunch fetch issue: https://techcrunch.com/feed/: fetch failed"
+    },
+    {
+      "severity": "warning",
+      "channel": "daily_digest",
+      "delivered": false,
+      "reason": "No outbound email provider credential/integration found.",
+      "message": "Fintech Magazine fetch issue: https://fintechmagazine.com/rss.xml: fetch failed"
+    },
+    {
+      "severity": "warning",
+      "channel": "daily_digest",
+      "delivered": false,
+      "reason": "No outbound email provider credential/integration found.",
+      "message": "Fintech Magazine fetch issue: https://fintechmagazine.com/feed: fetch failed"
+    },
+    {
+      "severity": "warning",
+      "channel": "daily_digest",
+      "delivered": false,
+      "reason": "No outbound email provider credential/integration found.",
+      "message": "Finextra fetch issue: https://www.finextra.com/rss/headlines.aspx: fetch failed"
+    },
+    {
+      "severity": "warning",
+      "channel": "daily_digest",
+      "delivered": false,
+      "reason": "No outbound email provider credential/integration found.",
+      "message": "Finextra fetch issue: https://www.finextra.com/rss/latestnews.aspx: fetch failed"
+    },
+    {
+      "severity": "warning",
+      "channel": "daily_digest",
+      "delivered": false,
+      "reason": "No outbound email provider credential/integration found.",
+      "message": "PYMNTS fetch issue: https://www.pymnts.com/feed/: fetch failed"
+    },
+    {
+      "severity": "warning",
+      "channel": "daily_digest",
+      "delivered": false,
+      "reason": "No outbound email provider credential/integration found.",
+      "message": "American Banker fetch issue: https://www.americanbanker.com/feed: fetch failed"
+    },
+    {
+      "severity": "warning",
+      "channel": "daily_digest",
+      "delivered": false,
+      "reason": "No outbound email provider credential/integration found.",
+      "message": "American Banker fetch issue: https://www.americanbanker.com/feed.rss: fetch failed"
+    },
+    {
+      "severity": "warning",
+      "channel": "daily_digest",
+      "delivered": false,
+      "reason": "No outbound email provider credential/integration found.",
+      "message": "Payments Dive fetch issue: https://www.paymentsdive.com/feeds/news/: fetch failed"
+    },
+    {
+      "severity": "warning",
+      "channel": "daily_digest",
+      "delivered": false,
+      "reason": "No outbound email provider credential/integration found.",
+      "message": "The Fintech Times fetch issue: https://thefintechtimes.com/feed/: fetch failed"
+    },
+    {
+      "severity": "warning",
+      "channel": "daily_digest",
+      "delivered": false,
+      "reason": "No outbound email provider credential/integration found.",
+      "message": "Tearsheet fetch issue: https://tearsheet.co/feed/: fetch failed"
+    },
+    {
+      "severity": "warning",
+      "channel": "daily_digest",
+      "delivered": false,
+      "reason": "No outbound email provider credential/integration found.",
+      "message": "Lenny's Newsletter fetch issue: https://www.lennysnewsletter.com/feed: fetch failed"
+    },
+    {
+      "severity": "warning",
+      "channel": "daily_digest",
+      "delivered": false,
+      "reason": "No outbound email provider credential/integration found.",
+      "message": "Mind the Product fetch issue: https://www.mindtheproduct.com/feed/: fetch failed"
+    },
+    {
+      "severity": "warning",
+      "channel": "daily_digest",
+      "delivered": false,
+      "reason": "No outbound email provider credential/integration found.",
+      "message": "Product Coalition fetch issue: https://productcoalition.com/feed: fetch failed"
+    },
+    {
+      "severity": "warning",
+      "channel": "daily_digest",
+      "delivered": false,
+      "reason": "No outbound email provider credential/integration found.",
+      "message": "Fintech Brainfood fetch issue: https://sytaylor.substack.com/feed: fetch failed"
+    },
+    {
+      "severity": "warning",
+      "channel": "daily_digest",
+      "delivered": false,
+      "reason": "No outbound email provider credential/integration found.",
+      "message": "This Week in Fintech fetch issue: https://www.thisweekinfintech.com/feed/: fetch failed"
+    },
+    {
+      "severity": "warning",
+      "channel": "daily_digest",
+      "delivered": false,
+      "reason": "No outbound email provider credential/integration found.",
+      "message": "Net Interest fetch issue: https://www.netinterest.co/feed: fetch failed"
+    },
+    {
+      "severity": "warning",
+      "channel": "daily_digest",
+      "delivered": false,
+      "reason": "No outbound email provider credential/integration found.",
+      "message": "a16z fintech fetch issue: https://a16z.com/category/fintech/feed/: fetch failed"
+    },
+    {
+      "severity": "warning",
+      "channel": "daily_digest",
+      "delivered": false,
+      "reason": "No outbound email provider credential/integration found.",
+      "message": "Stripe Blog fetch issue: https://stripe.com/blog/feed.rss: fetch failed"
+    },
+    {
+      "severity": "warning",
+      "channel": "daily_digest",
+      "delivered": false,
+      "reason": "No outbound email provider credential/integration found.",
+      "message": "Atlassian Work Life fetch issue: https://www.atlassian.com/blog/feed: fetch failed"
+    },
+    {
+      "severity": "warning",
+      "channel": "daily_digest",
+      "delivered": false,
+      "reason": "No outbound email provider credential/integration found.",
+      "message": "PMI Blog fetch issue: https://www.pmi.org/rss: fetch failed"
+    },
+    {
+      "severity": "warning",
+      "channel": "daily_digest",
+      "delivered": false,
+      "reason": "No outbound email provider credential/integration found.",
+      "message": "OpenAI News fetch issue: https://openai.com/news/rss.xml: fetch failed"
+    },
+    {
+      "severity": "warning",
+      "channel": "daily_digest",
+      "delivered": false,
+      "reason": "No outbound email provider credential/integration found.",
+      "message": "OpenAI News fetch issue: https://openai.com/blog/rss.xml: fetch failed"
+    },
+    {
+      "severity": "warning",
+      "channel": "daily_digest",
+      "delivered": false,
+      "reason": "No outbound email provider credential/integration found.",
+      "message": "Google DeepMind Blog fetch issue: https://deepmind.google/blog/rss.xml: fetch failed"
+    },
+    {
+      "severity": "warning",
+      "channel": "daily_digest",
+      "delivered": false,
+      "reason": "No outbound email provider credential/integration found.",
+      "message": "NVIDIA AI Blog fetch issue: https://blogs.nvidia.com/blog/category/deep-learning/feed/: fetch failed"
+    },
+    {
+      "severity": "warning",
+      "channel": "daily_digest",
+      "delivered": false,
+      "reason": "No outbound email provider credential/integration found.",
+      "message": "NVIDIA AI Blog fetch issue: https://blogs.nvidia.com/feed/: fetch failed"
+    },
+    {
+      "severity": "warning",
+      "channel": "daily_digest",
+      "delivered": false,
+      "reason": "No outbound email provider credential/integration found.",
+      "message": "Microsoft AI and Research fetch issue: https://azure.microsoft.com/en-us/blog/feed/: fetch failed"
+    },
+    {
+      "severity": "warning",
+      "channel": "daily_digest",
+      "delivered": false,
+      "reason": "No outbound email provider credential/integration found.",
+      "message": "Microsoft AI and Research fetch issue: https://www.microsoft.com/en-us/research/feed/: fetch failed"
+    },
+    {
+      "severity": "warning",
+      "channel": "daily_digest",
+      "delivered": false,
+      "reason": "No outbound email provider credential/integration found.",
+      "message": "Hugging Face Blog fetch issue: https://huggingface.co/blog/feed.xml: fetch failed"
+    },
+    {
+      "severity": "warning",
+      "channel": "daily_digest",
+      "delivered": false,
+      "reason": "No outbound email provider credential/integration found.",
+      "message": "GitHub Blog Changelog fetch issue: https://github.blog/changelog/feed/: fetch failed"
+    },
+    {
+      "severity": "warning",
+      "channel": "daily_digest",
+      "delivered": false,
+      "reason": "No outbound email provider credential/integration found.",
+      "message": "Hacker News fetch issue: https://news.ycombinator.com/: fetch failed"
+    },
+    {
+      "severity": "warning",
+      "channel": "daily_digest",
+      "delivered": false,
+      "reason": "No outbound email provider credential/integration found.",
+      "message": "Product Hunt fetch issue: https://www.producthunt.com/: fetch failed"
+    },
+    {
+      "severity": "warning",
+      "channel": "daily_digest",
+      "delivered": false,
+      "reason": "No outbound email provider credential/integration found.",
+      "message": "The Paypers fetch issue: https://thepaypers.com/: fetch failed"
+    },
+    {
+      "severity": "warning",
+      "channel": "daily_digest",
+      "delivered": false,
+      "reason": "No outbound email provider credential/integration found.",
+      "message": "Reforge Blog fetch issue: https://www.reforge.com/blog: fetch failed"
+    },
+    {
+      "severity": "warning",
+      "channel": "daily_digest",
+      "delivered": false,
+      "reason": "No outbound email provider credential/integration found.",
+      "message": "CB Insights fintech fetch issue: https://www.cbinsights.com/research/fintech/: fetch failed"
+    },
+    {
+      "severity": "warning",
+      "channel": "daily_digest",
+      "delivered": false,
+      "reason": "No outbound email provider credential/integration found.",
+      "message": "Mastercard Newsroom fetch issue: https://www.mastercard.com/news/: fetch failed"
+    },
+    {
+      "severity": "warning",
+      "channel": "daily_digest",
+      "delivered": false,
+      "reason": "No outbound email provider credential/integration found.",
+      "message": "Visa Newsroom fetch issue: https://usa.visa.com/about-visa/newsroom.html: fetch failed"
+    },
+    {
+      "severity": "warning",
+      "channel": "daily_digest",
+      "delivered": false,
+      "reason": "No outbound email provider credential/integration found.",
+      "message": "American Express Newsroom fetch issue: https://www.americanexpress.com/en-us/newsroom/: fetch failed"
+    },
+    {
+      "severity": "warning",
+      "channel": "daily_digest",
+      "delivered": false,
+      "reason": "No outbound email provider credential/integration found.",
+      "message": "Discover Newsroom fetch issue: https://newsroom.discover.com/: fetch failed"
+    },
+    {
+      "severity": "warning",
+      "channel": "daily_digest",
+      "delivered": false,
+      "reason": "No outbound email provider credential/integration found.",
+      "message": "Checkout.com Blog fetch issue: https://www.checkout.com/blog: fetch failed"
+    },
+    {
+      "severity": "warning",
+      "channel": "daily_digest",
+      "delivered": false,
+      "reason": "No outbound email provider credential/integration found.",
+      "message": "Adyen Knowledge Hub fetch issue: https://www.adyen.com/knowledge-hub: fetch failed"
+    },
+    {
+      "severity": "warning",
+      "channel": "daily_digest",
+      "delivered": false,
+      "reason": "No outbound email provider credential/integration found.",
+      "message": "Worldpay Insights fetch issue: https://www.worldpay.com/en/insights: fetch failed"
+    },
+    {
+      "severity": "warning",
+      "channel": "daily_digest",
+      "delivered": false,
+      "reason": "No outbound email provider credential/integration found.",
+      "message": "Fiserv Newsroom fetch issue: https://newsroom.fiserv.com/: fetch failed"
+    },
+    {
+      "severity": "warning",
+      "channel": "daily_digest",
+      "delivered": false,
+      "reason": "No outbound email provider credential/integration found.",
+      "message": "Marqeta Newsroom fetch issue: https://www.marqeta.com/newsroom: fetch failed"
+    },
+    {
+      "severity": "warning",
+      "channel": "daily_digest",
+      "delivered": false,
+      "reason": "No outbound email provider credential/integration found.",
+      "message": "Thredd Insights fetch issue: https://www.thredd.com/insights/: fetch failed"
+    },
+    {
+      "severity": "warning",
+      "channel": "daily_digest",
+      "delivered": false,
+      "reason": "No outbound email provider credential/integration found.",
+      "message": "Paymentology News fetch issue: https://www.paymentology.com/newsroom: fetch failed"
+    },
+    {
+      "severity": "warning",
+      "channel": "daily_digest",
+      "delivered": false,
+      "reason": "No outbound email provider credential/integration found.",
+      "message": "Enfuce Resources fetch issue: https://enfuce.com/news-insights/: fetch failed"
+    },
+    {
+      "severity": "warning",
+      "channel": "daily_digest",
+      "delivered": false,
+      "reason": "No outbound email provider credential/integration found.",
+      "message": "Galileo Newsroom fetch issue: https://www.galileo-ft.com/newsroom/: fetch failed"
+    },
+    {
+      "severity": "warning",
+      "channel": "daily_digest",
+      "delivered": false,
+      "reason": "No outbound email provider credential/integration found.",
+      "message": "Anthropic News fetch issue: https://www.anthropic.com/news: fetch failed"
+    },
+    {
+      "severity": "warning",
+      "channel": "daily_digest",
+      "delivered": false,
+      "reason": "No outbound email provider credential/integration found.",
+      "message": "Asana Resources fetch issue: https://asana.com/resources: fetch failed"
+    },
+    {
+      "severity": "warning",
+      "channel": "daily_digest",
+      "delivered": false,
+      "reason": "No outbound email provider credential/integration found.",
+      "message": "GitHub Trending fetch issue: https://github.com/trending: fetch failed"
+    }
+  ]
+}

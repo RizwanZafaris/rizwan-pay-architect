@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      @font-face {
+        font-family: "Inter Variable";
+        src: url("../../../../node_modules/@fontsource-variable/inter/files/inter-latin-wght-normal.woff2") format("woff2");
+        font-style: normal;
+        font-weight: 100 900;
+      }
+
+      * { box-sizing: border-box; }
+
+      html,
+      body {
+        width: 1200px;
+        height: 630px;
+        margin: 0;
+        overflow: hidden;
+        background: #061119;
+      }
+
+      .canvas {
+        position: relative;
+        width: 1200px;
+        height: 630px;
+        background-image: url("./qatar-settlement-background.png");
+        background-position: center;
+        background-size: 1200px 630px;
+        background-repeat: no-repeat;
+        font-family: "Inter Variable", Inter, sans-serif;
+      }
+
+      .rule {
+        position: absolute;
+        left: 64px;
+        top: 143px;
+        width: 58px;
+        height: 4px;
+        background: #22c7b6;
+      }
+
+      .eyebrow {
+        position: absolute;
+        left: 64px;
+        top: 168px;
+        color: #22c7b6;
+        font-size: 16px;
+        font-weight: 700;
+        letter-spacing: 0.035em;
+        line-height: 1;
+        white-space: nowrap;
+      }
+
+      .headline {
+        position: absolute;
+        left: 64px;
+        top: 229px;
+        width: 472px;
+        color: #f5f4ee;
+        font-size: 63px;
+        font-weight: 800;
+        letter-spacing: -0.025em;
+        line-height: 0.98;
+        text-transform: uppercase;
+      }
+
+      .headline span { display: block; }
+      .headline .gold { color: #d8a552; }
+
+      .footer {
+        position: absolute;
+        left: 68px;
+        bottom: 47px;
+        color: #f5f4ee;
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="canvas" aria-label="Qatar settlement control editorial image">
+      <div class="rule"></div>
+      <div class="eyebrow">QATAR / PSP SETTLEMENT</div>
+      <div class="headline">
+        <span>Direct</span>
+        <span>Settlement</span>
+        <span>Needs</span>
+        <span class="gold">Visible Control</span>
+      </div>
+      <div class="footer">rzifi.com</div>
+    </main>
+  </body>
+</html>

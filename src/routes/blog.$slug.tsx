@@ -13,6 +13,8 @@ import { marked } from "marked";
 import authorPortrait from "@/assets/rizwan-zafar-cutout-460.webp";
 
 const OG_IMAGE_OVERRIDES: Record<string, string> = {
+  "qatar-psp-rtgs-direct-access-settlement-control":
+    "/og/blog/qatar-psp-rtgs-direct-access-settlement-control-v20260903.png",
   "sama-open-banking-licensed-operating-model":
     "/og/blog/sama-open-banking-licensed-operating-model-v20260830.png",
   "syria-card-reconnection-acceptance-proof":

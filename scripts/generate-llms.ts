@@ -94,6 +94,9 @@ lines.push(
   `- [Résumé](${SITE}/resume/): Executive resume, background and payments leadership proof.`,
 );
 lines.push(`- [Product Work](${SITE}/product-work/): Case studies at $1B+ GTV scale.`);
+lines.push(
+  `- [Payments Product Library](${SITE}/library/): Curated open systems, practical guides, case studies and domain collections.`,
+);
 lines.push(`- [Essays](${SITE}/blog/): Practitioner writing on regulated payments.`);
 lines.push(`- [Topics](${SITE}/topics/): Hub pages by domain (cross-border, settlement, fraud…).`);
 lines.push(`- [For recruiters](${SITE}/for/): Audience-specific landing pages.`);
@@ -189,6 +192,7 @@ full.push(
 full.push("");
 full.push(`Generated: ${new Date().toISOString().slice(0, 10)}`);
 full.push(`Site: ${SITE}`);
+full.push(`Library: ${SITE}/library/`);
 full.push(`Author: ${profile.name} (${profile.role}, ${profile.location})`);
 full.push(`Entity type: Person`);
 full.push(`Wikidata: ${profile.wikidata}`);
@@ -243,7 +247,7 @@ full.push("");
 for (const c of caseStudies) {
   full.push(`## ${c.title}`);
   full.push("");
-  full.push(`URL: ${SITE}/product-work/${c.slug}`);
+  full.push(`URL: ${SITE}/product-work/${c.slug}/`);
   full.push(`Category: ${c.category}`);
   full.push("");
   full.push(`**Tagline**: ${c.tagline}`);
@@ -311,7 +315,7 @@ for (const p of posts) {
     .trim();
   full.push(`## ${p.title}`);
   full.push("");
-  full.push(`URL: ${SITE}/blog/${p.slug}`);
+  full.push(`URL: ${SITE}/blog/${p.slug}/`);
   full.push(`Published: ${p.date}`);
   full.push(`Category: ${p.category}`);
   full.push(`Tags: ${p.tags.join(", ")}`);

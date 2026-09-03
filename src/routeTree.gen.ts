@@ -17,6 +17,7 @@ import { Route as ResumeRouteImport } from './routes/resume'
 import { Route as ProductsRouteImport } from './routes/products'
 import { Route as ProductManagerOsRouteImport } from './routes/product-manager-os'
 import { Route as MediaRouteImport } from './routes/media'
+import { Route as LibraryRouteImport } from './routes/library'
 import { Route as JourneyRouteImport } from './routes/journey'
 import { Route as HireRouteImport } from './routes/hire'
 import { Route as ContactRouteImport } from './routes/contact'
@@ -73,6 +74,11 @@ const ProductManagerOsRoute = ProductManagerOsRouteImport.update({
 const MediaRoute = MediaRouteImport.update({
   id: '/media',
   path: '/media',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LibraryRoute = LibraryRouteImport.update({
+  id: '/library',
+  path: '/library',
   getParentRoute: () => rootRouteImport,
 } as any)
 const JourneyRoute = JourneyRouteImport.update({
@@ -168,6 +174,7 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/hire': typeof HireRoute
   '/journey': typeof JourneyRoute
+  '/library': typeof LibraryRoute
   '/media': typeof MediaRoute
   '/product-manager-os': typeof ProductManagerOsRoute
   '/products': typeof ProductsRouteWithChildren
@@ -195,6 +202,7 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/hire': typeof HireRoute
   '/journey': typeof JourneyRoute
+  '/library': typeof LibraryRoute
   '/media': typeof MediaRoute
   '/product-manager-os': typeof ProductManagerOsRoute
   '/products': typeof ProductsRouteWithChildren
@@ -222,6 +230,7 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/hire': typeof HireRoute
   '/journey': typeof JourneyRoute
+  '/library': typeof LibraryRoute
   '/media': typeof MediaRoute
   '/product-manager-os': typeof ProductManagerOsRoute
   '/products': typeof ProductsRouteWithChildren
@@ -251,6 +260,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/hire'
     | '/journey'
+    | '/library'
     | '/media'
     | '/product-manager-os'
     | '/products'
@@ -278,6 +288,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/hire'
     | '/journey'
+    | '/library'
     | '/media'
     | '/product-manager-os'
     | '/products'
@@ -304,6 +315,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/hire'
     | '/journey'
+    | '/library'
     | '/media'
     | '/product-manager-os'
     | '/products'
@@ -332,6 +344,7 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   HireRoute: typeof HireRoute
   JourneyRoute: typeof JourneyRoute
+  LibraryRoute: typeof LibraryRoute
   MediaRoute: typeof MediaRoute
   ProductManagerOsRoute: typeof ProductManagerOsRoute
   ProductsRoute: typeof ProductsRouteWithChildren
@@ -406,6 +419,13 @@ declare module '@tanstack/react-router' {
       path: '/media'
       fullPath: '/media'
       preLoaderRoute: typeof MediaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/library': {
+      id: '/library'
+      path: '/library'
+      fullPath: '/library'
+      preLoaderRoute: typeof LibraryRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/journey': {
@@ -562,6 +582,7 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   HireRoute: HireRoute,
   JourneyRoute: JourneyRoute,
+  LibraryRoute: LibraryRoute,
   MediaRoute: MediaRoute,
   ProductManagerOsRoute: ProductManagerOsRoute,
   ProductsRoute: ProductsRouteWithChildren,

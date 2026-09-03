@@ -1,0 +1,200 @@
+{
+  "generatedAt": "2026-09-02T02:36:28.087Z",
+  "mode": "read_only",
+  "credentialsUsed": false,
+  "writesPerformed": false,
+  "health": {
+    "github": {
+      "status": "warn",
+      "name": "GitHub 仓库和代码",
+      "message": "gh CLI 已安装但未认证。运行 gh auth login 可解锁完整功能",
+      "tier": 0,
+      "backends": [
+        "gh CLI"
+      ],
+      "active_backend": "gh CLI"
+    },
+    "twitter": {
+      "status": "warn",
+      "name": "Twitter/X 推文",
+      "message": "Twitter CLI 未安装。安装方式：\n  pipx install twitter-cli\n或：\n  uv tool install twitter-cli",
+      "tier": 1,
+      "backends": [
+        "twitter-cli",
+        "OpenCLI",
+        "bird CLI (legacy)"
+      ],
+      "active_backend": null
+    },
+    "youtube": {
+      "status": "ok",
+      "name": "YouTube 视频和字幕",
+      "message": "可提取视频信息和字幕",
+      "tier": 0,
+      "backends": [
+        "yt-dlp"
+      ],
+      "active_backend": "yt-dlp"
+    },
+    "reddit": {
+      "status": "off",
+      "name": "Reddit 帖子和评论",
+      "message": "未安装任何 Reddit 后端。注意：Reddit 没有零配置路径（匿名 .json 已被封，官方 API 需人工审批），必须用登录态。推荐：\n  桌面：agent-reach install --channels opencli\n       （复用 Chrome 登录态，登录过 reddit.com 即可用）\n  服务器/存量：pipx install 'git+https://github.com/public-clis/rdt-cli.git@5e4fb3720d5c174e976cd425ccc3b879d52cac66'\n       然后 `rdt login` 或手动写入 Cookie（见 doctor 提示）\n中国大陆访问 Reddit 需要代理",
+      "tier": 1,
+      "backends": [
+        "OpenCLI",
+        "rdt-cli"
+      ],
+      "active_backend": null
+    },
+    "bilibili": {
+      "status": "off",
+      "name": "B站视频、字幕和搜索",
+      "message": "没有可用的 B站后端（搜索 API 也不可达，可能是网络问题）。推荐：\n  pipx install bilibili-cli（搜索/热门/视频详情，无需登录）\n  或桌面装 OpenCLI（额外解锁字幕）：agent-reach install --channels opencli",
+      "tier": 1,
+      "backends": [
+        "bili-cli",
+        "OpenCLI",
+        "B站搜索 API"
+      ],
+      "active_backend": null
+    },
+    "xiaohongshu": {
+      "status": "off",
+      "name": "小红书笔记",
+      "message": "未安装任何小红书后端。推荐：\n  桌面：agent-reach install --channels opencli\n       （复用 Chrome 登录态，刷过小红书即零配置可用）\n  服务器：xiaohongshu-mcp（自带无头浏览器+扫码登录）：https://github.com/xpzouying/xiaohongshu-mcp",
+      "tier": 1,
+      "backends": [
+        "OpenCLI",
+        "xiaohongshu-mcp",
+        "xhs-cli (xiaohongshu-cli)"
+      ],
+      "active_backend": null
+    },
+    "linkedin": {
+      "status": "off",
+      "name": "LinkedIn 职业社交",
+      "message": "mcporter 已装但 LinkedIn MCP 未配置。运行：\n  pip install linkedin-scraper-mcp\n  mcporter config add linkedin http://localhost:3000/mcp",
+      "tier": 2,
+      "backends": [
+        "linkedin-scraper-mcp",
+        "Jina Reader"
+      ],
+      "active_backend": null
+    },
+    "xiaoyuzhou": {
+      "status": "off",
+      "name": "小宇宙播客转文字",
+      "message": "转录脚本未安装。运行：\n  agent-reach install --env=auto\n  或手动复制 transcribe.sh 到 ~/.agent-reach/tools/xiaoyuzhou/",
+      "tier": 1,
+      "backends": [
+        "groq-whisper",
+        "ffmpeg"
+      ],
+      "active_backend": null
+    },
+    "v2ex": {
+      "status": "warn",
+      "name": "V2EX 节点、主题与回复",
+      "message": "V2EX API 连接失败（可能需要代理）：<urlopen error [Errno 8] nodename nor servname provided, or not known>",
+      "tier": 0,
+      "backends": [
+        "V2EX API (public)"
+      ],
+      "active_backend": null
+    },
+    "xueqiu": {
+      "status": "warn",
+      "name": "雪球股票行情与社区动态",
+      "message": "Xueqiu API 连接失败：<urlopen error [Errno 8] nodename nor servname provided, or not known>。请先登录雪球后运行：agent-reach configure --from-browser chrome",
+      "tier": 1,
+      "backends": [
+        "Xueqiu API (需要登录 Cookie)"
+      ],
+      "active_backend": null
+    },
+    "rss": {
+      "status": "ok",
+      "name": "RSS/Atom 订阅源",
+      "message": "可读取 RSS/Atom 源",
+      "tier": 0,
+      "backends": [
+        "feedparser"
+      ],
+      "active_backend": "feedparser"
+    },
+    "exa_search": {
+      "status": "ok",
+      "name": "全网语义搜索",
+      "message": "全网语义搜索可用（免费，无需 API Key）",
+      "tier": 0,
+      "backends": [
+        "Exa via mcporter"
+      ],
+      "active_backend": "Exa via mcporter"
+    },
+    "web": {
+      "status": "ok",
+      "name": "任意网页",
+      "message": "通过 Jina Reader 读取任意网页（curl https://r.jina.ai/URL）",
+      "tier": 0,
+      "backends": [
+        "Jina Reader"
+      ],
+      "active_backend": "Jina Reader"
+    }
+  },
+  "scans": [
+    {
+      "cohort": "acquiring_acceptance",
+      "query": "latest merchant acquiring payment acceptance authorization rates smart routing 3DS tokenization Stripe Checkout.com Adyen Worldpay Visa Mastercard",
+      "status": "error",
+      "error": "Command failed: /Users/rizwanzafar/.agent-reach/npm/node_modules/.bin/mcporter call exa.web_search_exa(query: \"latest merchant acquiring payment acceptance authorization rates smart routing 3DS tokenization Stripe Checkout.com Adyen Worldpay Visa Mastercard\", numResults: 5) --output json --timeout 30000 --no-oauth\n[mcporter] exa appears offline (SSE error: TypeError: fetch failed: getaddrinfo ENOTFOUND mcp.exa.ai).\n[mcporter] exa appears offline (SSE error: TypeError: fetch failed: getaddrinfo ENOTFOUND mcp.exa.ai).\n",
+      "attempts": 3
+    },
+    {
+      "cohort": "issuing_processing",
+      "query": "latest issuer processing card issuing BIN sponsorship Marqeta Thredd Paymentology Enfuce Galileo Stripe Issuing Adyen Issuing",
+      "status": "error",
+      "error": "Command failed: /Users/rizwanzafar/.agent-reach/npm/node_modules/.bin/mcporter call exa.web_search_exa(query: \"latest issuer processing card issuing BIN sponsorship Marqeta Thredd Paymentology Enfuce Galileo Stripe Issuing Adyen Issuing\", numResults: 5) --output json --timeout 30000 --no-oauth\n[mcporter] exa appears offline (SSE error: TypeError: fetch failed: getaddrinfo ENOTFOUND mcp.exa.ai).\n[mcporter] exa appears offline (SSE error: TypeError: fetch failed: getaddrinfo ENOTFOUND mcp.exa.ai).\n",
+      "attempts": 3
+    },
+    {
+      "cohort": "product_management",
+      "query": "latest fintech payments product management launches pricing checkout conversion developer experience",
+      "status": "error",
+      "error": "Command failed: /Users/rizwanzafar/.agent-reach/npm/node_modules/.bin/mcporter call exa.web_search_exa(query: \"latest fintech payments product management launches pricing checkout conversion developer experience\", numResults: 5) --output json --timeout 30000 --no-oauth\n[mcporter] exa appears offline (SSE error: TypeError: fetch failed: getaddrinfo ENOTFOUND mcp.exa.ai).\n[mcporter] exa appears offline (SSE error: TypeError: fetch failed: getaddrinfo ENOTFOUND mcp.exa.ai).\n",
+      "attempts": 3
+    },
+    {
+      "cohort": "project_program_management",
+      "query": "latest payments programme management rollout migration governance PMO scheme certification cloud processing",
+      "status": "error",
+      "error": "Command failed: /Users/rizwanzafar/.agent-reach/npm/node_modules/.bin/mcporter call exa.web_search_exa(query: \"latest payments programme management rollout migration governance PMO scheme certification cloud processing\", numResults: 5) --output json --timeout 30000 --no-oauth\n[mcporter] exa appears offline (SSE error: TypeError: fetch failed: getaddrinfo ENOTFOUND mcp.exa.ai).\n[mcporter] exa appears offline (SSE error: TypeError: fetch failed: getaddrinfo ENOTFOUND mcp.exa.ai).\n",
+      "attempts": 3
+    },
+    {
+      "cohort": "ai_repo_radar",
+      "query": "latest AI agents fintech payments risk fraud commerce GitHub trending repositories",
+      "status": "error",
+      "error": "Command failed: /Users/rizwanzafar/.agent-reach/npm/node_modules/.bin/mcporter call exa.web_search_exa(query: \"latest AI agents fintech payments risk fraud commerce GitHub trending repositories\", numResults: 5) --output json --timeout 30000 --no-oauth\n[mcporter] exa appears offline (SSE error: TypeError: fetch failed: getaddrinfo ENOTFOUND mcp.exa.ai).\n[mcporter] exa appears offline (SSE error: TypeError: fetch failed: getaddrinfo ENOTFOUND mcp.exa.ai).\n",
+      "attempts": 3
+    },
+    {
+      "cohort": "mena_payments",
+      "query": "latest UAE Saudi MENA payments acquiring issuing open finance pay by bank merchant acceptance",
+      "status": "error",
+      "error": "Command failed: /Users/rizwanzafar/.agent-reach/npm/node_modules/.bin/mcporter call exa.web_search_exa(query: \"latest UAE Saudi MENA payments acquiring issuing open finance pay by bank merchant acceptance\", numResults: 5) --output json --timeout 30000 --no-oauth\n[mcporter] exa appears offline (SSE error: TypeError: fetch failed: getaddrinfo ENOTFOUND mcp.exa.ai).\n[mcporter] exa appears offline (SSE error: TypeError: fetch failed: getaddrinfo ENOTFOUND mcp.exa.ai).\n",
+      "attempts": 3
+    }
+  ],
+  "successfulCohorts": [],
+  "failedCohorts": [
+    "acquiring_acceptance",
+    "issuing_processing",
+    "product_management",
+    "project_program_management",
+    "ai_repo_radar",
+    "mena_payments"
+  ]
+}

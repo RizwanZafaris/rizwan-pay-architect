@@ -44,6 +44,16 @@ const staticEntries: SitemapEntry[] = [
     priority: 0.9,
   },
   {
+    path: "/library",
+    title: "Payments Product Library",
+    section: "Core",
+    description:
+      "Practical payments product guides, open-source systems, case studies and topic collections.",
+    lastmod: publishedPosts[0]?.date ?? SITE_REFRESH_DATE,
+    changefreq: "weekly",
+    priority: 0.85,
+  },
+  {
     path: "/journey",
     title: "The Journey",
     section: "Core",

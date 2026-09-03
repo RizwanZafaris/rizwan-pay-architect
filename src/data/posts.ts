@@ -41,6 +41,29 @@ export const categories = [
 
 export const posts: Post[] = [
   {
+    "slug": "qatar-psp-rtgs-direct-access-settlement-control",
+    "title": "Qatar Direct RTGS Access Changes PSP Settlement Control",
+    "metaTitle": "Qatar PSP RTGS Access Changes Settlement Control",
+    "date": "2026-09-03",
+    "category": "Payment Infrastructure",
+    "readingTime": "7 min read",
+    "description": "Qatar's direct QA-RTGS access for PSPs turns settlement into a product-control question across accounts, reconciliation, liquidity and oversight.",
+    "thesis": "Qatar's direct QA-RTGS access for payment service providers is not only an infrastructure upgrade. It changes who can evidence settlement, liquidity, reconciliation and merchant exceptions.",
+    "tags": [
+      "Qatar payments",
+      "QA-RTGS",
+      "payment service providers",
+      "settlement",
+      "payment infrastructure"
+    ],
+    "relatedArticles": [
+      "/blog/reconciliation-is-product-infrastructure",
+      "/blog/ledger-design-for-multi-rail-payments",
+      "/blog/cross-border-corridors-are-operating-systems",
+      "/hire"
+    ]
+  },
+  {
     "slug": "sama-open-banking-licensed-operating-model",
     "title": "Saudi Open Banking Needs a Licensed Operating Model",
     "metaTitle": "Saudi Open Banking Needs a Licensed Operating Model",
@@ -4518,7 +4541,7 @@ export const posts: Post[] = [
 
 export const getPost = (slug: string) => posts.find((p) => p.slug === slug);
 const todayIso = new Intl.DateTimeFormat("en-CA", {
-  timeZone: "Asia/Karachi",
+  timeZone: "Asia/Dubai",
   year: "numeric",
   month: "2-digit",
   day: "2-digit",

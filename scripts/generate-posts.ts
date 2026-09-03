@@ -177,7 +177,7 @@ export const posts: Post[] = ${JSON.stringify(postsMeta, null, 2)};
 
 export const getPost = (slug: string) => posts.find((p) => p.slug === slug);
 const todayIso = new Intl.DateTimeFormat("en-CA", {
-  timeZone: "Asia/Karachi",
+  timeZone: "Asia/Dubai",
   year: "numeric",
   month: "2-digit",
   day: "2-digit",

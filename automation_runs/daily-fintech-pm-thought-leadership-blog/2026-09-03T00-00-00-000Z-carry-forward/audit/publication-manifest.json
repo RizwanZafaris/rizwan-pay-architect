@@ -1,0 +1,102 @@
+{
+  "manifestVersion": 1,
+  "creative": {
+    "visualSystemId": "rzifi-cinematic-payments-split-v1",
+    "layoutId": "left-copy-right-scene-46-54",
+    "canvas": {
+      "width": 1200,
+      "height": 630,
+      "format": "png"
+    },
+    "palette": {
+      "navy": "#061119",
+      "ivory": "#F5F4EE",
+      "teal": "#22C7B6",
+      "amber": "#D8A552",
+      "muted": "#A6B0B4"
+    },
+    "headline": "DIRECT SETTLEMENT NEEDS VISIBLE CONTROL",
+    "headlineLines": 4,
+    "textRendering": "deterministic_overlay",
+    "dominantFocalPoints": 1,
+    "supportingProps": 3,
+    "treatment": [
+      "cinematic",
+      "photoreal",
+      "editorial"
+    ],
+    "primarySubject": "payment operations professional with payment terminal",
+    "generationPrompt": "A credible Gulf payment operations professional reconciles a settlement event beside a real payment terminal in a cinematic photoreal editorial scene.",
+    "styleKeywords": [
+      "payments",
+      "settlement evidence",
+      "Gulf operations"
+    ]
+  },
+  "companyTags": [],
+  "channels": {
+    "website": {
+      "enabled": true,
+      "status": "ready",
+      "failureScope": "channel_only",
+      "dependsOnChannels": [],
+      "asset": {
+        "visualSystemId": "rzifi-cinematic-payments-split-v1",
+        "width": 1200,
+        "height": 630,
+        "format": "png"
+      },
+      "cadence": {
+        "cadencePolicyId": "website-daily-one-release-v1",
+        "timeZone": "Asia/Dubai",
+        "targetLocalDate": "2026-09-03",
+        "targetLocalTime": "13:00",
+        "targetPostsPerWeek": 7,
+        "maximumPostsPerLocalDay": 1,
+        "approvalMode": "editorial_review"
+      }
+    },
+    "linkedin": {
+      "enabled": true,
+      "status": "draft",
+      "failureScope": "channel_only",
+      "dependsOnChannels": [],
+      "asset": {
+        "visualSystemId": "rzifi-cinematic-payments-split-v1",
+        "width": 1200,
+        "height": 630,
+        "format": "png"
+      },
+      "cadence": {
+        "cadencePolicyId": "linkedin-daily-one-post-2026-08-v2",
+        "timeZone": "Asia/Dubai",
+        "targetLocalDate": "2026-09-04",
+        "targetLocalTime": "08:45",
+        "targetPostsPerWeek": 7,
+        "maximumPostsPerLocalDay": 1,
+        "approvalMode": "exact_asset_and_caption"
+      }
+    },
+    "x": {
+      "enabled": true,
+      "status": "blocked",
+      "failureScope": "channel_only",
+      "dependsOnChannels": [],
+      "asset": {
+        "visualSystemId": "rzifi-cinematic-payments-split-v1",
+        "width": 1200,
+        "height": 630,
+        "format": "png"
+      },
+      "cadence": {
+        "cadencePolicyId": "x-daily-one-post-v1",
+        "timeZone": "Asia/Dubai",
+        "targetLocalDate": "2026-09-03",
+        "targetLocalTime": "09:00",
+        "targetPostsPerWeek": 7,
+        "maximumPostsPerLocalDay": 1,
+        "approvalMode": "exact_asset_and_caption"
+      }
+    }
+  }
+}

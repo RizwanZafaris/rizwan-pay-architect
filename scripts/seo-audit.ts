@@ -146,7 +146,7 @@ function auditSitemap() {
   const locs = matchAll(body, /<loc>([^<]+)<\/loc>/g).map((s) => s.replace(/^<loc>|<\/loc>$/g, ""));
   if (locs.length === 0) return fail(path, "has_urls", "no <loc> entries");
   const today = new Intl.DateTimeFormat("en-CA", {
-    timeZone: "Asia/Karachi",
+    timeZone: "Asia/Dubai",
     year: "numeric",
     month: "2-digit",
     day: "2-digit",
