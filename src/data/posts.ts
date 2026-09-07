@@ -41,6 +41,29 @@ export const categories = [
 
 export const posts: Post[] = [
   {
+    "slug": "frontier-ai-payment-recovery-gates",
+    "title": "Frontier AI Needs Payment Recovery Gates",
+    "metaTitle": "Frontier AI Needs Payment Recovery Gates",
+    "date": "2026-09-07",
+    "category": "AI & Product Operations",
+    "readingTime": "7 min read",
+    "description": "FSB's frontier-AI warning turns cyber risk into recovery work for payment operators: third-party resilience, degraded modes and reconciliation.",
+    "thesis": "FSB's late-August frontier-AI warning is a practical signal for banks, PSPs and processors: AI-assisted operations need recovery gates before scale.",
+    "tags": [
+      "frontier AI",
+      "payment operations",
+      "cyber resilience",
+      "third-party risk",
+      "AI governance"
+    ],
+    "relatedArticles": [
+      "/blog/agentic-payments-operations-what-works",
+      "/blog/why-ai-ml-solutions-fail-production-payments",
+      "/blog/reconciliation-is-product-infrastructure",
+      "/hire"
+    ]
+  },
+  {
     "slug": "qatar-psp-rtgs-direct-access-settlement-control",
     "title": "Qatar Direct RTGS Access Changes PSP Settlement Control",
     "metaTitle": "Qatar PSP RTGS Access Changes Settlement Control",
