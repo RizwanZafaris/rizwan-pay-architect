@@ -5,8 +5,16 @@
   <link>https://rzifi.com/blog/</link>
   <description>Essays on payment infrastructure, fintech product, risk, settlement, AI and program leadership.</description>
   <language>en</language>
-  <lastBuildDate>Mon, 07 Sep 2026 01:12:02 GMT</lastBuildDate>
+  <lastBuildDate>Mon, 07 Sep 2026 02:45:22 GMT</lastBuildDate>
   <item>
+    <title>Frontier AI Needs Payment Recovery Gates</title>
+    <link>https://rzifi.com/blog/frontier-ai-payment-recovery-gates/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/frontier-ai-payment-recovery-gates/</guid>
+    <pubDate>Mon, 07 Sep 2026 00:00:00 GMT</pubDate>
+    <category>AI &amp; Product Operations</category>
+    <description>FSB&apos;s frontier-AI warning turns cyber risk into recovery work for payment operators: third-party resilience, degraded modes and reconciliation.</description>
+  </item>
+<item>
     <title>Qatar Direct RTGS Access Changes PSP Settlement Control</title>
     <link>https://rzifi.com/blog/qatar-psp-rtgs-direct-access-settlement-control/</link>
     <guid isPermaLink="true">https://rzifi.com/blog/qatar-psp-rtgs-direct-access-settlement-control/</guid>
@@ -237,14 +245,6 @@
     <pubDate>Wed, 05 Aug 2026 00:00:00 GMT</pubDate>
     <category>Card Issuing</category>
     <description>Thredd and Pliant&apos;s U.S. commercial credit launch shows why issuer processing needs control ownership before growth.</description>
-  </item>
-<item>
-    <title>Adyen&apos;s Peak Season Data Needs an Acquiring Control Room</title>
-    <link>https://rzifi.com/blog/adyen-peak-season-acquiring-control-room/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/adyen-peak-season-acquiring-control-room/</guid>
-    <pubDate>Tue, 04 Aug 2026 00:00:00 GMT</pubDate>
-    <category>Merchant Acquiring</category>
-    <description>Adyen&apos;s peak-season guide shows why acquiring teams need a control room for wallets, authorization, fraud, refunds, incidents, and learning.</description>
   </item>
 </channel>
 </rss>
