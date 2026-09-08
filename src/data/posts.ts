@@ -41,6 +41,29 @@ export const categories = [
 
 export const posts: Post[] = [
   {
+    "slug": "swift-ledger-tokenized-deposit-liquidity-gates",
+    "title": "Swift Ledger Makes Liquidity A Product Gate",
+    "metaTitle": "Swift Ledger Makes Liquidity A Product Gate",
+    "date": "2026-09-08",
+    "category": "Cross-Border Payments",
+    "readingTime": "7 min read",
+    "description": "FAB and Citi's Swift Ledger pilot shows why tokenized-deposit payments need gates for balance-sheet ownership, settlement, liquidity and fallback.",
+    "thesis": "FAB, Citi and OCBC have made Swift Ledger concrete. The operator lesson is not blockchain hype. It is the control gap between 24/7 commitment and final settlement.",
+    "tags": [
+      "Swift Ledger",
+      "tokenized deposits",
+      "cross-border payments",
+      "liquidity management",
+      "correspondent banking"
+    ],
+    "relatedArticles": [
+      "/blog/cross-border-corridors-are-operating-systems",
+      "/blog/future-of-treasury-with-stablecoins",
+      "/blog/swift-november-2026-address-cutoff-product-problem",
+      "/hire"
+    ]
+  },
+  {
     "slug": "frontier-ai-payment-recovery-gates",
     "title": "Frontier AI Needs Payment Recovery Gates",
     "metaTitle": "Frontier AI Needs Payment Recovery Gates",
