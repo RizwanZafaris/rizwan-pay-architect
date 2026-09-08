@@ -5,8 +5,16 @@
   <link>https://rzifi.com/blog/</link>
   <description>Essays on payment infrastructure, fintech product, risk, settlement, AI and program leadership.</description>
   <language>en</language>
-  <lastBuildDate>Tue, 08 Sep 2026 01:17:28 GMT</lastBuildDate>
+  <lastBuildDate>Tue, 08 Sep 2026 05:54:18 GMT</lastBuildDate>
   <item>
+    <title>Swift Ledger Makes Liquidity A Product Gate</title>
+    <link>https://rzifi.com/blog/swift-ledger-tokenized-deposit-liquidity-gates/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/swift-ledger-tokenized-deposit-liquidity-gates/</guid>
+    <pubDate>Tue, 08 Sep 2026 00:00:00 GMT</pubDate>
+    <category>Cross-Border Payments</category>
+    <description>FAB and Citi&apos;s Swift Ledger pilot shows why tokenized-deposit payments need gates for balance-sheet ownership, settlement, liquidity and fallback.</description>
+  </item>
+<item>
     <title>Frontier AI Needs Payment Recovery Gates</title>
     <link>https://rzifi.com/blog/frontier-ai-payment-recovery-gates/</link>
     <guid isPermaLink="true">https://rzifi.com/blog/frontier-ai-payment-recovery-gates/</guid>
@@ -237,14 +245,6 @@
     <pubDate>Wed, 05 Aug 2026 00:00:00 GMT</pubDate>
     <category>Product Management</category>
     <description>OpenAI Presence shows why product teams need evaluations, approval rules, escalation paths, and change control for agents.</description>
-  </item>
-<item>
-    <title>Thredd and Pliant Make U.S. Credit Issuing a Control Test</title>
-    <link>https://rzifi.com/blog/thredd-pliant-us-credit-issuing-controls/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/thredd-pliant-us-credit-issuing-controls/</guid>
-    <pubDate>Wed, 05 Aug 2026 00:00:00 GMT</pubDate>
-    <category>Card Issuing</category>
-    <description>Thredd and Pliant&apos;s U.S. commercial credit launch shows why issuer processing needs control ownership before growth.</description>
   </item>
 </channel>
 </rss>
