@@ -41,6 +41,29 @@ export const categories = [
 
 export const posts: Post[] = [
   {
+    "slug": "afaq-gulf-payments-transfer-traceability",
+    "title": "AFAQ Makes Gulf Transfers A Traceability Test",
+    "metaTitle": "AFAQ Makes Gulf Transfers A Traceability Test",
+    "date": "2026-09-09",
+    "category": "Cross-Border Payments",
+    "readingTime": "7 min read",
+    "description": "QCB joining AFAQ completes GCC central-bank participation and turns Gulf cross-border transfers into a traceability, liquidity and exception-control test.",
+    "thesis": "Qatar Central Bank joining AFAQ is not just another membership update. It raises the operating bar for Gulf banks that must prove where a cross-border transfer is at every state.",
+    "tags": [
+      "AFAQ",
+      "Gulf payments",
+      "cross-border transfers",
+      "payment traceability",
+      "bank operations"
+    ],
+    "relatedArticles": [
+      "/blog/qatar-psp-rtgs-direct-access-settlement-control",
+      "/blog/cross-border-corridors-are-operating-systems",
+      "/blog/three-way-reconciliation-at-scale",
+      "/hire"
+    ]
+  },
+  {
     "slug": "swift-ledger-tokenized-deposit-liquidity-gates",
     "title": "Swift Ledger Makes Liquidity A Product Gate",
     "metaTitle": "Swift Ledger Makes Liquidity A Product Gate",
