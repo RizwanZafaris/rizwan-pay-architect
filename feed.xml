@@ -5,8 +5,16 @@
   <link>https://rzifi.com/blog/</link>
   <description>Essays on payment infrastructure, fintech product, risk, settlement, AI and program leadership.</description>
   <language>en</language>
-  <lastBuildDate>Wed, 09 Sep 2026 01:22:08 GMT</lastBuildDate>
+  <lastBuildDate>Wed, 09 Sep 2026 02:53:59 GMT</lastBuildDate>
   <item>
+    <title>AFAQ Makes Gulf Transfers A Traceability Test</title>
+    <link>https://rzifi.com/blog/afaq-gulf-payments-transfer-traceability/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/afaq-gulf-payments-transfer-traceability/</guid>
+    <pubDate>Wed, 09 Sep 2026 00:00:00 GMT</pubDate>
+    <category>Cross-Border Payments</category>
+    <description>QCB joining AFAQ completes GCC central-bank participation and turns Gulf cross-border transfers into a traceability, liquidity and exception-control test.</description>
+  </item>
+<item>
     <title>Swift Ledger Makes Liquidity A Product Gate</title>
     <link>https://rzifi.com/blog/swift-ledger-tokenized-deposit-liquidity-gates/</link>
     <guid isPermaLink="true">https://rzifi.com/blog/swift-ledger-tokenized-deposit-liquidity-gates/</guid>
@@ -237,14 +245,6 @@
     <pubDate>Wed, 05 Aug 2026 00:00:00 GMT</pubDate>
     <category>AI &amp; Product Operations</category>
     <description>LoopX shows why long-running AI agent teams need durable goals, typed todos, evidence logs, gates, and handoffs.</description>
-  </item>
-<item>
-    <title>OpenAI Presence Turns Agent Products Into Change Management</title>
-    <link>https://rzifi.com/blog/openai-presence-agent-product-change-loop/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/openai-presence-agent-product-change-loop/</guid>
-    <pubDate>Wed, 05 Aug 2026 00:00:00 GMT</pubDate>
-    <category>Product Management</category>
-    <description>OpenAI Presence shows why product teams need evaluations, approval rules, escalation paths, and change control for agents.</description>
   </item>
 </channel>
 </rss>
