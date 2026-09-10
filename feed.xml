@@ -5,8 +5,16 @@
   <link>https://rzifi.com/blog/</link>
   <description>Essays on payment infrastructure, fintech product, risk, settlement, AI and program leadership.</description>
   <language>en</language>
-  <lastBuildDate>Thu, 10 Sep 2026 01:17:54 GMT</lastBuildDate>
+  <lastBuildDate>Thu, 10 Sep 2026 12:43:29 GMT</lastBuildDate>
   <item>
+    <title>BIS Turns Cyber Recovery Into A Payment Runbook</title>
+    <link>https://rzifi.com/blog/bis-cyber-recovery-payment-runbook/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/bis-cyber-recovery-payment-runbook/</guid>
+    <pubDate>Thu, 10 Sep 2026 00:00:00 GMT</pubDate>
+    <category>AI &amp; Product Operations</category>
+    <description>BIS and CPMI-IOSCO show why payment cyber resilience now needs faster patching, third-party dependency maps and recovery evidence.</description>
+  </item>
+<item>
     <title>AFAQ Makes Gulf Transfers A Traceability Test</title>
     <link>https://rzifi.com/blog/afaq-gulf-payments-transfer-traceability/</link>
     <guid isPermaLink="true">https://rzifi.com/blog/afaq-gulf-payments-transfer-traceability/</guid>
@@ -237,14 +245,6 @@
     <pubDate>Wed, 05 Aug 2026 00:00:00 GMT</pubDate>
     <category>Program Management</category>
     <description>DeepMind&apos;s AI Control Roadmap shows why agent programmes need measurable gates for monitoring, recall, response, and authority.</description>
-  </item>
-<item>
-    <title>LoopX Shows Agent Teams Need a State Kernel</title>
-    <link>https://rzifi.com/blog/loopx-agent-state-kernel-governance/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/loopx-agent-state-kernel-governance/</guid>
-    <pubDate>Wed, 05 Aug 2026 00:00:00 GMT</pubDate>
-    <category>AI &amp; Product Operations</category>
-    <description>LoopX shows why long-running AI agent teams need durable goals, typed todos, evidence logs, gates, and handoffs.</description>
   </item>
 </channel>
 </rss>
