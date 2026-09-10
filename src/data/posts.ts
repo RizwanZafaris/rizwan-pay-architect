@@ -41,6 +41,29 @@ export const categories = [
 
 export const posts: Post[] = [
   {
+    "slug": "bis-cyber-recovery-payment-runbook",
+    "title": "BIS Turns Cyber Recovery Into A Payment Runbook",
+    "metaTitle": "BIS Turns Cyber Recovery Into A Payment Runbook",
+    "date": "2026-09-10",
+    "category": "AI & Product Operations",
+    "readingTime": "7 min read",
+    "description": "BIS and CPMI-IOSCO show why payment cyber resilience now needs faster patching, third-party dependency maps and recovery evidence.",
+    "thesis": "BIS FSI's frontier-AI cyber paper and CPMI-IOSCO's FMI toolkit make cyber resilience a payment runbook problem: patch faster, map dependencies and prove recovery.",
+    "tags": [
+      "BIS",
+      "cyber resilience",
+      "payment infrastructure",
+      "third-party risk",
+      "operational resilience"
+    ],
+    "relatedArticles": [
+      "/blog/frontier-ai-payment-recovery-gates",
+      "/blog/boe-payment-third-party-risk-programme-gates",
+      "/blog/reconciliation-is-product-infrastructure",
+      "/hire"
+    ]
+  },
+  {
     "slug": "afaq-gulf-payments-transfer-traceability",
     "title": "AFAQ Makes Gulf Transfers A Traceability Test",
     "metaTitle": "AFAQ Makes Gulf Transfers A Traceability Test",
