@@ -41,6 +41,29 @@ export const categories = [
 
 export const posts: Post[] = [
   {
+    "slug": "mastercard-agent-connect-merchant-control-plane",
+    "title": "Mastercard Agent Connect Makes Merchant Control The Product",
+    "metaTitle": "Mastercard Agent Connect: Merchant Control Plane",
+    "date": "2026-09-11",
+    "category": "AI & Product Operations",
+    "readingTime": "7 min read",
+    "description": "Mastercard Agent Connect turns agentic commerce into merchant control work across product data, consent, pricing, fulfilment and payment authorization.",
+    "thesis": "Agentic commerce will not scale because AI agents can shop. It will scale when merchants can control participation, product data, pricing, fulfilment, payment authorization and exception evidence.",
+    "tags": [
+      "Mastercard Agent Connect",
+      "agentic commerce",
+      "AI payments",
+      "merchant control",
+      "payment authorization"
+    ],
+    "relatedArticles": [
+      "/blog/agentic-commerce-visa-mastercard-payments",
+      "/blog/cross-river-stripe-agentic-card-mandate-controls",
+      "/blog/agent-payment-guard-x402-risk-gates",
+      "/hire"
+    ]
+  },
+  {
     "slug": "bis-cyber-recovery-payment-runbook",
     "title": "BIS Turns Cyber Recovery Into A Payment Runbook",
     "metaTitle": "BIS Turns Cyber Recovery Into A Payment Runbook",
