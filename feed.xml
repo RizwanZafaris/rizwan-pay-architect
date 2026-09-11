@@ -5,8 +5,16 @@
   <link>https://rzifi.com/blog/</link>
   <description>Essays on payment infrastructure, fintech product, risk, settlement, AI and program leadership.</description>
   <language>en</language>
-  <lastBuildDate>Fri, 11 Sep 2026 01:19:36 GMT</lastBuildDate>
+  <lastBuildDate>Fri, 11 Sep 2026 02:47:25 GMT</lastBuildDate>
   <item>
+    <title>Mastercard Agent Connect Makes Merchant Control The Product</title>
+    <link>https://rzifi.com/blog/mastercard-agent-connect-merchant-control-plane/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/mastercard-agent-connect-merchant-control-plane/</guid>
+    <pubDate>Fri, 11 Sep 2026 00:00:00 GMT</pubDate>
+    <category>AI &amp; Product Operations</category>
+    <description>Mastercard Agent Connect turns agentic commerce into merchant control work across product data, consent, pricing, fulfilment and payment authorization.</description>
+  </item>
+<item>
     <title>BIS Turns Cyber Recovery Into A Payment Runbook</title>
     <link>https://rzifi.com/blog/bis-cyber-recovery-payment-runbook/</link>
     <guid isPermaLink="true">https://rzifi.com/blog/bis-cyber-recovery-payment-runbook/</guid>
@@ -237,14 +245,6 @@
     <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
     <category>Merchant Acquiring</category>
     <description>Visa Intelligent Authorisation shows why acquirers need routing evidence, resilience, and settlement visibility before auth modernization.</description>
-  </item>
-<item>
-    <title>DeepMind&apos;s AI Control Roadmap Is a Programme Gate</title>
-    <link>https://rzifi.com/blog/deepmind-ai-control-roadmap-programme-gates/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/deepmind-ai-control-roadmap-programme-gates/</guid>
-    <pubDate>Wed, 05 Aug 2026 00:00:00 GMT</pubDate>
-    <category>Program Management</category>
-    <description>DeepMind&apos;s AI Control Roadmap shows why agent programmes need measurable gates for monitoring, recall, response, and authority.</description>
   </item>
 </channel>
 </rss>
