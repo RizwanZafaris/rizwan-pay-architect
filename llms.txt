@@ -67,8 +67,9 @@ Disambiguation note: This Rizwan Zafar is the payments infrastructure CPO at Sim
 - [SWIFT MT/MX Implementation: ISO 20022 Migration + gpi at Simpaisa](https://rzifi.com/product-work/swift-mt-mx-implementation-simpaisa/): Wired SWIFT MT and MX (ISO 20022) messaging into the Simpaisa cross-border stack with gpi tracking, CSP attestation and dual-rail parsing — sustained 99.9%+ message-acceptance rate through the ISO 20022 migration window.
 - [Tapmad OTT: 0→5M Subscribers, Payment Cost 50% → ~1%](https://rzifi.com/product-work/tapmad-dcb-monetisation-wallet-migration/): Built the billing engine for Pakistan's leading OTT platform — Direct Carrier Billing across all four telcos, wallet-billing migration that pulled payment cost from 50% of revenue to ~1%, 0→5M paid subscribers, ARPU +70%, $10M+ ARR, expanded into UAE and KSA.
 
-## Essays (195 total, latest first)
+## Essays (196 total, latest first)
 
+- [KYA Makes Agent Payments An Identity Control Plane](https://rzifi.com/blog/agentic-commerce-kya-interoperability-control-plane/): Ant, Mastercard and Visa's Know-Your-Agent collaboration turns agentic commerce into identity, authorization and evidence work for payment operators.
 - [Mastercard Agent Connect Makes Merchant Control The Product](https://rzifi.com/blog/mastercard-agent-connect-merchant-control-plane/): Mastercard Agent Connect turns agentic commerce into merchant control work across product data, consent, pricing, fulfilment and payment authorization.
 - [BIS Turns Cyber Recovery Into A Payment Runbook](https://rzifi.com/blog/bis-cyber-recovery-payment-runbook/): BIS and CPMI-IOSCO show why payment cyber resilience now needs faster patching, third-party dependency maps and recovery evidence.
 - [AFAQ Makes Gulf Transfers A Traceability Test](https://rzifi.com/blog/afaq-gulf-payments-transfer-traceability/): QCB joining AFAQ completes GCC central-bank participation and turns Gulf cross-border transfers into a traceability, liquidity and exception-control test.

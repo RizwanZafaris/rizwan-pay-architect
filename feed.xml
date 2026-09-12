@@ -5,8 +5,16 @@
   <link>https://rzifi.com/blog/</link>
   <description>Essays on payment infrastructure, fintech product, risk, settlement, AI and program leadership.</description>
   <language>en</language>
-  <lastBuildDate>Sat, 12 Sep 2026 01:21:14 GMT</lastBuildDate>
+  <lastBuildDate>Sat, 12 Sep 2026 02:46:30 GMT</lastBuildDate>
   <item>
+    <title>KYA Makes Agent Payments An Identity Control Plane</title>
+    <link>https://rzifi.com/blog/agentic-commerce-kya-interoperability-control-plane/</link>
+    <guid isPermaLink="true">https://rzifi.com/blog/agentic-commerce-kya-interoperability-control-plane/</guid>
+    <pubDate>Sat, 12 Sep 2026 00:00:00 GMT</pubDate>
+    <category>AI &amp; Product Operations</category>
+    <description>Ant, Mastercard and Visa&apos;s Know-Your-Agent collaboration turns agentic commerce into identity, authorization and evidence work for payment operators.</description>
+  </item>
+<item>
     <title>Mastercard Agent Connect Makes Merchant Control The Product</title>
     <link>https://rzifi.com/blog/mastercard-agent-connect-merchant-control-plane/</link>
     <guid isPermaLink="true">https://rzifi.com/blog/mastercard-agent-connect-merchant-control-plane/</guid>
@@ -237,14 +245,6 @@
     <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
     <category>Program Management</category>
     <description>PwC and Label&apos;s CARF collaboration shows why tax-transparency automation needs data, controls, vendor, and go-live gates.</description>
-  </item>
-<item>
-    <title>Visa VIA Makes Acquirer Routing an Evidence Test</title>
-    <link>https://rzifi.com/blog/visa-intelligent-authorisation-acquirer-routing-evidence/</link>
-    <guid isPermaLink="true">https://rzifi.com/blog/visa-intelligent-authorisation-acquirer-routing-evidence/</guid>
-    <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
-    <category>Merchant Acquiring</category>
-    <description>Visa Intelligent Authorisation shows why acquirers need routing evidence, resilience, and settlement visibility before auth modernization.</description>
   </item>
 </channel>
 </rss>
