@@ -41,6 +41,29 @@ export const categories = [
 
 export const posts: Post[] = [
   {
+    "slug": "agentic-commerce-kya-interoperability-control-plane",
+    "title": "KYA Makes Agent Payments An Identity Control Plane",
+    "metaTitle": "KYA Makes Agent Payments An Identity Control Plane",
+    "date": "2026-09-12",
+    "category": "AI & Product Operations",
+    "readingTime": "7 min read",
+    "description": "Ant, Mastercard and Visa's Know-Your-Agent collaboration turns agentic commerce into identity, authorization and evidence work for payment operators.",
+    "thesis": "Know-Your-Agent will matter only if payment operators can prove who controls the agent, what it is allowed to do, how it was certified, and which transaction evidence survives exceptions.",
+    "tags": [
+      "Know-Your-Agent",
+      "agentic commerce",
+      "AI payments",
+      "payment identity",
+      "wallet interoperability"
+    ],
+    "relatedArticles": [
+      "/blog/mastercard-agent-connect-merchant-control-plane",
+      "/blog/agentic-commerce-visa-mastercard-payments",
+      "/blog/cross-river-stripe-agentic-card-mandate-controls",
+      "/hire"
+    ]
+  },
+  {
     "slug": "mastercard-agent-connect-merchant-control-plane",
     "title": "Mastercard Agent Connect Makes Merchant Control The Product",
     "metaTitle": "Mastercard Agent Connect: Merchant Control Plane",
